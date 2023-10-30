@@ -1,18 +1,5 @@
 <Context>
-<<<<<<< HEAD
-   <Resource 
-      name="jdbc/mvc"
-      auth="Container"
-      type="javax.sql.DataSource"
-      driverClassName="com.mysql.cj.jdbc.Driver"
-      username="c7d2307t1"
-      password="1234"
-      url="jdbc:mysql://itwillbs.com:3306/c7d2307t1"
-      maxWait="5000"
-      />
-</Context>
-=======
-	<Resource 
+<Resource 
 		name="jdbc/mvc"
 		auth="Container"
 		type="javax.sql.DataSource"
@@ -23,5 +10,3 @@
 		maxWait="5000"
 		/>
 </Context>
-
->>>>>>> product_juhyeon

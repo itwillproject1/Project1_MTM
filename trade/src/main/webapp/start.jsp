@@ -12,12 +12,9 @@
 	MVC 프로젝트의 시작지점~~~<br>
 	
 	<%
-<<<<<<< HEAD
-		response.sendRedirect("./Main.com");
-=======
+
 // 		response.sendRedirect("./Main.com");
 		response.sendRedirect("./product/ProductContent.com");
->>>>>>> product_juhyeon
 	%>
 </body>
 </html>

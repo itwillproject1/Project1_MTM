@@ -44,21 +44,11 @@ public class ProductUploadAction implements Action {
 		dao.uploadProduct(dto);
 		
 		ActionForward forward = new ActionForward();
-<<<<<<< HEAD
-		forward.setPath("./product/ProductContent.com");
-		forward.setRedirect(true);
-		
-		
-		
-		
-		
-		return null;
-=======
+
 		forward.setPath("./product/ProductContent.com?"+dto.getBno());
 		forward.setRedirect(true);
 
 		return forward;
->>>>>>> product_juhyeon
 	}
 
 }

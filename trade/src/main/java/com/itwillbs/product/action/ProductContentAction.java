@@ -17,13 +17,9 @@ public class ProductContentAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: ProductContentAction.execute() 호출");
 
-<<<<<<< HEAD
-		// 전달정보 저장(bno, pageNum, fileName)
-		int bno = 10; // 추후 수정
-=======
 		// 전달정보 저장(bno, pageNum, search(생략))
 		int bno = 12; // 추후 수정
->>>>>>> product_juhyeon
+
 		String pageNum = request.getParameter("pageNum");
 		String fileName = "file1";
 
