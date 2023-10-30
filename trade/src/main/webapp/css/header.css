@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* 흰 배경색 */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ffffff; /* 흰 배경색 */
+    color: #333; /* 검은색 텍스트 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    transition: box-shadow 0.3s; /* 그림자 효과에 트랜지션 추가 */
+}
+
+header:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강화 */
+}
+
+.logo img {
+    max-height: 40px;
+}
+
+.search input {
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.search button {
+    padding: 10px 20px;
+    background-color: #333; /* 검은색 버튼 */
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search button:hover {
+    background-color: #555; /* 버튼 호버 시 색상 변경 */
+}
+
+.user-menu a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 20px;
+}
