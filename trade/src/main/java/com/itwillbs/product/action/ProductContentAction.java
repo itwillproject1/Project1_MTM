@@ -15,7 +15,7 @@ public class ProductContentAction implements Action {
 		System.out.println("M: ProductContentAction.execute() 호출");
 
 		// 전달정보 저장(bno, pageNum, search(생략))
-		int bno = 10; // 추후 수정
+		int bno = 12; // 추후 수정
 		String pageNum = request.getParameter("pageNum");
 
 		// BoardDAO 객체 - 특정 글의 조회수 1 증가()

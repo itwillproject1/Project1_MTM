@@ -141,7 +141,7 @@ public class ProductDAO {
 					dto.setPrice(rs.getInt("price"));
 					dto.setProduct_status(rs.getString("product_status"));
 					dto.setContent(rs.getString("content"));
-					dto.setViews(rs.getInt(bno));
+					dto.setViews(rs.getInt("views"));
 					dto.setDate_time(rs.getTimestamp("date_time"));
 					dto.setFile_name(rs.getString("file_name"));
 				}

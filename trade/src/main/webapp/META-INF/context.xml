@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-  <Resource 
-  	 name="jdbc/mvc" 
-  	 auth="Container" 
-  	 type="javax.sql.DataSource" 
-  	 driverClassName="com.mysql.cj.jdbc.Driver" 
-  	 username="root" 
-  	 password="1234" 
-  	 url="jdbc:mysql://localhost:3306/jspdb" 
-  	 maxWait="5000"   	 
-  	 />  
+	<Resource 
+		name="jdbc/mvc"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		username="c7d2307t1"
+		password="1234"
+		url="jdbc:mysql://itwillbs.com:3306/c7d2307t1"
+		maxWait="5000"
+		/>
 </Context>
 

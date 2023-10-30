@@ -20,6 +20,11 @@
 <body>
 
 	<%@ include file="../main/header.jsp"%>
+	<%
+		String filename = request.getParameter("fileName");
+		String savePath = "upload";
+		String realPath = request.getContextPath() + "/" + savePath;
+	%>
 	<div class="container">
 
 		<div class="form-group h1">
@@ -27,8 +32,7 @@
 		</div>
 		<div class="form-group2">
 			<div class="image-container">
-				<h2>이미지 미리보기</h2>
-				<img id="imagePreview" alt="미리보기">
+				<img src="<%=request.getContextPath() %>/upload/${dto.file_name }" id="imagePreview" alt="미리보기">
 			</div>
 			<div class="form-container">
 				<h2>상세 페이지</h2>
