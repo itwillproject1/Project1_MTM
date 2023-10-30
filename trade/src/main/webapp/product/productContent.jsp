@@ -29,6 +29,25 @@
 			<div class="image-container">
 				<h2>이미지 미리보기</h2>
 				<img id="imagePreview" alt="미리보기">
+			    <img src="<%= request.getAttribute("upload") %>" alt="이미지 설명" />
+			      <script>
+        function previewImage() {
+            var input = document.getElementById('imageInput');
+            var preview = document.getElementById('imagePreview');
+
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+				
 			</div>
 			<div class="form-container">
 				<h2>상세 페이지</h2>

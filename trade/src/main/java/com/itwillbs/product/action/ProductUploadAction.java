@@ -34,6 +34,14 @@ public class ProductUploadAction implements Action {
 		
 		dao.uploadProduct(dto);
 		
+		ActionForward forward = new ActionForward();
+		forward.setPath("./product/ProductContent.com");
+		forward.setRedirect(true);
+		
+		
+		
+		
+		
 		return null;
 	}
 
