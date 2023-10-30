@@ -26,7 +26,7 @@
 		</div>
 		<div class="form-container">
 			<h2>글쓰기</h2>
-			<form action="./ProductUploadAction.com" method="post">
+			<form action="./ProductUploadAction.com" method="post" enctype="multipart/form-data">
 
 				<div class="form-group">
 					<label for="dealWay">거래 방식:</label> <select id="deal_way"
@@ -177,19 +177,6 @@
 					<!-- 파일 선택 시 previewImage() 함수 호출 -->
 					<input type="file" id="file_name" name="file_name"
 						accept="image/*" multiple onchange="previewImage()">
-					<script>
-						document.getElementById('file_name').addEventListener(
-								'change', handleFileSelect);
-
-						function handleFileSelect(event) {
-							var files = event.target.files;
-
-							for (var i = 0; i < files.length; i++) {
-								var file = files[i];
-								console.log('Selected file:', file);
-							}
-						}
-					</script>
 				</div>
 
 				<div class="form-group">
