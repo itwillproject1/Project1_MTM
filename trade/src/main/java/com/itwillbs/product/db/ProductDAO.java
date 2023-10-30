@@ -154,35 +154,5 @@ public class ProductDAO {
 
 			return dto;
 		} // getProduct(int bno) 종료
-		
-		// 이미지 파일명 불러오는 getProduct(String fileName) 메서드
-				public String getProduct(String file_name) {
-					ProductDTO dto = null;
 
-					try {
-						con = getCon();
-
-						// sql, pstmt
-				        sql = "select file_name from Product where file_name = ?";
-				        pstmt = con.prepareStatement(sql);
-
-				        pstmt.setString(1, file_name);
-
-						// sql 실행
-						rs = pstmt.executeQuery();
-
-						// 데이터 처리
-						if (rs.next()) {
-				            file_name = rs.getString("file_name");
-				        }
-				        System.out.println("DAO: 이미지 파일명 불러오기 완료!");
-				    } catch (Exception e) {
-				        e.printStackTrace();
-				    } finally {
-				        closeDB();
-				    }
-
-					return file_name;
-				} // getProduct(String fileName) 종료
-		
 }

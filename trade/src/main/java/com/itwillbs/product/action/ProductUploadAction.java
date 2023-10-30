@@ -1,6 +1,5 @@
 package com.itwillbs.product.action;
 
-import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,10 +41,10 @@ public class ProductUploadAction implements Action {
 		ProductDAO dao = new ProductDAO();
 
 		dao.uploadProduct(dto);
-		
+		int bno = dto.getBno();
 		ActionForward forward = new ActionForward();
 
-		forward.setPath("./product/ProductContent.com?"+dto.getBno());
+		forward.setPath("./product/ProductContent.com?bno="+bno);
 		forward.setRedirect(true);
 
 		return forward;
