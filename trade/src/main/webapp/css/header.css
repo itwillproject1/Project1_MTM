@@ -34,15 +34,26 @@ header:hover {
 .category-a a {
     text-decoration: none;
     color: #333;
-    margin-right: 20px; 
+    margin-left: 20px;
 }
+
+.category-a a:hover {
+    color: #A9A9A9; /* 원하는 hover 색상으로 수정 */
+    text-decoration: none; /* 원하는 hover 효과로 수정 */
+}
+
 
 .category-b a {
 	left: -20px;
 	font-size: 14px;
     text-decoration: none;
     color: #333;
-    margin-right: 20px; 
+    margin-right: 20px;
+}
+
+.category-b a:hover {
+    color: #A9A9A9; /* 원하는 hover 색상으로 수정 */
+    text-decoration: none; /* 원하는 hover 효과로 수정 */
 }
 
 .category-c a {
@@ -78,6 +89,11 @@ header:hover {
 .user-menu a {
 	word-spacing: -10px;
     text-decoration: none;
-    color: #333;
-    margin-right: 50px; /* 여기도 20->50으로 수정 */
+    color: #222;
+    margin-right: 30px; /* 여기도 20->30으로 수정 */
+}
+
+.user-menu a:hover {
+    color: #A9A9A9; /* 원하는 hover 색상으로 수정 */
+    text-decoration: none; /* 원하는 hover 효과로 수정 */
 }
