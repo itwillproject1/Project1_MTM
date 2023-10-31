@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>프로필 편집</title>
+    <title>직원 추가</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="./employee/template/css/simplebar.css">
     <!-- Fonts CSS -->
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="./employee/template/css/app-dark.css" id="darkTheme" disabled>
   </head>
   <body class="vertical  light  ">
-  <c:if test="${empty emp_id}">
+  <c:if test="${empty emp_id or emp_id != 'admin'}">
 		<c:redirect url="./Login.empm"/>
   </c:if>
     <div class="wrapper">
@@ -159,17 +159,12 @@
               </a>
               <ul class="collapse list-unstyled pl-4 w-100 w-100" id="pages">
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./page-orders.html">
-                    <span class="ml-1 item-text">직원 조회</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="./page-timeline.html">
+                  <a class="nav-link pl-3" href="./EmployeeRegisterForm.empm">
                     <span class="ml-1 item-text">직원 추가</span>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./page-invoice.html">
+                  <a class="nav-link pl-3" href="./EmployeeDeleteForm.empm">
                     <span class="ml-1 item-text">직원 삭제</span>
                   </a>
                 </li>
@@ -184,7 +179,6 @@
           </div>
         </nav>
       </aside>
-      <!-- 메인(데이터가 쌓일 때 진행) -->
 	<main role="main" class="main-content">
         <div class="container-fluid">
           <div class="row justify-content-center">
@@ -238,6 +232,16 @@
                 </div>
               </div> <!-- / .card -->
               <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <div class="form-group mb-3">
+                        <label for="example-textarea">Text area</label>
+                        <textarea class="form-control" id="example-textarea" rows="4"></textarea>
+                      </div>
+                    </div> <!-- /.card-body -->
+                  </div> <!-- /.card -->
+                </div> <!-- /.col -->
                 <div class="col-md-6 mb-4">
                   <div class="card shadow">
                     <div class="card-body">

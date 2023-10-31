@@ -1,3 +1,4 @@
+<!DOCTYPE xml>
 <Context>
 <Resource 
 		name="jdbc/mvc"

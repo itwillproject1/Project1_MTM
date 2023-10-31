@@ -24,14 +24,14 @@ public class EmployeeLoginAction implements Action{
 		ActionForward forward = null;
 		if(result == 1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("id", dto.getEmp_id());
+			session.setAttribute("emp_id", dto.getEmp_id());
 			forward = new ActionForward();
-			forward.setPath("./main.empm");
+			forward.setPath("./Main.empm");
 			forward.setRedirect(true);
 			return forward;
 		}
 		else {
-			JSMoveFunction.alertHistory(response, "아이디 또는 비밀번호 오류");
+			JSMoveFunction.alertBack(response, "아이디 또는 비밀번호 오류");
 			return null;
 		}
 	}

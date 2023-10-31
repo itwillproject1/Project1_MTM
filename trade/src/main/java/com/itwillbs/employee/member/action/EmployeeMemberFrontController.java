@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +17,7 @@ import com.itwillbs.util.ActionForward;
  * 		직원(Employee)과 관련한 모든 작업을 수행하는 컨트롤러
  * */
 
-//@WebServlet("*.empm")
+@WebServlet("*.empm")
 public class EmployeeMemberFrontController extends HttpServlet{
 	
 	// HttpServlet 진행 함수
@@ -43,7 +44,7 @@ public class EmployeeMemberFrontController extends HttpServlet{
 		Action action = null;
 		
 		// -- 메인 페이지
-		if(command.equals("/main.empm")) {
+		if(command.equals("/Main.empm")) {
 			// 메인 페이지(관리자)
 			// 추가 정보 표시(1일당 접속자(기간), 거래 목록, 최근 신고목록, 문의사항 표시)
 			forward = new ActionForward();
@@ -53,7 +54,7 @@ public class EmployeeMemberFrontController extends HttpServlet{
 		}
 		
 		// -- 관리자 정보 관련
-		else if(command.equals("/login.empm")) {
+		else if(command.equals("/Login.empm")) {
 			// 로그인 페이지(처음 이동할 때 session 조회하고 이동 예정)
 			forward = new ActionForward();
 			forward.setPath("./employee/member/login.jsp");
@@ -61,7 +62,7 @@ public class EmployeeMemberFrontController extends HttpServlet{
 			System.out.println("C : " + forward);
 		}
 		
-		else if(command.equals("/loginAction.empm")) {
+		else if(command.equals("/LoginAction.empm")) {
 			// 로그인 액션(DB 사용 및 메인 페이지 이동 진행)
 			action = new EmployeeLoginAction();
 			try {
@@ -71,7 +72,7 @@ public class EmployeeMemberFrontController extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals("/findPwForm.empm")) {
+		else if(command.equals("/FindPwForm.empm")) {
 			// 비밀번호 찾기 폼
 			forward = new ActionForward();
 			forward.setPath("./employee/member/findPwForm.jsp");
@@ -79,7 +80,7 @@ public class EmployeeMemberFrontController extends HttpServlet{
 			System.out.println("C : " + forward);
 		}
 		
-		else if(command.equals("/findPwAction.empm")) {
+		else if(command.equals("/FindPwAction.empm")) {
 			// 비밀번호 찾기 실행
 			// 이메일과 아이디 조회 후 
 			// 일치하지 않으면 이전 페이지로 이동
@@ -91,7 +92,7 @@ public class EmployeeMemberFrontController extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals("/changePwForm.empm")) {
+		else if(command.equals("/ChangePwForm.empm")) {
 			// 비밀번호 변경 페이지(관리자)
 			forward = new ActionForward();
 			forward.setPath("./emloyee/member/findPwForm.jsp");
@@ -99,7 +100,7 @@ public class EmployeeMemberFrontController extends HttpServlet{
 			System.out.println("C : " + forward);
 		}
 		
-		else if(command.equals("/changePwAction.empm")) {
+		else if(command.equals("/ChangePwAction.empm")) {
 			// 비밀번호 변경 실행(로그인 페이지로 이동)
 			action = new EmployeeChangePwAction();
 			try {
@@ -109,15 +110,11 @@ public class EmployeeMemberFrontController extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals("/profile.empm")) {
-			// 프로필 조회(관리자)
-			forward = new ActionForward();
-			forward.setPath("./employee/member/profile.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+		else if(command.equals("/EmployeeList.empm")) {
+			
 		}
 		
-		else if(command.equals("/profileChangeForm.empm")) {
+		else if(command.equals("/ProfileChangeForm.empm")) {
 			// 프로필 편집 페이지(관리자)
 			action = new EmployeeProfileAction();
 			try {
@@ -127,7 +124,7 @@ public class EmployeeMemberFrontController extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals("/profileChangeAction.empm")) {
+		else if(command.equals("/ProfileChangeAction.empm")) {
 			// 프로필 편집 실행(관리자)
 			action = new EmployeeChangeProfileAction();
 			try {
@@ -135,6 +132,30 @@ public class EmployeeMemberFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		else if(command.equals("/EmployeeList.empm")) {
+			// 직원 리스트
+			
+		}
+		
+		else if(command.equals("/EmployeeRegisterForm.empm")) {
+			// 직원 추가 폼
+			
+		}
+		
+		else if(command.equals("/EmployeeRegisterAction.empm")) {
+			// 직원 추가 진행
+			
+		}
+		
+		else if(command.equals("/EmployeeDeleteForm.empm")) {
+			// 직원 삭제 폼
+			
+		}
+		
+		else if(command.equals("/EmployeeDeleteAction.empm")) {
+			// 직원 삭제 진행
+			
 		}
 		// -- 관리자 정보 관련
 		

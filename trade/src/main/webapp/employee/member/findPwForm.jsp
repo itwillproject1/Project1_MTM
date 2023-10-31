@@ -11,7 +11,7 @@
 	<body class="light ">
     <div class="wrapper vh-100">
       <div class="row align-items-center h-100">
-        <form action="./findPwAction.empm" method="post" class="col-lg-3 col-md-4 col-10 mx-auto text-center">
+        <form action="./FindPwAction.empm" method="post" class="col-lg-3 col-md-4 col-10 mx-auto text-center">
           <div class="mx-auto text-center my-4">
             <h2 class="my-3">비밀번호 찾기</h2>
           </div>

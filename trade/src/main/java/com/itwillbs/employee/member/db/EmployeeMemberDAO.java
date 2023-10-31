@@ -20,7 +20,7 @@ public class EmployeeMemberDAO {
 	private Connection getCon() throws Exception{
 		Context initCTX = new InitialContext();
 		Context envCTX = (Context)initCTX.lookup("java:comp/env");
-		DataSource ds = (DataSource)envCTX.lookup("jdbc/c7d2307t1");
+		DataSource ds = (DataSource)envCTX.lookup("jdbc/mvc");
 		con = ds.getConnection();
 		System.out.println("DAO : DB 연결 성공");
 		System.out.println("DAO : " + con);
@@ -103,21 +103,7 @@ public class EmployeeMemberDAO {
 		}
 		return result;
 	} // changeProfile();
-	
-	// loadEmployeeList() : 관리자 리스트 출력(admin 전용)
-	public ArrayList loadEmployeeList (int startPage, int page) {
-		ArrayList dtoList = null;
-		try {
-			con = getCon();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			CloseDB();
-		}
-		return dtoList;
-	} // loadEmployeeList();
-	
+
 	// employeePasswordFind() : 관리자 비밀번호 찾기
 	public int employePwFind(EmployeeMemberDTO dto) {
 		int result = -1;
@@ -165,4 +151,33 @@ public class EmployeeMemberDAO {
 		}
 		return result;
 	} // employeePwChange();
+	
+	// loadEmployeeList() : 직원 목록 return
+	public ArrayList loadEmployeeList(int currentPage) {
+		ArrayList empList = null;
+		try {
+			con = getCon();
+			sql = "select * from Employees order by join_date";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				empList = new ArrayList();
+				while(rs.next()) {
+					EmployeeMemberDTO dto = new EmployeeMemberDTO();
+					dto.setEmp_id(rs.getString("emp_id"));
+					dto.setImage(rs.getString("image"));
+					dto.setName(rs.getString("name"));
+					dto.setTel(rs.getString("tel"));
+					dto.setJoin_date(rs.getDate("join_date"));
+					dto.setEmail(rs.getString("email"));
+					empList.add(dto);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return empList;
+	} // loadEemployeeList();
 }

@@ -37,7 +37,7 @@ public class EmployeeProfileAction implements Action{
 		request.setAttribute("profile", dto);
 		
 		// profile.emp 이동
-		forward.setPath("./profile.emp");
+		forward.setPath("./Profile.emp");
 		forward.setRedirect(false);
 		
 		return null;

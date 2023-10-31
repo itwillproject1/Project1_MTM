@@ -1,4 +1,4 @@
-package com.itwillbs.employee.board.action;
+package com.itwillbs.employee.user.action;
 
 import java.io.IOException;
 
@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class EmployeeBoardFrontController extends HttpServlet{
+@WebServlet("*.empu")
+public class EmployeeUserFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		System.out.println("C : EmployeeFrontController doProcess() 실행");
 		System.out.println("C : GET/POST 동작 모두 처리");
