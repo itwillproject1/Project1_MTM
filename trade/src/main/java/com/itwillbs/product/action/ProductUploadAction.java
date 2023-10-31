@@ -1,7 +1,13 @@
 package com.itwillbs.product.action;
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.Collection;
+
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.itwillbs.product.db.ProductDAO;
 import com.itwillbs.product.db.ProductDTO;
@@ -10,6 +16,7 @@ import com.itwillbs.util.ActionForward;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+@MultipartConfig(location = "trade/src/main/webapp/upload")
 public class ProductUploadAction implements Action {
 
 	@Override
@@ -17,10 +24,11 @@ public class ProductUploadAction implements Action {
 		System.out.println("M: ProductUploadAction.execute() 호출");
 
 		// 첨부이미지
-		String realPath = request.getRealPath("upload"); // 파일이 저장되는 장소(가상주소)
+		String realPath = request.getRealPath("upload"); // 실제로 파일이 저장되는 장소(가상주소)
 		System.out.println(realPath);
 		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
-		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize,
+							"UTF-8", new DefaultFileRenamePolicy());
 
 		// 전달정보 저장(DTO)
 		ProductDTO dto = new ProductDTO();
@@ -42,9 +50,10 @@ public class ProductUploadAction implements Action {
 
 		dao.uploadProduct(dto);
 		int bno = dto.getBno();
+		
 		ActionForward forward = new ActionForward();
 
-		forward.setPath("./product/ProductContent.com?bno="+bno);
+		forward.setPath("./product/ProductContent.com");
 		forward.setRedirect(true);
 
 		return forward;

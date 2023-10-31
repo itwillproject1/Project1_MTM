@@ -51,16 +51,21 @@
 				<div class="form-group">
 					<label for="productBrand">브랜드: <a href="브랜드 검색결과">${dto.brand }</a></label>
 				</div>
-
+				
+				<c:if test="${dto.deal_way.equals('팝니다') }">
 				<div class="form-group">
 					<label for="productCondition">상품 상태: ${dto.product_status }</label>
 				</div>
+				</c:if>
 
 				<div class="form-group">
 					<label for="productPrice">가격(원): <fmt:formatNumber
 							value="${dto.price }" /></label>
 				</div>
-				<c:if test="${dto.deal_way.equals('sell') }">
+				<c:if test="${dto.deal_way.equals('팝니다') }">
+					<input class="submit-button" type="button" value="구매하기" onclick="location.href='결제페이지';">
+				</c:if>
+				<c:if test="${dto.deal_way.equals('삽니다') }">
 					<input class="submit-button" type="button" value="판매하기" onclick="location.href='물건 고르는 페이지';">
 				</c:if>
 			</div>
@@ -69,25 +74,6 @@
 				<label for="productDescription">상품 설명: </label> ${dto.content }
 			</div>
 	</div>
-
-	<!-- 이미지 미리보기 관련 스크립트 -->
-	<script>
-		function previewImage() {
-			var preview = document.getElementById('imagePreview');
-			var fileInput = document.getElementById('file_name');
-			var file = fileInput.files[0];
-
-			if (file) {
-				var reader = new FileReader();
-
-				reader.onload = function(e) {
-					preview.src = e.target.result;
-				};
-
-				reader.readAsDataURL(file);
-			}
-		}
-	</script>
 
 </body>
 </html>

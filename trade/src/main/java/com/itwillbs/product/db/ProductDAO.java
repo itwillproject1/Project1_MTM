@@ -78,8 +78,8 @@ public class ProductDAO {
 
 				// sql 실행
 				pstmt.executeUpdate();
+				dto.setBno(bno);
 				System.out.println("DAO: " + bno + "번 글 작성 완료");
-				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
