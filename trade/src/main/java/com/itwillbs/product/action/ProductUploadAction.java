@@ -20,7 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @MultipartConfig(
 		fileSizeThreshold=0,
-		location="C:\\Users\\ITWILL\\Desktop\\sourceTree\\realproject\\trade\\src\\main\\webapp\\upload"
+		location="upload"
 		)
 public class ProductUploadAction implements Action {
 	private static final long serialVersionUID = 1L;
@@ -88,10 +88,8 @@ public class ProductUploadAction implements Action {
 			// 파일명 구하기
 			fileName = getFileName(part);
 			
-			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미이다.
+			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미
 			if(!("".equals(fileName))) {
-				// 1개의 업로드 파일에 대한 정보를 저장할 객체 생성
-			
 				fileList.add(fileName);
 				System.out.println("file_name: " + fileName);
 			}
@@ -125,12 +123,11 @@ public class ProductUploadAction implements Action {
 		// DAO 글작성 수행 메서드
 		ProductDAO dao = new ProductDAO();
 
-		dao.uploadProduct(dto);
-		int bno = dto.getBno();
+		int bno = dao.uploadProduct(dto);
 
 		ActionForward forward = new ActionForward();
 
-		forward.setPath("./product/ProductContent.com");
+		forward.setPath("./product/ProductContent.com?bno=" + bno);
 		forward.setRedirect(true);
 
 		return forward;
