@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-@WebServlet("*.com")
+//@WebServlet("*.com")
 public class ProductFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

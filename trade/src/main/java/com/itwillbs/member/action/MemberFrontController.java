@@ -1,6 +1,5 @@
 package com.itwillbs.member.action;
 
-import java.awt.Desktop.Action;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,14 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+@WebServlet("*.com")
 
-
-
-
-
-//@WebServlet("*.com")
 public class MemberFrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request,
@@ -38,19 +34,19 @@ public class MemberFrontController extends HttpServlet {
 		
 		/***********************2. 가상주소 매핑 시작**************************/
 		System.out.println("\n\n C : 2. 가상주소 매핑 시작------------------");
-		MemberJoinAction action = null;
 		ActionForward forward = null;
+		Action action = null;
 		
 		if(command.equals("/MemberJoin.com")) {
 			System.out.println("\t C : /MemberJoinAction.com 호출 ");
 			System.out.println("\t C : 패턴 1 - DB사용X, 페이지 이동");
 			
 			forward = new ActionForward();
-			forward.setPath("/member/memberjoin.jsp");
+			forward.setPath("./member/memberjoin.jsp");
 			forward.setRedirect(false);			
 		}else if(command.equals("/MemberMain.com")) {
 			forward = new ActionForward();
-			forward.setPath("/member/main.jsp");
+			forward.setPath("./member/main.jsp");
 			forward.setRedirect(false);	
 		}
 		else if(command.equals("/MemberJoinAction.com"))

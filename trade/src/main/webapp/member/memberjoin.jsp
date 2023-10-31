@@ -32,7 +32,7 @@
 			
 			
 			<hr>
-			<input type="button" value="로그인" onclick >
+			<input type="button" value="로그인" onclick="" >
 			<input type="submit" value="회원가입">		
 		</form>	
 	</fieldset>
