@@ -39,7 +39,7 @@ public class ProductDAO {
 		}
 		
 		// 글 작성 메서드(uploadProduct)
-		public void uploadProduct(ProductDTO dto) {
+		public int uploadProduct(ProductDTO dto) {
 			int bno = 0;
 			try {
 				getCon();
@@ -81,11 +81,13 @@ public class ProductDAO {
 				dto.setBno(bno);
 				System.out.println("DAO: " + bno + "번 글 작성 완료");
 				
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				closeDB();
 			}
+			return bno;
 		} // uploadProduct() 종료
 		
 		// 조회수를 1 증가시키는 updateReadcount()
