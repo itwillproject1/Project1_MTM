@@ -60,15 +60,6 @@
 					<label for="productPrice">가격(원): <fmt:formatNumber
 							value="${dto.price}" /></label>
 				</div>
-<<<<<<< HEAD
-				<c:if test="${dto.deal_way.equals('팝니다') }">
-					<input class="submit-button" type="button" value="구매하기" onclick="location.href='결제페이지';">
-					<input class="submit-button" type="button" value="구매하기" onclick="location.href='결제페이지';">
-				</c:if>
-				<c:if test="${dto.deal_way.equals('삽니다') }">
-					<input class="submit-button" type="button" value="판매하기" onclick="location.href='물건 고르는 페이지';">
-=======
-
 				<c:if test="${dto.deal_way.equals('buy')}">
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
 >>>>>>> 80f3ba7432c370cab42793b440752af1a22d3359
