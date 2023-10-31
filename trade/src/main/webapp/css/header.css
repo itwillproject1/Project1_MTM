@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
     font-family: Arial, sans-serif;
     background-color: #ffffff; /* 흰 배경색 */
@@ -6,6 +8,11 @@ body {
 }
 
 header {
+	  position: fixed; /* 9-12줄 헤더 고정 */
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 설정 */
     background-color: #ffffff; /* 흰 배경색 */
     color: #333; /* 검은색 텍스트 */
     display: flex;
@@ -21,7 +28,29 @@ header:hover {
 }
 
 .logo img {
-    max-height: 40px;
+    max-height: 100px;
+}
+
+.category-a a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 20px; 
+}
+
+.category-b a {
+	left: -20px;
+	font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    margin-right: 20px; 
+}
+
+.category-c a {
+	left: -20px;
+	font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    margin-right: 20px; 
 }
 
 .search input {
@@ -47,7 +76,8 @@ header:hover {
 }
 
 .user-menu a {
+	word-spacing: -10px;
     text-decoration: none;
     color: #333;
-    margin-right: 20px;
+    margin-right: 50px; /* 여기도 20->50으로 수정 */
 }
