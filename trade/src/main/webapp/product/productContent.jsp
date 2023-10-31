@@ -17,11 +17,11 @@
 <body>
 
 	<%@ include file="../main/header.jsp"%>
-	<%
+	<%-- <%
 		String filename = request.getParameter("fileName");
 		String savePath = "upload";
 		String realPath = request.getContextPath() + "/" + savePath;
-	%>
+	%> --%>
 	<div class="container">
 
 		<div class="form-group h1">
