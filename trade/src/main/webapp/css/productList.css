@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 150px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start; /* 왼쪽으로 배치 */
+            gap: 30px; /* 아이템 사이의 간격 */
+        }
+        
+         .title {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+		.product {
+   			width: 23%;
+    		margin: 5% 0;
+    		background-color: #fff;
+    		border-radius: 10px;
+    		overflow: hidden;
+    		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    		transition: box-shadow 0.3s ease-in-out;
+		}
+
+		.product:hover { /* 틀 그림자 무지개 호버 */
+    		animation: colorfulShadow 2s infinite;
+}
+
+
+		.product img {
+ 	   		width: 100%;
+   			height: auto;
+    		object-fit: cover;
+    		object-position: center top;
+    		transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 이미지 확대 더 부드럽게 */
+}
+
+        .product-info { /* 상품 글자 크기, 가운데 정렬 */
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .product-price { /* 가격 글자 크기, 가운데 정렬 */
+            padding: 12px;
+            text-align: center;
+        }
+
+        /* 미디어 쿼리를 사용하여 반응형으로 만들기(시도X) */
+        @media (max-width: 768px) {
+            .product {
+                width: 48%;
+                margin: 1% 0;
+            }
+        }
+        
+		/* 이미지에 마우스 호버 시 확대 효과 */
+			.product:hover img {
+    		transform: scale(1.1);
+		}
+		
+		@keyframes colorfulShadow { /* 틀 호버 시 무지개 그림자 색? 지정 */
+    0% { box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1); }
+    25% { box-shadow: 0 4px 8px rgba(255, 255, 0, 0.1); }
+    50% { box-shadow: 0 4px 8px rgba(0, 255, 0, 0.1); }
+    75% { box-shadow: 0 4px 8px rgba(0, 0, 255, 0.1); }
+    100% { box-shadow: 0 4px 8px rgba(255, 0, 255, 0.1); }
+}
+
