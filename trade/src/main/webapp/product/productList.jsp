@@ -87,6 +87,9 @@
     <!-- 추후 추가 가능 -->
 
 </div>
+    <footer>
+        <p>&copy; 1조 전자기기 중고거래</p>
+    </footer>
 
 </body>
 </html>
