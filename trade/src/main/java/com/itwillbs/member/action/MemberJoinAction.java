@@ -18,16 +18,25 @@ public class MemberJoinAction implements Action  {
 		System.out.println(" M : MemberJoinAction_execute() 실행 ");
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
+		
+		// 드롭다운 전달정보 (생년월일, 휴대폰번호, 이메일)
+		String jumin = request.getParameter("jumin1")+"-"+request.getParameter("jumin2")+"-"+request.getParameter("jumin3");
+		String phone = request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3");
+		String email = request.getParameter("email1")+request.getParameter("email2");
+		
+		
+		
+		
 		// 전달정보
 		MemberDTO dto = new MemberDTO();
 		dto.setUser_id(request.getParameter("user_id"));
 		dto.setPassword(request.getParameter("password"));
 		dto.setPasswordcheck(request.getParameter("passwordcheck"));
-		dto.setEmail(request.getParameter("email"));
+		dto.setEmail(email);
 		dto.setUser_name(request.getParameter("user_name"));
-		dto.setJumin(request.getParameter("jumin"));
+		dto.setJumin(jumin);
 		dto.setGender(request.getParameter("gender"));
-		dto.setPhone(request.getParameter("phone"));
+		dto.setPhone(phone);
 		dto.setAddress(request.getParameter("address"));
 		dto.setUser_nickname(request.getParameter("user_nickname"));
 		dto.setProfile(request.getParameter("profile"));
