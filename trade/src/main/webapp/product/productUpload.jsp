@@ -203,7 +203,7 @@
 	<script>
 		function previewImage() {
 			var preview = document.getElementById('imagePreview');
-			var fileInput = document.getElementById('files');
+			var fileInput = document.getElementById('file_name');
 			var file = fileInput.files[0];
 
 			if (file) {

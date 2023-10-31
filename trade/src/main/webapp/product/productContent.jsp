@@ -63,6 +63,7 @@
 <<<<<<< HEAD
 				<c:if test="${dto.deal_way.equals('팝니다') }">
 					<input class="submit-button" type="button" value="구매하기" onclick="location.href='결제페이지';">
+					<input class="submit-button" type="button" value="구매하기" onclick="location.href='결제페이지';">
 				</c:if>
 				<c:if test="${dto.deal_way.equals('삽니다') }">
 					<input class="submit-button" type="button" value="판매하기" onclick="location.href='물건 고르는 페이지';">
