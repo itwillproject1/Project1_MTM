@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     background-color: #ffffff; /* 흰 배경색 */
     margin: 0;
     padding: 0;
