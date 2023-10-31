@@ -100,3 +100,15 @@ h2 {
 	pointer-events: none; /* 이벤트 무효화 */
 	background-color: #ccc; /* 어두운 배경색 (예: 회색) */
 }
+
+ /* 팝업 전체 스타일 */
+  .modal {
+      display: block;
+      width: 300px;
+      margin: 50px auto;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 5px;
+  }
