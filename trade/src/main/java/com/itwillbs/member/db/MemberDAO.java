@@ -77,7 +77,33 @@ public class MemberDAO {
 				
 			}
 			
+			// 아이디 중복 검사
 			
+			public int checkid(String user_id) {
+				int result = -1; 
+				try {
+					con = getCon();
+					sql = "selset count(user_id) from member where user_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, user_id);
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						result = -1; // 존재할 경우
+						System.out.println("아이디 중복");
+					}else {
+						result = 0; // 존재하지 않을 경우
+						System.out.println("생성가능한 아이디");
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					closeDB();
+				}
+				
+				return result;
+			}
 			
 			
 			
