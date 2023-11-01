@@ -28,12 +28,12 @@ public class ProductUploadAction implements Action {
 		System.out.println("M: ProductUploadAction.execute() 호출");
 
 		// 첨부이미지
-//		String realPath = request.getRealPath("upload"); // 실제로 파일이 저장되는 장소(가상주소)
-//		System.out.println(realPath);
-//		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
-//		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
-//				new DefaultFileRenamePolicy());
-		
+		String realPath = request.getRealPath("upload"); // 실제로 파일이 저장되는 장소(가상주소)
+		System.out.println(realPath);
+		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
+		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
+				new DefaultFileRenamePolicy());
+
 //        String uploadPath = request.getServletContext().getRealPath("upload");
 //
 //        Collection<Part> parts = request.getParts(); // 업로드된 파일과 폼 필드를 모두 가져와 parts에 저장
@@ -92,32 +92,61 @@ public class ProductUploadAction implements Action {
 //				System.out.println("file_name: " + fileName);
 //			}
 //		}
-		
+
+//ㅇㅇ		String fileName = "";
+//		
+//		List fileList = new ArrayList();
+//		
+//		for(Part part : request.getParts()) { // 여기가 잘못된듯,.?
+//			// 파일명 구하기
+//			fileName = getFileName(part);
+//			
+//			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미
+//			if(!("".equals(fileName))) {
+//				fileList.add(fileName);
+//				System.out.println("file_name: " + fileName);
+//			}
+//		}
+//		
+//		String file_name = "";
+//		
+//		for(int i=0; i<fileList.size(); i++) {
+//			if(i != fileList.size() - 1) {
+//				file_name += (fileList.get(i) + ",");				
+//			} else {
+//				file_name += fileList.get(i);
+//			}
+//ㅇㅇ		}
+
 		String fileName = "";
-		
+
 		List fileList = new ArrayList();
-		
-		for(Part part : request.getParts()) {
+
+		Enumeration<String> fNames = multi.getFileNames();
+
+		while (fNames.hasMoreElements()) {
+			String fName = fNames.nextElement();
+
 			// 파일명 구하기
-			fileName = getFileName(part);
-			
+			fileName = multi.getFilesystemName("file_name");
+
 			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미
-			if(!("".equals(fileName))) {
+			if (!("".equals(fileName))) {
 				fileList.add(fileName);
 				System.out.println("file_name: " + fileName);
 			}
 		}
-		
+
 		String file_name = "";
-		
-		for(int i=0; i<fileList.size(); i++) {
-			if(i != fileList.size() - 1) {
-				file_name += (fileList.get(i) + ",");				
+
+		for (int i = 0; i < fileList.size(); i++) {
+			if (i != fileList.size() - 1) {
+				file_name += (fileList.get(i) + ",");
 			} else {
 				file_name += fileList.get(i);
 			}
 		}
-		
+
 //		String realPath = request.getRealPath("upload");
 //		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
 //		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
@@ -135,7 +164,7 @@ public class ProductUploadAction implements Action {
 //		        System.out.println("Uploaded file: " + fileName);
 //		    }
 //		}
-	
+
 //		Enumeration<String> files = multi.getFileNames();
 //		List<String> fileList = new ArrayList<String>();
 //
@@ -159,7 +188,7 @@ public class ProductUploadAction implements Action {
 //		}
 
 //		String file_name = String.join(",", fileList);
-		
+
 		System.out.println("file_name: " + file_name);
 
 		// 전달정보 저장(DTO)
