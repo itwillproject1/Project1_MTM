@@ -38,6 +38,9 @@
 						id="imagePreview" alt="미리보기">
 				</c:forEach>
 			</div>
+			<%
+			System.out.println(request.getContextPath());
+			%>
 
 			<div class="form-container">
 				<h2>상세 페이지</h2>
