@@ -16,11 +16,6 @@
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
     <title>상품 목록</title>
-<<<<<<< HEAD
-<style>
-
-#page_control {
-=======
     <style>
     .title {
 	width: 100%;
@@ -32,7 +27,6 @@
 }
 	
 	#page_control {
->>>>>>> product_soeon
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,33 +50,12 @@
   #page_control .next-page:hover {
     background-color: #333; /* hover 시 배경색 변경 */
     color: white; /* hover 시 텍스트 색상 변경 */
-<<<<<<< HEAD
-  }
-</style>
-=======
   
 }
     
     </style>
->>>>>>> product_soeon
 </head>
-
 <body>
-<<<<<<< HEAD
-	<%@ include file="../main/header.jsp"%>
-	<div class="title">상품 목록</div>
-	<div class="container">
-	   <c:forEach var="product" items="${ProductList}">
-	        <img src="<%=request.getContextPath() %>/upload/${file_name}" alt="${product.title}">
-	        <div class="product-info">
-	            <h3>${product.title}</h3>
-	            </div>
-	            <div class="product-price">
-	            <p>${product.price}</p>
-	        </div>
-	    </c:forEach>
-	    </div>
-=======
 
 	<jsp:include page="../main/header.jsp"/>
 	
@@ -98,7 +71,7 @@
     
     <div class="product.image">
         <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" 
-        alt="${dto.title}">
+        alt="${dto.title}"> 
 	</div>	
 		
       <div class="product-info">
@@ -112,7 +85,6 @@
      </div>
         </c:forEach>
  </div>       
->>>>>>> product_soeon
 
 	<div id="page_control">
 		<c:if test="${startPage > pageBlock }">
@@ -136,9 +108,6 @@
 				class="next-page">다음 페이지</a>
 		</c:if>
 	</div>
-<<<<<<< HEAD
-	<footer>
-=======
 
 
 
@@ -148,7 +117,6 @@
 
 
     <footer>
->>>>>>> product_soeon
         <p>&copy; 1조 전자기기 중고거래</p>
     </footer>
 
