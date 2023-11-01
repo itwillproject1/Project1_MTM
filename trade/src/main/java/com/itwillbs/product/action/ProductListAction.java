@@ -74,7 +74,7 @@ public class ProductListAction implements Action {
 		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 
 		// 한 화면에 보여줄 페이지 블럭개수
-		int pageBlock = 3;
+		int pageBlock = 8;
 
 		// 페이지 블럭의 시작번호 계산
 		int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;

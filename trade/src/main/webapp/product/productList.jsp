@@ -1,6 +1,11 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page import="com.itwillbs.product.db.ProductDAO"%>
+<%@page import="com.itwillbs.product.db.ProductDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +16,13 @@
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
     <title>상품 목록</title>
+<<<<<<< HEAD
 <style>
 .title {
+=======
+    <style>
+    .title {
+>>>>>>> b471e28de8cee8f9b7ca2ef74f08a45eabb3b2c4
 	width: 100%;
 	text-align: center;
 	margin-bottom: 50px;
@@ -20,6 +30,7 @@
 	font-size: 30px;
 	font-weight: bold;
 }
+<<<<<<< HEAD
 
 .container {
 	max-width: 1200px;
@@ -32,6 +43,10 @@
 }
 
 #page_control {
+=======
+	
+	#page_control {
+>>>>>>> b471e28de8cee8f9b7ca2ef74f08a45eabb3b2c4
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,24 +70,41 @@
   #page_control .next-page:hover {
     background-color: #333; /* hover 시 배경색 변경 */
     color: white; /* hover 시 텍스트 색상 변경 */
-  }
-</style>
+  
+}
+    
+    </style>
 </head>
-
 <body>
-	<%@ include file="../main/header.jsp"%>
+
+	<jsp:include page="../main/header.jsp"/>
+	
+	
 	<div class="title">상품 목록</div>
-	<div class="container">
-	   <c:forEach var="product" items="${ProductList}">
-	        <img src="<%=request.getContextPath() %>/upload/${file_name}" alt="${product.title}">
-	        <div class="product-info">
-	            <h3>${product.title}</h3>
-	            </div>
-	            <div class="product-price">
-	            <p>${product.price}</p>
-	        </div>
-	    </c:forEach>
-	    </div>
+	
+	 <!-- 여기에 상품 목록 들어갈 부분 -->
+ <div class="container">
+ <c:forEach var="dto" items="${ProductList }">
+
+    <!-- 상품들 -->
+    <div class="product">
+    
+    <div class="product.image">
+        <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" 
+        alt="${dto.title}"> 
+	</div>	
+		
+      <div class="product-info">
+        <h3>[${dto.deal_way }]${dto.title }</h3>
+      </div>     
+            
+         <div class="product-price">
+            <p><fmt:formatNumber value="${dto.price }" />원</p>
+         </div>
+            
+     </div>
+        </c:forEach>
+ </div>       
 
 	<div id="page_control">
 		<c:if test="${startPage > pageBlock }">
@@ -96,7 +128,15 @@
 				class="next-page">다음 페이지</a>
 		</c:if>
 	</div>
-	<footer>
+
+
+
+
+    <!-- 추후 추가 가능 -->
+
+
+
+    <footer>
         <p>&copy; 1조 전자기기 중고거래</p>
     </footer>
 
