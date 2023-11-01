@@ -7,6 +7,24 @@ body {
 	background-color: #ffffff;
 }
 
+.title {
+	width: 100%;
+	text-align: center;
+	margin-top: 150px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 150px auto;
+	padding: 0 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start; /* 왼쪽으로 배치 */
+	gap: 30px; /* 아이템 사이의 간격 */
+}
+
 .product {
 	width: 23%;
 	margin: 5% 0;
@@ -60,6 +78,30 @@ body {
     50% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.1); }
     75% { box-shadow: 0 0 8px rgba(0, 0, 255, 0.1); }
     100% { box-shadow: 0 0 8px rgba(255, 0, 255, 0.1); }
+}
+
+#page_control {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#page_control .prev-page, #page_control .page-number, #page_control .next-page
+	{
+	text-decoration: none;
+	padding: 10px 15px;
+	margin: 5px;
+	background-color: white; /* 흰색 배경색 */
+	color: #333; /* 텍스트 색상 설정 */
+	border: 1px solid #ccc; /* 테두리 추가 */
+	border-radius: 5px;
+	transition: background-color 0.3s; /* hover 효과를 위한 전환 효과 */
+}
+
+#page_control .prev-page:hover, #page_control .page-number:hover,
+	#page_control .next-page:hover {
+	background-color: #333; /* hover 시 배경색 변경 */
+	color: white; /* hover 시 텍스트 색상 변경 */
 }
 
 
