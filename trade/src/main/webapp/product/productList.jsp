@@ -16,45 +16,100 @@
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
     <title>상품 목록</title>
+    <style>
+    .title {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 50px;
+	margin-top: 150px;
+	font-size: 30px;
+	font-weight: bold;
+}
+	
+	#page_control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #page_control .prev-page,
+  #page_control .page-number,
+  #page_control .next-page {
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: white; /* 흰색 배경색 */
+    color: #333; /* 텍스트 색상 설정 */
+    border: 1px solid #ccc; /* 테두리 추가 */
+    border-radius: 5px;
+    transition: background-color 0.3s; /* hover 효과를 위한 전환 효과 */
+  }
+
+  #page_control .prev-page:hover,
+  #page_control .page-number:hover,
+  #page_control .next-page:hover {
+    background-color: #333; /* hover 시 배경색 변경 */
+    color: white; /* hover 시 텍스트 색상 변경 */
+  
+}
+    
+    </style>
 </head>
 <body>
 
 	<jsp:include page="../main/header.jsp"/>
-<div class="container">
-
+	
+	
 	<div class="title">상품 목록</div>
 	
-	
-    <!-- 여기에 상품 목록 들어갈 부분 -->
+	 <!-- 여기에 상품 목록 들어갈 부분 -->
+ <div class="container">
+ <c:forEach var="dto" items="${ProductList }">
 
     <!-- 상품들 -->
-    
-    <c:forEach var="dto" items="${ProductList }">  
-    <div class="product-list">
-    
     <div class="product">
-        <img src="<%= request.getContextPath() %>/upload/${dto.file_name }"
-        		alt="Product Image"> </div>
-			
-        <div class="product-info">
-            <h3>[${dto.deal_way }]${dto.title }</h3> </div>
-            
-            
-            <div class="product-price">
-            <p><fmt:formatNumber value="${dto.price }" />원</p>
-            </div>
-            
-            
-        </div>
-        
-</c:forEach>
-</div>
-
-        
-
-        
     
- 
+    <div class="product.image">
+        <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" 
+        alt="${dto.title}">
+	</div>	
+		
+      <div class="product-info">
+        <h3>[${dto.deal_way }]${dto.title }</h3>
+      </div>     
+            
+         <div class="product-price">
+            <p><fmt:formatNumber value="${dto.price }" />원</p>
+         </div>
+            
+     </div>
+        </c:forEach>
+ </div>       
+
+	<div id="page_control">
+		<c:if test="${startPage > pageBlock }">
+			<a
+				href="./ProductList.com?pageNum=${startPage-pageBlock }&search=${param.search}"
+				class="prev-page">이전 페이지</a>
+		</c:if>
+
+		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+			<c:choose>
+				<c:when test="${i != 0}">
+					<a href="./ProductList.com?pageNum=${i }&search=${param.search}"
+						class="page-number">${i }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+
+		<c:if test="${endPage < pageCount }">
+			<a
+				href="./ProductList.com?pageNum=${startPage+pageBlock }&search=${param.search}"
+				class="next-page">다음 페이지</a>
+		</c:if>
+	</div>
+
+
 
 
     <!-- 추후 추가 가능 -->
