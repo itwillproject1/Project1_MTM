@@ -1,6 +1,11 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page import="com.itwillbs.product.db.ProductDAO"%>
+<%@page import="com.itwillbs.product.db.ProductDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +16,23 @@
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
     <title>상품 목록</title>
+<<<<<<< HEAD
 <style>
 
 #page_control {
+=======
+    <style>
+    .title {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 50px;
+	margin-top: 150px;
+	font-size: 30px;
+	font-weight: bold;
+}
+	
+	#page_control {
+>>>>>>> product_soeon
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,11 +56,19 @@
   #page_control .next-page:hover {
     background-color: #333; /* hover 시 배경색 변경 */
     color: white; /* hover 시 텍스트 색상 변경 */
+<<<<<<< HEAD
   }
 </style>
+=======
+  
+}
+    
+    </style>
+>>>>>>> product_soeon
 </head>
 
 <body>
+<<<<<<< HEAD
 	<%@ include file="../main/header.jsp"%>
 	<div class="title">상품 목록</div>
 	<div class="container">
@@ -55,6 +82,37 @@
 	        </div>
 	    </c:forEach>
 	    </div>
+=======
+
+	<jsp:include page="../main/header.jsp"/>
+	
+	
+	<div class="title">상품 목록</div>
+	
+	 <!-- 여기에 상품 목록 들어갈 부분 -->
+ <div class="container">
+ <c:forEach var="dto" items="${ProductList }">
+
+    <!-- 상품들 -->
+    <div class="product">
+    
+    <div class="product.image">
+        <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" 
+        alt="${dto.title}">
+	</div>	
+		
+      <div class="product-info">
+        <h3>[${dto.deal_way }]${dto.title }</h3>
+      </div>     
+            
+         <div class="product-price">
+            <p><fmt:formatNumber value="${dto.price }" />원</p>
+         </div>
+            
+     </div>
+        </c:forEach>
+ </div>       
+>>>>>>> product_soeon
 
 	<div id="page_control">
 		<c:if test="${startPage > pageBlock }">
@@ -78,7 +136,19 @@
 				class="next-page">다음 페이지</a>
 		</c:if>
 	</div>
+<<<<<<< HEAD
 	<footer>
+=======
+
+
+
+
+    <!-- 추후 추가 가능 -->
+
+
+
+    <footer>
+>>>>>>> product_soeon
         <p>&copy; 1조 전자기기 중고거래</p>
     </footer>
 
