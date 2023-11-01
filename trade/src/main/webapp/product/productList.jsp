@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -5,6 +6,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="com.itwillbs.product.db.ProductDAO"%>
 <%@page import="com.itwillbs.product.db.ProductDTO"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,33 +26,47 @@
 
 	<div class="title">상품 목록</div>
 	
+	<%
+        // 액션 페이지에서 설정한 boardList 가져오기
+        ArrayList<ProductDTO> productList = (ArrayList<ProductDTO>) request.getAttribute("boardList");
+
+        if (productList != null && !productList.isEmpty()) {
+            // productList가 비어 있지 않은 경우에만 처리
+            for (ProductDTO product : productList) {
+    %>
+	
 	
     <!-- 여기에 상품 목록 들어갈 부분 -->
 
     <!-- 상품들 -->
     
-    <% for (ProductDTO dao : list) { %>
+    <div class="product-list">
+    
     <div class="product">
-        <img src=""<%=request.getContextPath() %>/upload/${file_name}"
-						id="productimage">
+        <img src="<%= request.getContextPath() %>/upload/${file_name}"
+        		alt="Product Image">
+						
+						
         <div class="product-info">
             <h3>[${dto.deal_way }]${dto.title }</h3>
             </div>
             <div class="product-price">
             <p><fmt:formatNumber value="${dto.price}" />원</p>
             
-            <% } %>
-<%
-String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
-ProductDAO dao = new ProductDAO();
-ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 가져오는 메서드
-
-%>
-
-
-
         </div>
+            <%
+            }
+        } else {
+    %>
+            <p>No products found.</p>
+    <%
+        }
+    %>
+        
+
+        
     </div>
+ </div>
 
     <!-- 추후 추가 가능 -->
 
