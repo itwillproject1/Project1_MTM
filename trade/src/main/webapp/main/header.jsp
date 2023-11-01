@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,15 +30,36 @@
             <a href="#">음향기기</a>
             <a href="#">기타</a>
         </span>
-			
-		<span class="search">
-			<input type="text" placeholder="검색어 입력">
-			<button>검색</button>
-		</span>
 
-        <span class="user-menu">
-            <a href="#">로그인</a>
-            <a href="../product/ProductContent.com">글등록</a>
+		<form action="./ProductList.com" method="get" class="search">
+			<input type="text" name="search" placeholder="검색어 입력">
+			<button type="submit" value="search">검색</button>
+		</form>
+
+		<div class="clear"></div>
+		<div id="page_control">
+			<c:if test="${startPage > pageBlock }">
+				<a href="./ProductList.com?pageNum=${startPage-pageBlock }&search=${param.search}">이전 페이지</a>
+			</c:if>
+
+			<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+				<c:choose>
+					<c:when test="${i != 0}">
+						<a href="./ProductList.com?pageNum=${i }&search=${param.search}">${i }</a>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+
+			<c:if test="${endPage < pageCount }">
+				<a href="./ProductList.com?pageNum=${startPage+pageBlock }&search=${param.search}">다음 페이지</a>
+			</c:if>
+		</div>
+
+
+
+		<span class="user-menu">
+            <a href="../member/login.com">로그인</a>
+            <a href="../product/ProductUpload.com">글등록</a>
             <a href="#">찜</a>
             <a href="#">마이페이지</a>
         </span>
