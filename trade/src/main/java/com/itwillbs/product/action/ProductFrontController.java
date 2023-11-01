@@ -82,6 +82,22 @@ public class ProductFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/ProductList.bo")) {
+			System.out.println(" C : /ProductList.bo 호출 ");
+			System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
+			
+			//  BoardListAction() 객체 생성
+			action = new ProductListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 		System.out.println("---------------2. 가상주소 매핑 종료---------------");
 		/************************2. 가상주소 매핑 종료************************/
 		
