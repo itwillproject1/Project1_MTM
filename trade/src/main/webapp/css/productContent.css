@@ -37,7 +37,7 @@ body {
 	width: 90%; /* 이미지 미리보기의 가로 크기를 조정 */
 	height: 60%; /* 이미지 미리보기의 세로 크기를 조정 */
 	
-	vertical-align: middle;
+	/* vertical-align: middle; */
 	border: 1px solid;
 }
 
