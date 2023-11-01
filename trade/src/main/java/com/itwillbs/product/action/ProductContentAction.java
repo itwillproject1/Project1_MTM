@@ -18,12 +18,6 @@ public class ProductContentAction implements Action {
 		System.out.println("M: ProductContentAction.execute() 호출");
 		
 		// 전달정보 저장(bno, pageNum, search(생략))
-<<<<<<< HEAD
-=======
-
-		int bno = Integer.parseInt(request.getParameter("bno"));
->>>>>>> 34f70264cd3ed1c5261579735b67f3b90fe036dd
-
 		int bno = Integer.parseInt(request.getParameter("bno")); // 추후 수정
 		String pageNum = request.getParameter("pageNum");
 

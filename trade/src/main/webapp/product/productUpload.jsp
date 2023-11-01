@@ -26,6 +26,7 @@
 			<h2>이미지 미리보기</h2>
 			<img id="imagePreview" alt="미리보기">
 		</div>
+		
 		<div class="form-container">
 			<h2>글쓰기</h2>
 			<form action="./ProductUploadAction.com" method="post"
