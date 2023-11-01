@@ -16,13 +16,8 @@
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
     <title>상품 목록</title>
-<<<<<<< HEAD
-<style>
-.title {
-=======
     <style>
     .title {
->>>>>>> b471e28de8cee8f9b7ca2ef74f08a45eabb3b2c4
 	width: 100%;
 	text-align: center;
 	margin-bottom: 50px;
@@ -30,23 +25,8 @@
 	font-size: 30px;
 	font-weight: bold;
 }
-<<<<<<< HEAD
-
-.container {
-	max-width: 1200px;
-	margin: 150px auto;
-	padding: 0 20px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start; /* 왼쪽으로 배치 */
-	gap: 30px; /* 아이템 사이의 간격 */
-}
-
-#page_control {
-=======
 	
 	#page_control {
->>>>>>> b471e28de8cee8f9b7ca2ef74f08a45eabb3b2c4
     display: flex;
     justify-content: center;
     align-items: center;
