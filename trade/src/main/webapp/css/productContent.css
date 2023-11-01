@@ -21,7 +21,7 @@ body {
    width: 40%;
    padding-right: 20px; /* 이미지 컨테이너 오른쪽 여백 추가 */
    display: flex;
-   flex-direction: row;
+   flex-direction: column;
    align-items: center; /* 가로 방향 가운데 정렬 */
    justify-content: center; /* 세로 방향 가운데 정렬 */
 }
