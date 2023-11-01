@@ -18,21 +18,12 @@ body {
 }
 
 .image-container {
-<<<<<<< HEAD
-	width: 40%;
-	padding-right: 20px; /* 이미지 컨테이너 오른쪽 여백 추가 */
-	display: flex;
-	flex-direction: column;
-	align-items: center; /* 가로 방향 가운데 정렬 */
-	justify-content: center; /* 세로 방향 가운데 정렬 */
-=======
    width: 40%;
    padding-right: 20px; /* 이미지 컨테이너 오른쪽 여백 추가 */
    display: flex;
    flex-direction: row;
    align-items: center; /* 가로 방향 가운데 정렬 */
    justify-content: center; /* 세로 방향 가운데 정렬 */
->>>>>>> 67962e3d60962f017491e7cf2da744bf1c021a40
 }
 
 .image-container img {
@@ -117,20 +108,12 @@ body {
 }
 
 .h1 {
-<<<<<<< HEAD
-	font-size: 30px;
-	color: #2e7d32; /* 더 진한 녹색 계열 글자색 */
-	margin-bottom: 20px;
-	border-bottom: 2px solid #388e3c; /* 더 진한 녹색 계열의 밑줄 추가 */
-	padding-bottom: 5px;
-=======
    font-size: 30px;
    color: #2e7d32; /* 더 진한 녹색 계열 글자색 */
    margin-bottom: 20px;
    border-bottom: 2px solid #388e3c; /* 더 진한 녹색 계열의 밑줄 추가 */
    padding-bottom: 5px;
-   
->>>>>>> 67962e3d60962f017491e7cf2da744bf1c021a40
+ 
 }
 
 h2 {
@@ -146,7 +129,7 @@ h2 {
    background-color: #ccc; /* 어두운 배경색 (예: 회색) */
 }
 
-<<<<<<< HEAD
+
 /* 팝업 전체 스타일 */
 .modal {
 	display: block;
@@ -158,16 +141,4 @@ h2 {
 	padding: 20px;
 	border-radius: 5px;
 }
-=======
- /* 팝업 전체 스타일 */
-  .modal {
-      display: block;
-      width: 300px;
-      margin: 50px auto;
-      background-color: #f9f9f9;
-      border: 1px solid #ccc;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      border-radius: 5px;
-  }
->>>>>>> 67962e3d60962f017491e7cf2da744bf1c021a40
+
