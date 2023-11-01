@@ -36,7 +36,7 @@ public class ProductListAction implements Action {
 		
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
-		int pageSize = 3;
+		int pageSize = 8;
 
 		// 현 페이지가 몇페이지 인지확인
 		String pageNum = request.getParameter("pageNum");
