@@ -45,11 +45,11 @@
     <div class="product">
         <img src="<%= request.getContextPath() %>/upload/${file_name}"
         		alt="Product Image">
-						
-						
+			
         <div class="product-info">
             <h3>[${dto.deal_way }]${dto.title }</h3>
             </div>
+            
             <div class="product-price">
             <p><fmt:formatNumber value="${dto.price}" />원</p>
             
