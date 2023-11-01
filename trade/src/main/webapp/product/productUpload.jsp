@@ -23,7 +23,7 @@
 			<h2>이미지 미리보기</h2>
 			<img id="imagePreview" alt="미리보기">
 		</div>
-		
+
 		<div class="form-container">
 			<h2>글쓰기</h2>
 			<form action="./ProductUploadAction.com" method="post"
@@ -172,18 +172,18 @@
 					<label for="productPrice">가격(원):</label> <input type="number"
 						id="price" name="price" step="10">
 				</div>
-				
+
 				<div class="form-group">
 					<label for="productImage">상품 이미지:</label>
-				<c:forEach var="i" begin="1" end="5" step="1">
-					<!-- 파일 선택 시 previewImage() 함수 호출 -->
-					<input type="file" id="file${i }" name="file${i }" accept="image/*"
-						onchange="previewImage()">
-				</c:forEach>
+					<c:forEach var="i" begin="1" end="5" step="1">
+						<!-- 파일 선택 시 previewImage() 함수 호출 -->
+						<input type="file" id="file${i }" name="file${i }"
+							accept="image/*" onchange="previewImage(${i })">
+					</c:forEach>
 				</div>
-				
-				
-				<c:set var="file_name" value="${fileNames }" scope="request"/>
+
+
+				<c:set var="file_name" value="${fileNames }" scope="request" />
 
 				<div class="form-group">
 					<label for="productName">제목:</label> <input type="text" id="title"
@@ -201,8 +201,9 @@
 	</div>
 
 	<!-- 이미지 미리보기 관련 스크립트 -->
-	<script>
+	<!-- <script>
 		function previewImage() {
+			
 			var preview = document.getElementById('imagePreview');
 			var fileInput = document.getElementById('file');
 			var file = fileInput.files[0];
@@ -217,7 +218,25 @@
 				reader.readAsDataURL(file);
 			}
 		}
+	</script> -->
+	<script>
+		function previewImage(index) {
+			var fileInput = document.getElementById("file" + index);
+			var imagePreview = document.getElementById("imagePreview");
+
+			if (fileInput && fileInput.files && fileInput.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					imagePreview.src = e.target.result;
+				};
+				reader.readAsDataURL(fileInput.files[0]);
+			} else {
+				// 파일이 선택되지 않았을 때의 처리 (미리보기 이미지 제거)
+				imagePreview.src = "";
+			}
+		}
 	</script>
+
 
 </body>
 </html>

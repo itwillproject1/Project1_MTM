@@ -102,8 +102,12 @@
 			</div>
 
 			<c:if test="${dto.deal_way.equals('팝니다') }">
+			<div class="button-container">
 				<input class="submit-button" type="button" value="구매하기"
 					onclick="location.href='결제페이지';">
+					<input class="submit-button" type="button" value="찜하기"
+					onclick="찜하기">
+			</div>
 			</c:if>
 			<c:if test="${dto.deal_way.equals('삽니다') }">
 				<button class="submit-button" onclick="openProductModal();">판매하기</button>
