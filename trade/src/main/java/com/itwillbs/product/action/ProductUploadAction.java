@@ -119,6 +119,7 @@ public class ProductUploadAction implements Action {
 //ㅇㅇ		}
 
 		String fileName = "";
+		
 
 		List fileList = new ArrayList();
 
