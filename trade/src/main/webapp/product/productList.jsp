@@ -6,8 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="com.itwillbs.product.db.ProductDAO"%>
 <%@page import="com.itwillbs.product.db.ProductDTO"%>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,29 +19,21 @@
 </head>
 <body>
 
-	<%@ include file="../main/header.jsp"%>
+	<jsp:include page="../main/header.jsp"/>
 <div class="container">
 
 	<div class="title">상품 목록</div>
-	
-	<%
-        // 액션 페이지에서 설정한 boardList 가져오기
-        ArrayList<ProductDTO> productList = (ArrayList<ProductDTO>) request.getAttribute("boardList");
-
-        if (productList != null && !productList.isEmpty()) {
-            // productList가 비어 있지 않은 경우에만 처리
-            for (ProductDTO product : productList) {
-    %>
 	
 	
     <!-- 여기에 상품 목록 들어갈 부분 -->
 
     <!-- 상품들 -->
     
+    <c:forEach var="dto" items="${ProductList }">
     <div class="product-list">
     
     <div class="product">
-        <img src="<%= request.getContextPath() %>/upload/${file_name}"
+        <img src="<%= request.getContextPath() %>/upload/${dto.file_name }"
         		alt="Product Image">
 			
         <div class="product-info">
@@ -51,17 +41,11 @@
             </div>
             
             <div class="product-price">
-            <p><fmt:formatNumber value="${dto.price}" />원</p>
+            <p><fmt:formatNumber value="${dto.price }" />원</p>
             
         </div>
-            <%
-            }
-        } else {
-    %>
-            <p>No products found.</p>
-    <%
-        }
-    %>
+        </c:forEach>
+
         
 
         
