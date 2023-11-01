@@ -93,50 +93,49 @@ public class ProductUploadAction implements Action {
 //			}
 //		}
 		
-//ㅇㅇ		String fileName = "";
-//		
-//		List fileList = new ArrayList();
-//		
-//		for(Part part : request.getParts()) {
-//			// 파일명 구하기
-//			fileName = getFileName(part);
-//			
-//			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미
-//			if(!("".equals(fileName))) {
-//				fileList.add(fileName);
-//				System.out.println("file_name: " + fileName);
-//			}
-//		}
-//		
-//		String file_name = "";
-//		
-//		for(int i=0; i<fileList.size(); i++) {
-//			if(i != fileList.size() - 1) {
-//				file_name += (fileList.get(i) + ",");				
-//			} else {
-//				file_name += fileList.get(i);
-//			}
-//ㅇㅇ		}
+		String fileName = "";
 		
-		String realPath = request.getRealPath("upload");
-		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
-		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-
-		Enumeration<String> fieldNames = multi.getFileNames();
 		List fileList = new ArrayList();
 		
-		while (fieldNames.hasMoreElements()) {
-		    String fieldName = fieldNames.nextElement();
-		    String fileName = multi.getFilesystemName(fieldName);
-		    if (fileName != null) {
-		        // 파일 업로드가 성공한 경우
-		    	
-		    	fileList.add(fileName);
-		        System.out.println("Uploaded file: " + fileName);
-		    }
+		for(Part part : request.getParts()) {
+			// 파일명 구하기
+			fileName = getFileName(part);
+			
+			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미
+			if(!("".equals(fileName))) {
+				fileList.add(fileName);
+				System.out.println("file_name: " + fileName);
+			}
 		}
+		
+		String file_name = "";
+		
+		for(int i=0; i<fileList.size(); i++) {
+			if(i != fileList.size() - 1) {
+				file_name += (fileList.get(i) + ",");				
+			} else {
+				file_name += fileList.get(i);
+			}
+		}
+		
+//		String realPath = request.getRealPath("upload");
+//		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
+//		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 //
+//		Enumeration<String> fieldNames = multi.getFileNames();
+//		List fileList = new ArrayList();
 //		
+//		while (fieldNames.hasMoreElements()) {
+//		    String fieldName = fieldNames.nextElement();
+//		    String fileName = multi.getFilesystemName(fieldName);
+//		    if (fileName != null) {
+//		        // 파일 업로드가 성공한 경우
+//		    	
+//		    	fileList.add(fileName);
+//		        System.out.println("Uploaded file: " + fileName);
+//		    }
+//		}
+	
 //		Enumeration<String> files = multi.getFileNames();
 //		List<String> fileList = new ArrayList<String>();
 //
@@ -159,7 +158,7 @@ public class ProductUploadAction implements Action {
 //			}
 //		}
 
-		String file_name = String.join(",", fileList);
+//		String file_name = String.join(",", fileList);
 		
 		System.out.println("file_name: " + file_name);
 
