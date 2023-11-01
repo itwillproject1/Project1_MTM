@@ -73,6 +73,7 @@
 					alert(' 휴대폰 번호를 확인하세요! ');
 					document.join.phone2.focus();
 					return false;
+				
 				}
 				var phone3 = document.join.phone3.value;
 				if (phone3 == "") {
