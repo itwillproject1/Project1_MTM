@@ -5,7 +5,7 @@
 <html lang="UTF-8">
   <head>
   	<link href="./employee/template/assets/images/titleIcon.ico" rel="shortcut icon" type="image/x-icon">
-    <title>프로필 편집</title>
+    <title>프로필</title>
     <meta charset="utf-8">
     <!-- Fonts CSS -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="./employee/template/css/app-dark.css" id="darkTheme" disabled>
   </head>
   <body class="vertical  light  ">
-  <c:if test="${empty emp_id}">
+  <c:if test="${empty sessionScope.emp_id && empty requestScope.emp_id}">
 		<c:redirect url="./Login.empm"/>
   </c:if>
     <div class="wrapper">
@@ -197,91 +197,30 @@
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-8">
-              <h2 class="h3 mb-4 page-title">Settings</h2>
-              <div class="my-4">
-                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profile</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Security</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Notifications</a>
-                  </li>
-                </ul>
-                <form action="./ProfileChangeAction.empm" method="post">
-                  <div class="row mt-5 align-items-center">
-                    <div class="col-md-3 text-center mb-5">
-                      <div class="avatar avatar-xl">
-                        <img src="${직원 이미지}" alt="..." class="avatar-img rounded-circle">
-                      </div>
+              <div class="row align-items-center mb-4">
+                <div class="col">
+                  <h2 class="h5 page-title"><small class="text-muted text-uppercase">프로필</small><br />${requestScope.emp_id}</h2>
+                </div>
+                <div class="col-auto">
+                <c:if test="${sessionScope.emp_id == requestScope.emp_id}">                	
+                  <button type="button" class="btn btn-secondary" onclick="./ProfileChangeForm.empm?emp_id=${requestScope.emp_id}">수정</button>
+                </c:if>
+                <c:if test="${sessionScope.emp_id == 'admin'}">
+                  <button type="button" class="btn btn-primary" onclick="./EmployeeDeleteForm.empm?emp_id=${requestScope.emp_id}">삭제</button>
+                </c:if>
+                </div>
+              </div>
+              <div class="card shadow">
+                <div class="card-body p-5">
+                  <div class="row mb-5">
+                    <div class="col-12 text-center mb-4">
+                      <img src="${'직원 이미지'}" class="navbar-brand-img brand-sm mx-auto mb-4" alt="...">
+                      <h2 class="mb-0 text-uppercase">직원명</h2>
+                      <p class="text-muted"> 직군<br /> 부서 </p>
                     </div>
-                    <div class="col">
-                      <div class="row align-items-center">
-                        <div class="col-md-7">
-                          <h4 class="mb-1">${'직원명'}</h4>
-                          <p class="small mb-3"><span class="badge badge-dark">${'입사일'}</span></p>
-                        </div>
-                      </div>
-                      <div class="row mb-4">
-                        <div class="col">
-                          <p class="small mb-0 text-muted">${'부서'}</p>
-                          <p class="small mb-0 text-muted">${'주소'}</p>
-                          <p class="small mb-0 text-muted">${'전화번호'}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="my-4">
-                  <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="firstname">이름</label>
-                      <input type="text" name="name" value="${'이전 이름'}" id="firstname" class="form-control" placeholder="${'이전 이름'}">
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="tel">전화번호</label>
-                      <input type="tel" name="tel" value="${'이전 전화번호'}" id="tel" class="form-control" placeholder="${'이전 전화번호'}">
-                    </div>
-                    <div class="form-group">
-                    	<label for="inputAddress5">주소</label>
-                    	<input type="text" name="address" value="${'이전 주소'}" class="form-control" id="inputAddress5" placeholder="${'이전 주소'}">
-                  	</div>
-                  </div>
-                  <hr class="my-4">
-                  <div class="row mb-4">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="inputPassword4">이전 비밀번호</label>
-                        <input type="password"  class="form-control" id="inputPassword5">
-                      </div>
-                      <div class="form-group">
-                        <label for="inputPassword5">새 비밀번호</label>
-                        <input type="password" class="form-control" id="inputPassword5">
-                      </div>
-                      <div class="form-group">
-                        <label for="inputPassword6">비밀번호 확인</label>
-                        <input type="password" class="form-control" id="inputPassword6">
-                      </div>
-                    </div>
-                    <!-- 비밀번호 입력 조건 -->
-                    <div class="col-md-6">
-                      <p class="mb-2">Password requirements</p>
-                      <p class="small text-muted mb-2"> To create a new password, you have to meet all of the following requirements: </p>
-                      <ul class="small text-muted pl-4 mb-0">
-                        <li> Minimum 8 character </li>
-                        <li>At least one special character</li>
-                        <li>At least one number</li>
-                        <li>Can’t be the same as a previous password </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary">변경 저장하기</button>
-                  <button type="button" class="btn btn-secondary" onclick="history.back();">뒤로가기</button>
-                </form>
-              </div> <!-- /.card-body -->
+                  </div> <!-- /.row -->
+                </div> <!-- /.card-body -->
+              </div> <!-- /.card -->
             </div> <!-- /.col-12 -->
           </div> <!-- .row -->
         </div> <!-- .container-fluid -->
@@ -298,19 +237,6 @@
     <script src='./employee/template/js/jquery.stickOnScroll.js'></script>
     <script src="./employee/template/js/tinycolor-min.js"></script>
     <script src="./employee/template/js/config.js"></script>
-    <script src="./employee/template/js/d3.min.js"></script>
-    <script src="./employee/template/js/datamaps.all.min.js"></script>
-    <script src="./employee/template/js/datamaps-zoomto.js"></script>
-    <script src="./employee/template/js/datamaps.custom.js"></script>
-    <script>
-      /* defind global options */
-      Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
-      Chart.defaults.global.defaultFontColor = colors.mutedColor;
-    </script>
-    <script src="./employee/template/js/gauge.min.js"></script>
-    <script src="./employee/template/js/jquery.sparkline.min.js"></script>
-    <script src="./employee/template/js/apexcharts.min.js"></script>
-    <script src="./employee/template/js/apexcharts.custom.js"></script>
     <script src="./employee/template/js/apps.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>

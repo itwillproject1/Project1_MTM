@@ -140,7 +140,10 @@ public class EmployeeMemberFrontController extends HttpServlet{
 		
 		else if(command.equals("/EmployeeRegisterForm.empm")) {
 			// 직원 추가 폼
-			
+			forward = new ActionForward();
+			forward.setPath("./employee/member/registerForm.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
 		}
 		
 		else if(command.equals("/EmployeeRegisterAction.empm")) {

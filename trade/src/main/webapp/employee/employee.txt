@@ -1,0 +1,35 @@
+ - empm (Employee Member), (직원과 관련된 메뉴)
+ 	메인			./Main.empm				->	./employee/Main.jsp
+ 	로그인			./Login.empm				->	./employee/member/login.jsp
+ 	로그아웃		./LogoutAction.empm		->	(로그아웃 액션 진행 후 ./Main.empm)
+ 	직원 목록 조회	./EmployeeList.empm		->	./employee/member/employList.jsp
+ 	프로필 수정		./ProfileChangeForm.empm	->	./employee/member/profileChangeForm.jsp
+ 	비밀번호 변경	프로필에서 같이 변경
+ 	내부 게시판
+ 	
+ 	비밀번호 찾기	./FindPwForm.empm -> ./FindPwFormAction.empm ->	./FindPwConfirm.empm
+ 	(비밀번호 초기화? 찾기? 나중에 골라두기)
+	
+ 	admin 전용 (./EmployeeList.empm에서도 버튼으로 이동 가능)
+ 	직원 추가		./EmployeeRegisterForm.empm -> ./EmployeeRegisterAction.empm -> ./EmployeeRegisterConfirm.empm
+ 	직원 삭제		./EmployeeDeleteAction.empm	-> ./EmployeeDeleteConfirm.empm
+ 	
+ - empu (Employee User(유저와 관련된 것들, 조회 할 수 있는 것들 다 포함))
+ 	유저 목록(유저 검색)	./UserList.empu
+ 	유저 상세 정보			./UserContent.empu
+ 	
+ 	신고 목록				./ComplainList.empu
+ 	신고 조회 및 처리		./ComplainContent.empu(Form)
+ 							./ComplainAction.empu
+ 	
+ 	문의 목록				./InquiryList.empu
+ 	문의 조회 및 처리		./InquiryContent.empu(Form)
+ 							./ImquiryAction.empu
+ 	
+ 	거래 목록				./TradeList.empu
+ 	거래 상세 조회 및 처리	./TradeContent.empu(Form)
+ 	
+ 	게시판 목록, 추가			./BoardList.empu
+ 	게시판 조회 및 수정, 삭제
+ 	
+ 	(삭제예정은 뺐음)

@@ -4,20 +4,21 @@
 <!doctype html>
 <html lang="UTF-8">
   <head>
-      <!-- css는 템플릿에서 가져와서 작성, .employee/template/ -->
   	<link href="./employee/template/assets/images/titleIcon.ico" rel="shortcut icon" type="image/x-icon">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
     <title>메인</title>
-    <!-- Simple bar CSS -->
-    <link rel="stylesheet" href="./employee/template/css/simplebar.css">
+    <meta charset="utf-8">
     <!-- Fonts CSS -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">   
+    
+    <!-- 아래 CSS는 템플릿에서 복사 후 진행 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <!-- Simple bar CSS -->
+    <link rel="stylesheet" href="./employee/template/css/simplebar.css">
     <!-- Icons CSS -->
     <link rel="stylesheet" href="./employee/template/css/feather.css">
     <!-- Date Range Picker CSS -->
@@ -81,53 +82,71 @@
             <span>기본 메뉴</span>
           </p>
           <ul class="navbar-nav flex-fill w-100 mb-2">
+          
+          <!-- 직원 목록, 프로필 수정(본인 전용), 추가 및 삭제(관리자 전용) -->
           	<li class="nav-item w-100">
             	<a class="nav-link" href="./EmployeeList.empm">
                 	<i class="fe fe-user fe-16"></i>
                 	<span class="ml-3 item-text">직원 목록</span>
               	</a>
             </li>
+            
+            <!-- 메일 리스트, 상세 조회, 추가, 삭제(수정 불가능) -->
             <li class="nav-item w-100">
             	<a class="nav-link" href="./MailList.empm">
                 	<i class="fe fe-mail fe-16"></i>
                 	<span class="ml-3 item-text">메일</span>
               	</a>
             </li>
+            
+            <!-- 내부 게시판 목록, 추가 및 수정, 삭제 -->
+            <!-- 공지사항, 이벤트 게시판 끝나면 수정하고 복사 -->
             <li class="nav-item w-100">
             	<a class="nav-link" href="./InnerBoard.empm">
                 	<i class="fe fe-edit fe-16"></i>
                 	<span class="ml-3 item-text">내부 게시판</span>
               	</a>
             </li>
-          </ul>     
+          </ul>
+          
           <p class="text-muted nav-heading mt-4 mb-1">
             <span>유저 관리</span>
           </p>
           <ul class="navbar-nav flex-fill w-100 mb-2">
+          
+          <!-- 유저 목록 : 유저 관리 및 수정, 삭제 -->
           	<li class="nav-item w-100">
             	<a class="nav-link" href="./UserList.empu">
                 	<i class="fe fe-users fe-16"></i>
                 	<span class="ml-3 item-text">유저 목록</span>
               	</a>
             </li>
+            
+            <!-- 문의 리스트, 문의 상세, 처리 -->
             <li class="nav-item w-100">
             	<a class="nav-link" href="./InquiryList.empu">
                 	<i class="fe fe-help-circle fe-16"></i>
                 	<span class="ml-3 item-text">1:1 문의</span>
               	</a>
             </li>
+            
+            <!-- 신고 리스트, 신고 상세, 처리 -->
             <li class="nav-item w-100">
             	<a class="nav-link" href="./ComplainList.empu">
                 	<i class="fe fe-thumbs-down fe-16"></i>
                 	<span class="ml-3 item-text">신고 현황</span>
               	</a>
             </li>
+            
+            <!-- 거래 리스트, 거래 상세, 처리, 현황 조회 -->
             <li class="nav-item w-100">
             	<a class="nav-link" href="./TradeList.empu">
                 	<i class="fe fe-refresh-ccw fe-16"></i>
                 	<span class="ml-3 item-text">거래 현황</span>
               	</a>
             </li>
+            
+            <!-- 공지사항, 이벤트 리스트, 추가, 수정 및 삭제, 조회 수 표시 -->
             <li class="nav-item w-100">
             	<a class="nav-link" href="./BoardList.empm">
                 	<i class="fe fe-align-left fe-16"></i>
@@ -135,25 +154,7 @@
               	</a>
             </li>
           </ul>
-          
-          <p class="text-muted nav-heading mt-4 mb-1">
-            <span>테이블 관리</span>
-          </p>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
-			<li class="nav-item w-100">
-            	<a class="nav-link" href="./UserTable.empb">
-                	<i class="fe fe-layers fe-16"></i>
-                	<span class="ml-3 item-text">유저 테이블</span>
-              	</a>
-            </li>
-            
-            <li class="nav-item w-100">
-            	<a class="nav-link" href="./TradeTable.empb">
-                	<i class="fe fe-credit-card fe-16"></i>
-                	<span class="ml-3 item-text">거래 테이블</span>
-              	</a>
-            </li>
-          </ul>
+
           <c:if test="${sessionScope.emp_id == 'admin'}">
           <p class="text-muted nav-heading mt-4 mb-1">
             <span>기타</span>
@@ -165,11 +166,15 @@
                 <span class="ml-3 item-text">관리자</span>
               </a>
               <ul class="collapse list-unstyled pl-4 w-100 w-100" id="pages">
+              
+                <!-- EmployeeList.emp에서도 진행되는 페이지, 추가 -->
                 <li class="nav-item">
                   <a class="nav-link pl-3" href="./EmployeeRegisterForm.empm">
                     <span class="ml-1 item-text">직원 추가</span>
                   </a>
                 </li>
+                
+                <!-- EmployeeList.emp에서도 진행되는 페이지, 삭제 -->
                 <li class="nav-item">
                   <a class="nav-link pl-3" href="./EmployeeDeleteForm.empm">
                     <span class="ml-1 item-text">직원 삭제</span>
@@ -181,17 +186,19 @@
           </c:if>
           <div class="btn-box w-100 mt-4 mb-1">
             <a href="./Main.com" target="_blank" class="btn mb-2 btn-primary btn-lg btn-block">
-              <i class="fe fe-shopping-cart fe-12 mx-2"></i><span class="small">사용자 페이지로</span>
+              <i class="fe fe-shopping-cart fe-12 mx-2"></i><span class="small">마켓으로 이동</span>
             </a>
           </div>
         </nav>
       </aside>
-      <!-- 메인(데이터가 쌓일 때 진행) -->
+      
+      <!-- 메인 -->
 	<main role="main" class="main-content">
-     
-      </main> <!-- main -->
+
+    </main> <!-- main -->
+      
     </div> <!-- .wrapper -->
-    <!-- 스크립트는 템플릿에서 가져와서 작성, .employee/template/ -->
+    <!-- 아래 스크립트는 복사 후 진행 -->
     <script src="./employee/template/js/jquery.min.js"></script>
     <script src="./employee/template/js/popper.min.js"></script>
     <script src="./employee/template/js/moment.min.js"></script>
