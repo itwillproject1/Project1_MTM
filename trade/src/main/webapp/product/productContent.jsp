@@ -68,25 +68,13 @@
 							value="${dto.price}" /></label>
 				</div>
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 				<c:if test="${dto.deal_way.equals('팝니다') }">
 					<input class="submit-button" type="button" value="구매하기"
 						onclick="location.href='결제페이지';">
 				</c:if>
 				<c:if test="${dto.deal_way.equals('삽니다') }">
-=======
-				<c:if test="${dto.deal_way.equals('buy')}">
->>>>>>> c950d531ddf917b62aa78d34ae9c6d399838a3d6
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
 				</c:if>
-=======
-				<c:if test="${dto.deal_way eq 'buy'}">
-    <button class="submit-button" onclick="openProductModal();">판매하기</button>
-</c:if>
->>>>>>> Stashed changes
-
-<<<<<<< HEAD
 <%
 String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
 ProductDAO dao = new ProductDAO();
@@ -137,7 +125,6 @@ if (dto != null) {
         }
     }
 </script>
-=======
 				<script>
 			    var modal; // 모달을 저장할 변수
 			
@@ -180,7 +167,6 @@ if (dto != null) {
 			        }
 			    }
 			</script>
->>>>>>> c950d531ddf917b62aa78d34ae9c6d399838a3d6
 
 <%
 } 
@@ -188,12 +174,6 @@ if (dto != null) {
 //     response.sendRedirect("login.com"); // 로그인 페이지로 이동
 // }
 %>
-
-				<c:if test="${dto.deal_way.equals('sell')}">
-					<input class="submit-button" type="button" value="구매하기"
-						onclick="openProductPopup();">
-				</c:if>
-
 			</div>
 		</div>
 		<div class="form-group">
