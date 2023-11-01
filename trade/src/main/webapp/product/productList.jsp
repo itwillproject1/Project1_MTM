@@ -71,7 +71,7 @@
     
     <div class="product.image">
         <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" 
-        alt="${dto.title}">
+        alt="${dto.title}"> 
 	</div>	
 		
       <div class="product-info">
