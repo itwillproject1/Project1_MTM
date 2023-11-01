@@ -13,8 +13,13 @@
 	
 	<%
 
+<<<<<<< HEAD
 // 		response.sendRedirect("./main/Main.com");
 		response.sendRedirect("./product/ProductUpload.com");
+=======
+	    response.sendRedirect("./main/Main.com");
+//		response.sendRedirect("./product/ProductUpload.com");
+>>>>>>> 34f70264cd3ed1c5261579735b67f3b90fe036dd
 // 		response.sendRedirect("./product/ProductContent.com");
 	%>
 </body>

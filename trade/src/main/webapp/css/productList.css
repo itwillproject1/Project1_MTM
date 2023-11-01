@@ -31,7 +31,7 @@ body {
 	background-color: #fff;
 	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 	transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -72,12 +72,12 @@ body {
 	transform: scale(1.1);
 }
 
-	@keyframes colorfulShadow { /* 틀 호버 시 무지개 그림자 색? 지정 */
-    0% { box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1); }
-    25% { box-shadow: 0 4px 8px rgba(255, 255, 0, 0.1); }
-    50% { box-shadow: 0 4px 8px rgba(0, 255, 0, 0.1); }
-    75% { box-shadow: 0 4px 8px rgba(0, 0, 255, 0.1); }
-    100% { box-shadow: 0 4px 8px rgba(255, 0, 255, 0.1); }
+@keyframes colorfulShadow {
+    0% { box-shadow: 0 0 8px rgba(255, 0, 0, 0.1); }
+    25% { box-shadow: 0 0 8px rgba(255, 0, 0, 0.1); }
+    50% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.1); }
+    75% { box-shadow: 0 0 8px rgba(0, 0, 255, 0.1); }
+    100% { box-shadow: 0 0 8px rgba(255, 0, 255, 0.1); }
 }
 
 

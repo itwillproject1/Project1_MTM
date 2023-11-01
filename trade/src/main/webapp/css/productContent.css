@@ -8,7 +8,7 @@ body {
 
 .container {
 	max-width: 800px;
-	margin: 20px auto; /* 여기서 상단 여백 조정 */
+	margin: 100px auto; /* 여기서 상단 여백 조정 */
 	padding: 20px;
 	background-color: #c8e6c9; /* 더 진한 녹색 계열 배경색 */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
