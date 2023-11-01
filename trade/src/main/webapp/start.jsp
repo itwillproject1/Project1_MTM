@@ -13,7 +13,7 @@
 	
 	<%
 
-// 		response.sendRedirect("./Main.com");
+// 		response.sendRedirect("./main/Main.com");
 		response.sendRedirect("./product/ProductUpload.com");
 // 		response.sendRedirect("./product/ProductContent.com");
 	%>

@@ -19,8 +19,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @MultipartConfig(
-		fileSizeThreshold=0,
-		location="upload"
+		fileSizeThreshold=0
 		)
 public class ProductUploadAction implements Action {
 	private static final long serialVersionUID = 1L;
@@ -125,9 +124,10 @@ public class ProductUploadAction implements Action {
 
 		int bno = dao.uploadProduct(dto);
 
+		// 페이지 이동 준비
 		ActionForward forward = new ActionForward();
 
-		forward.setPath("./product/ProductContent.com?bno=" + bno);
+		forward.setPath("./ProductContent.com?bno="+bno);
 		forward.setRedirect(true);
 
 		return forward;

@@ -40,12 +40,12 @@ public class ProductFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/Main.com")) {
+		if(command.equals("/main/Main.com")) {
 			System.out.println("\tC: /Main.com 호출");
 			System.out.println("\tC: 패턴1 - DB 사용 X, 뷰페이지 출력");
 			
 			forward = new ActionForward();
-			forward.setPath("./main/main.jsp");
+			forward.setPath("./main.jsp");
 			forward.setRedirect(false);
 		}
 		else if(command.equals("/product/ProductUpload.com")) {
@@ -63,7 +63,7 @@ public class ProductFrontController extends HttpServlet{
 			action = new ProductUploadAction();
 			
 			try {
-				action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

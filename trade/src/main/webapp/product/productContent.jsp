@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,53 +24,58 @@
 		String realPath = request.getContextPath() + "/" + savePath;
 	%> --%>
 	<div class="container">
-
 		<div class="form-group h1">
 			<label for="productName">[${dto.deal_way }]${dto.title }</label>
 		</div>
-		<div class="form-group2">
-			<div class="image-container">
-				<img src="<%=request.getContextPath() %>/upload/${dto.file_name }"
-					id="imagePreview" alt="미리보기">
+
+		<c:set var="fileNameArr" value="${fn:split(dto.file_name,',') }" />
+		<c:forEach var="file_name" items="${fileNameArr }">
+			<div class="form-group2">
+				<div class="image-container">
+					<img src="<%=request.getContextPath() %>/upload/${file_name}"
+						id="imagePreview" alt="미리보기">
+				</div>
 			</div>
-			<div class="form-container">
-				<h2>상세 페이지</h2>
+		</c:forEach>
+
+		<div class="form-container">
+			<h2>상세 페이지</h2>
+			<div class="form-group">
+				<label for="user"><a href="작성자프로필">작성자: ${dto.user_id }</a></label>
+			</div>
+
+			<div class="form-group">
+				<label for="user">조회수: ${dto.views }</label>
+			</div>
+
+			<div class="form-group">
+				<label for="productCategory">카테고리: <a href="카테고리 검색결과">${dto.category }</a></label>
+			</div>
+
+			<div class="form-group">
+				<label for="productBrand">브랜드: <a href="브랜드 검색결과">${dto.brand }</a></label>
+			</div>
+
+			<c:if test="${dto.deal_way.equals('팝니다') }">
 				<div class="form-group">
-					<label for="user"><a href="작성자프로필">작성자: ${dto.user_id }</a></label>
+					<label for="productCondition">상품 상태: ${dto.product_status }</label>
 				</div>
+			</c:if>
 
-				<div class="form-group">
-					<label for="user">조회수: ${dto.views }</label>
-				</div>
+			<div class="form-group">
+				<label for="productPrice">가격(원): <fmt:formatNumber
+						value="${dto.price}" /></label>
+			</div>
 
-				<div class="form-group">
-					<label for="productCategory">카테고리: <a href="카테고리 검색결과">${dto.category }</a></label>
-				</div>
+			<c:if test="${dto.deal_way.equals('팝니다') }">
+				<input class="submit-button" type="button" value="구매하기"
+					onclick="location.href='결제페이지';">
+			</c:if>
+			<c:if test="${dto.deal_way.equals('삽니다') }">
+				<button class="submit-button" onclick="openProductModal();">판매하기</button>
+			</c:if>
 
-				<div class="form-group">
-					<label for="productBrand">브랜드: <a href="브랜드 검색결과">${dto.brand }</a></label>
-				</div>
-
-				<c:if test="${dto.deal_way.equals('팝니다') }">
-					<div class="form-group">
-						<label for="productCondition">상품 상태: ${dto.product_status }</label>
-					</div>
-				</c:if>
-
-				<div class="form-group">
-					<label for="productPrice">가격(원): <fmt:formatNumber
-							value="${dto.price}" /></label>
-				</div>
-
-				<c:if test="${dto.deal_way.equals('팝니다') }">
-					<input class="submit-button" type="button" value="구매하기"
-						onclick="location.href='결제페이지';">
-				</c:if>
-				<c:if test="${dto.deal_way.equals('삽니다') }">
-					<button class="submit-button" onclick="openProductModal();">판매하기</button>
-				</c:if>
-
-				<script>
+			<script>
     var modal; // 모달을 저장할 변수
 
     function openProductModal() {
@@ -112,16 +118,16 @@
     }
 </script>
 
-				<c:if test="${dto.deal_way.equals('sell')}">
-					<input class="submit-button" type="button" value="구매하기"
-						onclick="openProductPopup();">
-				</c:if>
+			<c:if test="${dto.deal_way.equals('sell')}">
+				<input class="submit-button" type="button" value="구매하기"
+					onclick="openProductPopup();">
+			</c:if>
 
-			</div>
 		</div>
-		<div class="form-group">
-			<label for="productDescription">상품 설명: </label> ${dto.content }
-		</div>
+	</div>
+	<div class="form-group">
+		<label for="productDescription">상품 설명: </label> ${dto.content }
+	</div>
 	</div>
 
 </body>
