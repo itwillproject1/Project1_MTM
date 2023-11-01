@@ -175,13 +175,16 @@
 					<label for="productPrice">가격(원):</label> <input type="number"
 						id="price" name="price" step="10">
 				</div>
-
+				
 				<div class="form-group">
 					<label for="productImage">상품 이미지:</label>
+				<c:forEach var="i" begin="1" end="5" step="1">
 					<!-- 파일 선택 시 previewImage() 함수 호출 -->
-					<input type="file" id="file_name" name="file_name" accept="image/*"
-						multiple onchange="previewImage()">
+					<input type="file" id="file${i }" name="file${i }" accept="image/*"
+						onchange="previewImage()">
+				</c:forEach>
 				</div>
+				
 				
 				<c:set var="file_name" value="${fileNames }" scope="request"/>
 
@@ -204,7 +207,7 @@
 	<script>
 		function previewImage() {
 			var preview = document.getElementById('imagePreview');
-			var fileInput = document.getElementById('file_name');
+			var fileInput = document.getElementById('file');
 			var file = fileInput.files[0];
 
 			if (file) {
