@@ -38,26 +38,22 @@ public class MemberFrontController extends HttpServlet {
 		Action action = null;
 		
 		if(command.equals("/MemberJoin.com")) {
-			System.out.println("\t C : /MemberJoinAction.com 호출 ");
-			System.out.println("\t C : 패턴 1 - DB사용X, 페이지 이동");
-			
 			forward = new ActionForward();
 			forward.setPath("./member/memberjoin.jsp");
 			forward.setRedirect(false);			
+		}else if(command.equals("/MemberJoinAction.com")){
+				action = new MemberJoinAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}else if(command.equals("/MemberMain.com")) {
 			forward = new ActionForward();
 			forward.setPath("./member/main.jsp");
-			forward.setRedirect(false);	
+			forward.setRedirect(false);
+			
 		}
-		else if(command.equals("/MemberJoinAction.com")){
-		action = new MemberJoinAction();
-		try {
-			forward = action.execute(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		}else if(command.equals(action))
-		
 		
 		
 		

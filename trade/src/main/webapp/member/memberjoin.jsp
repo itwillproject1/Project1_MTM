@@ -13,20 +13,29 @@
 		<script type="text/javascript">
   
 			function check() {
-				// 필수 입력여부 체크
+				// 유효성검사, 비밀번호 정규식
 				var id = document.join.user_id.value;
 				if (id == "") {
 					alert(' 아이디를 입력하세요! ');
 					document.join.user_id.focus();
 					return false;
 				}
-				
+				if(document.join.user_id.value.length < 5 || document.join.user_id.value.length > 12) {
+					alert("아이디는 5자 이상 12자 이하로 작성해주세요");
+					document.join.user_id.focus();
+					return false;
+				}				
 				var password = document.join.password.value;
 				if(password == ""){
-					alert('비밀번호를 입력하세요!')
+					alert('비밀번호를 입력하세요!');
 					document.join.password.focus();
 					return false;
 				}
+				if(document.join.password.value.length < 6 || document.join.password.value.length > 15) {
+					alert("비밀번호는 6자 이상 15자 이하로 작성해주세요");
+					document.join.password.focus();
+					return false;
+				}				
 				
 				var passwordcheck = document.join.passwordcheck.value;
 				if(passwordcheck != password ){
@@ -86,6 +95,7 @@
 			}
 			
 			
+			
 		</script>
 		
 		
@@ -94,7 +104,7 @@
 		<legend> 회원가입 페이지 </legend>
 		<form action="./MemberJoinAction.com" method="post" name="join" onsubmit="return check();">
 			아이디 : <input type="text" name="user_id">
-					 <input type="button"  value="중복확인" onclick="idCheck()"> <br>
+					 <input type="button"  value="ID 중복확인"  onclick="checkid();"> <br>
 					 
 					 
 			비밀번호 : <input type="password" name="password"><br>
