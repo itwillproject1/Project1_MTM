@@ -12,6 +12,24 @@
 <link href="../css/productList.css" rel="stylesheet" />
     <title>상품 목록</title>
 <style>
+.title {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 50px;
+	margin-top: 150px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 150px auto;
+	padding: 0 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start; /* 왼쪽으로 배치 */
+	gap: 30px; /* 아이템 사이의 간격 */
+}
 
 #page_control {
     display: flex;

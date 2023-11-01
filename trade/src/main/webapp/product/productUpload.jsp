@@ -12,14 +12,11 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productUpload.css" rel="stylesheet" />
-<style>
-</style>
 
 <title>글쓰기</title>
 </head>
 
 <body>
-
 	<%@ include file="../main/header.jsp"%>
 	<div class="container">
 		<div class="image-container">
