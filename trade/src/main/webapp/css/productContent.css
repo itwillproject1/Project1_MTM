@@ -1,35 +1,44 @@
 @charset "UTF-8";
 
 body {
-	font-family: 'Noto Sans KR', sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: #f1f8e9; /* 더 세련된 녹색 계열 배경색 */
+   font-family: 'Noto Sans KR', sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #f1f8e9; /* 더 세련된 녹색 계열 배경색 */
 }
 
 .container {
-	max-width: 800px;
-	margin: 100px auto; /* 여기서 상단 여백 조정 */
-	padding: 20px;
-	background-color: #c8e6c9; /* 더 진한 녹색 계열 배경색 */
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
-	overflow: hidden;
+   max-width: 800px;
+   margin: 100px auto; /* 여기서 상단 여백 조정 */
+   padding: 20px;
+   background-color: #c8e6c9; /* 더 진한 녹색 계열 배경색 */
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   border-radius: 8px;
+   overflow: hidden;
 }
 
 .image-container {
+<<<<<<< HEAD
 	width: 40%;
 	padding-right: 20px; /* 이미지 컨테이너 오른쪽 여백 추가 */
 	display: flex;
 	flex-direction: column;
 	align-items: center; /* 가로 방향 가운데 정렬 */
 	justify-content: center; /* 세로 방향 가운데 정렬 */
+=======
+   width: 40%;
+   padding-right: 20px; /* 이미지 컨테이너 오른쪽 여백 추가 */
+   display: flex;
+   flex-direction: row;
+   align-items: center; /* 가로 방향 가운데 정렬 */
+   justify-content: center; /* 세로 방향 가운데 정렬 */
+>>>>>>> 67962e3d60962f017491e7cf2da744bf1c021a40
 }
 
 .image-container img {
-	max-width: 100%;
-	max-height: 200px;
-	border-radius: 8px; /* 이미지에도 둥근 테두리 적용 */
+   max-width: 100%;
+   max-height: 200px;
+   border-radius: 8px; /* 이미지에도 둥근 테두리 적용 */
 }
 
 .image-preview {
@@ -58,76 +67,86 @@ body {
 }
 
 .form-container {
-	flex: 1;
-	padding-left: 20px;
+   flex: 1;
+   padding-left: 20px;
 }
 
 .form-group {
-	margin-bottom: 20px;
+   margin-bottom: 20px;
 }
 
 .form-group2 {
-	display: flex;
+   display: flex;
 }
 
 .form-group label {
-	display: block;
-	margin-bottom: 8px;
-	font-weight: bold;
-	color: #2e7d32; /* 더 진한 녹색 계열 글자색 */
+   display: block;
+   margin-bottom: 8px;
+   font-weight: bold;
+   color: #2e7d32; /* 더 진한 녹색 계열 글자색 */
 }
 
 .form-group input, .form-group textarea, .form-group select {
-	width: 100%;
-	padding: 8px;
-	border: 1px solid #388e3c; /* 더 진한 녹색 계열 테두리 */
-	border-radius: 4px;
-	box-sizing: border-box;
+   width: 100%;
+   padding: 8px;
+   border: 1px solid #388e3c; /* 더 진한 녹색 계열 테두리 */
+   border-radius: 4px;
+   box-sizing: border-box;
 }
 
 .form-group select {
-	cursor: pointer;
+   cursor: pointer;
 }
 
 .submit-button {
-	display: block;
-	width: 100%;
-	padding: 10px;
-	background-color: #4caf50; /* 녹색 계열 버튼 배경색 */
-	color: #fff;
-	text-align: center;
-	text-decoration: none;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.3s;
+   display: block;
+   width: 100%;
+   padding: 10px;
+   background-color: #4caf50; /* 녹색 계열 버튼 배경색 */
+   color: #fff;
+   text-align: center;
+   text-decoration: none;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s;
 }
 
 .submit-button:hover {
-	background-color: #388e3c; /* 더 진한 녹색 계열로 호버 시 변경 */
+   background-color: #388e3c; /* 더 진한 녹색 계열로 호버 시 변경 */
 }
 
 .h1 {
+<<<<<<< HEAD
 	font-size: 30px;
 	color: #2e7d32; /* 더 진한 녹색 계열 글자색 */
 	margin-bottom: 20px;
 	border-bottom: 2px solid #388e3c; /* 더 진한 녹색 계열의 밑줄 추가 */
 	padding-bottom: 5px;
+=======
+   font-size: 30px;
+   color: #2e7d32; /* 더 진한 녹색 계열 글자색 */
+   margin-bottom: 20px;
+   border-bottom: 2px solid #388e3c; /* 더 진한 녹색 계열의 밑줄 추가 */
+   padding-bottom: 5px;
+   
+>>>>>>> 67962e3d60962f017491e7cf2da744bf1c021a40
 }
 
 h2 {
-	font-size: 24px;
-	color: #2e7d32; /* 더 진한 녹색 계열 글자색 */
-	margin-bottom: 20px;
-	border-bottom: 2px solid #388e3c; /* 더 진한 녹색 계열의 밑줄 추가 */
-	padding-bottom: 5px;
+   font-size: 24px;
+   color: #2e7d32; /* 더 진한 녹색 계열 글자색 */
+   margin-bottom: 20px;
+   border-bottom: 2px solid #388e3c; /* 더 진한 녹색 계열의 밑줄 추가 */
+   padding-bottom: 5px;
 }
 
 .disabled {
-	pointer-events: none; /* 이벤트 무효화 */
-	background-color: #ccc; /* 어두운 배경색 (예: 회색) */
+   pointer-events: none; /* 이벤트 무효화 */
+   background-color: #ccc; /* 어두운 배경색 (예: 회색) */
 }
 
+<<<<<<< HEAD
 /* 팝업 전체 스타일 */
 .modal {
 	display: block;
@@ -139,3 +158,16 @@ h2 {
 	padding: 20px;
 	border-radius: 5px;
 }
+=======
+ /* 팝업 전체 스타일 */
+  .modal {
+      display: block;
+      width: 300px;
+      margin: 50px auto;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 5px;
+  }
+>>>>>>> 67962e3d60962f017491e7cf2da744bf1c021a40

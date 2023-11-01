@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -157,16 +158,186 @@ public class ProductDAO {
 			return dto;
 		} // getProduct(int bno) 종료
 
+		// 글 개수 계산 메서드 - getProductCount()
+		public int getProductCount() {
+			int result = 0;
+
+			try {
+				con = getCon();
+				// 3. sql 작성(select) & pstmt 객체
+				sql = "select count(*) from Product";
+				pstmt = con.prepareStatement(sql);
+
+				// 4. sql 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리 - 개수를 저장
+				if (rs.next()) {
+					result = rs.getInt(1);
+				}
+				System.out.println(" DAO : 개수 " + result + "개");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+
+			return result;
+		}
+		// 글 개수 계산 메서드 - getProductCount()
+		
+		// 글 개수 계산 메서드 - getProductCount(search)
+		public int getProductCount(String search) {
+			int result = 0;
+			
+			try {
+				// 1. 드라이버 로드
+				// 2. 디비 연결
+				con = getCon();
+				
+				// 3. sql 작성(select) & pstmt 객체
+				sql = "select count(*) from Product "
+						+ "where title like ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+				
+				// 4. sql 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리 - 개수를 저장
+				if (rs.next()) {
+					result = rs.getInt(1);
+					// result = rs.getInt("count(*)");
+				}
+				System.out.println(" DAO : 개수 " + result + "개");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return result;
+		}
+		// 글 개수 계산 메서드 - getProductCount(search)
+
+		// 글 정보 목록을 가져오는 메서드 - getProductList(int startRow,int pageSize)
+		public ArrayList getProductList(int startRow, int pageSize) {
+			// 글정보를 저장하는 배열
+			ArrayList ProductList = new ArrayList();
+			try {
+				// 디비연결정보
+				// 1. 드라이버 로드
+				// 2. 디비 연결
+				con = getCon();
+				// 3. SQL 작성(select) & pstmt 객체
+				sql = "select * from Product order by re_ref desc,re_seq asc limit ?,?";
+				pstmt = con.prepareStatement(sql);
+				// ????
+				pstmt.setInt(1, startRow - 1); // 시작행번호-1
+				pstmt.setInt(2, pageSize); // 개수
+				// 4. SQL 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				// 글정보 전부 가져오기
+				while (rs.next()) {
+					ProductDTO dto = new ProductDTO();
+
+					dto.setBno(rs.getInt("bno"));
+					dto.setContent(rs.getString("content"));
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setDeal_way(rs.getString("deal_way"));
+					dto.setTitle(rs.getString("title"));
+					dto.setCategory(rs.getString("category"));
+					dto.setBrand(rs.getString("brand"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setProduct_status(rs.getString("product_status"));
+					dto.setContent(rs.getString("content"));
+					dto.setViews(rs.getInt("views"));
+					dto.setDate_time(rs.getTimestamp("date_time"));
+					dto.setFile_name(rs.getString("file_name"));
+
+					// 글 하나의 정보를 배열의 한칸에 저장
+					ProductList.add(dto);
+
+				} // while
+
+				System.out.println(" DAO : 글 목록 조회성공! ");
+				System.out.println(" DAO : " + ProductList.size());
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			return ProductList;
+		}
+		// 글 정보 목록을 가져오는 메서드 -getProductList(int startRow,int pageSize) 종료
+		
+		// 검색 목록을 가져오는 메서드 - getProductList(int startRow,int pageSize,String search)
+		public ArrayList getProductList(int startRow, int pageSize,String search) {
+			// 글정보를 저장하는 배열
+			ArrayList ProductList = new ArrayList();
+			try {
+				// 디비연결정보
+				// 1. 드라이버 로드
+				// 2. 디비 연결
+				con = getCon();
+				// 3. SQL 작성(select) & pstmt 객체
+				sql = "select * from Product "
+						+ "where title like ? "
+						+ "limit ?,?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%"); // %검색어%
+				pstmt.setInt(2, startRow - 1); // 시작행번호-1
+				pstmt.setInt(3, pageSize); // 개수
+				// 4. SQL 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				// 글정보 전부 가져오기
+				while (rs.next()) {
+					ProductDTO dto = new ProductDTO();
+					
+					dto.setBno(rs.getInt("bno"));
+					dto.setContent(rs.getString("content"));
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setDeal_way(rs.getString("deal_way"));
+					dto.setTitle(rs.getString("title"));
+					dto.setCategory(rs.getString("category"));
+					dto.setBrand(rs.getString("brand"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setProduct_status(rs.getString("product_status"));
+					dto.setContent(rs.getString("content"));
+					dto.setViews(rs.getInt("views"));
+					dto.setDate_time(rs.getTimestamp("date_time"));
+					dto.setFile_name(rs.getString("file_name"));
+					
+					// 글 하나의 정보를 배열의 한칸에 저장
+					ProductList.add(dto);
+					
+				} // while
+				
+				System.out.println(" DAO : 검색창 글 목록 조회성공! ");
+				System.out.println(" DAO : " + ProductList.size());
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return ProductList;
+		}
+		// 검색 목록을 가져오는 메서드 -getProductList(int startRow,int pageSize,String search) 종료
 		
 		// 사용자 아이디에 해당하는 상품 정보(상품명, 상품상태, 가격) 가져오는 ProductInfo(user_id) 메서드
 		public ProductDTO ProductInfo(String user_id) {
 			ProductDTO dto = null;
-			 try {
-				 con = getCon();
+			try {
+				con = getCon();
 				// sql, pstmt
-				 sql = "select * from Product where user_id=?";
-				 pstmt = con.prepareStatement(sql);
-				 pstmt.setString(1, user_id);
+				sql = "select * from Product where user_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, user_id);
 				// sql 실행
 				rs = pstmt.executeQuery();
 				
@@ -178,12 +349,17 @@ public class ProductDAO {
 					dto.setProduct_status(rs.getString("product_status"));
 					dto.setPrice(rs.getInt("price"));
 				}
-			 } catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					closeDB();
-				}
-			 return dto;
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			return dto;
 		} // ProductInfo(user_id) 종료
+		
+		
+		
+		
+		
 		
 }
