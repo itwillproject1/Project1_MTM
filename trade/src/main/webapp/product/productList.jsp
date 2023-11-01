@@ -29,32 +29,38 @@
 
     <!-- 상품들 -->
     
-    <c:forEach var="dto" items="${ProductList }">
+    <c:forEach var="dto" items="${ProductList }">  
     <div class="product-list">
     
     <div class="product">
         <img src="<%= request.getContextPath() %>/upload/${dto.file_name }"
-        		alt="Product Image">
+        		alt="Product Image"> </div>
 			
         <div class="product-info">
-            <h3>[${dto.deal_way }]${dto.title }</h3>
-            </div>
+            <h3>[${dto.deal_way }]${dto.title }</h3> </div>
+            
             
             <div class="product-price">
             <p><fmt:formatNumber value="${dto.price }" />원</p>
+            </div>
+            
             
         </div>
-        </c:forEach>
+        
+</c:forEach>
+</div>
 
         
 
         
-    </div>
- </div>
+    
+ 
+
 
     <!-- 추후 추가 가능 -->
 
-</div>
+
+
     <footer>
         <p>&copy; 1조 전자기기 중고거래</p>
     </footer>
