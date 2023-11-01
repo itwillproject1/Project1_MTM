@@ -45,9 +45,13 @@ public class ProductFrontController extends HttpServlet{
 			System.out.println("\tC: 패턴1 - DB 사용 X, 뷰페이지 출력");
 			
 			forward = new ActionForward();
+<<<<<<< Updated upstream
 
 			forward.setPath("./realmain.jsp");
 
+=======
+			forward.setPath("./main.jsp");
+>>>>>>> Stashed changes
 			forward.setRedirect(false);
 		}
 		else if(command.equals("/product/ProductUpload.com")) {

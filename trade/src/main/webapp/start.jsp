@@ -13,11 +13,16 @@
 	
 	<%
 
+<<<<<<< Updated upstream
 
 // 		response.sendRedirect("./main/Main.com");
 // 	    response.sendRedirect("./main/Main.com");
 //		response.sendRedirect("./product/ProductUpload.com");
 		response.sendRedirect("./product/ProductContent.com");
+=======
+		response.sendRedirect("./main/Main.com");
+// 		response.sendRedirect("./product/ProductContent.com");
+>>>>>>> Stashed changes
 	%>
 </body>
 </html>

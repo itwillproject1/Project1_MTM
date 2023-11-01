@@ -37,7 +37,7 @@
 
         <span class="user-menu">
             <a href="#">로그인</a>
-            <a href="#">글등록</a>
+            <a href="../product/ProductContent.com">글등록</a>
             <a href="#">찜</a>
             <a href="#">마이페이지</a>
         </span>

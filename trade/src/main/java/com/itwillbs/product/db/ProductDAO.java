@@ -157,4 +157,33 @@ public class ProductDAO {
 			return dto;
 		} // getProduct(int bno) 종료
 
+		
+		// 사용자 아이디에 해당하는 상품 정보(상품명, 상품상태, 가격) 가져오는 ProductInfo(user_id) 메서드
+		public ProductDTO ProductInfo(String user_id) {
+			ProductDTO dto = null;
+			 try {
+				 con = getCon();
+				// sql, pstmt
+				 sql = "select * from Product where user_id=?";
+				 pstmt = con.prepareStatement(sql);
+				 pstmt.setString(1, user_id);
+				// sql 실행
+				rs = pstmt.executeQuery();
+				
+				// 데이터 처리
+				if (rs.next()) {
+					dto = new ProductDTO();
+					dto.setFile_name(rs.getString("file_name"));
+					dto.setTitle(rs.getString("title"));
+					dto.setProduct_status(rs.getString("product_status"));
+					dto.setPrice(rs.getInt("price"));
+				}
+			 } catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					closeDB();
+				}
+			 return dto;
+		} // ProductInfo(user_id) 종료
+		
 }
