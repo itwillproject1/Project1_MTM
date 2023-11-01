@@ -67,26 +67,19 @@ public class ProductListAction implements Action {
 		System.out.println(" M : size :" + ProductList.size());
 
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
-		request.setAttribute("boardList", ProductList);
+		request.setAttribute("ProductList", ProductList);
 
 		/******************* 페이징처리 2 *********************/
-		// 페이지 블럭(1,2,3,.....,10) 생성
-
 		// 전체 페이지수
-		// 글 15 / 페이지당 10 => 2개
-		// 글 78 / 페이지당 10 => 8개
 		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 
 		// 한 화면에 보여줄 페이지 블럭개수
 		int pageBlock = 3;
 
 		// 페이지 블럭의 시작번호 계산
-		// 1페이지 => 1 , 11페이지 => 11
-		// 5페이지 => 1 , 25페이지 => 21
 		int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
 
 		// 페이지 블럭의 마지막번호 계산
-		// 1페이지 => 10, 13페이지 => 20
 		int endPage = startPage + pageBlock - 1;
 		// 페이지의 글이 없는경우
 		if (endPage > pageCount) {
@@ -105,7 +98,7 @@ public class ProductListAction implements Action {
 		
 		// 페이지 이동준비 
 		ActionForward forward = new ActionForward();
-		forward.setPath("./product/ProductList.jsp");
+		forward.setPath("./productList.jsp");
 		forward.setRedirect(false);
 
 		return forward;

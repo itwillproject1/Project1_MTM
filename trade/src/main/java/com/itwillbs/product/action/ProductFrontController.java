@@ -82,11 +82,11 @@ public class ProductFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/ProductList.bo")) {
-			System.out.println(" C : /ProductList.bo 호출 ");
+		else if(command.equals("/product/ProductList.com")) {
+			System.out.println(" C : /product/ProductList.com 호출 ");
 			System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
 			
-			//  BoardListAction() 객체 생성
+			//  ProductListAction() 객체 생성
 			action = new ProductListAction();
 			
 			try {

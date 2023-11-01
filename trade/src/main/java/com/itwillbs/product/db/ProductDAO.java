@@ -285,7 +285,6 @@ public class ProductDAO {
 				// 3. SQL 작성(select) & pstmt 객체
 				sql = "select * from Product "
 						+ "where title like ? "
-						+ "order by re_ref desc,re_seq asc "
 						+ "limit ?,?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%"+search+"%"); // %검색어%

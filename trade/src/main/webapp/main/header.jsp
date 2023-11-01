@@ -36,26 +36,6 @@
 			<button type="submit" value="search">검색</button>
 		</form>
 
-		<div class="clear"></div>
-		<div id="page_control">
-			<c:if test="${startPage > pageBlock }">
-				<a href="./ProductList.com?pageNum=${startPage-pageBlock }&search=${param.search}">이전 페이지</a>
-			</c:if>
-
-			<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-				<c:choose>
-					<c:when test="${i != 0}">
-						<a href="./ProductList.com?pageNum=${i }&search=${param.search}">${i }</a>
-					</c:when>
-				</c:choose>
-			</c:forEach>
-
-			<c:if test="${endPage < pageCount }">
-				<a href="./ProductList.com?pageNum=${startPage+pageBlock }&search=${param.search}">다음 페이지</a>
-			</c:if>
-		</div>
-
-
 
 		<span class="user-menu">
             <a href="../member/login.com">로그인</a>
