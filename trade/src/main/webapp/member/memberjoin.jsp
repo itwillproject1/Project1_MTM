@@ -111,6 +111,16 @@
 					
 			}
 			
+			function upload(){
+				
+				var fileupload = window.open("./member/fileupload.jsp","fileupload","width=570,height=420, scrollbars=yes, resizable=yes");
+			}
+			
+			function checkid() {
+				let checkid = window.open("./member/checkid.jsp","checkid","width=570,height=420, scrollbars=yes, resizable=yes");
+				
+				// checkid.document.getElementById("id").value = document.getElementById("user_id").value;
+				}
 			
 			
 		</script>
@@ -120,8 +130,8 @@
 		<fieldset>
 		<legend> 회원가입 페이지 </legend>
 		<form action="./MemberJoinAction.com" method="post" name="join" onsubmit="return check();">
-			아이디 : <input type="text" name="user_id">
-					 <input type="button"  value="ID 중복확인"  onclick="checkid();"> <br>
+			아이디 : <input type="text" name="user_id" id="user_id">
+					 <input type="button"  value="ID 중복확인"   onclick="checkid();"> <br>
 					 
 					 
 			비밀번호 : <input type="password" name="password"><br>
@@ -198,8 +208,13 @@
 			
 			닉네임 : <input type="text" name="user_nickname"><br>
 			
-			
-			프로필 : <input type="text" name="profile"><br>
+			<div id="callBackfile">
+			<table>
+			<tr>
+			</tr>
+			</table>			
+			프로필 : <input type="button" name="profile" value="등록하기" onclick="upload()"><br>
+			</div>
 			
 			
 			추천인 : <input type="text" name="recommend"><br>

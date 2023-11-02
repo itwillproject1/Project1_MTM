@@ -78,8 +78,22 @@ public class MemberDAO {
 				}
 				
 			}
-			
-			
+			// 아이디 중복 확인
+			public int checkid(MemberDTO dto) {
+				int result = -1;
+				try {
+					con = getCon();
+					sql = "select coutn(user_id) from itwill_member where user_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, dto.getUser_id());
+					rs = pstmt.executeQuery();
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+				
+				return result;
+			}
 			
 			
 			
