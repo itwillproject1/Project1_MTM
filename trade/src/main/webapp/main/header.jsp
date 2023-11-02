@@ -17,7 +17,7 @@
 		<span class="logo"> <a href="../main/Main.com"><img src="chun.png" alt="로고"></a>
 		</span>
 		
-		<span class="category-a"> <a href="#">삽니다</a> <a href="#">팝니다</a>
+		<span class="category-a"> <a href="../product/ProductList.com?category=삽니다">삽니다</a> <a href="../product/ProductList.com?category=팝니다">팝니다</a>
 		</span>
 		
         <span class="category-b">

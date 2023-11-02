@@ -59,33 +59,8 @@ public class ProductListAction implements Action {
 
 		/********************* 페이징처리 1 *******************/
 
-//		// DAO - 글정보 모두(list)를 가져오는 메서드 호출
-//		ArrayList ProductList = null;
-//		if (count > 0 && search == null) {
-//			ProductList = dao.getProductList(startRow, pageSize);
-//		}else if(count > 0 && search != null ) {
-//			ProductList = dao.getProductList(startRow, pageSize,search);
-//		}else {
-//			// 글이 없는경우
-//		}
-//		System.out.println(" M : size :" + ProductList.size());
-//
-//		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
-//		request.setAttribute("ProductList", ProductList);
-		
-		/******************************************************/
-		
+		// DAO - 글정보 모두(list)를 가져오는 메서드 호출
 		ArrayList ProductList = null;
-<<<<<<< HEAD
-		
-		ProductList = dao.getProductList(startRow, pageSize, "삽니다", true);
-		
-		// 또는 "팝니다" 카테고리에 해당하는 글 목록 가져오기
-		// productList = dao.getProductList(startRow, pageSize, "팝니다", false);
-
-		System.out.println("DAO: 삽니다 목록 조회 성공!");
-		System.out.println("M: size: " + ProductList.size());
-=======
 		if (count > 0 && search == null && category == null) {
 			ProductList = dao.getProductList(startRow, pageSize);
 		}else if(count > 0 && category != null ) {
@@ -96,7 +71,6 @@ public class ProductListAction implements Action {
 			// 글이 없는경우
 		}
 		System.out.println(" M : size :" + ProductList.size());
->>>>>>> 01d36c0abf00bcee6bbcdcb5e45e26bac8278dbb
 
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("ProductList", ProductList);

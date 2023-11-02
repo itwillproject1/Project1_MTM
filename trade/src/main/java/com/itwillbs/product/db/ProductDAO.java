@@ -405,67 +405,12 @@ public class ProductDAO {
 				dto.setProduct_status(rs.getString("product_status"));
 				dto.setPrice(rs.getInt("price"));
 			}
-
-			return dto;
-		} // ProductInfo(user_id) 종료
-		
-		// 카테고리를 눌렀을 때 삽니다, 팝니다 불러오는 메서드
-		
-		public ArrayList getProductList(int startRow, int pageSize, String dealWay, Boolean additionalParam) { {
-			// 글정보를 저장하는 배열
-			ArrayList ProductList = new ArrayList();
-			try {
-				// 디비연결정보
-				// 1. 드라이버 로드
-				// 2. 디비 연결
-				con = getCon();
-				// 3. SQL 작성(select) & pstmt 객체
-				// 삽니다/팝니다 카테고리에 따라 WHERE 조건을 추가
-		        sql = "select * from Product where deal_way = ? order by re_ref desc, re_seq asc limit ?,?";
-		        pstmt = con.prepareStatement(sql);
-		        pstmt.setString(1, dealWay);
-		        pstmt.setInt(2, startRow - 1); // 시작행번호-1
-		        pstmt.setInt(3, pageSize); // 개수
-				// 4. SQL 실행
-				rs = pstmt.executeQuery();
-				// 5. 데이터 처리
-				// 글정보 전부 가져오기
-				while (rs.next()) {
-		            ProductDTO dto = new ProductDTO();
-		            
-		            dto.setBno(rs.getInt("bno"));
-					dto.setContent(rs.getString("content"));
-					dto.setUser_id(rs.getString("user_id"));
-					dto.setDeal_way(rs.getString("deal_way"));
-					dto.setTitle(rs.getString("title"));
-					dto.setCategory(rs.getString("category"));
-					dto.setBrand(rs.getString("brand"));
-					dto.setPrice(rs.getInt("price"));
-					dto.setProduct_status(rs.getString("product_status"));
-					dto.setContent(rs.getString("content"));
-					dto.setViews(rs.getInt("views"));
-					dto.setDate_time(rs.getTimestamp("date_time"));
-					dto.setFile_name(rs.getString("file_name"));
-					
-					// 글 하나의 정보를 배열의 한칸에 저장
-					ProductList.add(dto);
-					
-				} // while
-				
-				System.out.println("DAO: 삽니다/팝니다 목록 조회 성공!");
-		        System.out.println("DAO: "+ ProductList.size());
-		        
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		    } finally {
-		        closeDB();
-		    }
-		    return ProductList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
-		
-		// 삽니다 카테고리를 눌렀을 때 삽니다 상품만 불러오는 메서드
-		
+		return dto;
+	} // ProductInfo(user_id) 종료
 
 }
-		
-	}
