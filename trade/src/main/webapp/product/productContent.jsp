@@ -32,8 +32,7 @@
 		</div>
 		<div class="form-group2">
 			<div class="image-container">
-				<img src="<%=request.getContextPath() %>/upload/
-				${dto.file_name }" id="imagePreview" alt="미리보기">
+				<img src="<%=request.getContextPath() %>/upload/${dto.file_name }" id="imagePreview" alt="미리보기">
 			</div>
 			<div class="form-container">
 				<h2>상세 페이지</h2>

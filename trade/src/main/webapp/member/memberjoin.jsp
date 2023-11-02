@@ -13,20 +13,29 @@
 		<script type="text/javascript">
   
 			function check() {
-				// 필수 입력여부 체크
+				// 유효성검사, 비밀번호 정규식
 				var id = document.join.user_id.value;
 				if (id == "") {
 					alert(' 아이디를 입력하세요! ');
 					document.join.user_id.focus();
 					return false;
 				}
-				
+				if(document.join.user_id.value.length < 5 || document.join.user_id.value.length > 12) {
+					alert("아이디는 5자 이상 12자 이하로 작성해주세요");
+					document.join.user_id.focus();
+					return false;
+				}				
 				var password = document.join.password.value;
 				if(password == ""){
-					alert('비밀번호를 입력하세요!')
+					alert('비밀번호를 입력하세요!');
 					document.join.password.focus();
 					return false;
 				}
+				if(document.join.password.value.length < 6 || document.join.password.value.length > 15) {
+					alert("비밀번호는 6자 이상 15자 이하로 작성해주세요");
+					document.join.password.focus();
+					return false;
+				}				
 				
 				var passwordcheck = document.join.passwordcheck.value;
 				if(passwordcheck != password ){
@@ -64,6 +73,7 @@
 					alert(' 휴대폰 번호를 확인하세요! ');
 					document.join.phone2.focus();
 					return false;
+				
 				}
 				var phone3 = document.join.phone3.value;
 				if (phone3 == "") {
@@ -85,6 +95,23 @@
 				}
 			}
 			
+			function goPopup(){
+				// 주소검색을 수행할 팝업 페이지를 호출합니다.
+				// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+				var pop = window.open("./member/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+				
+				// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+			    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+			}
+
+
+			function jusoCallBack(address){
+					// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+					document.join.address.value = address;
+					
+			}
+			
+			
 			
 		</script>
 		
@@ -94,7 +121,7 @@
 		<legend> 회원가입 페이지 </legend>
 		<form action="./MemberJoinAction.com" method="post" name="join" onsubmit="return check();">
 			아이디 : <input type="text" name="user_id">
-					 <input type="button"  value="중복확인" onclick="idCheck()"> <br>
+					 <input type="button"  value="ID 중복확인"  onclick="checkid();"> <br>
 					 
 					 
 			비밀번호 : <input type="password" name="password"><br>
@@ -165,9 +192,9 @@
 						 <input type="text" name="phone2"> -
 						 <input type="text" name="phone3"><br>
 						 
-						 
-			주 소 : <input type="text" name="address"><br>
-			
+			<div id="callBackDiv">			 
+			주 소 : <input type="text" id="address" name="address"> <input type="button" value="검색하기" onclick="goPopup()" > <br>
+			</div>
 			
 			닉네임 : <input type="text" name="user_nickname"><br>
 			
