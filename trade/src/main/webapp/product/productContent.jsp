@@ -32,7 +32,7 @@
 
 		<%-- 		<c:set var="fileNameArr" value="${fn:split(dto.file_name,',') }" /> --%>
 		<!-- 		<div class="form-group2"> -->
-		<!-- 			<div class="image-container"> -->
+		<!-- 			s<div class="image-container"> -->
 		<!-- 				<img src="" -->
 		<!-- 					id="imagePreview" alt="미리보기"> -->
 		<%-- 				<c:forEach var="file_name" items="${fileNameArr }"> --%>

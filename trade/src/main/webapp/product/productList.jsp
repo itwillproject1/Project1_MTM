@@ -15,7 +15,6 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
-<<<<<<< HEAD
     <title>상품 목록</title>
     <style>
     .title {
@@ -64,10 +63,8 @@
   
 }
     
-    </style>
-=======
+   </style>
 <title>상품 목록</title>
->>>>>>> b79ae7f3085abe5e24893efb9c1d9be6e249e88d
 </head>
 <body>
 
@@ -84,8 +81,8 @@
 			<div class="product">
 
 				<div class="product.image">
-					<img src="<%=request.getContextPath() %>/upload/${dto.file_name}"
-						alt="${dto.title}">
+					<img src="<%=request.getContextPath() %>/upload/${product.file_name}"
+						alt="${product.title}">
 				</div>
 
 				<div class="product-info">
