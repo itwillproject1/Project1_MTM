@@ -14,7 +14,7 @@
 <body>
 
 	<header>
-		<span class="logo"> <img src="logo.png" alt="로고">
+		<span class="logo"> <a href="../main/Main.com"><img src="chun.png" alt="로고"></a>
 		</span>
 		
 		<span class="category-a"> <a href="#">삽니다</a> <a href="#">팝니다</a>
