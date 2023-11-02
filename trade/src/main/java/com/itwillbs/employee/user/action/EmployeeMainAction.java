@@ -18,7 +18,7 @@ public class EmployeeMainAction implements Action{
 		EmployeeBoardDAO bdao = new EmployeeBoardDAO();
 		
 		int userCount = udao.userCount();
-		ArrayList tradeList = bdao.
+		//ArrayList tradeList = bdao.
 		return forward;
 	}
 }
