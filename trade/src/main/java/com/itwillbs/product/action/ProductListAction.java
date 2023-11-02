@@ -18,17 +18,21 @@ public class ProductListAction implements Action {
 
 		// 전달정보 검색어 정보 저장
 		String search = request.getParameter("search");
+		String category = request.getParameter("category");
 		System.out.println(" M : 검색어 : "+search );
 		
 		// 기존에 저장된 글정보를 가져와서 화면에 출력
 		ProductDAO dao = new ProductDAO();
 		
 		int count = 0;
-		if(search == null) { // 검색어 X
+		if(search == null && category == null) { // 검색어 X
 			System.out.println(" M : 검색어 없음! ");
 			count = dao.getProductCount();
 			/////////////////////////////////////////////////////////
-		}else{ // 검색어 O - 검색결과O/X 
+		} else if(category != null){
+			System.out.println(" M : 카테고리 있음! ("+category+")");
+			count = dao.getProductCount(category);
+		} else { // 검색어 O - 검색결과O/X 
 			System.out.println(" M : 검색어 있음! ("+search+")");
 			count = dao.getProductCount(search);
 		}		
@@ -57,8 +61,10 @@ public class ProductListAction implements Action {
 
 		// DAO - 글정보 모두(list)를 가져오는 메서드 호출
 		ArrayList ProductList = null;
-		if (count > 0 && search == null) {
+		if (count > 0 && search == null && category == null) {
 			ProductList = dao.getProductList(startRow, pageSize);
+		}else if(count > 0 && category != null ) {
+			ProductList = dao.getProductList(startRow, pageSize,category);
 		}else if(count > 0 && search != null ) {
 			ProductList = dao.getProductList(startRow, pageSize,search);
 		}else {
