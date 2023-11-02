@@ -54,14 +54,14 @@
 	<div id="page_control">
 		<c:if test="${startPage > pageBlock }">
 			<a
-				href="./ProductList.com?pageNum=${startPage-pageBlock }&search=${param.search}"
+				href="./ProductList.com?pageNum=${startPage-pageBlock }&search=${param.search}&category=${param.category}"
 				class="prev-page">이전 페이지</a>
 		</c:if>
 
 		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 			<c:choose>
 				<c:when test="${i != 0}">
-					<a href="./ProductList.com?pageNum=${i }&search=${param.search}"
+					<a href="./ProductList.com?pageNum=${i }&search=${param.search}&category=${param.category}"
 						class="page-number">${i }</a>
 				</c:when>
 			</c:choose>
@@ -69,7 +69,7 @@
 
 		<c:if test="${endPage < pageCount }">
 			<a
-				href="./ProductList.com?pageNum=${startPage+pageBlock }&search=${param.search}"
+				href="./ProductList.com?pageNum=${startPage+pageBlock }&search=${param.search}&category=${param.category}"
 				class="next-page">다음 페이지</a>
 		</c:if>
 	</div>
