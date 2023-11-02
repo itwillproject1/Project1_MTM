@@ -20,7 +20,7 @@ public class EmployeeListAction implements Action{
 		JSMoveFunction move = new JSMoveFunction();
 		if(emp_id == null) {
 			System.out.println("로그인 되어 있지 않음");
-			move.alertLocation(response, "로그인이 되어있지 않습니다!", "./Login.empm");
+			move.alertLocation(response, "로그인이 되어있지 않습니다!", "./Login.emp");
 		}
 		
 		EmployeeMemberDAO dao = new EmployeeMemberDAO();
@@ -28,7 +28,7 @@ public class EmployeeListAction implements Action{
 		ArrayList dList = dao.loadEmployeeList(1);
 		if(dList.size() == 0) {
 			System.out.println("직원 목록 없음");
-			move.alertLocation(response, "직원 목록 없음", "./Main.empm");
+			move.alertLocation(response, "직원 목록 없음", "./Main.emp");
 		}
 		else {
 			int count = dList.size();

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% response.sendRedirect("./Login.empm"); %>
+	<% response.sendRedirect("./Login.emp"); %>
 </body>
 </html>

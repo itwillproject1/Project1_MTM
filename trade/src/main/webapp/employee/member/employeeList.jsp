@@ -41,11 +41,8 @@
                               <span class="text-muted sr-only">메뉴</span>
                             </button>
                             <div class="dropdown-menu m-2">
-                            	<c:if test="${'foreach dList.id와 현재 id로 비교'}">
-                              		<a class="dropdown-item" href="#"><i class="fe fe-message-circle fe-12 mr-4"></i>메일 전송</a>
-                            	</c:if>
                               <c:if test="${sessionScope.emp_id == 'admin'}">                              
-                              	<a class="dropdown-item" href="#"><i class="fe fe-delete fe-12 mr-4"></i>삭제</a>
+                              	<a class="dropdown-item" href="./EmployeeDeleteForm.emp"><i class="fe fe-delete fe-12 mr-4"></i>삭제</a>
                               </c:if>
                             </div>
                           </div>

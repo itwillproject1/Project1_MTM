@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <body class="horizontal light  ">
   <c:if test="${empty emp_id}">
-		<c:redirect url="./Login.empm"/>
+		<c:redirect url="./Login.emp"/>
   </c:if>
     <div class="wrapper">
       <nav class="navbar navbar-expand-lg navbar-light bg-white flex-row border-bottom shadow">
@@ -22,7 +22,7 @@
             </a>
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="./EmployeeList.empm">
+                <a class="nav-link" href="./EmployeeList.emp">
                   <span class="ml-lg-2">직원 목록</span>
                 </a>
               </li>

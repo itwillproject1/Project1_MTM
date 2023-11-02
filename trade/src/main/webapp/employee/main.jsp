@@ -98,7 +98,7 @@
                 <!-- Recent orders -->
                 <div class="col-md-12">
                   <h6 class="mb-3">최근 거래 이력</h6>
-                  <a class="float-right small text-muted" href="./Main.empm">View all</a>
+                  <a class="float-right small text-muted" href="./Main.emp">View all</a>
                   <table class="table table-borderless table-striped">
                     <thead>
                       <tr role="row">

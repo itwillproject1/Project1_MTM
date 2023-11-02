@@ -26,7 +26,7 @@ public class EmployeeLoginAction implements Action{
 			HttpSession session = request.getSession();
 			session.setAttribute("emp_id", dto.getEmp_id());
 			forward = new ActionForward();
-			forward.setPath("./Main.empm");
+			forward.setPath("./Main.emp");
 			forward.setRedirect(true);
 			return forward;
 		}

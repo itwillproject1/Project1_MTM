@@ -17,7 +17,7 @@
                     <div class="card-body">
                       <div class="toolbar row mb-3">
                         <div class="col">
-                          <form action="./UserList.empu" method="get" class="form-inline">
+                          <form action="./UserList.emp" method="get" class="form-inline">
                             <div class="form-row">
                               <div class="form-group col-auto">
                                 <label for="search" class="sr-only">Search</label>

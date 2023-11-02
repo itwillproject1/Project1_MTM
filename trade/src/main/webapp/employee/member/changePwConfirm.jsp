@@ -16,7 +16,7 @@
             <h4 class="my-3">비밀번호 초기화 완료</h4>
           </div>
           <div class="alert alert-success" role="alert"><strong>${requestScope.name}</strong>님의 비밀번호 초기화가 완료 되었습니다.<br>다시 로그인 하시기 바랍니다.</div>
-          <a href="./Login.empm" class="btn btn-lg btn-primary btn-block">로그인 하기</a>
+          <a href="./Login.emp" class="btn btn-lg btn-primary btn-block">로그인 하기</a>
           <p class="mt-5 mb-3 text-muted">© 2023</p>
         </form>
       </div>

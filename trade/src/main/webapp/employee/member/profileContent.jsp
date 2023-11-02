@@ -29,7 +29,7 @@
   </head>
   <body class="vertical  light  ">
   <c:if test="${empty sessionScope.emp_id && empty requestScope.emp_id}">
-		<c:redirect url="./Login.empm"/>
+		<c:redirect url="./Login.emp"/>
   </c:if>
     <div class="wrapper">
       <nav class="topnav navbar navbar-light">
@@ -49,9 +49,9 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="./ProfileChangeForm.empm">프로필 편집</a>
-              <a class="dropdown-item" href="./MailList.empm">메일</a>
-              <a class="dropdown-item" href="./LogoutAction.empm">로그아웃</a>
+              <a class="dropdown-item" href="./ProfileChangeForm.emp">프로필 편집</a>
+              <a class="dropdown-item" href="./MailList.emp">메일</a>
+              <a class="dropdown-item" href="./LogoutAction.emp">로그아웃</a>
             </div>
           </li>
         </ul>
@@ -63,7 +63,7 @@
         <nav class="vertnav navbar navbar-light">
           <!-- nav bar -->
           <div class="w-100 mb-4 d-flex">
-            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./Main.empm">
+            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./Main.emp">
             <!-- SVG 이미지 불러오기 -->
               <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 331.617">
 				<path fill-rule="nonzero" d="M271.099 21.308C274.787 6.304 289.956-2.873 304.96.815c15.005 3.688 24.181 18.857 20.493 33.862l-68.491 275.632c-3.689 15.005-18.857 24.181-33.862 20.493-15.005-3.688-24.181-18.857-20.493-33.862l68.492-275.632zm-118.45 224.344c11.616 10.167 12.795 27.834 2.628 39.45-10.168 11.615-27.835 12.794-39.45 2.627L9.544 194.604C-2.071 184.437-3.25 166.77 6.918 155.155c.873-.997 1.8-1.912 2.767-2.75l106.142-93.001c11.615-10.168 29.282-8.989 39.45 2.626 10.167 11.616 8.988 29.283-2.628 39.45l-82.27 72.086 82.27 72.086zm243.524 42.077c-11.615 10.167-29.282 8.988-39.45-2.627-10.167-11.616-8.988-29.283 2.628-39.45l82.27-72.086-82.27-72.086c-11.616-10.167-12.795-27.834-2.628-39.45 10.168-11.615 27.835-12.794 39.45-2.626l106.142 93.001a28.366 28.366 0 012.767 2.75c10.168 11.615 8.989 29.282-2.626 39.449l-106.283 93.125z"/>
@@ -72,7 +72,7 @@
           </div>
           <ul class="navbar-nav flex-fill w-100 mb-2">
              <li class="nav-item w-100">
-              <a class="nav-link" href="./Main.empm">
+              <a class="nav-link" href="./Main.emp">
                 <i class="fe fe-home fe-16"></i>
                 <span class="ml-3 item-text">메인</span>
               </a>
@@ -85,7 +85,7 @@
           
           <!-- 직원 목록, 프로필 수정(본인 전용), 추가 및 삭제(관리자 전용) -->
           	<li class="nav-item w-100">
-            	<a class="nav-link" href="./EmployeeList.empm">
+            	<a class="nav-link" href="./EmployeeList.emp">
                 	<i class="fe fe-user fe-16"></i>
                 	<span class="ml-3 item-text">직원 목록</span>
               	</a>
@@ -93,7 +93,7 @@
             
             <!-- 메일 리스트, 상세 조회, 추가, 삭제(수정 불가능) -->
             <li class="nav-item w-100">
-            	<a class="nav-link" href="./MailList.empm">
+            	<a class="nav-link" href="./MailList.emp">
                 	<i class="fe fe-mail fe-16"></i>
                 	<span class="ml-3 item-text">메일</span>
               	</a>
@@ -102,7 +102,7 @@
             <!-- 내부 게시판 목록, 추가 및 수정, 삭제 -->
             <!-- 공지사항, 이벤트 게시판 끝나면 수정하고 복사 -->
             <li class="nav-item w-100">
-            	<a class="nav-link" href="./InnerBoard.empm">
+            	<a class="nav-link" href="./InnerBoard.emp">
                 	<i class="fe fe-edit fe-16"></i>
                 	<span class="ml-3 item-text">내부 게시판</span>
               	</a>
@@ -116,7 +116,7 @@
           
           <!-- 유저 목록 : 유저 관리 및 수정, 삭제 -->
           	<li class="nav-item w-100">
-            	<a class="nav-link" href="./UserList.empu">
+            	<a class="nav-link" href="./UserList.emp">
                 	<i class="fe fe-users fe-16"></i>
                 	<span class="ml-3 item-text">유저 목록</span>
               	</a>
@@ -124,7 +124,7 @@
             
             <!-- 문의 리스트, 문의 상세, 처리 -->
             <li class="nav-item w-100">
-            	<a class="nav-link" href="./InquiryList.empu">
+            	<a class="nav-link" href="./InquiryList.emp">
                 	<i class="fe fe-help-circle fe-16"></i>
                 	<span class="ml-3 item-text">1:1 문의</span>
               	</a>
@@ -132,7 +132,7 @@
             
             <!-- 신고 리스트, 신고 상세, 처리 -->
             <li class="nav-item w-100">
-            	<a class="nav-link" href="./ComplainList.empu">
+            	<a class="nav-link" href="./ComplainList.emp">
                 	<i class="fe fe-thumbs-down fe-16"></i>
                 	<span class="ml-3 item-text">신고 현황</span>
               	</a>
@@ -140,7 +140,7 @@
             
             <!-- 거래 리스트, 거래 상세, 처리, 현황 조회 -->
             <li class="nav-item w-100">
-            	<a class="nav-link" href="./TradeList.empu">
+            	<a class="nav-link" href="./TradeList.emp">
                 	<i class="fe fe-refresh-ccw fe-16"></i>
                 	<span class="ml-3 item-text">거래 현황</span>
               	</a>
@@ -148,7 +148,7 @@
             
             <!-- 공지사항, 이벤트 리스트, 추가, 수정 및 삭제, 조회 수 표시 -->
             <li class="nav-item w-100">
-            	<a class="nav-link" href="./BoardList.empm">
+            	<a class="nav-link" href="./BoardList.emp">
                 	<i class="fe fe-align-left fe-16"></i>
                 	<span class="ml-3 item-text">게시판</span>
               	</a>
@@ -169,14 +169,14 @@
               
                 <!-- EmployeeList.emp에서도 진행되는 페이지, 추가 -->
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./EmployeeRegisterForm.empm">
+                  <a class="nav-link pl-3" href="./EmployeeRegisterForm.emp">
                     <span class="ml-1 item-text">직원 추가</span>
                   </a>
                 </li>
                 
                 <!-- EmployeeList.emp에서도 진행되는 페이지, 삭제 -->
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./EmployeeDeleteForm.empm">
+                  <a class="nav-link pl-3" href="./EmployeeDeleteForm.emp">
                     <span class="ml-1 item-text">직원 삭제</span>
                   </a>
                 </li>
@@ -203,10 +203,10 @@
                 </div>
                 <div class="col-auto">
                 <c:if test="${sessionScope.emp_id == requestScope.emp_id}">                	
-                  <button type="button" class="btn btn-secondary" onclick="./ProfileChangeForm.empm?emp_id=${requestScope.emp_id}">수정</button>
+                  <button type="button" class="btn btn-secondary" onclick="./ProfileChangeForm.emp?emp_id=${requestScope.emp_id}">수정</button>
                 </c:if>
                 <c:if test="${sessionScope.emp_id == 'admin'}">
-                  <button type="button" class="btn btn-primary" onclick="./EmployeeDeleteForm.empm?emp_id=${requestScope.emp_id}">삭제</button>
+                  <button type="button" class="btn btn-primary" onclick="./EmployeeDeleteForm.emp?emp_id=${requestScope.emp_id}">삭제</button>
                 </c:if>
                 </div>
               </div>

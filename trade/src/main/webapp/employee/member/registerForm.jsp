@@ -16,7 +16,7 @@
                       <strong class="card-title">직원 추가</strong>
                     </div>
                     <div class="card-body">
-                      <form action="./EmployeeRegisterAction.empm" method="post">
+                      <form action="./EmployeeRegisterAction.emp" method="post">
                       <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="inputId">사번</label>
