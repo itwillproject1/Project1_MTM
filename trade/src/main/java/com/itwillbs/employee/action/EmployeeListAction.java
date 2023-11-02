@@ -1,4 +1,4 @@
-package com.itwillbs.employee.controller;
+package com.itwillbs.employee.action;
 
 import java.util.ArrayList;
 

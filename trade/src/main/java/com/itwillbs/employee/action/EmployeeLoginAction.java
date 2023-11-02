@@ -1,4 +1,4 @@
-package com.itwillbs.employee.controller;
+package com.itwillbs.employee.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
