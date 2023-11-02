@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-//@WebServlet("*.com")
+@WebServlet("*.com")
+@MultipartConfig(
+		fileSizeThreshold=0)
 public class ProductFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,12 +40,13 @@ public class ProductFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/Main.com")) {
+		if(command.equals("/main/Main.com")) {
 			System.out.println("\tC: /Main.com 호출");
 			System.out.println("\tC: 패턴1 - DB 사용 X, 뷰페이지 출력");
 			
 			forward = new ActionForward();
-			forward.setPath("./main/main.jsp");
+
+			forward.setPath("./realmain.jsp");
 			forward.setRedirect(false);
 		}
 		else if(command.equals("/product/ProductUpload.com")) {
@@ -60,7 +64,7 @@ public class ProductFrontController extends HttpServlet{
 			action = new ProductUploadAction();
 			
 			try {
-				action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -78,6 +82,22 @@ public class ProductFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/product/ProductList.com")) {
+			System.out.println(" C : /product/ProductList.com 호출 ");
+			System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
+			
+			//  ProductListAction() 객체 생성
+			action = new ProductListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 		System.out.println("---------------2. 가상주소 매핑 종료---------------");
 		/************************2. 가상주소 매핑 종료************************/
 		

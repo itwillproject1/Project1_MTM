@@ -30,7 +30,7 @@ public class JSMoveFunction {
 	}
 	
 	// alert + history.back() 기능
-	public static void alertBack(HttpServletResponse response,
+	public static void alertHistory(HttpServletResponse response,
 			                     String msg) {
 		System.out.println(" JSMoveFunction_alertBack()호출 ");
 		try {
