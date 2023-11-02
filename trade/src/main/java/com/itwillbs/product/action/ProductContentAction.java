@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.product.db.LikeDAO;
 import com.itwillbs.product.db.ProductDAO;
 import com.itwillbs.product.db.ProductDTO;
 import com.itwillbs.util.Action;
@@ -28,6 +29,10 @@ public class ProductContentAction implements Action {
 		// BoardDAO 객체 - 특정 글의 정보를 가져옴()
 		ProductDTO dto = dao.getProduct(bno);
 		request.setAttribute("dto", dto);
+		 
+		// LikeDAO 객체 - 특정 글의 좋아요 정보를 가져옴
+		LikeDAO ldao = new LikeDAO();
+		ldao.getLike(bno);
 
 		// 페이지 이동 준비(./productContent.jsp)
 		ActionForward forward = new ActionForward();

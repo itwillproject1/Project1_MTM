@@ -21,7 +21,7 @@
 		</span>
 		
         <span class="category-b">
-            <a href="../product/ProductList.com?category=휴대폰&태블릿">휴대폰&태블릿</a>
+            <a href="../product/ProductList.com?category=휴대폰%26태블릿">휴대폰&태블릿</a>
             <a href="../product/ProductList.com?category=데스크탑">데스크탑</a>
             <a href="../product/ProductList.com?category=노트북">노트북</a>
             <a href="../product/ProductList.com?category=게임기기">게임기기</a>
