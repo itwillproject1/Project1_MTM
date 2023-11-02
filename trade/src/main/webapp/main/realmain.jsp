@@ -11,8 +11,9 @@
 <link href="../css/main_styles.css" rel="stylesheet" />
     <title>쇼핑몰 메인 페이지</title>
 </head>
-<body>
 <%@ include file="../main/header.jsp"%>
+<body>
+
 
 	<!-- 이벤트 슬라이더 -->
 
@@ -74,6 +75,8 @@
   
   <script src="mainproductScript.js"></script> <!-- 몰라이거아직구현안함ㅋㅋㅋ -->
 </div>
+
+
     <footer>
         <p>&copy; 1조 전자기기 중고거래</p>
     </footer>

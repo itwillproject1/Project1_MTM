@@ -12,6 +12,13 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
+	
+
+	
+	
+	
+	
+	
 	<!-- 한글 인코딩 처리 설정 -->
 	<filter>
 		<filter-name>SetUTF8</filter-name>

@@ -6,15 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../header.css">
-
-
-<title>쇼핑몰</title>
 </head>
 <body>
 
 	<header>
-		<span class="logo"> <img src="chun.png" alt="로고">
+		<span class="logo" >
+		<a href="./realmain.member">
+		<img src="/member_mainpage_merge/page/chun.png" alt="로고" >
+		</a>
 		</span>
 		
 		<span class="category-a"> <a href="#">삽니다</a> <a href="#">팝니다</a>
@@ -31,15 +30,15 @@
             <a href="#">기타</a>
         </span>
 
-		<form action="./ProductList.com" method="get" class="search">
+		<form action="./productList.product" method="get" class="search">
 			<input type="text" name="search" placeholder="검색어 입력">
 			<button type="submit" value="search">검색</button>
 		</form>
 
 
 		<span class="user-menu">
-            <a href="../member/login.com">로그인</a>
-            <a href="../product/ProductUpload.com">글등록</a>
+            <a href="./login.member">로그인</a>
+            <a href="./productUpload.product">글등록</a>
             <a href="#">찜</a>
             <a href="#">마이페이지</a>
         </span>

@@ -14,7 +14,7 @@
 	
 <%
 
-		response.sendRedirect("./Main.com");
+		response.sendRedirect("./realmain.member");
 
 
 %>

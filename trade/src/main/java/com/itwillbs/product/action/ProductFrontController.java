@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-@WebServlet("*.com")
+//@WebServlet("*.com")
 @MultipartConfig(
 		fileSizeThreshold=0)
 public class ProductFrontController extends HttpServlet{

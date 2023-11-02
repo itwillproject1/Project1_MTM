@@ -13,7 +13,11 @@
 
 </head>
 <body>
+
+
 <%@ include file="../main/header.jsp"%>
+
+
     <div class="login-container">
         <form id="login-form">
             <label for="username">아이디</label>
