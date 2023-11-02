@@ -15,7 +15,47 @@
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productContent.css" rel="stylesheet" />
 <link href="../css/productPopup.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>상세페이지</title>
+<script>
+	// 로그인 유저의 좋아요 유무 체크
+	 $(document).ready(function() {
+            $.ajax({
+                url: './product/ProductContent.com',
+                type: 'POST',
+                data: { bno: ${bno}, user_id: ${user_id} },
+                success: function(result) {
+                    if (result === 1) {
+                        $("#like").text("♥");
+                    } else if (result === 0) {
+                        $("#like").text("♡");
+                    } else {
+                        $("#like").text("오류! 리턴값 -1");
+                    }
+                }
+            });
+        });
+			
+	// 좋아요 버튼 클릭 시 실행되는 ajax
+	$("#like").on("click", function(){
+		console.log("click");
+        $.ajax({
+            url: '${pageContext.request.contextPath}/LikeAction.com',
+            type: 'POST',
+            data: { bno: ${bno}, user_id: ${user_id} },
+            success: function(result) {
+                console.log("데이터 변환됨: " + result);
+                if (result === 1) {
+                    $("#like").text("♥");
+                } else if (result === 0) {
+                    $("#like").text("♡");
+                } else {
+                    $("#like").text("오류! 리턴값 -1");
+				}
+			}
+		})
+	})
+</script>
 </head>
 <body>
 
@@ -102,22 +142,21 @@
 					<div class="button-container">
 						<input class="submit-button" type="button" value="구매하기"
 							onclick="location.href='결제페이지';">
-						<c:choose>
-						<c:when test="like테이블에 회원 아이디가 없거나 찜 여부가 0일 때">
-						<%-- <input class="submit-button" type="button" value="♡${dto.like_count }"
+							
+						<!-- 찜 기능 시작 -->
+						
+						
+								<span id="like">좋아요</span>
+								<%-- <input class="submit-button" type="button" value="♡${dto.like_count }"
 							onclick="location.href='./ProductLike.com'"> --%>
-							
-						</c:when>
-						<c:otherwise>
-							
-						</c:otherwise>
-						</c:choose>
+							<!--  찜 기능 끝 -->
+
 					</div>
 				</c:if>
 				<c:if test="${dto.deal_way.equals('삽니다') }">
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
 				</c:if>
-				
+
 				<%
 String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
 ProductDAO dao = new ProductDAO();

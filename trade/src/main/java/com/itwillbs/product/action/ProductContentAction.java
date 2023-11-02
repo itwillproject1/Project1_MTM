@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.product.db.LikeDAO;
+import com.itwillbs.product.db.LikeDTO;
 import com.itwillbs.product.db.ProductDAO;
 import com.itwillbs.product.db.ProductDTO;
 import com.itwillbs.util.Action;
@@ -29,10 +30,16 @@ public class ProductContentAction implements Action {
 		// BoardDAO 객체 - 특정 글의 정보를 가져옴()
 		ProductDTO dto = dao.getProduct(bno);
 		request.setAttribute("dto", dto);
-		 
-		// LikeDAO 객체 - 특정 글의 좋아요 정보를 가져옴
+		
+		// 찜
+		LikeDTO ldto = new LikeDTO();
 		LikeDAO ldao = new LikeDAO();
-		ldao.getLike(bno);
+		int result = ldao.likeCheck(ldto); // 찜 여부(0 또는 1)
+		System.out.println("찜 체크 결과: " + result);
+		
+		// ajax에 값 반환
+		response.setContentType("application/x-json; charset=UTF-8");
+		response.getWriter().write(result+""); // String으로 형 변환해서 전달
 
 		// 페이지 이동 준비(./productContent.jsp)
 		ActionForward forward = new ActionForward();

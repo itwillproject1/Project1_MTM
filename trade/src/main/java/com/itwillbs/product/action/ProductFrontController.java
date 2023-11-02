@@ -95,9 +95,6 @@ public class ProductFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/product/ProductLike.com")) {
-			
-		}
 		
 		
 		
