@@ -75,7 +75,7 @@
 		<div class="form-container">
 			<h2>상세 페이지</h2>
 			<div class="form-group">
-				<label for="user"><a href="작성자프로필">작성자: ${dto.user_id }</a></label>
+				<label for="user">작성자: <a href="작성자프로필">${dto.user_id }</a></label>
 			</div>
 
 			<div class="form-group">
@@ -83,7 +83,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="productCategory">카테고리: <a href="카테고리 검색결과">${dto.category }</a></label>
+				<label for="productCategory">카테고리: <a href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
 			</div>
 
 			<div class="form-group">

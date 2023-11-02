@@ -14,21 +14,21 @@
 <body>
 
 	<header>
-		<span class="logo"> <img src="logo.png" alt="로고">
+		<span class="logo"> <a href="../main/Main.com"><img src="chun.png" alt="로고"></a>
 		</span>
 		
 		<span class="category-a"> <a href="#">삽니다</a> <a href="#">팝니다</a>
 		</span>
 		
         <span class="category-b">
-            <a href="#">휴대폰&태블릿</a>
-            <a href="#">데스크탑</a>
-            <a href="#">노트북</a>
-            <a href="#">게임기기</a>
-            <a href="#">가전제품</a>
-            <a href="#">카메라</a>
-            <a href="#">음향기기</a>
-            <a href="#">기타</a>
+            <a href="../product/ProductList.com?category=휴대폰&태블릿">휴대폰&태블릿</a>
+            <a href="../product/ProductList.com?category=데스크탑">데스크탑</a>
+            <a href="../product/ProductList.com?category=노트북">노트북</a>
+            <a href="../product/ProductList.com?category=게임기기">게임기기</a>
+            <a href="../product/ProductList.com?category=가전제품">가전제품</a>
+            <a href="../product/ProductList.com?category=카메라">카메라</a>
+            <a href="../product/ProductList.com?category=음향기기">음향기기</a>
+            <a href="../product/ProductList.com?category=기타">기타</a>
         </span>
 
 		<form action="./ProductList.com" method="get" class="search">
