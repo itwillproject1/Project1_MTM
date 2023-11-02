@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-@WebServlet("*.com")
-
+//@WebServlet("*.com")
 public class MemberFrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request,

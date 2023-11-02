@@ -45,10 +45,10 @@
 						<option value="휴대폰&태블릿">휴대폰&태블릿</option>
 						<option value="데스크탑">데스크탑</option>
 						<option value="노트북">노트북</option>
-						<option value="게임 기기">게임 기기</option>
+						<option value="게임기기">게임기기</option>
 						<option value="가전제품">가전제품</option>
 						<option value="카메라">카메라</option>
-						<option value="음향 기기">음향 기기</option>
+						<option value="음향기기">음향기기</option>
 						<option value="기타">기타</option>
 					</select>
 				</div>

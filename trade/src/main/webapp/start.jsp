@@ -14,9 +14,9 @@
 	
 <%
 
-// 		response.sendRedirect("./Main.com");
+		response.sendRedirect("./main/Main.com");
 //		response.sendRedirect("./product/ProductContent.com");
-		response.sendRedirect("./MemberJoin.com");
+// 		response.sendRedirect("./MemberJoin.com");
 %>
 </body>
 </html>
