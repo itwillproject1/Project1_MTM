@@ -35,10 +35,12 @@ public class EmployeeUserFrontController extends HttpServlet{
 		Action action = null;
 		
 		if(command.equals("/UserList.empu")) {
-			forward = new ActionForward();
-			forward.setPath("./employee/user/userList.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new EmployeeUserListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/UserInfo.empu")) {

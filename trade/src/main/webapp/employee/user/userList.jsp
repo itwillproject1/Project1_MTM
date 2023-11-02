@@ -12,16 +12,16 @@
                 <!-- Striped rows -->
                 <div class="col-md-12 my-4">
                   <h2 class="h4 mb-1">유저 목록</h2>
-                  <p class="mb-4"></p>
+                  <p class="mb-4"> 검색 결과 : ${dto.size()}명 </p>
                   <div class="card shadow">
                     <div class="card-body">
                       <div class="toolbar row mb-3">
                         <div class="col">
-                          <form class="form-inline">
+                          <form action="./UserList.empu" method="get" class="form-inline">
                             <div class="form-row">
                               <div class="form-group col-auto">
                                 <label for="search" class="sr-only">Search</label>
-                                <input type="text" class="form-control" id="search" value="" placeholder="Search">
+                                <input type="text" name="search" class="form-control" id="search" value="" placeholder="Search">
                               </div>
                             </div>
                           </form>
@@ -48,16 +48,18 @@
                                 <label class="custom-control-label" for="all2"></label>
                               </div>
                             </td>
-                            <th>ID</th>
-                            <th>User</th>
-                            <th>Company</th>
-                            <th>Contact</th>
-                            <th class="w-25">Bio</th>
-                            <th>Date</th>
-                            <th>Action</th>
+                            <th>프로필 이미지</th>
+                            <th>유저명</th>
+                            <th>연락처</th>
+                            <th>주소</th>
+                            <th>포인트</th>
+                            <th>수신동의</th>
+                            <th>가입일</th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
+                        <c:forEach items="${dto}" var="i">
                           <tr>
                             <td>
                               <div class="custom-control custom-checkbox">
@@ -67,42 +69,41 @@
                             </td>
                             <td>
                               <div class="avatar avatar-md">
-                                <img src="./assets/avatars/face-3.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
                               </div>
                             </td>
                             <td>
-                              <p class="mb-0 text-muted"><strong>Brown, Asher D.</strong></p>
-                              <small class="mb-0 text-muted">2474</small>
+                              <p class="mb-0 text-muted"><strong><c:out value="${i.user_id}" /></strong></p>
+                              <small class="mb-0 text-muted">${i.name}</small>
                             </td>
                             <td>
-                              <p class="mb-0 text-muted">Accumsan Consulting</p>
-                              <small class="mb-0 text-muted">Ap #331-7123 Lobortis Avenue</small>
+                              <p class="mb-0 text-muted">${i.email}</p>
+                              <small class="mb-0 text-muted">${i.phone}</small>
                             </td>
-                            <td>
-                              <p class="mb-0 text-muted"><a href="#" class="text-muted">(958) 421-0798</a></p>
-                              <small class="mb-0 text-muted">Nigeria</small>
-                            </td>
-                            <td class="w-25"><small class="text-muted"> Egestas integer eget aliquet nibh praesent. In hac habitasse platea dictumst quisque sagittis purus.</small></td>
-                            <td class="text-muted">13/09/2020</td>
+                            <td class="text-muted">${i.address}</td>
+                            <td class="text-muted">0</td>
+                            <td class="text-muted"><span class="badge badge-success">승인</span></td>
+                            <td class="text-muted">2023/10/28</td>
                             <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="text-muted sr-only">Action</span>
                               </button>
                               <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
+                                <a class="dropdown-item" href="#">수정</a>
+                                <a class="dropdown-item" href="#">삭제</a>
+                                <a class="dropdown-item" href="#">상세 정보</a>
                               </div>
                             </td>
                           </tr>
+                        </c:forEach>
                         </tbody>
                       </table>
                       <nav aria-label="Table Paging" class="mb-0 text-muted">
                         <ul class="pagination justify-content-center mb-0">
-                          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                          <li class="page-item"><a class="page-link" href="#">이전</a></li>
                           <li class="page-item"><a class="page-link" href="#">1</a></li>
                           <li class="page-item active"><a class="page-link" href="#">2</a></li>
                           <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                          <li class="page-item"><a class="page-link" href="#">다음</a></li>
                         </ul>
                       </nav>
                     </div>

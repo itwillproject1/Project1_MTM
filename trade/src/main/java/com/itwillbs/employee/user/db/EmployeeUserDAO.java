@@ -51,9 +51,10 @@ public class EmployeeUserDAO {
 				list = new ArrayList();
 				while(rs.next()) {
 					dto = new EmployeeUserDTO();
-					dto.setUser_id(rs.getString("use_id"));
+					dto.setUser_id(rs.getString("user_id"));
 					dto.setName(rs.getString("name"));
 					dto.setNickname(rs.getString("nickname"));
+					dto.setPhone(rs.getString("phone"));
 					dto.setRegdate(rs.getTimestamp("regdate"));
 					dto.setPoint(rs.getInt("point"));
 					dto.setAgree(rs.getBoolean("agree"));
@@ -62,6 +63,38 @@ public class EmployeeUserDAO {
 					list.add(dto);
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return list;
+	}
+	
+	public ArrayList userSearch(String search) {
+		ArrayList list = null;
+		EmployeeUserDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from USER_BO where user_id like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%");
+			rs = pstmt.executeQuery();
+			list = new ArrayList();
+			while(rs.next()) {
+				dto = new EmployeeUserDTO();
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setName(rs.getString("name"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setRegdate(rs.getTimestamp("regdate"));
+				dto.setPoint(rs.getInt("point"));
+				dto.setAgree(rs.getBoolean("agree"));
+				dto.setEmail(rs.getString("email"));
+				dto.setAddress(rs.getString("address"));
+				list.add(dto);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

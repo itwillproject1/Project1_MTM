@@ -94,69 +94,6 @@
                   </div>
                 </div>
               </div> <!-- end section -->
-				              <div class="row">
-                <!-- Recent Activity -->
-                <div class="col-md-6 mb-4">
-                  <div class="card shadow">
-                    <div class="card-header">
-                      <strong class="card-title float-left">메일</strong>
-                      <a class="float-right small text-muted" href="./MailList.empm">View all</a>
-                    </div>
-                    <div class="card-body">
-                      <div class="list-group list-group-flush my-n3">
-                      <!-- foreach(3), 최근 메일부터 -->
-                      
-                        <div class="list-group-item">
-                          <div class="row">
-                            <div class="col-auto">
-                              <div class="avatar avatar-sm mt-2">
-                                <img src="${'프로필 이미지'}" alt="..." class="avatar-img rounded-circle">
-                              </div>
-                            </div>
-                            <div class="col">
-                              <small><strong>이름</strong></small>
-                              <div class="my-0 text-muted small">내용</div>
-                              <small class="badge badge-light text-muted">작성일자(시간포함)</small>
-                            </div>
-                          </div>
-                          
-                        </div> <!-- / .row -->
-                      </div> <!-- / .list-group -->
-                    </div> <!-- / .card-body -->
-                  </div> <!-- / .card -->
-                </div> <!-- / .col-md-3 -->
-                <!-- Product List -->
-                <div class="col-md-6 mb-4">
-                  <div class="card shadow">
-                    <div class="card-header">
-                      <strong class="card-title">인기 거래 품목</strong>
-                      <a class="float-right small text-muted" href="#!">View all</a>
-                    </div>
-                    <div class="card-body">
-                      <div class="list-group list-group-flush my-n3">
-                      <!-- 거래 테이블 참조, 이미지 불러오기, 4개 -->
-                        <div class="list-group-item">
-                          <div class="row align-items-center">
-                            <div class="col-3 col-md-2">
-                              <img src="${'물품 이미지'}" alt="..." class="thumbnail-sm">
-                            </div>
-                            <div class="col">
-                              <strong>물품명</strong>
-                              <div class="my-0 text-muted small">카테고리</div>
-                            </div>
-                            <div class="col-auto">
-                              <strong>거래량(%)</strong>
-                              <div class="progress mt-2" style="height: 4px;">
-                                <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div> <!-- / .list-group -->
-                    </div> <!-- / .card-body -->
-                  </div> <!-- / .card -->
-                </div> <!-- / .col-md-3 -->
-            </div>
               <div class="row">
                 <!-- Recent orders -->
                 <div class="col-md-12">
@@ -166,13 +103,13 @@
                     <thead>
                       <tr role="row">
                         <th>아이디</th>
-                        <th>거래일</th>
+                        <th>등록일</th>
                         <th>이름</th>
-                        <th>전화번호</th>
                         <th>주소</th>
-                        <th>Total</th>
-                        <th>Payment</th>
+                        <th>카테고리</th>
+                        <th>제목</th>
                         <th>상태</th>
+                        <th>거래자</th>
                         <th>Action</th>
                       </tr>
                     </thead>
