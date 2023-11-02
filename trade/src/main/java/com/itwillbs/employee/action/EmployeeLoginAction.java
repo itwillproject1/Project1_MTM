@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.itwillbs.employee.db.EmployeeMemberDAO;
-import com.itwillbs.employee.db.EmployeeMemberDTO;
+import com.itwillbs.employee.db.dao.EmployeeMemberDAO;
+import com.itwillbs.employee.db.dto.EmployeeMemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 import com.itwillbs.util.JSMoveFunction;

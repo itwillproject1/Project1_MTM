@@ -45,6 +45,7 @@ public class EmployeeFrontController  extends HttpServlet{
 			forward.setRedirect(false);
 			System.out.println("C : " + forward);
 		}
+		
 		else if(command.equals("")) {
 			forward = new ActionForward();
 			forward.setPath("./employee/main.jsp");
