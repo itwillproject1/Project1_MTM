@@ -28,8 +28,8 @@
                               </select>
                             </div>
                             <div class="form-group col-auto">
-                              <label for="search" class="sr-only">Search</label>
-                              <input type="text" class="form-control" id="search1" value="" placeholder="Search">
+                              <label for="search" class="sr-only">검색</label>
+                              <input type="text" class="form-control" id="search1" value="" placeholder="검색">
                             </div>
                           </div>
                         </form>
@@ -44,13 +44,11 @@
                                 <label class="custom-control-label" for="all2"></label>
                               </div>
                             </td>
-                            <th><!-- 유저 프로필 이미지 --></th>
-                            <th>이름(별명)</th>
                             <th>신고자</th>
+                            <th>피신고자</th>
                             <th>신고 사유</th>
                             <th class="w-25">신고 내용</th>
                             <th>일자</th>
-                            <th>기타</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -63,33 +61,19 @@
                               </div>
                             </td>
                             <td>
-                              <div class="avatar avatar-md">
-                                <img src="./assets/avatars/face-3.jpg" alt="..." class="avatar-img rounded-circle">
-                              </div>
+                              <p class="mb-0 text-muted"><strong>아이디</strong></p>
+                              <small class="mb-0 text-muted">이름</small>
                             </td>
                             <td>
                               <p class="mb-0 text-muted"><strong>아이디</strong></p>
                               <small class="mb-0 text-muted">이름</small>
                             </td>
                             <td>
-                              <p class="mb-0 text-muted">아이디</p>
-                              <small class="mb-0 text-muted">이름</small>
+                              <p class="mb-0 text-muted"><a href="#" class="text-muted"><strong>제목</strong></a></p>
+                              <small class="mb-0 text-muted"><span class="badge badge-success">거래 완료</span></small>
                             </td>
-                            <td>
-                              <p class="mb-0 text-muted"><a href="#" class="text-muted">(958) 421-0798</a></p>
-                              <small class="mb-0 text-muted">Nigeria</small>
-                            </td>
-                            <td class="w-25"><small class="text-muted"> 문의 내용(몇 자 잘라서 내기) </small></td>
+                            <td class="w-25"><small class="text-muted"> 사유 </small></td>
                             <td class="text-muted">2023/11/01</td>
-                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="text-muted sr-only">Action</span>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
-                              </div>
-                            </td>
                           </tr>
 
                         </tbody>

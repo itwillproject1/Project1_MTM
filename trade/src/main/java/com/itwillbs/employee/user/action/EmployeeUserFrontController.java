@@ -88,6 +88,22 @@ public class EmployeeUserFrontController extends HttpServlet{
 			
 		}
 		
+		else if(command.equals("/TradeList.empu")) {
+			// 거래 현황 표시
+			// 클릭 시 상세 페이지 이동
+			forward = new ActionForward();
+			forward.setPath("./employee/user/tradeList.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
+		}
+		
+		else if(command.equals("/TradeContent.empu")) {
+			forward = new ActionForward();
+			forward.setPath("./employee/user/tradeContent.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
+		}
+		
 		else if(command.equals("/BoardList.empu")) {
 			forward = new ActionForward();
 			forward.setPath("./employee/user/boardList.jsp");

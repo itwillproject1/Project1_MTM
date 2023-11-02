@@ -36,13 +36,8 @@
                         </div>
                         <div class="col ml-auto">
                           <div class="dropdown float-right">
-                            <button class="btn btn-primary float-right ml-3" type="button">Add more +</button>
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="actionMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action </button>
-                            <div class="dropdown-menu" aria-labelledby="actionMenuButton">
-                              <a class="dropdown-item" href="#">Export</a>
-                              <a class="dropdown-item" href="#">Delete</a>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
+                            <button class="btn btn-danger float-right ml-3" type="button">글 삭제</button>
+                            <button class="btn btn-primary float-right ml-3" type="button">글 생성</button>
                           </div>
                         </div>
                       </div>
@@ -50,81 +45,25 @@
                       <table class="table table-bordered">
                         <thead>
                           <tr role="row">
-                            <th colspan="3">Orders</th>
-                            <th colspan="4">Billing</th>
-                            <th colspan="3">State</th>
-                          </tr>
-                          <tr role="row">
                             <th>
                               <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="all">
                                 <label class="custom-control-label" for="all"></label>
                               </div>
                             </th>
-                            <th>ID</th>
-                            <th>Purchase Date</th>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Total</th>
-                            <th>Status</th>
-                            <th>Tracking #</th>
-                            <th>Action</th>
+                            <th>아이디</th>
+                            <th>작성일</th>
+                            <th>이름</th>
+                            <th>제목</th>
+                            <th>기간</th>
+                            <th>카테고리</th>
+                            <th>조회수</th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="4574">
-                                <label class="custom-control-label" for="4574"></label>
-                              </div>
-                            </td>
-                            <td>4574</td>
-                            <td>2019-09-11 10:22:04</td>
-                            <td>Kitra Knapp</td>
-                            <td>(132) 339-7423</td>
-                            <td>P.O. Box 944, 4739 Suspendisse Road</td>
-                            <td>$68.79</td>
-                            <td><span class="badge badge-warning">Pending</span></td>
-                            <td></td>
-                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="text-muted sr-only">Action</span>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="2132">
-                                <label class="custom-control-label" for="2132"></label>
-                              </div>
-                            </td>
-                            <td>2132</td>
-                            <td>2019-08-23 12:28:40</td>
-                            <td>Blake Orr</td>
-                            <td>(257) 565-4706</td>
-                            <td>P.O. Box 939, 9156 Sollicitudin St.</td>
-                            <td>$84.24</td>
-                            <td><span class="badge badge-warning">Pending</span></td>
-                            <td></td>
-                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="text-muted sr-only">Action</span>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
-                              </div>
-                            </td>
-                          </tr>
                           <tr role="group" class="bg-light">
-                            <td colspan="10"><strong>Shipped</strong></td>
+                            <td colspan="10"><strong>공지사항</strong></td>
                           </tr>
                           <tr>
                             <td>
@@ -133,124 +72,48 @@
                                 <label class="custom-control-label" for="2576"></label>
                               </div>
                             </td>
-                            <td>2576</td>
-                            <td>2020-07-14 17:18:27</td>
-                            <td>Amber Rice</td>
-                            <td>(791) 898-8806</td>
-                            <td>P.O. Box 724, 3385 Vel Ave</td>
-                            <td>$37.00</td>
-                            <td><span class="badge badge-success">Success</span></td>
-                            <td>487385-5144</td>
+                            <td>admin</td>
+                            <td>제목제목제목제목제목제목</td>
+                            <td>관리자</td>
+                            <td>업로드 일자</td>
+                            <td>기간(이벤트일시)</td>
+                            <td><span class="badge badge-warning">공지사항</span></td>
+                            <td>1</td>
                             <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="text-muted sr-only">Action</span>
                               </button>
                               <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
+                                <a class="dropdown-item" href="#">수정</a>
+                                <a class="dropdown-item" href="#">삭제</a>
+                                <a class="dropdown-item" href="#">사용자 메뉴로 조회</a>
                               </div>
                             </td>
                           </tr>
-                          <tr>
-                            <td>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="2397">
-                                <label class="custom-control-label" for="2397"></label>
-                              </div>
-                            </td>
-                            <td>2397</td>
-                            <td>2020-12-25 13:35:39</td>
-                            <td>Fletcher Petty</td>
-                            <td>(115) 625-5813</td>
-                            <td>8907 Orci St.</td>
-                            <td>$75.69</td>
-                            <td><span class="badge badge-success">Success</span></td>
-                            <td>039606-5955</td>
-                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="text-muted sr-only">Action</span>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
-                              </div>
-                            </td>
-                          </tr>
+
                           <tr role="group" class="bg-light">
-                            <td colspan="10"><strong>Return</strong></td>
+                            <td colspan="10"><strong>이벤트</strong></td>
                           </tr>
                           <tr>
                             <td>
                               <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="4028">
-                                <label class="custom-control-label" for="4028"></label>
+                                <input type="checkbox" class="custom-control-input" id="2576">
+                                <label class="custom-control-label" for="2576"></label>
                               </div>
                             </td>
-                            <td>4028</td>
-                            <td>2021-04-11 22:33:47</td>
-                            <td>Kasimir Carr</td>
-                            <td>(266) 991-0479</td>
-                            <td>489-624 Quis St.</td>
-                            <td>$86.89</td>
-                            <td><span class="badge badge-danger">Hold</span></td>
-                            <td></td>
+                            <td>admin</td>
+                            <td>제목제목제목제목제목제목</td>
+                            <td>관리자</td>
+                            <td>업로드 일자</td>
+                            <td>기간(이벤트일시)</td>
+                            <td><span class="badge badge-primary">이벤트</span></td>
+                            <td>2</td>
                             <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="text-muted sr-only">Action</span>
                               </button>
                               <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="3782">
-                                <label class="custom-control-label" for="3782"></label>
-                              </div>
-                            </td>
-                            <td>3782</td>
-                            <td>2020-03-01 10:44:03</td>
-                            <td>Daria Frank</td>
-                            <td>(599) 361-7999</td>
-                            <td>Ap #875-5778 Massa. Av.</td>
-                            <td>$38.04</td>
-                            <td><span class="badge badge-primary">Processing</span></td>
-                            <td>072140-0703</td>
-                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="text-muted sr-only">Action</span>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="3881">
-                                <label class="custom-control-label" for="3881"></label>
-                              </div>
-                            </td>
-                            <td>3881</td>
-                            <td>2019-12-17 00:40:24</td>
-                            <td>Herrod Byrd</td>
-                            <td>(878) 901-7269</td>
-                            <td>P.O. Box 107, 3720 Vitae, Ave</td>
-                            <td>$73.38</td>
-                            <td><span class="badge badge-primary">Processing</span></td>
-                            <td>047336-4370</td>
-                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="text-muted sr-only">Action</span>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
+                                <a class="dropdown-item" href="#">수정</a>
+                                <a class="dropdown-item" href="#">삭제</a>
+                                <a class="dropdown-item" href="#">사용자 메뉴로 조회</a>
                               </div>
                             </td>
                           </tr>
