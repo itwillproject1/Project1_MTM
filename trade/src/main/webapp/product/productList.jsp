@@ -63,7 +63,7 @@
   
 }
     
-   </style>
+    </style>
 <title>상품 목록</title>
 </head>
 <body>
@@ -81,8 +81,8 @@
 			<div class="product">
 
 				<div class="product.image">
-					<img src="<%=request.getContextPath() %>/upload/${product.file_name}"
-						alt="${product.title}">
+					<img src="<%=request.getContextPath() %>/upload/${dto.file_name}"
+						alt="${dto.title}">
 				</div>
 
 				<div class="product-info">

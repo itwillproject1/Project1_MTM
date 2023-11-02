@@ -38,7 +38,7 @@
 
 
 		<span class="user-menu">
-            <a href="../member/login.com">로그인</a>
+            <a href="../main/login.com">로그인</a>
             <a href="../product/ProductUpload.com">글등록</a>
             <a href="#">찜</a>
             <a href="#">마이페이지</a>
