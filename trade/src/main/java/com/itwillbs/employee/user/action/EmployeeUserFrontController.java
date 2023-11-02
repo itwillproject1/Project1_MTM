@@ -34,31 +34,79 @@ public class EmployeeUserFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		// -- 회원 정보 조회 및 관리
-		if(command.equals("/userDeleteList.empb")) {
-			// 삭제 신청한 회원 목록(기간으로 내림차순)
-			// 검색 기능 필요
-			
+		if(command.equals("/UserList.empu")) {
+			forward = new ActionForward();
+			forward.setPath("./employee/user/userList.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
 		}
-		else if(command.equals("/userDeleteAction.empb")) {
-			// 즉시 삭제(유저가 신청할 시)
+		
+		else if(command.equals("/UserInfo.empu")) {
+			forward = new ActionForward();
+			forward.setPath("./employee/user/userInfo.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
 		}
-				
-		else if(command.equals("/userInquiryList.empb")) {
+		
+		else if(command.equals("/InquiryList.empu")) {
 			// 문의 신청한 회원 목록(완료 및 미완료 표시)
 			// 검색 기능 필요
 			// 클릭 시 상세 페이지 이동
+			forward = new ActionForward();
+			forward.setPath("./employee/user/inquiryList.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
+		}
+		else if(command.equals("/InquiryContent.empu")) {
+			forward = new ActionForward();
+			forward.setPath("./employee/user/inquiryContent.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
+		}
+		
+		else if(command.equals("/InquiryAction.empu")) {
 			
 		}
-		else if(command.equals("/userInquiryContent.empb")) {
-			
-		}
-		else if(command.equals("/userComplainList.empb")) {
+		
+		else if(command.equals("/ComplainList.empu")) {
 			// 신고한 회원 목록(처리 완료 및 미완료 표시)
 			// 클릭 시 상세 페이지 이동
+			forward = new ActionForward();
+			forward.setPath("./employee/user/complainList.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
+		}
+		
+		else if(command.equals("/ComplainContent.empu")) {
+			forward = new ActionForward();
+			forward.setPath("./employee/user/complainContent.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
+		}
+		
+		else if(command.equals("/ComplainAction.empu")) {
 			
 		}
-		else if(command.equals("/userComplainContent.empb")) {
+		
+		else if(command.equals("/BoardList.empu")) {
+			forward = new ActionForward();
+			forward.setPath("./employee/user/boardList.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
+		}
+		else if(command.equals("/BoardContent.empu")) {
+			forward = new ActionForward();
+			forward.setPath("./employee/user/boardContent.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
+		}
+		else if(command.equals("/BoardWrite.empu")) {
+			forward = new ActionForward();
+			forward.setPath("./employee/user/boardWrite.jsp");
+			forward.setRedirect(false);
+			System.out.println("C : " + forward);
+		}
+		else if(command.equals("/BoardWriteAction.empu")) {
 			
 		}
 		// -- 회원 정보 조회 및 관리
