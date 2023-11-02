@@ -1,9 +1,0 @@
-diff a/trade/src/main/java/com/itwillbs/product/action/ProductFrontController.java b/trade/src/main/java/com/itwillbs/product/action/ProductFrontController.java	(rejected hunks)
-@@ -45,7 +45,6 @@
- 			System.out.println("\tC: 패턴1 - DB 사용 X, 뷰페이지 출력");
- 			
- 			forward = new ActionForward();
--			forward.setPath("./main/main.jsp");
- 			forward.setPath("./main.jsp");
- 			forward.setRedirect(false);
- 		}

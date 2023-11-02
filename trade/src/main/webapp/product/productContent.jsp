@@ -75,7 +75,7 @@
 		<div class="form-container">
 			<h2>상세 페이지</h2>
 			<div class="form-group">
-				<label for="user"><a href="작성자프로필">작성자: ${dto.user_id }</a></label>
+				<label for="user">작성자: <a href="작성자프로필">${dto.user_id }</a></label>
 			</div>
 
 			<div class="form-group">
@@ -83,7 +83,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="productCategory">카테고리: <a href="카테고리 검색결과">${dto.category }</a></label>
+				<label for="productCategory">카테고리: <a href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
 			</div>
 
 			<div class="form-group">
@@ -112,15 +112,15 @@
 			<c:if test="${dto.deal_way.equals('삽니다') }">
 				<button class="submit-button" onclick="openProductModal();">판매하기</button>
 			</c:if>
-			<%
-String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
-ProductDAO dao = new ProductDAO();
-ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 가져오는 메서드
+				<%
+				String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
+				ProductDAO dao = new ProductDAO();
+				ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 가져오는 메서드
 
-if (dto != null) {
-%>
+				if (dto != null) {
+				%>
 
-			<script>
+				<script>
     var modal;
 
     function openProductModal() {

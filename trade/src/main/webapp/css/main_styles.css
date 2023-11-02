@@ -38,7 +38,7 @@ body {
 
 .container {
 	max-width: 1200px;
-	margin: 80px auto;
+	margin: 150px auto;
 	padding: 0 20px;
 	display: flex;
 	flex-wrap: wrap;
@@ -59,7 +59,6 @@ body {
 .product:hover { /* 틀 그림자 무지개 호버 */
 	animation: colorfulShadow 2s infinite;
 }
-
 
 .product img {
 	width: 100%;
