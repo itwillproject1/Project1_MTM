@@ -64,7 +64,7 @@ public class ProductDAO {
 
 			// sql, pstmt
 			sql = "insert into Product (bno, user_id, deal_way, title, category, brand, "
-					+ "price, product_status, content, views, date_time, file_name) values (?,?,?,?,?,?,?,?,?,?,now(),?)";
+					+ "price, product_status, content, views, date_time, file_name, like_count) values (?,?,?,?,?,?,?,?,?,?,now(),?,?)";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, bno);
@@ -79,6 +79,7 @@ public class ProductDAO {
 			pstmt.setString(9, dto.getContent());
 			pstmt.setInt(10, 0); // 조회수 0
 			pstmt.setString(11, dto.getFile_name());
+			pstmt.setInt(12, 0); // 찜 0
 
 			// sql 실행
 			pstmt.executeUpdate();
@@ -149,6 +150,7 @@ public class ProductDAO {
 				dto.setViews(rs.getInt("views"));
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
+				dto.setLike_count(rs.getInt("like_count"));
 			}
 			System.out.println("DAO: 글 정보 조회 완료!");
 		} catch (Exception e) {
@@ -275,6 +277,7 @@ public class ProductDAO {
 				dto.setViews(rs.getInt("views"));
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
+				dto.setLike_count(rs.getInt("like_count"));
 
 				// 글 하나의 정보를 배열의 한칸에 저장
 				ProductList.add(dto);
@@ -331,6 +334,7 @@ public class ProductDAO {
 					dto.setViews(rs.getInt("views"));
 					dto.setDate_time(rs.getTimestamp("date_time"));
 					dto.setFile_name(rs.getString("file_name"));
+					dto.setLike_count(rs.getInt("like_count"));
 
 					// 글 하나의 정보를 배열의 한칸에 저장
 					ProductList.add(dto);

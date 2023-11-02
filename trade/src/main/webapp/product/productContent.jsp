@@ -105,7 +105,7 @@
 			<div class="button-container">
 				<input class="submit-button" type="button" value="구매하기"
 					onclick="location.href='결제페이지';">
-					<input class="submit-button" type="button" value="찜하기"
+					<input class="submit-button" type="button" value="♡${dto.like_count }"
 					onclick="찜하기">
 			</div>
 			</c:if>
