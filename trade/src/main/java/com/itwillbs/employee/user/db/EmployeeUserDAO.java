@@ -102,4 +102,20 @@ public class EmployeeUserDAO {
 		}
 		return list;
 	}
+	
+	public int userCount() {
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from USER_BO";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
 }
