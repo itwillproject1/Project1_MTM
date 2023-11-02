@@ -15,6 +15,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
+<<<<<<< HEAD
     <title>상품 목록</title>
     <style>
     .title {
@@ -64,37 +65,43 @@
 }
     
     </style>
+=======
+<title>상품 목록</title>
+>>>>>>> b79ae7f3085abe5e24893efb9c1d9be6e249e88d
 </head>
 <body>
 
-	<jsp:include page="../main/header.jsp"/>
-	
-	
-	<div class="title">상품 목록</div>
-	
-	 <!-- 여기에 상품 목록 들어갈 부분 -->
- <div class="container">
- <c:forEach var="dto" items="${ProductList }">
+	<jsp:include page="../main/header.jsp" />
 
-    <!-- 상품들 -->
-    <div class="product">
-    
-    <div class="product.image">
-        <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" 
-        alt="${dto.title}"> 
-	</div>	
-		
-      <div class="product-info">
-        <h3>[${dto.deal_way }]${dto.title }</h3>
-      </div>     
-            
-         <div class="product-price">
-            <p><fmt:formatNumber value="${dto.price }" />원</p>
-         </div>
-            
-     </div>
-        </c:forEach>
- </div>       
+
+	<div class="title">상품 목록</div>
+
+	<!-- 여기에 상품 목록 들어갈 부분 -->
+	<div class="container">
+		<c:forEach var="dto" items="${ProductList }">
+
+			<!-- 상품들 -->
+			<div class="product">
+
+				<div class="product.image">
+					<img src="<%=request.getContextPath() %>/upload/${dto.file_name}"
+						alt="${dto.title}">
+				</div>
+
+				<div class="product-info">
+					<h3>[${dto.deal_way }]${dto.title }</h3>
+				</div>
+
+				<div class="product-price">
+					<p>
+						<fmt:formatNumber value="${dto.price }" />
+						원
+					</p>
+				</div>
+
+			</div>
+		</c:forEach>
+	</div>
 
 	<div id="page_control">
 		<c:if test="${startPage > pageBlock }">
@@ -122,13 +129,13 @@
 
 
 
-    <!-- 추후 추가 가능 -->
+	<!-- 추후 추가 가능 -->
 
 
 
-    <footer>
-        <p>&copy; 1조 전자기기 중고거래</p>
-    </footer>
+	<footer>
+		<p>&copy; 1조 전자기기 중고거래</p>
+	</footer>
 
 </body>
 </html>

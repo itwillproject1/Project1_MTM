@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.annotation.MultipartConfig;
@@ -18,12 +19,10 @@ import com.itwillbs.util.ActionForward;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@MultipartConfig(
-		fileSizeThreshold=0
-		)
+@MultipartConfig(fileSizeThreshold = 0)
 public class ProductUploadAction implements Action {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: ProductUploadAction.execute() 호출");
@@ -32,10 +31,9 @@ public class ProductUploadAction implements Action {
 //		String realPath = request.getRealPath("upload"); // 실제로 파일이 저장되는 장소(가상주소)
 //		System.out.println(realPath);
 //		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
-//		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize,
-//							"UTF-8", new DefaultFileRenamePolicy());
-		
-		
+//		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
+//				new DefaultFileRenamePolicy());
+
 //        String uploadPath = request.getServletContext().getRealPath("upload");
 //
 //        Collection<Part> parts = request.getParts(); // 업로드된 파일과 폼 필드를 모두 가져와 parts에 저장
@@ -52,7 +50,7 @@ public class ProductUploadAction implements Action {
 //                 }
 //             }
 //        }
-		
+
 //		List<String> fileNames = new ArrayList<String>(); // 파일명을 저장할 리스트
 //
 //        Collection<Part> parts = request.getParts();
@@ -73,48 +71,149 @@ public class ProductUploadAction implements Action {
 //			part.write(uploadFileName);
 //			file_name += uploadFileName;
 //		}
-		
+
 //		Part part = request.getPart("files");
-		
-		String uploadPath = request.getRealPath("upload");
-		System.out.println(uploadPath);
-		
-		String fileName = "";
-		
-		List fileList = new ArrayList();
-		
-		for(Part part : request.getParts()) {
-			// 파일명 구하기
-			fileName = getFileName(part);
-			
-			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미
-			if(!("".equals(fileName))) {
-				fileList.add(fileName);
-				System.out.println("file_name: " + fileName);
-			}
+
+//		String fileName = "";
+//		List fileList = new ArrayList();
+//
+//		Enumeration<String> fieldNames = multi.getFileNames();
+//
+//		while (fieldNames.hasMoreElements()) {
+//			String fieldName = fieldNames.nextElement();
+//			Part part = request.getPart(fieldName);// 서버에 저장된 파일 이름
+//
+//			// 파일명 구하기
+//			fileName = getFileName(part);
+//
+//			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미
+//			if (!("".equals(fileName))) {
+//				fileList.add(fileName);
+//				System.out.println("file_name: " + fileName);
+//			}
+//		}
+
+//ㅇㅇ		String fileName = "";
+//		List fileList = new ArrayList();
+//		
+//		for(Part part : multi.getPart()) { // 여기가 잘못된듯,.?
+//			// 파일명 구하기
+//			fileName = getFileName(part);
+//			
+//			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미
+//			if(!("".equals(fileName))) {
+//				fileList.add(fileName);
+//				System.out.println("file_name: " + fileName);
+//			}
+//		}
+//		
+//		String file_name = "";
+//		
+//		for(int i=0; i<fileList.size(); i++) {
+//			if(i != fileList.size() - 1) {
+//				file_name += (fileList.get(i) + ",");				
+//			} else {
+//				file_name += fileList.get(i);
+//			}
+//ㅇㅇ		}
+
+//		String fileName = "";
+//		List fileList = new ArrayList();
+//
+//		Enumeration<String> fNames = multi.getFileNames();
+//
+//		while (fNames.hasMoreElements()) {
+//			String fName = fNames.nextElement();
+//
+//			// 파일명 구하기
+//			fileName = multi.getFilesystemName("file_name");
+//
+//			// 파일명이 공백("")이면 이것은 파일이 아닌 일반 파라미터라는 의미
+//			if (!("".equals(fileName))) {
+//				fileList.add(fileName);
+//				System.out.println("file_name: " + fileName);
+//			}
+//		}
+//
+//		String file_name = "";
+//
+//		for (int i = 0; i < fileList.size(); i++) {
+//			if (i != fileList.size() - 1) {
+//				file_name += (fileList.get(i) + ",");
+//			} else {
+//				file_name += fileList.get(i);
+//			}
+//		}
+
+		String realPath = request.getRealPath("upload");
+		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
+		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
+				new DefaultFileRenamePolicy());
+//
+//		Enumeration<String> fieldNames = multi.getFileNames();
+//		List fileList = new ArrayList();
+//		
+//		while (fieldNames.hasMoreElements()) {
+//		    String fieldName = fieldNames.nextElement();
+//		    String fileName = multi.getFilesystemName(fieldName);
+//		    if (fileName != null) {
+//		        // 파일 업로드가 성공한 경우
+//		    	
+//		    	fileList.add(fileName);
+//		        System.out.println("Uploaded file: " + fileName);
+//		    }
+//		}
+
+//		Enumeration<String> files = multi.getFileNames();
+//		List<String> fileList = new ArrayList<String>();
+//
+//		while (files.hasMoreElements()) {
+//		    String fileName = files.nextElement();
+//		    String fName = multi.getFilesystemName(fileName);
+//		    if (!fName.equals(null)) {
+//		    	fileList.add(fName);
+//		    	System.out.println("fName: " + fName);
+//		    }
+//		}
+//
+//		String file_name = "";
+//		
+//		for(int i=0; i<fileList.size(); i++) {
+//			if(i != fileList.size() - 1) {
+//				file_name += (fileList.get(i) + ",");				
+//			} else {
+//				file_name += fileList.get(i);
+//			}
+//		}
+//
+//		String file_name = String.join(",", fileList);
+
+		Enumeration<String> files = multi.getFileNames();
+		List<String> fileList = new ArrayList<>();
+
+		while (files.hasMoreElements()) {
+		    String fieldName = files.nextElement();
+		    String fName = multi.getFilesystemName(fieldName);
+		    if (fName != null) {
+		        fileList.add(fName);
+		        System.out.println("fName: " + fName);
+		    }
 		}
-		
-		String file_name = "";
-		
-		for(int i=0; i<fileList.size(); i++) {
-			if(i != fileList.size() - 1) {
-				file_name += (fileList.get(i) + ",");				
-			} else {
-				file_name += fileList.get(i);
-			}
-		}
+
+		String file_name = String.join(",", fileList);
+		System.out.println("file_name: " + file_name);
 
 		// 전달정보 저장(DTO)
 		ProductDTO dto = new ProductDTO();
 
 		dto.setUser_id(null);
-		dto.setDeal_way(request.getParameter("deal_way"));
-		dto.setTitle(request.getParameter("title"));
-		dto.setCategory(request.getParameter("category"));
-		dto.setBrand(request.getParameter("brand"));
-		dto.setPrice(Integer.parseInt(request.getParameter("price")));
-		dto.setProduct_status(request.getParameter("product_status"));
-		dto.setContent(request.getParameter("content"));
+		dto.setDeal_way(multi.getParameter("deal_way"));
+		dto.setTitle(multi.getParameter("title"));
+		dto.setCategory(multi.getParameter("category"));
+		dto.setBrand(multi.getParameter("brand"));
+		dto.setPrice(Integer.parseInt(multi.getParameter("price")));
+		dto.setProduct_status(multi.getParameter("product_status"));
+		dto.setContent(multi.getParameter("content"));
 		dto.setFile_name(file_name);
 
 		System.out.println("M: " + dto);
@@ -127,7 +226,7 @@ public class ProductUploadAction implements Action {
 		// 페이지 이동 준비
 		ActionForward forward = new ActionForward();
 
-		forward.setPath("./ProductContent.com?bno="+bno);
+		forward.setPath("./ProductContent.com?bno=" + bno);
 		forward.setRedirect(true);
 
 		return forward;
@@ -156,19 +255,17 @@ public class ProductUploadAction implements Action {
 	private String getFileName(Part part) {
 		String fileName = "";
 		String contentDisposition = part.getHeader("content-disposition");
-		// form-data; name="username" 	==> 파일이 아닐 때
-		// form-data; name="uploadFile1"; filename="test1.txt";	==> 파일일 때
-		
+
 		String[] items = contentDisposition.split(";");
-		for(String item : items) {
-			if(item.trim().startsWith("filename")) {
-				// filename="test1.txt"	==> item변수값
+		for (String item : items) {
+			if (item.trim().startsWith("filename")) {
+				// filename="test1.txt" ==> item변수값
 				fileName = item.substring(item.indexOf("=") + 2, item.length() - 1);
 			}
 		}
-		
-		//file이 아닐 경우 => ""이 반환됨, file일 경우 => file명이 반환됨
-		
+
+		// file이 아닐 경우 => ""이 반환됨, file일 경우 => file명이 반환됨
+
 		return fileName;
 	}
 }
