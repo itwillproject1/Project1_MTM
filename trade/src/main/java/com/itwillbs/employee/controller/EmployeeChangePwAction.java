@@ -1,10 +1,10 @@
-package com.itwillbs.employee.member.action;
+package com.itwillbs.employee.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.itwillbs.employee.member.db.EmployeeMemberDTO;
+import com.itwillbs.employee.db.EmployeeMemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 

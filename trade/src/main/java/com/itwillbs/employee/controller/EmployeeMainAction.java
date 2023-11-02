@@ -1,12 +1,12 @@
-package com.itwillbs.employee.user.action;
+package com.itwillbs.employee.controller;
 
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.user.db.EmployeeBoardDAO;
-import com.itwillbs.employee.user.db.EmployeeUserDAO;
+import com.itwillbs.employee.db.EmployeeBoardDAO;
+import com.itwillbs.employee.db.EmployeeUserDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 

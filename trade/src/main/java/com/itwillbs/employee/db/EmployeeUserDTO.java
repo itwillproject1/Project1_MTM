@@ -1,4 +1,4 @@
-package com.itwillbs.employee.user.db;
+package com.itwillbs.employee.db;
 
 import java.sql.Timestamp;
 

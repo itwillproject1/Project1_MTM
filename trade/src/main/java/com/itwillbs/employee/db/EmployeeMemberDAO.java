@@ -1,4 +1,4 @@
-package com.itwillbs.employee.member.db;
+package com.itwillbs.employee.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

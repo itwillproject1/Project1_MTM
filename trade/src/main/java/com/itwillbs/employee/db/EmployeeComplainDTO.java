@@ -1,4 +1,4 @@
-package com.itwillbs.employee.user.db;
+package com.itwillbs.employee.db;
 
 public class EmployeeComplainDTO {
 

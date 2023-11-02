@@ -1,4 +1,4 @@
-package com.itwillbs.employee.member.action;
+package com.itwillbs.employee.controller;
 
 import java.io.IOException;
 
