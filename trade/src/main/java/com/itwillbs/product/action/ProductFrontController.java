@@ -95,7 +95,19 @@ public class ProductFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		
+		else if(command.equals("/main/Main.com")) {
+			System.out.println(" C : /main/Main.com 호출 ");
+			System.out.println(" C : 패턴 1 - DB사용O, 페이지 출력");
+			
+			//  ProductPopularListAction() 객체 생성
+			action = new ProductPopularListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		System.out.println("---------------2. 가상주소 매핑 종료---------------");

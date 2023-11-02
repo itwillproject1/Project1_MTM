@@ -417,4 +417,40 @@ public class ProductDAO {
 		return dto;
 	} // ProductInfo(user_id) 종료
 
+	// 특정 글의 정보를 가져오기() - getPopularList(bno)
+		public ProductDTO getPopularList(int bno) {
+			ProductDTO dto = null;
+			
+			try {
+				// 1.2. 디비연결
+				con = getCon();
+				// 3. sql 구문 작성(select) & pstmt 객체
+				sql = "SELECT bno, file_name, title, price FROM Product " +
+			              "WHERE bno = ? ORDER BY views DESC"; // views 내림차순으로 정렬
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, bno);
+				// 4. sql 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				if(rs.next()) {
+					dto = new ProductDTO();
+					
+					dto.setBno(rs.getInt("bno"));
+		            dto.setFile_name(rs.getString("file_name"));
+		            dto.setTitle(rs.getString("title"));
+		            dto.setPrice(rs.getInt("price"));
+				}// if
+				
+				System.out.println(" DAO : 글정보 조회성공!");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return dto;
+		}
+		// 특정 글의 정보를 가져오기() - getPopularList(bno)
+	
 }

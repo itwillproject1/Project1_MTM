@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,51 +30,23 @@
   
     <!-- 추천상품 -->
     
-<div class="container">
-
    <div class="title">추천 상품</div>
+<div class="container">
+		<c:forEach var="dto" items="${ProductList}">
+
   
    <div class="product">
-        <img src="chun2.png" alt="상품2">
+		<img src="<%=request.getContextPath() %>/upload/${dto.file_name}" alt="${dto.title}">
         <div class="product-info">
-            <h3>춘식이 아몰레드 TV</h3>
+			<h3>[${dto.deal_way }]${dto.title }</h3>
             </div>
             <div class="product-price">
-            <p>2,000,000</p>
+            <p><fmt:formatNumber value="${dto.price }" /> 원</p>
         </div>
             </div>
         
-            <div class="product">
-        <img src="chun3.jpg" alt="상품 3">
-        <div class="product-info">
-            <h3>갤럭시 춘식이 에디션</h3>
-            </div>
-            <div class="product-price">
-            <p>2,000,000</p>
-        </div>
-            </div>
-        
-            <div class="product">
-        <img src="chun4.jpg" alt="상품 4">
-        <div class="product-info">
-            <h3>아이폰 춘식이 에디션</h3>
-            </div>
-            <div class="product-price">
-            <p>3,000,000</p>
-        </div>
-    </div>
-    
-    		<div class="product">
-        <img src="chun.png" alt="상품 5">
-        <div class="product-info">
-            <h3>한정판 춘식맥</h3>
-            </div>
-            <div class="product-price">
-            <p>4,000,000</p>
-        </div>
-  </div>
-  
-  <script src="mainproductScript.js"></script> <!-- 몰라이거아직구현안함ㅋㅋㅋ -->
+<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
+  </c:forEach>
 </div>
     <footer>
         <p>&copy; 1조 전자기기 중고거래</p>

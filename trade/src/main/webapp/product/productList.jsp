@@ -42,8 +42,7 @@
 
 				<div class="product-price">
 					<p>
-						<fmt:formatNumber value="${dto.price }" />
-						원
+						<fmt:formatNumber value="${dto.price }" /> 원
 					</p>
 				</div>
 
