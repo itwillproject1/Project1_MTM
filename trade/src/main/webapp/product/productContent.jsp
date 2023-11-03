@@ -20,19 +20,18 @@
 <body>
 
 	<%@ include file="../main/header.jsp"%>
-	<%-- <%
-		String filename = request.getParameter("fileName");
-		String savePath = "upload";
-		String realPath = request.getContextPath() + "/" + savePath;
-	%> --%>
+
 	<div class="container">
 		<div class="form-group h1">
 			<label for="productName">[${dto.deal_way }]${dto.title }</label>
 		</div>
 
+<<<<<<< HEAD
+		<!-- 이미지 영역 시작 -->
+=======
 		<%-- 		<c:set var="fileNameArr" value="${fn:split(dto.file_name,',') }" /> --%>
 		<!-- 		<div class="form-group2"> -->
-		<!-- 			<div class="image-container"> -->
+		<!-- 			s<div class="image-container"> -->
 		<!-- 				<img src="" -->
 		<!-- 					id="imagePreview" alt="미리보기"> -->
 		<%-- 				<c:forEach var="file_name" items="${fileNameArr }"> --%>
@@ -41,24 +40,25 @@
 		<%-- 				</c:forEach> --%>
 		<!-- 			</div> -->
 
+>>>>>>> ef01ce3b8611b9c5c2c30f1bdaa14aab269dfb59
 		<c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
 		<div class="form-group2">
 			<div class="image-container">
 				<!-- 이미지를 클릭하면 JavaScript로 크게 보이게 설정 -->
 				<div class="image-preview">
-				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
-					id="imagePreview" alt="미리보기">
+					<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
+						id="imagePreview" alt="미리보기">
 				</div>
-					
+
 				<div class="image-preview-choice">
-				<c:forEach var="file_name" items="${fileNameArr}">
-					<img src="<%=request.getContextPath() %>/upload/${file_name}"
-						id="imagePreviewChoice" class="clickable-image" alt="미리보기">
-				</c:forEach>
+					<c:forEach var="file_name" items="${fileNameArr}">
+						<img src="<%=request.getContextPath() %>/upload/${file_name}"
+							id="imagePreviewChoice" class="clickable-image" alt="미리보기">
+					</c:forEach>
 				</div>
 			</div>
 
-		<script>
+			<script>
     			// 이미지를 클릭할 때 이미지를 크게 보기
 			    var imageChoiceElements = document.querySelectorAll("#imagePreviewChoice");
 			    var imagePreviewElement = document.getElementById("imagePreview");
@@ -69,38 +69,77 @@
 			        });
 			    });
 		</script>
+			<!-- 이미지 영역 종료 -->
 
 
 
-		<div class="form-container">
-			<h2>상세 페이지</h2>
-			<div class="form-group">
-				<label for="user">작성자: <a href="작성자프로필">${dto.user_id }</a></label>
-			</div>
-
-			<div class="form-group">
-				<label for="user">조회수: ${dto.views }</label>
-			</div>
-
-			<div class="form-group">
-				<label for="productCategory">카테고리: <a href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
-			</div>
-
-			<div class="form-group">
-				<label for="productBrand">브랜드: <a href="브랜드 검색결과">${dto.brand }</a></label>
-			</div>
-
-			<c:if test="${dto.deal_way.equals('팝니다') }">
+			<div class="form-container">
+				<h2>
+					상세 페이지
+					<%-- <c:if test="로그인 아이디 == 작성자"> --%>
+					<div class="dropdown">
+						<input class="update-content-button" type="button" value="...">
+						<div class="dropdown-content">
+							<a href="글 수정 페이지">글 수정하기</a><br> <a href="글 삭제 페이지">글
+								삭제하기</a>
+						</div>
+					</div>
+					<%-- </c:if> --%>
+					<%-- <c:if test="로그인 아이디 != 작성자">
+					<div class="dropdown">
+						<input class="update-content-button" type="button" value="...">
+						<div class="dropdown-content">
+							<a href="글 신고 페이지">글 신고하기</a><br>
+						</div>
+					</div>
+					</c:if> --%>
+				</h2>
 				<div class="form-group">
-					<label for="productCondition">상품 상태: ${dto.product_status }</label>
+					<label for="user">작성자: <a href="작성자프로필">${dto.user_id }</a></label>
 				</div>
-			</c:if>
 
-			<div class="form-group">
-				<label for="productPrice">가격(원): <fmt:formatNumber
-						value="${dto.price}" /></label>
-			</div>
+				<div class="form-group">
+					<label for="user">조회수: ${dto.views }</label>
+				</div>
 
+<<<<<<< HEAD
+				<div class="form-group">
+					<label for="productCategory">카테고리: <a
+						href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
+				</div>
+
+				<div class="form-group">
+					<label for="productBrand">브랜드: <a href="브랜드 검색결과">${dto.brand }</a></label>
+				</div>
+
+				<c:if test="${dto.deal_way.equals('팝니다') }">
+					<div class="form-group">
+						<label for="productCondition">상품 상태: ${dto.product_status }</label>
+					</div>
+				</c:if>
+
+				<div class="form-group">
+					<label for="productPrice">가격(원): <fmt:formatNumber
+							value="${dto.price}" /></label>
+				</div>
+
+				<c:if test="${dto.deal_way.equals('팝니다') }">
+					<div class="button-container">
+						<input class="submit-button" type="button" value="구매하기"
+							onclick="location.href='결제페이지';">
+
+						<!-- 찜 기능 시작 -->
+						<!-- <span id="like">좋아요</span> -->
+						<input class="submit-button" type="button"
+							value="♡${dto.like_count }" onclick="찜하거나 찜취소, db도 연결돼야함">
+						<!--  찜 기능 끝 -->
+
+					</div>
+				</c:if>
+				<c:if test="${dto.deal_way.equals('삽니다') }">
+					<button class="submit-button" onclick="openProductModal();">판매하기</button>
+				</c:if>
+				
 			<c:if test="${dto.deal_way.equals('팝니다') }">
 			<div class="button-container">
 				<input class="submit-button" type="button" value="구매하기"
@@ -112,15 +151,16 @@
 			<c:if test="${dto.deal_way.equals('삽니다') }">
 				<button class="submit-button" onclick="openProductModal();">판매하기</button>
 			</c:if>
-			<%
-String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
-ProductDAO dao = new ProductDAO();
-ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 가져오는 메서드
+				<%
+				String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
+				ProductDAO dao = new ProductDAO();
+				ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 가져오는 메서드
 
-if (dto != null) {
-%>
 
-			<script>
+				if (dto != null) {
+				%>
+
+				<script>
     var modal;
 
     function openProductModal() {
@@ -162,7 +202,7 @@ if (dto != null) {
         }
     }
 </script>
-			<script>
+				<script>
 			    var modal; // 모달을 저장할 변수
 			
 			    function openProductModal() {
@@ -205,18 +245,39 @@ if (dto != null) {
 			    }
 			</script>
 
-			<%
-			}
-			// else {
-			//     response.sendRedirect("login.com"); // 로그인 페이지로 이동
-			// }
-			%>
+				<%
+				}
+				// else {
+				//     response.sendRedirect("login.com"); // 로그인 페이지로 이동
+				// }
+				%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="productDescription">상품 설명: </label> ${dto.content }
 		</div>
 	</div>
-	<div class="form-group">
-		<label for="productDescription">상품 설명: </label> ${dto.content }
-	</div>
-	</div>
+	<!-- 상세페이지 오른쪽 ... 버튼 -->
+	<script>
+        // ... 버튼 마우스 오버 시 드롭다운을 열거나 닫기
+        var button = document.querySelector('.update-content-button');
+        var dropdown = document.querySelector('.dropdown-content');
 
+        button.addEventListener('click', function () {
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
+        });
+
+        // 다른 곳을 클릭하면 드롭다운 닫기
+        window.addEventListener('click', function (event) {
+            if (event.target !== button) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
+	<!-- 상세페이지 오른쪽 ... 버튼 종료 -->
 </body>
 </html>

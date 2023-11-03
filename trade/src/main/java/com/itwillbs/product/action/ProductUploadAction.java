@@ -26,6 +26,8 @@ public class ProductUploadAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: ProductUploadAction.execute() 호출");
+		
+		// 로그인 제어 필요
 
 		// 첨부이미지
 //		String realPath = request.getRealPath("upload"); // 실제로 파일이 저장되는 장소(가상주소)

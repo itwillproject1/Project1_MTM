@@ -190,8 +190,8 @@ public class ProductDAO {
 	}
 	// 글 개수 계산 메서드 - getProductCount()
 
-	// 글 개수 계산 메서드 - getProductCount(search)
-	public int getProductCount(String str) {
+	// 검색시 글 개수 계산 메서드 - getProductCount(search)
+	public int getProductCount(String search) {
 		int result = 0;
 
 		try {
@@ -199,36 +199,18 @@ public class ProductDAO {
 			// 2. 디비 연결
 			con = getCon();
 
-			if (str.equals("휴대폰&태블릿") || str.equals("데스크탑") || str.equals("게임기기") || str.equals("가전제품")
-					|| str.equals("카메라") || str.equals("음향기기") || str.equals("기타")) {
-				// 3. sql 작성(select) & pstmt 객체
-				sql = "select count(*) from Product " + "where category like ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, str);
+			// 3. sql 작성(select) & pstmt 객체
+			sql = "select count(*) from Product " + "where title like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%");
 
-				// 4. sql 실행
-				rs = pstmt.executeQuery();
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
 
-				// 5. 데이터 처리 - 개수를 저장
-				if (rs.next()) {
-					result = rs.getInt(1);
-					// result = rs.getInt("count(*)");
-				}
-			} else {
-
-				// 3. sql 작성(select) & pstmt 객체
-				sql = "select count(*) from Product " + "where title like ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, "%" + str + "%");
-
-				// 4. sql 실행
-				rs = pstmt.executeQuery();
-
-				// 5. 데이터 처리 - 개수를 저장
-				if (rs.next()) {
-					result = rs.getInt(1);
-					// result = rs.getInt("count(*)");
-				}
+			// 5. 데이터 처리 - 개수를 저장
+			if (rs.next()) {
+				result = rs.getInt(1);
+				// result = rs.getInt("count(*)");
 			}
 			System.out.println(" DAO : 개수 " + result + "개");
 
@@ -240,7 +222,42 @@ public class ProductDAO {
 
 		return result;
 	}
-	// 글 개수 계산 메서드 - getProductCount(search)
+	// 검색시 글 개수 계산 메서드 - getProductCount(search)
+
+	// 카테고리별 글 개수 계산 메서드 - getCategoryProductCount(category)
+	public int getCategoryProductCount(String category) {
+		int result = 0;
+
+		try {
+			// 1. 드라이버 로드
+			// 2. 디비 연결
+			con = getCon();
+
+			// 3. sql 작성(select) & pstmt 객체
+			sql = "select count(*) from Product where category like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + category + "%");
+
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+
+			// 5. 데이터 처리 - 개수를 저장
+			if (rs.next()) {
+				result = rs.getInt(1);
+				// result = rs.getInt("count(*)");
+			}
+
+			System.out.println(" DAO : 개수 " + result + "개");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+
+		return result;
+	}
+	// 카테고리별 글 개수 계산 메서드 - getCategoryProductCount(category)
 
 	// 글 정보 목록을 가져오는 메서드 - getProductList(int startRow,int pageSize)
 	public ArrayList getProductList(int startRow, int pageSize) {
@@ -297,7 +314,7 @@ public class ProductDAO {
 	// 글 정보 목록을 가져오는 메서드 -getProductList(int startRow,int pageSize) 종료
 
 	// 검색 목록을 가져오는 메서드 - getProductList(int startRow,int pageSize,String search)
-	public ArrayList getProductList(int startRow, int pageSize, String str) {
+	public ArrayList getProductList(int startRow, int pageSize, String search) {
 		// 글정보를 저장하는 배열
 		ArrayList ProductList = new ArrayList();
 		try {
@@ -306,78 +323,40 @@ public class ProductDAO {
 			// 2. 디비 연결
 			con = getCon();
 
-			if (str.equals("휴대폰&태블릿") || str.equals("데스크탑") || str.equals("게임기기") || str.equals("가전제품")
-					|| str.equals("카메라") || str.equals("음향기기") || str.equals("기타")) {
-				// 3. SQL 작성(sele&ct) & pstmt 객체
-				sql = "select * from Product " + "where category like ? " + "limit ?,?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, "%" + str + "%"); // %검색어%
-				pstmt.setInt(2, startRow - 1); // 시작행번호-1
-				pstmt.setInt(3, pageSize); // 개수
-				// 4. SQL 실행
-				rs = pstmt.executeQuery();
-				// 5. 데이터 처리
-				// 글정보 전부 가져오기
-				while (rs.next()) {
-					ProductDTO dto = new ProductDTO();
+			// 3. SQL 작성(select) & pstmt 객체
+			sql = "select * from Product " + "where title like ? " + "limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%"); // %검색어%
+			pstmt.setInt(2, startRow - 1); // 시작행번호-1
+			pstmt.setInt(3, pageSize); // 개수
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터 처리
+			// 글정보 전부 가져오기
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
 
-					dto.setBno(rs.getInt("bno"));
-					dto.setContent(rs.getString("content"));
-					dto.setUser_id(rs.getString("user_id"));
-					dto.setDeal_way(rs.getString("deal_way"));
-					dto.setTitle(rs.getString("title"));
-					dto.setCategory(rs.getString("category"));
-					dto.setBrand(rs.getString("brand"));
-					dto.setPrice(rs.getInt("price"));
-					dto.setProduct_status(rs.getString("product_status"));
-					dto.setContent(rs.getString("content"));
-					dto.setViews(rs.getInt("views"));
-					dto.setDate_time(rs.getTimestamp("date_time"));
-					dto.setFile_name(rs.getString("file_name"));
-					dto.setLike_count(rs.getInt("like_count"));
+				dto.setBno(rs.getInt("bno"));
+				dto.setContent(rs.getString("content"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setDeal_way(rs.getString("deal_way"));
+				dto.setTitle(rs.getString("title"));
+				dto.setCategory(rs.getString("category"));
+				dto.setBrand(rs.getString("brand"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setProduct_status(rs.getString("product_status"));
+				dto.setContent(rs.getString("content"));
+				dto.setViews(rs.getInt("views"));
+				dto.setDate_time(rs.getTimestamp("date_time"));
+				dto.setFile_name(rs.getString("file_name"));
+				dto.setLike_count(rs.getInt("like_count"));
 
-					// 글 하나의 정보를 배열의 한칸에 저장
-					ProductList.add(dto);
+				// 글 하나의 정보를 배열의 한칸에 저장
+				ProductList.add(dto);
 
-					System.out.println(" DAO : 카테고리별 글 목록 조회성공! ");
-					System.out.println(" DAO : " + ProductList.size());
-
-				}
-			} else {
-				// 3. SQL 작성(select) & pstmt 객체
-				sql = "select * from Product " + "where title like ? " + "limit ?,?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, "%" + str + "%"); // %검색어%
-				pstmt.setInt(2, startRow - 1); // 시작행번호-1
-				pstmt.setInt(3, pageSize); // 개수
-				// 4. SQL 실행
-				rs = pstmt.executeQuery();
-				// 5. 데이터 처리
-				// 글정보 전부 가져오기
-				while (rs.next()) {
-					ProductDTO dto = new ProductDTO();
-
-					dto.setBno(rs.getInt("bno"));
-					dto.setContent(rs.getString("content"));
-					dto.setUser_id(rs.getString("user_id"));
-					dto.setDeal_way(rs.getString("deal_way"));
-					dto.setTitle(rs.getString("title"));
-					dto.setCategory(rs.getString("category"));
-					dto.setBrand(rs.getString("brand"));
-					dto.setPrice(rs.getInt("price"));
-					dto.setProduct_status(rs.getString("product_status"));
-					dto.setContent(rs.getString("content"));
-					dto.setViews(rs.getInt("views"));
-					dto.setDate_time(rs.getTimestamp("date_time"));
-					dto.setFile_name(rs.getString("file_name"));
-
-					// 글 하나의 정보를 배열의 한칸에 저장
-					ProductList.add(dto);
-
-				} // while
-				System.out.println(" DAO : 검색창 글 목록 조회성공! ");
-				System.out.println(" DAO : " + ProductList.size());
-			}
+			} // while
+			System.out.println(" DAO : 검색창 글 목록 조회성공! ");
+			System.out.println(" DAO : " + ProductList.size());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -386,8 +365,61 @@ public class ProductDAO {
 		}
 
 		return ProductList;
-	}
-	// 검색 목록을 가져오는 메서드 -getProductList(int startRow,int pageSize,String search) 종료
+	}// 검색 목록을 가져오는 메서드 -getProductList(int startRow,int pageSize,String search) 종료
+
+	// 카테고리별 글목록을 가져오는 메서드 - getCategoryProductList(int startRow,int pageSize,String category)
+	public ArrayList getCategoryProductList(int startRow, int pageSize, String category) {
+		// 글정보를 저장하는 배열
+		ArrayList ProductList = new ArrayList();
+		try {
+			// 디비연결정보
+			// 1. 드라이버 로드
+			// 2. 디비 연결
+			con = getCon();
+
+			// 3. SQL 작성(sele&ct) & pstmt 객체
+			sql = "select * from Product " + "where category like ? " + "limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + category + "%"); // %검색어%
+			pstmt.setInt(2, startRow - 1); // 시작행번호-1
+			pstmt.setInt(3, pageSize); // 개수
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터 처리
+			// 글정보 전부 가져오기
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
+
+				dto.setBno(rs.getInt("bno"));
+				dto.setContent(rs.getString("content"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setDeal_way(rs.getString("deal_way"));
+				dto.setTitle(rs.getString("title"));
+				dto.setCategory(rs.getString("category"));
+				dto.setBrand(rs.getString("brand"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setProduct_status(rs.getString("product_status"));
+				dto.setContent(rs.getString("content"));
+				dto.setViews(rs.getInt("views"));
+				dto.setDate_time(rs.getTimestamp("date_time"));
+				dto.setFile_name(rs.getString("file_name"));
+				dto.setLike_count(rs.getInt("like_count"));
+
+				// 글 하나의 정보를 배열의 한칸에 저장
+				ProductList.add(dto);
+
+				System.out.println(" DAO : 카테고리별 글 목록 조회성공! ");
+				System.out.println(" DAO : " + ProductList.size());
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return ProductList;
+	}// 카테고리별 상품 목록을 가져오는 메서드 -getBrandProductList(int startRow,int pageSize,String category) 종료
 
 	// 사용자 아이디에 해당하는 상품 정보(상품명, 상품상태, 가격) 가져오는 ProductInfo(user_id) 메서드
 	public ProductDTO ProductInfo(String user_id) {
@@ -417,4 +449,47 @@ public class ProductDAO {
 		return dto;
 	} // ProductInfo(user_id) 종료
 
+	// 조회순으로 글 정보 목록을 가져오기() - getPopularList()
+	public ArrayList<ProductDTO> getPopularList() {
+	    ArrayList<ProductDTO> productPopList = new ArrayList<ProductDTO>();
+	    ProductDTO dto = null;
+		 try {
+				// 1.2. 디비연결
+				con = getCon();
+				// 3. sql 구문 작성(select) & pstmt 객체
+				sql = "SELECT * FROM Product ORDER BY views DESC limit 8"; // views 내림차순으로 8개까지 정렬
+				pstmt = con.prepareStatement(sql);
+				// 4. sql 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				while (rs.next()) {
+		            dto = new ProductDTO();
+		            dto.setBno(rs.getInt("bno"));
+					dto.setContent(rs.getString("content"));
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setDeal_way(rs.getString("deal_way"));
+					dto.setTitle(rs.getString("title"));
+					dto.setCategory(rs.getString("category"));
+					dto.setBrand(rs.getString("brand"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setProduct_status(rs.getString("product_status"));
+					dto.setContent(rs.getString("content"));
+					dto.setViews(rs.getInt("views"));
+					dto.setDate_time(rs.getTimestamp("date_time"));
+					dto.setFile_name(rs.getString("file_name"));
+					dto.setLike_count(rs.getInt("like_count"));
+					
+					// 글 하나의 정보를 배열의 한칸에 저장
+					productPopList.add(dto);
+				}// while 
+				System.out.println(" DAO : 상품 정보 조회성공!");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			return productPopList;
+		}
+		// 특정 글의 정보를 가져오기() - getPopularList()
 }

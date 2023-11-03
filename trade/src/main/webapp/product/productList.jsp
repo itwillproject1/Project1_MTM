@@ -14,7 +14,7 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
-<link href="../css/productList.css?after" rel="stylesheet" />
+<link href="../css/productList.css" rel="stylesheet" />
 <title>상품 목록</title>
 </head>
 <style>
@@ -57,10 +57,8 @@
 	<!-- 여기에 상품 목록 들어갈 부분 -->
 	<div class="container">
 		<c:forEach var="dto" items="${ProductList }">
-
 			<!-- 상품들 -->
-			<div class="product">
-
+			<div class="product" onclick="toProductContent('./ProductContent.com?bno=${dto.bno}')">
 				<div class="product.image">
 					<img src="<%=request.getContextPath() %>/upload/${dto.file_name}"
 						alt="${dto.title}">
@@ -72,11 +70,9 @@
 
 				<div class="product-price">
 					<p>
-						<fmt:formatNumber value="${dto.price }" />
-						원
+						<fmt:formatNumber value="${dto.price }" /> 원
 					</p>
 				</div>
-
 			</div>
 		</c:forEach>
 	</div>
@@ -104,7 +100,15 @@
 		</c:if>
 	</div>
 
+<<<<<<< HEAD
 </div>
+=======
+<script>
+    function toProductContent(url) {
+        window.location.href = url;
+    }
+</script>
+>>>>>>> 813e66a2b2c261a75b5fcffa8a3b7bb65d1a9cb1
 
 
 	<!-- 추후 추가 가능 -->

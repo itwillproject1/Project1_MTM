@@ -9,20 +9,21 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css?afterr" rel="stylesheet" />
-
 <title>헤더</title>
 </head>
 <body>
 
 	<header>
+
 		<span class="logo"> <a href="../main/Main.com">1JO/JG</a>
+
 		</span>
 		
 		<span class="category-a" id="category-aa"> <a href="../product/ProductList.com?category=삽니다">삽니다</a> <a href="../product/ProductList.com?category=팝니다">팝니다</a>
 		</span>
-		
-        <span class="category-b" id="category-bb">
-            <a href="../product/ProductList.com?category=휴대폰&태블릿">휴대폰&태블릿</a>
+
+        <span class="category-b">
+            <a href="../product/ProductList.com?category=휴대폰%26태블릿">휴대폰&태블릿</a>
             <a href="../product/ProductList.com?category=데스크탑">데스크탑</a>
             <a href="../product/ProductList.com?category=노트북">노트북</a>
             <a href="../product/ProductList.com?category=게임기기">게임기기</a>
@@ -36,16 +37,17 @@
 <!-- 이거 그거임 상품목록 카테고리별로 바꾸는 자스 근데 아직 
 구현 못해서 냅둘게요 -->
 
+
        <div class="rgt"> 
         <div class="rgt1">
-		<form action="./ProductList.com" method="get" class="search">
+		<form action="../product/ProductList.com" method="get" class="search">
 			<input type="text" name="search" placeholder="검색어 입력">
 			<button type="submit" value="search">검색</button>
 		</form>
 			</div>
 
 		<span class="user-menu">
-            <a href="../member/login.com">로그인</a>
+            <a href="../main/login.com">로그인</a>
             <a href="../product/ProductUpload.com">글등록</a>
             <a href="#">찜</a>
             <a href="#">마이페이지</a>

@@ -25,13 +25,12 @@ public class ProductListAction implements Action {
 		ProductDAO dao = new ProductDAO();
 		
 		int count = 0;
-		if(search == null && category == null) { // 검색어 X
+		if(search == null && category == null) { // 검색어 X, 카테고리 X
 			System.out.println(" M : 검색어 없음! ");
 			count = dao.getProductCount();
-			/////////////////////////////////////////////////////////
-		} else if(category != null){
+		} else if(category != null){ // 카테고리 O
 			System.out.println(" M : 카테고리 있음! ("+category+")");
-			count = dao.getProductCount(category);
+			count = dao.getCategoryProductCount(category);
 		} else { // 검색어 O - 검색결과O/X 
 			System.out.println(" M : 검색어 있음! ("+search+")");
 			count = dao.getProductCount(search);
@@ -64,9 +63,9 @@ public class ProductListAction implements Action {
 		if (count > 0 && search == null && category == null) {
 			ProductList = dao.getProductList(startRow, pageSize);
 		}else if(count > 0 && category != null ) {
-			ProductList = dao.getProductList(startRow, pageSize,category);
+			ProductList = dao.getCategoryProductList(startRow, pageSize, category);
 		}else if(count > 0 && search != null ) {
-			ProductList = dao.getProductList(startRow, pageSize,search);
+			ProductList = dao.getProductList(startRow, pageSize, search);
 		}else {
 			// 글이 없는경우
 		}
