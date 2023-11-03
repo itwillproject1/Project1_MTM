@@ -37,17 +37,27 @@ public class ProductFrontController extends HttpServlet{
       
       /************************2. 가상주소 매핑 시작************************/
       System.out.println("\n---------------2. 가상주소 매핑 시작---------------");
-      ActionForward forward = null;
+      ActionForward forward = new ActionForward();
       Action action = null;
       
       if(command.equals("/main/Main.com")) {
          System.out.println("\tC: /Main.com 호출");
-         System.out.println("\tC: 패턴1 - DB 사용 X, 뷰페이지 출력");
+         System.out.println("\tC: 패턴3 - DB 사용 O, 뷰페이지 출력");
          
-         forward = new ActionForward();
-
-         forward.setPath("./realmain.jsp");
-         forward.setRedirect(false);
+//         action = new ActionForward();
+//
+//         forward.setPath("./realmain.jsp");
+//         forward.setRedirect(false);
+     
+         // ProductPopListAction() 객체 생성
+         action = new ProductPopListAction();
+         
+         try {
+            forward = action.execute(request, response);
+         } catch (Exception e) {
+            e.printStackTrace();
+         }
+         
       }
       else if(command.equals("/product/ProductUpload.com")) {
          System.out.println("\tC: /ProductUpload.com 호출");
@@ -100,7 +110,7 @@ public class ProductFrontController extends HttpServlet{
          System.out.println(" C : 패턴 1 - DB사용O, 페이지 출력");
          
          //  ProductPopularListAction() 객체 생성
-         action = new ProductPopularListAction();
+         action = new ProductPopListAction();
          
          try {
             forward = action.execute(request, response);

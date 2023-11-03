@@ -26,7 +26,7 @@ public class ProductContentAction implements Action {
 		dao.updateReadcount(bno);
 
 		// BoardDAO 객체 - 특정 글의 정보를 가져옴()
-		ProductDTO dto = dao.getProduct(bno);
+		ProductDTO dto = dao.getProduct(no);
 		request.setAttribute("dto", dto);
 
 		// 페이지 이동 준비(./productContent.jsp)
