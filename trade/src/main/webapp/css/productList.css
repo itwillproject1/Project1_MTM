@@ -7,17 +7,127 @@ body {
 	background-color: #ffffff;
 }
 
+/* 필터링 */
+
 .title {
-	width: 100%;
-	text-align: center;
-	margin-top: 150px;
-	font-size: 30px;
-	font-weight: bold;
+    width: 250px;
+    margin: 150px auto 50px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    text-transform: uppercase;
+    border: 3px double #f1f1f1;
+    font-weight: bold;
+    font-size: 12px;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
+
+.prd-smenu .cate-1 {
+    margin: 100px 0;
+    text-align: left;
+    margin-left: 280px;
+    
+}
+
+.prd-smenu .cate-sort li a {
+    display: block;
+    color: #999;
+    font-size: 11px;
+    background: #fff;
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #F0F0F0;
+    font-weight: none;
+}
+
+
+
+dt {
+    display: block;
+}
+
+dd {
+    display: block;
+    margin-inline-start: 40px;
+}
+
+dl {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+
+li {
+    list-style: none;
+}
+
+.cate-1 li {
+    display: inline-block;
+    margin-right: 10px; /* 원하는 간격으로 조절하세요 */
+}
+
+.cate-1 li a {
+    display: block;
+    color: #999;
+    font-size: 11px;
+    background: #fff;
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #F0F0F0;
+    text-align: center; /* 가운데 정렬을 위해 추가 */
+    text-decoration: none; /* 링크의 밑줄 제거 */
+}
+
+
+.cate-1 li:hover a, .cate-1 li:visited a{
+    color: #000; /* 텍스트색 */
+    background-color: #fff;
+}
+
+.cate-1 li:hover a, .cate-1 li:active a{
+    color: #fff; /* 클릭 시 텍스트색 */
+    background-color: #6D6D6D;
+}
+
+a {
+    color: #6D6D6D;
+    text-decoration: none;
+}
+
+.ir *, .blind { /* 상품분류 리스트 가리기 */
+    z-index: -1;
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    text-indent: -9999px;
+}
+
+/* 필터링 */
 
 .container {
 	max-width: 1200px;
-	margin: 150px auto;
+	margin: 50px auto;
 	padding: 0 20px;
 	display: flex;
 	flex-wrap: wrap;
@@ -103,6 +213,7 @@ body {
 	background-color: #333; /* hover 시 배경색 변경 */
 	color: white; /* hover 시 텍스트 색상 변경 */
 }
+
 
 
 footer {
