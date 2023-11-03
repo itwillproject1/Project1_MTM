@@ -65,7 +65,6 @@ public class EmployeeDAO {
 		return result;
 	} // loginEmployee();
 	
-	
 	// loadProfile() : 관리자 프로필 불러오기
 	public MemberDTO loadProfile(String id) {
 		MemberDTO result = null;

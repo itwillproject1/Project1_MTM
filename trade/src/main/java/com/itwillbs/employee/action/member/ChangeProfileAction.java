@@ -10,7 +10,7 @@ import com.itwillbs.util.ActionForward;
 
 /** EmployeeChangeProfileAction : 관리자(직원) 프로필 변경 **/
 
-public class EmployeeChangeProfileAction implements Action{
+public class ChangeProfileAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");

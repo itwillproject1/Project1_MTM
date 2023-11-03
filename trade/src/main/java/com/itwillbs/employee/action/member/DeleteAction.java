@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-/** 관리자 회원가입(admin만 가능) **/
+/** EmployeeDeleteAction : 퇴사자 계정 삭제 **/
 
-public class EmployeeRegisterAction implements Action{
+public class DeleteAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		

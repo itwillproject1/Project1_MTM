@@ -10,7 +10,7 @@ import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 import com.itwillbs.util.JSMoveFunction;
 
-public class EmployeeLoginAction implements Action{
+public class LoginAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		EmployeeDAO dao = new EmployeeDAO();

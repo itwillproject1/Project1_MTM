@@ -68,12 +68,12 @@
             <li class="nav-item dropdown ml-lg-0">
               <a class="nav-link dropdown-toggle text-muted" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="avatar avatar-sm mt-2">
-                  <img src="./assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  <img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
                 </span>
               </a>
               <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./ProfileContent.emp">프로필</a>
+                  <a class="nav-link pl-3" href="./MemberProfile.emp">프로필</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link pl-3" href="./ProfileChangeForm.emp">프로필 편집</a>

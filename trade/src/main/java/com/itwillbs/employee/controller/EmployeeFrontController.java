@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.action.member.EmployeeChangeProfileAction;
-import com.itwillbs.employee.action.member.EmployeeChangePwAction;
-import com.itwillbs.employee.action.member.EmployeeLoginAction;
-import com.itwillbs.employee.action.member.EmployeeProfileAction;
-import com.itwillbs.employee.action.member.EmployeePwFindAction;
+import com.itwillbs.employee.action.member.ChangeProfileAction;
+import com.itwillbs.employee.action.member.ChangePwAction;
+import com.itwillbs.employee.action.member.LoginAction;
+import com.itwillbs.employee.action.member.ProfileAction;
+import com.itwillbs.employee.action.member.PwFindAction;
 import com.itwillbs.employee.action.user.EmployeeUserListAction;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
 @WebServlet("*.emp")
-public class EmployeeFrontController  extends HttpServlet{
+public class EmployeeFrontController extends HttpServlet{
 	
 	protected void doProcess
 	(HttpServletRequest request, HttpServletResponse response) 
@@ -70,7 +70,7 @@ public class EmployeeFrontController  extends HttpServlet{
 		
 		else if(command.equals("/LoginAction.emp")) {
 			// 로그인 액션(DB 사용 및 메인 페이지 이동 진행)
-			action = new EmployeeLoginAction();
+			action = new LoginAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -90,7 +90,7 @@ public class EmployeeFrontController  extends HttpServlet{
 			// 비밀번호 찾기 실행
 			// 이메일과 아이디 조회 후 
 			// 일치하지 않으면 이전 페이지로 이동
-			action = new EmployeePwFindAction();
+			action = new PwFindAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -108,7 +108,7 @@ public class EmployeeFrontController  extends HttpServlet{
 		
 		else if(command.equals("/ChangePwAction.emp")) {
 			// 비밀번호 변경 실행(로그인 페이지로 이동)
-			action = new EmployeeChangePwAction();
+			action = new ChangePwAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -120,9 +120,19 @@ public class EmployeeFrontController  extends HttpServlet{
 			
 		}
 		
+		else if(command.equals("/MemberProfile.emp")) {
+			// 프로필 상세 보기(직원)
+			action = new ProfileAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		else if(command.equals("/ProfileChangeForm.emp")) {
 			// 프로필 편집 페이지(관리자)
-			action = new EmployeeProfileAction();
+			action = new ProfileAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -132,7 +142,7 @@ public class EmployeeFrontController  extends HttpServlet{
 		
 		else if(command.equals("/ProfileChangeAction.emp")) {
 			// 프로필 편집 실행(관리자)
-			action = new EmployeeChangeProfileAction();
+			action = new ChangeProfileAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -12,7 +12,7 @@ import com.itwillbs.util.ActionForward;
 /** 로그인 중이 아닐 때도 진행(request로 저장),
  *  로그인 되어 있을 경우, session으로 불러옴 **/
 
-public class EmployeeChangePwAction implements Action{
+public class ChangePwAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		MemberDTO dto = new MemberDTO();

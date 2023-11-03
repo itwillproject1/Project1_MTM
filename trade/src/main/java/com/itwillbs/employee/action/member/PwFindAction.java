@@ -8,7 +8,7 @@ import com.itwillbs.employee.db.dto.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class EmployeePwFindAction implements Action{
+public class PwFindAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		MemberDTO dto = new MemberDTO();
