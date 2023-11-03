@@ -26,10 +26,7 @@
 			<label for="productName">[${dto.deal_way }]${dto.title }</label>
 		</div>
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 7ed4a20492add89594a5021f01bdd81bf9700978
 		<!-- 이미지 영역 시작 -->
 		<%-- 		<c:set var="fileNameArr" value="${fn:split(dto.file_name,',') }" /> --%>
 		<!-- 		<div class="form-group2"> -->
@@ -69,7 +66,7 @@
 			            imagePreviewElement.src = imageChoice.src;
 			        });
 			    });
-		</script>
+			</script>
 			<!-- 이미지 영역 종료 -->
 
 
@@ -140,11 +137,8 @@
 				<c:if test="${dto.deal_way.equals('삽니다') }">
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
 				</c:if>
-<<<<<<< HEAD
-
-=======
 				
->>>>>>> 7ed4a20492add89594a5021f01bdd81bf9700978
+
 				<%
 				String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
 				ProductDAO dao = new ProductDAO();
@@ -153,49 +147,48 @@
 
 				if (dto != null) {
 				%>
-
 				<script>
-    var modal;
-
-    function openProductModal() {
-        var modalContent = `
-            <div class="modal" id="productModal">
-                <div class="modal-content">
-                    <!-- 모달 내에 체크박스와 제품 정보 설정 -->
-                    <input type="checkbox" id="checkBox" class="productCheckbox" data-productid="1" style="width: 30px; height: 30px;">
-                    <!-- 제품 정보 -->
-                    <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" id="imagePreview" alt="미리보기" width="60px" height="60px">
-                    상품명: <label for="productName">${dto.title}</label>
-                    가격: <label for="productPrice"><fmt:formatNumber value="${dto.price}"/>원</label>
-                    <span class="close-button" onclick="closeProductModal();">닫기</span>
-                    <button class="confirm-button" onclick="confirmProduct();">확인</button>
-                </div>
-            </div>
-        `;
-
-        // 모달 열기
-        document.body.insertAdjacentHTML('beforeend', modalContent);
-        modal = document.getElementById('productModal');
-        modal.style.display = 'block';
-    }
-
-    function closeProductModal() {
-        if (modal) {
-            modal.style.display = 'none'; // 모달 닫기
-        }
-    }
-
-    function confirmProduct() {
-        var checkBox = document.getElementById('checkBox');
-        if (checkBox.checked) { // 체크박스가 체크된 경우만 정보전달
-            // 정보전달 코드를 추가해야 합니다.
-            alert('제안 완료!');
-            closeProductModal(); // 모달 창 닫기
-        } else {
-            alert('제안할 물품을 선택하세요.');
-        }
-    }
-</script>
+			    var modal;
+			
+			    function openProductModal() {
+			        var modalContent = `
+			            <div class="modal" id="productModal">
+			                <div class="modal-content">
+			                    <!-- 모달 내에 체크박스와 제품 정보 설정 -->
+			                    <input type="checkbox" id="checkBox" class="productCheckbox" data-productid="1" style="width: 30px; height: 30px;">
+			                    <!-- 제품 정보 -->
+			                    <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" id="imagePreview" alt="미리보기" width="60px" height="60px">
+			                    상품명: <label for="productName">${dto.title}</label>
+			                    가격: <label for="productPrice"><fmt:formatNumber value="${dto.price}"/>원</label>
+			                    <span class="close-button" onclick="closeProductModal();">닫기</span>
+			                    <button class="confirm-button" onclick="confirmProduct();">확인</button>
+			                </div>
+			            </div>
+			        `;
+			
+			        // 모달 열기
+			        document.body.insertAdjacentHTML('beforeend', modalContent);
+			        modal = document.getElementById('productModal');
+			        modal.style.display = 'block';
+			    }
+			
+			    function closeProductModal() {
+			        if (modal) {
+			            modal.style.display = 'none'; // 모달 닫기
+			        }
+			    }
+			
+			    function confirmProduct() {
+			        var checkBox = document.getElementById('checkBox');
+			        if (checkBox.checked) { // 체크박스가 체크된 경우만 정보전달
+			            // 정보전달 코드를 추가해야 합니다.
+			            alert('제안 완료!');
+			            closeProductModal(); // 모달 창 닫기
+			        } else {
+			            alert('제안할 물품을 선택하세요.');
+			        }
+			    }
+				</script>
 				<script>
 			    var modal; // 모달을 저장할 변수
 			
@@ -219,25 +212,25 @@
 			        document.body.insertAdjacentHTML('beforeend', modalContent);
 			        modal = document.getElementById('productModal');
 			        modal.style.display = 'block';
-			    }
-			
-			    function closeProductModal() {
-			        if (modal) {
-			            modal.style.display = 'none'; // 모달 닫기
-			        }
-			    }
-			    
-			    function confirmProduct() {
-			        var checkBox = document.getElementById('checkBox');
-			        if (checkBox.checked) { // 체크박스가 체크된 경우만 정보전달
-			            // 정보전달 코드짜야함!!!!!!!!!!
-			            alert('제안 완료!');
-			            closeProductModal(); // 모달 창 닫기
-			        } else {
-			            alert('제안할 물품을 선택하세요.');
-			        }
-			    }
-			</script>
+				    }
+				
+				    function closeProductModal() {
+				        if (modal) {
+				            modal.style.display = 'none'; // 모달 닫기
+				        }
+				    }
+				    
+				    function confirmProduct() {
+				        var checkBox = document.getElementById('checkBox');
+				        if (checkBox.checked) { // 체크박스가 체크된 경우만 정보전달
+				            // 정보전달 코드짜야함!!!!!!!!!!
+				            alert('제안 완료!');
+				            closeProductModal(); // 모달 창 닫기
+				        } else {
+				            alert('제안할 물품을 선택하세요.');
+				        }
+				    }
+					</script>
 
 				<%
 				}
@@ -251,6 +244,7 @@
 			<label for="productDescription">상품 설명: </label> ${dto.content }
 		</div>
 	</div>
+
 	<!-- 상세페이지 오른쪽 ... 버튼 -->
 	<script>
         // ... 버튼 마우스 오버 시 드롭다운을 열거나 닫기
@@ -276,21 +270,21 @@
 
 	<!-- 삭제하기  -->
 	<script>
-function confirmDelete() {
-    // 'confirm' 창을 표시하고 사용자가 확인을 누르면 true를 반환합니다.
-    const shouldDelete = confirm('글을 삭제하시겠습니까?');
- 	// 현재 URL의 쿼리 매개변수를 가져옵니다.
-    const urlParams = new URLSearchParams(location.search);
- // 쿼리 매개변수에서 원하는 값을 읽어옵니다.
-    const bno = urlParams.get("bno");
- 
- 	const newURL = "./deleteProduct.com?bno=" + bno;
- 
-    if (shouldDelete) {
-        location.href = newURL;
-    }
-}
-</script>
+	function confirmDelete() {
+	    // 'confirm' 창을 표시하고 사용자가 확인을 누르면 true를 반환
+	    const shouldDelete = confirm('글을 삭제하시겠습니까?');
+	 	// 현재 URL의 쿼리 매개변수 저장
+	    const urlParams = new URLSearchParams(location.search);
+	    // 쿼리 매개변수에서 원하는 값 저장
+	    const bno = urlParams.get("bno");
+	 
+	 	const newURL = "./deleteProduct.com?bno=" + bno;
+	 
+	    if (shouldDelete) {
+	        location.href = newURL;
+	    }
+	}
+	</script>
 	<!-- 삭제하기 종료 -->
 </body>
 </html>

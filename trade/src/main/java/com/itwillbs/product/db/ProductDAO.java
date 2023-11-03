@@ -367,8 +367,7 @@ public class ProductDAO {
 		return ProductList;
 	}// 검색 목록을 가져오는 메서드 -getProductList(int startRow,int pageSize,String search) 종료
 
-	// 카테고리별 글목록을 가져오는 메서드 - getCategoryProductList(int startRow,int pageSize,String
-	// category)
+	// 카테고리별 글목록을 가져오는 메서드 - getCategoryProductList(int startRow,int pageSize,String category)
 	public ArrayList getCategoryProductList(int startRow, int pageSize, String category) {
 		// 글정보를 저장하는 배열
 		ArrayList ProductList = new ArrayList();
@@ -420,8 +419,7 @@ public class ProductDAO {
 			closeDB();
 		}
 		return ProductList;
-	}// 카테고리별 상품 목록을 가져오는 메서드 -getBrandProductList(int startRow,int pageSize,String
-		// category) 종료
+	}// 카테고리별 상품 목록을 가져오는 메서드 -getBrandProductList(int startRow,int pageSize,String category) 종료
 
 	// 사용자 아이디에 해당하는 상품 정보(상품명, 상품상태, 가격) 가져오는 ProductInfo(user_id) 메서드
 	public ProductDTO ProductInfo(String user_id) {
