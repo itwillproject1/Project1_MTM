@@ -37,8 +37,8 @@ body {
 }
 
 .container {
-	max-width: 1200px;
-	margin: 80px auto;
+	max-width: 100%;
+	margin: 150px auto;
 	padding: 0 20px;
 	display: flex;
 	flex-wrap: wrap;
@@ -60,7 +60,6 @@ body {
 	animation: colorfulShadow 2s infinite;
 	cursor: pointer;
 }
-
 
 .product img {
 	width: 100%;

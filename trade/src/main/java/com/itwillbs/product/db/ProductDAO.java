@@ -449,4 +449,46 @@ public class ProductDAO {
 		return dto;
 	} // ProductInfo(user_id) 종료
 
+	// 조회순으로 글 정보 목록을 가져오기() - getPopularList()
+	public ArrayList<ProductDTO> getPopularList() {
+	    ArrayList<ProductDTO> productPopList = new ArrayList<ProductDTO>();
+		 try {
+				// 1.2. 디비연결
+				con = getCon();
+				// 3. sql 구문 작성(select) & pstmt 객체
+				sql = "SELECT file_name, deal_way, title, price FROM Product ORDER BY views DESC limit 8"; // views 내림차순으로 8개까지 정렬
+				pstmt = con.prepareStatement(sql);
+				// 4. sql 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				while (rs.next()) {
+		            ProductDTO dto = new ProductDTO();
+		            dto.setBno(rs.getInt("bno"));
+					dto.setContent(rs.getString("content"));
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setDeal_way(rs.getString("deal_way"));
+					dto.setTitle(rs.getString("title"));
+					dto.setCategory(rs.getString("category"));
+					dto.setBrand(rs.getString("brand"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setProduct_status(rs.getString("product_status"));
+					dto.setContent(rs.getString("content"));
+					dto.setViews(rs.getInt("views"));
+					dto.setDate_time(rs.getTimestamp("date_time"));
+					dto.setFile_name(rs.getString("file_name"));
+					dto.setLike_count(rs.getInt("like_count"));
+					
+					// 글 하나의 정보를 배열의 한칸에 저장
+					productPopList.add(dto);
+				}// while 
+				System.out.println(" DAO : 상품 정보 조회성공!");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			return productPopList;
+		}
+		// 특정 글의 정보를 가져오기() - getPopularList()
 }

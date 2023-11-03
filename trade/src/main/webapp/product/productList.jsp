@@ -15,6 +15,55 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
+    <title>상품 목록</title>
+    <style>
+    .title {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 50px;
+	margin-top: 150px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.container {
+   max-width: 1200px;
+   margin: 150px auto;
+   padding: 0 20px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: flex-start; /* 왼쪽으로 배치 */
+   gap: 30px; /* 아이템 사이의 간격 */
+}
+	
+	#page_control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #page_control .prev-page,
+  #page_control .page-number,
+  #page_control .next-page {
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: white; /* 흰색 배경색 */
+    color: #333; /* 텍스트 색상 설정 */
+    border: 1px solid #ccc; /* 테두리 추가 */
+    border-radius: 5px;
+    transition: background-color 0.3s; /* hover 효과를 위한 전환 효과 */
+  }
+
+  #page_control .prev-page:hover,
+  #page_control .page-number:hover,
+  #page_control .next-page:hover {
+    background-color: #333; /* hover 시 배경색 변경 */
+    color: white; /* hover 시 텍스트 색상 변경 */
+  
+}
+    
+    </style>
 <title>상품 목록</title>
 </head>
 <body>
@@ -40,8 +89,7 @@
 
 				<div class="product-price">
 					<p>
-						<fmt:formatNumber value="${dto.price }" />
-						원
+						<fmt:formatNumber value="${dto.price }" /> 원
 					</p>
 				</div>
 			</div>

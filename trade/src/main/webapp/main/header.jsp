@@ -31,14 +31,14 @@
             <a href="../product/ProductList.com?category=기타">기타</a>
         </span>
 
-		<form action="./ProductList.com" method="get" class="search">
+		<form action="../product/ProductList.com" method="get" class="search">
 			<input type="text" name="search" placeholder="검색어 입력">
 			<button type="submit" value="search">검색</button>
 		</form>
 
 
 		<span class="user-menu">
-            <a href="../member/login.com">로그인</a>
+            <a href="../main/login.com">로그인</a>
             <a href="../product/ProductUpload.com">글등록</a>
             <a href="#">찜</a>
             <a href="#">마이페이지</a>
