@@ -14,7 +14,7 @@
                   <div class="row mt-5 align-items-center">
                     <div class="col-md-3 text-center mb-5">
                       <div class="avatar avatar-xl">
-                        <img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
+                        <img src="./employee/template/assets/images/user.png" alt="${dto.name}의 이미지" class="avatar-img rounded-circle">
                       </div>
                     </div>
 					<div class="col">
@@ -61,7 +61,10 @@
                         <label for="inputPassword4">이전 비밀번호</label>
                         <input type="password" name="past_pw" class="form-control" id="inputPassword5">
                       </div>
-                      <div class="form-group">
+                  
+                    </div>
+                    <div class="col-md-6">
+                    <div class="form-group">
                         <label for="inputPassword5">새 비밀번호</label>
                         <input type="password" name="new_pw" class="form-control" id="inputPassword5">
                       </div>
@@ -69,16 +72,6 @@
                         <label for="inputPassword6">비밀번호 확인</label>
                         <input type="password" name="new_pwConfirm" class="form-control" id="inputPassword6">
                       </div>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="mb-2">Password requirements</p>
-                      <p class="small text-muted mb-2"> To create a new password, you have to meet all of the following requirements: </p>
-                      <ul class="small text-muted pl-4 mb-0">
-                        <li> Minimum 8 character </li>
-                        <li>At least one special character</li>
-                        <li>At least one number</li>
-                        <li>Can’t be the same as a previous password </li>
-                      </ul>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">저장</button>

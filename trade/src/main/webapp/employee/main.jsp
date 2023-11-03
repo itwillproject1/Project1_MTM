@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./inn/head/main.jsp"/>
 <jsp:include page="./inn/navbar.jsp"/>
       <!-- 메인(데이터가 쌓일 때 진행) -->
@@ -15,7 +16,7 @@
                       <div class="row align-items-center">
                         <div class="col-3 text-center">
                           <span class="circle circle-sm bg-primary-light">
-                            <i class="fe fe-16 fe-shopping-bag text-white mb-0"></i>
+                            <i class="fe fe-16 fe-pie-chart text-white mb-0"></i>
                           </span>
                         </div>
                         <div class="col pr-0">
@@ -40,8 +41,7 @@
                         <div class="col pr-0">
                         <!-- 거래 수(count, where(date)) -->
                           <p class="small text-muted mb-0">거래 수</p>
-                          <span class="h3 mb-0">1,869</span>
-                          <span class="small text-success">+16.5%</span>
+                          <span class="h3 mb-0">${tradeCount}</span>
                         </div>
                       </div>
                     </div>
@@ -54,20 +54,15 @@
                       <div class="row align-items-center">
                         <div class="col-3 text-center">
                           <span class="circle circle-sm bg-primary">
-                            <i class="fe fe-16 fe-filter text-white mb-0"></i>
+                            <i class="fe fe-16 fe-users text-white mb-0"></i>
                           </span>
                         </div>
                         <div class="col">
                         <!-- 가입자 수 -->
-                          <p class="small text-muted mb-0">가입자 수</p>
+                          <p class="small text-muted mb-0">회원 수</p>
                           <div class="row align-items-center no-gutters">
                             <div class="col-auto">
-                              <span class="h3 mr-2 mb-0"> 200 </span>
-                            </div>
-                            <div class="col-md-12 col-lg">
-                              <div class="progress progress-sm mt-2" style="height:3px">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
+                              <span class="h3 mr-2 mb-0">${userCount}</span>
                             </div>
                           </div>
                         </div>
@@ -98,32 +93,33 @@
                 <!-- Recent orders -->
                 <div class="col-md-12">
                   <h6 class="mb-3">최근 거래 이력</h6>
-                  <a class="float-right small text-muted" href="./Main.emp">View all</a>
+                  <a class="float-right small text-muted" href="./TradeList.emp">더 보기</a>
                   <table class="table table-borderless table-striped">
                     <thead>
                       <tr role="row">
                         <th>아이디</th>
+                        <th>거래타입</th>
                         <th>등록일</th>
-                        <th>이름</th>
-                        <th>주소</th>
+                        <th>브랜드</th>
                         <th>카테고리</th>
                         <th>제목</th>
-                        <th>상태</th>
-                        <th>거래자</th>
+                        <th style="text-align:center;">가격(￦)</th>
+                        <th style="text-align:center">조회수</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                     <!-- 데이터 목록(최대 10개) -->
+                      <c:forEach items="${tradeList}" var="i" >
                       <tr>
-                        <th scope="col">1331</th>
-                        <td>2020-12-26 01:32:21</td>
-                        <td>Kasimir Lindsey</td>
-                        <td>(697) 486-2101</td>
-                        <td>996-3523 Et Ave</td>
-                        <td>$3.64</td>
-                        <td> Paypal</td>
-                        <td>Shipped</td>
+                        <th scope="col">${i.user_id}</th>
+                        <td>${i.deal_way}</td>
+                        <td>${i.date_time}</td>
+                        <td>${i.brand}</td>
+                        <td>${i.category}</td>
+                        <td>${i.title}</td>
+                        <td style="text-align:right;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${i.price}"/></td>
+                        <td style="text-align:center">${i.views}</td>
                         <td>
                           <div class="dropdown">
                             <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -137,6 +133,7 @@
                           </div>
                         </td>
                       </tr>
+                      </c:forEach>
                     </tbody>
                   </table>
                 </div> <!-- / .col-md-3 -->

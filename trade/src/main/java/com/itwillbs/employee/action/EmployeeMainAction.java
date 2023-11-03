@@ -16,7 +16,12 @@ public class EmployeeMainAction implements Action{
 		EmployeeDAO dao = new EmployeeDAO();
 		
 		int userCount = dao.userCount();
-		ArrayList tradeList = dao.tradeList(20);
+		int tradeCount = dao.tradeCount();
+		ArrayList tradeList = dao.tradeList(10);
+		request.setAttribute("userCount", userCount);
+		request.setAttribute("tradeCount", tradeCount);
+		request.setAttribute("tradeList", tradeList);
+		System.out.println(tradeList.size());
 		forward.setPath("./employee/main.jsp");
 		forward.setRedirect(false);
 		return forward;

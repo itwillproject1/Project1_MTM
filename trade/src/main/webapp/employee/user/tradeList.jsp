@@ -17,7 +17,7 @@
                     <div class="card-body">
                       <div class="toolbar row mb-3">
                         <div class="col">
-                          <form class="form-inline">
+                          <form action="./TradeList.emp" class="form-inline">
                             <div class="form-row">
                               <div class="form-group col-auto">
                                 <label for="search" class="sr-only">검색</label>

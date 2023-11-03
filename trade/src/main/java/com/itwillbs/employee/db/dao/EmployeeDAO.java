@@ -199,7 +199,18 @@ public class EmployeeDAO {
 				dto = new TradeDTO();
 				dto.setBno(rs.getInt("bno"));
 				dto.setUser_id(rs.getString("user_id"));
+				dto.setBrand(rs.getString("brand"));
+				dto.setDate_time(rs.getTimestamp("date_time"));
+				dto.setContent(rs.getString("content"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setTitle(rs.getString("title"));
+				dto.setCategory(rs.getString("category"));
+				dto.setViews(rs.getInt("views"));
+				dto.setDeal_way(rs.getString("deal_way"));
+				dto.setLike_count(rs.getInt("like_count"));
+				dto.setProduct_status(rs.getString("product_status"));
 				
+				tlist.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -207,6 +218,22 @@ public class EmployeeDAO {
 			CloseDB();
 		}
 		return tlist;
+	}
+	
+	public int tradeCount() {
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from Product";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
 	}
 	
 	public ArrayList userList() {
@@ -277,7 +304,7 @@ public class EmployeeDAO {
 		int result = 0;
 		try {
 			con = getCon();
-			sql = "select count(*) from USER_BO";
+			sql = "select count(*) from Member";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) result = rs.getInt(1);

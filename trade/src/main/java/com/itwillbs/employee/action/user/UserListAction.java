@@ -9,7 +9,7 @@ import com.itwillbs.employee.db.dao.EmployeeDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class EmployeeUserListAction implements Action{
+public class UserListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String search = request.getParameter("search");

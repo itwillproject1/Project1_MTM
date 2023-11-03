@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.employee.action.EmployeeMainAction;
 import com.itwillbs.employee.action.member.ChangeProfileAction;
 import com.itwillbs.employee.action.member.ChangePwAction;
 import com.itwillbs.employee.action.member.LoginAction;
 import com.itwillbs.employee.action.member.ProfileAction;
 import com.itwillbs.employee.action.member.PwFindAction;
-import com.itwillbs.employee.action.user.EmployeeUserListAction;
+import com.itwillbs.employee.action.user.UserListAction;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -46,10 +47,12 @@ public class EmployeeFrontController extends HttpServlet{
 		if(command.equals("/Main.emp")) {
 			// 메인 페이지(관리자)
 			// 추가 정보 표시(1일당 접속자(기간), 거래 목록, 최근 신고목록, 문의사항 표시)
-			forward = new ActionForward();
-			forward.setPath("./employee/main.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new EmployeeMainAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("")) {
@@ -178,7 +181,7 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/UserList.emp")) {
-			action = new EmployeeUserListAction();
+			action = new UserListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
