@@ -107,7 +107,7 @@ public class ProductFrontController extends HttpServlet{
       }
       else if(command.equals("/main/Main.com")) {
          System.out.println(" C : /main/Main.com 호출 ");
-         System.out.println(" C : 패턴 1 - DB사용O, 페이지 출력");
+         System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
          
          //  ProductPopularListAction() 객체 생성
          action = new ProductPopListAction();
@@ -117,6 +117,20 @@ public class ProductFrontController extends HttpServlet{
          } catch (Exception e) {
             e.printStackTrace();
          }
+      }
+      else if(command.equals("/product/deleteProduct.com")) {
+    	  System.out.println(" C : /product/deleteProduct.com 호출 ");
+          System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
+          
+          action = new deleteProduct();
+          
+          try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+  
       }
       
       

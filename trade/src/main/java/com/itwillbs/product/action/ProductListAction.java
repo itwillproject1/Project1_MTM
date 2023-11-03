@@ -59,12 +59,12 @@ public class ProductListAction implements Action {
 		/********************* 페이징처리 1 *******************/
 
 		// DAO - 글정보 모두(list)를 가져오는 메서드 호출
-		ArrayList ProductList = null;
-		if (count > 0 && search == null && category == null) {
+		ArrayList ProductList = new ArrayList();
+		if (count > 0 && search == null && category == null) { // 검색어도 없고 카테고리도 선택 안 했을 때
 			ProductList = dao.getProductList(startRow, pageSize);
-		}else if(count > 0 && category != null ) {
+		}else if(count > 0 && category != null ) { // 카테고리 눌렀을 때
 			ProductList = dao.getCategoryProductList(startRow, pageSize, category);
-		}else if(count > 0 && search != null ) {
+		}else if(count > 0 && search != null ) { // 검색했을 떄
 			ProductList = dao.getProductList(startRow, pageSize, search);
 		}else {
 			// 글이 없는경우

@@ -26,9 +26,8 @@
 			<label for="productName">[${dto.deal_way }]${dto.title }</label>
 		</div>
 
-<<<<<<< HEAD
+
 		<!-- 이미지 영역 시작 -->
-=======
 		<%-- 		<c:set var="fileNameArr" value="${fn:split(dto.file_name,',') }" /> --%>
 		<!-- 		<div class="form-group2"> -->
 		<!-- 			s<div class="image-container"> -->
@@ -40,7 +39,6 @@
 		<%-- 				</c:forEach> --%>
 		<!-- 			</div> -->
 
->>>>>>> ef01ce3b8611b9c5c2c30f1bdaa14aab269dfb59
 		<c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
 		<div class="form-group2">
 			<div class="image-container">
@@ -80,8 +78,9 @@
 					<div class="dropdown">
 						<input class="update-content-button" type="button" value="...">
 						<div class="dropdown-content">
-							<a href="글 수정 페이지">글 수정하기</a><br> <a href="글 삭제 페이지">글
-								삭제하기</a>
+							<button onclick="location.href='updateContent.com';">글
+								수정하기</button>
+							<button onclick="confirmDelete();" class="">글 삭제하기</button>
 						</div>
 					</div>
 					<%-- </c:if> --%>
@@ -102,7 +101,6 @@
 					<label for="user">조회수: ${dto.views }</label>
 				</div>
 
-<<<<<<< HEAD
 				<div class="form-group">
 					<label for="productCategory">카테고리: <a
 						href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
@@ -139,18 +137,7 @@
 				<c:if test="${dto.deal_way.equals('삽니다') }">
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
 				</c:if>
-				
-			<c:if test="${dto.deal_way.equals('팝니다') }">
-			<div class="button-container">
-				<input class="submit-button" type="button" value="구매하기"
-					onclick="location.href='결제페이지';">
-					<input class="submit-button" type="button" value="♡${dto.like_count }"
-					onclick="찜하기">
-			</div>
-			</c:if>
-			<c:if test="${dto.deal_way.equals('삽니다') }">
-				<button class="submit-button" onclick="openProductModal();">판매하기</button>
-			</c:if>
+
 				<%
 				String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
 				ProductDAO dao = new ProductDAO();
@@ -279,5 +266,24 @@
         });
     </script>
 	<!-- 상세페이지 오른쪽 ... 버튼 종료 -->
+
+	<!-- 삭제하기  -->
+	<script>
+function confirmDelete() {
+    // 'confirm' 창을 표시하고 사용자가 확인을 누르면 true를 반환합니다.
+    const shouldDelete = confirm('글을 삭제하시겠습니까?');
+ 	// 현재 URL의 쿼리 매개변수를 가져옵니다.
+    const urlParams = new URLSearchParams(location.search);
+ // 쿼리 매개변수에서 원하는 값을 읽어옵니다.
+    const bno = urlParams.get("bno");
+ 
+ 	const newURL = "./deleteProduct.com?bno=" + bno;
+ 
+    if (shouldDelete) {
+        location.href = newURL;
+    }
+}
+</script>
+	<!-- 삭제하기 종료 -->
 </body>
 </html>
