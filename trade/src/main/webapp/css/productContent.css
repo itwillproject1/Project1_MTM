@@ -19,7 +19,6 @@ body {
 }
 
 .image-container {
-<<<<<<< HEAD
 	width: 40%;
 	padding-right: 20px; /* 이미지 컨테이너 오른쪽 여백 추가 */
 	display: flex;
@@ -34,7 +33,6 @@ body {
 	border-radius: 8px; /* 이미지에도 둥근 테두리 적용 */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 이미지에 그림자 추가 */
 	transition: transform 0.3s; /* 이미지 확대/축소 트랜지션 추가 */
-=======
    width: 50%;
 /*    padding-right: 20px; 이미지 컨테이너 오른쪽 여백 추가 */
    display: flex;
@@ -49,7 +47,6 @@ body {
    border-radius: 8px; /* 이미지에도 둥근 테두리 적용 */
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 이미지에 그림자 추가 */
    transition: transform 0.3s; /* 이미지 확대/축소 트랜지션 추가 */
->>>>>>> ef01ce3b8611b9c5c2c30f1bdaa14aab269dfb59
 }
 
 .image-container img:hover {

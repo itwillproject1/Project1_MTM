@@ -452,17 +452,18 @@ public class ProductDAO {
 	// 조회순으로 글 정보 목록을 가져오기() - getPopularList()
 	public ArrayList<ProductDTO> getPopularList() {
 	    ArrayList<ProductDTO> productPopList = new ArrayList<ProductDTO>();
+	    ProductDTO dto = null;
 		 try {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. sql 구문 작성(select) & pstmt 객체
-				sql = "SELECT file_name, deal_way, title, price FROM Product ORDER BY views DESC limit 8"; // views 내림차순으로 8개까지 정렬
+				sql = "SELECT * FROM Product ORDER BY views DESC limit 8"; // views 내림차순으로 8개까지 정렬
 				pstmt = con.prepareStatement(sql);
 				// 4. sql 실행
 				rs = pstmt.executeQuery();
 				// 5. 데이터 처리
 				while (rs.next()) {
-		            ProductDTO dto = new ProductDTO();
+		            dto = new ProductDTO();
 		            dto.setBno(rs.getInt("bno"));
 					dto.setContent(rs.getString("content"));
 					dto.setUser_id(rs.getString("user_id"));

@@ -139,12 +139,7 @@
 				<c:if test="${dto.deal_way.equals('삽니다') }">
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
 				</c:if>
-
-				<%
-String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
-ProductDAO dao = new ProductDAO();
-ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 가져오는 메서드
-=======
+				
 			<c:if test="${dto.deal_way.equals('팝니다') }">
 			<div class="button-container">
 				<input class="submit-button" type="button" value="구매하기"
@@ -160,7 +155,7 @@ ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 �
 				String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
 				ProductDAO dao = new ProductDAO();
 				ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 가져오는 메서드
->>>>>>> ef01ce3b8611b9c5c2c30f1bdaa14aab269dfb59
+
 
 				if (dto != null) {
 				%>
