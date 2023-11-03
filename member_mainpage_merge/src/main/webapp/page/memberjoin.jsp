@@ -138,9 +138,9 @@
 		
 		<fieldset>
 		<legend> 회원가입 페이지 </legend>
-		<form action="./MemberJoinAction.com" method="post" name="join" onsubmit="return check();">
-			아이디 : <input type="text" name="user_id">
-					 <input type="button"  value="ID 중복확인"  onclick="checkid();"> <br>
+		<form action="./MemberJoinAction.member" method="post" name="join" onsubmit="return check();">
+			아이디 : <input type="text" name="user_id"><br>
+					 <!--<input type="button"  value="ID 중복확인"  onclick="checkid();"> <br>-->
 					 
 					 
 			비밀번호 : <input type="password" name="password"><br>
@@ -148,7 +148,7 @@
 			
 			
 			이메일 : <input type="text" name="email1">
-				<select id="emial" name="email2" size="1" onchange="email_check()">
+				<select id="email" name="email2" size="1" onchange="email_check()">
 				<option value="선택하세요">선택하세요</option>
 				<option value="@naver.com">@naver.com</option>
 				<option value="@hanmail.net">@hanmail.net</option>

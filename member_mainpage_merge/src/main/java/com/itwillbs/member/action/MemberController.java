@@ -1,6 +1,7 @@
 package com.itwillbs.member.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,7 +23,7 @@ public class MemberController extends HttpServlet {
 		/************************1. 가상주소 계산 시작************************/
 		//System.out.println("\n---------------1. 가상주소 계산 시작---------------");
 		String requestURI = request.getRequestURI(); // 가상주소
-		//System.out.println("\tC: requestURI: " + requestURI);
+		System.out.println("\tC: requestURI: " + requestURI);
 		
 		String CTXPath = request.getContextPath(); // 프로젝트 이름
 		//System.out.println("\tC: CTXPath: " + CTXPath);
@@ -72,7 +73,41 @@ public class MemberController extends HttpServlet {
 			forward.setPath("./page/memberjoin.jsp");
 			forward.setRedirect(false);
 		}
-		
+		else if(command.equals("/MemberJoinAction.member")){
+			
+			action = new MemberJoinAction();
+						
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+			e.printStackTrace();
+			}
+		}
+		else if(command.equals("/MemberLoginAction.member")) {
+			//System.out.println(" C : /MemberLoginAction.mem 호출 ");
+			//System.out.println(" C : 패턴 2 - DB사용O, 페이지이동");
+			
+			// MemberLoginAction() 객체생성
+			action = new MemberLoginAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 처리결과를 가지고 이동
+		}
+		else if(command.equals("/MemberLogout.member")) {
+			//System.out.println(" C : /MemberLogout.me 호출 ");
+			//System.out.println(" C : 패턴 2 - 데이터처리O, 페이지로 이동");
+			
+			// MemberLogoutAction() 객체 생성
+			action = new MemberLogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		//System.out.println("---------------2. 가상주소 매핑 종료---------------");
 		/************************2. 가상주소 매핑 종료************************/
 		

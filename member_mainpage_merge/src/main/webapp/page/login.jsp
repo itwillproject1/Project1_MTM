@@ -16,14 +16,14 @@
 <body class="b">
 <%@ include file="header.jsp"%>
     <div class="login-container">
-        <form id="login-form" class="f">
+        <form id="login-form" class="f" action="./MemberLoginAction.member" method="post">
             <label for="username" class="l">아이디</label>
-            <input type="text" class="i" id="username" name="username" required>
+            <input type="text" class="i" id="username" name="user_id" required>
             
             <label for="password" class="l">비밀번호</label>
             <input type="password" class="i" id="password" name="password" required>
             
-            <button type="button" class="bu" onclick="login()">로그인</button>
+            <input type="submit" class="bu" value="로그인">
             <button type="button" class="bu" onclick="location.href='./memberjoin.member'">회원가입</button>
         </form>
     </div>
