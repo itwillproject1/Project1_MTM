@@ -26,9 +26,7 @@
 			<label for="productName">[${dto.deal_way }]${dto.title }</label>
 		</div>
 
-<<<<<<< HEAD
 		<!-- 이미지 영역 시작 -->
-=======
 		<%-- 		<c:set var="fileNameArr" value="${fn:split(dto.file_name,',') }" /> --%>
 		<!-- 		<div class="form-group2"> -->
 		<!-- 			s<div class="image-container"> -->
@@ -40,7 +38,6 @@
 		<%-- 				</c:forEach> --%>
 		<!-- 			</div> -->
 
->>>>>>> ef01ce3b8611b9c5c2c30f1bdaa14aab269dfb59
 		<c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
 		<div class="form-group2">
 			<div class="image-container">
@@ -102,7 +99,6 @@
 					<label for="user">조회수: ${dto.views }</label>
 				</div>
 
-<<<<<<< HEAD
 				<div class="form-group">
 					<label for="productCategory">카테고리: <a
 						href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
@@ -140,17 +136,6 @@
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
 				</c:if>
 				
-			<c:if test="${dto.deal_way.equals('팝니다') }">
-			<div class="button-container">
-				<input class="submit-button" type="button" value="구매하기"
-					onclick="location.href='결제페이지';">
-					<input class="submit-button" type="button" value="♡${dto.like_count }"
-					onclick="찜하기">
-			</div>
-			</c:if>
-			<c:if test="${dto.deal_way.equals('삽니다') }">
-				<button class="submit-button" onclick="openProductModal();">판매하기</button>
-			</c:if>
 				<%
 				String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
 				ProductDAO dao = new ProductDAO();
