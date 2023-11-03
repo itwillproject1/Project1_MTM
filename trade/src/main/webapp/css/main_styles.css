@@ -58,6 +58,7 @@ body {
 
 .product:hover { /* 틀 그림자 무지개 호버 */
 	animation: colorfulShadow 2s infinite;
+	cursor: pointer;
 }
 
 
