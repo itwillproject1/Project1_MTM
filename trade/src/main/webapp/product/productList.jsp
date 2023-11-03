@@ -100,15 +100,13 @@
 		</c:if>
 	</div>
 
-<<<<<<< HEAD
-</div>
-=======
+
 <script>
     function toProductContent(url) {
         window.location.href = url;
     }
 </script>
->>>>>>> 813e66a2b2c261a75b5fcffa8a3b7bb65d1a9cb1
+
 
 
 	<!-- 추후 추가 가능 -->
