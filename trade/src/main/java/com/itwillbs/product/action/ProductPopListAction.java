@@ -16,7 +16,8 @@ public class ProductPopListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ProductPopListAction_execute() 실행");
 		ProductDAO dao = new ProductDAO();
-		ArrayList popList = dao.getPopularList();
+		ArrayList popList = new ArrayList();
+		popList = dao.getPopularList();
 		
 		System.out.println("popList" + popList);
 		
