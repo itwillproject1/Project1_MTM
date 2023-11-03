@@ -184,8 +184,39 @@ public class EmployeeDAO {
 		return empList;
 	} // loadEemployeeList();
 		
-	
-	
+	public ArrayList tradeList(String deal_way) {
+		ArrayList tlist = new ArrayList();
+		TradeDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from Product where deal_way = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "'" + deal_way + "'");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto = new TradeDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setBrand(rs.getString("brand"));
+				dto.setDate_time(rs.getTimestamp("date_time"));
+				dto.setContent(rs.getString("content"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setTitle(rs.getString("title"));
+				dto.setCategory(rs.getString("category"));
+				dto.setViews(rs.getInt("views"));
+				dto.setDeal_way(rs.getString("deal_way"));
+				dto.setLike_count(rs.getInt("like_count"));
+				dto.setProduct_status(rs.getString("product_status"));
+				tlist.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return tlist;
+	}
+
 	public ArrayList tradeList(int range) {
 		ArrayList tlist = new ArrayList();
 		TradeDTO dto = null;
@@ -241,25 +272,23 @@ public class EmployeeDAO {
 		UserDTO dto = null;
 		try {
 			con = getCon();
-			sql = "select * from USER_BO";
+			sql = "select * from Member";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				list = new ArrayList();
-				while(rs.next()) {
-					dto = new UserDTO();
-					dto.setUser_id(rs.getString("user_id"));
-					dto.setName(rs.getString("name"));
-					dto.setNickname(rs.getString("nickname"));
-					dto.setPhone(rs.getString("phone"));
-					dto.setRegdate(rs.getTimestamp("regdate"));
-					dto.setPoint(rs.getInt("point"));
-					dto.setAgree(rs.getBoolean("agree"));
-					dto.setEmail(rs.getString("email"));
-					dto.setAddress(rs.getString("address"));
-					list.add(dto);
-				}
-			}
+			list = new ArrayList();
+			while(rs.next()) {
+				dto = new UserDTO();
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_name(rs.getString("user_name"));
+				dto.setUser_nickname(rs.getString("user_nickname"));
+				dto.setPhone(rs.getString("phone"));
+				//dto.setRegdate(rs.getTimestamp("regdate"));
+				//dto.setPoint(rs.getInt("point"));
+				//dto.setAgree(rs.getBoolean("agree"));
+				dto.setEmail(rs.getString("email"));
+				dto.setAddress(rs.getString("address"));
+				list.add(dto);
+			}	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -273,7 +302,7 @@ public class EmployeeDAO {
 		UserDTO dto = null;
 		try {
 			con = getCon();
-			sql = "select * from USER_BO where user_id like ?";
+			sql = "select * from Member where user_id like ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + search + "%");
 			rs = pstmt.executeQuery();
@@ -281,12 +310,12 @@ public class EmployeeDAO {
 			while(rs.next()) {
 				dto = new UserDTO();
 				dto.setUser_id(rs.getString("user_id"));
-				dto.setName(rs.getString("name"));
-				dto.setNickname(rs.getString("nickname"));
+				dto.setUser_name(rs.getString("user_name"));
+				dto.setUser_nickname(rs.getString("user_nickname"));
 				dto.setPhone(rs.getString("phone"));
-				dto.setRegdate(rs.getTimestamp("regdate"));
-				dto.setPoint(rs.getInt("point"));
-				dto.setAgree(rs.getBoolean("agree"));
+				//dto.setRegdate(rs.getTimestamp("regdate"));
+				//dto.setPoint(rs.getInt("point"));
+				//dto.setAgree(rs.getBoolean("agree"));
 				dto.setEmail(rs.getString("email"));
 				dto.setAddress(rs.getString("address"));
 				list.add(dto);

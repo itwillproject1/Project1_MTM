@@ -73,8 +73,8 @@
                               </div>
                             </td>
                             <td>
-                              <p class="mb-0 text-muted"><strong><c:out value="${i.user_id}" /></strong></p>
-                              <small class="mb-0 text-muted">${i.name}</small>
+                              <p class="mb-0 text-muted"><strong>${i.user_id}</strong></p>
+                              <small class="mb-0 text-muted">${i.user_name}</small>
                             </td>
                             <td>
                               <p class="mb-0 text-muted">${i.email}</p>

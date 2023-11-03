@@ -7,7 +7,7 @@
 		driverClassName="com.mysql.cj.jdbc.Driver"
 		username="c7d2307t1"
 		password="1234"
-		url="jdbc:mysql://itwillbs.com:3306/c7d2307t1"
+		url="jdbc:mysql://itwillbs.com:3306/c7d2307t1?useUnicode=true&amp;characterEncoding=utf8"
 		maxWait="5000"
 		/>
 </Context>

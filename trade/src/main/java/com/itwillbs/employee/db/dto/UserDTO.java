@@ -6,12 +6,12 @@ public class UserDTO {
 	private String user_id;
 	private String user_pw;
 	private String email;
-	private String name;
+	private String user_name;
 	private String jumin; // 주민등록번호는 등록 불법 -> 생년월일로 지정
 	private String gender;
 	private String phone;
 	private String address;
-	private String nickname;
+	private String user_nickname;
 	private boolean agree;
 	private Timestamp regdate;
 	private int point;
@@ -33,11 +33,11 @@ public class UserDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getName() {
-		return name;
+	public String getUser_name() {
+		return user_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 	public String getJumin() {
 		return jumin;
@@ -63,11 +63,11 @@ public class UserDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getUser_nickname() {
+		return user_nickname;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
 	}
 	public boolean isAgree() {
 		return agree;
@@ -87,12 +87,12 @@ public class UserDTO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	
 	@Override
 	public String toString() {
-		return "EmployeeUserDAO [user_id=" + user_id + ", user_pw=" + user_pw + ", email=" + email + ", name=" + name
+		return "UserDTO [user_id=" + user_id + ", user_pw=" + user_pw + ", email=" + email + ", user_name=" + user_name
 				+ ", jumin=" + jumin + ", gender=" + gender + ", phone=" + phone + ", address=" + address
-				+ ", nickname=" + nickname + ", agree=" + agree + ", regdate=" + regdate + ", point=" + point
+				+ ", user_nickname=" + user_nickname + ", agree=" + agree + ", regdate=" + regdate + ", point=" + point
 				+ ", toString()=" + super.toString() + "]";
 	}
+	
 }

@@ -13,9 +13,15 @@ public class UserListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String search = request.getParameter("search");
-		String pageNum = request.getParameter("pageNum") == null? request.getParameter("pageNum") : "1";
+		int pageNum;
+		if(request.getParameter("pageNum") == null) pageNum = 1;
+		else pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		EmployeeDAO dao = new EmployeeDAO();
-		ArrayList list = dao.userList();
+		ArrayList list = null;
+		int userCount = dao.userCount();
+		int columns = 8;
+		int totalPage = userCount%columns == 0? userCount/columns : (userCount/columns)+1;
+		// select * from Member limit pageNum, columns;
 		if(search == null) {
 			list = dao.userList();
 		}
@@ -24,6 +30,7 @@ public class UserListAction implements Action{
 		}
 		ActionForward forward = new ActionForward();
 		request.setAttribute("dto", list);
+		request.setAttribute("pageNum", pageNum);
 		forward.setPath("./employee/user/userList.jsp");
 		forward.setRedirect(false);
 		return forward;

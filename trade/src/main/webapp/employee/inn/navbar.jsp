@@ -16,11 +16,11 @@
           <button class="navbar-toggler mt-2 mr-auto toggle-sidebar text-muted">
             <i class="fe fe-menu navbar-toggler-icon"></i>
           </button>
-          <div class="navbar-slide bg-white ml-lg-4" id="navbarSupportedContent">
+          <div class="navbar-slide bg-white ml-lg-4" id="navbarSupportedContent" style="margin-right:auto;">
             <a href="#" class="btn toggle-sidebar d-lg-none text-muted ml-2 mt-3" data-toggle="toggle">
               <i class="fe fe-x"><span class="sr-only"></span></i>
             </a>
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="./EmployeeList.emp">
                   <span class="ml-lg-2">직원 목록</span>

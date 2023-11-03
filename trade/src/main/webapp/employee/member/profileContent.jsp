@@ -10,8 +10,7 @@
             <div class="col-12 col-lg-10 col-xl-8">
               <h2 class="h3 mb-4 page-title">프로필</h2>
               <div class="my-4">
-                <form>
-                  <div class="row mt-5 align-items-center">
+                                  <div class="row mt-5 align-items-center">
                     <div class="col-md-3 text-center mb-5">
                       <div class="avatar avatar-xl">
                         <img src="./employee/template/assets/images/user.png" alt="${dto.name}의 이미지" class="avatar-img rounded-circle">
@@ -33,6 +32,8 @@
                       </div>
                     </div>
                   </div>
+               <c:if test="${sessionScope.emp_id == dto.emp_id}">
+                <form>
                   <hr class="my-4">
                   <div class="form-row">
                     <div class="form-group col-md-6">
@@ -61,7 +62,6 @@
                         <label for="inputPassword4">이전 비밀번호</label>
                         <input type="password" name="past_pw" class="form-control" id="inputPassword5">
                       </div>
-                  
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
@@ -77,6 +77,7 @@
                   <button type="submit" class="btn btn-primary">저장</button>
                   <button type="button" class="btn btn-secondary" onclick="history.back();">취소</button>
                 </form>
+               </c:if>
               </div> <!-- /.card-body -->
             </div> <!-- /.col-12 -->
           </div> <!-- .row -->
