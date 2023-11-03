@@ -2,33 +2,41 @@
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
-    background-color: #ffffff; /* 흰 배경색 */
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
 }
 
 header {
-	  position: fixed; /* 9-12줄 헤더 고정 */
+	  position: fixed; 
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 설정 */
-    background-color: #ffffff; /* 흰 배경색 */
-    color: #333; /* 검은색 텍스트 */
-    display: flex;
-    justify-content: space-between;
+    background-color: #ffffff; 
+    color: #333; 
+    /* display: flex; */
     align-items: center;
     padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-    transition: box-shadow 0.3s; /* 그림자 효과에 트랜지션 추가 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s; 
 }
 
 header:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강화 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
-.logo img {
-    max-height: 100px;
+/* .logo img { */
+/*     max-width: 10px; */
+/*     height: auto; 이미지의 가로세로 비율 유지를 위해 필요한 속성 */
+/* } */
+
+.logo a{
+	font-family: 'Lato','Roboto', 'Nanum Square', 'Nanum Gothic', Arial;
+	font-size: 25px;
+    font-weight: 900;
+	color: #333;
+	text-decoration: none;
 }
 
 .category-a a {
@@ -38,10 +46,12 @@ header:hover {
 }
 
 .category-a a:hover {
-    color: #A9A9A9; /* 원하는 hover 색상으로 수정 */
-    text-decoration: none; /* 원하는 hover 효과로 수정 */
+    color: #A9A9A9; 
+    text-decoration: none; 
 }
 
+
+.category-b { margin-left: 20px;}
 
 .category-b a {
 	left: -20px;
@@ -52,8 +62,8 @@ header:hover {
 }
 
 .category-b a:hover {
-    color: #A9A9A9; /* 원하는 hover 색상으로 수정 */
-    text-decoration: none; /* 원하는 hover 효과로 수정 */
+    color: #A9A9A9; 
+    text-decoration: none; 
 }
 
 .category-c a {
@@ -64,43 +74,59 @@ header:hover {
     margin-right: 20px; 
 }
 
+.rgt {
+	float: right;
+	margin-right: 30px;
+    padding-left: 20px;
+}
+
+.rgt1 {
+	margin-right: 20px;
+}
+
+.rgt>* {
+	display: inline-block;
+}
+
 .search input {
+	font-family: 'Noto Sans KR', sans-serif;
     padding: 10px;
-    border: 3px solid #a3a3a3; /* 검은색 테두리 설정 */
-    border-radius: 25px;
+    border: 1px solid #a3a3a3; /* 테두리  */
+/*     border-radius: 25px; */
     margin-right: 10px;
     width: 200px;
 }
 .search input:hover {
     padding: 10px;
-    border: 3px solid #000; /* 검은색 테두리 설정 */
-    border-radius: 25px;
+    border: 1px solid #000; /* 테두리 */
+/*     border-radius: 25px; */
     margin-right: 10px;
     width: 200px;
 }
 
 .search button {
-    padding: 10px 20px;
-    background-color: #333; /* 검은색 버튼 */
+	font-family: 'Noto Sans KR', sans-serif;
+    padding: 10px 15px;
+    background-color: #333; /* 버튼 */
     color: #fff;
     border: none;
-    border-radius: 25px;
+/*     border-radius: 25px; */
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .search button:hover {
-    background-color: #555; /* 버튼 호버 시 색상 변경 */
+    background-color: #555; 
 }
 
 .user-menu a {
 	word-spacing: -10px;
-    text-decoration: none;
     color: #222;
-    margin-right: 30px; /* 여기도 20->30으로 수정 */
+    margin-right: 30px; 
+    text-decoration: none;
 }
 
 .user-menu a:hover {
-    color: #A9A9A9; /* 원하는 hover 색상으로 수정 */
-    text-decoration: none; /* 원하는 hover 효과로 수정 */
+    color: #A9A9A9; 
+    text-decoration: none;
 }
