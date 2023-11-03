@@ -117,10 +117,25 @@
 			}
 			
 			function checkid() {
-				let checkid = window.open("./member/checkid.jsp","checkid","width=570,height=420, scrollbars=yes, resizable=yes");
+				var id = document.join.user_id.value;
+				if (id == "") {
+					alert(' 아이디를 입력하세요! ');
+					document.join.user_id.focus();
+					return false;
+				}
+				if(document.join.user_id.value.length < 5 || document.join.user_id.value.length > 12) {
+					alert("아이디는 5자 이상 12자 이하로 작성해주세요");
+					document.join.user_id.focus();
+					return false;
+				}
+				let checkid = window.open("./Membercheckid.com","checkid","width=570,height=420, scrollbars=yes, resizable=yes");
 				
 				// checkid.document.getElementById("id").value = document.getElementById("user_id").value;
 				}
+			function checkidCallBack(user_id){
+				// 중복확인에서 확인받은 정보를 받아서, 현 페이지에 정보를 등록
+				document.join.user_id.value = user_id;
+			}
 			
 			
 		</script>
@@ -130,8 +145,10 @@
 		<fieldset>
 		<legend> 회원가입 페이지 </legend>
 		<form action="./MemberJoinAction.com" method="post" name="join" onsubmit="return check();">
+		<div id="callBackDiv">
 			아이디 : <input type="text" name="user_id" id="user_id">
 					 <input type="button"  value="ID 중복확인"   onclick="checkid();"> <br>
+		</div>
 					 
 					 
 			비밀번호 : <input type="password" name="password"><br>
@@ -139,7 +156,7 @@
 			
 			
 			이메일 : <input type="text" name="email1">
-				<select id="emial" name="email2" size="1" onchange="email_check()">
+				<select id="email" name="email2" size="1" onchange="email_check()">
 				<option value="선택하세요">선택하세요</option>
 				<option value="@naver.com">@naver.com</option>
 				<option value="@hanmail.net">@hanmail.net</option>

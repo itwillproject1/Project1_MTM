@@ -53,9 +53,23 @@ public class MemberFrontController extends HttpServlet {
 			forward.setPath("./member/main.jsp");
 			forward.setRedirect(false);
 			
+		}else if(command.equals("/Membercheckid.com")) {
+			forward = new ActionForward();
+			forward.setPath("./member/checkid.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/MemberCheckIdAction.com")){
+			
+			System.out.println(" C : /MemberCheckIdAction.com 호출 ");
+			
+				action = new MemberCheckIdAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	
 		}
-		
-		
 		
 		System.out.println(" C : 2. 가상주소 매핑 끝------------------");
 		/***********************2. 가상주소 매핑 끝**************************/
