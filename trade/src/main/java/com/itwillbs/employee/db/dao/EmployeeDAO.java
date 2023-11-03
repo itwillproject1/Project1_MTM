@@ -10,7 +10,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class EmployeeMemberDAO {
+import com.itwillbs.employee.db.dto.EmployeeMemberDTO;
+import com.itwillbs.employee.db.dto.EmployeeTradeDTO;
+import com.itwillbs.employee.db.dto.EmployeeUserDTO;
+
+public class EmployeeDAO {
 	private Connection con = null;
 	private ResultSet rs = null;
 	private String sql = "";
@@ -180,4 +184,109 @@ public class EmployeeMemberDAO {
 		}
 		return empList;
 	} // loadEemployeeList();
+		
+	
+	
+	public ArrayList tradeList(int range) {
+		ArrayList tlist = new ArrayList();
+		EmployeeTradeDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from Product order by date_time desc limit ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, range);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto = new EmployeeTradeDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setUser_id(rs.getString("user_id"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return tlist;
+	}
+	
+	public ArrayList userList() {
+		ArrayList list = null;
+		EmployeeUserDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from USER_BO";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				list = new ArrayList();
+				while(rs.next()) {
+					dto = new EmployeeUserDTO();
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setName(rs.getString("name"));
+					dto.setNickname(rs.getString("nickname"));
+					dto.setPhone(rs.getString("phone"));
+					dto.setRegdate(rs.getTimestamp("regdate"));
+					dto.setPoint(rs.getInt("point"));
+					dto.setAgree(rs.getBoolean("agree"));
+					dto.setEmail(rs.getString("email"));
+					dto.setAddress(rs.getString("address"));
+					list.add(dto);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return list;
+	}
+	
+	public ArrayList userSearch(String search) {
+		ArrayList list = null;
+		EmployeeUserDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from USER_BO where user_id like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%");
+			rs = pstmt.executeQuery();
+			list = new ArrayList();
+			while(rs.next()) {
+				dto = new EmployeeUserDTO();
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setName(rs.getString("name"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setRegdate(rs.getTimestamp("regdate"));
+				dto.setPoint(rs.getInt("point"));
+				dto.setAgree(rs.getBoolean("agree"));
+				dto.setEmail(rs.getString("email"));
+				dto.setAddress(rs.getString("address"));
+				list.add(dto);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return list;
+	}
+	
+	public int userCount() {
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from USER_BO";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
 }

@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.itwillbs.employee.db.dao.EmployeeMemberDAO;
+import com.itwillbs.employee.db.dao.EmployeeDAO;
 import com.itwillbs.employee.db.dto.EmployeeMemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
@@ -13,7 +13,7 @@ import com.itwillbs.util.JSMoveFunction;
 public class EmployeeLoginAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		EmployeeMemberDAO dao = new EmployeeMemberDAO();
+		EmployeeDAO dao = new EmployeeDAO();
 		EmployeeMemberDTO dto = new EmployeeMemberDTO();
 		
 		dto.setEmp_id(request.getParameter("emp_id"));

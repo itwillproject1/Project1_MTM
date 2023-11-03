@@ -3,7 +3,7 @@ package com.itwillbs.employee.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.db.dao.EmployeeMemberDAO;
+import com.itwillbs.employee.db.dao.EmployeeDAO;
 import com.itwillbs.employee.db.dto.EmployeeMemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
@@ -12,7 +12,7 @@ public class EmployeePwFindAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		EmployeeMemberDTO dto = new EmployeeMemberDTO();
-		EmployeeMemberDAO dao = new EmployeeMemberDAO();
+		EmployeeDAO dao = new EmployeeDAO();
 		
 		dto.setEmp_id(request.getParameter("emp_id"));
 		dto.setEmail(request.getParameter("email"));

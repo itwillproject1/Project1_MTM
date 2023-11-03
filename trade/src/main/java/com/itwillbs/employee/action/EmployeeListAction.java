@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.itwillbs.employee.db.dao.EmployeeMemberDAO;
+import com.itwillbs.employee.db.dao.EmployeeDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 import com.itwillbs.util.JSMoveFunction;
@@ -23,7 +23,7 @@ public class EmployeeListAction implements Action{
 			move.alertLocation(response, "로그인이 되어있지 않습니다!", "./Login.emp");
 		}
 		
-		EmployeeMemberDAO dao = new EmployeeMemberDAO();
+		EmployeeDAO dao = new EmployeeDAO();
 		
 		ArrayList dList = dao.loadEmployeeList(1);
 		if(dList.size() == 0) {
