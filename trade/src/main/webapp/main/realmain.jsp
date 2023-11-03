@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +30,7 @@
   
     <!-- 추천상품 -->
     
+<<<<<<< HEAD
 <div class="container">
    <div class="title">추천 상품</div>
   <div class="container">
@@ -54,6 +54,23 @@
 
 	</div>
 <!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
+   <div class="title">추천 상품</div>
+<div class="container">
+		<c:forEach var="dto" items="${ProductList}">
+
+  
+   <div class="product">
+		<img src="<%=request.getContextPath() %>/upload/${dto.file_name}" alt="${dto.title}">
+        <div class="product-info">
+			<h3>[${dto.deal_way }]${dto.title }</h3>
+            </div>
+            <div class="product-price">
+            <p><fmt:formatNumber value="${dto.price }" /> 원</p>
+        </div>
+            </div>
+        
+<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
+  </c:forEach>
 </div>
     <footer>
         <p>&copy; 1조 전자기기 중고거래</p>

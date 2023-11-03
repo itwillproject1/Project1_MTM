@@ -64,7 +64,7 @@ public class ProductDAO {
 
 			// sql, pstmt
 			sql = "insert into Product (bno, user_id, deal_way, title, category, brand, "
-					+ "price, product_status, content, views, date_time, file_name) values (?,?,?,?,?,?,?,?,?,?,now(),?)";
+					+ "price, product_status, content, views, date_time, file_name, like_count) values (?,?,?,?,?,?,?,?,?,?,now(),?,?)";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, bno);
@@ -79,6 +79,7 @@ public class ProductDAO {
 			pstmt.setString(9, dto.getContent());
 			pstmt.setInt(10, 0); // 조회수 0
 			pstmt.setString(11, dto.getFile_name());
+			pstmt.setInt(12, 0); // 찜 0
 
 			// sql 실행
 			pstmt.executeUpdate();
@@ -149,6 +150,7 @@ public class ProductDAO {
 				dto.setViews(rs.getInt("views"));
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
+				dto.setLike_count(rs.getInt("like_count"));
 			}
 			System.out.println("DAO: 글 정보 조회 완료!");
 		} catch (Exception e) {
@@ -275,6 +277,7 @@ public class ProductDAO {
 				dto.setViews(rs.getInt("views"));
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
+				dto.setLike_count(rs.getInt("like_count"));
 
 				// 글 하나의 정보를 배열의 한칸에 저장
 				ProductList.add(dto);
@@ -331,6 +334,7 @@ public class ProductDAO {
 					dto.setViews(rs.getInt("views"));
 					dto.setDate_time(rs.getTimestamp("date_time"));
 					dto.setFile_name(rs.getString("file_name"));
+					dto.setLike_count(rs.getInt("like_count"));
 
 					// 글 하나의 정보를 배열의 한칸에 저장
 					ProductList.add(dto);
@@ -439,26 +443,44 @@ public class ProductDAO {
 					// 글 하나의 정보를 배열의 한칸에 저장
 					PopularProducts.add(dto);
 					
+				}
+					System.out.println(" DAO : 글 목록 조회성공! ");
 				    System.out.println("DAO : " + PopularProducts.size()); // 데이터가 추가될 때 크기 확인
 
-				}
 
-				System.out.println(" DAO : 글 목록 조회성공! ");
-				System.out.println(" DAO : " + PopularProducts.size());
-
+	// 특정 글의 정보를 가져오기() - getPopularList(bno)
+		public ProductDTO getPopularList(int bno) {
+			ProductDTO dto = null;
+			
+			try {
+				// 1.2. 디비연결
+				con = getCon();
+				// 3. sql 구문 작성(select) & pstmt 객체
+				sql = "SELECT bno, file_name, title, price FROM Product " +
+			              "WHERE bno = ? ORDER BY views DESC"; // views 내림차순으로 정렬
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, bno);
+				// 4. sql 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				if(rs.next()) {
+					dto = new ProductDTO();
+					
+					dto.setBno(rs.getInt("bno"));
+		            dto.setFile_name(rs.getString("file_name"));
+		            dto.setTitle(rs.getString("title"));
+		            dto.setPrice(rs.getInt("price"));
+				}// if
+				
+				System.out.println(" DAO : 글정보 조회성공!");
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				closeDB();
 			}
-			return PopularProducts;
+			return dto;
 		}
-		// 조회순으로 글 정보 목록을 가져오는 메서드 종료
 	
-	
-	
-	
-	
-	
+		// 특정 글의 정보를 가져오기() - getPopularList(bno)
 	
 }
