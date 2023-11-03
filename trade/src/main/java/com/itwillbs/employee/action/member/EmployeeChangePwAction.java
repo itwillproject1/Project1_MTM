@@ -1,4 +1,4 @@
-package com.itwillbs.employee.action;
+package com.itwillbs.employee.action.member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

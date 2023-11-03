@@ -1,4 +1,4 @@
-package com.itwillbs.employee.action;
+package com.itwillbs.employee.action.user;
 
 import java.util.ArrayList;
 

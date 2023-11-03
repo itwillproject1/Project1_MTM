@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.action.EmployeeChangeProfileAction;
-import com.itwillbs.employee.action.EmployeeChangePwAction;
-import com.itwillbs.employee.action.EmployeeLoginAction;
-import com.itwillbs.employee.action.EmployeeProfileAction;
-import com.itwillbs.employee.action.EmployeePwFindAction;
-import com.itwillbs.employee.action.EmployeeUserListAction;
+import com.itwillbs.employee.action.member.EmployeeChangeProfileAction;
+import com.itwillbs.employee.action.member.EmployeeChangePwAction;
+import com.itwillbs.employee.action.member.EmployeeLoginAction;
+import com.itwillbs.employee.action.member.EmployeeProfileAction;
+import com.itwillbs.employee.action.member.EmployeePwFindAction;
+import com.itwillbs.employee.action.user.EmployeeUserListAction;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
