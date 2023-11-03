@@ -57,15 +57,17 @@ body {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 3%;
+	margin-top: 12%;
 	align-items: center;
-	width: 90%; /* 이미지 미리보기의 가로 크기를 조정 */
-	height: 60%; /* 이미지 미리보기의 세로 크기를 조정 */
+	width: 150%; /* 이미지 미리보기의 가로 크기를 조정 */
+	height: 80%; /* 이미지 미리보기의 세로 크기를 조정 */
 	/*	border: 1px solid;*/
 }
 
 .image-preview-choice {
 	display: flex;
 	flex-direction: row;
+	width: 20%;
 }
 
 .clickable-image {

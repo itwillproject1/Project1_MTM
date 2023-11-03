@@ -29,16 +29,17 @@ body {
 /* 밑으로 추천 상품 슬라이더 */
 
 .title {
+	text-align-last: center;
 	width: 100%;
 	text-align: left;
-	font-size: 30px;
+	font-size: 2.5rem;
 	font-weight: bold;
-	margin-top: 50px;
+	margin-top: 10rem;
 }
 
 .container {
-	max-width: 100%;
-	margin: 150px auto;
+	max-width: 1200px;
+	margin: 50px auto;
 	padding: 0 20px;
 	display: flex;
 	flex-wrap: wrap;

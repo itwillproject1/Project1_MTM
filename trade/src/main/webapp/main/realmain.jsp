@@ -3,6 +3,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page import="com.itwillbs.product.db.ProductDAO"%>
+<%@page import="com.itwillbs.product.db.ProductDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,9 +35,8 @@
 	<div class="container">
 		<c:forEach var="product" items="${dto}">
 
-			<div class="product">
-				<img
-					src="<%=request.getContextPath() %>/upload/${product.file_name}"
+	<div class="product" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
+			<img src="<%=request.getContextPath() %>/upload/${product.file_name}"
 					alt="${product.title}">
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>
@@ -50,6 +51,13 @@
 			<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
 		</c:forEach>
 	</div>
+	
+<script>
+  function toProductContent(url) {
+      window.location.href = url;
+  }
+</script>
+	
 	<footer>
 		<p>&copy; 1조 전자기기 중고거래</p>
 	</footer>

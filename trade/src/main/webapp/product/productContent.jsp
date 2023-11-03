@@ -26,7 +26,10 @@
 			<label for="productName">[${dto.deal_way }]${dto.title }</label>
 		</div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ed4a20492add89594a5021f01bdd81bf9700978
 		<!-- 이미지 영역 시작 -->
 		<%-- 		<c:set var="fileNameArr" value="${fn:split(dto.file_name,',') }" /> --%>
 		<!-- 		<div class="form-group2"> -->
@@ -137,7 +140,11 @@
 				<c:if test="${dto.deal_way.equals('삽니다') }">
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
 				</c:if>
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> 7ed4a20492add89594a5021f01bdd81bf9700978
 				<%
 				String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
 				ProductDAO dao = new ProductDAO();

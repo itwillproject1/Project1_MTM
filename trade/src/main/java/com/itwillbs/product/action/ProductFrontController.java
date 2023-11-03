@@ -44,12 +44,6 @@ public class ProductFrontController extends HttpServlet{
          System.out.println("\tC: /Main.com 호출");
          System.out.println("\tC: 패턴3 - DB 사용 O, 뷰페이지 출력");
          
-//         action = new ActionForward();
-//
-//         forward.setPath("./realmain.jsp");
-//         forward.setRedirect(false);
-     
-         // ProductPopListAction() 객체 생성
          action = new ProductPopListAction();
          
          try {
