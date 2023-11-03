@@ -10,7 +10,7 @@
             <div class="col-12 col-lg-10 col-xl-8">
               <h2 class="h3 mb-4 page-title">프로필</h2>
               <div class="my-4">
-                                  <div class="row mt-5 align-items-center">
+               	<div class="row mt-5 align-items-center">
                     <div class="col-md-3 text-center mb-5">
                       <div class="avatar avatar-xl">
                         <img src="./employee/template/assets/images/user.png" alt="${dto.name}의 이미지" class="avatar-img rounded-circle">
