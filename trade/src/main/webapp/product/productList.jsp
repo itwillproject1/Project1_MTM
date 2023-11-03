@@ -27,10 +27,8 @@
 	<!-- 여기에 상품 목록 들어갈 부분 -->
 	<div class="container">
 		<c:forEach var="dto" items="${ProductList }">
-
 			<!-- 상품들 -->
-			<div class="product">
-
+			<div class="product" onclick="toProductContent('./ProductContent.com?bno=${dto.bno}')">
 				<div class="product.image">
 					<img src="<%=request.getContextPath() %>/upload/${dto.file_name}"
 						alt="${dto.title}">
@@ -46,7 +44,6 @@
 						원
 					</p>
 				</div>
-
 			</div>
 		</c:forEach>
 	</div>
@@ -74,7 +71,11 @@
 		</c:if>
 	</div>
 
-
+<script>
+    function toProductContent(url) {
+        window.location.href = url;
+    }
+</script>
 
 
 	<!-- 추후 추가 가능 -->

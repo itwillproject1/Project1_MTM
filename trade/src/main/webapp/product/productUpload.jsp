@@ -175,11 +175,13 @@
 
 				<div class="form-group">
 					<label for="productImage">상품 이미지:</label>
+					<div id="uploadFile">
 					<c:forEach var="i" begin="1" end="5" step="1">
 						<!-- 파일 선택 시 previewImage() 함수 호출 -->
 						<input type="file" id="file${i }" name="file${i }"
 							accept="image/*" onchange="previewImage(${i })">
 					</c:forEach>
+					</div>
 				</div>
 
 

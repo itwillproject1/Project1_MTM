@@ -19,6 +19,9 @@ public class ProductContentAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: ProductContentAction.execute() 호출");
 		
+		// 추후 로그인 정보 받아서 조회는 가능,
+		// 나머지(구매, 판매, 찜 등)는 로그인페이지 이동
+		
 		// 전달정보 저장(bno, pageNum, search(생략))
 		int bno = Integer.parseInt(request.getParameter("bno")); // 추후 수정
 		String pageNum = request.getParameter("pageNum");
@@ -40,6 +43,7 @@ public class ProductContentAction implements Action {
 		// ajax에 값 반환
 		response.setContentType("application/x-json; charset=UTF-8");
 		response.getWriter().write(result+""); // String으로 형 변환해서 전달
+		request.setAttribute("result", result);
 
 		// 페이지 이동 준비(./productContent.jsp)
 		ActionForward forward = new ActionForward();

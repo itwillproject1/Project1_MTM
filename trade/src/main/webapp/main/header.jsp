@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../header.css">
+<link rel="stylesheet" href="../css/header.css">
 
 
 <title>쇼핑몰</title>
@@ -14,7 +14,7 @@
 <body>
 
 	<header>
-		<span class="logo"> <a href="../main/Main.com"><img src="chun.png" alt="로고"></a>
+		<span class="logo"> <a href="../main/Main.com"><img src="chun.png" alt="로고" width="60px"></a>
 		</span>
 		
 		<span class="category-a"> <a href="#">삽니다</a> <a href="#">팝니다</a>

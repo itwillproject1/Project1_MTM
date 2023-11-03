@@ -15,47 +15,7 @@
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productContent.css" rel="stylesheet" />
 <link href="../css/productPopup.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>상세페이지</title>
-<script>
-	// 로그인 유저의 좋아요 유무 체크
-	 $(document).ready(function() {
-            $.ajax({
-                url: './product/ProductContent.com',
-                type: 'POST',
-                data: { bno: ${bno}, user_id: ${user_id} },
-                success: function(result) {
-                    if (result === 1) {
-                        $("#like").text("♥");
-                    } else if (result === 0) {
-                        $("#like").text("♡");
-                    } else {
-                        $("#like").text("오류! 리턴값 -1");
-                    }
-                }
-            });
-        });
-			
-	// 좋아요 버튼 클릭 시 실행되는 ajax
-	$("#like").on("click", function(){
-		console.log("click");
-        $.ajax({
-            url: '${pageContext.request.contextPath}/LikeAction.com',
-            type: 'POST',
-            data: { bno: ${bno}, user_id: ${user_id} },
-            success: function(result) {
-                console.log("데이터 변환됨: " + result);
-                if (result === 1) {
-                    $("#like").text("♥");
-                } else if (result === 0) {
-                    $("#like").text("♡");
-                } else {
-                    $("#like").text("오류! 리턴값 -1");
-				}
-			}
-		})
-	})
-</script>
 </head>
 <body>
 
@@ -66,17 +26,7 @@
 			<label for="productName">[${dto.deal_way }]${dto.title }</label>
 		</div>
 
-		<%-- 		<c:set var="fileNameArr" value="${fn:split(dto.file_name,',') }" /> --%>
-		<!-- 		<div class="form-group2"> -->
-		<!-- 			<div class="image-container"> -->
-		<!-- 				<img src="" -->
-		<!-- 					id="imagePreview" alt="미리보기"> -->
-		<%-- 				<c:forEach var="file_name" items="${fileNameArr }"> --%>
-		<%-- 					<img src="<%=request.getContextPath() %>/upload/${file_name}" --%>
-		<!-- 						id="imagePreviewChoice" alt="미리보기"> -->
-		<%-- 				</c:forEach> --%>
-		<!-- 			</div> -->
-
+		<!-- 이미지 영역 시작 -->
 		<c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
 		<div class="form-group2">
 			<div class="image-container">
@@ -105,11 +55,31 @@
 			        });
 			    });
 		</script>
+			<!-- 이미지 영역 종료 -->
 
 
 
 			<div class="form-container">
-				<h2>상세 페이지</h2>
+				<h2>
+					상세 페이지
+					<%-- <c:if test="로그인 아이디 == 작성자"> --%>
+					<div class="dropdown">
+						<input class="update-content-button" type="button" value="...">
+						<div class="dropdown-content">
+							<a href="글 수정 페이지">글 수정하기</a><br> <a href="글 삭제 페이지">글
+								삭제하기</a>
+						</div>
+					</div>
+					<%-- </c:if> --%>
+					<%-- <c:if test="로그인 아이디 != 작성자">
+					<div class="dropdown">
+						<input class="update-content-button" type="button" value="...">
+						<div class="dropdown-content">
+							<a href="글 신고 페이지">글 신고하기</a><br>
+						</div>
+					</div>
+					</c:if> --%>
+				</h2>
 				<div class="form-group">
 					<label for="user">작성자: <a href="작성자프로필">${dto.user_id }</a></label>
 				</div>
@@ -142,14 +112,12 @@
 					<div class="button-container">
 						<input class="submit-button" type="button" value="구매하기"
 							onclick="location.href='결제페이지';">
-							
+
 						<!-- 찜 기능 시작 -->
-						
-						
-								<span id="like">좋아요</span>
-								<%-- <input class="submit-button" type="button" value="♡${dto.like_count }"
-							onclick="location.href='./ProductLike.com'"> --%>
-							<!--  찜 기능 끝 -->
+						<!-- <span id="like">좋아요</span> -->
+						<input class="submit-button" type="button"
+							value="♡${dto.like_count }" onclick="찜하거나 찜취소, db도 연결돼야함">
+						<!--  찜 기능 끝 -->
 
 					</div>
 				</c:if>
@@ -262,6 +230,27 @@ if (dto != null) {
 			<label for="productDescription">상품 설명: </label> ${dto.content }
 		</div>
 	</div>
+	<!-- 상세페이지 오른쪽 ... 버튼 -->
+	<script>
+        // ... 버튼 마우스 오버 시 드롭다운을 열거나 닫기
+        var button = document.querySelector('.update-content-button');
+        var dropdown = document.querySelector('.dropdown-content');
 
+        button.addEventListener('click', function () {
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
+        });
+
+        // 다른 곳을 클릭하면 드롭다운 닫기
+        window.addEventListener('click', function (event) {
+            if (event.target !== button) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
+	<!-- 상세페이지 오른쪽 ... 버튼 종료 -->
 </body>
 </html>
