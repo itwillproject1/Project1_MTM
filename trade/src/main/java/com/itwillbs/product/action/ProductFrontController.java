@@ -116,12 +116,11 @@ public class ProductFrontController extends HttpServlet{
     	  System.out.println(" C : /product/deleteProduct.com 호출 ");
           System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
           
-          action = new deleteProduct();
+          action = new deleteProductAction();
           
           try {
 			forward = action.execute(request, response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
   
