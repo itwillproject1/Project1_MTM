@@ -2,7 +2,7 @@ package com.itwillbs.employee.db.dto;
 
 import java.sql.Timestamp;
 
-public class EmployeeUserDTO {
+public class UserDTO {
 	private String user_id;
 	private String user_pw;
 	private String email;

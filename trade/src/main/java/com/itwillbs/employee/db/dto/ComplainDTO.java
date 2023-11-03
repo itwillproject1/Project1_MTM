@@ -1,5 +1,5 @@
 package com.itwillbs.employee.db.dto;
 
-public class EmployeeComplainDTO {
+public class ComplainDTO {
 
 }

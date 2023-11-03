@@ -10,9 +10,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.itwillbs.employee.db.dto.EmployeeMemberDTO;
-import com.itwillbs.employee.db.dto.EmployeeTradeDTO;
-import com.itwillbs.employee.db.dto.EmployeeUserDTO;
+import com.itwillbs.employee.db.dto.MemberDTO;
+import com.itwillbs.employee.db.dto.TradeDTO;
+import com.itwillbs.employee.db.dto.UserDTO;
 
 public class EmployeeDAO {
 	private Connection con = null;
@@ -43,7 +43,7 @@ public class EmployeeDAO {
 	} // CloseDB();
 	
 	// loginEmployee() : 관리자 로그인
-	public int loginEmployee(EmployeeMemberDTO dto) {
+	public int loginEmployee(MemberDTO dto) {
 		int result = -1;
 		try {
 			con = getCon();
@@ -67,8 +67,8 @@ public class EmployeeDAO {
 	
 	
 	// loadProfile() : 관리자 프로필 불러오기
-	public EmployeeMemberDTO loadProfile(String id) {
-		EmployeeMemberDTO result = null;
+	public MemberDTO loadProfile(String id) {
+		MemberDTO result = null;
 		try {
 			con = getCon();
 			sql = "select * from Employees where emp_id = ?";
@@ -76,7 +76,7 @@ public class EmployeeDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				result = new EmployeeMemberDTO();
+				result = new MemberDTO();
 				result.setEmp_id(rs.getString("emp_id"));
 				result.setEmp_pw(rs.getString("emp_pw"));
 				result.setName(rs.getString("name"));
@@ -96,7 +96,7 @@ public class EmployeeDAO {
 	
 	
 	// changeProfile() : 관리자 프로필 편집
-	public int changeProfile(EmployeeMemberDTO dto) {
+	public int changeProfile(MemberDTO dto) {
 		int result = -1;
 		try {
 			con = getCon();
@@ -109,7 +109,7 @@ public class EmployeeDAO {
 	} // changeProfile();
 
 	// employeePasswordFind() : 관리자 비밀번호 찾기
-	public int employePwFind(EmployeeMemberDTO dto) {
+	public int employePwFind(MemberDTO dto) {
 		int result = -1;
 		try {
 			con = getCon();
@@ -132,7 +132,7 @@ public class EmployeeDAO {
 	} // employeePasswordFind();
 	
 	// employeePwChange() : 관리자 비밀번호 변경
-	public int employeePwChange(EmployeeMemberDTO dto, String newPw) {
+	public int employeePwChange(MemberDTO dto, String newPw) {
 		int result = -1;
 		try {
 			con = getCon();
@@ -167,7 +167,7 @@ public class EmployeeDAO {
 			if(rs.next()) {
 				empList = new ArrayList();
 				while(rs.next()) {
-					EmployeeMemberDTO dto = new EmployeeMemberDTO();
+					MemberDTO dto = new MemberDTO();
 					dto.setEmp_id(rs.getString("emp_id"));
 					dto.setImage(rs.getString("image"));
 					dto.setName(rs.getString("name"));
@@ -189,7 +189,7 @@ public class EmployeeDAO {
 	
 	public ArrayList tradeList(int range) {
 		ArrayList tlist = new ArrayList();
-		EmployeeTradeDTO dto = null;
+		TradeDTO dto = null;
 		try {
 			con = getCon();
 			sql = "select * from Product order by date_time desc limit ?";
@@ -197,7 +197,7 @@ public class EmployeeDAO {
 			pstmt.setInt(1, range);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				dto = new EmployeeTradeDTO();
+				dto = new TradeDTO();
 				dto.setBno(rs.getInt("bno"));
 				dto.setUser_id(rs.getString("user_id"));
 				
@@ -212,7 +212,7 @@ public class EmployeeDAO {
 	
 	public ArrayList userList() {
 		ArrayList list = null;
-		EmployeeUserDTO dto = null;
+		UserDTO dto = null;
 		try {
 			con = getCon();
 			sql = "select * from USER_BO";
@@ -221,7 +221,7 @@ public class EmployeeDAO {
 			if(rs.next()) {
 				list = new ArrayList();
 				while(rs.next()) {
-					dto = new EmployeeUserDTO();
+					dto = new UserDTO();
 					dto.setUser_id(rs.getString("user_id"));
 					dto.setName(rs.getString("name"));
 					dto.setNickname(rs.getString("nickname"));
@@ -244,7 +244,7 @@ public class EmployeeDAO {
 	
 	public ArrayList userSearch(String search) {
 		ArrayList list = null;
-		EmployeeUserDTO dto = null;
+		UserDTO dto = null;
 		try {
 			con = getCon();
 			sql = "select * from USER_BO where user_id like ?";
@@ -253,7 +253,7 @@ public class EmployeeDAO {
 			rs = pstmt.executeQuery();
 			list = new ArrayList();
 			while(rs.next()) {
-				dto = new EmployeeUserDTO();
+				dto = new UserDTO();
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setName(rs.getString("name"));
 				dto.setNickname(rs.getString("nickname"));

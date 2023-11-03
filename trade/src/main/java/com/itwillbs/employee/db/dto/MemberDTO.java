@@ -2,7 +2,7 @@ package com.itwillbs.employee.db.dto;
 
 import java.sql.Date;
 
-public class EmployeeMemberDTO {
+public class MemberDTO {
 	private String emp_id;
 	private String emp_pw;
 	private String name;

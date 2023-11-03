@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.employee.db.dao.EmployeeDAO;
-import com.itwillbs.employee.db.dto.EmployeeMemberDTO;
+import com.itwillbs.employee.db.dto.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -14,7 +14,7 @@ public class EmployeeChangeProfileAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
-		EmployeeMemberDTO dto = new EmployeeMemberDTO();
+		MemberDTO dto = new MemberDTO();
 		EmployeeDAO dao = new EmployeeDAO();
 		dto.setEmp_id(request.getParameter("emp_id"));
 		dto.setEmp_pw(request.getParameter("emp_pw"));

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.itwillbs.employee.db.dao.EmployeeDAO;
-import com.itwillbs.employee.db.dto.EmployeeMemberDTO;
+import com.itwillbs.employee.db.dto.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -32,7 +32,7 @@ public class EmployeeProfileAction implements Action{
 			return forward;
 		}
 		
-		EmployeeMemberDTO  dto = dao.loadProfile(id);
+		MemberDTO  dto = dao.loadProfile(id);
 		// 프로필 정보를 request에 저장
 		request.setAttribute("profile", dto);
 		

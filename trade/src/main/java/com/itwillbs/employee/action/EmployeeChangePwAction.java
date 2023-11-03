@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.itwillbs.employee.db.dto.EmployeeMemberDTO;
+import com.itwillbs.employee.db.dto.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -15,7 +15,7 @@ import com.itwillbs.util.ActionForward;
 public class EmployeeChangePwAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		EmployeeMemberDTO dto = new EmployeeMemberDTO();
+		MemberDTO dto = new MemberDTO();
 		HttpSession session = request.getSession();
 		if(session.getAttribute("id") == null) {
 			// 세션에 아이디가 없는 경우

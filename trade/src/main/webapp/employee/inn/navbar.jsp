@@ -8,7 +8,7 @@
     <div class="wrapper">
       <nav class="navbar navbar-expand-lg navbar-light bg-white flex-row border-bottom shadow">
         <div class="container-fluid">
-          <a class="navbar-brand mx-lg-1 mr-0" href="./Main.empm">
+          <a class="navbar-brand mx-lg-1 mr-0" href="./Main.emp">
             <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 331.617">
 				<path fill-rule="nonzero" d="M271.099 21.308C274.787 6.304 289.956-2.873 304.96.815c15.005 3.688 24.181 18.857 20.493 33.862l-68.491 275.632c-3.689 15.005-18.857 24.181-33.862 20.493-15.005-3.688-24.181-18.857-20.493-33.862l68.492-275.632zm-118.45 224.344c11.616 10.167 12.795 27.834 2.628 39.45-10.168 11.615-27.835 12.794-39.45 2.627L9.544 194.604C-2.071 184.437-3.25 166.77 6.918 155.155c.873-.997 1.8-1.912 2.767-2.75l106.142-93.001c11.615-10.168 29.282-8.989 39.45 2.626 10.167 11.616 8.988 29.283-2.628 39.45l-82.27 72.086 82.27 72.086zm243.524 42.077c-11.615 10.167-29.282 8.988-39.45-2.627-10.167-11.616-8.988-29.283 2.628-39.45l82.27-72.086-82.27-72.086c-11.616-10.167-12.795-27.834-2.628-39.45 10.168-11.615 27.835-12.794 39.45-2.626l106.142 93.001a28.366 28.366 0 012.767 2.75c10.168 11.615 8.989 29.282-2.626 39.449l-106.283 93.125z"/>
               </svg>
@@ -31,11 +31,11 @@
                   <span class="ml-lg-2">유저 관리</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="userDropdown">
-                  <a class="nav-link pl-lg-2" href="./UserList.empu"><span class="ml-1">유저 목록</span></a>
-                  <a class="nav-link pl-lg-2" href="./InquiryList.empu"><span class="ml-1">문의 목록</span></a>
-                  <a class="nav-link pl-lg-2" href="./ComplainList.empu"><span class="ml-1">신고 목록</span></a>
-                  <a class="nav-link pl-lg-2" href="./TradeList.empu"><span class="ml-1">거래 현황</span></a>
-                  <a class="nav-link pl-lg-2" href="./BoardList.empu"><span class="ml-1">게시판</span></a>
+                  <a class="nav-link pl-lg-2" href="./UserList.emp"><span class="ml-1">유저 목록</span></a>
+                  <a class="nav-link pl-lg-2" href="./InquiryList.emp"><span class="ml-1">문의 목록</span></a>
+                  <a class="nav-link pl-lg-2" href="./ComplainList.emp"><span class="ml-1">신고 목록</span></a>
+                  <a class="nav-link pl-lg-2" href="./TradeList.emp"><span class="ml-1">거래 현황</span></a>
+                  <a class="nav-link pl-lg-2" href="./BoardList.emp"><span class="ml-1">게시판</span></a>
                 </div>
               </li>
              <c:if test="${sessionScope.emp_id == 'admin'}">
@@ -44,8 +44,8 @@
                   <span class="ml-lg-2">관리자</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                  <a class="nav-link pl-lg-2" href="./EmployeeRegisterForm.empm"><span class="ml-1">직원 추가</span></a>
-                  <a class="nav-link pl-lg-2" href="./EmployeeDeleteForm.empm"><span class="ml-1">직원 삭제</span></a>
+                  <a class="nav-link pl-lg-2" href="./EmployeeRegisterForm.emp"><span class="ml-1">직원 추가</span></a>
+                  <a class="nav-link pl-lg-2" href="./EmployeeDeleteForm.emp"><span class="ml-1">직원 삭제</span></a>
                 </div>
               </li>
              </c:if>
@@ -54,7 +54,7 @@
                   <span class="ml-lg-2"></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="elseDropdown">
-                  <a class="nav-link pl-lg-2" href="./EmployeeRegisterForm.empm"><span class="ml-1">마켓으로 이동</span></a>
+                  <a class="nav-link pl-lg-2" href="./EmployeeRegisterForm.emp"><span class="ml-1">마켓으로 이동</span></a>
                 </div>
               </li>
             </ul>
@@ -73,13 +73,13 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./ProfileContent.empm">프로필</a>
+                  <a class="nav-link pl-3" href="./ProfileContent.emp">프로필</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./ProfileChangeForm.empm">프로필 편집</a>
+                  <a class="nav-link pl-3" href="./ProfileChangeForm.emp">프로필 편집</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./LogoutAction.empm">로그아웃</a>
+                  <a class="nav-link pl-3" href="./LogoutAction.emp">로그아웃</a>
                 </li>
               </ul>
             </li>
