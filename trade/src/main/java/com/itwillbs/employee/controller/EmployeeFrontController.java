@@ -12,9 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.employee.action.EmployeeMainAction;
 import com.itwillbs.employee.action.member.ChangeProfileAction;
 import com.itwillbs.employee.action.member.ChangePwAction;
+import com.itwillbs.employee.action.member.DeleteAction;
+import com.itwillbs.employee.action.member.ListAction;
 import com.itwillbs.employee.action.member.LoginAction;
 import com.itwillbs.employee.action.member.ProfileAction;
 import com.itwillbs.employee.action.member.PwFindAction;
+import com.itwillbs.employee.action.member.RegisterAction;
+import com.itwillbs.employee.action.user.ComplainAction;
+import com.itwillbs.employee.action.user.ComplainContentAction;
+import com.itwillbs.employee.action.user.InquiryAction;
+import com.itwillbs.employee.action.user.InquiryContentAction;
+import com.itwillbs.employee.action.user.InquiryListAction;
+import com.itwillbs.employee.action.user.UserInfoAction;
 import com.itwillbs.employee.action.user.UserListAction;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
@@ -120,7 +129,12 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/EmployeeList.emp")) {
-			
+			action = new ListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/MemberProfile.emp")) {
@@ -152,34 +166,43 @@ public class EmployeeFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/EmployeeList.emp")) {
-			// 직원 리스트
-			
-		}
-		
+
 		else if(command.equals("/EmployeeRegisterForm.emp")) {
 			// 직원 추가 폼
 			forward = new ActionForward();
 			forward.setPath("./employee/member/registerForm.jsp");
 			forward.setRedirect(false);
-			System.out.println("C : " + forward);
 		}
 		
 		else if(command.equals("/EmployeeRegisterAction.emp")) {
 			// 직원 추가 진행
-			
+			action = new RegisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/EmployeeDeleteForm.emp")) {
 			// 직원 삭제 폼
-			
+			forward = new ActionForward();
+			forward.setPath("./employee/member/deleteForm.jsp");
+			forward.setRedirect(false);
 		}
 		
 		else if(command.equals("/EmployeeDeleteAction.emp")) {
 			// 직원 삭제 진행
-			
+			action = new DeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		// -- 관리자 정보 관련
 		
+		// -- 회원 정보 조회 및 관리
 		else if(command.equals("/UserList.emp")) {
 			action = new UserListAction();
 			try {
@@ -190,30 +213,42 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/UserInfo.emp")) {
-			forward = new ActionForward();
-			forward.setPath("./employee/user/userInfo.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new UserInfoAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/InquiryList.emp")) {
 			// 문의 신청한 회원 목록(완료 및 미완료 표시)
 			// 검색 기능 필요
 			// 클릭 시 상세 페이지 이동
-			forward = new ActionForward();
-			forward.setPath("./employee/user/inquiryList.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new InquiryListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		else if(command.equals("/InquiryContent.emp")) {
-			forward = new ActionForward();
-			forward.setPath("./employee/user/inquiryContent.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			// 문의 신청 글 조회, 답글 작성 가능
+			action = new InquiryContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/InquiryAction.emp")) {
-			
+			action = new InquiryAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/ComplainList.emp")) {
@@ -226,14 +261,21 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/ComplainContent.emp")) {
-			forward = new ActionForward();
-			forward.setPath("./employee/user/complainContent.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new ComplainContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/ComplainAction.emp")) {
-			
+			action = new ComplainAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/TradeList.emp")) {
@@ -258,23 +300,26 @@ public class EmployeeFrontController extends HttpServlet{
 			forward.setRedirect(false);
 			System.out.println("C : " + forward);
 		}
+		
 		else if(command.equals("/BoardContent.emp")) {
 			forward = new ActionForward();
 			forward.setPath("./employee/user/boardContent.jsp");
 			forward.setRedirect(false);
 			System.out.println("C : " + forward);
 		}
+		
 		else if(command.equals("/BoardWrite.emp")) {
 			forward = new ActionForward();
 			forward.setPath("./employee/user/boardWrite.jsp");
 			forward.setRedirect(false);
 			System.out.println("C : " + forward);
 		}
+		
 		else if(command.equals("/BoardWriteAction.emp")) {
 			
 		}
 		// -- 회원 정보 조회 및 관리
-		// -- 관리자 정보 관련
+		
 		// ------------------가상주소 매핑----------------
 		
 		// ------------------가상주소 이동----------------

@@ -1,4 +1,4 @@
-package com.itwillbs.employee.db.dto;
+package com.itwillbs.employee.dto;
 
 import java.sql.Timestamp;
 

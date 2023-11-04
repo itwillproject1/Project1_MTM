@@ -1,4 +1,4 @@
-package com.itwillbs.employee.db.dao;
+package com.itwillbs.employee.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +10,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.itwillbs.employee.db.dto.MemberDTO;
-import com.itwillbs.employee.db.dto.TradeDTO;
-import com.itwillbs.employee.db.dto.UserDTO;
+import com.itwillbs.employee.dto.MemberDTO;
+import com.itwillbs.employee.dto.TradeDTO;
+import com.itwillbs.employee.dto.UserDTO;
 
 public class EmployeeDAO {
 	private Connection con = null;
@@ -157,24 +157,26 @@ public class EmployeeDAO {
 	
 	// loadEmployeeList() : 직원 목록 return
 	public ArrayList loadEmployeeList(int currentPage) {
+		// 1페이지 8명
+		int content = 8;
 		ArrayList empList = null;
 		try {
 			con = getCon();
-			sql = "select * from Employees order by join_date";
+			sql = "select * from Employees order by join_date limit ?, ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, currentPage-1);
+			pstmt.setInt(2, content);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				empList = new ArrayList();
-				while(rs.next()) {
-					MemberDTO dto = new MemberDTO();
-					dto.setEmp_id(rs.getString("emp_id"));
-					dto.setImage(rs.getString("image"));
-					dto.setName(rs.getString("name"));
-					dto.setTel(rs.getString("tel"));
-					dto.setJoin_date(rs.getDate("join_date"));
-					dto.setEmail(rs.getString("email"));
-					empList.add(dto);
-				}
+			empList = new ArrayList();
+			while(rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setImage(rs.getString("image"));
+				dto.setName(rs.getString("name"));
+				dto.setTel(rs.getString("tel"));
+				dto.setJoin_date(rs.getDate("join_date"));
+				dto.setEmail(rs.getString("email"));
+				empList.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -183,6 +185,25 @@ public class EmployeeDAO {
 		}
 		return empList;
 	} // loadEemployeeList();
+	
+	// employeeCount() : 직원 수 return
+	public int employeeCount() {
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from Employee";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	} // employeeCount();
 		
 	public ArrayList tradeList(String deal_way) {
 		ArrayList tlist = new ArrayList();

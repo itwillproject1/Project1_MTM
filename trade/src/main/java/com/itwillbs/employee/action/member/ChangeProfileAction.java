@@ -3,8 +3,8 @@ package com.itwillbs.employee.action.member;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.db.dao.EmployeeDAO;
-import com.itwillbs.employee.db.dto.MemberDTO;
+import com.itwillbs.employee.dao.EmployeeDAO;
+import com.itwillbs.employee.dto.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 

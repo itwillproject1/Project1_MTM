@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.db.dao.EmployeeDAO;
+import com.itwillbs.employee.dao.EmployeeDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
