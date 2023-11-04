@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.employee.action.EmployeeMainAction;
+import com.itwillbs.employee.action.complain.ComplainAction;
+import com.itwillbs.employee.action.complain.ComplainContentAction;
+import com.itwillbs.employee.action.complain.ComplainListAction;
+import com.itwillbs.employee.action.inquiry.InquiryAction;
+import com.itwillbs.employee.action.inquiry.InquiryContentAction;
+import com.itwillbs.employee.action.inquiry.InquiryListAction;
 import com.itwillbs.employee.action.member.ChangeProfileAction;
 import com.itwillbs.employee.action.member.ChangePwAction;
 import com.itwillbs.employee.action.member.DeleteAction;
@@ -18,11 +24,6 @@ import com.itwillbs.employee.action.member.LoginAction;
 import com.itwillbs.employee.action.member.ProfileAction;
 import com.itwillbs.employee.action.member.PwFindAction;
 import com.itwillbs.employee.action.member.RegisterAction;
-import com.itwillbs.employee.action.user.ComplainAction;
-import com.itwillbs.employee.action.user.ComplainContentAction;
-import com.itwillbs.employee.action.user.InquiryAction;
-import com.itwillbs.employee.action.user.InquiryContentAction;
-import com.itwillbs.employee.action.user.InquiryListAction;
 import com.itwillbs.employee.action.user.UserInfoAction;
 import com.itwillbs.employee.action.user.UserListAction;
 import com.itwillbs.util.Action;
@@ -254,10 +255,12 @@ public class EmployeeFrontController extends HttpServlet{
 		else if(command.equals("/ComplainList.emp")) {
 			// 신고한 회원 목록(처리 완료 및 미완료 표시)
 			// 클릭 시 상세 페이지 이동
-			forward = new ActionForward();
-			forward.setPath("./employee/user/complainList.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new ComplainListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/ComplainContent.emp")) {
