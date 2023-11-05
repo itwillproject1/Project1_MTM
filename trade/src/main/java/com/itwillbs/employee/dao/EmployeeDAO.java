@@ -10,6 +10,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.itwillbs.employee.dto.BoardDTO;
+import com.itwillbs.employee.dto.ComplainDTO;
+import com.itwillbs.employee.dto.InquiryDTO;
 import com.itwillbs.employee.dto.MemberDTO;
 import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.employee.dto.UserDTO;
@@ -364,5 +367,273 @@ public class EmployeeDAO {
 			CloseDB();
 		}
 		return result;
+	}
+	
+	public void insertBoard(BoardDTO dto) {
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+	}
+	
+	public int updateBoard(BoardDTO bdto, MemberDTO mdto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(mdto.getEmp_pw().equals(rs.getString(1))) {
+					result = 1;
+					sql = "";
+					pstmt = con.prepareStatement(sql);
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public int deleteBoard(BoardDTO bdto, MemberDTO mdto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(mdto.getEmp_pw().equals(rs.getString(1))){
+					result = 1;
+					sql = "";
+					pstmt = con.prepareStatement(sql);
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public ArrayList boardList(int currentPage) {
+		ArrayList bList = null;
+		BoardDTO dto = null;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			bList = new ArrayList();
+			while(rs.next()) {
+				dto = new BoardDTO();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return bList;
+	}
+	public BoardDTO boardContent(int index) {
+		BoardDTO dto = null;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto = new BoardDTO();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return dto;
+	}
+	
+	public int updateInquiry(InquiryDTO idto, MemberDTO mdto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(mdto.getEmp_pw().equals(rs.getString(1))) {
+					result = 1;
+					sql = "";
+					pstmt = con.prepareStatement(sql);
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public int deleteInquiry(InquiryDTO dto, MemberDTO mdto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(mdto.getEmp_pw().equals(rs.getString(1))){
+					result = 1;
+					sql = "";
+					pstmt = con.prepareStatement(sql);
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public ArrayList inquiryList(int currentPage) {
+		ArrayList iList = null;
+		InquiryDTO dto = null;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			iList = new ArrayList();
+			while(rs.next()) {
+				dto = new InquiryDTO();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return iList;
+	}
+	public InquiryDTO InquiryContent(int index) {
+		InquiryDTO dto = null;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto = new InquiryDTO();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return dto;
+	}
+	
+	public int updateComplain(ComplainDTO idto, MemberDTO mdto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(mdto.getEmp_pw().equals(rs.getString(1))) {
+					result = 1;
+					sql = "";
+					pstmt = con.prepareStatement(sql);
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public int deleteComplain(ComplainDTO dto, MemberDTO mdto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(mdto.getEmp_pw().equals(rs.getString(1))){
+					result = 1;
+					sql = "";
+					pstmt = con.prepareStatement(sql);
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public ArrayList ComplainList(int currentPage) {
+		ArrayList cList = null;
+		ComplainDTO dto = null;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			cList = new ArrayList();
+			while(rs.next()) {
+				dto = new ComplainDTO();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return cList;
+	}
+	public ComplainDTO ComplainContent(int index) {
+		ComplainDTO dto = null;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto = new ComplainDTO();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return dto;
 	}
 }
