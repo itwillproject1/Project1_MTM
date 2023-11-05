@@ -146,11 +146,6 @@ public class ProductUploadAction implements Action {
 //				file_name += fileList.get(i);
 //			}
 //		}
-
-		String realPath = request.getRealPath("upload");
-		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
-		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
-				new DefaultFileRenamePolicy());
 //
 //		Enumeration<String> fieldNames = multi.getFileNames();
 //		List fileList = new ArrayList();
@@ -189,6 +184,11 @@ public class ProductUploadAction implements Action {
 //		}
 //
 //		String file_name = String.join(",", fileList);
+
+		String realPath = request.getRealPath("upload");
+		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
+		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
+				new DefaultFileRenamePolicy());
 
 		Enumeration<String> files = multi.getFileNames();
 		List<String> fileList = new ArrayList<>();
