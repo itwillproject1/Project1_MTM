@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<jsp:include page="../main/header.jsp" />
+<jsp:include page="header.jsp" />
 
 <br>
 <br>
@@ -20,7 +20,12 @@
 <br>
 <br>
 <br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 		<h1>회원가입 페이지!</h1>
 		

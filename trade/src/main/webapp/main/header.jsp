@@ -46,12 +46,26 @@
 		</form>
 			</div>
 
+		
+		<%String id = (String) session.getAttribute("id"); %>
+
 		<span class="user-menu">
-            <a href="../main/login.com">로그인</a>
+            <% if (id == null) { %>
+            <a href="../main/login.member" id="loginLink">로그인</a>
+            <% } else { %>
+            <%= session.getAttribute("id") %>님   |   
+            <a href="./MemberLogout.member" id="logoutLink">로그아웃</a>
+            <% } %>
             <a href="../product/ProductUpload.com">글등록</a>
             <a href="#">찜</a>
             <a href="#">마이페이지</a>
-        </span>
+        </span>	
+		<!-- <span class="user-menu">
+            <a href="../main/login.member">로그인</a>
+            <a href="../product/ProductUpload.com">글등록</a>
+            <a href="#">찜</a>
+            <a href="#">마이페이지</a>
+        </span> -->
       </div>  
     </header>
     <!-- 나머지 콘텐츠 -->

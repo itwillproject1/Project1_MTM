@@ -55,7 +55,7 @@ public class MemberJoinAction implements Action  {
 		PrintWriter out = response.getWriter();
 		out.println(" <script> ");
 		out.println("  alert('회원가입완료 '); ");
-		out.println("location.href='../main/Main.com'");
+		out.println("location.href='./realmain.member'");
 		out.println(" </script> ");
 		out.close();
 		

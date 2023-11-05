@@ -44,7 +44,7 @@ public class MemberDAO {
 			
 			
 			// 회원가입
-		public void insertMember(MemberDTO dto) {
+			public void insertMember(MemberDTO dto) {
 				
 				try {
 					con = getCon();
@@ -77,42 +77,42 @@ public class MemberDAO {
 					closeDB();
 				}
 				
-		}
-		
-		public int loginMember(MemberDTO dto) {
-			int result = -1; // -1 0 1
-			
-			try {
-				// 1.2. 디비연결
-				con = getCon();
-				// 3. sql 작성 & pstmt 객체
-				sql = "select password from Member where user_id = ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, dto.getUser_id());
-				// 4. sql 실행
-				rs = pstmt.executeQuery();
-				// 5. 데이터 처리
-				if(rs.next()) { // 회원정보가 있음
-					if(dto.getPassword().equals(rs.getString("password"))) {
-						// 비밀번호 동일
-						result = 1;
-					}else {
-						// 비밀번호 다름
-						result = 0;
-					}
-				}else {// 회원정보 없음
-					result = -1;
-				}
-				
-				System.out.println(" DAO : 로그인 처리 완료 ("+result+")");
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
 			}
-			return result;
-		}
-			
+			// 로그인 체크 메서드 - loginMember(dto)
+			public int loginMember(MemberDTO dto) {
+				int result = -1; // -1 0 1
+				
+				try {
+					// 1.2. 디비연결
+					con = getCon();
+					// 3. sql 작성 & pstmt 객체
+					sql = "select password from Member where user_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, dto.getUser_id());
+					// 4. sql 실행
+					rs = pstmt.executeQuery();
+					// 5. 데이터 처리
+					if(rs.next()) { // 회원정보가 있음
+						if(dto.getPassword().equals(rs.getString("password"))) {
+							// 비밀번호 동일
+							result = 1;
+						}else {
+							// 비밀번호 다름
+							result = 0;
+						}
+					}else {// 회원정보 없음
+						result = -1;
+					}
+					
+					System.out.println(" DAO : 로그인 처리 완료 ("+result+")");
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					closeDB();
+				}
+				return result;
+			}
+			// 로그인 체크 메서드 - loginMember(dto)
 			
 			
 			

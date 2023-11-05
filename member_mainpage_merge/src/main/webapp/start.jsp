@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<h1>main.jsp</h1>
+	<h1>start.jsp</h1>
+	
+	제일 처음 시작하는 곳<br>
+	
+	
+<%
+
+		response.sendRedirect("./realmain.member");
+
+
+%>
 </body>
 </html>

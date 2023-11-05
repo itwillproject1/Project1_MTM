@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #ffffff; /* 흰 배경색 */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+	  position: fixed; /* 9-12줄 헤더 고정 */
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 설정 */
+    background-color: #ffffff; /* 흰 배경색 */
+    color: #333; /* 검은색 텍스트 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    transition: box-shadow 0.3s; /* 그림자 효과에 트랜지션 추가 */
+}
+
+header:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강화 */
+}
+
+.logo img {
+    max-height: 100px;
+}
+
+.category-a a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 20px;
+}
+
+.category-a a:hover {
+    color: #A9A9A9; /* 원하는 hover 색상으로 수정 */
+    text-decoration: none; /* 원하는 hover 효과로 수정 */
+}
+
+
+.category-b a {
+	left: -20px;
+	font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    margin-right: 20px;
+}
+
+.category-b a:hover {
+    color: #A9A9A9; /* 원하는 hover 색상으로 수정 */
+    text-decoration: none; /* 원하는 hover 효과로 수정 */
+}
+
+.category-c a {
+	left: -20px;
+	font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    margin-right: 20px; 
+}
+
+.search input {
+    padding: 10px;
+    border: 3px solid #a3a3a3; /* 검은색 테두리 설정 */
+    border-radius: 25px;
+    margin-right: 10px;
+    width: 200px;
+}
+.search input:hover {
+    padding: 10px;
+    border: 3px solid #000; /* 검은색 테두리 설정 */
+    border-radius: 25px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.search button {
+    padding: 10px 20px;
+    background-color: #333; /* 검은색 버튼 */
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search button:hover {
+    background-color: #555; /* 버튼 호버 시 색상 변경 */
+}
+
+.user-menu a {
+	word-spacing: -10px;
+    text-decoration: none;
+    color: #222;
+    margin-right: 30px; /* 여기도 20->30으로 수정 */
+}
+
+.user-menu a:hover {
+    color: #A9A9A9; /* 원하는 hover 색상으로 수정 */
+    text-decoration: none; /* 원하는 hover 효과로 수정 */
+}
