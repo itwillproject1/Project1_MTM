@@ -54,7 +54,7 @@
             <a href="../main/login.member" id="loginLink">로그인</a>
             <% } else { %>
             <%= session.getAttribute("id") %>님   |   
-            <a href="./MemberLogout.member" id="logoutLink">로그아웃</a>
+            <a href="../main/MemberLogout.member" id="logoutLink">로그아웃</a>
             <% } %>
             <a href="../product/ProductUpload.com">글등록</a>
             <a href="#">찜</a>
