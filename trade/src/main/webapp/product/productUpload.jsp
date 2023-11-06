@@ -211,24 +211,6 @@
 	</div>
 
 	<!-- 이미지 미리보기 관련 스크립트 -->
-	<!-- <script>
-		function previewImage() {
-			
-			var preview = document.getElementById('imagePreview');
-			var fileInput = document.getElementById('file');
-			var file = fileInput.files[0];
-
-			if (file) {
-				var reader = new FileReader();
-
-				reader.onload = function(e) {
-					preview.src = e.target.result;
-				};
-
-				reader.readAsDataURL(file);
-			}
-		}
-	</script> -->
 	<script>
 		function previewImage(index) {
 			var fileInput = document.getElementById("file" + index);

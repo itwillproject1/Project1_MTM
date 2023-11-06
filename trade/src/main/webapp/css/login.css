@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-body {
-    font-family: 'Noto Sans KR', sans-serif;
+.b {
+    font-familsy: 'Noto Sans KR', sans-serif;
     margin: 0;
     display: flex;
     align-items: center;
@@ -18,17 +18,17 @@ body {
     width: 400px;
 }
 
-form {
+.f {
     display: flex;
     flex-direction: column;
 }
 
-label {
+.l {
     margin-bottom: 10px;
     color: #333;
 }
 
-input {
+.i {
     padding: 10px;
     margin-bottom: 20px;
     width: 100%;
@@ -37,7 +37,7 @@ input {
     border-radius: 4px;
 }
 
-button {
+.bu {
     padding: 10px;
     background-color: #191970;
     color: #fff;
@@ -47,7 +47,7 @@ button {
     margin-bottom: 10px; /* 여백을 늘리기 위한 수정 */
 }
 
-button:hover {
+.bu:hover {
     background-color: #000000;
 }
 
