@@ -95,7 +95,11 @@
 							brandDropdown.innerHTML += '<option value="레노버">레노버</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
 						} else if (selectedCategory === '게임기기') {
+<<<<<<< HEAD
 							// 게임 기기를 선택한 경우
+=======
+							// 게임기기를 선택한 경우
+>>>>>>> 6c8a87bd6ab841e3bcfc8eae1f5ea5a806a04671
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
 							brandDropdown.innerHTML += '<option value="플레이스테이션">플레이스테이션</option>';
@@ -119,7 +123,11 @@
 							brandDropdown.innerHTML += '<option value="코닥">코닥</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
 						} else if (selectedCategory === '음향기기') {
+<<<<<<< HEAD
 							// 음향 기기를 선택한 경우
+=======
+							// 음향기기를 선택한 경우
+>>>>>>> 6c8a87bd6ab841e3bcfc8eae1f5ea5a806a04671
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
 							brandDropdown.innerHTML += '<option value="소니">소니</option>';
