@@ -29,8 +29,7 @@
 	</div>
 	<script src="maineventScript.js"></script>
 
-
-	<!-- 추천상품 -->
+<!-- 추천상품 -->
 	<div class="title">추천 상품</div>
 	<div class="container">
 		<c:forEach var="product" items="${dto}">

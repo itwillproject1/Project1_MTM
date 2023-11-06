@@ -6,9 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/member_mainpage_merge/css/header.css" rel="stylesheet" />
+<link href="/member_mainpage_merge/css/memberjoin.css" rel="stylesheet" />
 </head>
 <body>
-		<h1>memberjoin.jsp</h1>
+
+<jsp:include page="../main/header.jsp" />
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+		<h1>회원가입 페이지!</h1>
 		
 		<script type="text/javascript">
   
@@ -98,7 +112,7 @@
 			function goPopup(){
 				// 주소검색을 수행할 팝업 페이지를 호출합니다.
 				// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-				var pop = window.open("./member/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+				var pop = window.open("/member_mainpage_merge/page/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 				
 				// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
 			    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
@@ -119,9 +133,9 @@
 		
 		<fieldset>
 		<legend> 회원가입 페이지 </legend>
-		<form action="./MemberJoinAction.com" method="post" name="join" onsubmit="return check();">
-			아이디 : <input type="text" name="user_id">
-					 <input type="button"  value="ID 중복확인"  onclick="checkid();"> <br>
+		<form action="./MemberJoinAction.member" method="post" name="join" onsubmit="return check();">
+			아이디 : <input type="text" name="user_id"><br>
+					 <!--<input type="button"  value="ID 중복확인"  onclick="checkid();"> <br>-->
 					 
 					 
 			비밀번호 : <input type="password" name="password"><br>
@@ -129,7 +143,7 @@
 			
 			
 			이메일 : <input type="text" name="email1">
-				<select id="emial" name="email2" size="1" onchange="email_check()">
+				<select id="email" name="email2" size="1" onchange="email_check()">
 				<option value="선택하세요">선택하세요</option>
 				<option value="@naver.com">@naver.com</option>
 				<option value="@hanmail.net">@hanmail.net</option>

@@ -1,6 +1,10 @@
 package com.itwillbs.member.action;
 
 
+
+
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,14 +51,15 @@ public class MemberJoinAction implements Action  {
 		MemberDAO dao = new MemberDAO();
 		dao.insertMember(dto);
 		
-		// 페이지 이동(로그인페이지) => 컨트롤러에서만 가능
-		ActionForward forward = new ActionForward();
-		forward.setPath("./MemberMain.com");
-		forward.setRedirect(true);	
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(" <script> ");
+		out.println("  alert('회원가입완료 '); ");
+		out.println("location.href='../main/Main.com'");
+		out.println(" </script> ");
+		out.close();
 		
-		System.out.println(" M : "+forward);
-		
-		return forward;
+		return null;
 		
 	}
 
