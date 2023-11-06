@@ -115,8 +115,8 @@ public class MemberDAO {
 			
 			
 		// 아이디 중복 확인
-					public int checkid(MemberDTO dto) {
-						int result = -1;
+		public int checkid(MemberDTO dto) {
+			int result = -1;
 								try {
 									con = getCon();
 									sql = "select user_id from Member where user_id = ?";
@@ -140,17 +140,12 @@ public class MemberDAO {
 									closeDB();
 								}
 								return result;
-					}	
+		}	
+		
+		
+		
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	
 			
 			
 			

@@ -8,7 +8,23 @@
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
-<% String  %>
+
+<% String User_id = (String) session.getAttribute("id"); %>
+
+<br><br><br><br><br><br><br>
+
+
+<form action="" method="post">
+아이디 : <%= User_id %>
+
+
+
+
+
+
+</form>
+
+
 
 
 </body>
