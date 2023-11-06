@@ -327,8 +327,9 @@ public class EmployeeDAO {
 		TradeDTO dto = null;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select * from Product where " + category + " = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, keyword);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				dto = new TradeDTO();
@@ -430,7 +431,7 @@ public class EmployeeDAO {
 		return result;
 	}
 	
-	public UserDTO userContent(String user_id) {
+	public UserDTO userInfo(String user_id) {
 		// userContent(String user_id) : 유저 정보 조회
 		UserDTO dto = null;
 		try {
@@ -589,6 +590,22 @@ public class EmployeeDAO {
 		return dto;
 	}
 	
+	public int boardCount() {
+		int count = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from Board";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return count;
+	}
+	
 	public int updateInquiry(InquiryDTO idto, MemberDTO mdto) {
 		int result = -1;
 		try {
@@ -658,7 +675,8 @@ public class EmployeeDAO {
 		}
 		return iList;
 	}
-	public InquiryDTO InquiryContent(int index) {
+	
+	public InquiryDTO inquiryContent(int index) {
 		InquiryDTO dto = null;
 		try {
 			con = getCon();
@@ -675,6 +693,22 @@ public class EmployeeDAO {
 			CloseDB();
 		}
 		return dto;
+	}
+	
+	public int inquiryCount() {
+		int count = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from Inquiry";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return count;
 	}
 	
 	public int updateComplain(ComplainDTO idto, MemberDTO mdto) {
@@ -726,7 +760,7 @@ public class EmployeeDAO {
 		return result;
 	}
 	
-	public ArrayList ComplainList(int currentPage) {
+	public ArrayList complainList(int currentPage) {
 		ArrayList cList = null;
 		ComplainDTO dto = null;
 		try {
@@ -746,7 +780,7 @@ public class EmployeeDAO {
 		return cList;
 	}
 	
-	public ComplainDTO ComplainContent(int index) {
+	public ComplainDTO complainContent(int index) {
 		ComplainDTO dto = null;
 		try {
 			con = getCon();
@@ -762,5 +796,21 @@ public class EmployeeDAO {
 			CloseDB();
 		}
 		return dto;
+	}
+	
+	public int complainCount() {
+		int count = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from Complain";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return count;
 	}
 }
