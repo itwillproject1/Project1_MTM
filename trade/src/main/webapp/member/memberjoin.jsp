@@ -6,10 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="../css/memberjoin.css" rel="stylesheet" />
 </head>
 <body>
-		<h1>memberjoin.jsp</h1>
+		<%@ include file="../main/header.jsp"%>
 		
+		<br><br>
+		<br><br>
+		
+	<br>	
 		<script type="text/javascript">
   
 			function check() {
