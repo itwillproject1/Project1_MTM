@@ -1,26 +1,34 @@
 package com.itwillbs.employee.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class BoardDTO {
-	private int index;
+	private int bno;
 	private String emp_id;	// 작성자 아이디
+	private String category;
 	private String subject;
 	private String content;
 	private String image;
-	private Date uploadDate;
+	private Timestamp uploadDate;
 	private int readcount;
-	public int getIndex() {
-		return index;
+	
+	public int getBno() {
+		return bno;
 	}
-	public void setIndex(int index) {
-		this.index = index;
+	public void setBno(int bno) {
+		this.bno = bno;
 	}
 	public String getEmp_id() {
 		return emp_id;
 	}
 	public void setEmp_id(String emp_id) {
 		this.emp_id = emp_id;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public String getSubject() {
 		return subject;
@@ -40,10 +48,10 @@ public class BoardDTO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public Date getUploadDate() {
+	public Timestamp getUploadDate() {
 		return uploadDate;
 	}
-	public void setUploadDate(Date uploadDate) {
+	public void setUploadDate(Timestamp uploadDate) {
 		this.uploadDate = uploadDate;
 	}
 	public int getReadcount() {
@@ -52,10 +60,11 @@ public class BoardDTO {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
+	
 	@Override
 	public String toString() {
-		return "BoardDTO [index=" + index + ", emp_id=" + emp_id + ", subject=" + subject + ", content=" + content
-				+ ", image=" + image + ", uploadDate=" + uploadDate + ", readcount=" + readcount + ", toString()="
-				+ super.toString() + "]";
+		return "BoardDTO [bno=" + bno + ", emp_id=" + emp_id + ", category=" + category + ", subject=" + subject
+				+ ", content=" + content + ", image=" + image + ", uploadDate=" + uploadDate + ", readcount="
+				+ readcount + ", toString()=" + super.toString() + "]";
 	}
 }

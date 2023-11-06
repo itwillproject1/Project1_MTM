@@ -20,9 +20,11 @@ public class PwFindAction implements Action{
 		int result = dao.employePwFind(dto);
 		ActionForward forward = null;
 		if(result ==  1) {
-			// 비밀번호 변경 페이지로 이동
+			// 비밀번호 초기화 진행, 전화번호 뒷자리 4개
+			// pw
 			request.setAttribute("emp_id", dto.getEmp_id());
 			request.setAttribute("emp_pw", dto.getEmp_pw());
+			
 		}
 		else {
 			// 비밀번호 찾기 페이지로 다시 이동

@@ -102,6 +102,9 @@ public class EmployeeDAO {
 		int result = -1;
 		try {
 			con = getCon();
+			sql = "update from Employee where emp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -138,7 +141,7 @@ public class EmployeeDAO {
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "select emp_pw from Employees where id = ?";
+			sql = "select emp_pw from Employees where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getEmp_id());
 			rs = pstmt.executeQuery();
@@ -291,6 +294,64 @@ public class EmployeeDAO {
 		return result;
 	}
 	
+	public TradeDTO tradeContent(int bno) {
+		TradeDTO dto = null;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto = new TradeDTO();
+				dto.setBno(bno);
+				dto.setBrand(rs.getString("brand"));
+				dto.setCategory(rs.getString("category"));
+				dto.setContent(rs.getString("content"));
+				dto.setDeal_way(rs.getString("deal_way"));
+				dto.setFile_name(rs.getString("file_name"));
+				dto.setLike_count(rs.getInt("like_count"));
+				dto.setProduct_status(rs.getString("product_status"));
+				dto.setTitle(rs.getString("title"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setViews(rs.getInt("views"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	
+	public ArrayList tradeSearch(String category, String keyword) {
+		ArrayList tList = null;
+		TradeDTO dto = null;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto = new TradeDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setBrand(rs.getString("brand"));
+				dto.setDate_time(rs.getTimestamp("date_time"));
+				dto.setContent(rs.getString("content"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setTitle(rs.getString("title"));
+				dto.setCategory(rs.getString("category"));
+				dto.setViews(rs.getInt("views"));
+				dto.setDeal_way(rs.getString("deal_way"));
+				dto.setLike_count(rs.getInt("like_count"));
+				dto.setProduct_status(rs.getString("product_status"));
+				tList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tList;
+	}
+	
 	public ArrayList userList() {
 		ArrayList list = null;
 		UserDTO dto = null;
@@ -369,31 +430,86 @@ public class EmployeeDAO {
 		return result;
 	}
 	
-	public void insertBoard(BoardDTO dto) {
+	public UserDTO userContent(String user_id) {
+		// userContent(String user_id) : 유저 정보 조회
+		UserDTO dto = null;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select * from Member where user_id = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.executeUpdate();
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto = new UserDTO();
+				dto.setUser_id(user_id);
+				dto.setUser_nickname(rs.getString("user_nickname"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setUser_name(rs.getString("user_name"));
+				dto.setAddress(rs.getString("address"));
+				dto.setJumin(rs.getString("jumin"));
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			CloseDB();
 		}
+		return dto;
+	} // userContent();
+	
+	
+	public int insertBoard(BoardDTO bdto, MemberDTO mdto) {
+		// insertBoard() : 관리자 전용 게시판 글 쓰기
+		// 공지사항, 이벤트 등
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "select emp_pw from Employee where emp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mdto.getEmp_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("emp_pw").equals(mdto.getEmp_pw())) {
+					result = 1;
+					// bno(Auto_increment)
+					// emp_id, category, subject, content, image, uploadDate, readcount;
+					sql = "insert into Board(emp_id, category, subject, content, image, uploadDate, readcount)"
+							+ " values(?, ?, ?, ?, ?, now(), 0)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, mdto.getEmp_id());
+					pstmt.setString(2, bdto.getCategory());
+					pstmt.setString(3, bdto.getSubject());
+					pstmt.setString(4, bdto.getContent());
+					pstmt.setString(5, bdto.getImage());
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
 	}
 	
 	public int updateBoard(BoardDTO bdto, MemberDTO mdto) {
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select emp_pw from Employee where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mdto.getEmp_id());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))) {
 					result = 1;
-					sql = "";
+					sql = "update Board subject = ?, content = ?, image = ? where bno = ?";
 					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, bdto.getSubject());
+					pstmt.setString(2, bdto.getContent());
+					pstmt.setString(3, bdto.getImage());
+					pstmt.setInt(4, bdto.getBno());
 					pstmt.executeUpdate();
 				}
 				else result = 0;
@@ -410,14 +526,16 @@ public class EmployeeDAO {
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select emp_pw from Employee where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mdto.getEmp_id());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))){
 					result = 1;
-					sql = "";
+					sql = "delete from Board where bno = ?";
 					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, bdto.getBno());
 					pstmt.executeUpdate();
 				}
 				else result = 0;
@@ -433,10 +551,13 @@ public class EmployeeDAO {
 	public ArrayList boardList(int currentPage) {
 		ArrayList bList = null;
 		BoardDTO dto = null;
+		int columns = 8;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select * from Board limit ?, ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (currentPage - 1) * columns);
+			pstmt.setInt(2, columns);
 			rs = pstmt.executeQuery();
 			bList = new ArrayList();
 			while(rs.next()) {
@@ -449,6 +570,7 @@ public class EmployeeDAO {
 		}
 		return bList;
 	}
+	
 	public BoardDTO boardContent(int index) {
 		BoardDTO dto = null;
 		try {
@@ -471,8 +593,9 @@ public class EmployeeDAO {
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select emp_pw from Employee where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mdto.getEmp_id());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))) {
@@ -495,8 +618,9 @@ public class EmployeeDAO {
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select emp_pw from Employee where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mdto.getEmp_id());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))){
@@ -520,7 +644,7 @@ public class EmployeeDAO {
 		InquiryDTO dto = null;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select * from Inquiry";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			iList = new ArrayList();
@@ -538,8 +662,9 @@ public class EmployeeDAO {
 		InquiryDTO dto = null;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select * from Inquiry where bno = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, index);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dto = new InquiryDTO();
@@ -556,8 +681,9 @@ public class EmployeeDAO {
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select emp_pw from Employee where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mdto.getEmp_id());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))) {
@@ -576,17 +702,17 @@ public class EmployeeDAO {
 		return result;
 	}
 	
-	public int deleteComplain(ComplainDTO dto, MemberDTO mdto) {
+	public int deleteComplain(ComplainDTO cdto, MemberDTO mdto) {
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select emp_pw from Employee where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))){
 					result = 1;
-					sql = "";
+					sql = "delete from Complain where bno = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.executeUpdate();
 				}
@@ -619,6 +745,7 @@ public class EmployeeDAO {
 		}
 		return cList;
 	}
+	
 	public ComplainDTO ComplainContent(int index) {
 		ComplainDTO dto = null;
 		try {
