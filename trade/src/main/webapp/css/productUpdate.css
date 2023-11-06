@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+body {
+   font-family: 'Noto Sans KR', sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #f5f5f5; /* 연한 회색 배경색 */
+   color: #333; /* 어두운 회색 계열 텍스트 색상 */
+}
+
+.container {
+   max-width: 80%;
+   margin: 100px auto;
+   padding: 20px;
+   background-color: #fff; /* 흰색 배경색 */
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   border-radius: 8px;
+   overflow: hidden;
+   display: flex;
+}
+
+.image-container {
+   width: 40%;
+   padding-right: 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+#uploadFile {
+   width: 100%;
+   padding: 8px;
+   border: 1px solid #ccc; /* 연한 회색 테두리 색상 */
+   border-radius: 4px;
+   box-sizing: border-box;
+   background-color: #f9f9f9; /* 매우 연한 회색 배경색 */
+   color: #333; /* 어두운 회색 텍스트 색상 */
+}
+
+#uploadFile > input {
+	border: none;
+}
+
+.image-container img {
+	max-width: 100%;
+	max-height: 200px;
+	border-radius: 8px; /* 이미지에도 둥근 테두리 적용 */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 이미지에 그림자 추가 */
+	transition: transform 0.3s; /* 이미지 확대/축소 트랜지션 추가 */
+   width: 50%;
+/*    padding-right: 20px; 이미지 컨테이너 오른쪽 여백 추가 */
+   display: flex;
+   flex-direction: column;
+   align-items: center; /* 가로 방향 가운데 정렬 */
+   justify-content: center; /* 세로 방향 가운데 정렬 */
+}
+
+.image-container img:hover {
+	transform: scale(1.1); /* 이미지 확대 효과 */
+}
+
+.image-preview {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 3%;
+	margin-top: 12%;
+	align-items: center;
+	width: 150%; /* 이미지 미리보기의 가로 크기를 조정 */
+	height: 80%; /* 이미지 미리보기의 세로 크기를 조정 */
+	/*	border: 1px solid;*/
+}
+
+.image-preview-choice {
+	display: flex;
+	flex-direction: row;
+	width: 20%;
+}
+
+.clickable-image {
+	cursor: pointer; /* 마우스 커서를 손가락 포인터로 변경하여 클릭 가능한 요소임을 나타냄 */
+	border: 2px solid #ccc; /* 이미지 주변에 회색 테두리 표시 (선택 사항) */
+	margin: 5px; /* 이미지 사이의 여백 설정 (선택 사항) */
+	width: 30px;
+}
+
+.clickable-image:hover {
+	border-color: #999; /* 마우스를 이미지 위로 올릴 때 테두리 색 변경 (선택 사항) */
+}
+
+.form-container {
+   flex: 1;
+   padding-left: 20px;
+}
+
+.form-group {
+   margin-bottom: 20px;
+}
+
+.form-group label {
+   display: block;
+   margin-bottom: 8px;
+   font-weight: bold;
+   color: #555; /* 어두운 회색 텍스트 색상 */
+}
+
+.form-group input, .form-group textarea, .form-group select {
+   width: 100%;
+   padding: 8px;
+   border: 1px solid #ccc; /* 연한 회색 테두리 색상 */
+   border-radius: 4px;
+   box-sizing: border-box;
+   background-color: #f9f9f9; /* 매우 연한 회색 배경색 */
+   color: #333; /* 어두운 회색 텍스트 색상 */
+}
+
+.form-group select {
+   cursor: pointer;
+}
+
+.submit-button {
+   display: block;
+   width: 100%;
+   padding: 10px;
+   background-color: #222; /* 어두운 검정 계열 배경색 */
+   color: #fff; /* 흰색 텍스트 색상 */
+   text-align: center;
+   text-decoration: none;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼에 그림자 추가 */
+}
+
+.submit-button:hover {
+   background-color: #333; /* 더 어두운 검정 계열로 호버 시 변경 */
+}
+
+h2 {
+   font-size: 24px;
+   color: #222; /* 어두운 검정 계열 텍스트 색상 */
+   margin-bottom: 20px;
+   border-bottom: 2px solid #333; /* 어두운 회색 계열의 밑줄 추가 */
+   padding-bottom: 5px;
+}
+
+.disabled {
+   pointer-events: none;
+   background-color: #ccc;
+}
