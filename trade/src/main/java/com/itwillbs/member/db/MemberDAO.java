@@ -114,7 +114,33 @@ public class MemberDAO {
 		}
 			
 			
-			
+		// 아이디 중복 확인
+					public int checkid(MemberDTO dto) {
+						int result = -1;
+								try {
+									con = getCon();
+									sql = "select user_id from Member where user_id = ?";
+									pstmt = con.prepareStatement(sql);
+									pstmt.setString(1, dto.getUser_id());
+									rs = pstmt.executeQuery();
+									
+									if(rs.next()) {
+											result = 1;
+										}else {
+											result = 0;
+										}
+									
+									
+									System.out.println("아이디 중복 확인 " + result);
+									
+								} catch (Exception e) {
+									
+									e.printStackTrace();
+								} finally {
+									closeDB();
+								}
+								return result;
+					}	
 			
 			
 			

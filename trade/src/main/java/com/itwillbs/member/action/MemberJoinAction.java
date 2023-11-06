@@ -12,6 +12,8 @@ import com.itwillbs.member.db.MemberDAO;
 import com.itwillbs.member.db.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
 public class MemberJoinAction implements Action  {
@@ -23,29 +25,34 @@ public class MemberJoinAction implements Action  {
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		
-		// 드롭다운 전달정보 (생년월일, 휴대폰번호, 이메일)
-		String jumin = request.getParameter("jumin1")+"-"+request.getParameter("jumin2")+"-"+request.getParameter("jumin3");
-		String phone = request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3");
-		String email = request.getParameter("email1")+request.getParameter("email2");
+		String realPath = request.getRealPath("/uploadprofile");
+		System.out.println(" M : realPath :"+realPath);
 		
+		int maxSize = 5 * 1024 * 1024;
+		MultipartRequest multi = new MultipartRequest(request,realPath,maxSize,"UTF-8",new DefaultFileRenamePolicy());
+		
+		// 드롭다운 전달정보 (생년월일, 휴대폰번호, 이메일)
+		String jumin = multi.getParameter("jumin1")+"-"+multi.getParameter("jumin2")+"-"+multi.getParameter("jumin3");
+		String phone = multi.getParameter("phone1")+"-"+multi.getParameter("phone2")+"-"+multi.getParameter("phone3");
+		String email = multi.getParameter("email1")+multi.getParameter("email2");
 		
 		
 		
 		// 전달정보
 		MemberDTO dto = new MemberDTO();
-		dto.setUser_id(request.getParameter("user_id"));
-		dto.setPassword(request.getParameter("password"));
-		dto.setPasswordcheck(request.getParameter("passwordcheck"));
+		dto.setUser_id(multi.getParameter("user_id"));
+		dto.setPassword(multi.getParameter("password"));
+		dto.setPasswordcheck(multi.getParameter("passwordcheck"));
 		dto.setEmail(email);
-		dto.setUser_name(request.getParameter("user_name"));
+		dto.setUser_name(multi.getParameter("user_name"));
 		dto.setJumin(jumin);
-		dto.setGender(request.getParameter("gender"));
+		dto.setGender(multi.getParameter("gender"));
 		dto.setPhone(phone);
-		dto.setAddress(request.getParameter("address"));
-		dto.setUser_nickname(request.getParameter("user_nickname"));
-		dto.setProfile(request.getParameter("profile"));
-		dto.setRecommend(request.getParameter("recommend"));
-		dto.setAgree(request.getParameter("agree"));
+		dto.setAddress(multi.getParameter("address"));
+		dto.setUser_nickname(multi.getParameter("user_nickname"));
+		dto.setProfile(multi.getFilesystemName("profile"));
+		dto.setRecommend(multi.getParameter("recommend"));
+		dto.setAgree(multi.getParameter("agree"));
 		
 		System.out.println(" M : "+dto);
 		MemberDAO dao = new MemberDAO();
