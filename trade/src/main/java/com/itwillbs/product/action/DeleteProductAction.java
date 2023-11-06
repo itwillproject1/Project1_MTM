@@ -8,7 +8,7 @@ import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 import com.itwillbs.util.JSMoveFunction;
 
-public class deleteProductAction implements Action {
+public class DeleteProductAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

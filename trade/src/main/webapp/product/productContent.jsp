@@ -67,8 +67,7 @@
 					<div class="dropdown">
 						<input class="update-button" type="button" value="...">
 						<div class="dropdown-content">
-							<button onclick="location.href='./updateContent.com?bno=${dto.bno}';">글
-								수정하기</button>
+							<button onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';">글 수정하기</button>
 							<button onclick="confirmDelete();" class="">글 삭제하기</button>
 						</div>
 					</div>
