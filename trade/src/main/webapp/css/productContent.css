@@ -155,8 +155,7 @@ body {
 	display: block;
 }
 
-.update-button {
-	/* background-image: url("../img/etc-button.png"); */
+.update-content-button {
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -230,4 +229,5 @@ h2 {
 
 .reasonCheckbox {
 	margin-left: 20px;
+	padding: 0 0 0 20px;
 }

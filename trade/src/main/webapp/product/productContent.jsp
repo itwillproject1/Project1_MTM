@@ -67,21 +67,14 @@
 					<div class="dropdown">
 				<button class="complain-button" onclick="openComplainModal();">🚨</button>
 						<input class="update-content-button" type="button" value="..." >
+						
 						<div class="dropdown-content">
 							<button onclick="location.href='./updateContent.com?bno=${dto.bno}';">글
 								수정하기</button>
 							<button onclick="confirmDelete();" class="">글 삭제하기</button>
 						</div>
 					</div>
-					<%-- </c:if> --%>
-					<%-- <c:if test="로그인 아이디 != 작성자">
-					<div class="dropdown">
-						<input class="update-content-button" type="button" value="...">
-						<div class="dropdown-content">
-							<a href="글 신고 페이지">글 신고하기</a><br>
-						</div>
-					</div>
-					</c:if> --%>
+					
 				</h2>
 				<div class="form-group">
 					<label for="user">작성자: <a href="작성자프로필">${dto.user_id }</a></label>
@@ -124,6 +117,17 @@
 
 					</div>
 				</c:if>
+				
+				<%-- </c:if> --%>
+					<%-- <c:if test="로그인 아이디 != 작성자">
+					<div class="dropdown">
+						<input class="update-content-button" type="button" value="...">
+						<div class="dropdown-content">
+							<a href="글 신고 페이지">글 신고하기</a><br>
+						</div>
+					</div>
+					</c:if> --%>
+				
 				<c:if test="${dto.deal_way.equals('삽니다') }">
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
 				</c:if>
@@ -224,7 +228,6 @@
 	        <label for="authorReason2">거래 후 불만 및 환불 요청 무시</label><br>
 	        <input type="checkbox" class="reasonCheckbox" id="authorReason3">
 	        <label for="authorReason3">불쾌한 언행 또는 협상 방해</label><br>
-	        
 	        <input type="checkbox" class="reasonCheckbox" id="authorReason4">
 	        <label for="authorReason4">거짓 프로필 정보 또는 사진 사용</label><br>
 	        <input type="checkbox" class="reasonCheckbox" id="authorReason5">
