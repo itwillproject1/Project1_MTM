@@ -155,7 +155,8 @@ body {
 	display: block;
 }
 
-.update-content-button {
+.update-button {
+	/* background-image: url("../img/etc-button.png"); */
 	background: none;
 	border: none;
 	cursor: pointer;
