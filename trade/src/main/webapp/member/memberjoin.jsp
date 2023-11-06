@@ -6,23 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/member_mainpage_merge/css/header.css" rel="stylesheet" />
-<link href="/member_mainpage_merge/css/memberjoin.css" rel="stylesheet" />
 </head>
 <body>
-
-<jsp:include page="../main/header.jsp" />
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-		<h1>회원가입 페이지!</h1>
+		<h1>memberjoin.jsp</h1>
 		
 		<script type="text/javascript">
   
@@ -112,7 +98,7 @@
 			function goPopup(){
 				// 주소검색을 수행할 팝업 페이지를 호출합니다.
 				// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-				var pop = window.open("/member_mainpage_merge/page/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+				var pop = window.open("./jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 				
 				// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
 			    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
@@ -126,6 +112,27 @@
 			}
 			
 			
+			function checkid() {
+				var id = document.join.user_id.value;
+				if (id == "") {
+					alert(' 아이디를 입력하세요! ');
+					document.join.user_id.focus();
+					return false;
+				}
+				if(document.join.user_id.value.length < 5 || document.join.user_id.value.length > 12) {
+					alert("아이디는 5자 이상 12자 이하로 작성해주세요");
+					document.join.user_id.focus();
+					return false;
+				}
+				let checkid = window.open("./Membercheckid.member","checkid","width=570,height=420, scrollbars=yes, resizable=yes");
+				
+				// checkid.document.getElementById("id").value = document.getElementById("user_id").value;
+				}
+			function checkidCallBack(user_id){
+				// 중복확인에서 확인받은 정보를 받아서, 현 페이지에 정보를 등록
+				document.join.user_id.value = user_id;
+			}
+			
 			
 		</script>
 		
@@ -133,9 +140,11 @@
 		
 		<fieldset>
 		<legend> 회원가입 페이지 </legend>
-		<form action="./MemberJoinAction.member" method="post" name="join" onsubmit="return check();">
-			아이디 : <input type="text" name="user_id"><br>
-					 <!--<input type="button"  value="ID 중복확인"  onclick="checkid();"> <br>-->
+		<form action="./MemberJoinAction.member" method="post" name="join" onsubmit="return check();" enctype="multipart/form-data" >
+		<div id="callBackDiv">
+			아이디 : <input type="text" name="user_id" id="user_id">
+					 <input type="button"  value="ID 중복확인"   onclick="checkid();"> <br>
+		</div>
 					 
 					 
 			비밀번호 : <input type="password" name="password"><br>
@@ -213,7 +222,9 @@
 			닉네임 : <input type="text" name="user_nickname"><br>
 			
 			
-			프로필 : <input type="text" name="profile"><br>
+			
+			프로필 : <input type="file" name="profile" value="등록하기" accept="image/*"><br>
+			
 			
 			
 			추천인 : <input type="text" name="recommend"><br>

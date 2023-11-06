@@ -98,6 +98,19 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/member/Membercheckid.member")) {
+			forward = new ActionForward();
+			forward.setPath("./checkid.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/member/MemberCheckIdAction.member")){
+				action = new MemberCheckIdAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	
 		}
 		
 		//System.out.println("---------------2. 가상주소 매핑 종료---------------");
