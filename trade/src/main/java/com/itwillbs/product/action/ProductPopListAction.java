@@ -19,10 +19,15 @@ public class ProductPopListAction implements Action {
 		ArrayList popList = new ArrayList();
 		popList = dao.getPopularList();
 		
+		ArrayList recList = new ArrayList();
+		recList = dao.getRecentList();
+		
 		System.out.println("popList" + popList);
+		System.out.println("recList" + recList);
 		
 		// 전달정보 저장(deal_way, file_name, title, price)
         request.setAttribute("dto", popList);
+        request.setAttribute("dto2", recList);
         
 		// 페이지 이동
 		ActionForward forward = new ActionForward();

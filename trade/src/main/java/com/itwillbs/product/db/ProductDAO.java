@@ -493,6 +493,50 @@ public class ProductDAO {
 	}
 	// 특정 글의 정보를 가져오기() - getPopularList()
 
+	// 최신순으로 글 정보 목록을 가져오기() - getRecentList()
+	public ArrayList<ProductDTO> getRecentList() {
+		ArrayList<ProductDTO> productRecList = new ArrayList<ProductDTO>();
+		ProductDTO dto2 = null;
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+			// 3. sql 구문 작성(select) & pstmt 객체
+			sql = "SELECT * FROM Product ORDER BY date_time DESC limit 8"; // date_time 내림차순으로 8개까지 정렬
+			pstmt = con.prepareStatement(sql);
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터 처리
+			while (rs.next()) {
+				dto2 = new ProductDTO();
+				dto2.setBno(rs.getInt("bno"));
+				dto2.setContent(rs.getString("content"));
+				dto2.setUser_id(rs.getString("user_id"));
+				dto2.setDeal_way(rs.getString("deal_way"));
+				dto2.setTitle(rs.getString("title"));
+				dto2.setCategory(rs.getString("category"));
+				dto2.setBrand(rs.getString("brand"));
+				dto2.setPrice(rs.getInt("price"));
+				dto2.setProduct_status(rs.getString("product_status"));
+				dto2.setContent(rs.getString("content"));
+				dto2.setViews(rs.getInt("views"));
+				dto2.setDate_time(rs.getTimestamp("date_time"));
+				dto2.setFile_name(rs.getString("file_name"));
+				dto2.setLike_count(rs.getInt("like_count"));
+				
+				// 글 하나의 정보를 배열의 한칸에 저장
+				productRecList.add(dto2);
+			} // while
+			System.out.println(" DAO : 상품 정보 조회성공!");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return productRecList;
+	}
+	// 특정 글의 정보를 가져오기() - getRecentList()
+	
 	// 글을 삭제하는 deleteProduct(bno)
 	public int deleteProduct(int bno) {
 		int result = -1; // -1(글정보없음, 에러), 0(비밀번호 오류), 1(정상처리)
