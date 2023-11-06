@@ -123,8 +123,14 @@ public class ProductFrontController extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-  
       }
+      else if(command.equals("/product/updateContent.com")) {
+    	  System.out.println(" C : /product/updateContent.com 호출 ");
+    	  System.out.println(" C : 패턴 3 - DB 사용 O, 페이지 출력");
+    	  
+//    	  action = new updateProductAction();
+      }
+      
       
       
       System.out.println("---------------2. 가상주소 매핑 종료---------------");

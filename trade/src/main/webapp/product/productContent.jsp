@@ -65,9 +65,9 @@
 					상세 페이지
 					<%-- <c:if test="로그인 아이디 == 작성자"> --%>
 					<div class="dropdown">
-						<input class="update-content-button" type="button" value="...">
+						<input class="update-button" type="button" value="...">
 						<div class="dropdown-content">
-							<button onclick="location.href='updateContent.com';">글
+							<button onclick="location.href='./updateContent.com?bno=${dto.bno}';">글
 								수정하기</button>
 							<button onclick="confirmDelete();" class="">글 삭제하기</button>
 						</div>
@@ -220,9 +220,9 @@
 	function confirmDelete() {
 	    // 'confirm' 창을 표시하고 사용자가 확인을 누르면 true를 반환
 	    const shouldDelete = confirm('글을 삭제하시겠습니까?');
-	 	// 현재 URL의 쿼리 매개변수 저장
+	 	// 현재 URL 주소창을 통해 전달 된 정보 저장
 	    const urlParams = new URLSearchParams(location.search);
-	    // 쿼리 매개변수에서 원하는 값 저장
+	    // URL 주소창에서 원하는 값 저장
 	    const bno = urlParams.get("bno");
 	 
 	 	const newURL = "./deleteProduct.com?bno=" + bno;

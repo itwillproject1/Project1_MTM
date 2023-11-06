@@ -19,7 +19,7 @@ public class ProductContentAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: ProductContentAction.execute() 호출");
 		
-		// 추후 로그인 정보 받아서 조회는 가능,
+		// 추후 로그인 정보 받아서 미로그인도 조회는 가능,
 		// 나머지(구매, 판매, 찜 등)는 로그인페이지 이동
 		
 		// 전달정보 저장(bno, pageNum, search(생략))

@@ -46,16 +46,14 @@
 		</form>
 			</div>
 
-		
-		<%String id = (String) session.getAttribute("id"); %>
-
 		<span class="user-menu">
-            <% if (id == null) { %>
+			<c:if test="${empty id }">
             <a href="../main/login.member" id="loginLink">로그인</a>
-            <% } else { %>
-            <%= session.getAttribute("id") %>님   |   
+			</c:if>
+			<c:if test="${!empty id }">
+            ${id }님   |   
             <a href="../main/MemberLogout.member" id="logoutLink">로그아웃</a>
-            <% } %>
+            </c:if>
             <a href="../product/ProductUpload.com">글등록</a>
             <a href="#">찜</a>
             <a href="../member/mypage.member">마이페이지</a>

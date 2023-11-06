@@ -20,11 +20,11 @@
 	<%@ include file="../main/header.jsp"%>
 
 	<!-- 이벤트 슬라이더 -->
-
 	<div class="slider-container">
 		<div class="slider">
-			<img src="event1.jpg" alt="이미지 1"> <img src="event2.jpg"
-				alt="이미지 2"> <img src="event3.jpg" alt="이미지 3">
+			<img src="event1.jpg" alt="이미지 1">
+			<img src="event2.jpg" alt="이미지 2">
+			<img src="event3.jpg" alt="이미지 3">
 		</div>
 	</div>
 	<script src="maineventScript.js"></script>
@@ -32,9 +32,9 @@
 <!-- 추천상품 -->
 	<div class="title">추천 상품</div>
 	<div class="container">
+	
 		<c:forEach var="product" items="${dto}">
-
-	<div class="product" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
+			<div class="product" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
 			<img src="<%=request.getContextPath() %>/upload/${product.file_name}"
 					alt="${product.title}">
 				<div class="product-info">
