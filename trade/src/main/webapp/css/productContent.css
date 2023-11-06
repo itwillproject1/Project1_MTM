@@ -227,6 +227,7 @@ h2 {
 	border-radius: 5px;
 } 
 
+/* 신고하기 모달창 */
 .reasonCheckbox {
 	margin-left: 20px;
 	padding: 0 0 0 20px;
@@ -243,4 +244,9 @@ textarea#otherReasonText, #otherReasonText2 {
 	margin-left: 40px;
 	margin-top: 5px;
 	font-family: 'Noto Sans KR';
+}
+
+/* 신고하기 모달창 행간 조절*/
+div#postReportOptions, #authorpostReportOptions {
+	line-height: 1.45rm;
 }

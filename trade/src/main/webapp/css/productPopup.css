@@ -22,6 +22,7 @@
     color: #000; /* 텍스트 색상을 블랙으로 지정 */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
     transition: box-shadow 0.3s; /* hover 시 그림자 변경 효과 설정 */
+    margin-top: 15%;
 }
 
 .modal-content:hover {
@@ -35,6 +36,9 @@
     cursor: pointer;
     color: #000; /* 닫기 버튼 텍스트 색상을 블랙으로 지정 */
     font-size: 15px; /* 아이콘 크기 */
+    border: none;
+    background-color: white;
+    text-decoration: underline;
 }
 
 .close-button:hover {
