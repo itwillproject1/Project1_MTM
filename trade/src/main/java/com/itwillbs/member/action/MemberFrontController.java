@@ -112,6 +112,13 @@ public class MemberFrontController extends HttpServlet {
 				}
 	
 		}
+		else if(command.equals("/member/mypage.member")) {
+			
+			forward = new ActionForward();
+			
+			forward.setPath("./mypage.jsp");
+			forward.setRedirect(false);
+		}
 		
 		//System.out.println("---------------2. 가상주소 매핑 종료---------------");
 		/************************2. 가상주소 매핑 종료************************/
