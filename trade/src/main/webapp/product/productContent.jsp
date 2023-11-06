@@ -64,8 +64,8 @@
 				<h2>
 					상세 페이지
 					<%-- <c:if test="로그인 아이디 == 작성자"> --%>
+				<input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
 					<div class="dropdown">
-				<button class="complain-button" onclick="openComplainModal();">🚨</button>
 						<input class="update-content-button" type="button" value="..." >
 						
 						<div class="dropdown-content">
@@ -219,6 +219,11 @@
 	        <label for="postReason6">개인 정보 침해 (타인의 개인 정보 공개)</label><br>
 	        <input type="checkbox" class="reasonCheckbox" id="postReason7">
 	        <label for="postReason7">광고 스팸 또는 중복 게시글</label><br>
+	        <input type="checkbox" class="reasonCheckbox" id="postReason8" onchange="showTextarea()">
+<label for="postReason8">기타</label><br>
+<div id="otherReason" style="display: none;">
+    <textarea id="otherReasonText" placeholder="기타 이유를 입력하세요"></textarea>
+</div>
 	      </div>
 	      <input type="checkbox" id="authorReportCheckbox" class="productCheckbox" data-productid="2"> <label for="authorReportCheckbox">작성자 신고</label><br>
 	      <div id="authorReportOptions" style="display: none;">
@@ -235,7 +240,12 @@
 	        <input type="checkbox" class="reasonCheckbox" id="authorReason6">
 	        <label for="authorReason6">규정 위반 (중고거래 플랫폼의 규정을 어기는 행동)</label><br>
 	        <input type="checkbox" class="reasonCheckbox" id="authorReason7">
-	        <label for="authorReason7">욕설, 혐옵 내용 또는 괴롭힘</label><br>
+	        <label for="authorReason7">욕설, 혐오 내용 또는 괴롭힘</label><br>
+			<input type="checkbox" class="reasonCheckbox" id="authorReason8" onchange="showTextarea()">
+			<label for="authorReason8">기타</label><br>
+			<div id="otherReason2" style="display: none;">
+			    <textarea id="otherReasonText2" placeholder="기타 이유를 입력하세요"></textarea>
+			</div>
 	      </div>
 	      <button class="close-button" onclick="closeComplainModal()">닫기</button>
 	      <input type="submit" value="신고하기" class="confirm-button">
@@ -268,6 +278,25 @@
         authorReportOptions.style.display = this.checked ? 'block' : 'none';
         postReportCheckbox.disabled = this.checked;
     });
+    
+    function showTextarea() {
+    	 var postCheckbox = document.getElementById("postReason8");
+         var authorCheckbox = document.getElementById("authorReason8");
+         var postTextarea = document.getElementById("otherReason");
+         var authorTextarea = document.getElementById("otherReason2");
+
+         if (postCheckbox.checked) {
+             postTextarea.style.display = "block";
+         } else {
+             postTextarea.style.display = "none";
+         }
+
+         if (authorCheckbox.checked) {
+             authorTextarea.style.display = "block";
+         } else {
+             authorTextarea.style.display = "none";
+         }
+     }
 </script>
 
 
