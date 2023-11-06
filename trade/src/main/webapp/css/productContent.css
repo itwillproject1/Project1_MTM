@@ -25,7 +25,7 @@ body {
 	flex-direction: column;
 	align-items: center; /* 가로 방향 가운데 정렬 */
 	justify-content: center; /* 세로 방향 가운데 정렬 */
-}
+}아이폰
 
 .image-container img {
 	max-width: 100%;
@@ -137,6 +137,7 @@ body {
 }
 
 .dropdown-content button {
+	display: block;
 	text-decoration: none;
 	color: #333;
 	background-color: #f9f9f9;
@@ -214,9 +215,9 @@ h2 {
 	background-color: #ccc; /* 어두운 배경색 (예: 회색) */
 }
 
-/* 팝업 전체 스타일 */
+/* 모달 전체 스타일 */
 .modal {
-	display: block;
+	display: none;
 	width: 300px;
 	margin: 50px auto;
 	background-color: #f9f9f9;
@@ -224,4 +225,8 @@ h2 {
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 	padding: 20px;
 	border-radius: 5px;
+} 
+
+.reasonCheckbox {
+	margin-left: 20px;
 }
