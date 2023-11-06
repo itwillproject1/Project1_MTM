@@ -94,7 +94,7 @@
 							brandDropdown.innerHTML += '<option value="hp">hp</option>';
 							brandDropdown.innerHTML += '<option value="레노버">레노버</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
-						} else if (selectedCategory === '게임 기기') {
+						} else if (selectedCategory === '게임기기') {
 							// 게임 기기를 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -118,7 +118,7 @@
 							brandDropdown.innerHTML += '<option value="라이카">라이카</option>';
 							brandDropdown.innerHTML += '<option value="코닥">코닥</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
-						} else if (selectedCategory === '음향기기 ') {
+						} else if (selectedCategory === '음향기기') {
 							// 음향 기기를 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
