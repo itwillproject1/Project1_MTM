@@ -135,16 +135,15 @@
 					</div>
 				</c:if>
 
-		<c:if test="${dto.deal_way.equals('삽니다') }">
-
-				<c:choose>
-	    <c:when test="${sessionScope.id and dto.deal_way eq '팝니다'}">
-	        <button class="submit-button" onclick="openProductModal();">판매하기</button>
-	    </c:when>
-	    <c:otherwise>
-	        <button class="submit-button" onclick="requireLogin();">판매하기</button>
-	    </c:otherwise>
-	</c:choose>
+<c:if test="${dto.deal_way.equals('삽니다') }">
+    <c:choose>
+        <c:when test="${empty sessionScope.id}">
+            <button class="submit-button" onclick="requireLogin();">판매하기</button>
+        </c:when>
+        <c:otherwise>
+            <button class="submit-button" onclick="openProductModal();">판매하기</button>
+        </c:otherwise>
+    </c:choose>
 </c:if>
 <script>
     var modal;
@@ -154,6 +153,33 @@
         // 로그인 페이지로 이동
         window.location.href = "../main/login.member";
     }
+    function openProductModal() {
+    	${sessionScope.id eq dto.user_id}
+        // DTO 객체에서 상품 정보를 가져오기
+        var productInfo = ${sessionScope.id eq dto.user_id};
+        };
+        var modalContent = `
+            <div class="modal" id="productModal">
+                <div class="modal-content">
+                    <!-- 모달 내에 체크박스와 제품 정보 설정 -->
+                    <input type="checkbox" id="checkBox" class="productCheckbox" data-productid="1" style="width: 30px; height: 30px;">
+                    <!-- 제품 정보 -->
+                    <img src="<%=request.getContextPath() %>/upload/${productInfo.file_name}" id="imagePreview" alt="미리보기" width="60px" height="60px">
+                    상품명: <label for="productName">${productInfo.title}</label>
+                    가격: <label for="productPrice"><fmt:formatNumber value="${productInfo.price}"/>원</label>
+                    <label for="productStatus">${productInfo.product_status}</label>
+                    <span class="close-button" onclick="closeProductModal();">닫기</span>
+                    <button class="confirm-button" onclick="confirmProduct();">확인</button>
+                </div>
+            </div>
+        `;
+
+        // 모달 열기
+        document.body.insertAdjacentHTML('beforeend', modalContent);
+        modal = document.getElementById('productModal');
+        modal.style.display = 'block';
+    }
+
 </script>
 
 
