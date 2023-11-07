@@ -48,25 +48,25 @@ public class MemberDAO {
 				
 				try {
 					con = getCon();
-					sql = "insert into Member (user_id,password,passwordcheck,email,user_name,jumin,gender,phone,address,user_nickname,profile,recommend,agree) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					sql = "insert into Member (user_id,password,email,user_name,jumin,gender,phone,address,user_nickname,profile,recommend,agree) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 					
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, dto.getUser_id());
 					pstmt.setString(2, dto.getPassword());
-					pstmt.setString(3, dto.getPasswordcheck());
-					pstmt.setString(4, dto.getEmail());
-					pstmt.setString(5, dto.getUser_name());
-					pstmt.setString(6, dto.getJumin());
-					pstmt.setString(7, dto.getGender());
-					pstmt.setString(8, dto.getPhone());
-					pstmt.setString(9, dto.getAddress());
-					pstmt.setString(10, dto.getUser_nickname());
+
+					pstmt.setString(3, dto.getEmail());
+					pstmt.setString(4, dto.getUser_name());
+					pstmt.setString(5, dto.getJumin());
+					pstmt.setString(6, dto.getGender());
+					pstmt.setString(7, dto.getPhone());
+					pstmt.setString(8, dto.getAddress());
+					pstmt.setString(9, dto.getUser_nickname());
 					
-					pstmt.setString(11, dto.getProfile());
+					pstmt.setString(10, dto.getProfile());
 					
-					pstmt.setString(12, dto.getRecommend());
-					pstmt.setString(13, dto.getAgree());
+					pstmt.setString(11, dto.getRecommend());
+					pstmt.setString(12, dto.getAgree());
 					
 					pstmt.executeUpdate();
 					System.out.println("회원가입 완료");
@@ -140,7 +140,49 @@ public class MemberDAO {
 									closeDB();
 								}
 								return result;
-		}	
+		}
+		
+		public MemberDTO getMember(String id) {
+			MemberDTO dto = null;
+			
+			try {
+				//1.2. 디비연결
+				con = getCon();
+				//3. sql 작성(select) & pstmt 객체
+				sql = "select * from Member where user_id=?";
+				pstmt = con.prepareStatement(sql);
+				// ???
+				pstmt.setString(1, id);
+				//4. sql 실행
+				rs = pstmt.executeQuery();
+				//5. 데이터 처리 (DB에 저장된 정보(rs)를 DTO로 저장)
+				if(rs.next()) {
+					dto = new MemberDTO();
+					
+					// rs => dto 저장
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setPassword(rs.getString("password"));
+					dto.setUser_name(rs.getString("user_name"));
+					dto.setJumin(rs.getString("jumin"));
+					dto.setGender(rs.getString("gender"));
+					dto.setEmail(rs.getString("email"));
+					
+					dto.setAddress(rs.getString("address"));
+					dto.setUser_nickname(rs.getString("user_nickname"));
+					dto.setProfile(rs.getString("profile"));
+					dto.setPhone(rs.getString("phone"));
+				}
+				
+				System.out.println(" DAO : 회원정보 조회 완료!");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return dto;
+		}
 		
 		
 		

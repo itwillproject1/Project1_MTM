@@ -56,7 +56,7 @@
             </c:if>
             <a href="../product/ProductUpload.com">글등록</a>
             <a href="#">찜</a>
-            <a href="../member/mypage.member">마이페이지</a>
+            <a href="../member/MemberInfo.member">마이페이지</a>
         </span>	
 		<!-- <span class="user-menu">
             <a href="../main/login.member">로그인</a>
