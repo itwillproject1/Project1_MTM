@@ -26,7 +26,7 @@ public class EmployeeDAO {
 	private PreparedStatement pstmt = null;
 	
 	// Connection 설정
-	private Connection getCon() throws Exception{
+	protected Connection getCon() throws Exception{
 		Context initCTX = new InitialContext();
 		Context envCTX = (Context)initCTX.lookup("java:comp/env");
 		DataSource ds = (DataSource)envCTX.lookup("jdbc/mvc");
@@ -37,7 +37,7 @@ public class EmployeeDAO {
 	}// getCon();
 	
 	// 데이터베이스 닫기
-	private void CloseDB() {
+	protected void CloseDB() {
 		try {
 			if(rs != null) rs.close();
 			if(pstmt != null) pstmt.close();
