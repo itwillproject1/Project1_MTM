@@ -188,41 +188,20 @@
 		ProductDTO dto = (ProductDTO) request.getAttribute("pdto");
 	%>
 	<div class="container">
-		<!-- 이미지 영역 시작 -->
+		<!-- 미리보기 영역 시작 -->
 			<c:set var="fileNameArr" value="${fn:split(pdto.file_name, ',')}" />
 				<div class="image-container">
-			<h2>이미지 미리보기</h2>
-					<!-- 이미지를 클릭하면 JavaScript로 크게 보이게 설정 -->
+					<h2>이미지 미리보기</h2>
 					<div class="image-preview">
 						<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
 							id="imagePreview" alt="미리보기">
 					</div>
-	
-					<div class="image-preview-choice">
-						<c:forEach var="file_name" items="${fileNameArr}">
-							<img src="<%=request.getContextPath() %>/upload/${file_name}"
-								id="imagePreviewChoice" class="clickable-image" alt="미리보기">
-						</c:forEach>
-					</div>
 				</div>
-				<script>
-	    			// 이미지를 클릭할 때 이미지를 크게 보기
-				    var imageChoiceElements = document.querySelectorAll("#imagePreviewChoice");
-				    var imagePreviewElement = document.getElementById("imagePreview");
-				
-				    imageChoiceElements.forEach(function(imageChoice) {
-				        imageChoice.addEventListener("click", function() {
-				            imagePreviewElement.src = imageChoice.src;
-				        });
-				    });
-				</script>
-			<!-- 이미지 영역 종료 -->
+		<!-- 미리보기 영역 종료 -->
 
 		<div class="form-container">
 			<h2>글 수정하기</h2>
-			<form action="./ProductUpdateProAction.com" method="post"
-				enctype="multipart/form-data">
-
+			<form action="./ProductUpdateProAction.com?bno=${pdto.bno}" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="dealWay">거래 방식:</label> <select id="deal_way"
 						name="deal_way" onchange="updateSecondDropdown2()">
@@ -264,11 +243,29 @@
 				<div class="form-group">
 					<label for="productImage">상품 이미지:</label>
 					<div id="uploadFile">
-					<c:forEach var="i" begin="1" end="5" step="1">
-						<!-- 파일 선택 시 previewImage() 함수 호출 -->
-						<input type="file" id="file${i }" name="file${i }"
-							accept="image/*" onchange="previewImage(${i })">
-					</c:forEach>
+						<div>
+							<c:forEach var="i" begin="1" end="5" step="1">
+							<div id="load-img">
+							<%-- 글자 클릭 시 showImagePreview() 함수 호출 --%>
+								<input type="text" id="fni${i}" name="file_name${i }" value="${fileNameArr[i-1]}"
+									style="cursor: pointer;" onclick="showImagePreview(${i})" class="fntext" readonly>
+								
+								<!-- 수정하기 또는 추가하기 버튼 클릭 시 아래 input 태그 나타남 -->
+								<c:if test="${fileNameArr[i-1] != null}">
+									<button type="button" class="updateImg" onclick="showFileInput(${i })">수정하기</button>
+								</c:if>
+								<c:if test="${fileNameArr[i-1] == null}">
+									<button type="button" class="updateImg" onclick="showFileInput(${i })">추가하기</button>
+								</c:if>
+								<!-- 나중에 x로 삭제하는 버튼도 필요할듯 -->
+							</div>
+							
+							<!-- 파일 선택 시 previewImage() 함수 호출 -->
+								<input type="file" id="file${i }" name="file${i }"
+								accept="image/*" onchange="previewImage(${i })" style="display: none;">
+								<br>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 
@@ -287,8 +284,8 @@
 		</div>
 	</div>
 
-	<!-- 이미지 미리보기 관련 스크립트 -->
 	<script>
+	<!-- 이미지 미리보기 관련 스크립트 -->
 		function previewImage(index) {
 			var fileInput = document.getElementById("file" + index);
 			var imagePreview = document.getElementById("imagePreview");
@@ -303,6 +300,39 @@
 				// 파일이 선택되지 않았을 때의 처리 (미리보기 이미지 제거)
 				imagePreview.src = "";
 			}
+		}
+		
+		function showImagePreview(i) {
+		    var imagePreview = document.getElementById("imagePreview");
+			var fileNameE = document.getElementById("fni"+i);
+			var fileName = fileNameE.value;
+		    console.log(fileName);
+
+		    // 이미지의 src를 해당 파일의 경로로 설정
+		    imagePreview.src = "<%= request.getContextPath() %>/upload/" + fileName;
+		  }
+		
+	<!-- 수정하기 누르면 파일 인풋태그 나타나게 -->
+		function showFileInput(i) {
+			  const fileInput = document.getElementById('file' + i);
+			  const fniInput = document.getElementById('fni' + i);
+			  
+			  // 인풋태그 나타내기
+			  if (fileInput.style.display === 'none') {
+			    fileInput.style.display = 'block';
+			  } else {
+			    fileInput.style.display = 'none';
+			  }
+			  
+			  // 파일 입력하면 해당 파일명으로 변경
+			  fileInput.addEventListener('change', function () {
+			        const selectedFile = fileInput.files[0];
+			        if (selectedFile) {
+			        	fniInput.value = selectedFile.name;
+			        } else {
+			        	fniInput.value = '';
+			        }
+			   });
 		}
 	</script>
 

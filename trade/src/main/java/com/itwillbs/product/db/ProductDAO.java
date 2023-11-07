@@ -46,7 +46,7 @@ public class ProductDAO {
 	public int uploadProduct(ProductDTO dto) {
 		int bno = 0;
 		try {
-			getCon();
+			con = getCon();
 
 			// sql, pstmt
 			sql = "select max(bno) from Product";
@@ -561,4 +561,39 @@ public class ProductDAO {
 		}
 		return result;
 	} // deleteProduct(bno) 종료
+	
+	// 글을 수정하는 updateProduct(bno)
+	public int updateProduct(ProductDTO dto) {
+		int bno = dto.getBno();
+		try {
+			
+			con = getCon();
+
+			// sql, pstmt
+			sql = "update Product set deal_way=?, title=?, category=?, brand=?, "
+					+ "price=?, product_status=?, content=?, file_name=? where bno=?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, dto.getDeal_way());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getCategory());
+			pstmt.setString(4, dto.getBrand());
+			pstmt.setInt(5, dto.getPrice());
+			pstmt.setString(6, dto.getProduct_status());
+			pstmt.setString(7, dto.getContent());
+			pstmt.setString(8, dto.getFile_name());
+			pstmt.setInt(9, bno); 
+
+			// sql 실행
+			pstmt.executeUpdate();
+			System.out.println("DAO: " + bno + "번 글 수정 완료");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return bno;
+	}
+	
 }

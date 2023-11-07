@@ -22,6 +22,7 @@ public class ProductContentAction implements Action {
 		// 추후 로그인 정보 받아서 미로그인도 조회는 가능,
 		// 나머지(구매, 판매, 찜 등)는 로그인페이지 이동
 		
+		
 		// 전달정보 저장(bno, pageNum, search(생략))
 		int bno = Integer.parseInt(request.getParameter("bno")); // 추후 수정
 		String pageNum = request.getParameter("pageNum");
