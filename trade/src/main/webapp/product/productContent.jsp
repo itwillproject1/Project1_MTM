@@ -63,15 +63,6 @@
 			<div class="form-container">
 				<h2>
 					상세 페이지
-					
-					<%-- <c:if test="로그인 아이디 != 작성자">
-					<div class="dropdown">
-						<input class="update-content-button" type="button" value="...">
-						<div class="dropdown-content">
-							<a href="글 신고 페이지">글 신고하기</a><br>
-						</div>
-					</div>
-					</c:if> --%>
 
 					<c:choose>
 						<c:when test="${empty sessionScope.id}">
@@ -100,7 +91,6 @@
 						</c:otherwise>
 					</c:choose>
 
-
 				</h2>
 				<div class="form-group">
 					<label for="user">작성자: <a href="작성자프로필">${dto.user_id }</a></label>
@@ -116,7 +106,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="productBrand">브랜드: <a href="../product/ProductList.com?category=${dto.brand }">${dto.brand }</a></label>
+					<label for="productBrand">브랜드: <a
+						href="../product/ProductList.com?category=${dto.brand }">${dto.brand }</a></label>
 				</div>
 
 				<c:if test="${dto.deal_way.equals('팝니다') }">
@@ -143,72 +134,29 @@
 
 					</div>
 				</c:if>
-				
-				<c:if test="${dto.deal_way.equals('삽니다') }">
-					<button class="submit-button" onclick="openProductModal();">판매하기</button>
-				</c:if>
-				
-				<%
-				String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
-				ProductDAO dao = new ProductDAO();
-				ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 가져오는 메서드
+
+		<c:if test="${dto.deal_way.equals('삽니다') }">
+
+				<c:choose>
+	    <c:when test="${sessionScope.id and dto.deal_way eq '팝니다'}">
+	        <button class="submit-button" onclick="openProductModal();">판매하기</button>
+	    </c:when>
+	    <c:otherwise>
+	        <button class="submit-button" onclick="requireLogin();">판매하기</button>
+	    </c:otherwise>
+	</c:choose>
+</c:if>
+<script>
+    var modal;
+
+    function requireLogin() {
+        alert("로그인을 해주세요");
+        // 로그인 페이지로 이동
+        window.location.href = "../main/login.member";
+    }
+</script>
 
 
-				if (dto != null) {
-				%> 
-				<script>
-
-			    var modal; // 모달을 저장할 변수
-			
-			    function openProductModal() {
-			        var modalContent = `
-			            <div class="modal" id="productModal">
-			                <div class="modal-content">
-			                    <!-- 모달 내에 체크박스와 제품 정보 설정 -->
-			                    <input type="checkbox" id="checkBox" class="productCheckbox" data-productid="1" style="width: 30px; height: 30px;">
-			                    <!-- 제품 정보 -->
-			                    <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" id="imagePreview" alt="미리보기" width="60px" height="60px">
-			                    상품명: <label for="productName">${dto.title}</label>
-			                    가격: <label for="productPrice"><fmt:formatNumber value="${dto.price}"/>원</label>
-			                     <span class="close-button" onclick="closeProductModal();">닫기</span>
-			                     <button class="confirm-button" onclick="confirmProduct();">확인</button>
-			                </div>
-			            </div>
-			        `;
-			
-			        // 모달 열기
-			        document.body.insertAdjacentHTML('beforeend', modalContent); 
-			        // beforeend는 JavaScript의 insertAdjacentHTML 메서드에서 사용되는 위치 지정자
-			        modal = document.getElementById('productModal');
-			        modal.style.display = 'block';
-				    }
-				
-				    function closeProductModal() {
-				        if (modal) {
-				            modal.style.display = 'none'; // 모달 닫기
-				        }
-				    }
-				    
-				    function confirmProduct() {
-				        var checkBox = document.getElementById('checkBox');
-				        if (checkBox.checked) { // 체크박스가 체크된 경우만 정보전달
-				            // 정보전달 코드짜야함!!!!!!!!!!
-				            alert('제안 완료!');
-				            closeProductModal(); // 모달 창 닫기
-				        } else {
-				            alert('제안할 물품을 선택하세요.');
-				        }
-				    }
-					</script>
-
-					<%
-				}
-				// else {
-				//     response.sendRedirect("login.com"); // 로그인 페이지로 이동
-				// }
-				%>
-			</div>
-		</div>
 		<div class="form-group">
 			<label for="productDescription">상품 설명: </label> ${dto.content }
 		</div>
@@ -273,10 +221,10 @@
 	</form>
 	<!-- 신고하기 모달창 종료-->
 
-<!-- .productCheckbox, .reasonCheckbox { -->
-<!--     transform: scale(2); /* 크기를 2배로 확대 */ -->
-<!--     margin-right: 5px; /* 원래 크기의 간격을 조정 (선택 사항) */ -->
-<!-- } -->
+	<!-- .productCheckbox, .reasonCheckbox { -->
+	<!--     transform: scale(2); /* 크기를 2배로 확대 */ -->
+	<!--     margin-right: 5px; /* 원래 크기의 간격을 조정 (선택 사항) */ -->
+	<!-- } -->
 	<script>
     var complainModal = document.getElementById("complainModal");
     var postReportCheckbox = document.getElementById("postReportCheckbox");
