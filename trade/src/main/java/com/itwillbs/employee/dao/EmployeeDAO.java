@@ -18,6 +18,8 @@ import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.employee.dto.UserDTO;
 
 public class EmployeeDAO {
+	// DAO 분리, 하지만 데이터베이스 작업은 하나로만 진행
+	// update, delete, insert, select, search 등
 	private Connection con = null;
 	private ResultSet rs = null;
 	private String sql = "";
