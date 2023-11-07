@@ -273,7 +273,10 @@
 	</form>
 	<!-- 신고하기 모달창 종료-->
 
-
+<!-- .productCheckbox, .reasonCheckbox { -->
+<!--     transform: scale(2); /* 크기를 2배로 확대 */ -->
+<!--     margin-right: 5px; /* 원래 크기의 간격을 조정 (선택 사항) */ -->
+<!-- } -->
 	<script>
     var complainModal = document.getElementById("complainModal");
     var postReportCheckbox = document.getElementById("postReportCheckbox");
