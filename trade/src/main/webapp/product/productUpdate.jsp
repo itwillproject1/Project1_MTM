@@ -118,7 +118,7 @@
 	            }
 	            brandDropdown.appendChild(option);
 	        }
-		} else if (selectedCategory === '음향기기 ') {
+		} else if (selectedCategory === '음향기기') {
 			// 음향기기를 선택한 경우
 			brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 			brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -261,8 +261,6 @@
 						id="price" name="price" value="${pdto.price }" step="10">
 				</div>
 				
-				
-				
 				<div class="form-group">
 					<label for="productImage">상품 이미지:</label>
 					<div id="uploadFile">
@@ -307,7 +305,6 @@
 			}
 		}
 	</script>
-
 
 </body>
 </html>
