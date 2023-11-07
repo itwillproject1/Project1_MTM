@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.employee.dao.ComplainDAO;
 import com.itwillbs.employee.dao.DAO;
 import com.itwillbs.employee.dto.ComplainDTO;
 import com.itwillbs.util.Action;
@@ -15,7 +16,7 @@ public class ComplainListAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum = "1";
-		DAO dao = new DAO();
+		ComplainDAO dao = new ComplainDAO();
 		ArrayList compList = dao.complainList(Integer.parseInt(pageNum));
 		
 		ActionForward forward = new ActionForward();

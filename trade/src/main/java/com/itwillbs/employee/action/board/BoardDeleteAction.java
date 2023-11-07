@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.itwillbs.employee.dao.BoardDAO;
 import com.itwillbs.employee.dao.DAO;
 import com.itwillbs.employee.dto.BoardDTO;
 import com.itwillbs.employee.dto.MemberDTO;
@@ -13,7 +14,7 @@ import com.itwillbs.util.ActionForward;
 public class BoardDeleteAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		DAO dao = new DAO();
+		BoardDAO dao = new BoardDAO();
 		BoardDTO bdto = new BoardDTO();
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		bdto.setBno(bno);
