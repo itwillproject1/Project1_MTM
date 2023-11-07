@@ -1,4 +1,4 @@
-<%@page import="com.itwillbs.product.db.ProductDTO"%>
+<%-- <%@page import="com.itwillbs.product.db.ProductDTO"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -34,6 +34,28 @@
 	<div class="container">
 	
 		<c:forEach var="product" items="${dto}">
+			<div class="product" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
+			<img src="<%=request.getContextPath() %>/upload/${product.file_name}"
+					alt="${product.title}">
+				<div class="product-info">
+					<h3>[${product.deal_way }]${product.title }</h3>
+				</div>
+				<div class="product-price">
+					<p>
+						<fmt:formatNumber value="${product.price }" />
+						원
+					</p>
+				</div>
+			</div>
+			<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
+		</c:forEach>
+	</div>
+	
+<!-- 최신상품 -->
+	<div class="title">최신 상품</div>
+	<div class="container">
+	
+		<c:forEach var="product" items="${dto2}">
 			<div class="product" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
 			<img src="<%=request.getContextPath() %>/upload/${product.file_name}"
 					alt="${product.title}">
