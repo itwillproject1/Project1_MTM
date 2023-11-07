@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.dao.EmployeeDAO;
+import com.itwillbs.employee.dao.DAO;
+import com.itwillbs.employee.dao.TradeDAO;
+import com.itwillbs.employee.dao.UserDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -13,11 +15,12 @@ public class EmployeeMainAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		EmployeeDAO dao = new EmployeeDAO();
 		
-		int userCount = dao.userCount();
-		int tradeCount = dao.tradeCount();
-		ArrayList tradeList = dao.tradeList(10);
+		UserDAO udao = new UserDAO();
+		TradeDAO tdao = new TradeDAO();
+		int userCount = udao.userCount();
+		int tradeCount = tdao.tradeCount();
+		ArrayList tradeList = tdao.tradeList(10);
 		request.setAttribute("userCount", userCount);
 		request.setAttribute("tradeCount", tradeCount);
 		request.setAttribute("tradeList", tradeList);

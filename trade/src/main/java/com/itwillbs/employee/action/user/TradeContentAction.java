@@ -3,7 +3,8 @@ package com.itwillbs.employee.action.user;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.dao.EmployeeDAO;
+import com.itwillbs.employee.dao.DAO;
+import com.itwillbs.employee.dao.TradeDAO;
 import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.employee.dto.UserDTO;
 import com.itwillbs.util.Action;
@@ -15,7 +16,7 @@ public class TradeContentAction implements Action{
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum = "1";
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		EmployeeDAO dao = new EmployeeDAO();
+		TradeDAO dao = new TradeDAO();
 		TradeDTO tdto = dao.tradeContent(bno);
 		request.setAttribute("tdto", tdto);
 		ActionForward forward = new ActionForward();

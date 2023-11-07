@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.dao.EmployeeDAO;
+import com.itwillbs.employee.dao.DAO;
+import com.itwillbs.employee.dao.UserDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -16,7 +17,7 @@ public class UserListAction implements Action{
 		int pageNum;
 		if(request.getParameter("pageNum") == null) pageNum = 1;
 		else pageNum = Integer.parseInt(request.getParameter("pageNum"));
-		EmployeeDAO dao = new EmployeeDAO();
+		UserDAO dao = new UserDAO();
 		ArrayList list = null;
 		int userCount = dao.userCount();
 		int columns = 8;

@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.dao.EmployeeDAO;
+import com.itwillbs.employee.dao.DAO;
+import com.itwillbs.employee.dao.TradeDAO;
 import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
@@ -22,7 +23,7 @@ public class TradeListAction implements Action{
 		String pageCategory = request.getParameter("pageCategory");
 		if(pageCategory == null) pageCategory = "all";
 		
-		EmployeeDAO dao = new EmployeeDAO();
+		TradeDAO dao = new TradeDAO();
 		ArrayList list = null;
 		if(pageCategory == "all") {
 			list = dao.tradeList(Integer.parseInt(pageNum));

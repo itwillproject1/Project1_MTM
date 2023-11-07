@@ -3,7 +3,7 @@ package com.itwillbs.employee.action.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.dao.EmployeeDAO;
+import com.itwillbs.employee.dao.DAO;
 import com.itwillbs.employee.dto.BoardDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
@@ -11,7 +11,7 @@ import com.itwillbs.util.ActionForward;
 public class BoardContentAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		EmployeeDAO dao = new EmployeeDAO();
+		DAO dao = new DAO();
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		BoardDTO dto = dao.boardContent(bno);
 		request.setAttribute("dto", dto);

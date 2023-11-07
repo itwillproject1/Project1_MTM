@@ -3,7 +3,7 @@ package com.itwillbs.employee.action.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.dao.EmployeeDAO;
+import com.itwillbs.employee.dao.DAO;
 import com.itwillbs.employee.dto.BoardDTO;
 import com.itwillbs.employee.dto.MemberDTO;
 import com.itwillbs.util.Action;
@@ -21,7 +21,7 @@ public class BoardInsertAction implements Action{
 		
 		mdto.setEmp_id((String)request.getSession().getAttribute("emp_id"));
 		mdto.setEmp_pw(request.getParameter("emp_pw"));
-		EmployeeDAO dao = new EmployeeDAO();
+		DAO dao = new DAO();
 		int result = dao.insertBoard(bdto, mdto);
 		return null;
 	}

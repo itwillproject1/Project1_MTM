@@ -4,7 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.itwillbs.employee.dao.EmployeeDAO;
+import com.itwillbs.employee.dao.DAO;
+import com.itwillbs.employee.dao.MemberDAO;
 import com.itwillbs.employee.dto.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
@@ -17,7 +18,7 @@ import com.itwillbs.util.ActionForward;
 public class ProfileAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		EmployeeDAO dao = new EmployeeDAO();
+		MemberDAO dao = new MemberDAO();
 		
 		// 세션에서 로그인 중인 아이디 불러오기
 		HttpSession session = request.getSession();
