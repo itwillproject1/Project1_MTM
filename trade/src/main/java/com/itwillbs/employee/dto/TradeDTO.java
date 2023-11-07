@@ -16,6 +16,8 @@ public class TradeDTO {
 	private Timestamp date_time;
 	private String file_name;
 	private int like_count;
+	private int deal_status;
+	private String deal_user_id;
 	
 	public int getBno() {
 		return bno;
@@ -95,12 +97,26 @@ public class TradeDTO {
 	public void setLike_count(int like_count) {
 		this.like_count = like_count;
 	}
+	public int getDeal_status() {
+		return deal_status;
+	}
+	public void setDeal_status(int deal_status) {
+		this.deal_status = deal_status;
+	}
+	public String getDeal_user_id() {
+		return deal_user_id;
+	}
+	public void setDeal_user_id(String deal_user_id) {
+		this.deal_user_id = deal_user_id;
+	}
 	
 	@Override
 	public String toString() {
-		return "EmployeeTradeDTO [bno=" + bno + ", user_id=" + user_id + ", deal_way=" + deal_way + ", title=" + title
+		return "TradeDTO [bno=" + bno + ", user_id=" + user_id + ", deal_way=" + deal_way + ", title=" + title
 				+ ", category=" + category + ", brand=" + brand + ", price=" + price + ", product_status="
 				+ product_status + ", content=" + content + ", views=" + views + ", date_time=" + date_time
-				+ ", file_name=" + file_name + ", like_count=" + like_count + ", toString()=" + super.toString() + "]";
-	}	
+				+ ", file_name=" + file_name + ", like_count=" + like_count + ", deal_status=" + deal_status
+				+ ", deal_user_id=" + deal_user_id + ", toString()=" + super.toString() + "]";
+	}
+
 }

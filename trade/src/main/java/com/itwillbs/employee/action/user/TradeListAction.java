@@ -15,14 +15,35 @@ public class TradeListAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("utf-8");
+		
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) pageNum = "1";
+		// all, buy, sell, complete
+		String pageCategory = request.getParameter("pageCategory");
+		if(pageCategory == null) pageCategory = "all";
+		
 		EmployeeDAO dao = new EmployeeDAO();
-		ArrayList sellList = dao.tradeList("팝니다");
-		ArrayList buyList = dao.tradeList("삽니다");
+		ArrayList list = null;
+		if(pageCategory == "all") {
+			list = dao.tradeList(Integer.parseInt(pageNum));
+		}
 		
-		request.setAttribute("sellList", sellList);
-		request.setAttribute("buyList", buyList);
+		else if(pageCategory == "buy") {
+			list = dao.tradeList("삽니다", Integer.parseInt(pageNum));
+		}
 		
+		else if(pageCategory == "sell") {
+			list = dao.tradeList("팝니다", Integer.parseInt(pageNum));
+		}
+		
+		else if(pageCategory == "complete") {
+			list = dao.tradeSearch("deal_status", "0", Integer.parseInt(pageNum), 8);
+		}
+		if(list == null) list = new ArrayList();
+		request.setAttribute("list", list);
+		request.setAttribute("pageNum", pageNum);
 		forward.setPath("./employee/user/tradeList.jsp");
+		System.out.println(list.size());
 		forward.setRedirect(false);
 		return forward;
 	}

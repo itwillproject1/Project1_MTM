@@ -24,6 +24,7 @@ import com.itwillbs.employee.action.member.LoginAction;
 import com.itwillbs.employee.action.member.ProfileAction;
 import com.itwillbs.employee.action.member.PwFindAction;
 import com.itwillbs.employee.action.member.RegisterAction;
+import com.itwillbs.employee.action.user.TradeListAction;
 import com.itwillbs.employee.action.user.UserInfoAction;
 import com.itwillbs.employee.action.user.UserListAction;
 import com.itwillbs.util.Action;
@@ -284,10 +285,12 @@ public class EmployeeFrontController extends HttpServlet{
 		else if(command.equals("/TradeList.emp")) {
 			// 거래 현황 표시
 			// 클릭 시 상세 페이지 이동
-			forward = new ActionForward();
-			forward.setPath("./employee/user/tradeList.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new TradeListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/TradeContent.emp")) {
