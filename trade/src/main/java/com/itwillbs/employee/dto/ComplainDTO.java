@@ -12,7 +12,8 @@ public class ComplainDTO {
 	private String emp_id;
 	private Timestamp completeDate;
 	private String complainResult;
-	private int resultDate;
+	private int resultDays;
+	
 	public int getBno() {
 		return bno;
 	}
@@ -67,11 +68,11 @@ public class ComplainDTO {
 	public void setComplainResult(String complainResult) {
 		this.complainResult = complainResult;
 	}
-	public int getResultDate() {
-		return resultDate;
+	public int getResultDays() {
+		return resultDays;
 	}
-	public void setResultDate(int resultDate) {
-		this.resultDate = resultDate;
+	public void setResultDays(int resultDays) {
+		this.resultDays = resultDays;
 	}
 	
 	@Override
@@ -79,6 +80,6 @@ public class ComplainDTO {
 		return "ComplainDTO [bno=" + bno + ", complainer_id=" + complainer_id + ", user_id=" + user_id
 				+ ", complainReason=" + complainReason + ", uploadDate=" + uploadDate + ", complete=" + complete
 				+ ", emp_id=" + emp_id + ", completeDate=" + completeDate + ", complainResult=" + complainResult
-				+ ", resultDate=" + resultDate + ", toString()=" + super.toString() + "]";
+				+ ", resultDays=" + resultDays + ", toString()=" + super.toString() + "]";
 	}
 }

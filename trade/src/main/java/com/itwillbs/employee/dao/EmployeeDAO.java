@@ -563,6 +563,15 @@ public class EmployeeDAO {
 			bList = new ArrayList();
 			while(rs.next()) {
 				dto = new BoardDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setCategory(rs.getString("category"));
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setImage(rs.getString("image"));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				bList.add(dto);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -581,6 +590,14 @@ public class EmployeeDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dto = new BoardDTO();
+				dto.setBno(index);
+				dto.setCategory(rs.getString("category"));
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setImage(rs.getString("image"));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -617,7 +634,7 @@ public class EmployeeDAO {
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))) {
 					result = 1;
-					sql = "";
+					sql = "update ";
 					pstmt = con.prepareStatement(sql);
 					pstmt.executeUpdate();
 				}
@@ -642,8 +659,9 @@ public class EmployeeDAO {
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))){
 					result = 1;
-					sql = "";
+					sql = "delete from Inquiry where bno = ?";
 					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, dto.getBno());
 					pstmt.executeUpdate();
 				}
 				else result = 0;
@@ -667,6 +685,16 @@ public class EmployeeDAO {
 			iList = new ArrayList();
 			while(rs.next()) {
 				dto = new InquiryDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				dto.setContent(rs.getString("content"));
+				dto.setComplete(rs.getBoolean("complete"));
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setAnswerContent(rs.getString("answerContent"));
+				dto.setAnswerDate(rs.getTimestamp("answerDate"));
+				iList.add(dto);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -686,6 +714,15 @@ public class EmployeeDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dto = new InquiryDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				dto.setContent(rs.getString("content"));
+				dto.setComplete(rs.getBoolean("complete"));
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setAnswerContent(rs.getString("answerContent"));
+				dto.setAnswerDate(rs.getTimestamp("answerDate"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -711,6 +748,38 @@ public class EmployeeDAO {
 		return count;
 	}
 	
+	public ArrayList inquirySearch(String category, String keyword) {
+		ArrayList iList = null;
+		InquiryDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from Complain where ? = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, category);
+			pstmt.setString(2, keyword);
+			rs = pstmt.executeQuery();
+			iList = new ArrayList();
+			while(rs.next()) {
+				dto = new InquiryDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				dto.setContent(rs.getString("content"));
+				dto.setComplete(rs.getBoolean("complete"));
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setAnswerContent(rs.getString("answerContent"));
+				dto.setAnswerDate(rs.getTimestamp("answerDate"));
+				iList.add(dto);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return iList;
+	}
+	
 	public int updateComplain(ComplainDTO idto, MemberDTO mdto) {
 		int result = -1;
 		try {
@@ -722,8 +791,13 @@ public class EmployeeDAO {
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))) {
 					result = 1;
-					sql = "";
+					sql = "update Complain set emp_id = ?,"
+							+ " completeDate = now(), complainResult = ?, resultDays = ? "
+							+ "where bno = ?";
 					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, mdto.getEmp_id());
+					pstmt.setString(2, idto.getComplainResult());
+					pstmt.setInt(3, idto.getResultDays());
 					pstmt.executeUpdate();
 				}
 				else result = 0;
@@ -748,6 +822,7 @@ public class EmployeeDAO {
 					result = 1;
 					sql = "delete from Complain where bno = ?";
 					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, cdto.getBno());
 					pstmt.executeUpdate();
 				}
 				else result = 0;
@@ -765,8 +840,10 @@ public class EmployeeDAO {
 		ComplainDTO dto = null;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select * from Complain limit ?, ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (currentPage - 1) * 8);
+			pstmt.setInt(2, 8);
 			rs = pstmt.executeQuery();
 			cList = new ArrayList();
 			while(rs.next()) {
@@ -784,11 +861,21 @@ public class EmployeeDAO {
 		ComplainDTO dto = null;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select * from Complain where bno = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, index);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dto = new ComplainDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setComplainer_id(rs.getString("complainer_id"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setComplainReason(rs.getString("complainReason"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				dto.setComplete(rs.getBoolean("complete"));
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setComplainResult(rs.getString("complainResult"));
+				dto.setResultDays(rs.getInt("resultDays"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -812,5 +899,37 @@ public class EmployeeDAO {
 			CloseDB();
 		}
 		return count;
+	}
+	
+	public ArrayList complainSearch(String category, String keyword) {
+		ArrayList cList = null;
+		ComplainDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from Complain where ? = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, category);
+			pstmt.setString(2, keyword);
+			rs = pstmt.executeQuery();
+			cList = new ArrayList();
+			while(rs.next()) {
+				dto = new ComplainDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setComplainer_id(rs.getString("complainer_id"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setComplainReason(rs.getString("complainReason"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				dto.setComplete(rs.getBoolean("complete"));
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setComplainResult(rs.getString("complainResult"));
+				dto.setResultDays(rs.getInt("resultDays"));
+				cList.add(dto);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return cList;
 	}
 }
