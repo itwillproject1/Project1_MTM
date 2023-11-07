@@ -235,7 +235,7 @@ h2 {
 .complain-button {
 	border:none;
 	background-color: white;
-	padding-left: 72%;
+	float: right;
 	font-size: 1.5rem;
 }
 

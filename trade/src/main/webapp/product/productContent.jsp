@@ -63,18 +63,44 @@
 			<div class="form-container">
 				<h2>
 					상세 페이지
-					<%-- <c:if test="로그인 아이디 == 작성자"> --%>
-				<input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
+					
+					<%-- <c:if test="로그인 아이디 != 작성자">
 					<div class="dropdown">
-						<input class="update-content-button" type="button" value="..." >
-						
+						<input class="update-content-button" type="button" value="...">
 						<div class="dropdown-content">
-							<button onclick="location.href='./updateContent.com?bno=${dto.bno}';">글
-								수정하기</button>
-							<button onclick="confirmDelete();" class="">글 삭제하기</button>
+							<a href="글 신고 페이지">글 신고하기</a><br>
 						</div>
 					</div>
-					
+					</c:if> --%>
+
+					<c:choose>
+						<c:when test="${empty sessionScope.id}">
+							<!-- 세션에 사용자 ID가 없을 때 -->
+						</c:when>
+						<c:otherwise>
+							<c:choose>
+								<c:when test="${sessionScope.id eq dto.user_id}">
+									<!-- 로그인한 사용자 == 글 작성자 -->
+									<div class="dropdown">
+										<input class="update-content-button" type="button" value="...">
+										<div class="dropdown-content" style="display: none;">
+											<button
+												onclick="location.href='./updateContent.com?bno=${dto.bno}';">글
+												수정하기</button>
+											<button onclick="confirmDelete();">글 삭제하기</button>
+										</div>
+									</div>
+								</c:when>
+								<c:when test="${sessionScope.id ne dto.user_id}">
+									<!-- 로그인한 사용자 != 글 작성자 -->
+									<input class="complain-button" type="button" value="🚨"
+										onclick="openComplainModal();">
+								</c:when>
+							</c:choose>
+						</c:otherwise>
+					</c:choose>
+
+
 				</h2>
 				<div class="form-group">
 					<label for="user">작성자: <a href="작성자프로필">${dto.user_id }</a></label>
@@ -117,16 +143,6 @@
 
 					</div>
 				</c:if>
-				
-				<%-- </c:if> --%>
-					<%-- <c:if test="로그인 아이디 != 작성자">
-					<div class="dropdown">
-						<input class="update-content-button" type="button" value="...">
-						<div class="dropdown-content">
-							<a href="글 신고 페이지">글 신고하기</a><br>
-						</div>
-					</div>
-					</c:if> --%>
 				
 				<c:if test="${dto.deal_way.equals('삽니다') }">
 					<button class="submit-button" onclick="openProductModal();">판매하기</button>
@@ -185,7 +201,7 @@
 				    }
 					</script>
 
-				<%
+					<%
 				}
 				// else {
 				//     response.sendRedirect("login.com"); // 로그인 페이지로 이동
@@ -306,25 +322,35 @@
 
 	<!-- 상세페이지 오른쪽 ... 버튼 -->
 	<script>
-        // ... 버튼 마우스 오버 시 드롭다운을 열거나 닫기
-        var button = document.querySelector('.update-content-button');
-        var dropdown = document.querySelector('.dropdown-content');
+    // ... 버튼 클릭 시 드롭다운을 열거나 닫기
+    document.addEventListener("DOMContentLoaded", function() {
+        var buttons = document.querySelectorAll('.update-content-button');
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function (event) {
+                var dropdown = this.nextElementSibling;
 
-        button.addEventListener('click', function () {
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            } else {
-                dropdown.style.display = 'block';
-            }
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                } else {
+                    dropdown.style.display = 'block';
+                }
+
+                // 이벤트 전파 방지
+                event.stopPropagation();
+            });
         });
 
-        // 다른 곳을 클릭하면 드롭다운 닫기
-        window.addEventListener('click', function (event) {
-            if (event.target !== button) {
-                dropdown.style.display = 'none';
-            }
+        // 다른 곳을 클릭하면 모든 드롭다운 닫기
+        document.addEventListener('click', function (event) {
+            buttons.forEach(function(button) {
+                var dropdown = button.nextElementSibling;
+                if (event.target !== button) {
+                    dropdown.style.display = 'none';
+                }
+            });
         });
-    </script>
+    });
+</script>
 	<!-- 상세페이지 오른쪽 ... 버튼 종료 -->
 
 	<!-- 삭제하기  -->
