@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="com.itwillbs.product.db.ProductDAO"%>
 <%@page import="com.itwillbs.product.db.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -135,52 +136,69 @@
 					</div>
 				</c:if>
 
-<c:if test="${dto.deal_way.equals('삽니다') }">
+<c:if test="${dto.deal_way.equals('삽니다')}">
     <c:choose>
         <c:when test="${empty sessionScope.id}">
-            <button class="submit-button" onclick="requireLogin();">판매하기</button>
+            <button class="submit-button" onclick="openProductModalOrLogin();">판매하기</button>
         </c:when>
         <c:otherwise>
             <button class="submit-button" onclick="openProductModal();">판매하기</button>
         </c:otherwise>
     </c:choose>
 </c:if>
+
+<!-- 판매하기 모달 -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeProductModal()">&times;</span>
+     <input type="checkbox" id="checkBox" class="productCheckbox" data-productid="1" style="width: 30px; height: 30px;">
+    <!-- 제품 정보 -->
+    <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" id="imagePreview" alt="미리보기" width="60px" height="60px">
+    상품명: <label for="productName">${dto.title}</label>
+    상품상태: <label for="productCondition">${dto.product_status }</label>
+    가격: <label for="productPrice"><fmt:formatNumber value="${dto.price}"/>원</label>
+
+    <hr>
+    </div>
+</div>
+
 <script>
-    var modal;
+    var modal = document.getElementById('productModal');
 
     function requireLogin() {
         alert("로그인을 해주세요");
         // 로그인 페이지로 이동
         window.location.href = "../main/login.member";
     }
-    function openProductModal() {
-    	${sessionScope.id eq dto.user_id}
-        // DTO 객체에서 상품 정보를 가져오기
-        var productInfo = ${sessionScope.id eq dto.user_id};
-        };
-        var modalContent = `
-            <div class="modal" id="productModal">
-                <div class="modal-content">
-                    <!-- 모달 내에 체크박스와 제품 정보 설정 -->
-                    <input type="checkbox" id="checkBox" class="productCheckbox" data-productid="1" style="width: 30px; height: 30px;">
-                    <!-- 제품 정보 -->
-                    <img src="<%=request.getContextPath() %>/upload/${productInfo.file_name}" id="imagePreview" alt="미리보기" width="60px" height="60px">
-                    상품명: <label for="productName">${productInfo.title}</label>
-                    가격: <label for="productPrice"><fmt:formatNumber value="${productInfo.price}"/>원</label>
-                    <label for="productStatus">${productInfo.product_status}</label>
-                    <span class="close-button" onclick="closeProductModal();">닫기</span>
-                    <button class="confirm-button" onclick="confirmProduct();">확인</button>
-                </div>
-            </div>
-        `;
 
-        // 모달 열기
-        document.body.insertAdjacentHTML('beforeend', modalContent);
-        modal = document.getElementById('productModal');
-        modal.style.display = 'block';
+    function openProductModal() {
+        // 세션에서 로그인한 ID 가져오기
+        var loggedInUserId = '<%= session.getAttribute("id") %>';
+
+        if (loggedInUserId) {
+            // 만약 로그인된 ID가 있다면 모달 창을 보여줍니다.
+            modal.style.display = "block";
+        } else {
+            // 로그인이 되어 있지 않다면 로그인을 요청
+            requireLogin();
+        }
     }
 
+    function closeProductModal() {
+        // 모달을 닫습니다.
+        modal.style.display = "none";
+    }
+
+    // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 </script>
+  
+
+
 
 
 		<div class="form-group">
