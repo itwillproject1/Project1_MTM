@@ -42,7 +42,6 @@ public class MemberJoinAction implements Action  {
 		MemberDTO dto = new MemberDTO();
 		dto.setUser_id(multi.getParameter("user_id"));
 		dto.setPassword(multi.getParameter("password"));
-		dto.setPasswordcheck(multi.getParameter("passwordcheck"));
 		dto.setEmail(email);
 		dto.setUser_name(multi.getParameter("user_name"));
 		dto.setJumin(jumin);

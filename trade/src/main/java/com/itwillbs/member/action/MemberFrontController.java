@@ -111,6 +111,18 @@ public class MemberFrontController extends HttpServlet {
 					e.printStackTrace();
 				}
 	
+		}else if(command.equals("/pay/kakaopay.member")) {
+			forward = new ActionForward();
+
+			forward.setPath("./kakaopay.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/pay/MemberPayAction.member")){
+			action = new MemberPayAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		//System.out.println("---------------2. 가상주소 매핑 종료---------------");

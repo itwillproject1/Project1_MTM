@@ -48,25 +48,24 @@ public class MemberDAO {
 				
 				try {
 					con = getCon();
-					sql = "insert into Member (user_id,password,passwordcheck,email,user_name,jumin,gender,phone,address,user_nickname,profile,recommend,agree) "
+					sql = "insert into Member (user_id,password,email,user_name,jumin,gender,phone,address,user_nickname,profile,recommend,agree) "
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 					
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, dto.getUser_id());
 					pstmt.setString(2, dto.getPassword());
-					pstmt.setString(3, dto.getPasswordcheck());
-					pstmt.setString(4, dto.getEmail());
-					pstmt.setString(5, dto.getUser_name());
-					pstmt.setString(6, dto.getJumin());
-					pstmt.setString(7, dto.getGender());
-					pstmt.setString(8, dto.getPhone());
-					pstmt.setString(9, dto.getAddress());
-					pstmt.setString(10, dto.getUser_nickname());
+					pstmt.setString(3, dto.getEmail());
+					pstmt.setString(4, dto.getUser_name());
+					pstmt.setString(5, dto.getJumin());
+					pstmt.setString(6, dto.getGender());
+					pstmt.setString(7, dto.getPhone());
+					pstmt.setString(8, dto.getAddress());
+					pstmt.setString(9, dto.getUser_nickname());
 					
-					pstmt.setString(11, dto.getProfile());
+					pstmt.setString(10, dto.getProfile());
 					
-					pstmt.setString(12, dto.getRecommend());
-					pstmt.setString(13, dto.getAgree());
+					pstmt.setString(11, dto.getRecommend());
+					pstmt.setString(12, dto.getAgree());
 					
 					pstmt.executeUpdate();
 					System.out.println("회원가입 완료");
@@ -143,7 +142,25 @@ public class MemberDAO {
 					}	
 			
 			
-			
+				//결제금액 충전
+				public void Pay(MemberDTO dto) {
+					try {
+						con = getCon();
+						sql = "update Member set pay=+? where user_id = ?";
+						
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getPay());
+						pstmt.setString(1, dto.getUser_id());
+						
+						pstmt.executeUpdate();
+					} catch (Exception e) {
+						
+						e.printStackTrace();
+					}finally {
+						closeDB();
+					}
+						
+				}
 			
 			
 			
