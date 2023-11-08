@@ -25,6 +25,7 @@ body {
 	flex-direction: column;
 	align-items: center; /* 가로 방향 가운데 정렬 */
 	justify-content: center; /* 세로 방향 가운데 정렬 */
+	align-content: flex
 }
 
 .image-container img {
@@ -61,7 +62,6 @@ body {
 	margin-top: 12%;
 	align-items: center;
 	width: 150%; /* 이미지 미리보기의 가로 크기를 조정 */
-	height: 80%; /* 이미지 미리보기의 세로 크기를 조정 */
 	/*	border: 1px solid;*/
 }
 
@@ -173,7 +173,7 @@ body {
 	font-weight: bold;
 	color: #555;
 }
-
+/* 판매하기 모달 */
 .submit-button {
 	display: block;
 	width: 100%;
@@ -192,6 +192,17 @@ body {
 
 .submit-button:hover {
 	background-color: #333; /* 더 어두운 검정 계열로 호버 시 변경 */
+}
+
+#priceSpan {
+	text-decoration: line-through;
+}
+
+#priceSpan2 {
+	padding-left: 15px;
+	font-weight: bold;
+	color: red;
+	
 }
 
 .button-container {
@@ -214,6 +225,12 @@ body {
 
 h2 {
 	font-size: 24px;
+	color: #222; /* 어두운 검정 계열 텍스트 색상 */
+	margin-bottom: 20px;
+	border-bottom: 2px solid #333; /* 어두운 회색 계열의 밑줄 추가 */
+	padding-bottom: 5px;
+}
+#h3 {
 	color: #222; /* 어두운 검정 계열 텍스트 색상 */
 	margin-bottom: 20px;
 	border-bottom: 2px solid #333; /* 어두운 회색 계열의 밑줄 추가 */
