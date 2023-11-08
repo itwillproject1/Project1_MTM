@@ -178,10 +178,10 @@
 <c:if test="${dto.deal_way.equals('삽니다')}">
     <c:choose>
         <c:when test="${empty sessionScope.id}">
-            <button class="submit-button" onclick="openProductModalOrLogin();">판매하기</button>
+            <button class="submit-button" onclick="requireLogin();">판매 제안</button>
         </c:when>
         <c:otherwise>
-            <button class="submit-button" onclick="openProductModal();">판매하기</button>
+            <button class="submit-button" onclick="openProductModal();">판매 제안</button>
         </c:otherwise>
     </c:choose>
 </c:if>
@@ -190,7 +190,7 @@
 <div id="productModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeProductModal()">&times;</span>
-        <div id="productInfo">
+        <div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
             <!-- 상품 정보가 여기에 동적으로 추가됩니다 -->
             <%
                 // 세션에서 로그인한 ID 가져오기
@@ -201,32 +201,43 @@
                     dao = new ProductDAO();
                     List<ProductDTO> userProductsForSelling = dao.getAllUserProducts(loggedInUserId, "팝니다");
 
-
                     if (!userProductsForSelling.isEmpty()) {
-                        %>
+                    %>
                         <h2>팝니다 상품 목록</h2>
-                        <%
+                    <%
                         for (ProductDTO userProduct : userProductsForSelling) {
-                        %>
-                            <img src="<%=request.getContextPath() %>/upload/<%= userProduct.getFile_name() %>" alt="미리보기" width="60px" height="60px">
-                            상품명: <%= userProduct.getTitle() %><br>
-                            상품상태: <%= userProduct.getProduct_status() %><br>
-                            가격: <fmt:formatNumber value="<%= userProduct.getPrice() %>"/>원
-                            <hr>
-                        <%
+                    %>
+							<div>
+								<input type="checkbox" id="sellCheckbox" class="productCheckbox"
+									data-productid="<%=userProduct.getBno()%>"> <img
+									id="sellImage"
+									src="<%=request.getContextPath()%>/upload/<%=userProduct.getFile_name()%>"
+									alt="미리보기">
+							</div>
+							<div>
+								<span id="sellDiv"> <span>상품명: <%=userProduct.getTitle()%><br></span>
+									<span>상품상태: <%=userProduct.getProduct_status()%><br></span>
+									<span>가격: <fmt:formatNumber
+											value="<%=userProduct.getPrice()%>" />원
+								</span>
+								</span>
+							<hr id="hr1">
+							</div>
+							<%
                         }
                     } else {
-                        %>
-                        <p id="noSell">판매 등록 상품이 없습니다.</p>
-                        <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
-                        <%
+                    %>
+                     <p id="noSell">판매 등록 상품이 없습니다.</p>
+                     <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
+                    <%
                     }
                 } else {
                 %>
-                    <p>로그인이 필요합니다.</p>
+                    <p id="noSell">로그인이 필요합니다. <a href="../main/login.member">로그인</a></p>
                 <%
                 }
             %>
+			<button class="submit-button" onclick="submitProductOffer();">판매 제안</button>
         </div>
     </div>
 </div>
@@ -253,8 +264,8 @@
         }
     }
 
+     // 모달 닫기
     function closeProductModal() {
-        // 모달을 닫습니다.
         modal.style.display = "none";
     }
 
@@ -264,11 +275,21 @@
             modal.style.display = "none";
         }
     }
+    
+    //판매 제안 클릭
+    function submitProductOffer() {
+        var checkboxes = document.querySelectorAll('.productCheckbox:checked');
+
+        if (checkboxes.length === 0) {
+            alert("판매할 물품을 선택해주세요");
+        } else {
+            var productIds = [];
+
+            window.location.href = "구매자에게전달.com";
+            
+        }
+    }
 </script>
-  
-
-
-
 
 		<div class="form-group">
 			<label for="productDescription">상품 설명: </label> ${dto.content }
@@ -328,16 +349,12 @@
 					</div>
 				</div>
 				<button class="close-button" onclick="closeComplainModal()">닫기</button>
-				<input type="submit" value="신고하기" class="confirm-button">
+				<button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
 			</div>
 		</div>
 	</form>
 	<!-- 신고하기 모달창 종료-->
-
-	<!-- .productCheckbox, .reasonCheckbox { -->
-	<!--     transform: scale(2); /* 크기를 2배로 확대 */ -->
-	<!--     margin-right: 5px; /* 원래 크기의 간격을 조정 (선택 사항) */ -->
-	<!-- } -->
+	
 	<script>
     var complainModal = document.getElementById("complainModal");
     var postReportCheckbox = document.getElementById("postReportCheckbox");
@@ -346,11 +363,26 @@
     var authorReportOptions = document.getElementById("authorReportOptions");
 
     function openComplainModal() {
+    	// 체크박스가 하나도 선택되지 않은 경우에만 경고 메시지 표시
+        
         complainModal.style.display = "block";
+   	}
+    
+	 // 모달 닫기
+    function closeComplainModal() {
+    	modal.style.display = "none";
+    }
+    
+    // 모달 닫기
+    function closeProductModal() {
+        modal.style.display = "none";
     }
 
-    function closeComplainModal() {
-        complainModal.style.display = "none";
+    // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 
     postReportCheckbox.addEventListener("change", function() {
@@ -381,7 +413,26 @@
              authorTextarea.style.display = "none";
          }
      }
-</script>
+    
+    
+        
+        function submitComplainOffer() {
+        	var postReportCheckboxes = postReportOptions.querySelectorAll('.reasonCheckbox:checked');
+            var authorReportCheckboxes = authorReportOptions.querySelectorAll('.reasonCheckbox:checked');
+
+            if (postReportCheckboxes.length === 0 && authorReportCheckboxes.length === 0 &&
+                (!postReportCheckbox.checked || !authorReportCheckbox.checked)) {
+                alert("신고 사유를 선택해주세요");
+            } else {
+                var productIds = [];
+
+                // 선택된 체크박스를 관리자에게 전달하는 코드 추가해야함!!!!!!!!!!!!
+                window.location.href = "관리자에게전달.com";
+                
+            }
+        }
+    </script>
+    
 
 
 	<!-- 상세페이지 오른쪽 ... 버튼 -->

@@ -238,10 +238,12 @@ h2 {
 } 
 
 /* 신고하기 모달창 */
+
 .reasonCheckbox {
 	margin-left: 20px;
 	padding: 0 0 0 20px;
 }
+
 .complain-button {
 	border:none;
 	background-color: white;
