@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwillbs.product.db.ProductDAO"%>
 <%@page import="com.itwillbs.product.db.ProductDTO"%>
@@ -64,18 +65,17 @@
 			<div class="form-container">
 				<h2>
 					상세 페이지
-					<%-- <c:if test="로그인 아이디 == 작성자"> --%>
-				<input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
-					<div class="dropdown">
-						<input class="update-content-button" type="button" value="..." >
-						
-						<div class="dropdown-content">
-							<button onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';">글 수정하기</button>
-							<button onclick="confirmDelete();">글 삭제하기</button>
+					<%-- 여기부터 나중에 삭제하면 됨(지금 삭제하면 로그인 안하면 버튼 안 뜸) --%>
+					<input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
+						<div class="dropdown">
+							<input class="update-content-button" type="button" value="..." >
+							
+							<div class="dropdown-content">
+								<button onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';">글 수정하기</button>
+								<button onclick="confirmDelete();">글 삭제하기</button>
+							</div>
 						</div>
-					</div>
-					
-=======
+					<%-- 여기까지 나중에 삭제하면 됨(지금 삭제하면 로그인 안하면 버튼 안 뜸) --%>
 
 					<c:choose>
 						<c:when test="${empty sessionScope.id}">
@@ -89,8 +89,7 @@
 										<input class="update-content-button" type="button" value="...">
 										<div class="dropdown-content" style="display: none;">
 											<button
-												onclick="location.href='./updateContent.com?bno=${dto.bno}';">글
-												수정하기</button>
+												onclick="location.href='./updateContent.com?bno=${dto.bno}';">글 수정하기</button>
 											<button onclick="confirmDelete();">글 삭제하기</button>
 										</div>
 									</div>
@@ -104,7 +103,6 @@
 						</c:otherwise>
 					</c:choose>
 
->>>>>>> b1937195f24570a59621ffeddcec0b1072626fba
 				</h2>
 				<div class="form-group">
 					<label for="user">작성자:<button class="profile-button" onclick="openProfileModal();">${dto.user_id }</button></label>
@@ -113,11 +111,27 @@
 				<!-- 작성자 프로필 모달 -->
 				<div id="profileModal" class="modal">
 				  <div class="modal-content">
-				    <!-- 모달 내용 -->
-				    
-				    <h2><img src="" alt="프로필"> ${dto.user_id } (평점)</h2>
-				    <span class="close" onclick="closeProfileModal();">&times;</span>
-				    <!-- 모달 내용 내용을 여기에 추가 -->
+				    <!-- 모달 내용 -->				    
+				    <h2><img src="" alt="프로필"> ${dto.user_id } (평점) <span class="close-button" onclick="closeProfileModal();">&times;</span></h2>		    
+				    <%
+                    ProductDAO dao = new ProductDAO();
+				    ProductDTO pdto = (ProductDTO)request.getAttribute("dto");
+                    List<ProductDTO> userProducts = dao.getAllUserProducts(pdto.getUser_id());
+                    request.setAttribute("userProducts", userProducts);
+					%>
+					<c:if test="${!empty userProducts}">
+						<c:forEach var="userProduct" items="${userProducts}">
+							<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
+							<img src="<%=request.getContextPath() %>/upload/${userProduct.file_name }" alt="미리보기" width="60px" height="60px">
+                            [${userProduct.deal_way }] ${userProduct.title }<br>
+                            가격: <fmt:formatNumber value="${userProduct.price }"/>원
+							</div>
+                            <hr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty userProducts}">
+						<p id="noSell">등록 상품이 없습니다.</p>
+					</c:if>
 				  </div>
 				</div>
 				<!-- 작성자 프로필 모달 종료 -->
@@ -184,7 +198,7 @@
 
                 if (loggedInUserId != null) {
                     // 로그인한 사용자의 상품 정보를 가져오는 서버 측 로직을 호출
-                    ProductDAO dao = new ProductDAO();
+                    dao = new ProductDAO();
                     List<ProductDTO> userProductsForSelling = dao.getAllUserProducts(loggedInUserId, "팝니다");
 
 
@@ -435,7 +449,7 @@
       var modal = document.getElementById('profileModal');
       modal.style.display = 'none';
     }
-  </script>
+	</script>
 	<!-- 프로필 모달창 종료 -->
 </body>
 </html>

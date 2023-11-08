@@ -267,3 +267,6 @@ div#postReportOptions, #authorpostReportOptions {
 	margin-right: 16px;
 }
 
+#productList {
+	cursor: pointer;
+}
