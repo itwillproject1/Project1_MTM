@@ -182,7 +182,7 @@ public class MemberDAO {
 					dto.setPhone(rs.getString("phone"));
 					dto.setRecommend(rs.getString("recommend"));
 					dto.setAgree(rs.getString("agree"));
-					dto.setPay(rs.getString("pay"));
+					dto.setPay(rs.getInt("pay"));
 				}
 				
 				System.out.println(" DAO : 회원정보 조회 완료!");
@@ -203,7 +203,7 @@ public class MemberDAO {
 				sql = "update Member set pay = pay + ? where user_id = ?";
 				
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, Integer.parseInt(dto.getPay()));
+				pstmt.setInt(1, dto.getPay());
 				pstmt.setString(2, dto.getUser_id());
 				
 				pstmt.executeUpdate();

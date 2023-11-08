@@ -20,10 +20,11 @@ public class MemberPayAction implements Action {
 		String user_id = (String)session.getAttribute("user_id");
 		
 		//System.out.println(request.getParameter("item"));
+		//System.out.println(request.getParameter("id"));
 		
 		MemberDTO dto = new MemberDTO();
-		dto.setUser_id(user_id);
-		dto.setPay(request.getParameter("item"));
+		dto.setUser_id(request.getParameter("id"));
+		dto.setPay(Integer.parseInt(request.getParameter("item")));
 		
 		MemberDAO dao = new MemberDAO();
 		dao.Pay(dto);
