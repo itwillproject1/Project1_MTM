@@ -151,14 +151,44 @@
 <div id="productModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeProductModal()">&times;</span>
-     <input type="checkbox" id="checkBox" class="productCheckbox" data-productid="1" style="width: 30px; height: 30px;">
-    <!-- 제품 정보 -->
-    <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" id="imagePreview" alt="미리보기" width="60px" height="60px">
-    상품명: <label for="productName">${dto.title}</label>
-    상품상태: <label for="productCondition">${dto.product_status }</label>
-    가격: <label for="productPrice"><fmt:formatNumber value="${dto.price}"/>원</label>
+        <div id="productInfo">
+            <!-- 상품 정보가 여기에 동적으로 추가됩니다 -->
+            <%
+                // 세션에서 로그인한 ID 가져오기
+                String loggedInUserId = (String) session.getAttribute("id");
 
-    <hr>
+                if (loggedInUserId != null) {
+                    // 로그인한 사용자의 상품 정보를 가져오는 서버 측 로직을 호출
+                    ProductDAO dao = new ProductDAO();
+                    List<ProductDTO> userProductsForSelling = dao.getAllUserProducts(loggedInUserId, "팝니다");
+
+
+                    if (!userProductsForSelling.isEmpty()) {
+                        %>
+                        <h2>팝니다 상품 목록</h2>
+                        <%
+                        for (ProductDTO userProduct : userProductsForSelling) {
+                        %>
+                            <img src="<%=request.getContextPath() %>/upload/<%= userProduct.getFile_name() %>" alt="미리보기" width="60px" height="60px">
+                            상품명: <%= userProduct.getTitle() %><br>
+                            상품상태: <%= userProduct.getProduct_status() %><br>
+                            가격: <fmt:formatNumber value="<%= userProduct.getPrice() %>"/>원
+                            <hr>
+                        <%
+                        }
+                    } else {
+                        %>
+                        <p id="noSell">판매 등록 상품이 없습니다.</p>
+                        <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
+                        <%
+                    }
+                } else {
+                %>
+                    <p>로그인이 필요합니다.</p>
+                <%
+                }
+            %>
+        </div>
     </div>
 </div>
 

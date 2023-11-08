@@ -69,6 +69,23 @@
     border-radius: 5px;
 }
 
+/* 판매하기 모달창 */
+.sell-button {
+	background-color: #000; /* 블랙 배경색 */
+    color: #fff; /* 텍스트 색상을 화이트로 지정 */
+    padding: 15px 20px;
+     font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 30px; /* 버튼과 모달 정보 사이의 간격을 조정 */
+    width: 100%; /* 버튼 너비를 100%로 설정하여 가로 전체를 채우게 함 */
+}
+
+p#noSell {
+	text-align: center;
+}
+
 /* "확인" 버튼 스타일 */
 .confirm-button {
     background-color: #000; /* 블랙 배경색 */
