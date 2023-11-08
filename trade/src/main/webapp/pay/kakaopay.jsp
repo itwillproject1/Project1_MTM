@@ -40,7 +40,7 @@ IMP.request_pay({
 
         alert(msg);
     } else {
-    	 location.href = "../member/MemberPayActio.member";
+    	location.href = "../member/MemberPayAction.member?item=" + item;
     	
     }
 });
