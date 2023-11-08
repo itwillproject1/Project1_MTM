@@ -151,7 +151,7 @@
 <div id="productModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeProductModal()">&times;</span>
-        <div id="productInfo">
+        <div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
             <!-- 상품 정보가 여기에 동적으로 추가됩니다 -->
             <%
                 // 세션에서 로그인한 ID 가져오기
