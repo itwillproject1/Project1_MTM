@@ -4,7 +4,6 @@ public class MemberDTO {
 
 	private String user_id;
 	private String password;
-	private String passwordcheck;
 	private String email;
 	private String user_name;
 	private String jumin;
@@ -15,6 +14,9 @@ public class MemberDTO {
 	private String profile;
 	private String recommend;
 	private String agree;
+	private String pay;
+	
+	
 	
 	
 	public String getUser_id() {
@@ -22,9 +24,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+
+
 
 
 	public String getPassword() {
@@ -32,19 +38,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 
-	public String getPasswordcheck() {
-		return passwordcheck;
-	}
-
-
-	public void setPasswordcheck(String passwordcheck) {
-		this.passwordcheck = passwordcheck;
-	}
 
 
 	public String getEmail() {
@@ -52,9 +52,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 
 
 	public String getUser_name() {
@@ -62,9 +66,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
+
+
 
 
 	public String getJumin() {
@@ -72,9 +80,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setJumin(String jumin) {
 		this.jumin = jumin;
 	}
+
+
 
 
 	public String getGender() {
@@ -82,9 +94,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+
 
 
 	public String getPhone() {
@@ -92,9 +108,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+
 
 
 	public String getAddress() {
@@ -102,9 +122,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+
 
 
 	public String getUser_nickname() {
@@ -112,9 +136,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setUser_nickname(String user_nickname) {
 		this.user_nickname = user_nickname;
 	}
+
+
 
 
 	public String getProfile() {
@@ -122,9 +150,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
+
+
 
 
 	public String getRecommend() {
@@ -132,9 +164,13 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setRecommend(String recommend) {
 		this.recommend = recommend;
 	}
+
+
 
 
 	public String getAgree() {
@@ -142,22 +178,35 @@ public class MemberDTO {
 	}
 
 
+
+
 	public void setAgree(String agree) {
 		this.agree = agree;
 	}
 
 
-	@Override
-	public String toString() {
-		return "MemberDTO [user_id=" + user_id + ", password=" + password + ", passwordcheck=" + passwordcheck
-				+ ", email=" + email + ", user_name=" + user_name + ", jumin=" + jumin + ", gender=" + gender
-				+ ", phone=" + phone + ", address=" + address + ", user_nickname=" + user_nickname + ", profile="
-				+ profile + ", recommend=" + recommend + ", agree=" + agree + "]";
+
+
+	public String getPay() {
+		return pay;
 	}
 
 
+
+
+	public void setPay(String pay) {
+		this.pay = pay;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "MemberDTO [user_id=" + user_id + ", password=" + password + ", email=" + email + ", user_name="
+				+ user_name + ", jumin=" + jumin + ", gender=" + gender + ", phone=" + phone + ", address=" + address
+				+ ", user_nickname=" + user_nickname + ", profile=" + profile + ", recommend=" + recommend + ", agree="
+				+ agree + ", pay=" + pay + "]";
+	}
 	
-	
-	
-		
 }

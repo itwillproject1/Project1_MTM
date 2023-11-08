@@ -40,12 +40,14 @@ public class MemberLoginAction implements Action {
 			// 페이지 이동(JSP)
 			// 아이디 정보를 세션에 저장
 			HttpSession session = request.getSession();
+			
 			session.setAttribute("id", dto.getUser_id());
 			
 			//response.sendRedirect(null);
 			forward = new ActionForward();
 			forward.setPath("../main/Main.com");
 			forward.setRedirect(true);
+			
 			
 			return forward;			
 		}else if(result == 0) {

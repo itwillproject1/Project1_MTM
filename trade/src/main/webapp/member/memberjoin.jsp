@@ -42,10 +42,10 @@
 					return false;
 				}				
 				
-				var passwordcheck = document.join.passwordcheck.value;
-				if(passwordcheck != password ){
+				
+				if(password != passwordcheck ){
 					alert('비밀번호가 일치하지 않습니다!')
-					document.join.passwordcheck.focus();
+					document.join.password.focus();
 					return false;
 				}
 				

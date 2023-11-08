@@ -113,6 +113,44 @@ public class MemberFrontController extends HttpServlet {
 	
 		}
 		
+		else if(command.equals("/member/MemberInfo.member")) {
+			System.out.println(" C : /MemberInfo.me 호출 ");
+			System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
+			
+			// MemberInfoAction() 객체생성
+			action = new MemberInfoAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/member/MemberPayInfo.member")) {
+			
+			action = new MemberPayInfoAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/member/MemberPayAction.member")){
+			action = new MemberPayAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		/*
+		else if(command.equals("/member/mypage.member")) {
+		 
+		forward = new ActionForward();
+		 
+		forward.setPath("./mypage.jsp"); forward.setRedirect(false);
+		
+		}
+		*/
+		
 		//System.out.println("---------------2. 가상주소 매핑 종료---------------");
 		/************************2. 가상주소 매핑 종료************************/
 		
