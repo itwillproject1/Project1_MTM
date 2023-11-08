@@ -25,6 +25,7 @@ body {
 	flex-direction: column;
 	align-items: center; /* 가로 방향 가운데 정렬 */
 	justify-content: center; /* 세로 방향 가운데 정렬 */
+	align-content: flex
 }
 
 .image-container img {
@@ -61,7 +62,6 @@ body {
 	margin-top: 12%;
 	align-items: center;
 	width: 150%; /* 이미지 미리보기의 가로 크기를 조정 */
-	height: 80%; /* 이미지 미리보기의 세로 크기를 조정 */
 	/*	border: 1px solid;*/
 }
 
