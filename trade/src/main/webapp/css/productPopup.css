@@ -94,6 +94,12 @@ p#noSell {
 	line-height: 1.9rem;
 }
 
+#sellDiv2 {
+	line-height: 1.9rem;
+	
+}
+
+
 hr#hr1 {
 	margin-top:8%;
 }
@@ -103,6 +109,7 @@ img#sellImage {
 	float: left;
 	margin-right: 10%;
 	margin-left: 2%;
+	margin-top: 3%;
 }
 
 #sellCheckbox {

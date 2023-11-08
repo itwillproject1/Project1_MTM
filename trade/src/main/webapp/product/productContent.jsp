@@ -121,36 +121,44 @@
         %>
         
         <h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
-		<c:forEach var="userProduct" items="${userProducts}" varStatus="loopStatus">
+		<c:forEach var="userProduct" items="${userProducts}" >
 		    <c:if test="${userProduct.deal_way == '팝니다'}">
-		        <c:if test="${!loopStatus.first}">
-		            <hr>
-		        </c:if>
 		        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-		            <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
-		            <span id="sellDiv">
-		                <span>상품명: ${userProduct.title}<br></span>
-		                <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원</span>
-		            </span>
-		        </div>
+		         	<img
+                           id="sellImage"
+                           src="<%=request.getContextPath()%>/upload/${userProduct.file_name}"
+                           alt="미리보기">
+                     </div>
+                     <div>
+                        <span id="sellDiv2">
+                         상품명: ${userProduct.title}<br>
+                          상품상태: ${userProduct.product_status}<br>
+                           가격: <fmt:formatNumber value="${userProduct.price}" />원
+                        </span>
+                     <hr id="hr1">
+                     </div>
 		    </c:if>
 		</c:forEach>
 
 
 
         <h3 id="h3">${dto.user_id}님의 구매 상품 목록</h3>
-        <c:forEach var="userProduct" items="${userProducts}" varStatus="loopStatus">
+        <c:forEach var="userProduct" items="${userProducts}">
 		    <c:if test="${userProduct.deal_way == '삽니다'}">
-		        <c:if test="${!loopStatus.first}">
-		            <hr>
-		        </c:if>
 		        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-		            <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
-		            <span id="sellDiv">
-		                <span>상품명: ${userProduct.title}<br></span>
-		                <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원</span>
-		            </span>
-		        </div>
+		            <img
+                           id="sellImage"
+                           src="<%=request.getContextPath()%>/upload/${userProduct.file_name}"
+                           alt="미리보기">
+                     </div>
+                     <div>
+                        <span id="sellDiv">
+                         <span>상품명: ${userProduct.title}<br></span>
+                         <span>가격: <fmt:formatNumber value="${userProduct.price}" />원 </span>
+
+                        </span>
+                     <hr id="hr1">
+                     </div>
 		    </c:if>
 		</c:forEach>
 
