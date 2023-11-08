@@ -24,6 +24,7 @@ import com.itwillbs.employee.action.member.LoginAction;
 import com.itwillbs.employee.action.member.ProfileAction;
 import com.itwillbs.employee.action.member.PwFindAction;
 import com.itwillbs.employee.action.member.RegisterAction;
+import com.itwillbs.employee.action.user.TradeContentAction;
 import com.itwillbs.employee.action.user.TradeListAction;
 import com.itwillbs.employee.action.user.UserInfoAction;
 import com.itwillbs.employee.action.user.UserListAction;
@@ -294,10 +295,12 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/TradeContent.emp")) {
-			forward = new ActionForward();
-			forward.setPath("./employee/user/tradeContent.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new TradeContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/BoardList.emp")) {

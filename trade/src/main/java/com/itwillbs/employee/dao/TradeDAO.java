@@ -268,6 +268,7 @@ public class TradeDAO extends DAO{
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dto = new TradeDTO();
+				System.out.println(rs.getString("title"));
 				dto.setBno(rs.getInt("bno"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDeal_way(rs.getString("deal_way"));

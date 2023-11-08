@@ -17,12 +17,12 @@ public class TradeContentAction implements Action{
 		if(pageNum == null) pageNum = "1";
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		TradeDAO dao = new TradeDAO();
-		TradeDTO tdto = dao.tradeContent(bno);
+		TradeDTO dto = dao.tradeContent(bno);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/user/tradeContent.jsp");
 		forward.setRedirect(false);
 		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("dto", tdto);
+		request.setAttribute("dto", dto);
 		return forward;
 	}
 }
