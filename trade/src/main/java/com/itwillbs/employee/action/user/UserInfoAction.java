@@ -21,7 +21,7 @@ public class UserInfoAction implements Action{
 		UserDTO udto = new UserDTO();
 		BoardDTO bdto = new BoardDTO();
 		udto = udao.userInfo(request.getParameter("user_id"));
-		ArrayList bList = tdao.tradeSearch("user_id", udto.getUser_id(), 1, 3);
+		ArrayList bList = tdao.userInfoTrade(udto);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/user/userInfo.jsp");
 		forward.setRedirect(false);

@@ -15,34 +15,38 @@ public class TradeListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		request.setCharacterEncoding("utf-8");
-		
+		//request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum = "1";
 		// all, buy, sell, complete
 		String pageCategory = request.getParameter("pageCategory");
 		if(pageCategory == null) pageCategory = "all";
 		
+		String search = request.getParameter("search");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		String category = request.getParameter("category");
+		String checkComplete = request.getParameter("checkComplete");
+		
 		TradeDAO dao = new TradeDAO();
 		ArrayList list = null;
-		if(pageCategory == "all") {
-			list = dao.tradeList(Integer.parseInt(pageNum));
+		
+		// pageCategory (전체, 구매, 판매, 거래 완료)
+		// category (물품 종류)
+		// search/searchKeyword 컬럼 = '값'
+		// checkComplete deal_status = 0 포함
+		
+		if(searchKeyword == null && category == null && checkComplete == null) {
+			list = dao.tradeList(pageCategory);
 		}
 		
-		else if(pageCategory == "buy") {
-			list = dao.tradeList("삽니다", Integer.parseInt(pageNum));
+		else {
+			list = dao.tradeList(pageCategory, category, search, searchKeyword, checkComplete);
 		}
 		
-		else if(pageCategory == "sell") {
-			list = dao.tradeList("팝니다", Integer.parseInt(pageNum));
-		}
-		
-		else if(pageCategory == "complete") {
-			list = dao.tradeSearch("deal_status", "0", Integer.parseInt(pageNum), 8);
-		}
-		if(list == null) list = new ArrayList();
 		request.setAttribute("list", list);
 		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("pageCategory", pageCategory);
 		forward.setPath("./employee/user/tradeList.jsp");
 		System.out.println(list.size());
 		forward.setRedirect(false);

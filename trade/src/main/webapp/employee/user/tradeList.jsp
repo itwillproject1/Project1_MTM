@@ -13,17 +13,17 @@
                 <div class="col-md">
                   <ul class="nav nav-pills justify-content-start">
                   <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=all">전체 <span class="badge badge-pill bg-primary text-white ml-2">164</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-primary text-white ml-2">164</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=buy">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">64</span></a>
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">64</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=sell">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=complete">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">52</span></a>
-					</li>
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
+                    </li>
                   </ul>
                 </div>
                 <div class="col-md-auto ml-auto text-right">
@@ -34,6 +34,7 @@
               <!-- Slide Modal -->
               <div class="modal fade modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog" role="document">
+                 <form action="./TradeList.emp" method="get">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="defaultModalLabel">Filters</h5>
@@ -45,18 +46,18 @@
                       <div class="p-2">
                         <div class="form-group my-4">			
                         	<label for="custom-select"><strong>검색</strong></label>
-                        	<select class="custom-select" id="custom-select">
-                          		<option selected="">선택</option>
-                          		<option value="1">제목</option>
-                          		<option value="2">브랜드</option>
-                          		<option value="3">작성자</option>
+                        	<select name="search" class="custom-select" id="custom-select">
+                          		<option selected>선택</option>
+                          		<option value="title">제목</option>
+                          		<option value="brand">브랜드</option>
+                          		<option value="user_id">작성자</option>
                         	</select>
-                        	<input type="text" class="form-control" placeholder="검색어 입력">
+                        	<input type="text" name="searchKeyword" class="form-control" placeholder="검색어 입력">
                         </div> <!-- form-group -->
                         <div class="form-group my-2">			
                         	<label for="custom-select"><strong>카테고리</strong></label>
                         	<select name="category" class="custom-select" id="custom-select">
-                          		<option selected="">선택</option>
+                          		<option selected>선택</option>
                           		<option value="휴대폰&태블릿">휴대폰&태블릿</option>
 								<option value="데스크탑">데스크탑</option>
 								<option value="노트북">노트북</option>
@@ -69,50 +70,21 @@
                         </div> <!-- form-group -->
                         <div class="form-group my-4">
                           <p class="mb-2">
-                            <strong>Payment</strong>
-                          </p>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Paypal</label>
-                          </div>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck2">
-                            <label class="custom-control-label" for="customCheck2">Credit Card</label>
-                          </div>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1-1" checked="">
-                            <label class="custom-control-label" for="customCheck1">Wire Transfer</label>
-                          </div>
-                        </div> <!-- form-group -->
-                        <div class="form-group my-4">
-                          <p class="mb-2">
-                            <strong>Types</strong>
-                          </p>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadio1">End users</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" checked="">
-                            <label class="custom-control-label" for="customRadio2">Whole Sales</label>
-                          </div>
-                        </div> <!-- form-group -->
-                        <div class="form-group my-4">
-                          <p class="mb-2">
                             <strong>거래 완료됨</strong>
                           </p>
                           <div class="custom-control custom-switch">
-                            <input type="checkbox" name="checkComplete" class="custom-control-input" id="customSwitch1">
+                            <input type="checkbox" name="checkComplete" value="true" class="custom-control-input" id="customSwitch1">
                             <label class="custom-control-label" for="customSwitch1">포함</label>
                           </div>
                         </div> <!-- form-group -->
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn mb-2 btn-primary btn-block">검색</button>
+                      <button type="submit" class="btn mb-2 btn-primary btn-block">검색</button>
                       <button type="button" class="btn mb-2 btn-secondary btn-block" onclick="">초기화</button>
                     </div>
-                  </div>
+                  </div>                  
+                 </form>
                 </div>
               </div>
               <c:if test="${list == null}">
