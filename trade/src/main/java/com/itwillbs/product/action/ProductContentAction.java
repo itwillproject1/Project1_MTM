@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.product.db.LikeDAO;
 import com.itwillbs.product.db.LikeDTO;
@@ -18,6 +19,12 @@ public class ProductContentAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: ProductContentAction.execute() 호출");
+		
+		// 세션에 아이디 넘기기
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("id");
+		System.out.println("user_id: " + user_id);
+		
 		
 		// 추후 로그인 정보 받아서 미로그인도 조회는 가능,
 		// 나머지(구매, 판매, 찜 등)는 로그인페이지 이동

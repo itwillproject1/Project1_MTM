@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="com.itwillbs.product.db.ProductDAO"%>
 <%@page import="com.itwillbs.product.db.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -74,6 +75,36 @@
 						</div>
 					</div>
 					
+=======
+
+					<c:choose>
+						<c:when test="${empty sessionScope.id}">
+							<!-- 세션에 사용자 ID가 없을 때 -->
+						</c:when>
+						<c:otherwise>
+							<c:choose>
+								<c:when test="${sessionScope.id eq dto.user_id}">
+									<!-- 로그인한 사용자 == 글 작성자 -->
+									<div class="dropdown">
+										<input class="update-content-button" type="button" value="...">
+										<div class="dropdown-content" style="display: none;">
+											<button
+												onclick="location.href='./updateContent.com?bno=${dto.bno}';">글
+												수정하기</button>
+											<button onclick="confirmDelete();">글 삭제하기</button>
+										</div>
+									</div>
+								</c:when>
+								<c:when test="${sessionScope.id ne dto.user_id}">
+									<!-- 로그인한 사용자 != 글 작성자 -->
+									<input class="complain-button" type="button" value="🚨"
+										onclick="openComplainModal();">
+								</c:when>
+							</c:choose>
+						</c:otherwise>
+					</c:choose>
+
+>>>>>>> b1937195f24570a59621ffeddcec0b1072626fba
 				</h2>
 				<div class="form-group">
 					<label for="user">작성자:<button class="profile-button" onclick="openProfileModal();">${dto.user_id }</button></label>
@@ -101,7 +132,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="productBrand">브랜드: <a href="../product/ProductList.com?category=${dto.brand }">${dto.brand }</a></label>
+					<label for="productBrand">브랜드: <a
+						href="../product/ProductList.com?category=${dto.brand }">${dto.brand }</a></label>
 				</div>
 
 				<c:if test="${dto.deal_way.equals('팝니다') }">
@@ -128,82 +160,102 @@
 
 					</div>
 				</c:if>
-				
-				<%-- </c:if> --%>
-					<%-- <c:if test="로그인 아이디 != 작성자">
-					<div class="dropdown">
-						<input class="update-content-button" type="button" value="...">
-						<div class="dropdown-content">
-							<a href="글 신고 페이지">글 신고하기</a><br>
-						</div>
-					</div>
-					</c:if> --%>
-				
-				<c:if test="${dto.deal_way.equals('삽니다') }">
-					<button class="submit-button" onclick="openProductModal();">판매하기</button>
-				</c:if>
-				
-				<%
-				String user_id = request.getParameter("user_id"); // 사용자 아이디 값 설정
-				ProductDAO dao = new ProductDAO();
-				ProductDTO dto = dao.ProductInfo(user_id); // ProductInfo는 상품 정보를 가져오는 메서드
+
+<c:if test="${dto.deal_way.equals('삽니다')}">
+    <c:choose>
+        <c:when test="${empty sessionScope.id}">
+            <button class="submit-button" onclick="openProductModalOrLogin();">판매하기</button>
+        </c:when>
+        <c:otherwise>
+            <button class="submit-button" onclick="openProductModal();">판매하기</button>
+        </c:otherwise>
+    </c:choose>
+</c:if>
+
+<!-- 판매하기 모달 -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeProductModal()">&times;</span>
+        <div id="productInfo">
+            <!-- 상품 정보가 여기에 동적으로 추가됩니다 -->
+            <%
+                // 세션에서 로그인한 ID 가져오기
+                String loggedInUserId = (String) session.getAttribute("id");
+
+                if (loggedInUserId != null) {
+                    // 로그인한 사용자의 상품 정보를 가져오는 서버 측 로직을 호출
+                    ProductDAO dao = new ProductDAO();
+                    List<ProductDTO> userProductsForSelling = dao.getAllUserProducts(loggedInUserId, "팝니다");
 
 
-				if (dto != null) {
-				%> 
-				<script>
+                    if (!userProductsForSelling.isEmpty()) {
+                        %>
+                        <h2>팝니다 상품 목록</h2>
+                        <%
+                        for (ProductDTO userProduct : userProductsForSelling) {
+                        %>
+                            <img src="<%=request.getContextPath() %>/upload/<%= userProduct.getFile_name() %>" alt="미리보기" width="60px" height="60px">
+                            상품명: <%= userProduct.getTitle() %><br>
+                            상품상태: <%= userProduct.getProduct_status() %><br>
+                            가격: <fmt:formatNumber value="<%= userProduct.getPrice() %>"/>원
+                            <hr>
+                        <%
+                        }
+                    } else {
+                        %>
+                        <p id="noSell">판매 등록 상품이 없습니다.</p>
+                        <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
+                        <%
+                    }
+                } else {
+                %>
+                    <p>로그인이 필요합니다.</p>
+                <%
+                }
+            %>
+        </div>
+    </div>
+</div>
 
-			    var modal; // 모달을 저장할 변수
-			
-			    function openProductModal() {
-			        var modalContent = `
-			            <div class="modal" id="productModal">
-			                <div class="modal-content">
-			                    <!-- 모달 내에 체크박스와 제품 정보 설정 -->
-			                    <input type="checkbox" id="checkBox" class="productCheckbox" data-productid="1" style="width: 30px; height: 30px;">
-			                    <!-- 제품 정보 -->
-			                    <img src="<%=request.getContextPath() %>/upload/${dto.file_name}" id="imagePreview" alt="미리보기" width="60px" height="60px">
-			                    상품명: <label for="productName">${dto.title}</label>
-			                    가격: <label for="productPrice"><fmt:formatNumber value="${dto.price}"/>원</label>
-			                     <span class="close-button" onclick="closeProductModal();">닫기</span>
-			                     <button class="confirm-button" onclick="confirmProduct();">확인</button>
-			                </div>
-			            </div>
-			        `;
-			
-			        // 모달 열기
-			        document.body.insertAdjacentHTML('beforeend', modalContent); 
-			        // beforeend는 JavaScript의 insertAdjacentHTML 메서드에서 사용되는 위치 지정자
-			        modal = document.getElementById('productModal');
-			        modal.style.display = 'block';
-				    }
-				
-				    function closeProductModal() {
-				        if (modal) {
-				            modal.style.display = 'none'; // 모달 닫기
-				        }
-				    }
-				    
-				    function confirmProduct() {
-				        var checkBox = document.getElementById('checkBox');
-				        if (checkBox.checked) { // 체크박스가 체크된 경우만 정보전달
-				            // 정보전달 코드짜야함!!!!!!!!!!
-				            alert('제안 완료!');
-				            closeProductModal(); // 모달 창 닫기
-				        } else {
-				            alert('제안할 물품을 선택하세요.');
-				        }
-				    }
-					</script>
+<script>
+    var modal = document.getElementById('productModal');
 
-				<%
-				}
-				// else {
-				//     response.sendRedirect("login.com"); // 로그인 페이지로 이동
-				// }
-				%>
-			</div>
-		</div>
+    function requireLogin() {
+        alert("로그인을 해주세요");
+        // 로그인 페이지로 이동
+        window.location.href = "../main/login.member";
+    }
+
+    function openProductModal() {
+        // 세션에서 로그인한 ID 가져오기
+        var loggedInUserId = '<%= session.getAttribute("id") %>';
+
+        if (loggedInUserId) {
+            // 만약 로그인된 ID가 있다면 모달 창을 보여줍니다.
+            modal.style.display = "block";
+        } else {
+            // 로그인이 되어 있지 않다면 로그인을 요청
+            requireLogin();
+        }
+    }
+
+    function closeProductModal() {
+        // 모달을 닫습니다.
+        modal.style.display = "none";
+    }
+
+    // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+  
+
+
+
+
 		<div class="form-group">
 			<label for="productDescription">상품 설명: </label> ${dto.content }
 		</div>
@@ -268,7 +320,10 @@
 	</form>
 	<!-- 신고하기 모달창 종료-->
 
-
+	<!-- .productCheckbox, .reasonCheckbox { -->
+	<!--     transform: scale(2); /* 크기를 2배로 확대 */ -->
+	<!--     margin-right: 5px; /* 원래 크기의 간격을 조정 (선택 사항) */ -->
+	<!-- } -->
 	<script>
     var complainModal = document.getElementById("complainModal");
     var postReportCheckbox = document.getElementById("postReportCheckbox");
@@ -317,25 +372,35 @@
 
 	<!-- 상세페이지 오른쪽 ... 버튼 -->
 	<script>
-        // ... 버튼 마우스 오버 시 드롭다운을 열거나 닫기
-        var button = document.querySelector('.update-content-button');
-        var dropdown = document.querySelector('.dropdown-content');
+    // ... 버튼 클릭 시 드롭다운을 열거나 닫기
+    document.addEventListener("DOMContentLoaded", function() {
+        var buttons = document.querySelectorAll('.update-content-button');
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function (event) {
+                var dropdown = this.nextElementSibling;
 
-        button.addEventListener('click', function () {
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            } else {
-                dropdown.style.display = 'block';
-            }
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                } else {
+                    dropdown.style.display = 'block';
+                }
+
+                // 이벤트 전파 방지
+                event.stopPropagation();
+            });
         });
 
-        // 다른 곳을 클릭하면 드롭다운 닫기
-        window.addEventListener('click', function (event) {
-            if (event.target !== button) {
-                dropdown.style.display = 'none';
-            }
+        // 다른 곳을 클릭하면 모든 드롭다운 닫기
+        document.addEventListener('click', function (event) {
+            buttons.forEach(function(button) {
+                var dropdown = button.nextElementSibling;
+                if (event.target !== button) {
+                    dropdown.style.display = 'none';
+                }
+            });
         });
-    </script>
+    });
+</script>
 	<!-- 상세페이지 오른쪽 ... 버튼 종료 -->
 
 	<!-- 삭제하기  -->
