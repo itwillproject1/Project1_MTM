@@ -202,6 +202,7 @@ body {
 	padding-left: 15px;
 	font-weight: bold;
 	color: red;
+	
 }
 
 .button-container {
@@ -224,6 +225,12 @@ body {
 
 h2 {
 	font-size: 24px;
+	color: #222; /* 어두운 검정 계열 텍스트 색상 */
+	margin-bottom: 20px;
+	border-bottom: 2px solid #333; /* 어두운 회색 계열의 밑줄 추가 */
+	padding-bottom: 5px;
+}
+#h3 {
 	color: #222; /* 어두운 검정 계열 텍스트 색상 */
 	margin-bottom: 20px;
 	border-bottom: 2px solid #333; /* 어두운 회색 계열의 밑줄 추가 */
