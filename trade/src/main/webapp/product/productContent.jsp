@@ -205,7 +205,7 @@
 
                     if (!userProductsForSelling.isEmpty()) {
                     %>
-                        <h2>팝니다 상품 목록</h2>
+                        <h2><%=loggedInUserId %>님의 판매 상품 목록</h2>
                     <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
                     <%
                         for (ProductDTO userProduct : userProductsForSelling) {
@@ -221,8 +221,11 @@
                      <div>
                         <span id="sellDiv"> <span>상품명: <%=userProduct.getTitle()%><br></span>
                            <span>상품상태: <%=userProduct.getProduct_status()%><br></span>
-                           <span>가격: <fmt:formatNumber
-                                 value="<%=userProduct.getPrice()%>" />원
+                           <span>가격: <span id="priceSpan"><fmt:formatNumber
+                                 value="<%=userProduct.getPrice()%>" />원 </span>
+                                 
+                                  <span id="priceSpan2"><fmt:formatNumber
+                                 value="${dto.price}" />원 </span>
                         </span>
                         </span>
                      <hr id="hr1">
@@ -287,15 +290,18 @@
 
         if (checkboxes.length === 0) {
             alert("판매할 물품을 선택해주세요");
+            
         } else {
             var productIds = [];
             
-            var result = confirm('해당 상품을 0원에 판매 제안하시겠습니까?');
+            var result = confirm('해당 상품을 ${dto.price}원에 판매 제안하시겠습니까?');
 
            if (result === true) {
              document.getElementById("SuggestSellForm").submit();
            } else {
-              history.back();
+        	   function closeProductModal() {
+        	        modal.style.display = "none";
+        	    }
            }
         }
     }
