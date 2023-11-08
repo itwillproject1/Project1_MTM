@@ -122,9 +122,11 @@
 					<c:if test="${!empty userProducts}">
 						<c:forEach var="userProduct" items="${userProducts}">
 							<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-							<img src="<%=request.getContextPath() %>/upload/${userProduct.file_name }" alt="미리보기" width="60px" height="60px">
-                            [${userProduct.deal_way }] ${userProduct.title }<br>
-                            가격: <fmt:formatNumber value="${userProduct.price }"/>원
+								<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" alt="미리보기" width="60px" height="60px">
+								<span id="sellDiv">
+	                            [${userProduct.deal_way }] ${userProduct.title }<br>
+	                            가격: <fmt:formatNumber value="${userProduct.price }"/>원
+								</span>
 							</div>
                             <hr>
 						</c:forEach>
@@ -207,9 +209,11 @@
                     <%
                         for (ProductDTO userProduct : userProductsForSelling) {
                     %>
+                    <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
 							<div>
 								<input type="checkbox" id="sellCheckbox" class="productCheckbox"
-									data-productid="<%=userProduct.getBno()%>"> <img
+									value="<%=userProduct.getBno()%>">
+									<img
 									id="sellImage"
 									src="<%=request.getContextPath()%>/upload/<%=userProduct.getFile_name()%>"
 									alt="미리보기">
@@ -238,6 +242,7 @@
                 }
             %>
 			<button class="submit-button" onclick="submitProductOffer();">판매 제안</button>
+			</form>
         </div>
     </div>
 </div>
@@ -284,9 +289,9 @@
             alert("판매할 물품을 선택해주세요");
         } else {
             var productIds = [];
-
-            window.location.href = "구매자에게전달.com";
-            
+            confirmSell();
+            /* window.location.href = "구매자에게전달.com";
+             */
         }
     }
 </script>
@@ -478,7 +483,7 @@
 	    // URL 주소창에서 원하는 값 저장
 	    const bno = urlParams.get("bno");
 	 
-	 	const newURL = "./deleteProduct.com?bno=" + bno;
+	 	const newURL = "./DeleteProduct.com?bno=" + bno;
 	 
 	    if (shouldDelete) {
 	        location.href = newURL;
@@ -502,5 +507,21 @@
     }
 	</script>
 	<!-- 프로필 모달창 종료 -->
+	
+	<!-- 판매 제안하기 시작  -->
+	<script>
+	function confirmSell() {
+	 	// 'confirm' 창을 표시하고 사용자가 확인을 누르면 true를 반환
+	    var result = confirm('해당 상품을 0원에 판매 제안하시겠습니까?');
+
+	    if (result === true) {
+			document.getElementById("SuggestSellForm").submit();
+	    } else {
+	    	history.back();
+	    }
+
+	}
+	</script>
+	<!-- 판매 제안하기 종료 -->
 </body>
 </html>
