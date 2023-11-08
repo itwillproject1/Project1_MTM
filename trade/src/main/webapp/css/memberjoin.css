@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
 fieldset {
-  border: 2px solid #007BFF;
+  border: 2px solid #222;
   border-radius: 10px;
-  width: 400px;
+  width: 45%;
   margin: 0 auto; /* Center the fieldset horizontally */
   padding: 20px;
 }
@@ -18,15 +18,17 @@ legend {
 form input[type="text"],
 form input[type="password"],
 form select {
-  margin-bottom: 10px;
   padding: 8px;
+  width: 28%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
 }
 
 form input[type="button"],
 form input[type="submit"] {
   margin: 10px 5px;
   padding: 10px 20px;
-  background-color: #007BFF;
+  background-color: #222;
   color: white;
   border: none;
   border-radius: 5px;
@@ -53,7 +55,7 @@ form hr {
 /* Add a hover effect to buttons */
 form input[type="button"]:hover,
 form input[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #000000;
 }
 
 /* Optional: Style select dropdown */
