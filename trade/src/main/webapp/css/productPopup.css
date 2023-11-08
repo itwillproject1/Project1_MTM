@@ -12,8 +12,8 @@
 }
 
 .modal-content {
-    background-color: #fff; /* 화이트 색상 */
-    width: 26%;
+    background-color: #fff; /* 화이트 색상 */ 
+    width: 550px;
     margin: 3% auto;
     padding: 20px;
     border-radius: 10px;

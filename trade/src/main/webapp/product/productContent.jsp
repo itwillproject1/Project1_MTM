@@ -203,15 +203,14 @@
 
                     if (!userProductsForSelling.isEmpty()) {
                     %>
-                        <h2>팝니다 상품 목록</h2>
+                        <h2><%=loggedInUserId %>님의 팝니다 상품 목록</h2>
                     <%
                         for (ProductDTO userProduct : userProductsForSelling) {
                     %>
 							<div>
 								<input type="checkbox" id="sellCheckbox" class="productCheckbox"
-									data-productid="<%=userProduct.getBno()%>"> <img
-									id="sellImage"
-									src="<%=request.getContextPath()%>/upload/<%=userProduct.getFile_name()%>"
+									value="<%=userProduct.getBno()%>"> 
+									<img id="sellImage" src="<%=request.getContextPath()%>/upload/<%=userProduct.getFile_name()%>"
 									alt="미리보기">
 							</div>
 							<div>
@@ -228,7 +227,7 @@
                     } else {
                     %>
                      <p id="noSell">판매 등록 상품이 없습니다.</p>
-                     <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
+                     <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">상품 판매 등록하기</button>
                     <%
                     }
                 } else {
@@ -237,6 +236,7 @@
                 <%
                 }
             %>
+            
 			<button class="submit-button" onclick="submitProductOffer();">판매 제안</button>
         </div>
     </div>

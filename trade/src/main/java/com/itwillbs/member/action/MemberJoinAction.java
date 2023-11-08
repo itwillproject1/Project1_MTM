@@ -65,7 +65,10 @@ public class MemberJoinAction implements Action  {
 		out.println(" </script> ");
 		out.close();
 		
-		return null;
+		ActionForward forward = new ActionForward();
+		forward.setPath("./realmain.jsp");
+		forward.setRedirect(false);
+		return forward;
 		
 	}
 
