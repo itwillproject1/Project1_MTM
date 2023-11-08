@@ -70,14 +70,26 @@
 						
 						<div class="dropdown-content">
 							<button onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';">글 수정하기</button>
-							<button onclick="confirmDelete();" class="">글 삭제하기</button>
+							<button onclick="confirmDelete();">글 삭제하기</button>
 						</div>
 					</div>
 					
 				</h2>
 				<div class="form-group">
-					<label for="user">작성자: <a href="작성자프로필">${dto.user_id }</a></label>
+					<label for="user">작성자:<button class="profile-button" onclick="openProfileModal();">${dto.user_id }</button></label>
 				</div>
+				
+				<!-- 작성자 프로필 모달 -->
+				<div id="profileModal" class="modal">
+				  <div class="modal-content">
+				    <!-- 모달 내용 -->
+				    
+				    <h2><img src="" alt="프로필"> ${dto.user_id } (평점)</h2>
+				    <span class="close" onclick="closeProfileModal();">&times;</span>
+				    <!-- 모달 내용 내용을 여기에 추가 -->
+				  </div>
+				</div>
+				<!-- 작성자 프로필 모달 종료 -->
 
 				<div class="form-group">
 					<label for="user">조회수: ${dto.views }</label>
@@ -344,5 +356,21 @@
 	}
 	</script>
 	<!-- 삭제하기 종료 -->
+	
+	<!-- 프로필 모달창 시작 -->
+	<script>
+    // 모달 열기 함수
+    function openProfileModal() {
+      var modal = document.getElementById('profileModal');
+      modal.style.display = 'block';
+    }
+
+    // 모달 닫기 함수
+    function closeProfileModal() {
+      var modal = document.getElementById('profileModal');
+      modal.style.display = 'none';
+    }
+  </script>
+	<!-- 프로필 모달창 종료 -->
 </body>
 </html>

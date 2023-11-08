@@ -21,8 +21,8 @@ public class ProductUpdateProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: ProductUpdateProAction.execute 호출");
 		
-		// 나중에 실제 서버에 올라간 없어진 파일 지우기, 
-		// DefaultFileRenamePolicy로 바뀐 파일 이름 어떻게 할지 생각해야할듯 
+		// 나중에 실제 서버에 올라가있는데 수정해서 필요 없어진 파일 지우기, 
+		// DefaultFileRenamePolicy로 바뀐 파일 이름 어떻게 할지 생각해야함
 		
 		// 로그인 한 유저 아이디 세션에서 가져오기
 		HttpSession session = request.getSession();

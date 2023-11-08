@@ -257,7 +257,8 @@
 								<c:if test="${fileNameArr[i-1] == null}">
 									<button type="button" class="updateImg" onclick="showFileInput(${i })">추가하기</button>
 								</c:if>
-								<!-- 나중에 x로 삭제하는 버튼도 필요할듯 -->
+								<!-- x로 삭제하는 버튼도 필요함, ajax 사용 -->
+								
 							</div>
 							
 							<!-- 파일 선택 시 previewImage() 함수 호출 -->
