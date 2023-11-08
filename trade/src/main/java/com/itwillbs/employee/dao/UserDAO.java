@@ -102,6 +102,9 @@ public class UserDAO extends DAO{
 				dto.setUser_name(rs.getString("user_name"));
 				dto.setAddress(rs.getString("address"));
 				dto.setJumin(rs.getString("jumin"));
+				dto.setProfile(rs.getString("profile"));
+				dto.setPay(rs.getInt("pay"));
+				dto.setAgree(rs.getString("agree"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

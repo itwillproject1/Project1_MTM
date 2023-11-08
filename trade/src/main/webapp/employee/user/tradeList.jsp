@@ -12,18 +12,62 @@
               <div class="row mb-4 items-align-center">
                 <div class="col-md">
                   <ul class="nav nav-pills justify-content-start">
-                  <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-primary text-white ml-2">164</span></a>
+                  <c:if test="${pageCategory == 'all'}">
+                  	<li class="nav-item">
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-primary text-white ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">64</span></a>
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
                     </li>
+                  </c:if>
+                  <c:if test="${pageCategory == 'buy'}">
+                  	<li class="nav-item">
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-primary text-white ml-2">${count[1]}</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
+                    </li>
+                  </c:if>
+                  <c:if test="${pageCategory == 'sell'}">
+                  	<li class="nav-item">
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-primary text-white ml-2">${count[2]}</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
+                    </li>
+                  </c:if>
+                  <c:if test="${pageCategory == 'complete'}">
+                  	<li class="nav-item">
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[3]}</span></a>
+                    </li>
+                  </c:if>
                   </ul>
                 </div>
                 <div class="col-md-auto ml-auto text-right">
@@ -73,7 +117,12 @@
                             <strong>거래 완료됨</strong>
                           </p>
                           <div class="custom-control custom-switch">
-                            <input type="checkbox" name="checkComplete" value="true" class="custom-control-input" id="customSwitch1">
+                          	<c:if test="${checkComplete == true}">
+                          		<input type="checkbox" name="checkComplete" value="true" class="custom-control-input" id="customSwitch1" checked>
+                          	</c:if>
+                          	<c:if test="${checkComplete == null }">                      	
+	                            <input type="checkbox" name="checkComplete" value="true" class="custom-control-input" id="customSwitch1">
+                          	</c:if>
                             <label class="custom-control-label" for="customSwitch1">포함</label>
                           </div>
                         </div> <!-- form-group -->
@@ -105,8 +154,8 @@
                     <th>브랜드</th>
                     <th>카테고리</th>
                     <th>제목</th>
-                    <th>가격</th>
-                    <th>거래 상태</th>
+                    <th style="text-align:right;">가격</th>
+                    <th style="text-align:center;">거래 상태</th>
                     <th>거래자</th>
                     <th>기타</th>
                   </tr>
@@ -120,27 +169,42 @@
                         <label class="custom-control-label"></label>
                       </div>
                     </td>
-                    <td>${i.user_id}</td>
+                    <td>
+                    	<p class="mb-0 text-muted">
+                    		<a href="./UserInfo.emp?user_id=${i.user_id}" class="text-muted">${i.user_id}</a>
+                    	</p>
+                    </td>
                     <td>${i.date_time}</td>
                     <td>${i.brand}</td>
                     <td>${i.category}</td>
-                    <td>${i.price}</td>
-                    <!-- 거래 중 -->
-                    <c:if test="${i.deal_status == 1}"></c:if>
-                    <!-- 거래 완료 -->
-                    <c:if test="${i.deal_status == 0}"></c:if>
-                    <td>$3.64</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
+                    <td>
+                    	<p class="mb-0 text-muted">
+                    		<a href="./TradeContent.emp?bno=${i.bno}" class="text-muted">${i.title}</a>
+                    	</p>
+					</td>
+                    <td style="text-align:right;">${i.price}</td>
+                    <td style="text-align:center;">
+                    	<!-- 거래 중 -->
+                    	<c:if test="${i.deal_status== 1}">
+                    		<span class="dot dot-lg bg-success mr-2"></span>
+                    	</c:if>
+                    	<!-- 거래 완료 -->
+                    	<c:if test="${i.deal_status == 0}">
+                    		<span class="dot dot-lg bg-secondary mr-2"></span>
+                    	</c:if>
+                    </td>
+                    
+                    <td>
+                    	<c:if test="${i.deal_status == 1}">${i.deal_user_id}</c:if>
+                    </td>
                     <td>
                       <div class="dropdown">
                         <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="text-muted sr-only">Action</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" style="">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
+                          <a class="dropdown-item" href="./TradeContent.emp?bno=${i.bno}&pageNum=${pageNum}">상세보기</a>
+                          <a class="dropdown-item" href="#">삭제</a>
                         </div>
                       </div>
                     </td>

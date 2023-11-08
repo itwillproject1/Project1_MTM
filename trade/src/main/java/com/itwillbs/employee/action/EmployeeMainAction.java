@@ -19,7 +19,7 @@ public class EmployeeMainAction implements Action{
 		UserDAO udao = new UserDAO();
 		TradeDAO tdao = new TradeDAO();
 		int userCount = udao.userCount();
-		int tradeCount = tdao.tradeCount();
+		int tradeCount = tdao.tradeCount("all", false);
 		ArrayList tradeList = tdao.tradeList(16);
 		request.setAttribute("userCount", userCount);
 		request.setAttribute("tradeCount", tradeCount);

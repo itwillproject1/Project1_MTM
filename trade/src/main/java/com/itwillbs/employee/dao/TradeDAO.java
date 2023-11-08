@@ -6,11 +6,21 @@ import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.employee.dto.UserDTO;
 
 public class TradeDAO extends DAO{
-	public int tradeCount() {
+	public int tradeCount(String pageCategory, boolean checkComplete) {
 		int result = 0;
 		try {
 			con = getCon();
-			sql = "select count(*) from Product";
+			if(checkComplete) {
+				if(pageCategory.equals("all")) sql = "select count(*) from Product";
+				else if(pageCategory.equals("buy")) sql = "select count(*) from Product where deal_way = '삽니다'";
+				else if(pageCategory.equals("sell")) sql = "select count(*) from Product where deal_way = '팝니다'";
+				else if(pageCategory.equals("complete")) sql = "select count(*) from Product where deal_status = 0";
+			}
+			else {
+				if(pageCategory.equals("all")) sql = "select count(*) from Product where deal_status = 1";
+				else if(pageCategory.equals("buy")) sql = "select count(*) from Product where deal_way = '삽니다' and deal_status = 1";
+				else if(pageCategory.equals("sell")) sql = "select count(*) from Product where deal_way = '팝니다' and deal_status = 1";
+			}
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) result = rs.getInt(1);
@@ -73,6 +83,7 @@ public class TradeDAO extends DAO{
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDeal_way(rs.getString("deal_way"));
 				dto.setCategory(rs.getString("category"));
+				dto.setBrand(rs.getString("brand"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 				dto.setProduct_status(rs.getString("product_status"));
@@ -112,6 +123,7 @@ public class TradeDAO extends DAO{
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDeal_way(rs.getString("deal_way"));
 				dto.setCategory(rs.getString("category"));
+				dto.setBrand(rs.getString("brand"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 				dto.setProduct_status(rs.getString("product_status"));
@@ -186,6 +198,7 @@ public class TradeDAO extends DAO{
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDeal_way(rs.getString("deal_way"));
 				dto.setCategory(rs.getString("category"));
+				dto.setBrand(rs.getString("brand"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 				dto.setProduct_status(rs.getString("product_status"));
@@ -211,16 +224,19 @@ public class TradeDAO extends DAO{
 		TradeDTO dto = null;
 		try {
 			con = getCon();
-			sql = "select * from Product where user_id = ? order by bno desc limit 3";
+			sql = "select * from Product where user_id = ? order by bno desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user.getUser_id());
+			System.out.println("sql : " + sql + ", user_id : " + user.getUser_id());
 			rs = pstmt.executeQuery();
+			li = new ArrayList();
 			while(rs.next()) {
 				dto = new TradeDTO();
 				dto.setBno(rs.getInt("bno"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDeal_way(rs.getString("deal_way"));
 				dto.setCategory(rs.getString("category"));
+				dto.setBrand(rs.getString("brand"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 				dto.setProduct_status(rs.getString("product_status"));
@@ -231,6 +247,7 @@ public class TradeDAO extends DAO{
 				dto.setPrice(rs.getInt("price"));
 				dto.setDeal_status(rs.getInt("deal_status"));
 				dto.setDeal_user_id(rs.getString("deal_user_id"));
+				System.out.println(dto);
 				li.add(dto);
 			}
 		} catch(Exception e) {
@@ -255,6 +272,7 @@ public class TradeDAO extends DAO{
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDeal_way(rs.getString("deal_way"));
 				dto.setCategory(rs.getString("category"));
+				dto.setBrand(rs.getString("brand"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 				dto.setProduct_status(rs.getString("product_status"));

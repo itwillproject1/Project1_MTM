@@ -12,6 +12,7 @@ import com.itwillbs.employee.dto.BoardDTO;
 import com.itwillbs.employee.dto.UserDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
+import com.itwillbs.util.JSMoveFunction;
 
 public class UserInfoAction implements Action{
 	@Override
@@ -21,8 +22,15 @@ public class UserInfoAction implements Action{
 		UserDTO udto = new UserDTO();
 		BoardDTO bdto = new BoardDTO();
 		udto = udao.userInfo(request.getParameter("user_id"));
+		if(udto == null) {
+			JSMoveFunction move = new JSMoveFunction();
+			move.alertBack(response, "존재하지 않는 아이디입니다!");
+		}
 		ArrayList bList = tdao.userInfoTrade(udto);
-		ActionForward forward = new ActionForward();
+		request.setAttribute("dto", udto);
+		request.setAttribute("list", bList);
+
+		ActionForward forward = new ActionForward();	
 		forward.setPath("./employee/user/userInfo.jsp");
 		forward.setRedirect(false);
 		return forward;

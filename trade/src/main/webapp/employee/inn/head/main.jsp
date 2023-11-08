@@ -4,7 +4,6 @@
 <html lang="UTF-8">
 <head>
   	<link href="./employee/template/assets/images/titleIcon.ico" rel="shortcut icon" type="image/x-icon">
-    <title>메인</title>
     
     <!-- Fonts CSS -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +15,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>메인</title>
     
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="./employee/template/css/simplebar.css">

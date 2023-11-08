@@ -43,10 +43,27 @@ public class TradeListAction implements Action{
 		else {
 			list = dao.tradeList(pageCategory, category, search, searchKeyword, checkComplete);
 		}
-		
+		int[] count = new int[4];
+		if(checkComplete == null) {
+			count[0] = dao.tradeCount("all", false);
+			count[1] = dao.tradeCount("buy", false);
+			count[2] = dao.tradeCount("sell", false);
+			count[3] = dao.tradeCount("complete", true);
+		}
+		else {
+			count[0] = dao.tradeCount("all", true);
+			count[1] = dao.tradeCount("buy", true);
+			count[2] = dao.tradeCount("sell", true);
+			count[3] = dao.tradeCount("complete", true);
+		}
+		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("pageCategory", pageCategory);
+		request.setAttribute("checkComplete", checkComplete);
+		request.setAttribute("search", search);
+		request.setAttribute("searchKeyword", searchKeyword);
+		request.setAttribute("category", category);
 		forward.setPath("./employee/user/tradeList.jsp");
 		System.out.println(list.size());
 		forward.setRedirect(false);

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inn/head/main.jsp"/>
+<title>유저 정보</title>
 <jsp:include page="../inn/navbar.jsp"/>
    <!-- 메인 -->
 	<main role="main" class="main-content">
@@ -10,7 +11,7 @@
             <div class="col-12 col-lg-10 col-xl-8">
               <div class="row align-items-center mb-4">
                 <div class="col">
-                  <h2 class="h5 page-title"><small class="text-muted text-uppercase">${requestScope.dto.user_name}</small><br>${requestScope.dto.user_id}</h2>
+                  <h2 class="h5 page-title"><small class="text-muted text-uppercase">${dto.user_nickname}</small><br>${dto.user_id}</h2>
                 </div>
                 <div class="col-auto">
                   <button type="button" class="btn btn-secondary">삭제</button>
@@ -19,78 +20,87 @@
               </div>
               <div class="card shadow">
                 <div class="card-body p-5">
-                  <div class="row mb-5">
+					<div class="row mb-5">
                     <div class="col-12 text-center mb-4">
-                      <img src="./employee/template/assets/images/user.png" class="navbar-brand-img brand-sm mx-auto mb-4" alt="...">
-                      <h2 class="mb-0 text-uppercase">${requestScope.dto.user_id}</h2>
-                      <p class="text-muted"> ${requestScope.dto.user_name}<br> ${requestScope.dto.user_nickname} </p>
+                      	<div class="avatar avatar-xl">
+                      	<c:if test="${dto.profile == null}">
+                    		<img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
+                      	</c:if>
+                      	<c:if test="${dto.profile != null}">
+                    		<img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
+                      	</c:if>
+                  		</div>
+                      <h2 class="mb-0 text-uppercase">${dto.user_id}</h2>
                     </div>
-                  </div> <!-- /.row -->
+                    <div class="col-md-8" style="margin:auto;">
+                   <table class="table table-borderless table-striped">
+                   	<tbody>
+                   		<tr>
+                   			<td><strong>이름</strong></td><th class="text-muted">${dto.user_name}</th>
+                   			<td><strong>주소</strong></td><th class="text-muted">${dto.address}</th>
+                   		</tr>
+                   		<tr>
+                   			<td><strong>별명</strong></td><th class="text-muted">${dto.user_nickname}</th>
+                   			<td><strong>전화번호</strong></td><th class="text-muted">${dto.phone}</th>
+                   		</tr>
+                   		<tr>
+                   			<td><strong>생년월일</strong></td><th class="text-muted">${dto.jumin}</th>
+                   			<td><strong>이메일</strong></td><th class="text-muted">${dto.email}</th>
+                   		</tr>
+                   		<tr>
+                   			<td><strong>잔액</strong></td><th class="text-muted">${dto.pay}</th>
+                   			<td>
+                   				<strong>수신</strong>
+                   			</td>
+                   			<th class="text-muted">
+                   				<c:if test="${dto.agree == '동의'}">
+									<span class="badge badge-pill badge-primary">동의</span>
+								</c:if>
+								<c:if test="${dto.agree == '비동의'}">
+									<span class="badge badge-pill badge-secondary">비동의</span>
+								</c:if>
+                   			</th>
+                   		</tr>
+                   	</tbody>
+                   </table>
+                    </div>
+                  </div>
+                 <div class="row mb-8">
+              	 <h3>거래 이력</h3>
                   <table class="table table-borderless table-striped">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Description</th>
-                        <th scope="col" class="text-right">Rate</th>
-                        <th scope="col" class="text-right">Hours</th>
-                        <th scope="col" class="text-right">Ammout</th>
+                        <th scope="col">제목</th>
+                        <th scope="col" class="text-right">가격</th>
+                        <th scope="col" class="text-right">거래 현황</th>
+                        <th scope="col" class="text-right">거래자</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="i" items="${list}">
                       <tr>
-                        <th scope="row">1</th>
-                        <td> Creative Design<br>
-                          <span class="small text-muted">Design responsive website with existing prototype</span>
+                        <th scope="row">${i.bno}</th>
+                        <td>${i.title}<br>
+                          <span class="small text-muted">${i.content}</span>
                         </td>
-                        <td class="text-right">$15.00</td>
-                        <td class="text-right">2</td>
-                        <td class="text-right">$30.00</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td> Front-End Development<br>
-                          <span class="small text-muted">Markup conversion and adding JavaScript</span>
+                        <td class="text-right">${i.price}</td>
+                        <td class="text-right">
+							<c:if test="${i.deal_status == 1}">
+								<span class="badge badge-pill badge-success">거래 중</span>
+							</c:if>
+							<c:if test="${i.deal_status == 0}">
+								<span class="badge badge-pill badge-secondary">거래 완료</span>
+							</c:if>
+						</td>
+                        <td class="text-right">
+                        	<c:if test="${i.deal_status == 0}">${i.deal_user_id}</c:if>
                         </td>
-                        <td class="text-right">$20.00</td>
-                        <td class="text-right">5</td>
-                        <td class="text-right">$100.00</td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td> Back-End Development<br>
-                          <span class="small text-muted">Database intergration with model functions</span>
-                        </td>
-                        <td class="text-right">$25.00</td>
-                        <td class="text-right">7</td>
-                        <td class="text-right">$155.00</td>
-                      </tr>
+                    </c:forEach>
                     </tbody>
                   </table>
-                  <div class="row mt-5">
-                    <div class="col-2 text-center">
-                      <img src="./assets/images/qrcode.svg" class="navbar-brand-img brand-sm mx-auto my-4" alt="...">
-                    </div>
-                    <div class="col-md-5">
-                      <p class="text-muted small">
-                        <strong>Note :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. </p>
-                    </div>
-                    <div class="col-md-5">
-                      <div class="text-right mr-2">
-                        <p class="mb-2 h6">
-                          <span class="text-muted">Subtotal : </span>
-                          <strong>$285.00</strong>
-                        </p>
-                        <p class="mb-2 h6">
-                          <span class="text-muted">VAT (10%) : </span>
-                          <strong>$28.50</strong>
-                        </p>
-                        <p class="mb-2 h6">
-                          <span class="text-muted">Total : </span>
-                          <span>$313.50</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div> <!-- /.row -->
+              	  </div>
                 </div> <!-- /.card-body -->
               </div> <!-- /.card -->
             </div> <!-- /.col-12 -->

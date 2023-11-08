@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.product-image {
+	background-color:#6c757d;
+	object-fit: none;
+	width:400px;
+	height:600px;
+}
+
+.image-container{
+	height:600px;
+	display: flex;
+	justify-content: space-evenly;
+  	align-items: center;
+  	gap: 4px;
+}

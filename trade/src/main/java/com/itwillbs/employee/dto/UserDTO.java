@@ -11,10 +11,11 @@ public class UserDTO {
 	private String gender;
 	private String phone;
 	private String address;
+	private String profile;
 	private String user_nickname;
-	private boolean agree;
+	private String agree;
 	private Timestamp regdate;
-	private int point;
+	private int pay;
 	public String getUser_id() {
 		return user_id;
 	}
@@ -63,16 +64,22 @@ public class UserDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	public String getUser_nickname() {
 		return user_nickname;
 	}
 	public void setUser_nickname(String user_nickname) {
 		this.user_nickname = user_nickname;
 	}
-	public boolean isAgree() {
+	public String getAgree() {
 		return agree;
 	}
-	public void setAgree(boolean agree) {
+	public void setAgree(String agree) {
 		this.agree = agree;
 	}
 	public Timestamp getRegdate() {
@@ -81,18 +88,17 @@ public class UserDTO {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	public int getPoint() {
-		return point;
+	public int getPay() {
+		return pay;
 	}
-	public void setPoint(int point) {
-		this.point = point;
+	public void setPay(int pay) {
+		this.pay = pay;
 	}
 	@Override
 	public String toString() {
 		return "UserDTO [user_id=" + user_id + ", user_pw=" + user_pw + ", email=" + email + ", user_name=" + user_name
-				+ ", jumin=" + jumin + ", gender=" + gender + ", phone=" + phone + ", address=" + address
-				+ ", user_nickname=" + user_nickname + ", agree=" + agree + ", regdate=" + regdate + ", point=" + point
-				+ ", toString()=" + super.toString() + "]";
+				+ ", jumin=" + jumin + ", gender=" + gender + ", phone=" + phone + ", address=" + address + ", profile="
+				+ profile + ", user_nickname=" + user_nickname + ", agree=" + agree + ", regdate=" + regdate + ", pay="
+				+ pay + ", toString()=" + super.toString() + "]";
 	}
-	
 }

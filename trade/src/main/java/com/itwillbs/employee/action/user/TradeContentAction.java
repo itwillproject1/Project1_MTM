@@ -18,10 +18,11 @@ public class TradeContentAction implements Action{
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		TradeDAO dao = new TradeDAO();
 		TradeDTO tdto = dao.tradeContent(bno);
-		request.setAttribute("tdto", tdto);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/user/tradeContent.jsp");
 		forward.setRedirect(false);
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("dto", tdto);
 		return forward;
 	}
 }
