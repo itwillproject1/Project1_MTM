@@ -197,40 +197,50 @@
             <%
                 // 세션에서 로그인한 ID 가져오기
                 String loggedInUserId = (String) session.getAttribute("id");
-%>
-            <c:if test="${not empty loggedInUserId}">
-            <c:set var="userProductsForSelling" value="${dao.getAllUserProducts(loggedInUserId, '팝니다')}" />
-            <c:choose>
-                <c:when test="${not empty userProductsForSelling}">
-                    <h2>${loggedInUserId}님의 판매 상품 목록</h2>
-                    <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
-                        <c:forEach items="${userProductsForSelling}" var="userProduct">
-                            <div>
-                                <input type="checkbox" id="sellCheckbox" class="productCheckbox" name="sellProductBno"
-                                    value="${userProduct.bno}">
-                                <img id="sellImage" src="${request.getContextPath()}/upload/${userProduct.file_name}" alt="미리보기">
-                            </div>
-                            <div>
-                                <span id="sellDiv">
-                                    <span>상품명: ${userProduct.title}<br></span>
-                                    <span>상품상태: ${userProduct.product_status}<br></span>
-                                    <span>가격: <fmt:formatNumber value="${userProduct.price}" />원</span>
-                                </span>
-                            <hr id="hr1">
-                            </div>
-                        </c:forEach>
-                    </form>
-                </c:when>
-                <c:otherwise>
-                    <p id="noSell">판매 등록 상품이 없습니다.</p>
-                    <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
-                </c:otherwise>
-            </c:choose>
-        </c:if>
-        <c:if test="${empty loggedInUserId}">
-            <p id="noSell">로그인이 필요합니다. <a href="../main/login.member">로그인</a></p>
-        </c:if>
 
+                if (loggedInUserId != null) {
+                    // 로그인한 사용자의 상품 정보를 가져오는 서버 측 로직을 호출
+                    dao = new ProductDAO();
+                    List<ProductDTO> userProductsForSelling = dao.getAllUserProducts(loggedInUserId, "팝니다");
+
+                    if (!userProductsForSelling.isEmpty()) {
+                    %>
+                        <h2>팝니다 상품 목록</h2>
+                    <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
+                    <%
+                        for (ProductDTO userProduct : userProductsForSelling) {
+                    %>
+                     <div>
+                        <input type="checkbox" id="sellCheckbox" class="productCheckbox" name="sellProductBno"
+                           value="<%=userProduct.getBno()%>">
+                           <img
+                           id="sellImage"
+                           src="<%=request.getContextPath()%>/upload/<%=userProduct.getFile_name()%>"
+                           alt="미리보기">
+                     </div>
+                     <div>
+                        <span id="sellDiv"> <span>상품명: <%=userProduct.getTitle()%><br></span>
+                           <span>상품상태: <%=userProduct.getProduct_status()%><br></span>
+                           <span>가격: <fmt:formatNumber
+                                 value="<%=userProduct.getPrice()%>" />원
+                        </span>
+                        </span>
+                     <hr id="hr1">
+                     </div>
+                     <%
+                        }
+                    } else {
+                    %>
+                     <p id="noSell">판매 등록 상품이 없습니다.</p>
+                     <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
+                    <%
+                    }
+                } else {
+                %>
+                    <p id="noSell">로그인이 필요합니다. <a href="../main/login.member">로그인</a></p>
+                <%
+                }
+            %>
          <button class="submit-button" onclick="submitProductOffer();">판매 제안</button>
          </form>
         </div>

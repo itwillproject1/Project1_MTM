@@ -92,20 +92,4 @@ public class ProductUploadAction implements Action {
 		return forward;
 	}
 
-//	private String getFileName(Part part) {
-//		String fileName = "";
-//		String contentDisposition = part.getHeader("content-disposition");
-//
-//		String[] items = contentDisposition.split(";");
-//		for (String item : items) {
-//			if (item.trim().startsWith("filename")) {
-//				// filename="test1.txt" ==> item변수값
-//				fileName = item.substring(item.indexOf("=") + 2, item.length() - 1);
-//			}
-//		}
-//
-//		// file이 아닐 경우 => ""이 반환됨, file일 경우 => file명이 반환됨
-//
-//		return fileName;
-//	}
 }

@@ -149,7 +149,7 @@ public class ProductFrontController extends HttpServlet{
 		}
       }
       else if(command.equals("/product/SuggestSell.com")) {
-    	  System.out.println(" C : /product/SellSuggest.com 호출 ");
+    	  System.out.println(" C : /product/SuggestSell.com 호출 ");
           System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
           
           action = new SuggestSellAction();
