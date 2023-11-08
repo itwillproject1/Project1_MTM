@@ -206,12 +206,12 @@
                     if (!userProductsForSelling.isEmpty()) {
                     %>
                         <h2>팝니다 상품 목록</h2>
+                    <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
                     <%
                         for (ProductDTO userProduct : userProductsForSelling) {
                     %>
-                    <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
 							<div>
-								<input type="checkbox" id="sellCheckbox" class="productCheckbox"
+								<input type="checkbox" id="sellCheckbox" class="productCheckbox" name="sellProductBno"
 									value="<%=userProduct.getBno()%>">
 									<img
 									id="sellImage"
@@ -289,9 +289,14 @@
             alert("판매할 물품을 선택해주세요");
         } else {
             var productIds = [];
-            confirmSell();
-            /* window.location.href = "구매자에게전달.com";
-             */
+            
+            var result = confirm('해당 상품을 0원에 판매 제안하시겠습니까?');
+
+    	    if (result === true) {
+    			document.getElementById("SuggestSellForm").submit();
+    	    } else {
+    	    	history.back();
+    	    }
         }
     }
 </script>
@@ -507,21 +512,5 @@
     }
 	</script>
 	<!-- 프로필 모달창 종료 -->
-	
-	<!-- 판매 제안하기 시작  -->
-	<script>
-	function confirmSell() {
-	 	// 'confirm' 창을 표시하고 사용자가 확인을 누르면 true를 반환
-	    var result = confirm('해당 상품을 0원에 판매 제안하시겠습니까?');
-
-	    if (result === true) {
-			document.getElementById("SuggestSellForm").submit();
-	    } else {
-	    	history.back();
-	    }
-
-	}
-	</script>
-	<!-- 판매 제안하기 종료 -->
 </body>
 </html>
