@@ -9,6 +9,7 @@ import com.itwillbs.product.db.SuggestSellDAO;
 import com.itwillbs.product.db.SuggestSellDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
+import com.itwillbs.util.JSMoveFunction;
 
 public class SuggestSellAction implements Action {
 
@@ -42,11 +43,10 @@ public class SuggestSellAction implements Action {
 		SuggestSellDAO ssdao = new SuggestSellDAO();
 		int bno = ssdao.suggestSell(ssdto);
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./ProductContent.com?bno="+bno);
-		forward.setRedirect(true);
+		// 원래 페이지로 이동
+		JSMoveFunction.alertLocation(response, "판매 제안이 완료되었습니다", "./ProductContent.com?bno="+bno);
 		
-		return forward;
+		return null;
 	}
 
 }

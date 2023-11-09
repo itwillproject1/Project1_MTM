@@ -42,7 +42,7 @@ public class SuggestSellDAO {
 		}
 	}
 
-	// 거래 제안 메서드 
+	// 거래를 제안한 상품을 DB에 등록하는 uploadProduct()
 	public int suggestSell(SuggestSellDTO ssdto) {
 		int bno = ssdto.getBuy_bno();
 		try {
@@ -67,4 +67,42 @@ public class SuggestSellDAO {
 		}
 		return bno;
 	} // uploadProduct() 종료
+
+	// 해당 글에 들어온 제안 목록을 가져오기() - getSuggestList()
+	public ArrayList<SuggestSellDTO> getSuggestList(int buy_bno) {
+		ArrayList<SuggestSellDTO> suggestList = new ArrayList<SuggestSellDTO>();
+		SuggestSellDTO ssdto = null;
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+			// 3. sql 구문 작성(select) & pstmt 객체
+			sql = "select * from SuggestSell where buy_bno=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, buy_bno);
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터 처리
+			// 글 하나의 정보를 DTO에 저장 후 해당 DTO를 ArrayList에 add
+			while (rs.next()) {
+				ssdto = new SuggestSellDTO();
+				ssdto.setBuy_bno(buy_bno);
+				ssdto.setSell_bno(rs.getInt("sell_bno"));
+				ssdto.setBuyer_user_id(rs.getString("buyer_user_id"));
+				ssdto.setSeller_user_id(rs.getString("seller_user_id"));
+				ssdto.setBuyer_price(rs.getInt("buyer_price"));
+				ssdto.setSeller_price(rs.getInt("seller_price"));				
+
+				// 글 하나의 정보를 배열의 한칸에 저장
+				suggestList.add(ssdto);
+			} // while
+			System.out.println(" DAO : 제안 정보 조회성공!");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return suggestList;
+	} // getSuggestList() 종료
+	
 }
