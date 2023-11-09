@@ -5,7 +5,22 @@ import java.util.ArrayList;
 import com.itwillbs.employee.dto.UserDTO;
 
 public class UserDAO extends DAO{
-
+	public int userPaySum() {
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select sum(pay) from Member";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
 	public ArrayList userList() {
 		ArrayList list = null;
 		UserDTO dto = null;

@@ -22,9 +22,8 @@
                         </div>
                         <div class="col pr-0">
                         <!-- 수수료 수입 -->
-                          <p class="small text-muted mb-0">수입</p>
-                          <span class="h3 mb-0 text-white">￦50000</span>
-                          <span class="small text-muted">+5.5%</span>
+                          <p class="small text-muted mb-0">총 충전금액</p>
+                          <span class="h3 mb-0 text-white">￦<fmt:formatNumber type="number" maxFractionDigits="3" value="${pay}"/></span>
                         </div>
                       </div>
                     </div>
@@ -82,8 +81,8 @@
                         </div>
                         <div class="col">
                         <!-- 방문자 수 -->
-                          <p class="small text-muted mb-0">방문자 수</p>
-                          <span class="h3 mb-0">80</span>
+                          <p class="small text-muted mb-0">문의 수</p>
+                          <span class="h3 mb-0">${inquiryCount}</span>
                         </div>
                       </div>
                     </div>
@@ -127,9 +126,9 @@
                               <span class="text-muted sr-only">Action</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                              <a class="dropdown-item" href="#">Edit</a>
-                              <a class="dropdown-item" href="#">Remove</a>
-                              <a class="dropdown-item" href="#">Assign</a>
+                              <a class="dropdown-item" href="./UserInfo.emp?user_id=${i.user_id}">회원 정보</a>
+                              <a class="dropdown-item" href="./TradeContent.emp?bno=${i.bno}">상세 보기</a>
+                              <a class="dropdown-item" href="#">상품 페이지로</a>
                             </div>
                           </div>
                         </td>

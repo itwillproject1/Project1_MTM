@@ -36,13 +36,6 @@ public class TradeListAction implements Action{
 		// search/searchKeyword 컬럼 = '값'
 		// checkComplete deal_status = 0 포함
 		
-		if(searchKeyword == null && category == null && checkComplete == null) {
-			list = dao.tradeList(pageCategory);
-		}
-		
-		else {
-			list = dao.tradeList(pageCategory, category, search, searchKeyword, checkComplete);
-		}
 		int[] count = new int[4];
 		if(checkComplete == null) {
 			count[0] = dao.tradeCount("all", false);
@@ -56,6 +49,62 @@ public class TradeListAction implements Action{
 			count[2] = dao.tradeCount("sell", true);
 			count[3] = dao.tradeCount("complete", true);
 		}
+		
+		/********************* 페이징처리 1 *******************/
+		// 한 페이지에 출력할 글의 개수 설정
+		int pageSize = 12;
+
+		// 시작행 번호 계산하기
+		// 1 11 21 31 41 .....
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+
+		// 끝행 번호 계산
+		// 10 20 30 40 50 .....
+		int endRow = currentPage * pageSize;
+
+		/********************* 페이징처리 1 *******************/
+		
+		/******************* 페이징처리 2 *********************/
+		// 페이지 블럭(1,2,3,.....,10) 생성
+
+		// 전체 페이지수
+		// 글 15 / 페이지당 10 => 2개
+		// 글 78 / 페이지당 10 => 8개
+		int c = 0;
+		if(pageCategory.equals("all")) c = count[0];
+		else if(pageCategory.equals("buy")) c = count[1];
+		else if(pageCategory.equals("sell")) c = count[2];
+		else if(pageCategory.equals("complete")) c = count[3];
+		
+		int pageCount = c / pageSize + (c % pageSize == 0 ? 0 : 1);
+
+		// 한 화면에 보여줄 페이지 블럭개수
+		int pageBlock = 5;
+
+		// 페이지 블럭의 시작번호 계산
+		// 1페이지 => 1 , 11페이지 => 11
+		// 5페이지 => 1 , 25페이지 => 21
+		int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
+
+		// 페이지 블럭의 마지막번호 계산
+		// 1페이지 => 10, 13페이지 => 20
+		int endPage = startPage + pageBlock - 1;
+		// 페이지의 글이 없는경우
+		if (endPage > pageCount) {
+			endPage = pageCount;
+		}
+
+		/******************* 페이징처리 2 *********************/
+		
+		if(searchKeyword == null && category == null && checkComplete == null) {
+			list = dao.tradeList(pageCategory, startRow, pageSize);
+		}
+		
+		else {
+			list = dao.tradeList(pageCategory, category, search, searchKeyword, checkComplete, startRow, pageSize);
+		}
+		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("pageNum", pageNum);
@@ -64,6 +113,10 @@ public class TradeListAction implements Action{
 		request.setAttribute("search", search);
 		request.setAttribute("searchKeyword", searchKeyword);
 		request.setAttribute("category", category);
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("pageBlock", pageBlock);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 		forward.setPath("./employee/user/tradeList.jsp");
 		System.out.println(list.size());
 		forward.setRedirect(false);

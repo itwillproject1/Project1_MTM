@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inn/head/databaseList.jsp"/>
 <head><title>거래 현황</title></head>
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	
+</script> -->
 <jsp:include page="../inn/navbar.jsp"/>
       <main role="main" class="main-content" data-select2-id="9">
         <div class="container-fluid" data-select2-id="8">
@@ -91,12 +95,33 @@
                         <div class="form-group my-4">			
                         	<label for="custom-select"><strong>검색</strong></label>
                         	<select name="search" class="custom-select" id="custom-select">
-                          		<option selected>선택</option>
-                          		<option value="title">제목</option>
-                          		<option value="brand">브랜드</option>
-                          		<option value="user_id">작성자</option>
+                        		<c:if test="${empty search}">
+                        			<option selected>선택</option>
+                        		</c:if>
+                          		<c:if test="${!empty search}">
+                          			<option>선택</option>
+                          		</c:if>
+                          		<c:if test="${search == 'title'}">
+                          			<option value="title" selected>제목</option>
+                          		</c:if>
+                          		<c:if test="${search != 'title'}">
+                          			<option value="title">제목</option>
+                          		</c:if>
+                          		<c:if test="${search == 'brand'}">
+                          			<option value="brand" selected>브랜드</option>
+                          		</c:if>
+                          		<c:if test="${search != 'brand'}">
+                          			<option value="brand">브랜드</option>
+                          		</c:if>
+                          		<c:if test="${search == 'user_id'}">
+                          			<option value="user_id" selected>작성자</option>
+                          		</c:if>
+                          		<c:if test="${search != 'user_id'}">
+                          			<option value="user_id">작성자</option>
+                          		</c:if>
+                          		
                         	</select>
-                        	<input type="text" name="searchKeyword" class="form-control" placeholder="검색어 입력">
+                        	<input type="text" name="searchKeyword" value="${searchKeyword}" class="form-control" placeholder="검색어 입력">
                         </div> <!-- form-group -->
                         <div class="form-group my-2">			
                         	<label for="custom-select"><strong>카테고리</strong></label>
@@ -130,7 +155,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="submit" class="btn mb-2 btn-primary btn-block">검색</button>
-                      <button type="button" class="btn mb-2 btn-secondary btn-block" onclick="">초기화</button>
+                      <button type="reset" class="btn mb-2 btn-secondary btn-block" onclick="">초기화</button>
                     </div>
                   </div>                  
                  </form>
@@ -142,19 +167,14 @@
               <c:if test="${list != null }">
               <table class="table border table-hover bg-white">
                 <thead>
-                  <tr role="row">
-                    <th>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="all">
-                        <label class="custom-control-label" for="all"></label>
-                      </div>
-                    </th>
+                  <tr role="row">       
+                    <th>글 번호</th>
                     <th>아이디</th>
                     <th>게시일자</th>
                     <th>브랜드</th>
                     <th>카테고리</th>
                     <th>제목</th>
-                    <th style="text-align:right;">가격</th>
+                    <th style="text-align:right;">가격(￦)</th>
                     <th style="text-align:center;">거래 상태</th>
                     <th>거래자</th>
                     <th>기타</th>
@@ -163,12 +183,7 @@
                 <tbody>
                   <c:forEach var="i" items="${list}">
                   <tr>
-                    <td class="align-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
+                    <td>${i.bno}</td>
                     <td>
                     	<p class="mb-0 text-muted">
                     		<a href="./UserInfo.emp?user_id=${i.user_id}" class="text-muted">${i.user_id}</a>
@@ -215,11 +230,34 @@
               </c:if>
               <nav aria-label="Table Paging" class="my-3">
                 <ul class="pagination justify-content-end mb-0">
-                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <%
+                	String link = "./TradeList.emp?";
+                	String search = request.getParameter("search");
+                	String searchKeyword = request.getParameter("searchKeyword");
+                	String category = request.getParameter("category");
+                	String checkComplete = request.getParameter("checkComplete");
+                	String pageCategory = request.getParameter("pageCategory");
+                	link += "pageCategory=";
+                	link += pageCategory == null ? "all" : pageCategory;
+                	link += search == null ? "" : "&search=" + search;
+                	link += searchKeyword == null ? "" : "&search=" + search;
+                	link += category == null ? "" : "&search=" + search;
+                	link += checkComplete == null ? "" : "&search=" + search;
+                %>
+                <c:if test="${1 < pageNum}">
+					<li class="page-item"><a class="page-link" href="<%=link%>&pageNum=${pageNum-1}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i">
+					<c:if test="${i == pageNum}">
+						<li class="page-item active"><a class="page-link" href="<%=link%>&pageNum=${i}">${i}</a></li>
+					</c:if>
+					<c:if test="${i != pageNum }">	
+						 <li class="page-item"><a class="page-link" href="<%=link%>&pageNum=${i}">${i}</a></li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pageNum < pageCount}">
+					<li class="page-item"><a class="page-link" href="<%=link%>&pageNum=${pageNum+1}">다음</a></li>
+				</c:if>
                 </ul>
               </nav>
             </div>

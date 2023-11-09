@@ -104,7 +104,7 @@ public class TradeDAO extends DAO{
 		return li;
 	}
 	
-	public ArrayList tradeList(String pageCategory) {
+	public ArrayList tradeList(String pageCategory, int startRow, int pageSize) {
 		ArrayList li = null;
 		TradeDTO dto = null;
 		try {
@@ -113,8 +113,10 @@ public class TradeDAO extends DAO{
 			if(pageCategory.equals("buy")) sql += " where deal_way = '삽니다'";
 			else if(pageCategory.equals("sell")) sql += " where deal_way = '팝니다'";
 			else if(pageCategory.equals("complete")) sql += " where deal_status = 0";
-			sql += " order by bno desc";
+			sql += " order by bno desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			li = new ArrayList();
 			while(rs.next()) {
@@ -146,7 +148,7 @@ public class TradeDAO extends DAO{
 
 	public ArrayList tradeList(String pageCategory, 
 			String category, String search, String searchKeyword,
-			String checkComplete) {
+			String checkComplete, int startRow, int pageSize) {
 		ArrayList li = null;
 		TradeDTO dto = null;
 		try {
@@ -187,9 +189,11 @@ public class TradeDAO extends DAO{
 				sql += " and "+ search +" like '%" + searchKeyword + "%'"; 
 			}
 			
-			sql += " order by bno desc";
+			sql += " order by bno desc limit ?,?";
 			System.out.println("sql : " + sql);
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			li = new ArrayList();
 			while(rs.next()) {
