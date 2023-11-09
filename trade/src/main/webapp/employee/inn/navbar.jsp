@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <body class="horizontal light  ">
-  <c:if test="${empty emp_id}">
-		<c:redirect url="./Login.emp"/>
-  </c:if>
     <div class="wrapper">
       <nav class="navbar navbar-expand-lg navbar-light bg-white flex-row border-bottom shadow">
         <div class="container-fluid">

@@ -4,6 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./inn/head/main.jsp"/>
 <title>메인</title>
+  <c:if test="${empty emp_id}">
+		<c:redirect url="./Login.emp"/>
+  </c:if>
 <jsp:include page="./inn/navbar.jsp"/>
       <!-- 메인(데이터가 쌓일 때 진행) -->
 	<main role="main" class="main-content">

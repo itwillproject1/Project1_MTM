@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inn/head/main.jsp"/>
-<title>거래 정보</title>
+<title>게시판</title>
   <c:if test="${empty emp_id}">
 		<c:redirect url="./Login.emp"/>
   </c:if>
@@ -31,11 +31,6 @@
                       			<p class="text-muted"> ${dto.content} </p>
                     		</div>
                   		</div>
-						<div class="row align-items-center">						
-							<div class="col">
-								<img src="./employee/template/assets/images/productImage.png" alt="..." class="product-image">
-							</div>
-						</div>
                   		<div class="row align-items-center">
                     		<div class="col text-center">
                     		<br>
@@ -75,6 +70,11 @@
                    						</tbody>
 									</table>
                   				</div>
+						</div>
+						<div class="row align-items-center">						
+							<div class="col">
+								<img src="./employee/template/assets/images/productImage.png" alt="..." class="product-image">
+							</div>
 						</div>
                 	</div> <!-- /.card-body -->
               	</div> <!-- /.card -->

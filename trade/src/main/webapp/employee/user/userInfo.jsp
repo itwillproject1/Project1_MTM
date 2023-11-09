@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inn/head/main.jsp"/>
 <title>유저 정보</title>
+  <c:if test="${empty emp_id}">
+		<c:redirect url="./Login.emp"/>
+  </c:if>
 <jsp:include page="../inn/navbar.jsp"/>
    <!-- 메인 -->
 	<main role="main" class="main-content">

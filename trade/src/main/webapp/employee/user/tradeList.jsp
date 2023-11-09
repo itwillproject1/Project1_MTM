@@ -3,10 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inn/head/databaseList.jsp"/>
 <head><title>거래 현황</title></head>
-<!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script type="text/javascript">
-	
-</script> -->
+  <c:if test="${empty emp_id}">
+		<c:redirect url="./Login.emp"/>
+  </c:if>
 <jsp:include page="../inn/navbar.jsp"/>
       <main role="main" class="main-content" data-select2-id="9">
         <div class="container-fluid" data-select2-id="8">

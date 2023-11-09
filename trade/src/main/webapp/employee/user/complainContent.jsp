@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inn/head/main.jsp"/>
+  <c:if test="${empty emp_id}">
+		<c:redirect url="./Login.emp"/>
+  </c:if>
 <jsp:include page="../inn/navbar.jsp"/>
 <main role="main" class="main-content">
         <div class="container-fluid">
