@@ -22,7 +22,6 @@ import com.itwillbs.employee.action.member.DeleteAction;
 import com.itwillbs.employee.action.member.ListAction;
 import com.itwillbs.employee.action.member.LoginAction;
 import com.itwillbs.employee.action.member.ProfileAction;
-import com.itwillbs.employee.action.member.PwFindAction;
 import com.itwillbs.employee.action.member.RegisterAction;
 import com.itwillbs.employee.action.user.TradeContentAction;
 import com.itwillbs.employee.action.user.TradeListAction;
@@ -67,13 +66,6 @@ public class EmployeeFrontController extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals("")) {
-			forward = new ActionForward();
-			forward.setPath("./employee/main.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
-		}
-		
 		// -- 관리자 정보 관련
 		else if(command.equals("/Login.emp")) {
 			// 로그인 페이지(처음 이동할 때 session 조회하고 이동 예정)
@@ -92,31 +84,11 @@ public class EmployeeFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		
-		else if(command.equals("/FindPwForm.emp")) {
-			// 비밀번호 찾기 폼
-			forward = new ActionForward();
-			forward.setPath("./employee/member/findPwForm.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
-		}
-		
-		else if(command.equals("/FindPwAction.emp")) {
-			// 비밀번호 찾기 실행
-			// 이메일과 아이디 조회 후 
-			// 일치하지 않으면 이전 페이지로 이동
-			action = new PwFindAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
+
 		else if(command.equals("/ChangePwForm.emp")) {
 			// 비밀번호 변경 페이지(관리자)
 			forward = new ActionForward();
-			forward.setPath("./emloyee/member/findPwForm.jsp");
+			forward.setPath("./employee/member/changePwForm.jsp");
 			forward.setRedirect(false);
 			System.out.println("C : " + forward);
 		}

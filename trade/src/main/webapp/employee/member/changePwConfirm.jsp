@@ -4,7 +4,7 @@
 <html>
 <head>
 <jsp:include page="../../employee/inn/login/head.jsp"/>
-<title>비밀번호 변경 완료</title>
+<title>비밀번호 초기화 완료</title>
 </head>
 <body>
 <!-- 비밀번호 변경 완료  -->

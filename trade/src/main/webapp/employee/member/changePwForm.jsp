@@ -4,7 +4,7 @@
 <html>
 <head>
 <jsp:include page="../../employee/inn/login/head.jsp"/>
-<title>비밀번호 찾기</title>
+<title>비밀번호 초기화</title>
 </head>
 <body>
 <!-- 비밀번호 찾기(로그인 할 때), 사번 및 이메일 입력 후  -->
@@ -24,6 +24,7 @@
             <input type="email" name="email" id="inputEmail" class="form-control form-control-lg" placeholder="이메일" required autofocus>
           </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">검색</button>
+          <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="history.back();">뒤로가기</button>
           <p class="mt-5 mb-3 text-muted">© 2023</p>
         </form>
       </div>
