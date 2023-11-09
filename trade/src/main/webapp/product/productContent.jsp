@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.product.db.SuggestSellDTO"%>
+<%@page import="com.itwillbs.product.db.SuggestSellDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwillbs.product.db.ProductDAO"%>
@@ -65,7 +67,7 @@
          <div class="form-container">
             <h2>
                상세 페이지
-               <%-- 여기부터 나중에 삭제하면 됨(지금 삭제하면 로그인 안하면 버튼 안 뜸) --%>
+               <%-- 여기부터 나중에 삭제하면 됨(지금 삭제하면 로그인 안하면 버튼 안 뜸)
                <input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
                   <div class="dropdown">
                      <input class="update-content-button" type="button" value="..." >
@@ -75,7 +77,7 @@
                         <button onclick="confirmDelete();">글 삭제하기</button>
                      </div>
                   </div>
-               <%-- 여기까지 나중에 삭제하면 됨(지금 삭제하면 로그인 안하면 버튼 안 뜸) --%>
+               여기까지 나중에 삭제하면 됨(지금 삭제하면 로그인 안하면 버튼 안 뜸) --%>
 
                <c:choose>
                   <c:when test="${empty sessionScope.id}">
@@ -110,55 +112,47 @@
             
             <!-- 작성자 프로필 모달 -->
             <div id="profileModal" class="modal">
-    <div class="modal-content">
-        <!-- 모달 내용 -->                
-        <h2><img src="" alt="프로필"> ${dto.user_id} (평점) <span class="close-button" onclick="closeProfileModal();">&times;</span></h2>
-        <%
-            ProductDAO dao = new ProductDAO();
-            ProductDTO pdto = (ProductDTO)request.getAttribute("dto");
-            List<ProductDTO> userProducts = dao.getAllUserProducts(pdto.getUser_id());
-            request.setAttribute("userProducts", userProducts);
-        %>
-        
-        <h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
-		<c:forEach var="userProduct" items="${userProducts}" varStatus="loopStatus">
-		    <c:if test="${userProduct.deal_way == '팝니다'}">
-		        <c:if test="${!loopStatus.first}">
-		            <hr>
+		    <div class="modal-content">
+		        <!-- 모달 내용 -->                
+		        <h2><img src="" alt="프로필"> ${dto.user_id} (평점) <span class="close-button" onclick="closeProfileModal();">&times;</span></h2>
+		        
+		        <h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
+				<c:forEach var="userProduct" items="${userProducts }" varStatus="loopStatus">
+				    <c:if test="${userProduct.deal_way == '팝니다'}">
+				        <c:if test="${!loopStatus.first}">
+				            <hr>
+				        </c:if>
+				        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
+				            <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
+				            <span id="sellDiv">
+				                <span>상품명: ${userProduct.title}<br></span>
+				                <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원</span>
+				            </span>
+				        </div>
+				    </c:if>
+				</c:forEach>
+		
+		        <h3 id="h3">${dto.user_id}님의 구매 상품 목록</h3>
+		        <c:forEach var="userProduct" items="${userProducts}" varStatus="loopStatus">
+				    <c:if test="${userProduct.deal_way == '삽니다'}">
+				        <c:if test="${!loopStatus.first}">
+				            <hr>
+				        </c:if>
+				        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
+				            <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
+				            <span id="sellDiv">
+				                <span>상품명: ${userProduct.title}<br></span>
+				                <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원</span>
+				            </span>
+				        </div>
+				    </c:if>
+				</c:forEach>
+		
+		        <c:if test="${empty userProducts}">
+		            <p id="noSell">등록 상품이 없습니다.</p>
 		        </c:if>
-		        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-		            <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
-		            <span id="sellDiv">
-		                <span>상품명: ${userProduct.title}<br></span>
-		                <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원</span>
-		            </span>
-		        </div>
-		    </c:if>
-		</c:forEach>
-
-
-
-        <h3 id="h3">${dto.user_id}님의 구매 상품 목록</h3>
-        <c:forEach var="userProduct" items="${userProducts}" varStatus="loopStatus">
-		    <c:if test="${userProduct.deal_way == '삽니다'}">
-		        <c:if test="${!loopStatus.first}">
-		            <hr>
-		        </c:if>
-		        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-		            <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
-		            <span id="sellDiv">
-		                <span>상품명: ${userProduct.title}<br></span>
-		                <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원</span>
-		            </span>
-		        </div>
-		    </c:if>
-		</c:forEach>
-
-        <c:if test="${empty userProducts}">
-            <p id="noSell">등록 상품이 없습니다.</p>
-        </c:if>
-    </div>
-</div>
+			</div>
+			</div>
             <!-- 작성자 프로필 모달 종료 -->
 
             <div class="form-group">
@@ -205,6 +199,9 @@
         <c:when test="${empty sessionScope.id}">
             <button class="submit-button" onclick="requireLogin();">판매 제안</button>
         </c:when>
+        <c:when test="${sessionScope.id eq dto.user_id}">
+            <button class="submit-button" onclick="openSuggestModal();">거래 제안 현황</button>
+        </c:when>
         <c:otherwise>
             <button class="submit-button" onclick="openProductModal();">판매 제안</button>
         </c:otherwise>
@@ -223,7 +220,7 @@
 
                 if (loggedInUserId != null) {
                     // 로그인한 사용자의 상품 정보를 가져오는 서버 측 로직을 호출
-                    dao = new ProductDAO();
+                    ProductDAO dao = new ProductDAO();
                     List<ProductDTO> userProductsForSelling = dao.getAllUserProducts(loggedInUserId, "팝니다");
 
                     if (!userProductsForSelling.isEmpty()) {
@@ -273,6 +270,7 @@
     </div>
 </div>
 
+<!-- 판매 제안 -->
 <script>
     var modal = document.getElementById('productModal');
 
@@ -329,6 +327,47 @@
         }
     }
 </script>
+<!-- 판매 제안 -->
+
+<!-- 거래 제안 현황 모달 시작-->
+<div id="suggestProductModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeSuggestModal()">&times;</span>
+        <div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+            <!-- 상품 정보 -->
+            <c:if test="${!empty suggestList }">
+            	<!-- 거래 제안 들어온 상품 목록 가져오기 -->
+            	<c:forEach var="spdto" items="${spdto }" >
+            		<div>
+                        <input type="radio" id="sellCheckbox" class="productCheckbox" name="sell_bno"
+                           value="${ssdto.sell_bno }">
+                           <img
+                           id="sellImage"
+                           src="<%=request.getContextPath()%>/upload/${spdto.file_name }"
+                           alt="미리보기">
+                     </div>
+                     <div>
+                        <span id="sellDiv"> <span>상품명: ${spdto.title}<br></span>
+                           <span>상품상태: ${spdto.product_status}<br></span>
+                           <span>가격: <span id="priceSpan"><fmt:formatNumber
+                                 value="${spdto.price}" />원 </span>
+                                 
+                                  <span id="priceSpan2"><fmt:formatNumber
+                                 value="${dto.price}" />원 </span>
+                        </span>
+                        </span>
+                     <hr id="hr1">
+                     </div>   	
+            	</c:forEach>
+            </c:if>
+            <c:if test="${empty suggestList }">
+            	<p id="noSell">거래 제안 상품이 없습니다.</p>
+			</c:if>
+         <button class="submit-button" onclick="submitProductOffer();">거래 하기</button>
+        </div>
+    </div>
+</div>
+<!-- 거래 제안 현황 모달 종료-->
 
       <div class="form-group">
          <label for="productDescription">상품 설명: </label> ${dto.content }
@@ -528,18 +567,46 @@
    
    <!-- 프로필 모달창 시작 -->
    <script>
-    // 모달 열기 함수
-    function openProfileModal() {
-      var modal = document.getElementById('profileModal');
-      modal.style.display = 'block';
-    }
-
-    // 모달 닫기 함수
-    function closeProfileModal() {
-      var modal = document.getElementById('profileModal');
-      modal.style.display = 'none';
-    }
+      var pfModal = document.getElementById('profileModal');
+	  // 모달 열기 함수
+	  function openProfileModal() {
+		  pfModal.style.display = 'block';
+	  }
+	
+	  // 모달 닫기 함수
+	  function closeProfileModal() {
+		  pfModal.style.display = 'none';
+	  }
+	    
+	  // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
+	  window.onclick = function(event) {
+	      if (event.target == pfModal) {
+	    	  pfModal.style.display = "none";
+	      }
+	  }
    </script>
    <!-- 프로필 모달창 종료 -->
+   
+   <!-- 제안 현황 모달창 시작 -->
+   <script>
+      var spModal = document.getElementById('suggestProductModal');
+	  // 모달 열기 함수
+	  function openSuggestModal() {
+		  spModal.style.display = 'block';
+	  }
+	
+	  // 모달 닫기 함수
+	  function closeSuggestModal() {
+		  spModal.style.display = 'none';
+	  }
+	    
+	  // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
+	  window.onclick = function(event) {
+	      if (event.target == spModal) {
+	    	  spModal.style.display = "none";
+	      }
+	  }
+   </script>
+   <!-- 제안 현황 모달창 종료 -->
 </body>
 </html>
