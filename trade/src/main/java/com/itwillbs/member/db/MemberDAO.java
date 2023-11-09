@@ -69,6 +69,15 @@ public class MemberDAO {
 					pstmt.setString(12, dto.getAgree());
 					
 					pstmt.executeUpdate();
+					
+					if(dto.getRecommend() != null) {
+							sql = "update Member set pay = pay + 1000 where user_nickname = ?";
+							pstmt = con.prepareStatement(sql);
+							pstmt.setString(1, dto.getRecommend());
+							
+							pstmt.executeUpdate();
+						}
+					
 					System.out.println("회원가입 완료");
 				} catch (Exception e) {
 					
@@ -173,7 +182,7 @@ public class MemberDAO {
 					dto.setPhone(rs.getString("phone"));
 					dto.setRecommend(rs.getString("recommend"));
 					dto.setAgree(rs.getString("agree"));
-					dto.setPay(rs.getString("pay"));
+					dto.setPay(rs.getInt("pay"));
 				}
 				
 				System.out.println(" DAO : 회원정보 조회 완료!");
@@ -191,10 +200,10 @@ public class MemberDAO {
 		public void Pay(MemberDTO dto) {
 			try {
 				con = getCon();
-				sql = "update Member set pay=+? where user_id = ?";
+				sql = "update Member set pay = pay + ? where user_id = ?";
 				
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, dto.getPay());
+				pstmt.setInt(1, dto.getPay());
 				pstmt.setString(2, dto.getUser_id());
 				
 				pstmt.executeUpdate();
