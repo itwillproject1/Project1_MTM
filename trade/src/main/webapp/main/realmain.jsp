@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="com.itwillbs.product.db.ProductDAO"%>
 <%@page import="com.itwillbs.product.db.ProductDTO"%>
@@ -32,10 +33,10 @@
 <!-- 추천상품 -->
 	<div class="title">추천 상품</div>
 	<div class="container">
-	
 		<c:forEach var="product" items="${dto}">
+		<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
 			<div class="product" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
-			<img src="<%=request.getContextPath() %>/upload/${product.file_name}"
+			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
 					alt="${product.title}">
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>
@@ -56,8 +57,9 @@
 	<div class="container">
 	
 		<c:forEach var="product" items="${dto2}">
+		<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
 			<div class="product" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
-			<img src="<%=request.getContextPath() %>/upload/${product.file_name}"
+			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
 					alt="${product.title}">
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>

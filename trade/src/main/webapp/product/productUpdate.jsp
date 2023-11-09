@@ -181,12 +181,6 @@
 </script>
 <body>
 	<%@ include file="../main/header.jsp"%>
-	<%
-		// select option값 배열로 저장
-		String[] cg = {"휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라", "음향기기", "기타"};		
-		pageContext.setAttribute("cg",	cg);
-		ProductDTO dto = (ProductDTO) request.getAttribute("pdto");
-	%>
 	<div class="container">
 		<!-- 미리보기 영역 시작 -->
 			<c:set var="fileNameArr" value="${fn:split(pdto.file_name, ',')}" />
@@ -216,7 +210,7 @@
 					<select id="category" name="category" onchange="updateSecondDropdown()" >
 						<option disabled selected>카테고리를 선택하세요</option>
 						<c:forEach var="cgValue" items="${cg }" >
-							<option value="${cgValue}" <c:if test="${pdto.category.equals(cgValue)}">selected</c:if>>${cgValue}</option>
+							<option value="${cgValue}" <c:if test="${pdto.category eq cgValue}">selected</c:if>>${cgValue}</option>
 						</c:forEach>
 					</select>
 				</div>

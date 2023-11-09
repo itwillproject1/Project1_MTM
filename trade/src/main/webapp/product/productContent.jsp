@@ -67,18 +67,6 @@
          <div class="form-container">
             <h2>
                상세 페이지
-               <%-- 여기부터 나중에 삭제하면 됨(지금 삭제하면 로그인 안하면 버튼 안 뜸)
-               <input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
-                  <div class="dropdown">
-                     <input class="update-content-button" type="button" value="..." >
-                     
-                     <div class="dropdown-content">
-                        <button onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';">글 수정하기</button>
-                        <button onclick="confirmDelete();">글 삭제하기</button>
-                     </div>
-                  </div>
-               여기까지 나중에 삭제하면 됨(지금 삭제하면 로그인 안하면 버튼 안 뜸) --%>
-
                <c:choose>
                   <c:when test="${empty sessionScope.id}">
                      <!-- 세션에 사용자 ID가 없을 때 -->
@@ -91,7 +79,7 @@
                               <input class="update-content-button" type="button" value="...">
                               <div class="dropdown-content" style="display: none;">
                                  <button
-                                    onclick="location.href='./updateContent.com?bno=${dto.bno}';">글 수정하기</button>
+                                    onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';">글 수정하기</button>
                                  <button onclick="confirmDelete();">글 삭제하기</button>
                               </div>
                            </div>
@@ -114,7 +102,7 @@
             <div id="profileModal" class="modal">
 		    <div class="modal-content">
 		        <!-- 모달 내용 -->                
-		        <h2><img src="" alt="프로필"> ${dto.user_id} (평점) <span class="close-button" onclick="closeProfileModal();">&times;</span></h2>
+		        <h2><img src="" alt="프로필"> ${dto.user_id} (평점) <button class="close-button" onclick="closeProfileModal()">닫기</button></h2>
 		        
 		        <h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
 				<c:forEach var="userProduct" items="${userProducts }" varStatus="loopStatus">
@@ -211,7 +199,7 @@
 <!-- 판매하기 모달 -->
 <div id="productModal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeProductModal()">&times;</span>
+        <button class="close-button" onclick="closeProductModal()">닫기</button>
         <div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
             <!-- 상품 정보가 여기에 동적으로 추가됩니다 -->
             <%
@@ -332,7 +320,7 @@
 <!-- 거래 제안 현황 모달 시작-->
 <div id="suggestProductModal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeSuggestModal()">&times;</span>
+        <button class="close-button" onclick="closeSuggestModal()">닫기</button>
         <div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
             <!-- 상품 정보 -->
             <c:if test="${!empty suggestList }">
@@ -340,7 +328,7 @@
             	<c:forEach var="spdto" items="${spdto }" >
             		<div>
                         <input type="radio" id="sellCheckbox" class="productCheckbox" name="sell_bno"
-                           value="${ssdto.sell_bno }">
+                           value="${spdto.bno }">
                            <img
                            id="sellImage"
                            src="<%=request.getContextPath()%>/upload/${spdto.file_name }"
@@ -368,11 +356,12 @@
     </div>
 </div>
 <!-- 거래 제안 현황 모달 종료-->
-
+	</div>
       <div class="form-group">
          <label for="productDescription">상품 설명: </label> ${dto.content }
       </div>
    </div>
+</div>
 
    <!-- 신고하기 모달창 -->
    <form action="" method="post">
