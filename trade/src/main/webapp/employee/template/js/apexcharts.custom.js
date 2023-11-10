@@ -621,6 +621,7 @@ var areachart, areaChartOptions = {
     },
     areachartCtn = document.querySelector("#areaChart");
 areachartCtn && (areachart = new ApexCharts(areachartCtn, areaChartOptions)).render();
+
 var lineChartWidget, lineChartWidgetoptions = {
         series: [{
             name: "Page views",
@@ -689,6 +690,7 @@ var lineChartWidget, lineChartWidgetoptions = {
     },
     lineChartWidgetCtn = document.querySelector("#lineChartWidget");
 lineChartWidgetCtn && (lineChartWidget = new ApexCharts(lineChartWidgetCtn, lineChartWidgetoptions)).render();
+
 var radialbarWidgetChart, radialbarWidgetOptions = {
         series: [86],
         chart: {
@@ -759,6 +761,7 @@ var radialbarWidgetChart, radialbarWidgetOptions = {
     },
     radialbarWidget = document.querySelector("#radialbarWidget");
 radialbarWidget && (radialbarWidgetChart = new ApexCharts(radialbarWidget, radialbarWidgetOptions)).render();
+
 var radarChartWidget, radarChartWidgetOptions = {
         series: [{
             name: "Mac Os",
@@ -836,6 +839,7 @@ var radarChartWidget, radarChartWidgetOptions = {
     },
     radarChartWidgetCtn = document.querySelector("#radarChartWidget");
 radarChartWidgetCtn && (radarChartWidget = new ApexCharts(radarChartWidgetCtn, radarChartWidgetOptions)).render();
+
 var pieChartWidget, pieChartWidgetOptions = {
         series: [686, 575, 426],
         chart: {
@@ -884,6 +888,7 @@ var pieChartWidget, pieChartWidgetOptions = {
     },
     pieChartWidgetCtn = document.querySelector("#pieChartWidget");
 pieChartWidgetCtn && (pieChartWidget = new ApexCharts(pieChartWidgetCtn, pieChartWidgetOptions)).render();
+
 var donutChartWidget, donutChartWidgetOptions = {
         series: [44, 55, 20, 41, 17],
         chart: {
@@ -933,6 +938,7 @@ var donutChartWidget, donutChartWidgetOptions = {
     },
     donutChartWidgetCtn = document.querySelector("#donutChartWidget");
 donutChartWidgetCtn && (donutChartWidget = new ApexCharts(donutChartWidgetCtn, donutChartWidgetOptions)).render();
+
 var barChartWidget, barChartWidgetoptions = {
         series: [{
             name: "Revenue",
@@ -1006,6 +1012,7 @@ var barChartWidget, barChartWidgetoptions = {
     },
     barChartWidgetCtn = document.querySelector("#barChartWidget");
 barChartWidgetCtn && (barChartWidget = new ApexCharts(barChartWidgetCtn, barChartWidgetoptions)).render();
+
 var areaChartWidget, areaChartWidgetOptions = {
         series: [{
             name: "Website",
@@ -1084,6 +1091,7 @@ var areaChartWidget, areaChartWidgetOptions = {
     },
     areaChartWidgetCtn = document.querySelector("#areaChartWidget");
 areaChartWidgetCtn && (areaChartWidget = new ApexCharts(areaChartWidgetCtn, areaChartWidgetOptions)).render();
+
 var columnChartWidget, columnChartWidgetoptions = {
         series: [{
             name: "Orders",
@@ -1156,6 +1164,7 @@ var columnChartWidget, columnChartWidgetoptions = {
     },
     columnChartWidgetCtn = document.querySelector("#columnChartWidget");
 columnChartWidgetCtn && (columnChartWidget = new ApexCharts(columnChartWidgetCtn, columnChartWidgetoptions)).render();
+
 var columnChartWidget2, columnChartWidget2options = {
         series: [{
             name: "Orders",
@@ -1236,6 +1245,7 @@ var columnChartWidget2, columnChartWidget2options = {
     },
     columnChartWidget2Ctn = document.querySelector("#columnChartWidget2");
 columnChartWidget2Ctn && (columnChartWidget2 = new ApexCharts(columnChartWidget2Ctn, columnChartWidget2options)).render();
+
 var heatmapChartWidget, heatmapChartWidgetOptions = {
         series: [{
             name: "Mon",
@@ -1311,6 +1321,7 @@ var heatmapChartWidget, heatmapChartWidgetOptions = {
     },
     heatmapChartWidgetCtn = document.querySelector("#heatmapChartWidget");
 heatmapChartWidgetCtn && (heatmapChartWidget = new ApexCharts(heatmapChartWidgetCtn, heatmapChartWidgetOptions)).render();
+
 var heatmapchart, heatmapChartOptions = {
         series: [{
             name: "Set 1",
@@ -1422,6 +1433,7 @@ var heatmapchart, heatmapChartOptions = {
     },
     heatmapchartCtn = document.querySelector("#heatmapChart");
 heatmapchartCtn && (heatmapchart = new ApexCharts(heatmapchartCtn, heatmapChartOptions)).render();
+
 var bubblechart, bubbleChartOptions = {
         series: [{
             name: "Type 1",
@@ -1557,6 +1569,7 @@ var bubblechart, bubbleChartOptions = {
     },
     bubblechartCtn = document.querySelector("#bubbleChart");
 bubblechartCtn && (bubblechart = new ApexCharts(bubblechartCtn, bubbleChartOptions)).render();
+
 var donutchart, donutChartOptions = {
         series: [44, 55, 20, 41, 17],
         chart: {
