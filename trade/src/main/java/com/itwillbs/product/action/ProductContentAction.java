@@ -26,8 +26,8 @@ public class ProductContentAction implements Action {
 		
 		// 세션에 아이디 넘기기
 		HttpSession session = request.getSession();
-		String user_id = (String) session.getAttribute("id");
-		request.setAttribute("login_id", user_id);
+		String login_id = (String) session.getAttribute("id");
+		request.setAttribute("login_id", login_id);
 		
 		// 추후 로그인 정보 받아서 미로그인도 조회는 가능,
 		// 나머지(구매, 판매, 찜 등)는 로그인페이지 이동		
@@ -43,17 +43,6 @@ public class ProductContentAction implements Action {
 		// BoardDAO 객체 - 특정 글의 정보를 가져옴()
 		ProductDTO dto = dao.getProduct(bno);
 		request.setAttribute("dto", dto);
-		
-		// 찜
-		LikeDTO ldto = new LikeDTO();
-		LikeDAO ldao = new LikeDAO();
-		int result = ldao.likeCheck(ldto); // 찜 여부(0 또는 1)
-		System.out.println("찜 체크 결과: " + result);
-		
-//		// ajax에 값 반환
-//		response.setContentType("application/x-json; charset=UTF-8");
-//		response.getWriter().write(result+""); // String으로 형 변환해서 전달
-//		request.setAttribute("result", result);
 
 		/* 프로필 조회에 필요한 정보 */
 		List<ProductDTO> userProducts =  dao.getAllUserProducts(dto.getUser_id());
@@ -61,7 +50,7 @@ public class ProductContentAction implements Action {
 		System.out.println(userProducts);
 
 		/* 판매하기 모달에 필요한 정보 */
-		List<ProductDTO> sellProduct =  dao.getAllUserProducts(user_id, "팝니다");
+		List<ProductDTO> sellProduct =  dao.getAllUserProducts(login_id, "팝니다");
 		request.setAttribute("sellProduct", sellProduct);
 		System.out.println("sellProduct"+sellProduct);
 		

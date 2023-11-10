@@ -160,6 +160,12 @@ public class ProductFrontController extends HttpServlet{
 			e.printStackTrace();
 		}
       }
+      else if(command.equals("/product/LikeCheck.com")) {
+    	  System.out.println(" C: /product/LikeCheck.com 호출");
+    	  System.out.println("");
+    	  
+    	  action = new LikeCheckAction();
+      }
       
       System.out.println("---------------2. 가상주소 매핑 종료---------------");
       /************************2. 가상주소 매핑 종료************************/
