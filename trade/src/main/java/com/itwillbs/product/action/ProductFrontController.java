@@ -112,11 +112,11 @@ public class ProductFrontController extends HttpServlet{
             e.printStackTrace();
          }
       }
-      else if(command.equals("/product/deleteProduct.com")) {
-    	  System.out.println(" C : /product/deleteProduct.com 호출 ");
+      else if(command.equals("/product/DeleteProduct.com")) {
+    	  System.out.println(" C : /product/DeleteProduct.com 호출 ");
           System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
           
-          action = new deleteProductAction();
+          action = new DeleteProductAction();
           
           try {
 			forward = action.execute(request, response);
@@ -124,14 +124,42 @@ public class ProductFrontController extends HttpServlet{
 			e.printStackTrace();
 		}
       }
-      else if(command.equals("/product/updateContent.com")) {
-    	  System.out.println(" C : /product/updateContent.com 호출 ");
+      else if(command.equals("/product/ProductUpdate.com")) {
+    	  System.out.println(" C : /product/ProductUpdate.com 호출 ");
     	  System.out.println(" C : 패턴 3 - DB 사용 O, 페이지 출력");
     	  
-//    	  action = new updateProductAction();
+    	  action = new ProductUpdateAction();
+    	  
+    	  try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
       }
-      
-      
+      else if(command.equals("/product/ProductUpdateProAction.com")) {
+    	  System.out.println(" C : /product/deleteProduct.com 호출 ");
+          System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
+          
+          action = new ProductUpdateProAction();
+          
+          try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+      }
+      else if(command.equals("/product/SuggestSell.com")) {
+    	  System.out.println(" C : /product/SuggestSell.com 호출 ");
+          System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
+          
+          action = new SuggestSellAction();
+          
+          try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+      }
       
       System.out.println("---------------2. 가상주소 매핑 종료---------------");
       /************************2. 가상주소 매핑 종료************************/

@@ -15,7 +15,19 @@
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
+<script type="text/javascript">
 
+function pay() {
+	
+	let checkid = window.open("../member/MemberPayInfo.member","pay","width=600,height=650, scrollbars=yes, resizable=yes");
+	
+	
+}
+
+
+
+
+</script>
 
 
 <br><br><br><br><br><br><br>
@@ -24,7 +36,8 @@
 
 <div class="container">
 		<div class="form-group h1">
-			<label for="productName">${dto.user_id }님의 마이페이지입니당</label>	
+			<label for="productName">${dto.user_id }님의 마이페이지입니당</label>
+			<button onclick="pay();">포인트 충전하기</button>
 		</div>
 		
 		

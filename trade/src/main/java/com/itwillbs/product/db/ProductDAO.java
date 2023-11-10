@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -46,7 +47,7 @@ public class ProductDAO {
 	public int uploadProduct(ProductDTO dto) {
 		int bno = 0;
 		try {
-			getCon();
+			con = getCon();
 
 			// sql, pstmt
 			sql = "select max(bno) from Product";
@@ -493,6 +494,50 @@ public class ProductDAO {
 	}
 	// 특정 글의 정보를 가져오기() - getPopularList()
 
+	// 최신순으로 글 정보 목록을 가져오기() - getRecentList()
+	public ArrayList<ProductDTO> getRecentList() {
+		ArrayList<ProductDTO> productRecList = new ArrayList<ProductDTO>();
+		ProductDTO dto2 = null;
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+			// 3. sql 구문 작성(select) & pstmt 객체
+			sql = "SELECT * FROM Product ORDER BY date_time DESC limit 8"; // date_time 내림차순으로 8개까지 정렬
+			pstmt = con.prepareStatement(sql);
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터 처리
+			while (rs.next()) {
+				dto2 = new ProductDTO();
+				dto2.setBno(rs.getInt("bno"));
+				dto2.setContent(rs.getString("content"));
+				dto2.setUser_id(rs.getString("user_id"));
+				dto2.setDeal_way(rs.getString("deal_way"));
+				dto2.setTitle(rs.getString("title"));
+				dto2.setCategory(rs.getString("category"));
+				dto2.setBrand(rs.getString("brand"));
+				dto2.setPrice(rs.getInt("price"));
+				dto2.setProduct_status(rs.getString("product_status"));
+				dto2.setContent(rs.getString("content"));
+				dto2.setViews(rs.getInt("views"));
+				dto2.setDate_time(rs.getTimestamp("date_time"));
+				dto2.setFile_name(rs.getString("file_name"));
+				dto2.setLike_count(rs.getInt("like_count"));
+				
+				// 글 하나의 정보를 배열의 한칸에 저장
+				productRecList.add(dto2);
+			} // while
+			System.out.println(" DAO : 상품 정보 조회성공!");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return productRecList;
+	}
+	// 특정 글의 정보를 가져오기() - getRecentList()
+	
 	// 글을 삭제하는 deleteProduct(bno)
 	public int deleteProduct(int bno) {
 		int result = -1; // -1(글정보없음, 에러), 0(비밀번호 오류), 1(정상처리)
@@ -517,4 +562,128 @@ public class ProductDAO {
 		}
 		return result;
 	} // deleteProduct(bno) 종료
+	
+	// 글을 수정하는 updateProduct(bno)
+	public int updateProduct(ProductDTO dto) {
+		int bno = dto.getBno();
+		try {
+			
+			con = getCon();
+
+			// sql, pstmt
+			sql = "update Product set deal_way=?, title=?, category=?, brand=?, "
+					+ "price=?, product_status=?, content=?, file_name=? where bno=?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, dto.getDeal_way());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getCategory());
+			pstmt.setString(4, dto.getBrand());
+			pstmt.setInt(5, dto.getPrice());
+			pstmt.setString(6, dto.getProduct_status());
+			pstmt.setString(7, dto.getContent());
+			pstmt.setString(8, dto.getFile_name());
+			pstmt.setInt(9, bno); 
+
+			// sql 실행
+			pstmt.executeUpdate();
+			System.out.println("DAO: " + bno + "번 글 수정 완료");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return bno;
+	}
+
+	// 유저의 팝니다 상품만 불러오는 메서드 - getAllUserProducts((String userId)
+			public List<ProductDTO> getAllUserProducts(String user_id, String deal_way) {
+			    ArrayList<ProductDTO> userProducts = new ArrayList<>();
+
+			    try {
+			        con = getCon();
+			        // 3. sql 구문 작성(select) & pstmt 객체
+			        sql = "SELECT * FROM Product WHERE user_id = ? AND deal_way = ?";
+			        pstmt = con.prepareStatement(sql);
+			        pstmt.setString(1, user_id);
+			        pstmt.setString(2, deal_way); // deal_way 파라미터를 사용
+			        // 4. sql 실행
+			        rs = pstmt.executeQuery();
+			        // 5. 데이터 처리
+			        while (rs.next()) {
+			            ProductDTO dto = new ProductDTO();
+			            dto.setBno(rs.getInt("bno"));
+			            dto.setContent(rs.getString("content"));
+			            dto.setUser_id(rs.getString("user_id"));
+			            dto.setDeal_way(rs.getString("deal_way"));
+			            dto.setTitle(rs.getString("title"));
+			            dto.setCategory(rs.getString("category"));
+			            dto.setBrand(rs.getString("brand"));
+			            dto.setPrice(rs.getInt("price"));
+			            dto.setProduct_status(rs.getString("product_status"));
+			            dto.setContent(rs.getString("content"));
+			            dto.setViews(rs.getInt("views"));
+			            dto.setDate_time(rs.getTimestamp("date_time"));
+			            dto.setFile_name(rs.getString("file_name"));
+			            dto.setLike_count(rs.getInt("like_count"));
+
+			            // 글 하나의 정보를 리스트에 추가
+			            userProducts.add(dto);
+			        }
+			        System.out.println(" DAO: 상품 정보 조회 성공!");
+
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			    } finally {
+			        closeDB();
+			    }
+			    return userProducts;
+
+				}// 유저의 팝니다 상품만 불러오는 메서드 종료
+	
+	// 유저의 모든 등록 상품을 불러오는 메서드 - getAllUserProducts(String userId)
+	public List<ProductDTO> getAllUserProducts(String user_id) {
+		ArrayList<ProductDTO> userProducts = new ArrayList<>();
+		
+		try {
+			con = getCon();
+			// 3. sql 구문 작성(select) & pstmt 객체
+			sql = "SELECT * FROM Product WHERE user_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터 처리
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setContent(rs.getString("content"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setDeal_way(rs.getString("deal_way"));
+				dto.setTitle(rs.getString("title"));
+				dto.setCategory(rs.getString("category"));
+				dto.setBrand(rs.getString("brand"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setProduct_status(rs.getString("product_status"));
+				dto.setContent(rs.getString("content"));
+				dto.setViews(rs.getInt("views"));
+				dto.setDate_time(rs.getTimestamp("date_time"));
+				dto.setFile_name(rs.getString("file_name"));
+				dto.setLike_count(rs.getInt("like_count"));
+				
+				// 글 하나의 정보를 리스트에 추가
+				userProducts.add(dto);
+			}
+			System.out.println(" DAO: 상품 정보 조회 성공!");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return userProducts;		
+	}// getAllUserProducts(String userId) 종료
+	
 }
