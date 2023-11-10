@@ -196,7 +196,7 @@ public class MemberDAO {
 			return dto;
 		}
 		
-<<<<<<< HEAD
+
 		public int updateMember(MemberDTO dto) {
 			int result = -1;  // -1  0  1
 			
@@ -283,7 +283,7 @@ public class MemberDAO {
 			
 			return result;
 		}	
-=======
+
 		//결제금액 충전
 		public void Pay(MemberDTO dto) {
 			try {
@@ -303,7 +303,7 @@ public class MemberDAO {
 			}
 				
 		}
->>>>>>> 6ca826292e4545cc0d3e0c996c6496a731dc6a21
+
 		
 			
 	
