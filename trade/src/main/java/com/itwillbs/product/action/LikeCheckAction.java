@@ -19,7 +19,8 @@ public class LikeCheckAction implements Action {
 		System.out.println("LikeCheckAction.execute() 호출");
 		// 로그인 아이디 받기
 		HttpSession session = request.getSession();
-		String login_id = (String) session.getAttribute("id");
+		String login_id = (String) session.getAttribute("user_id");
+		
 		
 		int bno =Integer.parseInt(request.getParameter("bno"));
 		// 찜

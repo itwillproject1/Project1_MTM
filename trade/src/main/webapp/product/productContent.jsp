@@ -25,34 +25,32 @@
 $(document).ready(function() {	
 	// 좋아요 버튼 클릭 시 실행되는 ajax
 	 $(document).on('click', '#like', function(){
-		console.log("click");
-		
-		// 현재 URL에서 bno 값 추출
-	    var urlParams = new URLSearchParams(window.location.search);
-	    var bno = urlParams.get('bno');
+			// 현재 URL에서 bno 값 추출
+		    var urlParams = new URLSearchParams(window.location.search);
+		    var bno = urlParams.get('bno');
 	    
-        $.ajax({
-            url: "./LikeCheck.com",
-            type: 'POST',
-            data: {bno: bno},
-            success: function(response) {
-            	var result = response.split('\n')[0].trim();
-                var like_count = response.split('\n')[1].trim();
-                console.log("데이터 변환됨: " + result);
-                console.log("like_count: " + like_count);
-                
-                $("#like_count").text(like_count);
-                console.log($("#like_count").text());
-                
-                if (result === "1") {
-                    $("#do_like").text("♥");
-                } else if (result === "0") {
-                    $("#do_like").text("♡");
-                } else {
-                    $("#do_like").text("오류! 리턴값 -1");
+	        $.ajax({
+	            url: "./LikeCheck.com",
+	            type: 'POST',
+	            data: {bno: bno},
+	            success: function(response) {
+	            	var result = response.split('\n')[0].trim();
+	                var like_count = response.split('\n')[1].trim();
+	                console.log("데이터 변환됨: " + result);
+	                console.log("like_count: " + like_count);
+	                
+	                $("#like_count").text(like_count);
+	                console.log($("#like_count").text());
+	                
+	                if (result === "1") {
+	                    $("#do_like").text("♥");
+	                } else if (result === "0") {
+	                    $("#do_like").text("♡");
+	                } else {
+	                    $("#do_like").text("오류! 리턴값 -1");
+					}
 				}
-			}
-		});
+			});
 	});
 	
 });
