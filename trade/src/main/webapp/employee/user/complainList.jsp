@@ -33,7 +33,7 @@
         <div class="container-fluid" data-select2-id="8">
           <div class="row justify-content-center" data-select2-id="7">
             <div class="col-12" data-select2-id="6">
-              <h2 class="h3 mb-3 page-title">문의 목록</h2>
+              <h2 class="h3 mb-3 page-title">신고 목록</h2>
               <div class="row mb-4 items-align-center">
                 <div class="col-md">
                   <ul class="nav nav-pills justify-content-start">
@@ -42,13 +42,13 @@
                       <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=all&pageNum=1">전체 <span class="badge badge-pill bg-primary text-white ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=1&pageNum=1">처리 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=0&pageNum=1">미완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=complained&pageNum=1">피신고자 목록 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=suspended&pageNum=1">피신고자 목록 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
                     </li>
                   </c:if>
                   <c:if test="${pageCategory == '1'}">
@@ -56,13 +56,13 @@
                       <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[1]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=1&pageNum=1">처리 완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=0&pageNum=1">미완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=complained&pageNum=1">피신고자 목록 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=suspended&pageNum=1">피신고자 목록 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
                     </li>
                   </c:if>
                   <c:if test="${pageCategory == '0'}">
@@ -70,26 +70,26 @@
                       <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=1&pageNum=1">처리 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=0&pageNum=1">미완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[2]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=complained&pageNum=1">피신고자 목록 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=suspended&pageNum=1">피신고자 목록 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
                     </li>
                   </c:if><c:if test="${pageCategory == 'complained'}">
                   	<li class="nav-item">
                       <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=1&pageNum=1">처리 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=0&pageNum=1">미완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=complained&pageNum=1">피신고자 목록 <span class="badge badge-pill bg-primary text-white ml-2">${count[3]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=suspended&pageNum=1">피신고자 목록 <span class="badge badge-pill bg-primary text-white ml-2">${count[3]}</span></a>
                     </li>
                   </c:if>
                   </ul>
