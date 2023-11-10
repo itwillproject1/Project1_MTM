@@ -277,7 +277,7 @@ var modal = document.getElementById('sellModal');
     }
     
     //판매 제안 클릭
-   function submitProductOffer() {
+   /* function submitProductOffer() {
     var checkboxes = document.querySelectorAll('.productCheckbox:checked');
 
     if (checkboxes.length === 0) {
@@ -293,7 +293,11 @@ var modal = document.getElementById('sellModal');
             closeProductModal(); // 모달을 닫도록 호출
         }
     }
-}
+} */
+
+
+
+
 </script>
 <!-- 판매 제안 -->
 
