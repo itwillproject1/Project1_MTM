@@ -117,7 +117,7 @@ $(document).ready(function() {
                여기까지 나중에 삭제하면 됨(지금 삭제하면 로그인 안하면 버튼 안 뜸) --%>
 
                <c:choose>
-                  <c:when test="${empty sessionScope.id}">
+                  <c:when test="${empty sessionScope.user_id}">
                      <!-- 세션에 사용자 ID가 없을 때 -->
                   </c:when>
                   <c:otherwise>

@@ -4,12 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
+
+import com.itwillbs.product.db.ProductDTO;
 
 public class MemberDAO {
 	// 공통 변수 선언
@@ -196,6 +200,94 @@ public class MemberDAO {
 			return dto;
 		}
 		
+
+		public int updateMember(MemberDTO dto) {
+			int result = -1;  // -1  0  1
+			
+			try {
+				//1.2. 디비연결
+				con = getCon();
+				//3. sql 작성(select) & pstmt객체
+				sql = "select password from Member where user_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, dto.getUser_id());
+				//4. sql 실행
+				rs = pstmt.executeQuery();
+				//5. 데이터처리 
+				if(rs.next()) {
+					System.out.println(dto.getPassword());
+					System.out.println(rs.getString("password"));
+					if(dto.getUser_id() != null) {
+						//3. sql 작성(update) & pstmt객체
+						sql = "update Member set password=?,user_nickname=?,email=?,address=?,phone=? where user_id=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getPassword());
+						pstmt.setString(2, dto.getUser_nickname());
+						pstmt.setString(3, dto.getEmail());
+						pstmt.setString(4, dto.getAddress());
+						pstmt.setString(5, dto.getPhone());
+						pstmt.setString(6, dto.getUser_id());
+						
+						//4. sql 실행
+						result = pstmt.executeUpdate();
+						// result = 1;
+						
+					}else {
+						result = 0; // 사용자의 비밀번호 오류
+					}
+				}else {
+					result = -1; // 회원정보X,에러발생
+				}
+				
+				System.out.println(" DAO : 회원정보 수정완료! ("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return result;
+		}
+		
+		public int deleteMember(MemberDTO dto) {
+			int result = -1; // -1  0  1
+			
+			try {
+				// 1.2. 디비 연결
+				con = getCon();
+				// 3. sql 작성(select) & pstmt 객체
+				sql = "select password from Member where user_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, dto.getUser_id());
+				// 4. sql 실행			
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				if(rs.next()) {
+					if(dto.getPassword().equals(rs.getString("password"))) {
+						// 3. sql 작성(delete) & pstmt 객체
+						sql = "delete from Member where user_id=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getUser_id());
+						// 4. sql 실행
+						result = pstmt.executeUpdate(); // 삭제완료
+					}else {
+						result = 0; // 비밀번호 오류
+					}
+				}else {
+				    result = -1; // 회원정보 없음	
+				}
+				System.out.println(" DAO : 회원정보 삭제 ("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return result;
+		}	
+
 		//결제금액 충전
 		public void Pay(MemberDTO dto) {
 			try {
@@ -215,7 +307,51 @@ public class MemberDAO {
 			}
 				
 		}
-		
+
+		public ArrayList<ProductDTO> getMPBlist(String user_id) {
+			ArrayList<ProductDTO> MPBlist = new ArrayList<ProductDTO>();
+			ProductDTO dto = null;
+			try {
+				// 1.2. 디비연결
+				con = getCon();
+				// 3. sql 구문 작성(select) & pstmt 객체
+				sql = "SELECT * FROM Product where user_id = ?"; // views 내림차순으로 8개까지 정렬
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, user_id);
+				// 4. sql 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				while (rs.next()) {
+					dto = new ProductDTO();
+					dto.setBno(rs.getInt("bno"));
+					dto.setContent(rs.getString("content"));
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setDeal_way(rs.getString("deal_way"));
+					dto.setTitle(rs.getString("title"));
+					dto.setCategory(rs.getString("category"));
+					dto.setBrand(rs.getString("brand"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setProduct_status(rs.getString("product_status"));
+					dto.setContent(rs.getString("content"));
+					dto.setViews(rs.getInt("views"));
+					dto.setDate_time(rs.getTimestamp("date_time"));
+					dto.setFile_name(rs.getString("file_name"));
+					dto.setLike_count(rs.getInt("like_count"));
+
+					// 글 하나의 정보를 배열의 한칸에 저장
+					MPBlist.add(dto);
+				} // while
+				System.out.println(" DAO : 상품 정보 조회성공!");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			return MPBlist;
+		}
 			
 	
 			
