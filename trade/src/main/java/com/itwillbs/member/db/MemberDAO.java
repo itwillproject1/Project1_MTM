@@ -184,7 +184,92 @@ public class MemberDAO {
 			return dto;
 		}
 		
+		public int updateMember(MemberDTO dto) {
+			int result = -1;  // -1  0  1
+			
+			try {
+				//1.2. 디비연결
+				con = getCon();
+				//3. sql 작성(select) & pstmt객체
+				sql = "select password from Member where user_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, dto.getUser_id());
+				//4. sql 실행
+				rs = pstmt.executeQuery();
+				//5. 데이터처리 
+				if(rs.next()) {
+					System.out.println(dto.getPassword());
+					System.out.println(rs.getString("password"));
+					if(dto.getUser_id() != null) {
+						//3. sql 작성(update) & pstmt객체
+						sql = "update Member set password=?,user_nickname=?,email=?,address=?,phone=? where user_id=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getPassword());
+						pstmt.setString(2, dto.getUser_nickname());
+						pstmt.setString(3, dto.getEmail());
+						pstmt.setString(4, dto.getAddress());
+						pstmt.setString(5, dto.getPhone());
+						pstmt.setString(6, dto.getUser_id());
+						
+						//4. sql 실행
+						result = pstmt.executeUpdate();
+						// result = 1;
+						
+					}else {
+						result = 0; // 사용자의 비밀번호 오류
+					}
+				}else {
+					result = -1; // 회원정보X,에러발생
+				}
+				
+				System.out.println(" DAO : 회원정보 수정완료! ("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return result;
+		}
 		
+		public int deleteMember(MemberDTO dto) {
+			int result = -1; // -1  0  1
+			
+			try {
+				// 1.2. 디비 연결
+				con = getCon();
+				// 3. sql 작성(select) & pstmt 객체
+				sql = "select password from Member where user_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, dto.getUser_id());
+				// 4. sql 실행			
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				if(rs.next()) {
+					if(dto.getPassword().equals(rs.getString("password"))) {
+						// 3. sql 작성(delete) & pstmt 객체
+						sql = "delete from Member where user_id=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getUser_id());
+						// 4. sql 실행
+						result = pstmt.executeUpdate(); // 삭제완료
+					}else {
+						result = 0; // 비밀번호 오류
+					}
+				}else {
+				    result = -1; // 회원정보 없음	
+				}
+				System.out.println(" DAO : 회원정보 삭제 ("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return result;
+		}	
 		
 			
 	

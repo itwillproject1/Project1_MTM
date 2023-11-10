@@ -20,10 +20,10 @@ public class MemberInfoAction implements Action {
 		
 		// 로그인한 유저의 아이디
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		String user_id = (String)session.getAttribute("user_id");
 		
 		ActionForward forward = new ActionForward();
-		if( id == null ) {
+		if( user_id == null ) {
 			forward.setPath("../main/login.member");
 			forward.setRedirect(true);
 			return forward;
@@ -34,7 +34,7 @@ public class MemberInfoAction implements Action {
 		MemberDAO dao = new MemberDAO();
 		
 		// 회원정보 가져오는 메서드 호출
-		MemberDTO dto = dao.getMember(id);
+		MemberDTO dto = dao.getMember(user_id);
 		System.out.println(" M : 조회결과 "+dto);
 		
 // 		화면에 직접출력 X		
@@ -47,7 +47,7 @@ public class MemberInfoAction implements Action {
 		// 화면(view)에 출력 -> 출력정보를 전달하고 뷰페이지로 이동
 		
 		// request 영역에 정보를 저장
-		request.setAttribute("dto", dto);
+		session.setAttribute("dto", dto);
 		
 		// 페이지로 이동 (./member/info.jsp)
 		forward.setPath("./mypage.jsp");

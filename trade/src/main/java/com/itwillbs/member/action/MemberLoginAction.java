@@ -41,7 +41,7 @@ public class MemberLoginAction implements Action {
 			// 아이디 정보를 세션에 저장
 			HttpSession session = request.getSession();
 			
-			session.setAttribute("id", dto.getUser_id());
+			session.setAttribute("user_id", dto.getUser_id());
 			
 			//response.sendRedirect(null);
 			forward = new ActionForward();

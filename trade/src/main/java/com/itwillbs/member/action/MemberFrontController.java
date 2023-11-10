@@ -98,18 +98,21 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/member/Membercheckid.member")) {
+		}
+		else if(command.equals("/member/Membercheckid.member")) {
 			forward = new ActionForward();
 			forward.setPath("./checkid.jsp");
 			forward.setRedirect(false);
 			
-		}else if(command.equals("/member/MemberCheckIdAction.member")){
-				action = new MemberCheckIdAction();
-				try {
-					forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		}
+		else if(command.equals("/member/MemberCheckIdAction.member")){
+				
+			action = new MemberCheckIdAction();
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	
 		}
 		
@@ -125,6 +128,47 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		else if(command.equals("/member/Memberupdate.member")) {
+			//System.out.println("\tC: /Main.com 호출");
+			//System.out.println("\tC: 패턴1 - DB 사용 X, 뷰페이지 출력");
+			
+			forward = new ActionForward();
+			forward.setPath("./memberupdate.jsp");
+			forward.setRedirect(false);
+		}
+		
+		else if(command.equals("/member/MemberUpdateProAction.member")){
+			
+			action = new MemberUpdateProAction();
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}
+		
+		else if(command.equals("/member/removemember.member")) {
+			//System.out.println("\tC: /Main.com 호출");
+			//System.out.println("\tC: 패턴1 - DB 사용 X, 뷰페이지 출력");
+			
+			forward = new ActionForward();
+			forward.setPath("./removemember.jsp");
+			forward.setRedirect(false);
+		}
+		
+		else if(command.equals("/member/MemberDeleteAction.member")){
+			
+			action = new MemberDeleteAction();
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}
+		
 		/*
 		else if(command.equals("/member/mypage.member")) {
 		 

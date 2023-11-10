@@ -47,11 +47,11 @@
 			</div>
 
 		<span class="user-menu">
-			<c:if test="${empty id }">
+			<c:if test="${empty user_id }">
             <a href="../main/login.member" id="loginLink">로그인</a>
 			</c:if>
-			<c:if test="${!empty id }">
-            ${id }님   |   
+			<c:if test="${!empty user_id }">
+            ${user_id }님   |   
             <a href="../main/MemberLogout.member" id="logoutLink">로그아웃</a>
             </c:if>
             <a href="../product/ProductUpload.com">글등록</a>

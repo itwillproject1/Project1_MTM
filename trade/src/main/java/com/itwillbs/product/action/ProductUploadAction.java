@@ -31,7 +31,7 @@ public class ProductUploadAction implements Action {
 		
 		// 로그인 한 유저 아이디 세션에서 가져오기
 		HttpSession session = request.getSession();
-		String user_id = (String) session.getAttribute("id");
+		String user_id = (String) session.getAttribute("user_id");
 		System.out.println("user_id: " + user_id);
 		
 		
