@@ -26,7 +26,7 @@ public class ProductContentAction implements Action {
 		
 		// 로그인 아이디 받기
 		HttpSession session = request.getSession();
-		String login_id = (String) session.getAttribute("id");
+		String login_id = (String) session.getAttribute("user_id");
 		request.setAttribute("login_id", login_id);
 		
 		// 추후 로그인 정보 받아서 미로그인도 조회는 가능,
