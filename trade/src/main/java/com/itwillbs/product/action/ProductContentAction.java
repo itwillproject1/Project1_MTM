@@ -24,7 +24,7 @@ public class ProductContentAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: ProductContentAction.execute() 호출");
 		
-		// 세션에 아이디 넘기기
+		// 로그인 아이디 받기
 		HttpSession session = request.getSession();
 		String login_id = (String) session.getAttribute("id");
 		request.setAttribute("login_id", login_id);
@@ -43,6 +43,17 @@ public class ProductContentAction implements Action {
 		// BoardDAO 객체 - 특정 글의 정보를 가져옴()
 		ProductDTO dto = dao.getProduct(bno);
 		request.setAttribute("dto", dto);
+		
+		/* 찜 여부 확인 */
+		LikeDTO ldto = new LikeDTO();
+		ldto.setBno(Integer.parseInt(request.getParameter("bno")));
+		ldto.setUser_id(login_id);
+		
+		LikeDAO ldao = new LikeDAO();
+		int likeResult = ldao.likeCheck(ldto); // 찜 여부(0 또는 1)
+		System.out.println("찜 체크 결과: " + likeResult);
+
+		request.setAttribute("likeResult", likeResult);
 
 		/* 프로필 조회에 필요한 정보 */
 		List<ProductDTO> userProducts =  dao.getAllUserProducts(dto.getUser_id());

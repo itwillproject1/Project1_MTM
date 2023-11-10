@@ -22,42 +22,39 @@
 <title>상세페이지</title>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
-//로그인 유저의 좋아요 유무 체크
-$(document).ready(function() {
-	$.ajax({
-		url: './LikeCheck.com',
-		type: 'POST',
-		data: { result: result },
-		success: function(result) {
-			if (result == 1) {
-				$("#like").text("♥");
-			} else if (result == 0) {
-				$("#like").text("♡");
-			} else {
-				$("#like").text("오류! 리턴값 -1");
-			}
-		}
-	});
-	
+$(document).ready(function() {	
 	// 좋아요 버튼 클릭 시 실행되는 ajax
-	$("#like").on("click", function(){
+	 $(document).on('click', '#like', function(){
 		console.log("click");
+		
+		// 현재 URL에서 bno 값 추출
+	    var urlParams = new URLSearchParams(window.location.search);
+	    var bno = urlParams.get('bno');
+	    
         $.ajax({
-            url: './LikeCheck.com',
+            url: "./LikeCheck.com",
             type: 'POST',
-            data: { bno: bno, user_id: user_id },
-            success: function(result) {
+            data: {bno: bno},
+            success: function(response) {
+            	var result = response.split('\n')[0].trim();
+                var like_count = response.split('\n')[1].trim();
                 console.log("데이터 변환됨: " + result);
-                if (result == 1) {
-                    $("#like").text("♥");
-                } else if (result == 0) {
-                    $("#like").text("♡");
+                console.log("like_count: " + like_count);
+                
+                $("#like_count").text(like_count);
+                console.log($("#like_count").text());
+                
+                if (result === "1") {
+                    $("#do_like").text("♥");
+                } else if (result === "0") {
+                    $("#do_like").text("♡");
                 } else {
-                    $("#like").text("오류! 리턴값 -1");
+                    $("#do_like").text("오류! 리턴값 -1");
 				}
 			}
-		})
-	})
+		});
+	});
+	
 });
 </script>
 </head>
@@ -220,7 +217,19 @@ $(document).ready(function() {
                      onclick="location.href='결제페이지';">
 
                   <!-- 찜 기능 시작 -->
-                  <button class="submit-button"><span id="like">♡</span>${dto.like_count }</button>
+                  <button class="submit-button" id="like">
+	                  <span id="do_like">
+		                  <c:if test="${likeResult eq 0 }">
+		                  	♡
+		                  </c:if>
+		                  <c:if test="${likeResult eq 1 }">
+		                  	♥
+		                  </c:if>    
+	                  </span>
+	                  <span id="like_count">
+	                  ${dto.like_count}
+	                  </span>
+                  </button>
                   <%-- <input class="submit-button" type="button"
                      value="♡${dto.like_count }" onclick="찜하거나 찜취소, db도 연결돼야함"> --%>
                   <!--  찜 기능 끝 -->

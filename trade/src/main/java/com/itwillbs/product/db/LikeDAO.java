@@ -50,7 +50,7 @@ public class LikeDAO {
 			con = getCon();
 			
 			// sql, pstmt
-			sql = "select * from Likes where bno = ? and (user_id = ? or user_id IS NULL);";
+			sql = "select * from Likes where bno = ? and user_id = ?;";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, ldto.getBno());
@@ -67,6 +67,8 @@ public class LikeDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
 		System.out.println("LDAO: result: " + result);
 		return result;
@@ -82,25 +84,43 @@ public class LikeDAO {
 			
 			// sql, pstmt
 			if(num == 0) { // 찜 기록이 없으면 데이터 insert 필요
-				sql = "insert into Likes (bno, user_id, like) values (?, ?, 1)";
+				sql = "insert into Likes (bno, user_id, do_like) values (?, ?, 1)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, ldto.getBno());
 				pstmt.setString(2, ldto.getUser_id());
 				
-				result = pstmt.executeUpdate();				
+				System.out.println("입력 성공!");
+				result = pstmt.executeUpdate();
+				
+				sql= "update Product set like_count = like_count+1 where bno = ?";
+				pstmt = con.prepareStatement(sql);	
+				pstmt.setInt(1, ldto.getBno());
+				
+				pstmt.executeUpdate();
 			} else { // 찜 기록이 있으면 찜을 취소해야하므로 delete 필요
-				sql = "delete from Likes where bno = ? and (user_id = ? or user_id IS NULL)";
+				sql = "delete from Likes where bno = ? and user_id = ?";
 				pstmt = con.prepareStatement(sql);	
 				pstmt.setInt(1, ldto.getBno());
 				pstmt.setString(2, ldto.getUser_id());
 				
-				result = 0;				
+				pstmt.executeUpdate();
+				
+				System.out.println("삭제 성공!");
+				result = 0;
+				
+				sql= "update Product set like_count = like_count-1 where bno = ?";
+				pstmt = con.prepareStatement(sql);	
+				pstmt.setInt(1, ldto.getBno());
+				
+				pstmt.executeUpdate();
 			}
+			System.out.println("LDAO: " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
 		return result;
 	} // likeAction(LikeDTO ldto) 종료
-
 
 }
