@@ -19,14 +19,16 @@ public class MemberPayAction implements Action {
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id");
 		
-		request.setCharacterEncoding("UTF-8");
+		//System.out.println(request.getParameter("item"));
+		//System.out.println(request.getParameter("id"));
 		
 		MemberDTO dto = new MemberDTO();
-		dto.setUser_id(user_id);
-		dto.setPay(request.getParameter("item"));
+		dto.setUser_id(request.getParameter("id"));
+		dto.setPay(Integer.parseInt(request.getParameter("item")));
 		
 		MemberDAO dao = new MemberDAO();
 		dao.Pay(dto);
+		
 		
 		
 		response.setContentType("text/html; charset=utf-8");
