@@ -8,6 +8,8 @@ import com.itwillbs.employee.dto.InquiryDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** InquiryContentAction : 문의글 조회 **/
+
 public class InquiryContentAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

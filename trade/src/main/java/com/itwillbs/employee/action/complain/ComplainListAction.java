@@ -11,6 +11,8 @@ import com.itwillbs.employee.dto.ComplainDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** ComplainListAction : 신고 리스트 **/
+
 public class ComplainListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

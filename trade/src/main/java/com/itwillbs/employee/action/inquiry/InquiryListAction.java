@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.dao.DAO;
 import com.itwillbs.employee.dao.InquiryDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
+
+/** InquiryListAction : 문의 게시글 리스트 **/
 
 public class InquiryListAction implements Action{
 	@Override

@@ -8,6 +8,8 @@ import com.itwillbs.employee.dto.ComplainDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** ComplainListAction : 유저 신고 게시글 조회 **/
+
 public class ComplainContentAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
