@@ -58,6 +58,10 @@ public class ProductContentAction implements Action {
 		/* 프로필 조회에 필요한 정보 */
 		List<ProductDTO> userProducts =  dao.getAllUserProducts(dto.getUser_id());
 		request.setAttribute("userProducts", userProducts);
+
+		/* 프로필 조회에 필요한 정보 */
+		List<ProductDTO> sellProduct =  dao.getAllUserProducts(dto.getUser_id(), "팝니다");
+		request.setAttribute("sellProduct", sellProduct);
 		
 		/* 거래 제안 현황 조회에 필요한 정보 */
 		SuggestSellDAO ssdao = new SuggestSellDAO();
