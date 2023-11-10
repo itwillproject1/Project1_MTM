@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inn/head/databaseList.jsp"/>
-<head><title>신고 목록</title></head>
+<title>신고 목록</title>
   <c:if test="${empty emp_id}">
 		<c:redirect url="./Login.emp"/>
   </c:if>

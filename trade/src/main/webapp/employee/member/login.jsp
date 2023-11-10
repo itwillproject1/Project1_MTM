@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
+<title>로그인</title>
 <html lang="UTF-8">
-  <head>
-  	<jsp:include page="../../employee/inn/login/head.jsp"/>
-  	<title>로그인</title>
-  </head>
+<jsp:include page="../../employee/inn/login/head.jsp"/>
   <body class="light ">
     <div class="wrapper vh-100">
       <div class="row align-items-center h-100">

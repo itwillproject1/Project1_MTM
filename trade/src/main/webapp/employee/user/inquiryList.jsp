@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inn/head/databaseList.jsp"/>
-<head><title>문의 목록</title></head>
+<title>문의 목록</title>
   <c:if test="${empty emp_id}">
 		<c:redirect url="./Login.emp"/>
   </c:if>
@@ -80,25 +80,25 @@
                         		<c:if test="${search eq'user_id'}">
                         			<option value="user_id"  selected>아이디</option>
                         		</c:if>
-                        		<c:if test="${search not eq'user_id'}">
+                        		<c:if test="${search != 'user_id'}">
                         			<option value="user_id">아이디</option>
                         		</c:if>
                         		<c:if test="${search eq'user_name'}">
                         			<option value="user_name"  selected>이름</option>
                         		</c:if>
-                        		<c:if test="${search not eq'user_name'}">
+                        		<c:if test="${search != 'user_name'}">
                         			<option value="user_name">이름</option>
                         		</c:if>
                         		<c:if test="${search eq'subject'}">
                         			<option value="subject"  selected>제목</option>
                         		</c:if>
-                        		<c:if test="${search not eq'subject'}">
+                        		<c:if test="${search != 'subject'}">
                         			<option value="subject">제목</option>
                         		</c:if>
                         		<c:if test="${search eq'content'}">
                         			<option value="content"  selected>내용</option>
                         		</c:if>
-                        		<c:if test="${search not eq'content'}">
+                        		<c:if test="${search != 'content'}">
                         			<option value="content">내용</option>
                         		</c:if>
                         	</select>

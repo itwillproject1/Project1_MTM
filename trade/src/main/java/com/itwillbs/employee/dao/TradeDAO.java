@@ -2,6 +2,7 @@ package com.itwillbs.employee.dao;
 
 import java.util.ArrayList;
 
+import com.itwillbs.employee.dto.SuggestDTO;
 import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.employee.dto.UserDTO;
 
@@ -295,5 +296,84 @@ public class TradeDAO extends DAO{
 			CloseDB();
 		}
 		return dto;
+	}
+	
+	public int suggestCount(int bno, String deal_way) {
+		// suggestCount() : 거래 제안 개수 return
+		int result = 0;
+		try {
+			con = getCon();
+			if(deal_way.equals("삽니다"))
+				sql = "select count(*) from SuggestSell where buy_bno = ?";
+			else // deal_way.equals("팝니다")
+				sql = "select count(*) from SuggestSell where sell_bno = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public ArrayList suggestList(int bno, String deal_way) {
+		// suggestList() : 거래 제안 리스트 return 
+		// 구매자 정보에 들어간 경우 조회할 수 있도록 함
+		ArrayList sellList = null;
+		SuggestDTO dto = null;
+		try {
+			con = getCon();
+			if(deal_way.equals("삽니다")) {
+				sql = "select * from SuggestSell where buy_bno = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, bno);
+				rs = pstmt.executeQuery();
+				sellList = new ArrayList();
+				while(rs.next()) {
+					dto = new SuggestDTO();
+					dto.setBno(rs.getInt("sell_bno"));
+					dto.setSeller_id(rs.getString("seller_user_id"));
+					dto.setSeller_price(rs.getInt("seller_price"));
+					dto.setBuyer_price(0);
+					sellList.add(dto);
+				}
+			}
+			else {
+				sql = "select * from SuggestSell where sell_bno = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, bno);
+				rs = pstmt.executeQuery();
+				sellList = new ArrayList();
+				
+				while(rs.next()) {
+					dto = new SuggestDTO();
+					dto.setBno(rs.getInt("buy_bno"));
+					dto.setBuyer_id(rs.getString("buyer_user_id"));
+					dto.setBuyer_price(rs.getInt("buyer_price"));
+					sellList.add(dto);
+				}
+			}
+			for(int i = 0; i<sellList.size(); i++) {
+				dto = (SuggestDTO) sellList.get(i);
+				sql = "select * from Product where bno = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, dto.getBno());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					dto.setViews(rs.getInt("views"));
+					dto.setDate_time(rs.getTimestamp("date_time"));
+					dto.setTitle(rs.getString("title"));
+				}
+				sellList.set(i, dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return sellList;
 	}
 }
