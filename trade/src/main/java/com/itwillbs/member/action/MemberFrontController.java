@@ -127,7 +127,26 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/member/MemberPayInfo.member")) {
+		}
+		
+		//마이페이지 내가 올린 글
+		else if(command.equals("/member/MypageProductboardAction.member")) {
+			System.out.println(" C : /MypageProductboardAction.member 호출 ");
+			System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
+			
+			// MemberInfoAction() 객체생성
+			action = new MypageProductboardAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+
+			
+		else if(command.equals("/member/MemberPayInfo.member")) {
 			
 			action = new MemberPayInfoAction();
 			try {
@@ -136,7 +155,8 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("/member/MemberPayAction.member")){
+		}
+		else if(command.equals("/member/MemberPayAction.member")){
 			action = new MemberPayAction();
 			try {
 				forward = action.execute(request, response);

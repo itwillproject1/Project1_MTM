@@ -4,12 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
+
+import com.itwillbs.product.db.ProductDTO;
 
 public class MemberDAO {
 	// 공통 변수 선언
@@ -304,7 +308,50 @@ public class MemberDAO {
 				
 		}
 
-		
+		public ArrayList<ProductDTO> getMPBlist(String user_id) {
+			ArrayList<ProductDTO> MPBlist = new ArrayList<ProductDTO>();
+			ProductDTO dto = null;
+			try {
+				// 1.2. 디비연결
+				con = getCon();
+				// 3. sql 구문 작성(select) & pstmt 객체
+				sql = "SELECT * FROM Product where user_id = ?"; // views 내림차순으로 8개까지 정렬
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, user_id);
+				// 4. sql 실행
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				while (rs.next()) {
+					dto = new ProductDTO();
+					dto.setBno(rs.getInt("bno"));
+					dto.setContent(rs.getString("content"));
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setDeal_way(rs.getString("deal_way"));
+					dto.setTitle(rs.getString("title"));
+					dto.setCategory(rs.getString("category"));
+					dto.setBrand(rs.getString("brand"));
+					dto.setPrice(rs.getInt("price"));
+					dto.setProduct_status(rs.getString("product_status"));
+					dto.setContent(rs.getString("content"));
+					dto.setViews(rs.getInt("views"));
+					dto.setDate_time(rs.getTimestamp("date_time"));
+					dto.setFile_name(rs.getString("file_name"));
+					dto.setLike_count(rs.getInt("like_count"));
+
+					// 글 하나의 정보를 배열의 한칸에 저장
+					MPBlist.add(dto);
+				} // while
+				System.out.println(" DAO : 상품 정보 조회성공!");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			return MPBlist;
+		}
 			
 	
 			

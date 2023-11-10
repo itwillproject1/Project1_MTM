@@ -49,9 +49,13 @@ public class MemberInfoAction implements Action {
 		// request 영역에 정보를 저장
 		session.setAttribute("dto", dto);
 		
-		// 페이지로 이동 (./member/info.jsp)
-		forward.setPath("./mypage.jsp");
-		forward.setRedirect(false);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(" <script> ");
+		out.println("location.href='../member/MypageProductboardAction.member'");
+		out.println("  window.close(); ");
+		out.println(" </script> ");
+		out.close();
 		
 		return forward;
 	}

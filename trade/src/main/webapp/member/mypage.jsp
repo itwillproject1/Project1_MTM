@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link href="../css/productContent.css" rel="stylesheet" />
+<link href="../css/mypage.css" rel="stylesheet" />
+<link href="../css/main_styles_mypage.css" rel="stylesheet" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -132,5 +133,59 @@ function pay() {
 		</div>	
 		<!-- 본문 내용 끝 -->
  </div>		
+ 
+ 
+ 
+ 
+ <!--  내가 올린 상품  시작-->
+ <div class="title1">내가 올린 상품</div>
+ <div class="container1">
+	
+		<c:forEach var="product" items="${mpbdto}">
+			<div class="product1" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
+			<img src="<%=request.getContextPath() %>/upload/${product.file_name}"
+					alt="${product.title}">
+				<div class="product-info">
+					<h3>[${product.deal_way }]${product.title }</h3>
+				</div>
+				<div class="product-price">
+					<p>
+						<fmt:formatNumber value="${product.price }" />
+						원
+					</p>
+				</div>
+			</div>
+			<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
+		</c:forEach>
+</div>
+ 
+ <script>
+  function toProductContent(url) {
+      window.location.href = url;
+  }
+</script>
+ 
+ 
+ 
+ 
+ <!--  내가 올린 상품 끝 -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 </body>
 </html>
