@@ -273,23 +273,23 @@
             <!-- 상품 정보가 여기에 동적으로 추가됩니다 -->
 
             <c:if test="${sessionScope.id }">
-             <c:if test="${!empty suggestList  }]">
+             <c:if test="${!empty sellProduct  }]">
                  <h2>${sessionScope.id }님의 판매 상품 목록</h2>
                  <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
-				<c:forEach var="userProduct" items="${userProducts}">
+				<c:forEach var="sellProduct" items="${sellProduct}">
 				 <div>
                         <input type="checkbox" id="sellCheckbox" class="productCheckbox" name="sellProductBno"
-                           value="${userProducts.bno }">
+                           value="${sellProduct.bno }">
                            <img
                            id="sellImage"
-                           src="<%=request.getContextPath()%>/upload/${userProducts.file_name }"
+                           src="<%=request.getContextPath()%>/upload/${sellProduct.file_name }"
                            alt="미리보기">
                      </div>
                      <div>
-                        <span id="sellDiv"> <span>상품명: ${userProducts.title }<br></span>
-                           <span>상품상태: ${userProducts.product_status }<br></span>
+                        <span id="sellDiv"> <span>상품명: ${sellProduct.title }<br></span>
+                           <span>상품상태: ${sellProduct.product_status }<br></span>
                            <span>가격: <span id="priceSpan"><fmt:formatNumber
-                                 value="${userProducts.price }" />원 </span>
+                                 value="${sellProduct.price }" />원 </span>
                                  
                                   <span id="priceSpan2"><fmt:formatNumber
                                  value="${dto.price}" />원 </span>
@@ -300,7 +300,7 @@
 				</c:forEach>     
 				 </form>
             </c:if>
-            <c:if test="${empty suggestList}">
+            <c:if test="${empty sellProduct}">
                 <p id="noSell">판매 등록 상품이 없습니다.</p>
                 <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
             </c:if>
