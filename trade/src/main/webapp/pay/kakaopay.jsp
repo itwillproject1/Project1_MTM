@@ -19,6 +19,7 @@ IMP.init('imp71374124');
 
 function pay(){
 var name = "<c:out value='${dto.user_name}'/>"
+var id = "<c:out value='${dto.user_id}'/>"
 var item = $('input[name="item"]:checked').val();
 IMP.request_pay({
     pg : 'kakaopay',
@@ -40,7 +41,7 @@ IMP.request_pay({
 
         alert(msg);
     } else {
-    	 location.href = "../member/MemberPayActio.member";
+    	location.href = "../member/MemberPayAction.member?item=" + item + "&id=" + id;
     	
     }
 });
