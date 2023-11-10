@@ -52,7 +52,11 @@ IMP.request_pay({
 </script>
 </head>
 <body>
-
+<table border="1" >
+<tr>
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99C4EF3C5C0358F601" width="250" height="150" alt="카카오페이">
+</tr>
+</table><br>
 <input type="radio" name="item" id="item" value="5000"> 5,000 <br>
 <input type="radio" name="item" id="item" value="10000"> 10,000 <br>
 <input type="radio" name="item" id="item" value="30000"> 30,000 <br>
