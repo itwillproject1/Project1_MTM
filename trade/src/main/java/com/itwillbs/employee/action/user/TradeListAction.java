@@ -26,6 +26,13 @@ public class TradeListAction implements Action{
 		String searchKeyword = request.getParameter("searchKeyword");
 		
 		String category = request.getParameter("category");
+		String[] catInfo = {"휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", 
+				"카메라","음향기기", "기타"};
+		if(category == null || category.equals("선택"));
+		else {
+			int i = Integer.parseInt(category);
+			category = catInfo[i];
+		}
 		String checkComplete = request.getParameter("checkComplete");
 		
 		TradeDAO dao = new TradeDAO();
@@ -37,17 +44,33 @@ public class TradeListAction implements Action{
 		// checkComplete deal_status = 0 포함
 		
 		int[] count = new int[4];
-		if(checkComplete == null) {
-			count[0] = dao.tradeCount("all", false);
-			count[1] = dao.tradeCount("buy", false);
-			count[2] = dao.tradeCount("sell", false);
-			count[3] = dao.tradeCount("complete", true);
+		if(search == null && category == null && searchKeyword == null) {
+			if(checkComplete == null) {
+				count[0] = dao.tradeCount("all", checkComplete);
+				count[1] = dao.tradeCount("buy", checkComplete);
+				count[2] = dao.tradeCount("sell", checkComplete);
+				count[3] = dao.tradeCount("complete", checkComplete);
+			}
+			else {
+				count[0] = dao.tradeCount("all", checkComplete);
+				count[1] = dao.tradeCount("buy", checkComplete);
+				count[2] = dao.tradeCount("sell", checkComplete);
+				count[3] = dao.tradeCount("complete", checkComplete);
+			}
 		}
 		else {
-			count[0] = dao.tradeCount("all", true);
-			count[1] = dao.tradeCount("buy", true);
-			count[2] = dao.tradeCount("sell", true);
-			count[3] = dao.tradeCount("complete", true);
+			if(checkComplete == null) {
+				count[0] = dao.tradeCount("all", category, search, searchKeyword, checkComplete);
+				count[1] = dao.tradeCount("buy", category, search, searchKeyword, checkComplete);
+				count[2] = dao.tradeCount("sell", category, search, searchKeyword, checkComplete);
+				count[3] = dao.tradeCount("complete", category, search, searchKeyword, checkComplete);
+			}
+			else {
+				count[0] = dao.tradeCount("all", category, search, searchKeyword, checkComplete);
+				count[1] = dao.tradeCount("buy", category, search, searchKeyword, checkComplete);
+				count[2] = dao.tradeCount("sell", category, search, searchKeyword, checkComplete);
+				count[3] = dao.tradeCount("complete", category, search, searchKeyword, checkComplete);
+			}
 		}
 		
 		/********************* 페이징처리 1 *******************/
@@ -57,7 +80,7 @@ public class TradeListAction implements Action{
 		// 시작행 번호 계산하기
 		// 1 11 21 31 41 .....
 		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * pageSize + 1;
+		int startRow = (currentPage - 1) * pageSize;
 
 		// 끝행 번호 계산
 		// 10 20 30 40 50 .....
@@ -97,13 +120,11 @@ public class TradeListAction implements Action{
 
 		/******************* 페이징처리 2 *********************/
 		
-		if(searchKeyword == null && category == null && checkComplete == null) {
+		if(search == null && category == null && searchKeyword == null)
 			list = dao.tradeList(pageCategory, startRow, pageSize);
-		}
-		
-		else {
+		else
 			list = dao.tradeList(pageCategory, category, search, searchKeyword, checkComplete, startRow, pageSize);
-		}
+		
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);

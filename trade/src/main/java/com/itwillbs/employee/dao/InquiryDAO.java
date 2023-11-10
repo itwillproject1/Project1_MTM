@@ -18,8 +18,11 @@ public class InquiryDAO extends DAO{
 			if(rs.next()) {
 				if(mdto.getEmp_pw().equals(rs.getString(1))) {
 					result = 1;
-					sql = "update ";
+					sql = "update from Inquiry set complete = 1, emp_id = ?, answerContent = ? answerDate = now() where bno = ?";
 					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, mdto.getEmp_id());
+					pstmt.setString(2, idto.getAnswerContent());
+					pstmt.setInt(3, idto.getBno());
 					pstmt.executeUpdate();
 				}
 				else result = 0;
@@ -58,34 +61,51 @@ public class InquiryDAO extends DAO{
 		return result;
 	}
 	
-	public ArrayList inquiryList(int currentPage) {
-		ArrayList iList = null;
+	public ArrayList inquiryList(String pageCategory, String search, String searchKeyword, String category, int startRow, int pageSize) {
+		ArrayList list = null;
 		InquiryDTO dto = null;
 		try {
 			con = getCon();
-			sql = "select * from Inquiry";
+			sql = "select * from Inquiry where ";
+			if(pageCategory.equals("all")) sql += "user_id = user_id ";
+			else if(pageCategory.equals("0")) sql += " complete = 0";
+			else if(pageCategory.equals("1")) sql += " complete = 1";
+			
+			if(search == null || searchKeyword == null);
+			else if(search != null && searchKeyword!= null) {
+				sql += " and " + search + " like '%" + searchKeyword + "%'";
+			}
+			if(category == null);
+			else if(category != null) {
+				sql += " and category = " + category;
+			}
+			sql += " order by bno desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
+
 			rs = pstmt.executeQuery();
-			iList = new ArrayList();
+			list = new ArrayList();
 			while(rs.next()) {
 				dto = new InquiryDTO();
 				dto.setBno(rs.getInt("bno"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setCategory(rs.getInt("category"));
 				dto.setUploadDate(rs.getTimestamp("uploadDate"));
 				dto.setContent(rs.getString("content"));
 				dto.setComplete(rs.getBoolean("complete"));
 				dto.setEmp_id(rs.getString("emp_id"));
 				dto.setAnswerContent(rs.getString("answerContent"));
 				dto.setAnswerDate(rs.getTimestamp("answerDate"));
-				iList.add(dto);
+				list.add(dto);
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			CloseDB();
 		}
-		return iList;
+		return list;
 	}
 	
 	public InquiryDTO inquiryContent(int index) {
@@ -101,6 +121,7 @@ public class InquiryDAO extends DAO{
 				dto.setBno(rs.getInt("bno"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setCategory(rs.getInt("category"));
 				dto.setUploadDate(rs.getTimestamp("uploadDate"));
 				dto.setContent(rs.getString("content"));
 				dto.setComplete(rs.getBoolean("complete"));
@@ -132,36 +153,24 @@ public class InquiryDAO extends DAO{
 		return count;
 	}
 	
-	public ArrayList inquirySearch(String category, String keyword) {
-		ArrayList iList = null;
-		InquiryDTO dto = null;
+	public int inquiryCount(boolean complete) {
+		int count = 0;
 		try {
 			con = getCon();
-			sql = "select * from Complain where ? = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, category);
-			pstmt.setString(2, keyword);
-			rs = pstmt.executeQuery();
-			iList = new ArrayList();
-			while(rs.next()) {
-				dto = new InquiryDTO();
-				dto.setBno(rs.getInt("bno"));
-				dto.setUser_id(rs.getString("user_id"));
-				dto.setSubject(rs.getString("subject"));
-				dto.setUploadDate(rs.getTimestamp("uploadDate"));
-				dto.setContent(rs.getString("content"));
-				dto.setComplete(rs.getBoolean("complete"));
-				dto.setEmp_id(rs.getString("emp_id"));
-				dto.setAnswerContent(rs.getString("answerContent"));
-				dto.setAnswerDate(rs.getTimestamp("answerDate"));
-				iList.add(dto);
+			if(complete) {
+				sql = "select count(*) from Inquiry where complete = 1";
 			}
-		} catch(Exception e) {
+			else {
+				sql = "select count(*) from Inquiry where complete = 0";
+			}
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			CloseDB();
 		}
-		return iList;
+		return count;
 	}
-	
 }

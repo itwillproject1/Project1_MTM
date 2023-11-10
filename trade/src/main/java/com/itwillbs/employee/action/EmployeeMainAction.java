@@ -21,7 +21,7 @@ public class EmployeeMainAction implements Action{
 		TradeDAO tdao = new TradeDAO();
 		InquiryDAO idao = new InquiryDAO();
 		int userCount = udao.userCount();
-		int tradeCount = tdao.tradeCount("all", false);
+		int tradeCount = tdao.tradeCount();
 		ArrayList tradeList = tdao.tradeList(12);
 		int totalPay = udao.userPaySum();
 		int inquiryCount = idao.inquiryCount();

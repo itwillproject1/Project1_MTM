@@ -6,6 +6,29 @@
   <c:if test="${empty emp_id}">
 		<c:redirect url="./Login.emp"/>
   </c:if>
+ 	<%
+		String link = "./TradeList.emp?";
+		String search = request.getParameter("search");
+		String searchKeyword = request.getParameter("searchKeyword");
+		String category = request.getParameter("category");
+		String checkComplete = request.getParameter("checkComplete");
+		String pageCategory = request.getParameter("pageCategory");
+		link += "pageCategory=";
+		link += pageCategory == null ? "all" : pageCategory;
+		link += search == null ? "" : "&search=" + search;
+		link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
+		link += category == null ? "" : "&category=" + category;
+		link += checkComplete == null ? "" : "&checkComplete=" + checkComplete;
+	%>
+	
+	<%
+		String menulink = "./TradeList.emp?";
+		link += search == null ? "" : "search=" + search;
+		link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
+		link += category == null ? "" : "&category=" + category;
+		link += checkComplete == null ? "" : "&checkComplete=" + checkComplete;
+	%>
+  
 <jsp:include page="../inn/navbar.jsp"/>
       <main role="main" class="main-content" data-select2-id="9">
         <div class="container-fluid" data-select2-id="8">
@@ -17,65 +40,65 @@
                   <ul class="nav nav-pills justify-content-start">
                   <c:if test="${pageCategory == 'all'}">
                   	<li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-primary text-white ml-2">${count[0]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menulink%>&pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-primary text-white ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
                     </li>
                   </c:if>
                   <c:if test="${pageCategory == 'buy'}">
                   	<li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-primary text-white ml-2">${count[1]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menulink%>&pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-primary text-white ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
                     </li>
                   </c:if>
                   <c:if test="${pageCategory == 'sell'}">
                   	<li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-primary text-white ml-2">${count[2]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menulink%>&pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-primary text-white ml-2">${count[2]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[3]}</span></a>
                     </li>
                   </c:if>
                   <c:if test="${pageCategory == 'complete'}">
                   	<li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=buy&pageNum=1">삽니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./TradeList.emp?pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menulink%>&pageCategory=sell&pageNum=1">팝니다 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./TradeList.emp?pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[3]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menulink%>&pageCategory=complete&pageNum=1">거래 완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[3]}</span></a>
                     </li>
                   </c:if>
                   </ul>
                 </div>
                 <div class="col-md-auto ml-auto text-right">
                   <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide"><span class="fe fe-filter fe-16 text-muted"></span></button>
-                  <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
+                  <button type="button" class="btn" onclick="location.href='./TradeList.emp';"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
                 </div>
               </div>
               <!-- Slide Modal -->
@@ -126,14 +149,14 @@
                         	<label for="custom-select"><strong>카테고리</strong></label>
                         	<select name="category" class="custom-select" id="custom-select">
                           		<option selected>선택</option>
-                          		<option value="휴대폰&태블릿">휴대폰&태블릿</option>
-								<option value="데스크탑">데스크탑</option>
-								<option value="노트북">노트북</option>
-								<option value="게임기기">게임기기</option>
-								<option value="가전제품">가전제품</option>
-								<option value="카메라">카메라</option>
-								<option value="음향기기">음향기기</option>
-								<option value="기타">기타</option>
+                          		<option value="0">휴대폰&태블릿</option>
+								<option value="1">데스크탑</option>
+								<option value="2">노트북</option>
+								<option value="3">게임기기</option>
+								<option value="4">가전제품</option>
+								<option value="5">카메라</option>
+								<option value="6">음향기기</option>
+								<option value="7">기타</option>
                         	</select>
                         </div> <!-- form-group -->
                         <div class="form-group my-4">
@@ -154,7 +177,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="submit" class="btn mb-2 btn-primary btn-block">검색</button>
-                      <button type="reset" class="btn mb-2 btn-secondary btn-block" onclick="">초기화</button>
+                      <button type="reset" class="btn mb-2 btn-secondary btn-block">초기화</button>
                     </div>
                   </div>                  
                  </form>
@@ -229,20 +252,6 @@
               </c:if>
               <nav aria-label="Table Paging" class="my-3">
                 <ul class="pagination justify-content-end mb-0">
-                <%
-                	String link = "./TradeList.emp?";
-                	String search = request.getParameter("search");
-                	String searchKeyword = request.getParameter("searchKeyword");
-                	String category = request.getParameter("category");
-                	String checkComplete = request.getParameter("checkComplete");
-                	String pageCategory = request.getParameter("pageCategory");
-                	link += "pageCategory=";
-                	link += pageCategory == null ? "all" : pageCategory;
-                	link += search == null ? "" : "&search=" + search;
-                	link += searchKeyword == null ? "" : "&search=" + search;
-                	link += category == null ? "" : "&search=" + search;
-                	link += checkComplete == null ? "" : "&search=" + search;
-                %>
                 <c:if test="${1 < pageNum}">
 					<li class="page-item"><a class="page-link" href="<%=link%>&pageNum=${pageNum-1}">이전</a></li>
 				</c:if>

@@ -6,6 +6,27 @@
   <c:if test="${empty emp_id}">
 		<c:redirect url="./Login.emp"/>
   </c:if>
+ 
+<%
+	String menuLink = "./InquiryList.emp?";
+	String search = request.getParameter("search");
+	String searchKeyword = request.getParameter("searchKeyword");
+	String category = request.getParameter("category");
+	String checkComplete = request.getParameter("checkComplete");
+	menuLink += search == null ? "" : "search=" + search;
+	menuLink += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
+	menuLink += category == null ? "" : "&category=" + category;
+%>
+<%
+	String link = "./InquiryList.emp?";
+	String pageCategory = request.getParameter("pageCategory");
+	link += "pageCategory=";
+	link += pageCategory == null ? "all" : pageCategory;
+	link += search == null ? "" : "&search=" + search;
+	link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
+	link += category == null ? "" : "&category=" + category;
+%>
+
 <jsp:include page="../inn/navbar.jsp"/>
       <main role="main" class="main-content" data-select2-id="9">
         <div class="container-fluid" data-select2-id="8">
@@ -17,48 +38,48 @@
                   <ul class="nav nav-pills justify-content-start">
                   <c:if test="${empty pageCategory or pageCategory == 'all'}">
                   	<li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./InquiryList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-primary text-white ml-2">${count[0]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=all&pageNum=1">전체 <span class="badge badge-pill bg-primary text-white ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./InquiryList.emp?pageCategory=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./InquiryList.emp?pageCategory=0&pageNum=1">미완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=0&pageNum=1">미완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                   </c:if>
                   <c:if test="${pageCategory == '1'}">
                   	<li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./InquiryList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./InquiryList.emp?pageCategory=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[1]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./InquiryList.emp?pageCategory=0&pageNum=1">미완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=0&pageNum=1">미완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                   </c:if>
                   <c:if test="${pageCategory == '0'}">
                   	<li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./InquiryList.emp?pageCategory=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="./InquiryList.emp?pageCategory=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="./InquiryList.emp?pageCategory=0&pageNum=1">미완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[2]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=0&pageNum=1">미완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[2]}</span></a>
                     </li>
                   </c:if>
                   </ul>
                 </div>
                 <div class="col-md-auto ml-auto text-right">
                   <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide"><span class="fe fe-filter fe-16 text-muted"></span></button>
-                  <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
+                  <button type="button" class="btn" onclick="./InquiryList.emp"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
                 </div>
               </div>
               <!-- Slide Modal -->
               <div class="modal fade modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog" role="document">
-                 <form action="./TradeList.emp" method="get">
+                 <form action="./InquiryList.emp" method="get">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="defaultModalLabel">Filters</h5>
@@ -78,25 +99,25 @@
                         			<option>선택</option>
                         		</c:if>
                         		<c:if test="${search eq'user_id'}">
-                        			<option value="user_id"  selected>아이디</option>
+                        			<option value="user_id" selected>아이디</option>
                         		</c:if>
                         		<c:if test="${search != 'user_id'}">
                         			<option value="user_id">아이디</option>
                         		</c:if>
                         		<c:if test="${search eq'user_name'}">
-                        			<option value="user_name"  selected>이름</option>
+                        			<option value="user_name" selected>이름</option>
                         		</c:if>
                         		<c:if test="${search != 'user_name'}">
                         			<option value="user_name">이름</option>
                         		</c:if>
                         		<c:if test="${search eq'subject'}">
-                        			<option value="subject"  selected>제목</option>
+                        			<option value="subject" selected>제목</option>
                         		</c:if>
                         		<c:if test="${search != 'subject'}">
                         			<option value="subject">제목</option>
                         		</c:if>
                         		<c:if test="${search eq'content'}">
-                        			<option value="content"  selected>내용</option>
+                        			<option value="content" selected>내용</option>
                         		</c:if>
                         		<c:if test="${search != 'content'}">
                         			<option value="content">내용</option>
@@ -108,15 +129,42 @@
                         <!-- 문의 카테고리 정해지면 진행 -->
                         	<label for="custom-select"><strong>카테고리</strong></label>
                         	<select name="category" class="custom-select" id="custom-select">
-                          		<option selected>선택</option>
-                          		<option value="휴대폰&태블릿">휴대폰&태블릿</option>
-								<option value="데스크탑">데스크탑</option>
-								<option value="노트북">노트북</option>
-								<option value="게임기기">게임기기</option>
-								<option value="가전제품">가전제품</option>
-								<option value="카메라">카메라</option>
-								<option value="음향기기">음향기기</option>
-								<option value="기타">기타</option>
+                        		<c:if test="${category == '선택'}">                        		
+                          			<option selected>선택</option>
+                        		</c:if>
+                        		<c:if test="${category != '선택'}">                        		
+                          			<option>선택</option>
+                        		</c:if>
+                        		<c:if test="${category == '1'}">                        		
+                          			<option value="1" selected>계정</option>
+                        		</c:if>
+                        		<c:if test="${category != '1'}">                        		
+                          			<option value="1">계정</option>
+                        		</c:if>
+                        		<c:if test="${category == '2'}">                        		
+                          			<option value="2" selected>이용</option>
+                        		</c:if>
+                        		<c:if test="${category != '2'}">                        		
+                          			<option value="2">이용</option>
+                        		</c:if>
+                        		<c:if test="${category == '3'}">                        		
+                          			<option value="3" selected>거래</option>
+                        		</c:if>
+                        		<c:if test="${category != '3'}">                        		
+                          			<option value="3">거래</option>
+                        		</c:if>
+                        		<c:if test="${category == '4'}">                        		
+                          			<option value="4" selected>결제</option>
+                        		</c:if>
+                        		<c:if test="${category != '4'}">                        		
+                          			<option value="4">결제</option>
+                        		</c:if>
+                        		<c:if test="${category == '5'}">                        		
+                          			<option value="5" selected>기타</option>
+                        		</c:if>
+                        		<c:if test="${category != '5'}">                        		
+                          			<option value="5">기타</option>
+                        		</c:if>
                         	</select>
                         </div> <!-- form-group -->
                       </div>
@@ -137,7 +185,6 @@
                 <thead>
                   <tr role="row">       
                     <th>글 번호</th>
-                    <th></th><!-- 이미지 -->
                     <th>아이디</th>
                     <th>카테고리</th>
                     <th>제목</th>
@@ -153,21 +200,11 @@
                   <tr>
                     <td>${i.bno}</td>
                     <td>
-                    	<div class="avatar avatar-md">
-                    		<c:if test="${i.profile == null}">                		
-	                        	<img src="./employee/template/assets/images/user.jpg" alt="${i.user_id}의 프로필 이미지" class="avatar-img rounded-circle">
-                    		</c:if>
-                    		<c:if test="${i.profile != null}">                    		
-	                        	<img src="./employee/template/assets/images/user.jpg" alt="${i.user_id}의 프로필 이미지" class="avatar-img rounded-circle">
-                    		</c:if>
-                        </div>
-                    </td>
-                    <td>
                     	<p class="mb-0 text-muted">
                     		<a href="./UserInfo.emp?user_id=${i.user_id}" class="text-muted">${i.user_id}</a>
                     	</p>
                     </td>
-                    <td>${i.category}</td>
+                    <td>${inquiryReason[i.category - 1]}</td>
                     <td>
                     	<p class="mb-0 text-muted">
                     		<a href="./InquiryContent.emp?bno=${i.bno}" class="text-muted">${i.subject}</a>
@@ -175,18 +212,18 @@
                     </td>
                     <td>${i.content}</td>
                     <td>${i.uploadDate}</td>
-                    <td style="text-align:center;">
-                    	<!-- 거래 중 -->
-                    	<c:if test="${i.complete == 1}">
+                    <td>
+                    	<!-- 답변 완료 -->
+                    	<c:if test="${i.complete}">
                     		<span class="dot dot-lg bg-success mr-2"></span>
                     	</c:if>
-                    	<!-- 거래 완료 -->
-                    	<c:if test="${i.complete == 0}">
+                    	<!-- 답변 x -->
+                    	<c:if test="${!i.complete}">
                     		<span class="dot dot-lg bg-secondary mr-2"></span>
                     	</c:if>
                     </td>
                     <td>
-                    	<c:if test="${i.complete == 1}">${i.emp_id}</c:if>
+                    	<c:if test="${i.complete}">${i.emp_id}</c:if>
                     </td>
                     <td>
                       <div class="dropdown">
@@ -205,19 +242,6 @@
               </c:if>
               <nav aria-label="Table Paging" class="my-3">
                 <ul class="pagination justify-content-end mb-0">
-                <%
-                	String link = "./InquiryList.emp?";
-                	String search = request.getParameter("search");
-                	String searchKeyword = request.getParameter("searchKeyword");
-                	String category = request.getParameter("category");
-                	String checkComplete = request.getParameter("checkComplete");
-                	String pageCategory = request.getParameter("pageCategory");
-                	link += "pageCategory=";
-                	link += pageCategory == null ? "all" : pageCategory;
-                	link += search == null ? "" : "&search=" + search;
-                	link += searchKeyword == null ? "" : "&search=" + search;
-                	link += category == null ? "" : "&search=" + search;
-                %>
                 <c:if test="${1 < pageNum}">
 					<li class="page-item"><a class="page-link" href="<%=link%>&pageNum=${pageNum-1}">이전</a></li>
 				</c:if>

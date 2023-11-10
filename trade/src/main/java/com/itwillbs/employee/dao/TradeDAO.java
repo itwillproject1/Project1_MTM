@@ -7,20 +7,37 @@ import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.employee.dto.UserDTO;
 
 public class TradeDAO extends DAO{
-	public int tradeCount(String pageCategory, boolean checkComplete) {
+	public int tradeCount() {
 		int result = 0;
 		try {
 			con = getCon();
-			if(checkComplete) {
+			sql = "select count(*) from Product where deal_status = 1";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public int tradeCount(String pageCategory, String checkComplete) {
+		int result = 0;
+		try {
+			con = getCon();
+			if(checkComplete == null) {
+				if(pageCategory.equals("all")) sql = "select count(*) from Product where deal_status = 1";
+				else if(pageCategory.equals("buy")) sql = "select count(*) from Product where deal_way = '삽니다' and deal_status = 1";
+				else if(pageCategory.equals("sell")) sql = "select count(*) from Product where deal_way = '팝니다' and deal_status = 1";
+				else if(pageCategory.equals("complete")) sql = "select count(*) from Product where deal_status = 0";
+			}
+			else {
 				if(pageCategory.equals("all")) sql = "select count(*) from Product";
 				else if(pageCategory.equals("buy")) sql = "select count(*) from Product where deal_way = '삽니다'";
 				else if(pageCategory.equals("sell")) sql = "select count(*) from Product where deal_way = '팝니다'";
 				else if(pageCategory.equals("complete")) sql = "select count(*) from Product where deal_status = 0";
-			}
-			else {
-				if(pageCategory.equals("all")) sql = "select count(*) from Product where deal_status = 1";
-				else if(pageCategory.equals("buy")) sql = "select count(*) from Product where deal_way = '삽니다' and deal_status = 1";
-				else if(pageCategory.equals("sell")) sql = "select count(*) from Product where deal_way = '팝니다' and deal_status = 1";
 			}
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -33,39 +50,43 @@ public class TradeDAO extends DAO{
 		return result;
 	}
 	
-	public ArrayList tradeList() {
-		ArrayList li = null;
-		TradeDTO dto = null;
+	public int tradeCount(String pageCategory, 
+			String category, String search, String searchKeyword,
+			String checkComplete) {
+		int result = 0;
 		try {
 			con = getCon();
-			sql = "select * from Product order by bno desc";
+			if(checkComplete == null) {
+				if(pageCategory.equals("all")) sql = "select count(*) from Product where deal_status = 1";
+				else if(pageCategory.equals("buy")) sql = "select count(*) from Product where deal_way = '삽니다' and deal_status = 1";
+				else if(pageCategory.equals("sell")) sql = "select count(*) from Product where deal_way = '팝니다' and deal_status = 1";
+				else if(pageCategory.equals("complete")) sql = "select count(*) from Product where deal_status = 0";
+				
+			}
+			else {
+				if(pageCategory.equals("all")) sql = "select count(*) from Product where 1 = 1";
+				else if(pageCategory.equals("buy")) sql = "select count(*) from Product where deal_way = '삽니다'";
+				else if(pageCategory.equals("sell")) sql = "select count(*) from Product where deal_way = '팝니다'";
+				else if(pageCategory.equals("complete")) sql = "select count(*) from Product where deal_status = 0";
+			}
+
+			if(!category.equals("선택")) {
+				sql += " and category = '" + category + "'"; 
+			}
+
+			if(!search.equals("선택") && searchKeyword != null) {
+				sql += " and "+ search +" like '%" + searchKeyword + "%'"; 
+			}
+			
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			li = new ArrayList();
-			while(rs.next()) {
-				dto = new TradeDTO();
-				dto.setBno(rs.getInt("bno"));
-				dto.setUser_id(rs.getString("user_id"));
-				dto.setDeal_way(rs.getString("deal_way"));
-				dto.setCategory(rs.getString("category"));
-				dto.setTitle(rs.getString("title"));
-				dto.setContent(rs.getString("content"));
-				dto.setProduct_status(rs.getString("product_status"));
-				dto.setDeal_status(rs.getInt("deal_status"));
-				dto.setDate_time(rs.getTimestamp("date_time"));
-				dto.setFile_name(rs.getString("file_name"));
-				dto.setLike_count(rs.getInt("like_count"));
-				dto.setPrice(rs.getInt("price"));
-				dto.setDeal_status(rs.getInt("deal_status"));
-				dto.setDeal_user_id(rs.getString("deal_user_id"));
-				li.add(dto);
-			}
-		} catch(Exception e) {
+			if(rs.next()) result = rs.getInt(1);
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			CloseDB();
 		}
-		return li;
+		return result;
 	}
 	
 	public ArrayList tradeList(int limit) {
@@ -146,7 +167,7 @@ public class TradeDAO extends DAO{
 		}
 		return li;
 	}
-
+	
 	public ArrayList tradeList(String pageCategory, 
 			String category, String search, String searchKeyword,
 			String checkComplete, int startRow, int pageSize) {
