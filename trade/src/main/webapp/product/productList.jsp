@@ -16,6 +16,12 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+ <script type="text/javascript">
+   $(document).ready(function(){
+	   
+   });
+</script>
 <title>상품 목록</title>
 </head>
 <style>
@@ -29,7 +35,7 @@
 	
 	<div class="title" id="product-list-title">상품 목록</div>
 	
-<!-- 	<script src="listJS.js"></script> -->
+ 	<script src="listJS.js"></script> 
 <!-- 이거 그거임 상품목록 카테고리별로 바꾸는 자스 근데 아직 
 구현 못해서 냅둘게요 -->
 	
@@ -44,12 +50,18 @@
 					<li><a href="../product/ProductList.com?deal_way=삽니다">삽니다</a></li>
 					<li><a href="../product/ProductList.com?deal_way=팝니다">팝니다</a></li>
 				</ul>
-				
 				<ul>
 					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=삼성">삼성</a></li>
 					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=애플">애플</a></li>
-					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=엘지">엘지</a></li>
+					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=기타">기타</a></li>
 				</ul>
+				
+<!-- 				<form action="../product/ProductList.com" method="get" class="search"> -->
+<!-- 				<input type="text" name="searchPart" placeholder="카테고리 내 검색어 입력"> -->
+<!-- 				<button type="submit" value="search">검색</button> -->
+<!-- 				</form> 카테고리별 검색 보류 -->
+				
+				
 		</dd>
 	</dl>
 	</div>
@@ -81,14 +93,14 @@
 	<div id="page_control">
 		<c:if test="${startPage > pageBlock }">
 			<a
-				href="./ProductList.com?pageNum=${startPage-pageBlock }&search=${param.search}&category=${param.category}"
+				href="./ProductList.com?pageNum=${startPage-pageBlock }&search=${param.search}&deal_way=${param.deal_way}"
 				class="prev-page">이전 페이지</a>
 		</c:if>
 
 		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 			<c:choose>
 				<c:when test="${i != 0}">
-					<a href="./ProductList.com?pageNum=${i }&search=${param.search}&category=${param.category}"
+					<a href="./ProductList.com?pageNum=${i }&search=${param.search}&deal_way=${param.deal_way}"
 						class="page-number">${i }</a>
 				</c:when>
 			</c:choose>
@@ -96,21 +108,17 @@
 
 		<c:if test="${endPage < pageCount }">
 			<a
-				href="./ProductList.com?pageNum=${startPage+pageBlock }&search=${param.search}&category=${param.category}"
+				href="./ProductList.com?pageNum=${startPage+pageBlock }&search=${param.search}&deal_way=${param.deal_way}"
 				class="next-page">다음 페이지</a>
 		</c:if>
 	</div>
 
 
 <script>
-    function toProductContent(url) {
-        window.location.href = url;
-    }
+       function toProductContent(url) {
+           window.location.href = url;
+       }
 </script>
-
-
-
-	<!-- 추후 추가 가능 -->
 
 
 
