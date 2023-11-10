@@ -46,7 +46,10 @@
 }
 
 .product-info {
-    margin-top: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
 }
 
 .product-info img {
@@ -96,20 +99,19 @@ p#noSell {
 
 #sellDiv2 {
 	line-height: 1.9rem;
-	
 }
+
 
 
 hr#hr1 {
-	margin-top:8%;
+	margin-top:10%;
 }
 
 img#sellImage {
-	width: 90px;
 	float: left;
 	margin-right: 10%;
 	margin-left: 2%;
-	margin-top: 3%;
+	height: 130px;
 }
 
 #sellCheckbox {
