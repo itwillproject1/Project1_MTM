@@ -188,7 +188,7 @@
 
                </div>
             </c:if>
-
+<!-- 삽니다일때 판매하기 모달창 -->
 <c:if test="${dto.deal_way.equals('삽니다')}">
     <c:choose>
         <c:when test="${empty sessionScope.id}">
@@ -275,7 +275,7 @@ var modal = document.getElementById('sellModal');
         	modal.style.display = "none";
         }
     }
-    
+<!-- 삽니다일때 판매하기 모달창 끝-->
     //판매 제안 클릭
    /* function submitProductOffer() {
     var checkboxes = document.querySelectorAll('.productCheckbox:checked');
@@ -294,6 +294,7 @@ var modal = document.getElementById('sellModal');
         }
     }
 } */
+
 
 
 
