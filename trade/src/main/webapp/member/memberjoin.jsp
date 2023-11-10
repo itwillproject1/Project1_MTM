@@ -147,16 +147,17 @@
 		<legend> 회원가입 페이지 </legend>
 		<form action="./MemberJoinAction.member" method="post" name="join" onsubmit="return check();" enctype="multipart/form-data" >
 		<div id="callBackDiv">
-			아이디 : <input type="text" name="user_id" id="user_id">
-					 <input type="button"  value="ID 중복확인"   onclick="checkid();"> <br>
-		</div>
+			아이디 <br>
+			<input type="text" name="user_id" id="user_id" placeholder="5~12자 이내로 입력해주세요"> 
+			<input type="button" value="ID 중복확인" onclick="checkid();" > <br>
+			</div>
 					 
 					 
-			비밀번호 : <input type="password" name="password"><br>
-			비밀번호 확인 : <input type="password" name="passwordcheck"><br>
+			비밀번호 <br> <input type="password" name="password" placeholder="6~15자 이내로 입력해주세요"><br>
+			비밀번호 확인 <br><input type="password" name="passwordcheck" placeholder="비밀번호를 한번 더 입력해주세요"><br>
 			
 			
-			이메일 : <input type="text" name="email1">
+			이메일 <br><input type="text" name="email1">
 				<select id="email" name="email2" size="1" onchange="email_check()">
 				<option value="선택하세요">선택하세요</option>
 				<option value="@naver.com">@naver.com</option>
@@ -168,10 +169,10 @@
 				</select><br>
 				
 						
-			이 름 : <input type="text" name="user_name"><br>
+			이름  <br><input type="text" name="user_name"><br>
 			
 			
-			생년월일 :			
+			생년월일 <br>			
 			 <select id="jumin" name="jumin1">
 				<option value="년">년</option>
 				<c:forEach var="j" begin="0" end="${2023-1900}">
@@ -208,10 +209,10 @@
 				</c:forEach>
 			</select> <br> 
 			
-			성별 : <input type="radio" name="gender" value="남"> 남
+			성별 <br><input type="radio" name="gender" value="남"> 남
 		 		   <input type="radio" name="gender" value="여"> 여<br>
 		 		   
-			휴대폰 번호 : <select name="phone1">
+			휴대폰 번호 <br><select name="phone1">
 						 <option value="010">010</option>
 						 <option value="011">011</option>
 						 <option value="017">017</option>
@@ -221,21 +222,21 @@
 						 <input type="text" name="phone3"><br>
 						 
 			<div id="callBackDiv">			 
-			주 소 : <input type="text" id="address" name="address"> <input type="button" value="검색하기" onclick="goPopup()" > <br>
+			주 소  <br><input type="text" id="address" name="address"> <input type="button" value="검색하기" onclick="goPopup()" > <br>
 			</div>
 			
-			닉네임 : <input type="text" name="user_nickname"><br>
+			닉네임 <br><input type="text" name="user_nickname"><br>
 			
 			
 			
-			프로필 : <input type="file" name="profile" value="등록하기" accept="image/*"><br>
+			프로필 <br><input type="file" name="profile" value="등록하기" accept="image/*"><br>
 			
 			
 			
-			추천인 : <input type="text" name="recommend"><br>
+			추천인 입력(선택) <br><input type="text" name="recommend"><br>
 			
 			
-			동 의 : <input type="radio" name="agree" value="동의"> 동의
+			약관 동의 <br><input type="radio" name="agree" value="동의"> 동의
 					<input type="radio" name="agree" value="비동의"> 비동의<br>
 			
 			
