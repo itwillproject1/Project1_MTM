@@ -159,4 +159,81 @@ public class ComplainDAO extends DAO{
 		}
 		return cList;
 	}
+
+	public int complainCount(boolean complete) {
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from Complain";
+			if(complete) sql += " where complete = 1";
+			else sql += " where complete = 0";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int complainUserCount() {
+		int result = 0;
+		try {
+			con =  getCon();
+			sql = "select * from Member where suspended = 1";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public ArrayList complainList(String pageCategory, int startRow, int pageSize) {
+		ArrayList list = null;
+		ComplainDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from Complain";
+			if(pageCategory.equals("1")) sql += " where complete = 1";
+			else if(pageCategory.equals("0")) sql += " where complete = 0";
+			sql += " order by bno desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto = new ComplainDTO();
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	finally {
+			CloseDB();
+		}
+		return list;
+	}
+
+	public ArrayList suspendedList(int startRow, int pageSize) {
+		ArrayList list = null;
+		MemberDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from Member where suspended = 1 limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto = new MemberDTO();
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return list;
+	}
 }
