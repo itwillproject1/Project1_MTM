@@ -30,8 +30,7 @@ public class ProductContentAction implements Action {
 		request.setAttribute("login_id", user_id);
 		
 		// 추후 로그인 정보 받아서 미로그인도 조회는 가능,
-		// 나머지(구매, 판매, 찜 등)는 로그인페이지 이동
-		
+		// 나머지(구매, 판매, 찜 등)는 로그인페이지 이동		
 		
 		// 전달정보 저장(bno, pageNum, search(생략))
 		int bno = Integer.parseInt(request.getParameter("bno")); // 추후 수정
@@ -45,12 +44,12 @@ public class ProductContentAction implements Action {
 		ProductDTO dto = dao.getProduct(bno);
 		request.setAttribute("dto", dto);
 		
-//		// 찜
-//		LikeDTO ldto = new LikeDTO();
-//		LikeDAO ldao = new LikeDAO();
-//		int result = ldao.likeCheck(ldto); // 찜 여부(0 또는 1)
-//		System.out.println("찜 체크 결과: " + result);
-//		
+		// 찜
+		LikeDTO ldto = new LikeDTO();
+		LikeDAO ldao = new LikeDAO();
+		int result = ldao.likeCheck(ldto); // 찜 여부(0 또는 1)
+		System.out.println("찜 체크 결과: " + result);
+		
 //		// ajax에 값 반환
 //		response.setContentType("application/x-json; charset=UTF-8");
 //		response.getWriter().write(result+""); // String으로 형 변환해서 전달
