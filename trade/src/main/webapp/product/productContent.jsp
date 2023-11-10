@@ -110,107 +110,45 @@
                <label for="user">작성자:<button class="profile-button" onclick="openProfileModal();">${dto.user_id }</button></label>
             </div>
             
-            <!-- 작성자 프로필 모달 -->
-            <%-- <div id="profileModal" class="modal">
-    <div class="modal-content">
-        <!-- 모달 내용 -->                
-        <h2><img src="" alt="프로필"> ${dto.user_id} (평점) <span class="close-button" onclick="closeProfileModal();">&times;</span></h2>
-        <%
-            ProductDAO dao = new ProductDAO();
-            ProductDTO pdto = (ProductDTO)request.getAttribute("dto");
-            List<ProductDTO> userProducts = dao.getAllUserProducts(pdto.getUser_id());
-            request.setAttribute("userProducts", userProducts);
-        %>
-        
-        <h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
-		<c:forEach var="userProduct" items="${userProducts}" >
-		    <c:if test="${userProduct.deal_way == '팝니다'}">
-		        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-		         	<img
-                           id="sellImage"
-                           src="<%=request.getContextPath()%>/upload/${userProduct.file_name}"
-                           alt="미리보기">
-                     </div>
-                     <div>
-                        <span id="sellDiv2">
-                         상품명: ${userProduct.title}<br>
-                          상품상태: ${userProduct.product_status}<br>
-                           가격: <fmt:formatNumber value="${userProduct.price}" />원
-                        </span>
-                     <hr id="hr1">
-                     </div>
-		    </c:if>
-		</c:forEach>
-
-
-
-        <h3 id="h3">${dto.user_id}님의 구매 상품 목록</h3>
-        <c:forEach var="userProduct" items="${userProducts}">
-		    <c:if test="${userProduct.deal_way == '삽니다'}">
-		        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-		            <img
-                           id="sellImage"
-                           src="<%=request.getContextPath()%>/upload/${userProduct.file_name}"
-                           alt="미리보기">
-                     </div>
-                     <div>
-                        <span id="sellDiv">
-                         <span>상품명: ${userProduct.title}<br></span>
-                         <span>가격: <fmt:formatNumber value="${userProduct.price}" />원 </span>
-
-                        </span>
-                     <hr id="hr1">
-                     </div>
-		    </c:if>
-		</c:forEach>
-
-        <c:if test="${empty userProducts}">
-            <p id="noSell">등록 상품이 없습니다.</p>
-        </c:if>
-    </div>
-</div>
-		    <div class="modal-content"> --%>
-		        <!-- 모달 내용 -->                
-		       <%--  <h2><img src="" alt="프로필"> ${dto.user_id} (평점) <span class="close-button" onclick="closeProfileModal();">&times;</span></h2>
-		        
-		        <h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
-				<c:forEach var="userProduct" items="${userProducts }" varStatus="loopStatus">
-				    <c:if test="${userProduct.deal_way == '팝니다'}">
-				        <c:if test="${!loopStatus.first}">
-				            <hr>
-				        </c:if>
-				        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-				            <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
-				            <span id="sellDiv">
-				                <span>상품명: ${userProduct.title}<br></span>
-				                <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원</span>
-				            </span>
-				        </div>
-				    </c:if>
-				</c:forEach>
-		
-		        <h3 id="h3">${dto.user_id}님의 구매 상품 목록</h3>
-		        <c:forEach var="userProduct" items="${userProducts}" varStatus="loopStatus">
-				    <c:if test="${userProduct.deal_way == '삽니다'}">
-				        <c:if test="${!loopStatus.first}">
-				            <hr>
-				        </c:if>
-				        <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-				            <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
-				            <span id="sellDiv">
-				                <span>상품명: ${userProduct.title}<br></span>
-				                <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원</span>
-				            </span>
-				        </div>
-				    </c:if>
-				</c:forEach>
-		
-		        <c:if test="${empty userProducts}">
-		            <p id="noSell">등록 상품이 없습니다.</p>
-		        </c:if>
-			</div>
-			</div> --%>
-            <!-- 작성자 프로필 모달 종료 -->
+           <div id="profileModal" class="modal">
+             <div class="modal-content">
+                 <!-- 모달 내용 -->                
+               <h2><img src="" alt="프로필"> ${dto.user_id} (평점) <span class="close-button" onclick="closeProfileModal();">&times;</span></h2>
+                 
+                 <h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
+               <c:forEach var="userProduct" items="${userProducts }" varStatus="loopStatus">
+                   <c:if test="${userProduct.deal_way == '팝니다'}">
+                       <c:if test="${!loopStatus.first}">
+                           <hr>
+                       </c:if>
+                       <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
+                           <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
+                           <span id="sellDiv">
+                               <span>상품명: ${userProduct.title}<br></span>
+                               <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원</span>
+                           </span>
+                       </div>
+                   </c:if>
+               </c:forEach>
+         
+                 <h3 id="h3">${dto.user_id}님의 구매 상품 목록</h3>
+                 <c:forEach var="userProduct" items="${userProducts}" >
+                   <c:if test="${userProduct.deal_way == '삽니다'}">
+                       <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
+                           <div><img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px"></div>
+                           <span id="sellDiv">
+                               <span>상품명: ${userProduct.title}<br></span>
+                               <span>가격: <fmt:formatNumber value="${userProduct.price}"/>원<hr></span>
+                           </span>
+                       </div>
+                   </c:if>
+               </c:forEach>
+         
+                 <c:if test="${empty userProducts}">
+                     <p id="noSell">등록 상품이 없습니다.</p>
+                 </c:if>
+            </div>
+            </div>
 
             <div class="form-group">
                <label for="user">조회수: ${dto.views }</label>
@@ -269,11 +207,10 @@
 <div id="sellModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeProductModal()">&times;</span>
-        <div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
-            <!-- 상품 정보가 여기에 동적으로 추가됩니다 -->
+        <div id="productInfo">
+            <!-- 상품 정보 -->
 
-            <c:if test="${sessionScope.id }">
-             <c:if test="${!empty sellProduct  }]">
+			<c:if test="${!empty sellProduct}">
                  <h2>${sessionScope.id }님의 판매 상품 목록</h2>
                  <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
 				<c:forEach var="sellProduct" items="${sellProduct}">
@@ -307,15 +244,15 @@
             <c:if test="${empty sessionScope.id}">
                 <p id="noSell">로그인이 필요합니다. <a href="../main/login.member">로그인</a></p>
             </c:if>
-            <button class="submit-button" onclick="submitProductOffer();">판매 제안</button>        
-             </c:if>
+			<button class="submit-button" onclick="submitProductOffer();">판매 제안</button>
         </div>
     </div>
 </div>
 
 <!-- 판매 제안 -->
 <script>
-    var sellModal = document.getElementById('sellModal');
+var modal = document.getElementById('sellModal');
+
 
     function requireLogin() {
         alert("로그인을 해주세요");
@@ -324,42 +261,39 @@
     
  	// 판매 제안 모달 열기
     function openProductModal() {
-        sellModal.style.display = "block"; 
+    	 modal.style.display = "block";
     }
 
      // 모달 닫기
     function closeProductModal() {
-        sellModal.style.display = "none"; 
+    	modal.style.display = "none";
     }
 
     // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
     window.onclick = function(event) {
-        if (event.target == sellModal) {
-        	sellModal.style.display = "none";
+        if (event.target == modal) {
+        	modal.style.display = "none";
         }
     }
     
     //판매 제안 클릭
-    function submitProductOffer() {
-        var checkboxes = document.querySelectorAll('.productCheckbox:checked');
+   function submitProductOffer() {
+    var checkboxes = document.querySelectorAll('.productCheckbox:checked');
 
-        if (checkboxes.length === 0) {
-            alert("판매할 물품을 선택해주세요");
-            
+    if (checkboxes.length === 0) {
+        alert("판매할 물품을 선택해주세요");
+    } else {
+        var productIds = [];
+
+        var result = confirm('해당 상품을 ${dto.price}원에 판매 제안하시겠습니까?');
+
+        if (result === true) {
+            document.getElementById("SuggestSellForm").submit();
         } else {
-            var productIds = [];
-            
-            var result = confirm('해당 상품을 ${dto.price}원에 판매 제안하시겠습니까?');
-
-           if (result === true) {
-             document.getElementById("SuggestSellForm").submit();
-           } else {
-        	   function closeProductModal() {
-        		   sellModal.style.display = "none";
-        	    }
-           }
+            closeProductModal(); // 모달을 닫도록 호출
         }
     }
+}
 </script>
 <!-- 판매 제안 -->
 
