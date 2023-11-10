@@ -323,6 +323,7 @@
         <button class="close-button" onclick="closeSuggestModal()">닫기</button>
         <div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
             <!-- 상품 정보 -->
+            <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
             <c:if test="${!empty suggestList }">
             	<!-- 거래 제안 들어온 상품 목록 가져오기 -->
             	<c:forEach var="spdto" items="${spdto }" >
@@ -351,7 +352,8 @@
             <c:if test="${empty suggestList }">
             	<p id="noSell">거래 제안 상품이 없습니다.</p>
 			</c:if>
-         <button class="submit-button" onclick="submitProductOffer();">거래 하기</button>
+         <button class="submit-button" onclick="submitSuggest();">거래 하기</button>
+         </form>
         </div>
     </div>
 </div>
