@@ -13,7 +13,7 @@
 
 .modal-content {
     background-color: #fff; /* 화이트 색상 */ 
-    width: 550px;
+    width: 600px;
     margin: 3% auto;
     padding: 20px;
     border-radius: 10px;
@@ -22,7 +22,7 @@
     color: #000; /* 텍스트 색상을 블랙으로 지정 */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
     transition: box-shadow 0.3s; /* hover 시 그림자 변경 효과 설정 */
-    margin-top: 10%; /* 15%에서 10%로 변경 */
+/*     margin-top: 10%; 15%에서 10%로 변경 */
 }
 
 .modal-content:hover {
@@ -117,6 +117,13 @@ img#sellImage {
 #sellCheckbox {
 	transform: scale(1.5);
 }
+
+ #productInfo {
+      max-height: 500px;
+      overflow-y: auto;
+      overflow-x: hidden; /* 가로 스크롤바를 숨김 */
+      
+  }
 
 /* "신고하기" 버튼 스타일 */
 .confirm-button {
