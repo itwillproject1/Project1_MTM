@@ -1,9 +1,11 @@
 package com.itwillbs.employee.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.itwillbs.employee.dto.ComplainDTO;
 import com.itwillbs.employee.dto.MemberDTO;
+import com.itwillbs.employee.dto.UserDTO;
 
 public class ComplainDAO extends DAO{
 
@@ -23,8 +25,6 @@ public class ComplainDAO extends DAO{
 							+ "where bno = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, mdto.getEmp_id());
-					pstmt.setString(2, idto.getComplainResult());
-					pstmt.setInt(3, idto.getResultDays());
 					pstmt.executeUpdate();
 				}
 				else result = 0;
@@ -84,34 +84,6 @@ public class ComplainDAO extends DAO{
 		return cList;
 	}
 	
-	public ComplainDTO complainContent(int index) {
-		ComplainDTO dto = null;
-		try {
-			con = getCon();
-			sql = "select * from Complain where bno = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, index);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				dto = new ComplainDTO();
-				dto.setBno(rs.getInt("bno"));
-				dto.setComplainer_id(rs.getString("complainer_id"));
-				dto.setUser_id(rs.getString("user_id"));
-				dto.setComplainReason(rs.getString("complainReason"));
-				dto.setUploadDate(rs.getTimestamp("uploadDate"));
-				dto.setComplete(rs.getBoolean("complete"));
-				dto.setEmp_id(rs.getString("emp_id"));
-				dto.setComplainResult(rs.getString("complainResult"));
-				dto.setResultDays(rs.getInt("resultDays"));
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			CloseDB();
-		}
-		return dto;
-	}
-	
 	public int complainCount() {
 		int count = 0;
 		try {
@@ -128,38 +100,6 @@ public class ComplainDAO extends DAO{
 		return count;
 	}
 	
-	public ArrayList complainSearch(String category, String keyword) {
-		ArrayList cList = null;
-		ComplainDTO dto = null;
-		try {
-			con = getCon();
-			sql = "select * from Complain where ? = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, category);
-			pstmt.setString(2, keyword);
-			rs = pstmt.executeQuery();
-			cList = new ArrayList();
-			while(rs.next()) {
-				dto = new ComplainDTO();
-				dto.setBno(rs.getInt("bno"));
-				dto.setComplainer_id(rs.getString("complainer_id"));
-				dto.setUser_id(rs.getString("user_id"));
-				dto.setComplainReason(rs.getString("complainReason"));
-				dto.setUploadDate(rs.getTimestamp("uploadDate"));
-				dto.setComplete(rs.getBoolean("complete"));
-				dto.setEmp_id(rs.getString("emp_id"));
-				dto.setComplainResult(rs.getString("complainResult"));
-				dto.setResultDays(rs.getInt("resultDays"));
-				cList.add(dto);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			CloseDB();
-		}
-		return cList;
-	}
-
 	public int complainCount(boolean complete) {
 		int result = 0;
 		try {
@@ -231,6 +171,37 @@ public class ComplainDAO extends DAO{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return list;
+	}
+
+	public ArrayList userInfoComplain(UserDTO udto) {
+		// userInfoComplain() : 유저 정보에 표시 될 신고처리 미완료된 목록
+		ArrayList list = null;
+		HashSet<String> set = new HashSet<String>();	// 중복 확인
+		ComplainDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from Complain where user_id = ? and complete = 0 order by bno desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, udto.getUser_id());
+			rs = pstmt.executeQuery();
+			list = new ArrayList();
+			while(rs.next()) {
+				// 신고처리가 되지 않은 목록 중 중복된 신고 제거
+				if(set.contains(rs.getString("complainer_id"))) continue;
+				dto = new ComplainDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setComplainer_id(rs.getString("complainer_id"));
+				dto.setComplainReason(rs.getString("complainReason"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				set.add(dto.getComplainer_id());
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		} finally {
 			CloseDB();
 		}

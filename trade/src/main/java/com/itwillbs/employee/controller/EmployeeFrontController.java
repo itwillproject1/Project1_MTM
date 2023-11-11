@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.employee.action.EmployeeMainAction;
+import com.itwillbs.employee.action.board.BoardInsertAction;
+import com.itwillbs.employee.action.board.BoardUpdateAction;
 import com.itwillbs.employee.action.complain.ComplainAction;
-import com.itwillbs.employee.action.complain.ComplainContentAction;
 import com.itwillbs.employee.action.complain.ComplainListAction;
 import com.itwillbs.employee.action.inquiry.InquiryAction;
 import com.itwillbs.employee.action.inquiry.InquiryContentAction;
@@ -207,6 +208,7 @@ public class EmployeeFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		
 		else if(command.equals("/InquiryContent.emp")) {
 			// 문의 신청 글 조회, 답글 작성 가능
 			action = new InquiryContentAction();
@@ -236,16 +238,7 @@ public class EmployeeFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		
-		else if(command.equals("/ComplainContent.emp")) {
-			action = new ComplainContentAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
+	
 		else if(command.equals("/ComplainAction.emp")) {
 			action = new ComplainAction();
 			try {
@@ -297,7 +290,21 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/BoardWriteAction.emp")) {
-			
+			action = new BoardInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardUpdate.emp")) {
+			action = new BoardUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		// -- 회원 정보 조회 및 관리
 		
