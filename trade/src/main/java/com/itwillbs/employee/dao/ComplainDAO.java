@@ -201,10 +201,72 @@ public class ComplainDAO extends DAO{
 				list.add(dto);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			CloseDB();
 		}
 		return list;
+	}
+	
+	public ArrayList complainedUserList(int startRow, int pageSize) {
+		// complainedUserList() : 
+		ArrayList list = null;
+		ComplainDTO dto = null;
+		ComplainDTO a = null;
+		try {
+			con = getCon();
+			sql = "select user_id, count(*), min(uploadDate) from Complain"
+					+ " where complete = 0 group by user_id limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto = new ComplainDTO();
+				dto.setUser_id(rs.getString(1));
+				dto.setCount(rs.getInt(2));
+				dto.setUploadDate(rs.getTimestamp(3));
+				list.add(dto);
+			}
+			ArrayList dtoList = null;
+			sql = "select * from Complain where complete = 0 and user_id = ?"
+					+ " order by bno";
+			for(int i = 0; i<list.size(); i++) {
+				dto = (ComplainDTO)list.get(i);
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, dto.getUser_id());
+				dtoList = new ArrayList();
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					a = new ComplainDTO();
+					a.setBno(rs.getInt("bno"));
+					a.setComplainer_id(rs.getString("complainer_id"));
+					a.setComplainReason(rs.getString("complainReason"));
+					a.setUploadDate(rs.getTimestamp("uploadDate"));
+					dtoList.add(a);
+				}
+				dto.setComplainList(dtoList);
+				list.set(i, dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return list;
+	}
+	
+	public int complainedUserCount() {
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
 	}
 }

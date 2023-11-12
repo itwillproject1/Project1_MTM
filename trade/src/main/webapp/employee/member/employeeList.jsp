@@ -13,24 +13,28 @@
                   <h2 class="h3 mb-0 page-title">Contacts</h2>
                 </div>
                 <div class="col-auto">
-                  <button type="button" class="btn btn-secondary"><span class="fe fe-trash fe-12 mr-2"></span>Delete</button>
-                  <button type="button" class="btn btn-primary"><span class="fe fe-filter fe-12 mr-2"></span>Create</button>
+                  <button type="button" class="btn btn-primary" onclick="location.href='./EmployeeRegisterForm.emp'"><span class="fe fe-filter fe-12 mr-2"></span>직원 생성</button>
                 </div>
               </div>
               <div class="row">
               <!-- 직원 목록(1 페이지에 8명) -->
+              	<c:forEach var="i" items="${list}">
                 <div class="col-md-3">
                   <div class="card shadow mb-4">
                     <div class="card-body text-center">
                       <div class="avatar avatar-lg mt-4">
-                        <a href="#">
-                          <img src=".${'직원 이미지'}" alt="${'직원 명' + '이미지'}" class="avatar-img rounded-circle">
+                        <a href="./ProfileContent.emp?emp_id=${i.emp_id}">
+                        <c:if test="${i.image == null}">
+                          <img src="./employee/template/assets/images/user.png" alt="${i.name}의 이미지" class="avatar-img rounded-circle">
+                         </c:if>
+                         <c:if test="${i.image != null}">
+                          <img src="./employee/template/assets/images/user.png" alt="${i.name}의 이미지" class="avatar-img rounded-circle">
+                         </c:if>
                         </a>
                       </div>
                       <div class="card-text my-2">
-                        <strong class="card-title my-0">직원명</strong>
-                        <p class="small text-muted mb-0">부서명</p>
-                        <p class="small"><span class="badge badge-light text-muted">전화번호</span></p>
+                        <strong class="card-title my-0">${i.name}</strong>
+                        <p class="small"><span class="badge badge-light text-muted">${i.emp_id}</span></p>
                       </div>
                     </div> <!-- ./card-text -->
                     <div class="card-footer">
@@ -41,6 +45,7 @@
                               <span class="text-muted sr-only">메뉴</span>
                             </button>
                             <div class="dropdown-menu m-2">
+                            	<a class="dropdown-item" href="./ProfileContent.emp?emp_id=${i.emp_id}"><i class="fe fe-user fe-12 mr-4"></i>상세 정보</a>
                               <c:if test="${sessionScope.emp_id == 'admin'}">                              
                               	<a class="dropdown-item" href="./EmployeeDeleteForm.emp"><i class="fe fe-delete fe-12 mr-4"></i>삭제</a>
                               </c:if>
@@ -51,17 +56,26 @@
                     </div> <!-- /.card-footer -->
                   </div>
                 </div> <!-- .col -->
+              </c:forEach>
                 <div class="col-md-9">
                 </div> <!-- .col -->
               </div> <!-- .row -->
               <nav aria-label="Table Paging" class="my-3">
                 <ul class="pagination justify-content-end mb-0">
-                <!-- 직원 count(*) return 하고 계산 후 색출 -->
-                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <c:if test="${1 < pageNum}">
+					<li class="page-item"><a class="page-link" href="./EmployeeList.emp&pageNum=${pageNum-1}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i">
+					<c:if test="${i == pageNum}">
+						<li class="page-item active"><a class="page-link" href="./EmployeeList.emp&pageNum=${i}">${i}</a></li>
+					</c:if>
+					<c:if test="${i != pageNum }">	
+						 <li class="page-item"><a class="page-link" href="./EmployeeList.emp&pageNum=${i}">${i}</a></li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pageNum < pageCount}">
+					<li class="page-item"><a class="page-link" href="./EmployeeList.emp&pageNum=${pageNum+1}">다음</a></li>
+				</c:if>
                 </ul>
               </nav>
             </div> <!-- .col-12 -->

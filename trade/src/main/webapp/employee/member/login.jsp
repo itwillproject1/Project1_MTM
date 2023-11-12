@@ -35,5 +35,3 @@
     <jsp:include page="../../employee/inn/login/script.jsp"/>
   </body>
 </html>
-</body>
-</html>

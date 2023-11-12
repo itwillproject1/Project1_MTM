@@ -11,7 +11,7 @@ import com.itwillbs.employee.dto.ComplainDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-/** ComplainListAction : 신고 리스트 **/
+/** ComplainListAction : 피신고자 리스트 **/
 
 public class ComplainListAction implements Action{
 	@Override
@@ -25,18 +25,7 @@ public class ComplainListAction implements Action{
 		
 		ComplainDAO dao = new ComplainDAO();
 		
-		int[] count = new int[4];
-		
-		count[0] = dao.complainCount();
-		count[1] = dao.complainCount(true);
-		count[2] = dao.complainCount(false);
-		count[3] = dao.complainUserCount();
-		
-		int c = 0;
-		if(pageCategory.equals("all")) c = count[0];
-		else if(pageCategory.equals("1")) c = count[1];
-		else if(pageCategory.equals("0")) c = count[2];
-		else if(pageCategory.equals("suspended")) c = count[3];
+		int count = dao.complainedUserCount();
 		
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
@@ -60,7 +49,7 @@ public class ComplainListAction implements Action{
 		// 글 15 / 페이지당 10 => 2개
 		// 글 78 / 페이지당 10 => 8개
 		
-		int pageCount = c / pageSize + (c % pageSize == 0 ? 0 : 1);
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 		System.out.println(pageCount);
 		// 한 화면에 보여줄 페이지 블럭개수
 		int pageBlock = 5;
