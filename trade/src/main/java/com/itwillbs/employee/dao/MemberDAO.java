@@ -154,13 +154,14 @@ public class MemberDAO extends DAO{
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(dto.getEmail().equals(rs.getString(1))) {
+					result = 1;
 					sql = "select tel from Employees where emp_id = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, dto.getEmp_id());
 					rs = pstmt.executeQuery();
 					if(rs.next()) dto.setTel(rs.getString("tel"));
-					String pw = dto.getTel().substring(dto.getTel().length() - 5);
-					sql = "update into Employees set emp_pw = ? where emp_id = ?";
+					String pw = dto.getTel().substring(dto.getTel().length() - 4);
+					sql = "update Employees set emp_pw = ? where emp_id = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, pw);
 					pstmt.setString(2, dto.getEmp_id());
