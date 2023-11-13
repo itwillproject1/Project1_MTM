@@ -23,9 +23,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document)
-		.ready(
-			function() {
+	$(document).ready(function() {
 			// 좋아요 버튼 클릭 시 실행되는 ajax
 			$(document).on('click','#like',function() {
 				// 현재 URL에서 bno 값 추출
@@ -88,10 +86,8 @@
 
 			<script>
 				// 이미지를 클릭할 때 이미지를 크게 보기
-				var imageChoiceElements = document
-						.querySelectorAll("#imagePreviewChoice");
-				var imagePreviewElement = document
-						.getElementById("imagePreview");
+				var imageChoiceElements = document.querySelectorAll("#imagePreviewChoice");
+				var imagePreviewElement = document.getElementById("imagePreview");
 
 				imageChoiceElements.forEach(function(imageChoice) {
 					imageChoice.addEventListener("click", function() {
@@ -118,17 +114,14 @@
 									<div class="dropdown">
 										<input class="update-content-button" type="button" value="...">
 										<div class="dropdown-content" style="display: none;">
-											<button
-												onclick="location.href='./updateContent.com?bno=${dto.bno}';">글
-												수정하기</button>
+											<button onclick="location.href='./updateContent.com?bno=${dto.bno}';">글 수정하기</button>
 											<button onclick="confirmDelete();">글 삭제하기</button>
 										</div>
 									</div>
 								</c:when>
 								<c:when test="${sessionScope.user_id ne dto.user_id}">
 									<!-- 로그인한 사용자 != 글 작성자 -->
-									<input class="complain-button" type="button" value="🚨"
-										onclick="openComplainModal();">
+									<input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
 								</c:when>
 							</c:choose>
 						</c:otherwise>
@@ -158,15 +151,12 @@
 								<div id="productList"
 									onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
 									<div>
-										<img
-											src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
+										<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
 											alt="미리보기" width="60px" height="60px">
 									</div>
-									<span id="sellDiv"> <span>상품명:
-											${userProduct.title}<br>
-									</span> <span>가격: <fmt:formatNumber
-												value="${userProduct.price}" />원
-									</span>
+									<span id="sellDiv">
+										<span>상품명: ${userProduct.title}<br></span>
+										<span>가격: <fmt:formatNumber value="${userProduct.price}" />원</span>
 									</span>
 								</div>
 							</c:if>
@@ -178,14 +168,12 @@
 								<div id="productList"
 									onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
 									<div>
-										<img
-											src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
+										<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
 											alt="미리보기" width="60px" height="60px">
 									</div>
-									<span id="sellDiv"> <span>상품명:
-											${userProduct.title}<br>
-									</span>
-									<span>가격: <fmt:formatNumber value="${userProduct.price}" />원 <hr> </span>
+									<span id="sellDiv">
+										<span>상품명: ${userProduct.title}<br></span>
+										<span>가격: <fmt:formatNumber value="${userProduct.price}" />원 <hr> </span>
 									</span>
 								</div>
 							</c:if>
@@ -202,13 +190,11 @@
 				</div>
 
 				<div class="form-group">
-					<label for="productCategory">카테고리: <a
-						href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
+					<label for="productCategory">카테고리: <a href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
 				</div>
 
 				<div class="form-group">
-					<label for="productBrand">브랜드: <a
-						href="../product/ProductList.com?category=${dto.brand }">${dto.brand }</a></label>
+					<label for="productBrand">브랜드: <a href="../product/ProductList.com?category=${dto.brand }">${dto.brand }</a></label>
 				</div>
 
 				<c:if test="${dto.deal_way.equals('팝니다') }">
@@ -218,8 +204,7 @@
 				</c:if>
 
 				<div class="form-group">
-					<label for="productPrice">가격(원): <fmt:formatNumber
-							value="${dto.price}" /></label>
+					<label for="productPrice">가격(원): <fmt:formatNumber value="${dto.price}" /></label>
 				</div>
 
 				<c:if test="${dto.deal_way.equals('팝니다') }">
@@ -229,31 +214,29 @@
 
 						<!-- 찜 기능 시작 -->
 						<button class="submit-button" id="like">
-							<span id="do_like"> <c:if test="${likeResult eq 0 }">
+							<span id="do_like">
+								<c:if test="${likeResult eq 0 }">
 									<img alt="찜하기" src="./img/heart0.png" width="12px">
-								</c:if> <c:if test="${likeResult eq 1 }">
+								</c:if>
+								<c:if test="${likeResult eq 1 }">
 									<img alt="찜하기" src="./img/heart1.png" width="12px">
 								</c:if>
 							</span> <span id="like_count"> ${dto.like_count} </span>
 						</button>
 						<!--  찜 기능 끝 -->
-
 					</div>
 				</c:if>
 
 				<c:if test="${dto.deal_way.equals('삽니다')}">
 					<c:choose>
 						<c:when test="${empty sessionScope.user_id}">
-							<button class="submit-button" onclick="requireLogin();">판매
-								제안</button>
+							<button class="submit-button" onclick="requireLogin();">판매 제안</button>
 						</c:when>
 						<c:when test="${sessionScope.user_id eq dto.user_id}">
-							<button class="submit-button" onclick="openSuggestModal();">거래
-								제안 현황</button>
+							<button class="submit-button" onclick="openSuggestModal();">거래 제안 현황</button>
 						</c:when>
 						<c:otherwise>
-							<button class="submit-button" onclick="openProductModal();">판매
-								제안</button>
+							<button class="submit-button" onclick="openProductModal();">판매 제안</button>
 						</c:otherwise>
 					</c:choose>
 				</c:if>
@@ -271,22 +254,21 @@
 									action="./SuggestSell.com?bno=${dto.bno }" method="post">
 									<c:forEach var="sellProduct" items="${sellProduct}">
 										<div>
-											<input type="checkbox" id="sellCheckbox"
-												class="productCheckbox" name="sellProductBno"
-												value="${sellProduct.bno }">
+											<input type="checkbox" id="sellCheckbox" class="productCheckbox"
+												name="sellProductBno" value="${sellProduct.bno }">
 											<%-- <img
 				                           id="sellImage"
 				                           src="<%=request.getContextPath()%>/upload/${sellProd uct.file_name }"
 				                           alt="미리보기"> --%>
 										</div>
 										<div>
-											<span id="sellDiv"> <span>상품명:
-													${sellProduct.title }<br>
-											</span> <span>상품상태: ${sellProduct.product_status }<br></span> <span>가격:
-													<span id="priceSpan"><fmt:formatNumber
-															value="${sellProduct.price }" />원 </span> <span id="priceSpan2"><fmt:formatNumber
-															value="${dto.price}" />원 </span>
-											</span>
+											<span id="sellDiv">
+												<span>상품명: ${sellProduct.title }<br> </span>
+												<span>상품상태: ${sellProduct.product_status }<br></span>
+												<span>
+													가격: <span id="priceSpan"><fmt:formatNumber value="${sellProduct.price }" />원 </span>
+													<span id="priceSpan2"><fmt:formatNumber value="${dto.price}" />원 </span>
+												</span>
 											</span>
 											<hr id="hr1">
 										</div>
@@ -295,8 +277,7 @@
 							</c:if>
 							<c:if test="${empty sellProduct}">
 								<p id="noSell">판매 등록 상품이 없습니다.</p>
-								<button class="sell-button"
-									onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
+								<button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
 							</c:if>
 							<c:if test="${empty sessionScope.user_id}">
 								<p id="noSell">
@@ -405,15 +386,14 @@
 		<form action="" method="post">
 			<div id="complainModal" class="modal">
 				<div class="modal-content">
-					<input type="checkbox" id="postReportCheckbox"
-						class="productCheckbox" data-productid="1"> <label
-						for="postReportCheckbox">게시글 신고</label><br>
+					<input type="checkbox" id="postReportCheckbox" class="productCheckbox" data-productid="1">
+					<label for="postReportCheckbox">게시글 신고</label><br>
 					<div id="postReportOptions" style="display: none;">
 						<input type="checkbox" class="reasonCheckbox" id="postReason1">
-						<label for="postReason1">불법 상품 또는 서비스 판매</label><br> <input
-							type="checkbox" class="reasonCheckbox" id="postReason2">
-						<label for="postReason2">불쾌한, 혐오스러운 내용이나 이미지 포함</label><br> <input
-							type="checkbox" class="reasonCheckbox" id="postReason3">
+						<label for="postReason1">불법 상품 또는 서비스 판매</label><br>
+						<input type="checkbox" class="reasonCheckbox" id="postReason2">
+						<label for="postReason2">불쾌한, 혐오스러운 내용이나 이미지 포함</label><br> 
+						<input type="checkbox" class="reasonCheckbox" id="postReason3">
 						<label for="postReason3">거짓 정보, 거짓 광고, 또는 과장된 설명</label><br>
 						<input type="checkbox" class="reasonCheckbox" id="postReason4">
 						<label for="postReason4">저작권 침해 (타인의 이미지 또는 콘텐츠 무단 사용)</label><br>
@@ -422,32 +402,31 @@
 						<input type="checkbox" class="reasonCheckbox" id="postReason6">
 						<label for="postReason6">개인 정보 침해 (타인의 개인 정보 공개)</label><br>
 						<input type="checkbox" class="reasonCheckbox" id="postReason7">
-						<label for="postReason7">광고 스팸 또는 중복 게시글</label><br> <input
-							type="checkbox" class="reasonCheckbox" id="postReason8"
-							onchange="showTextarea()"> <label for="postReason8">기타</label><br>
+						<label for="postReason7">광고 스팸 또는 중복 게시글</label><br>
+						<input type="checkbox" class="reasonCheckbox" id="postReason8" onchange="showTextarea()">
+						<label for="postReason8">기타</label><br>
 						<div id="otherReason" style="display: none;">
 							<textarea id="otherReasonText" placeholder="기타 이유를 입력하세요"></textarea>
 						</div>
 					</div>
-					<input type="checkbox" id="authorReportCheckbox"
-						class="productCheckbox" data-productid="2"> <label
-						for="authorReportCheckbox">작성자 신고</label><br>
+					<input type="checkbox" id="authorReportCheckbox" class="productCheckbox" data-productid="2">
+					<label for="authorReportCheckbox">작성자 신고</label><br>
 					<div id="authorReportOptions" style="display: none;">
 						<input type="checkbox" class="reasonCheckbox" id="authorReason1">
 						<label for="authorReason1">거래 사기 또는 부정행위 (상품 송금 후 발송하지 않음)</label><br>
 						<input type="checkbox" class="reasonCheckbox" id="authorReason2">
-						<label for="authorReason2">거래 후 불만 및 환불 요청 무시</label><br> <input
-							type="checkbox" class="reasonCheckbox" id="authorReason3">
-						<label for="authorReason3">불쾌한 언행 또는 협상 방해</label><br> <input
-							type="checkbox" class="reasonCheckbox" id="authorReason4">
-						<label for="authorReason4">거짓 프로필 정보 또는 사진 사용</label><br> <input
-							type="checkbox" class="reasonCheckbox" id="authorReason5">
+						<label for="authorReason2">거래 후 불만 및 환불 요청 무시</label><br>
+						<input type="checkbox" class="reasonCheckbox" id="authorReason3">
+						<label for="authorReason3">불쾌한 언행 또는 협상 방해</label><br>
+						<input type="checkbox" class="reasonCheckbox" id="authorReason4">
+						<label for="authorReason4">거짓 프로필 정보 또는 사진 사용</label><br>
+						<input type="checkbox" class="reasonCheckbox" id="authorReason5">
 						<label for="authorReason5">반복적인 불법 행동 (여러 사용자를 속임)</label><br>
 						<input type="checkbox" class="reasonCheckbox" id="authorReason6">
 						<label for="authorReason6">규정 위반 (중고거래 플랫폼의 규정을 어기는 행동)</label><br>
 						<input type="checkbox" class="reasonCheckbox" id="authorReason7">
-						<label for="authorReason7">욕설, 혐오 내용 또는 괴롭힘</label><br> <input
-							type="checkbox" class="reasonCheckbox" id="authorReason8"
+						<label for="authorReason7">욕설, 혐오 내용 또는 괴롭힘</label><br>
+						<input type="checkbox" class="reasonCheckbox" id="authorReason8"
 							onchange="showTextarea()"> <label for="authorReason8">기타</label><br>
 						<div id="otherReason2" style="display: none;">
 							<textarea id="otherReasonText2" placeholder="기타 이유를 입력하세요"></textarea>
@@ -462,18 +441,13 @@
 
 		<script>
 			var complainModal = document.getElementById("complainModal");
-			var postReportCheckbox = document
-					.getElementById("postReportCheckbox");
-			var postReportOptions = document
-					.getElementById("postReportOptions");
-			var authorReportCheckbox = document
-					.getElementById("authorReportCheckbox");
-			var authorReportOptions = document
-					.getElementById("authorReportOptions");
+			var postReportCheckbox = document.getElementById("postReportCheckbox");
+			var postReportOptions = document.getElementById("postReportOptions");
+			var authorReportCheckbox = document.getElementById("authorReportCheckbox");
+			var authorReportOptions = document.getElementById("authorReportOptions");
 
 			function openComplainModal() {
 				// 체크박스가 하나도 선택되지 않은 경우에만 경고 메시지 표시
-
 				complainModal.style.display = "block";
 			}
 
@@ -495,14 +469,12 @@
 			}
 
 			postReportCheckbox.addEventListener("change", function() {
-				postReportOptions.style.display = this.checked ? 'block'
-						: 'none';
+				postReportOptions.style.display = this.checked ? 'block' : 'none';
 				authorReportCheckbox.disabled = this.checked;
 			});
 
 			authorReportCheckbox.addEventListener("change", function() {
-				authorReportOptions.style.display = this.checked ? 'block'
-						: 'none';
+				authorReportOptions.style.display = this.checked ? 'block' : 'none';
 				postReportCheckbox.disabled = this.checked;
 			});
 
@@ -526,10 +498,8 @@
 			}
 
 			function submitComplainOffer() {
-				var postReportCheckboxes = postReportOptions
-						.querySelectorAll('.reasonCheckbox:checked');
-				var authorReportCheckboxes = authorReportOptions
-						.querySelectorAll('.reasonCheckbox:checked');
+				var postReportCheckboxes = postReportOptions .querySelectorAll('.reasonCheckbox:checked');
+				var authorReportCheckboxes = authorReportOptions .querySelectorAll('.reasonCheckbox:checked');
 
 				if (postReportCheckboxes.length === 0
 						&& authorReportCheckboxes.length === 0
@@ -545,14 +515,11 @@
 			}
 		</script>
 
-
-
 		<!-- 상세페이지 오른쪽 ... 버튼 -->
 		<script>
 			// ... 버튼 클릭 시 드롭다운을 열거나 닫기
 			document.addEventListener("DOMContentLoaded", function() {
-				var buttons = document
-						.querySelectorAll('.update-content-button');
+				var buttons = document.querySelectorAll('.update-content-button');
 				buttons.forEach(function(button) {
 					button.addEventListener('click', function(event) {
 						var dropdown = this.nextElementSibling;

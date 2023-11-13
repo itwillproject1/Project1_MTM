@@ -36,10 +36,10 @@ public class LikeCheckAction implements Action {
 		ProductDTO pdto = pdao.getProduct(bno);
 		int like_count = pdto.getLike_count();
 	
-		// ajax에 값 반환		
+		// ajax에 값 반환
 		PrintWriter pw = response.getWriter();
-		pw.println(result+"");
-		pw.println(like_count+"");
+		pw.println(result);
+		pw.println(like_count);
 		pw.flush();
 		
 		return null;
