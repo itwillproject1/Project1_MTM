@@ -44,11 +44,7 @@ body {
 
 
 .image-container img {
-<<<<<<< HEAD
    max-width: 30%;     /*이미지 줄이기 부분이다 */
-=======
-   max-width: 60%;
->>>>>>> 6ca826292e4545cc0d3e0c996c6496a731dc6a21
    max-height: 100%;
    border-radius: 8px; /* 이미지에도 둥근 테두리 적용 */
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 이미지에 그림자 추가 */
@@ -72,6 +68,7 @@ body {
 .image-preview-choice {
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 	width: 20%;
 }
 
