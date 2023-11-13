@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
-<jsp:include page="../inn/head/registerForm.jsp"/>
+<%-- <jsp:include page="../inn/head/registerForm.jsp"/> --%>
 <jsp:include page="../inn/navbar.jsp"/>
 <!-- 메인 -->
       <main role="main" class="main-content">
