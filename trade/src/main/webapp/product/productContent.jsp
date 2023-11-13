@@ -120,7 +120,7 @@ $(document).ready(function() {
                   </c:when>
                   <c:otherwise>
                      <c:choose>
-                        <c:when test="${sessionScope.id eq dto.user_id}">
+                        <c:when test="${sessionScope.user_id eq dto.user_id}">
                            <!-- 로그인한 사용자 == 글 작성자 -->
                            <div class="dropdown">
                               <input class="update-content-button" type="button" value="...">
@@ -131,7 +131,7 @@ $(document).ready(function() {
                               </div>
                            </div>
                         </c:when>
-                        <c:when test="${sessionScope.id ne dto.user_id}">
+                        <c:when test="${sessionScope.user_id ne dto.user_id}">
                            <!-- 로그인한 사용자 != 글 작성자 -->
                            <input class="complain-button" type="button" value="🚨"
                               onclick="openComplainModal();">
@@ -237,10 +237,10 @@ $(document).ready(function() {
 
 <c:if test="${dto.deal_way.equals('삽니다')}">
     <c:choose>
-        <c:when test="${empty sessionScope.id}">
+        <c:when test="${empty sessionScope.user_id}">
             <button class="submit-button" onclick="requireLogin();">판매 제안</button>
         </c:when>
-        <c:when test="${sessionScope.id eq dto.user_id}">
+        <c:when test="${sessionScope.user_id eq dto.user_id}">
             <button class="submit-button" onclick="openSuggestModal();">거래 제안 현황</button>
         </c:when>
         <c:otherwise>
@@ -287,7 +287,7 @@ $(document).ready(function() {
                 <p id="noSell">판매 등록 상품이 없습니다.</p>
                 <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
             </c:if>
-            <c:if test="${empty sessionScope.id}">
+            <c:if test="${empty sessionScope.user_id}">
                 <p id="noSell">로그인이 필요합니다. <a href="../main/login.member">로그인</a></p>
             </c:if>
 			<button class="submit-button" onclick="submitProductOffer();">판매 제안</button>

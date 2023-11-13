@@ -14,6 +14,9 @@ import com.itwillbs.util.ActionForward;
 
 public class MypageProductboardAction implements Action {
 
+	
+	// 안쓰는 파일!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! memberinfoaction에 합쳤음!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MypageProductboardAction_execute() 실행");
@@ -39,6 +42,7 @@ public class MypageProductboardAction implements Action {
 		forward.setRedirect(false);
 	
 		return forward;
+		
 	}
 
 }
