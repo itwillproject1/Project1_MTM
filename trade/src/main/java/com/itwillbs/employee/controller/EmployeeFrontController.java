@@ -115,7 +115,7 @@ public class EmployeeFrontController extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals("/MemberProfile.emp")) {
+		else if(command.equals("/ProfileContent.emp")) {
 			// 프로필 상세 보기(직원)
 			action = new ProfileAction();
 			try {
@@ -124,17 +124,7 @@ public class EmployeeFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		
-		else if(command.equals("/ProfileChangeForm.emp")) {
-			// 프로필 편집 페이지(관리자)
-			action = new ProfileAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
+
 		else if(command.equals("/ProfileChangeAction.emp")) {
 			// 프로필 편집 실행(관리자)
 			action = new ChangeProfileAction();

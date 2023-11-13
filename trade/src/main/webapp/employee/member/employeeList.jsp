@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inn/head/employeeList.jsp"/>
+<title>직원 목록</title>
 <jsp:include page="../inn/navbar.jsp"/>
       <!-- 메인(데이터가 쌓일 때 진행) -->
 	<main role="main" class="main-content">
@@ -10,7 +11,7 @@
             <div class="col-12">
               <div class="row align-items-center my-4">
                 <div class="col">
-                  <h2 class="h3 mb-0 page-title">Contacts</h2>
+                  <h2 class="h3 mb-0 page-title">직원 목록</h2>
                 </div>
                 <div class="col-auto">
                   <button type="button" class="btn btn-primary" onclick="location.href='./EmployeeRegisterForm.emp'"><span class="fe fe-filter fe-12 mr-2"></span>직원 생성</button>

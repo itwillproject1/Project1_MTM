@@ -15,10 +15,12 @@ public class RegisterAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		MemberDTO dto = new MemberDTO();
+		request.setCharacterEncoding("UTF-8");
 		dto.setEmp_id(request.getParameter("emp_id"));
 		dto.setEmp_pw(request.getParameter("emp_pw"));
 		dto.setEmail(request.getParameter("email"));
 		dto.setAddress(request.getParameter("address"));
+		dto.setTel(request.getParameter("tel"));
 		dto.setName(request.getParameter("name"));
 		
 		MemberDAO dao = new MemberDAO();

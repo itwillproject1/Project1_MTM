@@ -127,8 +127,7 @@ public class MemberDAO extends DAO{
 		public void employeeRegister(MemberDTO dto) {
 			try {
 				con = getCon();
-				sql = "insert into Employees (emp_id, emp_pw, name, email, tel, address, regdate)　"
-						+ "values(?,?,?,?,?,?,now())";
+				sql = "insert into Employees (emp_id, emp_pw, name, email, tel, address, join_date) values(?,?,?,?,?,?,now())";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, dto.getEmp_id());
 				pstmt.setString(2, dto.getEmp_pw());

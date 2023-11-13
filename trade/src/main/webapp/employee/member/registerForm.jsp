@@ -11,7 +11,7 @@
   </c:if>
     <div class="wrapper vh-100">
       <div class="row align-items-center h-100">
-        <form action="./RegisterAction.emp" method="post" class="col-lg-6 col-md-8 col-10 mx-auto">
+        <form action="./EmployeeRegisterAction.emp" method="post" class="col-lg-6 col-md-8 col-10 mx-auto">
           <div class="mx-auto text-center my-4">
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
               <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 331.617">
@@ -23,30 +23,30 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="name">이름</label>
-              <input type="text" id="name" class="form-control">
+              <input type="text" name="name" id="name" class="form-control">
             </div>
             <div class="form-group col-md-6">
               <label for="tel">전화번호</label>
-              <input type="text" id="tel" class="form-control">
+              <input type="text" name="tel" id="tel" class="form-control">
             </div>
           </div>
           <div class="form-group">
             <label for="inputaddr">주소</label>
-            <input type="text" class="form-control" id="inputaddr">
+            <input type="text" name="address" class="form-control" id="inputaddr">
           </div>
           <div class="form-group">
             <label for="inputEmail">이메일</label>
-            <input type="text" class="form-control" id="inputEmail">
+            <input type="text" name="email" class="form-control" id="inputEmail">
           </div>
           <hr class="my-4">
               <div class="form-row">
             	<div class="form-group col-md-6">
               		<label for="emp_id">사번</label>
-              		<input type="text" id="emp_id" class="form-control">
+              		<input type="text" name="emp_id" id="emp_id" class="form-control">
             	</div>
             	<div class="form-group col-md-6">
               		<label for="emp_pw">비밀번호</label>
-              		<input type="password" id="emp_pw" class="form-control">
+              		<input type="password" name="emp_pw" id="emp_pw" class="form-control">
             	</div>
           </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">추가</button>
