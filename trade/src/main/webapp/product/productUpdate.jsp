@@ -14,7 +14,14 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productUpdate.css" rel="stylesheet" />
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script type="text/javascript">
+/* $(document).ready(function() {
+	$('#load-img').click(function() {
+		$('#deletebtn${i}').html('추가하기');
+	});
+} */
+</script>
 <title>글쓰기</title>
 </head>
 
@@ -196,7 +203,7 @@
 
 		<div class="form-container">
 			<h2>글 수정하기</h2>
-			<form action="./ProductUpdateProAction.com?bno=${pdto.bno}" method="post" enctype="multipart/form-data">
+			<form action="./ProductUpdateProAction.com?bno=${pdto.bno}"<%-- 나중에 서버에 올라간 파일 삭제 해야댐 --%> method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="dealWay">거래 방식:</label> <select id="deal_way"
 						name="deal_way" onchange="updateSecondDropdown2()">
@@ -217,22 +224,22 @@
 				</div>
 
 				<div class="form-group">
-					<label for="productBrand">브랜드:</label> <select id="brand"
-						name="brand">
+					<label for="productBrand">브랜드:</label>
+					<select id="brand" name="brand">
 						<option disabled selected>브랜드를 선택하세요</option>
 					</select>
 				</div>
 
 				<div class="form-group">
-					<label for="productCondition">상품 상태:</label> <select
-						id="product_status" name="product_status">
+					<label for="productCondition">상품 상태:</label>
+					<select id="product_status" name="product_status">
 						<option disabled selected>상품 상태를 선택하세요</option>
 					</select>
 				</div>
 
 				<div class="form-group">
-					<label for="productPrice">가격(원):</label> <input type="number"
-						id="price" name="price" value="${pdto.price }" step="10">
+					<label for="productPrice">가격(원):</label>
+					<input type="number" id="price" name="price" value="${pdto.price }" step="10">
 				</div>
 				
 				<div class="form-group">
@@ -243,16 +250,17 @@
 							<div id="load-img">
 							<%-- 글자 클릭 시 showImagePreview() 함수 호출 --%>
 								<input type="text" id="fni${i}" name="file_name${i }" value="${fileNameArr[i-1]}"
-									style="cursor: pointer;" onclick="showImagePreview(${i})" class="fntext" readonly>
+									onclick="showImagePreview(${i})" class="fntext" readonly>
 								
 								<!-- 수정하기 또는 추가하기 버튼 클릭 시 아래 input 태그 나타남 -->
 								<c:if test="${fileNameArr[i-1] != null}">
-									<button type="button" class="updateImg" onclick="showFileInput(${i })">수정하기</button>
+									<button type="button" class="updateImg" onclick="showFileInput(${i })" id="fbtn${i }">수정하기</button>
 								</c:if>
 								<c:if test="${fileNameArr[i-1] == null}">
-									<button type="button" class="updateImg" onclick="showFileInput(${i })">추가하기</button>
+									<button type="button" class="updateImg" onclick="showFileInput(${i })"id="fbtn${i }">추가하기</button>
 								</c:if>
-								<!-- x로 삭제하는 버튼도 필요함, ajax 사용 -->
+
+								<button type="button" class="deleteImg" onclick="deleteImage(${i })" id="deletebtn${i}">삭제</button>
 								
 							</div>
 							
@@ -281,9 +289,11 @@
 	</div>
 
 	<script>
-	<!-- 이미지 미리보기 관련 스크립트 -->
-		function previewImage(index) {
-			var fileInput = document.getElementById("file" + index);
+		<!-- 이미지 미리보기 관련 스크립트 -->
+		function previewImage(i) {
+			const fileNameE = document.getElementById('fni' + i);
+	        const fileName = fileNameE.value;
+	        var fileInput = document.getElementById("file" + i);
 			var imagePreview = document.getElementById("imagePreview");
 
 			if (fileInput && fileInput.files && fileInput.files[0]) {
@@ -293,8 +303,8 @@
 				};
 				reader.readAsDataURL(fileInput.files[0]);
 			} else {
-				// 파일이 선택되지 않았을 때의 처리 (미리보기 이미지 제거)
-				imagePreview.src = "";
+		        // 이미지의 src를 해당 파일의 경로로 설정
+		        imagePreview.src = "<%= request.getContextPath() %>/upload/" + fileName;
 			}
 		}
 		
@@ -308,28 +318,39 @@
 		    imagePreview.src = "<%= request.getContextPath() %>/upload/" + fileName;
 		  }
 		
-	<!-- 수정하기 누르면 파일 인풋태그 나타나게 -->
+		<!-- 수정하기 누르면 파일 인풋태그 나타나게 -->
 		function showFileInput(i) {
 			  const fileInput = document.getElementById('file' + i);
 			  const fniInput = document.getElementById('fni' + i);
 			  
 			  // 인풋태그 나타내기
-			  if (fileInput.style.display === 'none') {
-			    fileInput.style.display = 'block';
-			  } else {
-			    fileInput.style.display = 'none';
-			  }
+			  fileInput.style.display = fileInput.style.display === 'none' ? 'block' : 'none';
 			  
 			  // 파일 입력하면 해당 파일명으로 변경
 			  fileInput.addEventListener('change', function () {
-			        const selectedFile = fileInput.files[0];
-			        if (selectedFile) {
-			        	fniInput.value = selectedFile.name;
-			        } else {
-			        	fniInput.value = '';
-			        }
-			   });
+		            const selectedFile = fileInput.files[0];
+		            fniInput.value = selectedFile ? selectedFile.name : '';
+		        });
 		}
+		
+		<!-- 파일 삭제 -->
+		function deleteImage(i, action) {
+			const fniInput = document.getElementById('fni' + i);
+	        const fileInput = document.getElementById('file' + i);
+	        const imagePreview = document.getElementById('imagePreview');
+
+	        // 파일 입력 초기화
+	        fileInput.value = "";
+	        fileInput.dispatchEvent(new Event('change'));
+
+	        // 파일명 초기화
+	        fniInput.value = "";
+
+	        // 이미지 미리보기 감추기
+	        imagePreview.src = "";
+		}
+		
+		
 	</script>
 
 </body>

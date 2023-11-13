@@ -20,37 +20,43 @@
 <link href="../css/productContent.css" rel="stylesheet" />
 <link href="../css/productPopup.css" rel="stylesheet" />
 <title>상세페이지</title>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 			// 좋아요 버튼 클릭 시 실행되는 ajax
-			$(document).on('click','#like',function() {
+			$('#like').on('click',function() {
 				// 현재 URL에서 bno 값 추출
 				var urlParams = new URLSearchParams(window.location.search);
 				var bno = urlParams.get('bno');
-				$.ajax({
-					url : "./LikeCheck.com",
-					type : 'POST',
-					data : {bno : bno},
-					success : function(response) {
-						var result = response.split('\n')[0].trim();
-						var like_count = response.split('\n')[1].trim();
-						console.log("데이터 변환됨: "+ result);
-						console.log("like_count: "+ like_count);
-
-						$("#like_count").text(like_count);
-						console.log($("#like_count").text());
-
-						if (result === "1") {
-							$("#do_like").html("<img alt='찜하기' src='./img/heart1.png' width='12px'>");
-						} else if (result === "0") {
-							$("#do_like").html("<img alt='찜하기' src='./img/heart0.png' width='12px'>");
-						} else {
-							$("#do_like").text("오류! 리턴값 -1");
+				var login_id = '<%= session.getAttribute("user_id") %>';
+				console.log(login_id);
+				
+				if(login_id == "null") {
+					console.log("로그인 필요");
+					alert('해당 기능은 로그인이 필요합니다');
+				} else {
+					console.log("로그인 완료");
+						$.ajax({
+						url : "./LikeCheck.com",
+						type : 'POST',
+						data : {bno : bno},
+						success : function(response) {						
+							var result = response.split('\n')[0].trim();
+							var like_count = response.split('\n')[1].trim();
+							
+							$("#like_count").text(like_count);
+							console.log($("#like_count").text());
+		
+							if (result === "1") {
+								$("#do_like").html("<img alt='찜하기' src='./img/heart1.png' width='12px'>");
+							} else if (result === "0") {
+								$("#do_like").html("<img alt='찜하기' src='./img/heart0.png' width='12px'>");
+							} else {
+								$("#do_like").text("오류! 리턴값 -1");
+							}
 						}
-					}
-				});
+					});					
+				}
 			});
 		});
 </script>
@@ -97,8 +103,6 @@
 			</script>
 			<!-- 이미지 영역 종료 -->
 
-
-
 			<div class="form-container">
 				<h2>
 					상세 페이지
@@ -114,7 +118,7 @@
 									<div class="dropdown">
 										<input class="update-content-button" type="button" value="...">
 										<div class="dropdown-content" style="display: none;">
-											<button onclick="location.href='./updateContent.com?bno=${dto.bno}';">글 수정하기</button>
+											<button onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';">글 수정하기</button>
 											<button onclick="confirmDelete();">글 삭제하기</button>
 										</div>
 									</div>
@@ -129,16 +133,22 @@
 
 				</h2>
 				<div class="form-group">
+					<label for="user">작성일자: <fmt:formatDate pattern="yyyy-MM-dd" value="${dto.date_time}" />
+					</label>
+				</div>
+				<div class="form-group">
 					<label for="user">작성자:
 						<button class="profile-button" onclick="openProfileModal();">${dto.user_id }</button>
 					</label>
 				</div>
+				
+				<!-- 프로필 모달 시작 -->
 				<div id="profileModal" class="modal">
 					<div class="modal-content">
 						<!-- 모달 내용 -->
 						<h2>
-							<img src="" alt="프로필"> ${dto.user_id} (평점) <span
-								class="close-button" onclick="closeProfileModal();">&times;</span>
+							<img src="" alt="프로필"> ${dto.user_id} (평점)
+							<span class="close-button" onclick="closeProfileModal();">닫기</span>
 						</h2>
 
 						<h3 id="h3">${dto.user_id}님의판매 상품 목록</h3>
@@ -184,6 +194,7 @@
 						</c:if>
 					</div>
 				</div>
+				<!-- 프로필 모달 종료 -->
 
 				<div class="form-group">
 					<label for="user">조회수: ${dto.views }</label>
@@ -209,8 +220,10 @@
 
 				<c:if test="${dto.deal_way.equals('팝니다') }">
 					<div class="button-container">
+						<c:if test="${sessionScope.user_id ne dto.user_id}">
 						<input class="submit-button" type="button" value="구매하기"
 							onclick="location.href='결제페이지';">
+						</c:if>
 
 						<!-- 찜 기능 시작 -->
 						<button class="submit-button" id="like">
@@ -244,14 +257,13 @@
 				<!-- 판매하기 모달 -->
 				<div id="sellModal" class="modal">
 					<div class="modal-content">
-						<span class="close" onclick="closeProductModal()">&times;</span>
+						<span class="close-button" onclick="closeProductModal()">닫기</span>
 						<div id="productInfo">
 							<!-- 상품 정보 -->
 
 							<c:if test="${!empty sellProduct}">
 								<h2>${sessionScope.user_id }님의판매 상품 목록</h2>
-								<form id="SuggestSellForm"
-									action="./SuggestSell.com?bno=${dto.bno }" method="post">
+								<form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
 									<c:forEach var="sellProduct" items="${sellProduct}">
 										<div>
 											<input type="checkbox" id="sellCheckbox" class="productCheckbox"
@@ -339,7 +351,7 @@
 				<!-- 거래 제안 현황 모달 시작-->
 				<div id="suggestProductModal" class="modal">
 					<div class="modal-content">
-						<span class="close" onclick="closeSuggestModal()">&times;</span>
+						<span class="close-button" onclick="closeSuggestModal()">닫기</span>
 						<div id="productInfo"
 							style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
 							<!-- 상품 정보 -->
@@ -347,15 +359,14 @@
 								<form action="결제페이지" method="post" id="SubmitSuggestForm">
 									<!-- 거래 제안 들어온 상품 목록 가져오기 -->
 									<c:forEach var="spdto" items="${spdto }">
+									<c:set var="fileNameArr2" value="${fn:split(spdto.file_name, ',')}" />
 										<div>
 											<input type="radio" id="sellCheckbox" class="productCheckbox"
-												name="sell_bno" value="${ssdto.sell_bno }"> <img
-												id="sellImage"
-												src="<%=request.getContextPath()%>/upload/${spdto.file_name }"
-												alt="미리보기">
-										</div>
-										<div>
-											<span id="sellDiv">
+												name="sell_bno" value="${spdto.sell_bno }">
+												<div id="productList" onclick="location.href='./ProductContent.com?bno=${spdto.bno}';">
+												
+												<img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr2[0] }" alt="미리보기">
+												<span id="sellDiv">
 												<span>상품명: ${spdto.title}<br></span>
 												<span>상품상태: ${spdto.product_status}<br></span>
 												<span>가격:
@@ -363,10 +374,11 @@
 													<span id="priceSpan2"><fmt:formatNumber value="${dto.price}" />원 </span>
 												</span>
 											</span>
+											</div>
 											<hr id="hr1">
 										</div>
 									</c:forEach>
-									<button class="submit-button" onclick="submitSuggest();">거래 하기</button>
+									<button type="button" class="submit-button" onclick="submitSuggest();">거래 하기</button>
 								</form>
 							</c:if>
 							<c:if test="${empty suggestList }">
@@ -610,6 +622,8 @@
 			}
 
 			function submitSuggest() {
+				event.preventDefault();
+				
 				var result = confirm('해당 상품을 구매하시겠습니까?');
 
 				if (result === true) {
@@ -617,7 +631,6 @@
 				} else {
 					alert('거래를 취소하셨습니다');
 					closeSuggestModal();
-					/* 자꾸 submit됨..... */
 				}
 			}
 		</script>
