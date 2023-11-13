@@ -54,7 +54,15 @@
             ${user_id }님   |   
             <a href="../main/MemberLogout.member" id="logoutLink">로그아웃</a>
             </c:if>
+            
+            <!-- 아이디x 글등록 => 로그인창 --> 
+            <c:if test="${empty user_id }">
+            <a href="../main/login.member" id="loginLink">글등록</a>
+            </c:if>
+            <c:if test="${!empty user_id }">
             <a href="../product/ProductUpload.com">글등록</a>
+            </c:if>
+            
             <a href="#">찜</a>
             <a href="../member/MemberInfo.member">마이페이지</a>
         </span>	

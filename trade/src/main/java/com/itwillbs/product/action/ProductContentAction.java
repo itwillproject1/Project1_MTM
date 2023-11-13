@@ -1,6 +1,7 @@
 package com.itwillbs.product.action;
 
 import java.io.FileInputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,13 +80,15 @@ public class ProductContentAction implements Action {
 		
 		request.setAttribute("spdto", spdto);
 		
+		
+		
 		// 페이지 이동 준비(./productContent.jsp)
 		ActionForward forward = new ActionForward();
 		forward.setPath("./productContent.jsp");
 		forward.setRedirect(false);
 
 		return forward;
-
 	}
+	
 
 }

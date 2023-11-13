@@ -108,12 +108,12 @@
 					상세 페이지
 
 					<c:choose>
-						<c:when test="${empty sessionScope.user_id}">
+						<c:when test="${empty login_id}">
 							<!-- 세션에 사용자 ID가 없을 때 -->
 						</c:when>
 						<c:otherwise>
 							<c:choose>
-								<c:when test="${sessionScope.user_id eq dto.user_id}">
+								<c:when test="${login_id eq dto.user_id}">
 									<!-- 로그인한 사용자 == 글 작성자 -->
 									<div class="dropdown">
 										<input class="update-content-button" type="button" value="...">
@@ -123,7 +123,7 @@
 										</div>
 									</div>
 								</c:when>
-								<c:when test="${sessionScope.user_id ne dto.user_id}">
+								<c:when test="${login_id ne dto.user_id}">
 									<!-- 로그인한 사용자 != 글 작성자 -->
 									<input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
 								</c:when>
@@ -218,164 +218,175 @@
 					<label for="productPrice">가격(원): <fmt:formatNumber value="${dto.price}" /></label>
 				</div>
 
-               </div>
+               
 <!-- 삽니다일때 판매하기 모달창 -->
 <c:if test="${dto.deal_way.equals('삽니다')}">
     <c:choose>
-        <c:when test="${empty sessionScope.id}">
-            <button class="submit-button" onclick="requireLogin();">판매 제안</button>
+        <c:when test="${empty login_id}">
+            <input type="button" class="submit-button" value="판매 제안" onclick="requireLogin();">
         </c:when>
-        <c:when test="${sessionScope.id eq dto.user_id}">
+        <c:when test="${login_id eq dto.user_id}">
             <button class="submit-button" onclick="openSuggestModal();">거래 제안 현황</button>
         </c:when>
-        <c:otherwise>
+        <c:when test="${!empty login_id and login_id ne dto.user_id}">
             <button class="submit-button" onclick="openProductModal();">판매 제안</button>
-        </c:otherwise>
+        </c:when>
     </c:choose>
 </c:if>
-				<c:if test="${dto.deal_way.equals('팝니다') }">
-					<div class="button-container">
-						<c:if test="${sessionScope.user_id ne dto.user_id}">
-						<input class="submit-button" type="button" value="구매하기"
-							onclick="location.href='결제페이지';">
-						</c:if>
 
-						<!-- 찜 기능 시작 -->
-						<button class="submit-button" id="like">
-							<span id="do_like">
-								<c:if test="${likeResult eq 0 }">
-									<img alt="찜하기" src="./img/heart0.png" width="12px">
-								</c:if>
-								<c:if test="${likeResult eq 1 }">
-									<img alt="찜하기" src="./img/heart1.png" width="12px">
-								</c:if>
-							</span> <span id="like_count"> ${dto.like_count} </span>
-						</button>
-						<!--  찜 기능 끝 -->
-					</div>
+<c:if test="${dto.deal_way.equals('팝니다') }">
+	<div class="button-container">
+		<c:if test="${login_id ne dto.user_id}">
+		<input class="submit-button" type="button" value="구매하기"
+			onclick="location.href='결제페이지';">
+		</c:if>
+		
+
+		<!-- 찜 기능 시작 -->
+		<button class="submit-button" id="like">
+			<span id="do_like">
+				<c:if test="${likeResult eq 0 }">
+					<img alt="찜하기" src="./img/heart0.png" width="12px">
 				</c:if>
->>>>>>> cb549af5119a819ad4a9e748fc356c8282b9b074
-
-				<c:if test="${dto.deal_way.equals('삽니다')}">
-					<c:choose>
-						<c:when test="${empty sessionScope.user_id}">
-							<button class="submit-button" onclick="requireLogin();">판매 제안</button>
-						</c:when>
-						<c:when test="${sessionScope.user_id eq dto.user_id}">
-							<button class="submit-button" onclick="openSuggestModal();">거래 제안 현황</button>
-						</c:when>
-						<c:otherwise>
-							<button class="submit-button" onclick="openProductModal();">판매 제안</button>
-						</c:otherwise>
-					</c:choose>
+				<c:if test="${likeResult eq 1 }">
+					<img alt="찜하기" src="./img/heart1.png" width="12px">
 				</c:if>
+			</span> <span id="like_count"> ${dto.like_count} </span>
+		</button>
+		<!--  찜 기능 끝 -->
+	</div>
+</c:if>
 
-				<!-- 판매하기 모달 -->
-				<div id="sellModal" class="modal">
-					<div class="modal-content">
-						<span class="close-button" onclick="closeProductModal()">닫기</span>
-						<div id="productInfo">
-							<!-- 상품 정보 -->
 
-							<c:if test="${!empty sellProduct}">
-								<h2>${sessionScope.user_id }님의판매 상품 목록</h2>
-								<form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
-									<c:forEach var="sellProduct" items="${sellProduct}">
-										<div>
-											<input type="checkbox" id="sellCheckbox" class="productCheckbox"
-												name="sellProductBno" value="${sellProduct.bno }">
-											<%-- <img
-				                           id="sellImage"
-				                           src="<%=request.getContextPath()%>/upload/${sellProd uct.file_name }"
-				                           alt="미리보기"> --%>
-										</div>
-										<div>
-											<span id="sellDiv">
-												<span>상품명: ${sellProduct.title }<br> </span>
-												<span>상품상태: ${sellProduct.product_status }<br></span>
-												<span>
-													가격: <span id="priceSpan"><fmt:formatNumber value="${sellProduct.price }" />원 </span>
-													<span id="priceSpan2"><fmt:formatNumber value="${dto.price}" />원 </span>
-												</span>
-											</span>
-											<hr id="hr1">
-										</div>
-									</c:forEach>
-								</form>
-							</c:if>
-							<c:if test="${empty sellProduct}">
-								<p id="noSell">판매 등록 상품이 없습니다.</p>
-								<button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
-							</c:if>
-							<c:if test="${empty sessionScope.user_id}">
-								<p id="noSell">
-									로그인이 필요합니다. <a href="../main/login.member">로그인</a>
-								</p>
-							</c:if>
-							<button class="submit-button" onclick="submitProductOffer();">판매 제안</button>
-						</div>
-					</div>
-				</div>
+<!-- 판매하기 모달 -->
+<div id="sellModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeProductModal()">닫기</span>
+        <div id="productInfo">
+            <!-- 상품 정보 -->
 
-				<!-- 판매 제안 -->
-				<script>
-					var modal = document.getElementById('sellModal');
+            <c:if test="${!empty sellProduct}">
+                <h2>${login_id }님의 판매 상품 목록</h2>
+                <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
+                    <c:forEach var="sellProduct" items="${sellProduct}">
+                        <div>
+                            <input type="checkbox" id="sellCheckbox" class="productCheckbox" name="sellProductBno"
+                                value="${sellProduct.bno }">
+                            <img id="sellImage" src="<%=request.getContextPath()%>/upload/${sellProduct.file_name }"
+                                alt="미리보기">
+                        </div>
+                        <div>
+                            <span id="sellDiv">
+                                <span>상품명: ${sellProduct.title }<br> </span>
+                                <span>상품상태: ${sellProduct.product_status }<br></span>
+                                <span>
+                                    가격: <span id="priceSpan"><fmt:formatNumber value="${sellProduct.price }" />원
+                                    </span>
+                                    <span id="priceSpan2"><fmt:formatNumber value="${dto.price}" />원 </span>
+                                </span>
+                            </span>
+                            <hr id="hr1">
+                        </div>
+                    </c:forEach>
+                </form>
+            </c:if>
+            <c:if test="${empty sellProduct}">
+                <p id="noSell">판매 등록 상품이 없습니다.</p>
+                <button class="sell-button" onclick="location.href='../product/ProductUpload.com'">판매하러가기</button>
+            </c:if>
+            <c:if test="${empty login_id}">
+                <p id="noSell">로그인이 필요합니다. <a href="../main/login.member">로그인</a></p>
+            </c:if>
+            <button class="submit-button" onclick="submitProductOffer();">판매 제안</button>
+        </div>
+    </div>
+</div>
 
-					function requireLogin() {
-						alert("로그인을 해주세요");
-						window.location.href = "../main/login.member";
-					}
+<!-- 판매 제안 -->
+<script>
+    var modal = document.getElementById('sellModal');
+    var confirmationDone = false; // 중복 확인 완료 여부를 저장하는 변수
 
-					// 판매 제안 모달 열기
-					function openProductModal() {
-						modal.style.display = "block";
-					}
-
-<<<<<<< HEAD
-    // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
-    window.onclick = function(event) {
-        if (event.target == modal) {
-        	modal.style.display = "none";
+    // 로그인이 필요한 경우
+    function requireLogin() {
+        if (login_id === null) {
+            alert("로그인을 해주세요");
+            window.location.href = "../main/login.member";
+        } else {
+            openProductModal(); // 판매 제안 모달 열기
         }
     }
+
+    // 판매 제안 모달 열기
+    function openProductModal() {
+        modal.style.display = "block";
+    }
+
+    // 모달 외부를 클릭하면 모달이 닫히도록 설정
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            confirmationDone = false; // 모달이 닫힐 때 중복 확인 상태 초기화
+        }
+    }
+
+    // 판매 제안 클릭
+    function submitProductOffer() {
+        var checkboxes = document.querySelectorAll('.productCheckbox:checked');
+
+        if (checkboxes.length === 0) {
+            alert("판매할 물품을 선택해주세요");
+        } else {
+            if (!confirmationDone) { // 중복 확인이 아직 안 되었다면
+                var result = confirm('해당 상품을 ${dto.price}원에 판매 제안하시겠습니까?');
+
+                if (result === true) {
+                    // Ajax 요청을 통해 서버에 중복 확인을 요청
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/your-server-endpoint', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            var response = JSON.parse(xhr.responseText);
+
+                            if (response.duplicate) {
+                                alert("이미 제안을 확인했습니다.");
+                            } else {
+                                document.getElementById("SuggestSellForm").submit();
+                                confirmationDone = true; // 중복 확인이 완료되었음을 표시
+                            }
+                        }
+                    };
+
+                    // 서버로 전송할 데이터 (예: 상품 ID 등)
+                    var data = {
+                        productIds: getProductIds(checkboxes)
+                    };
+
+                    xhr.send(JSON.stringify(data));
+                } else {
+                    closeProductModal(); // 모달을 닫도록 호출
+                }
+            } else {
+                // 이미 중복 확인이 완료된 경우에 대한 처리
+                alert("이미 제안을 확인했습니다.");
+            }
+        }
+    }
+
+    // 체크된 상품의 ID 목록을 가져오는 함수
+    function getProductIds(checkboxes) {
+        var productIds = [];
+        checkboxes.forEach(function (checkbox) {
+            productIds.push(checkbox.value);
+        });
+        return productIds;
+    }
+</script>
+
+
 <!-- 삽니다일때 판매하기 모달창 끝-->
-    //판매 제안 클릭
-   /* function submitProductOffer() {
-    var checkboxes = document.querySelectorAll('.productCheckbox:checked');
-=======
-					// 모달 닫기
-					function closeProductModal() {
-						modal.style.display = "none";
-					}
->>>>>>> cb549af5119a819ad4a9e748fc356c8282b9b074
-
-					// 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
-					window.onclick = function(event) {
-						if (event.target == modal) {
-							modal.style.display = "none";
-						}
-					}
-
-					//판매 제안 클릭
-					/* function submitProductOffer() {
-					 var checkboxes = document.querySelectorAll('.productCheckbox:checked');
-
-					 if (checkboxes.length === 0) {
-					     alert("판매할 물품을 선택해주세요");
-					 } else {
-					     var productIds = [];
-
-					     var result = confirm('해당 상품을 ${dto.price}원에 판매 제안하시겠습니까?');
-
-					     if (result === true) {
-					         document.getElementById("SuggestSellForm").submit();
-					     } else {
-					         closeProductModal(); // 모달을 닫도록 호출
-					     }
-					 }
-					} */
-				</script>
-				<!-- 판매 제안 -->
 
 				<!-- 거래 제안 현황 모달 시작-->
 				<div id="suggestProductModal" class="modal">
@@ -389,7 +400,7 @@
 									<!-- 거래 제안 들어온 상품 목록 가져오기 -->
 									<c:forEach var="spdto" items="${spdto }">
 									<c:set var="fileNameArr2" value="${fn:split(spdto.file_name, ',')}" />
-										<div>
+										<%-- <div>
 											<input type="radio" id="sellCheckbox" class="productCheckbox"
 												name="sell_bno" value="${spdto.sell_bno }">
 												<div id="productList" onclick="location.href='./ProductContent.com?bno=${spdto.bno}';">
@@ -405,29 +416,27 @@
 											</span>
 											</div>
 											<hr id="hr1">
-										</div>
+										</div> --%>
 									</c:forEach>
 									<button type="button" class="submit-button" onclick="submitSuggest();">거래 하기</button>
 								</form>
 							</c:if>
 							<c:if test="${empty suggestList }">
 								<p id="noSell">거래 제안 상품이 없습니다.</p>
-							</c:if>
-						</div>
-					</div>
+							</c:if>  
+						</div> 
+					</div> 
 				</div>
 				<!-- 거래 제안 현황 모달 종료-->
-			</div>
-		</div>
 		<div class="form-group">
 			<label for="productDescription">상품 설명: </label> ${dto.content }
 		</div>
+	</div>
+</div>
+				</div>
 
-<<<<<<< HEAD
-
-</script>
 <!-- 판매 제안 -->
-=======
+
 		<!-- 신고하기 모달창 -->
 		<form action="" method="post">
 			<div id="complainModal" class="modal">
@@ -484,7 +493,6 @@
 			</div>
 		</form>
 		<!-- 신고하기 모달창 종료-->
->>>>>>> cb549af5119a819ad4a9e748fc356c8282b9b074
 
 		<script>
 			var complainModal = document.getElementById("complainModal");
