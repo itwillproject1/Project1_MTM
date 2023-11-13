@@ -27,7 +27,7 @@
 
         .in[type="submit"],
         .in[type="button"] {
-            background-color: #007bff;
+            background-color: #222;
             color: #fff;
             padding: 12px 20px;
             border: none;
@@ -37,12 +37,12 @@
 
         .in[type="submit"]:hover,
         .in[type="button"]:hover {
-            background-color: #0056b3;
+            background-color: #000000;
         }
 
         /* Style the "검색하기" button */
         .in[type="button"] {
-            background-color: #00a000;
+            background-color: #222;
         }
 
         /* Style the "주소" input */
