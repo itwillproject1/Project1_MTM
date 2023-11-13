@@ -130,14 +130,13 @@ public class ComplainDAO extends DAO{
 		return result;
 	}
 
-	public ArrayList complainList(String pageCategory, int startRow, int pageSize) {
+	public ArrayList complainList(int startRow, int pageSize) {
 		ArrayList list = null;
 		ComplainDTO dto = null;
 		try {
 			con = getCon();
 			sql = "select * from Complain";
-			if(pageCategory.equals("1")) sql += " where complete = 1";
-			else if(pageCategory.equals("0")) sql += " where complete = 0";
+			sql += " where complete = 0";
 			sql += " order by bno desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -258,7 +257,7 @@ public class ComplainDAO extends DAO{
 		int result = 0;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select count(*) from Complain where complete = 0";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) result = rs.getInt(1);

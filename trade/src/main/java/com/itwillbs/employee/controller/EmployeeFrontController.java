@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.employee.action.EmployeeMainAction;
+import com.itwillbs.employee.action.board.BoardContentAction;
 import com.itwillbs.employee.action.board.BoardInsertAction;
+import com.itwillbs.employee.action.board.BoardListAction;
 import com.itwillbs.employee.action.board.BoardUpdateAction;
 import com.itwillbs.employee.action.complain.ComplainAction;
 import com.itwillbs.employee.action.complain.ComplainListAction;
@@ -18,7 +20,7 @@ import com.itwillbs.employee.action.inquiry.InquiryAction;
 import com.itwillbs.employee.action.inquiry.InquiryContentAction;
 import com.itwillbs.employee.action.inquiry.InquiryListAction;
 import com.itwillbs.employee.action.member.ChangeProfileAction;
-import com.itwillbs.employee.action.member.ChangePwAction;
+import com.itwillbs.employee.action.member.ResetPwAction;
 import com.itwillbs.employee.action.member.DeleteAction;
 import com.itwillbs.employee.action.member.ListAction;
 import com.itwillbs.employee.action.member.LoginAction;
@@ -86,17 +88,17 @@ public class EmployeeFrontController extends HttpServlet{
 			}
 		}
 
-		else if(command.equals("/ChangePwForm.emp")) {
+		else if(command.equals("/ResetPwForm.emp")) {
 			// 비밀번호 변경 페이지(관리자)
 			forward = new ActionForward();
-			forward.setPath("./employee/member/changePwForm.jsp");
+			forward.setPath("./employee/member/resetPwForm.jsp");
 			forward.setRedirect(false);
 			System.out.println("C : " + forward);
 		}
 		
-		else if(command.equals("/ChangePwAction.emp")) {
+		else if(command.equals("/ResetPwAction.emp")) {
 			// 비밀번호 변경 실행(로그인 페이지로 이동)
-			action = new ChangePwAction();
+			action = new ResetPwAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -269,17 +271,21 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/BoardList.emp")) {
-			forward = new ActionForward();
-			forward.setPath("./employee/user/boardList.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/BoardContent.emp")) {
-			forward = new ActionForward();
-			forward.setPath("./employee/user/boardContent.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new BoardContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/BoardWrite.emp")) {

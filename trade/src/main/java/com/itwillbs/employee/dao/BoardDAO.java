@@ -13,7 +13,7 @@ public class BoardDAO extends DAO{
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "select emp_pw from Employee where emp_id = ?";
+			sql = "select emp_pw from Employees where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mdto.getEmp_id());
 			rs = pstmt.executeQuery();
@@ -26,7 +26,8 @@ public class BoardDAO extends DAO{
 							+ " values(?, ?, ?, ?, ?, now(), 0)";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, mdto.getEmp_id());
-					pstmt.setString(2, bdto.getCategory());
+					if(bdto.getCategory().equals("notice")) pstmt.setInt(2, 1);
+					else if(bdto.getCategory().equals("event")) pstmt.setInt(2, 2);
 					pstmt.setString(3, bdto.getSubject());
 					pstmt.setString(4, bdto.getContent());
 					pstmt.setString(5, bdto.getImage());
@@ -46,7 +47,7 @@ public class BoardDAO extends DAO{
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "select emp_pw from Employee where emp_id = ?";
+			sql = "select emp_pw from Employees where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mdto.getEmp_id());
 			rs = pstmt.executeQuery();
@@ -75,7 +76,7 @@ public class BoardDAO extends DAO{
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "select emp_pw from Employee where emp_id = ?";
+			sql = "select emp_pw from Employees where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mdto.getEmp_id());
 			rs = pstmt.executeQuery();
@@ -97,16 +98,18 @@ public class BoardDAO extends DAO{
 		return result;
 	}
 	
-	public ArrayList boardList(int currentPage) {
+	public ArrayList boardList(String pageCategory, int startRow, int pageSize) {
 		ArrayList bList = null;
 		BoardDTO dto = null;
-		int columns = 8;
 		try {
 			con = getCon();
-			sql = "select * from Board limit ?, ?";
+			sql = "select * from Board";
+			if(pageCategory.equals("notice")) sql += " where category = 1";
+			else if(pageCategory.equals("event")) sql += " where category = 2";
+			sql += " order by bno desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, (currentPage - 1) * columns);
-			pstmt.setInt(2, columns);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			bList = new ArrayList();
 			while(rs.next()) {
@@ -155,11 +158,18 @@ public class BoardDAO extends DAO{
 		return dto;
 	}
 	
-	public int boardCount() {
+	public int boardCount(String pageCategory) {
 		int count = 0;
 		try {
 			con = getCon();
 			sql = "select count(*) from Board";
+			if(pageCategory.equals("notice")) {
+				sql += " where category = 1 ";		
+			}
+			else if(pageCategory.equals("event")) {
+				sql += " where category = 2 ";
+			}
+			sql += "order by bno";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) count = rs.getInt(1);
@@ -170,5 +180,39 @@ public class BoardDAO extends DAO{
 		}
 		return count;
 	}
-	
+
+	public ArrayList boardList(String pageCategory, String search, String searchKeyword, int startRow, int pageSize) {
+		ArrayList bList = null;
+		BoardDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from Board";
+			if(pageCategory.equals("notice")) sql += " where category = 1";
+			else if(pageCategory.equals("event")) sql += " where category = 2";
+			sql += "and " + search + " like '%" + searchKeyword + "%'";
+			sql += " order by bno desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			bList = new ArrayList();
+			while(rs.next()) {
+				dto = new BoardDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setCategory(rs.getString("category"));
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setImage(rs.getString("image"));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				bList.add(dto);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return bList;
+	}
 }

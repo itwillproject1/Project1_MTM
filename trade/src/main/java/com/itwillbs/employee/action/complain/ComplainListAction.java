@@ -19,10 +19,6 @@ public class ComplainListAction implements Action{
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum = "1";
 		
-		// all, 0, 1
-		String pageCategory = request.getParameter("pageCategory");
-		if(pageCategory == null) pageCategory = "all";
-		
 		ComplainDAO dao = new ComplainDAO();
 		
 		int count = dao.complainedUserCount();
@@ -69,12 +65,8 @@ public class ComplainListAction implements Action{
 
 		/******************* 페이징처리 2 *********************/
 		
-		ArrayList list;
-		if(pageCategory.equals("suspended")) {
-			list = dao.suspendedList(startRow, pageSize);
-		}
-		else
-			list = dao.complainList(pageCategory, startRow, pageSize);
+
+		ArrayList list = dao.complainedUserList(startRow, pageSize);
 		
 		if(list == null)list = new ArrayList();
 		
@@ -83,12 +75,11 @@ public class ComplainListAction implements Action{
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
-		request.setAttribute("pageCategory", pageCategory);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		forward.setPath("./employee/user/inquiryList.jsp");
+		forward.setPath("./employee/user/complainList.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

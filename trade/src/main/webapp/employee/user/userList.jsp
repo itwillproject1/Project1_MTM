@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-md-auto ml-auto text-right">
                   <button type="button" class="btn" data-toggle="modal" data-target=".modal-slide"><span class="fe fe-filter fe-16 text-muted"></span></button>
-                  <button type="button" class="btn" onclick="location.href='./TradeList.emp';"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
+                  <button type="button" class="btn" onclick="location.href='./UserList.emp';"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
                 </div>
               </div>
               <!-- Slide Modal -->
