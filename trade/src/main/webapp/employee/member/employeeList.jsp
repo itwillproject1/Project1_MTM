@@ -56,8 +56,15 @@
                             </button>
                             <div class="dropdown-menu m-2">
                             	<a class="dropdown-item" href="./ProfileContent.emp?emp_id=${i.emp_id}"><i class="fe fe-user fe-12 mr-4"></i>상세 정보</a>
-                              <c:if test="${sessionScope.emp_id == 'admin'}">                              
-                              	<a class="dropdown-item" href="./EmployeeDeleteForm.emp?emp_id=${i.emp_id}"><i class="fe fe-delete fe-12 mr-4"></i>삭제</a>
+                              <c:if test="${i.active == 1 }">
+                              	<c:if test="${sessionScope.emp_id == 'admin'}">                              
+                              		<a class="dropdown-item" href="./EmployeeDeleteForm.emp?emp_id=${i.emp_id}"><i class="fe fe-delete fe-12 mr-4"></i>직원 비활성화</a>
+                              	</c:if>
+                              </c:if>
+                              <c:if test="${i.active == 0 }">
+                              	<c:if test="${sessionScope.emp_id == 'admin'}">                              
+                              		<a class="dropdown-item" href="./EmployeeActiveForm.emp?emp_id=${i.emp_id}"><i class="fe fe-delete fe-12 mr-4"></i>직원 활성화</a>
+                              	</c:if>
                               </c:if>
                             </div>
                           </div>
