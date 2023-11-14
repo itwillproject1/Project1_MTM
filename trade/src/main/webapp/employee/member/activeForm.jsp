@@ -8,7 +8,7 @@
   	<title>직원 활성화</title>
   </head>
   <body class="light ">
-  <c:if test="${sessionScope.emp_id == null or sessionScope.emp_id != admin}">
+  <c:if test="${sessionScope.emp_id == null or sessionScope.emp_id != 'admin'}">
   	<c:redirect url="./Main.emp"/>
   </c:if>
     <div class="wrapper vh-100">

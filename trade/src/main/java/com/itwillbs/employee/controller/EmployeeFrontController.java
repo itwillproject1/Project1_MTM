@@ -100,7 +100,7 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 
 		else if(command.equals("/ResetPwForm.emp")) {
-			// 비밀번호 변경 페이지(관리자)
+			// 비밀번호 초기화 페이지
 			forward = new ActionForward();
 			forward.setPath("./employee/member/resetPwForm.jsp");
 			forward.setRedirect(false);
@@ -108,7 +108,7 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/ResetPwAction.emp")) {
-			// 비밀번호 변경 실행(로그인 페이지로 이동)
+			// 비밀번호 초기화 실행
 			action = new ResetPwAction();
 			try {
 				forward = action.execute(request, response);
@@ -118,12 +118,14 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/ResetPwConfirm.com")) {
+			// 비밀번호 초기화 확인
 			forward = new ActionForward();
 			forward.setPath("./employee/member/resetPwConfirm.jsp");
 			forward.setRedirect(false);
 		}
 		
 		else if(command.equals("/EmployeeList.emp")) {
+			// 직원 목록
 			action = new ListAction();
 			try {
 				forward = action.execute(request, response);
@@ -170,6 +172,7 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/EmployeeActiveForm.emp")) {
+			// 직원 활성화 폼
 			action = new ActiveFormAction();
 			try {
 				forward = action.execute(request, response);
@@ -179,6 +182,7 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/EmployeeActiveAction.emp")) {
+			// 직원 활성화 진행
 			action = new ActiveAction();
 			try {
 				forward = action.execute(request, response);
@@ -188,6 +192,7 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/EmployeeActiveConfirm.emp")) {
+			// 직원 활성화 확인
 			action = new ActiveConfirmAction();
 			try {
 				forward = action.execute(request, response);
@@ -217,6 +222,7 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/EmployeeDeleteConfirm.emp")) {
+			// 직원 비활성화 확인
 			action = new DeleteConfirmAction();
 			try {
 				forward = action.execute(request, response);
@@ -306,10 +312,7 @@ public class EmployeeFrontController extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals(""
-				+ ""
-				+ ""
-				+ "")) {
+		else if(command.equals("/UserSuspendCancelForm.emp")) {
 			action = new SuspendCancelFormAction();
 			try {
 				forward = action.execute(request, response);

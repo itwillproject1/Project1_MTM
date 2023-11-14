@@ -48,6 +48,8 @@
                         	 <c:if test="${i.active == 0}">
                             	<span class="dot dot-lg bg-secondary mr-1"></span> 비활성화 </small>
                         	 </c:if>
+                        	</div>
+                        	<div class="col-auto">
                           <div class="file-action">
                             <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="text-muted sr-only">메뉴</span>
@@ -55,7 +57,7 @@
                             <div class="dropdown-menu m-2">
                             	<a class="dropdown-item" href="./ProfileContent.emp?emp_id=${i.emp_id}"><i class="fe fe-user fe-12 mr-4"></i>상세 정보</a>
                               <c:if test="${sessionScope.emp_id == 'admin'}">                              
-                              	<a class="dropdown-item" href="./EmployeeDeleteForm.emp"><i class="fe fe-delete fe-12 mr-4"></i>삭제</a>
+                              	<a class="dropdown-item" href="./EmployeeDeleteForm.emp?emp_id=${i.emp_id}"><i class="fe fe-delete fe-12 mr-4"></i>삭제</a>
                               </c:if>
                             </div>
                           </div>
