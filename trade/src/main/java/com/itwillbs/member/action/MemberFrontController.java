@@ -216,6 +216,13 @@ public class MemberFrontController extends HttpServlet {
 	
 		}
 		
+		else if(command.equals("/member/findid.member")){
+			
+			forward = new ActionForward();
+			forward.setPath("./findid.jsp");
+			forward.setRedirect(false);
+		}
+		
 		/*
 		else if(command.equals("/member/mypage.member")) {
 		 
