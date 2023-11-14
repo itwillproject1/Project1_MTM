@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -90,7 +91,7 @@ public class SuggestSellDAO {
 				ssdto.setBuyer_user_id(rs.getString("buyer_user_id"));
 				ssdto.setSeller_user_id(rs.getString("seller_user_id"));
 				ssdto.setBuyer_price(rs.getInt("buyer_price"));
-				ssdto.setSeller_price(rs.getInt("seller_price"));				
+				ssdto.setSeller_price(rs.getInt("seller_price"));			
 
 				// 글 하나의 정보를 배열의 한칸에 저장
 				suggestList.add(ssdto);
@@ -105,4 +106,39 @@ public class SuggestSellDAO {
 		return suggestList;
 	} // getSuggestList() 종료
 	
+	// 중복제안 여부확인
+	public List<ProductDTO> getofferOK(List<ProductDTO> sellProduct, int buy_bno) {
+	    ProductDTO pdto = null;
+	    try {
+	        con = getCon();
+	        for(int i = 0; i<sellProduct.size(); i++) {
+	        	pdto = (ProductDTO)sellProduct.get(i);
+	        	String sql = "SELECT * FROM SuggestSell WHERE buy_bno = ? AND sell_bno = ?";
+	 	        pstmt = con.prepareStatement(sql);
+	 	        pstmt.setInt(1, buy_bno);
+	 	        pstmt.setInt(2, pdto.getBno());
+	 	        rs = pstmt.executeQuery();
+
+	 	        if (rs.next()) {
+	 	            // 중복 제안이 존재하면 true 반환
+	 	            pdto.setIsOffered(true);
+	 	            System.out.println("DAO : 중복 제안이 확인되었습니다!");
+	 	        } else {
+	 	            // 중복 제안이 존재하지 않으면 false 반환
+	 	        	pdto.setIsOffered(false);
+	 	            System.out.println("DAO : 중복 제안이 없습니다.");
+	 	        }
+	 	        sellProduct.set(i, pdto);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeDB();
+	    }
+
+	    return sellProduct;
+	}
+		 
+		 
 }
