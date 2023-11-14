@@ -333,9 +333,9 @@
     }
 
     // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+   window.onclick = function(event) {
+        if (event.target == sellModal) {
+        	sellModal.style.display = "none";
         }
     }
 
@@ -356,6 +356,10 @@
                 closeProductModal(); // 모달을 닫도록 호출
             }
         }
+    }
+    
+    function closeProductModal() {
+        modal.style.display = "none";
     }
 </script>
 <!-- 삽니다일때 판매하기 모달창 끝-->
