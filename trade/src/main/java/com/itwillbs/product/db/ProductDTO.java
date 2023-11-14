@@ -18,6 +18,7 @@ public class ProductDTO {
 	private Timestamp date_time; // 글 작성일자, 시간
 	private String file_name; // 첨부파일명
 	private int like_count;
+	private boolean isOffered;
 	
 	// 생성자
 	public ProductDTO() {
@@ -128,13 +129,23 @@ public class ProductDTO {
 	public void setLike_count(int like_count) {
 		this.like_count = like_count;
 	}
+	
+	
+
+	public boolean getIsOffered() {
+		return isOffered;
+	}
+
+	public void setIsOffered(boolean isOffered) {
+		this.isOffered = isOffered;
+	}
 
 	@Override
 	public String toString() {
 		return "ProductDTO [bno=" + bno + ", user_id=" + user_id + ", deal_way=" + deal_way + ", title=" + title
 				+ ", category=" + category + ", brand=" + brand + ", price=" + price + ", product_status="
 				+ product_status + ", content=" + content + ", views=" + views + ", date_time=" + date_time
-				+ ", file_name=" + file_name + ", like_count=" + like_count + "]";
-	}	
-	
+				+ ", file_name=" + file_name + ", like_count=" + like_count + ", isOffered=" + isOffered
+				+ ", toString()=" + super.toString() + "]";
+	}
 }
