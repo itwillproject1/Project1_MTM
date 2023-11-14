@@ -172,8 +172,31 @@ function pay() {
  <!--  내가 올린 상품 끝 -->
  
  
+ <!--  내가 찜한 상품 시작-->
  
+  <div class="title1">내가 찜한 상품</div>
+ <div class="container1">
+	
+		<c:forEach var="product" items="${productlikelist}">
+		<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
+			<div class="product1" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
+			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
+					alt="${product.title}">
+				<div class="product-info">
+					<h3>[${product.deal_way }]${product.title }</h3>
+				</div>
+				<div class="product-price">
+					<p>
+						<fmt:formatNumber value="${product.price }" />
+						원
+					</p>
+				</div>
+			</div>
+			<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
+		</c:forEach>
+</div>
  
+ <!--  내가 찜한 상품 끝 -->
  
  
  
