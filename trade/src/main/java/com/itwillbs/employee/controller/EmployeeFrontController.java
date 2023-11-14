@@ -25,9 +25,14 @@ import com.itwillbs.employee.action.complain.SuspendCancelFormAction;
 import com.itwillbs.employee.action.inquiry.InquiryAction;
 import com.itwillbs.employee.action.inquiry.InquiryContentAction;
 import com.itwillbs.employee.action.inquiry.InquiryListAction;
+import com.itwillbs.employee.action.member.ActiveAction;
+import com.itwillbs.employee.action.member.ActiveConfirmAction;
+import com.itwillbs.employee.action.member.ActiveFormAction;
 import com.itwillbs.employee.action.member.ChangeProfileAction;
 import com.itwillbs.employee.action.member.ResetPwAction;
 import com.itwillbs.employee.action.member.DeleteAction;
+import com.itwillbs.employee.action.member.DeleteConfirmAction;
+import com.itwillbs.employee.action.member.DeleteFormAction;
 import com.itwillbs.employee.action.member.ListAction;
 import com.itwillbs.employee.action.member.LoginAction;
 import com.itwillbs.employee.action.member.ProfileAction;
@@ -164,16 +169,55 @@ public class EmployeeFrontController extends HttpServlet{
 			}
 		}
 		
+		else if(command.equals("/EmployeeActiveForm.emp")) {
+			action = new ActiveFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/EmployeeActiveAction.emp")) {
+			action = new ActiveAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/EmployeeActiveConfirm.emp")) {
+			action = new ActiveConfirmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		else if(command.equals("/EmployeeDeleteForm.emp")) {
-			// 직원 삭제 폼
-			forward = new ActionForward();
-			forward.setPath("./employee/member/deleteForm.jsp");
-			forward.setRedirect(false);
+			// 직원 비활성화 폼
+			action = new DeleteFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/EmployeeDeleteAction.emp")) {
-			// 직원 삭제 진행
+			// 직원 비활성화 진행
 			action = new DeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/EmployeeDeleteConfirm.emp")) {
+			action = new DeleteConfirmAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -11,7 +11,7 @@ public class MemberDAO extends DAO{
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "select emp_pw from Employees where emp_id = ?";
+			sql = "select emp_pw from Employees where emp_id = ? and active = 1";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getEmp_id());
 			rs = pstmt.executeQuery();
@@ -48,6 +48,7 @@ public class MemberDAO extends DAO{
 				result.setTel(rs.getString("tel"));
 				result.setJoin_date(rs.getDate("join_date"));
 				result.setImage(rs.getString("image"));
+				result.setActive(rs.getInt("active"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -114,6 +115,7 @@ public class MemberDAO extends DAO{
 					dto.setTel(rs.getString("tel"));
 					dto.setJoin_date(rs.getDate("join_date"));
 					dto.setImage(rs.getString("image"));
+					dto.setActive(rs.getInt("active"));
 					list.add(dto);
 				}
 			} catch (Exception e) {
@@ -164,6 +166,60 @@ public class MemberDAO extends DAO{
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, pw);
 					pstmt.setString(2, dto.getEmp_id());
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public int employeeInactive(MemberDTO emp, MemberDTO ad) {
+		// employeeInactive() : 직원 비활성화
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "select emp_pw from Employees where emp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ad.getEmp_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(ad.getEmp_pw())) {
+					result = 1;
+					sql = "update Employees set active = 0 where emp_id = ?";
+					pstmt =  con.prepareStatement(sql);
+					pstmt.setString(1, emp.getEmp_id());
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+
+	public int employeeActive(MemberDTO emp, MemberDTO ad) {
+		// employeeActive() : 직원 활성화
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "select emp_pw from Employees where emp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ad.getEmp_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(ad.getEmp_pw())) {
+					result = 1;
+					sql = "update Employees set active = 1 where emp_id = ?";
+					pstmt =  con.prepareStatement(sql);
+					pstmt.setString(1, emp.getEmp_id());
 					pstmt.executeUpdate();
 				}
 				else result = 0;

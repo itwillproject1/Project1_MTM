@@ -41,6 +41,13 @@
                     <div class="card-footer">
                       <div class="row align-items-center justify-content-between">
                         <div class="col-auto">
+                        <small>
+                        	<c:if test="${i.active == 1}">
+                            	<span class="dot dot-lg bg-success mr-1"></span> 활성화 </small>
+                        	 </c:if>
+                        	 <c:if test="${i.active == 0}">
+                            	<span class="dot dot-lg bg-secondary mr-1"></span> 비활성화 </small>
+                        	 </c:if>
                           <div class="file-action">
                             <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="text-muted sr-only">메뉴</span>
