@@ -122,5 +122,67 @@ public class LikeDAO {
 		}
 		return result;
 	} // likeAction(LikeDTO ldto) 종료
+	
+	
+	// 마이페이지에서 내가 찜한 상품만 불러오는 메소드
+	public ArrayList<LikeDTO> getlikeList(String user_id) {
+		ArrayList<LikeDTO> likedtolist = new ArrayList<LikeDTO>();
+		try {
+			// 디비연결정보
+			// 1. 드라이버 로드
+			// 2. 디비 연결
+			con = getCon();
+
+			// 3. SQL 작성(sele&ct) & pstmt 객체
+			sql = "select * from Likes where user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id); // %검색어%
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터 처리
+			// 글정보 전부 가져오기
+			while (rs.next()) {
+				LikeDTO dto = new LikeDTO();
+
+				dto.setBno(rs.getInt("bno"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setDo_like(rs.getInt("do_like"));
+				
+
+				// 글 하나의 정보를 배열의 한칸에 저장
+				likedtolist.add(dto);
+
+				System.out.println(" DAO : 내가 찜한 상품만 배열만들기성공! ");
+				System.out.println(" DAO : " + likedtolist.size());
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		
+		return likedtolist;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
