@@ -116,7 +116,9 @@
 								<c:when test="${login_id eq dto.user_id}">
 									<!-- 로그인한 사용자 == 글 작성자 -->
 									<div class="dropdown">
-										<input class="update-content-button" type="button" value="...">
+										<button class="update-content-button" type="button">
+											<img src="./img/etc-button.png" alt="기타" width="20">
+										</button>
 										<div class="dropdown-content" style="display: none;">
 											<button onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';">글 수정하기</button>
 											<button onclick="confirmDelete();">글 삭제하기</button>
