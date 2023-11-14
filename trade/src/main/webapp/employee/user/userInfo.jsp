@@ -80,6 +80,15 @@
 													</c:if>
                    								</th>
                    							</tr>
+                   							<c:if test="${dto.suspended}">
+                   							<tr>
+                   								<td><strong>계정 정지</strong></td>
+                   								<th class="text-muted">
+                   									<span class="badge badge-pill badge-danger">진행 중</span>
+												</th>
+                   								<td><strong>남은 기간</strong></td><th class="text-muted">${dto.sus_days}</th>
+                   							</tr>
+                   							</c:if>
                    						</tbody>
                    					</table>
                     			</div>
@@ -214,6 +223,10 @@
                         	 <div class="row align-items-center mb-10">
                 				<div class="col">
                   					<h2 class="h5 page-title"><small class="text-muted text-uppercase">${dto.user_nickname}</small><br>${dto.user_id}</h2>
+                				</div>
+                				<div class="col-auto">
+                  					<button type="button" class="btn btn-secondary" onclick="./UserSuspendCancelForm.emp?user_id=${dto.user_id}&suspended=${dto.suspended}">정지 취소</button>
+                  					<button type="button" class="btn btn-primary" onclick="./UserSuspendActiveForm.emp?user_id=${dto.user_id}&suspended=${dto.suspended}">유저 정지</button>
                 				</div>
               				</div>
                   			<div class="row mb-12">

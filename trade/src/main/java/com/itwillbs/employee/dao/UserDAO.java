@@ -131,6 +131,9 @@ public class UserDAO extends DAO{
 				dto.setProfile(rs.getString("profile"));
 				dto.setPay(rs.getInt("pay"));
 				dto.setAgree(rs.getString("agree"));
+				if(rs.getInt("suspended") == 1) dto.setSuspended(true);
+				else dto.setSuspended(false);
+				dto.setSus_days(rs.getInt("sus_days"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

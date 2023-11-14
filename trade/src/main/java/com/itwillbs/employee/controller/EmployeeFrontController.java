@@ -11,11 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.employee.action.EmployeeMainAction;
 import com.itwillbs.employee.action.board.BoardContentAction;
+import com.itwillbs.employee.action.board.BoardDeleteAction;
+import com.itwillbs.employee.action.board.BoardDeleteConfirmAction;
 import com.itwillbs.employee.action.board.BoardInsertAction;
 import com.itwillbs.employee.action.board.BoardListAction;
 import com.itwillbs.employee.action.board.BoardUpdateAction;
-import com.itwillbs.employee.action.complain.ComplainAction;
 import com.itwillbs.employee.action.complain.ComplainListAction;
+import com.itwillbs.employee.action.complain.SuspendActiveAction;
+import com.itwillbs.employee.action.complain.SuspendActiveFormAction;
+import com.itwillbs.employee.action.complain.SuspendCancelAction;
+import com.itwillbs.employee.action.complain.SuspendCancelConfirmAction;
+import com.itwillbs.employee.action.complain.SuspendCancelFormAction;
 import com.itwillbs.employee.action.inquiry.InquiryAction;
 import com.itwillbs.employee.action.inquiry.InquiryContentAction;
 import com.itwillbs.employee.action.inquiry.InquiryListAction;
@@ -104,6 +110,12 @@ public class EmployeeFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		
+		else if(command.equals("/ResetPwConfirm.com")) {
+			forward = new ActionForward();
+			forward.setPath("./employee/member/resetPwConfirm.jsp");
+			forward.setRedirect(false);
 		}
 		
 		else if(command.equals("/EmployeeList.emp")) {
@@ -212,6 +224,7 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/InquiryAction.emp")) {
+			// 문의 답변 등록
 			action = new InquiryAction();
 			try {
 				forward = action.execute(request, response);
@@ -231,8 +244,47 @@ public class EmployeeFrontController extends HttpServlet{
 			}
 		}
 	
-		else if(command.equals("/ComplainAction.emp")) {
-			action = new ComplainAction();
+		else if(command.equals("/UserSuspendActiveForm.emp")) {
+			action = new SuspendActiveFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/UserSuspendActiveAction.emp")) {
+			action = new SuspendActiveAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals(""
+				+ ""
+				+ ""
+				+ "")) {
+			action = new SuspendCancelFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/UserSuspendCancelAction.emp")) {
+			action = new SuspendCancelAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/UserSuspendCancelConfirm.emp")) {
+			action = new SuspendCancelConfirmAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -302,6 +354,25 @@ public class EmployeeFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		
+		else if(command.equals("/BoardDeleteAction.emp")) {
+			action =  new BoardDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardDeleteConfirm.emp")) {
+			action = new BoardDeleteConfirmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		// -- 회원 정보 조회 및 관리
 		
 		// ------------------가상주소 매핑----------------

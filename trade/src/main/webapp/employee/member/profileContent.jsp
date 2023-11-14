@@ -9,6 +9,11 @@
           <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-8">
               <h2 class="h3 mb-4 page-title">프로필</h2>
+               <c:if test="${(sessionScope.emp_id == 'admin' || sessionScope.emp_id == dto.emp_id) and dto.emp_id != 'admin'}">
+                    <!-- <div class="col-auto"> -->
+                  		<button type="button" class="btn btn-danger" onclick="./EmployeeDeleteForm.emp?emp_id=${dto.emp_id}">삭제</button>
+                	<!-- </div> -->
+                    </c:if>
               <div class="my-4">
                	<div class="row mt-5 align-items-center">
                     <div class="col-md-3 text-center mb-5">
