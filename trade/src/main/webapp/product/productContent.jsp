@@ -238,6 +238,10 @@
 
 <c:if test="${dto.deal_way.equals('팝니다') }">
    <div class="button-container">
+   <c:if test="${login_id eq dto.user_id}">
+      <input class="submit-button" type="button" value="판매 제안 현황"
+         onclick="openSuggestListModal();">
+      </c:if>
       <c:if test="${login_id ne dto.user_id}">
       <input class="submit-button" type="button" value="구매하기"
          onclick="location.href='결제페이지';">
@@ -402,13 +406,42 @@
             <!-- 거래 제안 현황 모달 종료-->
             </div>
             </div>
-      <div class="form-group">
-         <label for="productDescription">상품 설명: </label> ${dto.content }
-      </div>
+	      <div class="form-group">
+	         <label for="productDescription">상품 설명: </label> ${dto.content }
+	      </div>
    </div>
 
+	<!-- 판매 제안 현황 리스트 모달 시작 -->
+	<div id="suggestListModal" class="modal">
+		<div class="modal-content">
+        	<span class="close-button" onclick="closeProductModal()">닫기</span>
+			<!-- 모달 내용 -->
 
-<!-- 판매 제안 -->
+			<h3 id="h3">현재 상품의 판매 제안 현황</h3>
+			<c:forEach var="userProduct" items="${userProducts }" varStatus="loopStatus">
+				<c:if test="${userProduct.deal_way == '팝니다'}">
+					<c:if test="${!loopStatus.first}">
+						<hr>
+					</c:if>
+					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
+						<div>
+							<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px">
+						</div>
+						<span id="sellDiv"> <span>상품명: ${userProduct.title}<br></span> <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
+						</span>
+						</span>
+					</div>
+				</c:if>
+			</c:forEach>
+			<c:if test="${empty userProducts}">
+				<p id="noSell">등록 상품이 없습니다.</p>
+			</c:if>
+		</div>
+	</div>
+	<!-- 판매 제안 현황 리스트 모달 종료 -->
+
+
+	<!-- 판매 제안 -->
 
       <!-- 신고하기 모달창 -->
       <form action="" method="post">
@@ -617,7 +650,7 @@
       </script>
       <!-- 프로필 모달창 종료 -->
 
-      <!-- 제안 현황 모달창 시작 -->
+      <!-- 거래 제안 현황 모달창 시작 -->
       <script>
          var spModal = document.getElementById('suggestProductModal');
          // 모달 열기 함수
@@ -650,6 +683,41 @@
             }
          }
       </script>
-      <!-- 제안 현황 모달창 종료 -->
+      <!-- 거래 제안 현황 모달창 종료 -->
+      
+      <!-- 판매 제안 현황 모달창 시작 -->
+      <script>
+         var spModal = document.getElementById('suggestListModal');
+         // 모달 열기 함수
+         function openSuggestListModal() {
+            spModal.style.display = 'block';
+         }
+
+         // 모달 닫기 함수
+         function closeSuggestListModal() {
+            spModal.style.display = 'none';
+         }
+
+         // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
+         window.onclick = function(event) {
+            if (event.target == spModal) {
+               spModal.style.display = "none";
+            }
+         }
+
+         function submitSuggest() {
+            event.preventDefault();
+            
+            var result = confirm('해당 제안을 취소하시겠습니까?');
+
+            if (result === true) {
+               // 제안 취소하기
+            } else {
+               alert('제안을 취소하셨습니다');
+               closeSuggestListModal();
+            }
+         }
+      </script>
+      <!-- 판매 제안 현황 모달창 종료 -->
 </body>
 </html>
