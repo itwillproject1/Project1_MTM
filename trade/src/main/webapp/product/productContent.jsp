@@ -205,7 +205,7 @@
 				</div>
 
 				<div class="form-group">
-					<label for="productBrand">브랜드: <a href="../product/ProductList.com?category=${dto.brand }">${dto.brand }</a></label>
+					<label for="productBrand">브랜드: ${dto.brand }</label>
 				</div>
 
 				<c:if test="${dto.deal_way.equals('팝니다') }">
@@ -400,9 +400,9 @@
 									<!-- 거래 제안 들어온 상품 목록 가져오기 -->
 									<c:forEach var="spdto" items="${spdto }">
 									<c:set var="fileNameArr2" value="${fn:split(spdto.file_name, ',')}" />
-										<%-- <div>
+										<div>
 											<input type="radio" id="sellCheckbox" class="productCheckbox"
-												name="sell_bno" value="${spdto.sell_bno }">
+												name="sell_bno" value="${spdto.bno }">
 												<div id="productList" onclick="location.href='./ProductContent.com?bno=${spdto.bno}';">
 												
 												<img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr2[0] }" alt="미리보기">
@@ -416,7 +416,7 @@
 											</span>
 											</div>
 											<hr id="hr1">
-										</div> --%>
+										</div> 
 									</c:forEach>
 									<button type="button" class="submit-button" onclick="submitSuggest();">거래 하기</button>
 								</form>
@@ -428,12 +428,13 @@
 					</div> 
 				</div>
 				<!-- 거래 제안 현황 모달 종료-->
+				</div>
+				</div>
 		<div class="form-group">
 			<label for="productDescription">상품 설명: </label> ${dto.content }
 		</div>
 	</div>
-</div>
-				</div>
+
 
 <!-- 판매 제안 -->
 
