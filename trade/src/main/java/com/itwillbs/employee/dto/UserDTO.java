@@ -1,5 +1,6 @@
 package com.itwillbs.employee.dto;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class UserDTO {
@@ -16,6 +17,10 @@ public class UserDTO {
 	private String agree;
 	private Timestamp regdate;
 	private int pay;
+	private boolean suspended;
+	private Date sus_date;
+	private int sus_days;
+	
 	public String getUser_id() {
 		return user_id;
 	}
@@ -94,11 +99,30 @@ public class UserDTO {
 	public void setPay(int pay) {
 		this.pay = pay;
 	}
+	public boolean isSuspended() {
+		return suspended;
+	}
+	public void setSuspended(boolean suspended) {
+		this.suspended = suspended;
+	}
+	public Date getSus_date() {
+		return sus_date;
+	}
+	public void setSus_date(Date sus_date) {
+		this.sus_date = sus_date;
+	}
+	public int getSus_days() {
+		return sus_days;
+	}
+	public void setSus_days(int sus_days) {
+		this.sus_days = sus_days;
+	}
 	@Override
 	public String toString() {
 		return "UserDTO [user_id=" + user_id + ", user_pw=" + user_pw + ", email=" + email + ", user_name=" + user_name
 				+ ", jumin=" + jumin + ", gender=" + gender + ", phone=" + phone + ", address=" + address + ", profile="
 				+ profile + ", user_nickname=" + user_nickname + ", agree=" + agree + ", regdate=" + regdate + ", pay="
-				+ pay + ", toString()=" + super.toString() + "]";
+				+ pay + ", suspended=" + suspended + ", sus_date=" + sus_date + ", sus_days=" + sus_days
+				+ ", toString()=" + super.toString() + "]";
 	}
 }

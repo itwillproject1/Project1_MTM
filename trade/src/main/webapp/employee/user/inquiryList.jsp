@@ -49,24 +49,24 @@
                   </c:if>
                   <c:if test="${pageCategory == '1'}">
                   	<li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=link %>&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=link %>&pageNum=1">답변 완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[1]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=link %>&pageNum=1">미완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=0&pageNum=1">미완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[2]}</span></a>
                     </li>
                   </c:if>
                   <c:if test="${pageCategory == '0'}">
                   	<li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=link %>&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=all&pageNum=1">전체 <span class="badge badge-pill bg-white border text-muted ml-2">${count[0]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="<%=link %>&pageNum=1">답변 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
+                      <a class="nav-link text-muted px-2" href="<%=menuLink %>&pageContent=1&pageNum=1">답변 완료 <span class="badge badge-pill bg-white border text-muted ml-2">${count[1]}</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=link %>&pageNum=1">미완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[2]}</span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="<%=menuLink %>&pageContent=0&pageNum=1">미완료 <span class="badge badge-pill bg-primary text-white ml-2">${count[2]}</span></a>
                     </li>
                   </c:if>
                   </ul>
