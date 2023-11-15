@@ -152,6 +152,8 @@ public class ProductDAO {
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
 				dto.setLike_count(rs.getInt("like_count"));
+				dto.setDeal_status(rs.getInt("deal_status"));
+				dto.setDeal_user_id(rs.getString("deal_user_id"));
 			}
 			System.out.println("DAO: 글 정보 조회 완료!");
 		} catch (Exception e) {
@@ -296,6 +298,8 @@ public class ProductDAO {
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
 				dto.setLike_count(rs.getInt("like_count"));
+				dto.setDeal_status(rs.getInt("deal_status"));
+				dto.setDeal_user_id(rs.getString("deal_user_id"));
 
 				// 글 하나의 정보를 배열의 한칸에 저장
 				ProductList.add(dto);
@@ -351,6 +355,8 @@ public class ProductDAO {
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
 				dto.setLike_count(rs.getInt("like_count"));
+				dto.setDeal_status(rs.getInt("deal_status"));
+				dto.setDeal_user_id(rs.getString("deal_user_id"));
 
 				// 글 하나의 정보를 배열의 한칸에 저장
 				ProductList.add(dto);
@@ -405,6 +411,8 @@ public class ProductDAO {
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
 				dto.setLike_count(rs.getInt("like_count"));
+				dto.setDeal_status(rs.getInt("deal_status"));
+				dto.setDeal_user_id(rs.getString("deal_user_id"));
 
 				// 글 하나의 정보를 배열의 한칸에 저장
 				ProductList.add(dto);
@@ -479,6 +487,8 @@ public class ProductDAO {
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
 				dto.setLike_count(rs.getInt("like_count"));
+				dto.setDeal_status(rs.getInt("deal_status"));
+				dto.setDeal_user_id(rs.getString("deal_user_id"));
 
 				// 글 하나의 정보를 배열의 한칸에 저장
 				productPopList.add(dto);
@@ -523,6 +533,8 @@ public class ProductDAO {
 				dto2.setDate_time(rs.getTimestamp("date_time"));
 				dto2.setFile_name(rs.getString("file_name"));
 				dto2.setLike_count(rs.getInt("like_count"));
+				dto2.setDeal_status(rs.getInt("deal_status"));
+				dto2.setDeal_user_id(rs.getString("deal_user_id"));
 				
 				// 글 하나의 정보를 배열의 한칸에 저장
 				productRecList.add(dto2);
@@ -604,7 +616,7 @@ public class ProductDAO {
 		try {
 			con = getCon();
 			// 3. sql 구문 작성(select) & pstmt 객체
-			sql = "SELECT * FROM Product WHERE user_id = ? AND deal_way = ?";
+			sql = "SELECT * FROM Product WHERE user_id = ? AND deal_way = ? AND deal_status = 1";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			pstmt.setString(2, deal_way); // deal_way 파라미터를 사용
@@ -627,6 +639,8 @@ public class ProductDAO {
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
 				dto.setLike_count(rs.getInt("like_count"));
+				dto.setDeal_status(rs.getInt("deal_status"));
+				dto.setDeal_user_id(rs.getString("deal_user_id"));
 
 				// 글 하나의 정보를 리스트에 추가
 				userProducts.add(dto);
@@ -672,6 +686,8 @@ public class ProductDAO {
 				dto.setDate_time(rs.getTimestamp("date_time"));
 				dto.setFile_name(rs.getString("file_name"));
 				dto.setLike_count(rs.getInt("like_count"));
+				dto.setDeal_status(rs.getInt("deal_status"));
+				dto.setDeal_user_id(rs.getString("deal_user_id"));
 				
 				// 글 하나의 정보를 리스트에 추가
 				userProducts.add(dto);
