@@ -140,5 +140,61 @@ public class SuggestSellDAO {
 	    return sellProduct;
 	}
 		 
-		 
+	// 판매를 제안한 모든 글의 bno를 받아오는 메서드 getSuggestSellList()
+	public ArrayList<Integer> getSuggestSellList(int sell_bno) {
+		ArrayList<Integer> suggestSellList = new ArrayList<Integer>();
+		int buy_bno = 0;
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+			// 3. sql 구문 작성(select) & pstmt 객체
+			sql = "select * from SuggestSell where sell_bno=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, sell_bno);
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터 처리
+			// 글 하나의 정보를 DTO에 저장 후 해당 DTO를 ArrayList에 add
+			while (rs.next()) {
+				buy_bno = rs.getInt("buy_bno");	
+
+				// 글 하나의 정보를 배열의 한칸에 저장
+				suggestSellList.add(buy_bno);
+			} // while
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		System.out.println("suggestSellList" + suggestSellList);
+		return suggestSellList;
+	} // getSuggestSellList() 종료
+	
+	// 판매 제안을 취소하는 cancleSuggest()
+	public int cancleSuggest(int sell_bno, String cancle_bno) {
+		int result = -1; // -1(글정보없음, 에러), 0(비밀번호 오류), 1(정상처리)
+
+		try {
+			con = getCon();
+
+			// 비밀번호가 맞을 때
+			// sql, pstmt
+			sql = "delete from SuggestSell where sell_bno=? AND buy_bno IN (" + cancle_bno + ")";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, sell_bno);
+
+			// sql 실행, 결과 저장
+			pstmt.executeUpdate();
+			result = 1;
+			
+			System.out.println("DAO: 제안 취소 완료, 결과: " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return result;
+	} // deleteProduct(bno) 종료
+	
 }

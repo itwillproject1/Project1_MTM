@@ -29,14 +29,11 @@
             var urlParams = new URLSearchParams(window.location.search);
             var bno = urlParams.get('bno');
             var login_id = '<%= session.getAttribute("user_id") %>';
-            console.log(login_id);
             
             if(login_id == "null") {
-               console.log("로그인 필요");
-               alert('해당 기능은 로그인이 필요합니다');
+				alert('해당 기능은 로그인이 필요합니다');
             } else {
-               console.log("로그인 완료");
-                  $.ajax({
+                $.ajax({
                   url : "./LikeCheck.com",
                   type : 'POST',
                   data : {bno : bno},
@@ -257,7 +254,8 @@
             <c:if test="${likeResult eq 1 }">
                <img alt="찜하기" src="./img/heart1.png" width="12px">
             </c:if>
-         </span> <span id="like_count"> ${dto.like_count} </span>
+         </span>
+         <span id="like_count"> ${dto.like_count} </span>
       </button>
       <!--  찜 기능 끝 -->
    </div>
@@ -273,7 +271,7 @@
 
             <c:if test="${!empty sellProduct}">
                 <h2>${login_id }님의 판매 상품 목록</h2>
-                <form id="SuggestSellForm" action="./SuggestSell.com?bno=${dto.bno }" method="post">
+                <form action="./SuggestSell.com?bno=${dto.bno }" method="post" id="SuggestSellForm">
                     <c:forEach var="sellProduct" items="${sellProduct}">
                         <div>
                         <c:if test="${sellProduct.isOffered }">
@@ -370,7 +368,8 @@
                   <span class="close-button" onclick="closeSuggestModal()">닫기</span>
                   <div id="productInfo"
                      style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
-                     <!-- 상품 정보 -->
+                     <!-- 모달 내용 -->
+                     <h3 id="h3">거래 제안 현황</h3>
                      <c:if test="${!empty suggestList }">
                         <form action="결제페이지" method="post" id="SubmitSuggestForm">
                            <!-- 거래 제안 들어온 상품 목록 가져오기 -->
@@ -414,27 +413,31 @@
 	<!-- 판매 제안 현황 리스트 모달 시작 -->
 	<div id="suggestListModal" class="modal">
 		<div class="modal-content">
-        	<span class="close-button" onclick="closeProductModal()">닫기</span>
+			<span class="close-button" onclick="closeSuggestListModal()">닫기</span>
+			
 			<!-- 모달 내용 -->
-
 			<h3 id="h3">현재 상품의 판매 제안 현황</h3>
-			<c:forEach var="userProduct" items="${userProducts }" varStatus="loopStatus">
-				<c:if test="${userProduct.deal_way == '팝니다'}">
-					<c:if test="${!loopStatus.first}">
-						<hr>
-					</c:if>
-					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
+			<c:if test="${!empty ssldto }">
+				<form action="./CancleSuggest.com?bno=${dto.bno }" method="post" id="cancleSuggestForm">
+					<!-- 판매 제안한 상품 리스트 가져오기 -->
+					<c:forEach var="ssldto" items="${ssldto }">
+						<c:set var="fileNameArr3" value="${fn:split(ssldto.file_name, ',')}" />
 						<div>
-							<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px">
+							<input type="checkbox" id="sellCheckbox" class="productCheckbox" name="cancle_bno" value="${ssldto.bno }">
+							<div id="productList" onclick="location.href='./ProductContent.com?bno=${ssldto.bno}';">
+
+								<img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr3[0] }" alt="미리보기"> <span id="sellDiv"> <span>상품명: ${ssldto.title}<br></span> <span>상품상태: ${ssldto.product_status}<br></span> <span>가격: <span id="priceSpan"><fmt:formatNumber value="${dto.price}" />원 </span> <span id="priceSpan2"><fmt:formatNumber value="${ssldto.price}" />원 </span>
+								</span>
+								</span>
+							</div>
+							<hr id="hr1">
 						</div>
-						<span id="sellDiv"> <span>상품명: ${userProduct.title}<br></span> <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
-						</span>
-						</span>
-					</div>
-				</c:if>
-			</c:forEach>
-			<c:if test="${empty userProducts}">
-				<p id="noSell">등록 상품이 없습니다.</p>
+					</c:forEach>
+					<button type="button" class="submit-button" onclick="cancleSuggest();">판매 제안 취소 하기</button>
+				</form>
+			</c:if>
+			<c:if test="${empty ssldto }">
+				<p id="noSell">판매 제안 내역이 없습니다.</p>
 			</c:if>
 		</div>
 	</div>
@@ -576,7 +579,7 @@
          }
       </script>
 
-      <!-- 상세페이지 오른쪽 ... 버튼 -->
+      <!-- 상세페이지 오른쪽 ... 버튼 시작-->
       <script>
          // ... 버튼 클릭 시 드롭다운을 열거나 닫기
          document.addEventListener("DOMContentLoaded", function() {
@@ -609,7 +612,7 @@
       </script>
       <!-- 상세페이지 오른쪽 ... 버튼 종료 -->
 
-      <!-- 삭제하기  -->
+      <!-- 삭제하기 시작 -->
       <script>
          function confirmDelete() {
             // 'confirm' 창을 표시하고 사용자가 확인을 누르면 true를 반환
@@ -679,7 +682,7 @@
                document.getElementById("SubmitSuggestForm").submit();
             } else {
                alert('거래를 취소하셨습니다');
-               closeSuggestModal();
+               location.reload();
             }
          }
       </script>
@@ -687,34 +690,35 @@
       
       <!-- 판매 제안 현황 모달창 시작 -->
       <script>
-         var spModal = document.getElementById('suggestListModal');
+         var slModal = document.getElementById('suggestListModal');
          // 모달 열기 함수
          function openSuggestListModal() {
-            spModal.style.display = 'block';
+            slModal.style.display = 'block';
          }
 
          // 모달 닫기 함수
          function closeSuggestListModal() {
-            spModal.style.display = 'none';
+            slModal.style.display = 'none';
          }
 
          // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
          window.onclick = function(event) {
-            if (event.target == spModal) {
-               spModal.style.display = "none";
+            if (event.target == slModal) {
+               slModal.style.display = "none";
             }
          }
 
-         function submitSuggest() {
+         function cancleSuggest() {
             event.preventDefault();
             
             var result = confirm('해당 제안을 취소하시겠습니까?');
 
             if (result === true) {
                // 제안 취소하기
+            	document.getElementById("cancleSuggestForm").submit();
             } else {
-               alert('제안을 취소하셨습니다');
-               closeSuggestListModal();
+               alert('제안을 유지합니다');
+               location.reload();
             }
          }
       </script>

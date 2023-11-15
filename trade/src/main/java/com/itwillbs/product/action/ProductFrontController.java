@@ -169,7 +169,18 @@ public class ProductFrontController extends HttpServlet{
 			e.printStackTrace();
 		}
       }
-      
+      else if(command.equals("/product/CancleSuggest.com")) {
+    	  System.out.println(" C: /product/CancleSuggest.com 호출");
+    	  System.out.println(" C: 패턴2 - DB 사용 O, 페이지 이동");
+    	  
+    	  action = new CancleSuggestAction();
+    	  
+    	  try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+      }
       System.out.println("---------------2. 가상주소 매핑 종료---------------");
       /************************2. 가상주소 매핑 종료************************/
       

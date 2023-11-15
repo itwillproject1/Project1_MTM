@@ -84,7 +84,17 @@ public class ProductContentAction implements Action {
 		// 이미 제안된 상품의 목록을 가져오는 서비스 호출
 		SuggestSellDAO  isOffered = new SuggestSellDAO();
 		sellProduct = isOffered.getofferOK(sellProduct, bno);
-        
+		
+		/* 판매 제안 리스트 조회에 필요한 정보 */
+		ArrayList<Integer> suggestSellList = ssdao.getSuggestSellList(bno);        
+		ArrayList<ProductDTO> ssldto = new ArrayList<ProductDTO>();
+		
+		for(int i=0; i<suggestSellList.size(); i++) {
+			ssldto.add(dao.getProduct(suggestSellList.get(i)));
+		}
+		
+		request.setAttribute("ssldto", ssldto);
+		
 		// 페이지 이동 준비(./productContent.jsp)
 		ActionForward forward = new ActionForward();
 		forward.setPath("./productContent.jsp");
