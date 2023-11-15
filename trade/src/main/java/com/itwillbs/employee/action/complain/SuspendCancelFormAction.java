@@ -14,6 +14,7 @@ public class SuspendCancelFormAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		UserDTO udto = new UserDTO();
 		udto.setUser_id(request.getParameter("user_id"));
+		request.setAttribute("dto", udto);
 		ComplainDAO cdao = new ComplainDAO();
 		boolean result = cdao.isSuspended(udto);
 		
@@ -24,7 +25,7 @@ public class SuspendCancelFormAction implements Action{
 		}
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./employee/user/userSuspendCancelForm.emp");
+		forward.setPath("./employee/user/userSuspendCancelForm.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

@@ -4,15 +4,15 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 
 public class SuspendDTO {
-	private String reported_id;
+	private String user_id;
 	private Timestamp firstComplainedDate;
 	private int count;
 	private LinkedList<ComplainDTO> reportList;
-	public String getReported_id() {
-		return reported_id;
+	public String getuser_id() {
+		return user_id;
 	}
-	public void setReported_id(String reported_id) {
-		this.reported_id = reported_id;
+	public void setuser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public Timestamp getFirstComplainedDate() {
 		return firstComplainedDate;
@@ -34,7 +34,7 @@ public class SuspendDTO {
 	}
 	@Override
 	public String toString() {
-		return "SuspendDTO [reported_id=" + reported_id + ", firstComplainedDate=" + firstComplainedDate + ", count="
+		return "SuspendDTO [user_id=" + user_id + ", firstComplainedDate=" + firstComplainedDate + ", count="
 				+ count + ", reportList=" + reportList + ", toString()=" + super.toString() + "]";
 	}
 }

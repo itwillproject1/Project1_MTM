@@ -19,7 +19,7 @@
             </svg>
           </a>
           <h1 class="h1 mb-3">유저 정지 취소</h1>
-          <div class="alert alert-danger" role="alert"><strong>${requestScope.user_id}</strong>의 정지가 취소 되었습니다.<br>유저 정보에서 확인 바랍니다.</div>
+          <div class="alert alert-danger" role="alert"><strong>${dto.user_id}</strong>의 정지가 취소 되었습니다.<br>유저 정보에서 확인 바랍니다.</div>
           <button class="btn btn-lg btn-primary btn-block" type="button" onclick="./Main.emp">확인</button>
           <p class="mt-5 mb-3 text-muted">© 2023</p>
       </div>

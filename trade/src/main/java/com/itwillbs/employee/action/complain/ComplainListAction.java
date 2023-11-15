@@ -23,6 +23,7 @@ public class ComplainListAction implements Action{
 		ComplainDAO dao = new ComplainDAO();
 		
 		int count = dao.complainedUserCount();
+		System.out.println(count);
 		
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정

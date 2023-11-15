@@ -225,13 +225,13 @@
                   					<h2 class="h5 page-title"><small class="text-muted text-uppercase">${dto.user_nickname}</small><br>${dto.user_id}</h2>
                 				</div>
                 				<div class="col-auto">
-                  					<button type="button" class="btn btn-secondary" onclick="./UserSuspendCancelForm.emp?user_id=${dto.user_id}&suspended=${dto.suspended}">정지 취소</button>
-                  					<button type="button" class="btn btn-primary" onclick="./UserSuspendActiveForm.emp?user_id=${dto.user_id}&suspended=${dto.suspended}">유저 정지</button>
+                  					<button type="button" class="btn btn-secondary" onclick="location.href='./UserSuspendCancelForm.emp?user_id=${dto.user_id}'">정지 취소</button>
+                  					<button type="button" class="btn btn-primary" onclick="location.href='./UserSuspendActiveForm.emp?user_id=${dto.user_id}'">유저 정지</button>
                 				</div>
               				</div>
                   			<div class="row mb-12">
                   				<div class="col-12 text-center mb-12"  style="margin:auto;">
-              	 					<h3>신고 이력</h3>
+              	 					<h3>정지 이력</h3>
                   					<table class="table table-borderless table-striped">
                     					<thead>
                       						<tr>
@@ -245,15 +245,15 @@
                     					<tbody>
                     					<c:forEach var="i" items="${clist}">
                       						<tr>
-                        						<th scope="row">${i.bno}</th>
+                        						<th scope="row">${i.index}</th>
                         						<td>${i.complainer_id}</td>
                         						<td class="text-right">${i.complainReason}</td>
                         						<td>${i.uploadDate}</td>
                         						<td class="text-right">
-													<c:if test="${!i.complete}">
+													<c:if test="${i.complete == 1}">
 														<span class="badge badge-pill badge-success">처리 완료</span>
 													</c:if>
-													<c:if test="${!i.complete}">
+													<c:if test="${i.complete == 0}">
 														<span class="badge badge-pill badge-secondary">미처리</span>
 													</c:if>
 												</td>
