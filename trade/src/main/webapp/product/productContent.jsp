@@ -56,6 +56,13 @@
             }
          });
       });
+   
+   
+   function payment(bno){
+		
+		location.href  = "../pay/payment.com?bno=" + bno;
+	}
+   
 </script>
 </head>
 <body>
@@ -240,8 +247,7 @@
          onclick="openSuggestListModal();">
       </c:if>
       <c:if test="${login_id ne dto.user_id}">
-      <input class="submit-button" type="button" value="구매하기"
-         onclick="location.href='결제페이지';">
+      <input class="submit-button" type="button" value="구매하기" onclick="payment(${dto.bno});">
       </c:if>
       
 

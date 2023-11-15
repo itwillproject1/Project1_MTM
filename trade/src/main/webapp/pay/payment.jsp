@@ -9,16 +9,24 @@
 <meta charset="UTF-8">
 
 <link href="../css/memberjoin.css" rel="stylesheet" />
+<link href="../css/main_styles_mypage.css" rel="stylesheet" />
 <title>Insert title here</title>
 </head>
 
 	<script type="text/javascript">
 	
-	
+	function goPopup(){
+		
+		var pop = window.open("../member/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+		
+	}
+	function jusoCallBack(address){
+		document.pay.address.value = address;
+	}
 	
 	function cancel(){
 		
-		window.close();
+		history.back();
 		
 	}
 	function check() {
@@ -32,7 +40,8 @@
 
 			alert(' 잔액이 부족합니다.');
 			alert(' 부족한 금액은 ' + (price-pay) +'원입니다.')
-			location.href = "../member/MemberPayInfo.member?&id=" + buyer_id;
+			var url = "../member/MemberPayInfo.member?&id=" + buyer_id;
+			window.open(url,"checkid","width=570,height=500, scrollbars=yes, resizable=yes");
 			return false;
 	}
 	}
@@ -41,15 +50,15 @@
 
 
 <body>
-		
-		<form action="../product/ProductPayAction.com" method="post" onsubmit="return check();">
+		<fieldset>
+		<form action="../product/ProductPayAction.com" method="post" name="pay" onsubmit="return check();">
 		주문자명 : 
 		${dto.user_name}<br>
 		전화번호 : 
 		${dto.phone}<br>
 		<hr>
 		배송지<br>
-		${dto.address}
+		<input type="text" name="address" value="${dto.address}"> <input type="button" value="변경하기" onclick="goPopup()" class="in">
 		<!--  <input type="button" value="변경" class="bu" style="float: right;"><hr> --> 	
 		<br><hr>
 		주문상품<br>
@@ -63,10 +72,13 @@
 		주문금액 :
 		${dto1.price}
 		<hr>
-
-		<input type="submit" value="구매하기" class="bu">
-		<input type="button" value="취소하기" class="bu" onclick="cancel();">
+		
+		
+		<input class="in" type="submit" value="구매하기" >
+		<input class="in" type="button" value="취소하기" onclick="cancel();">
+		
+		
 		</form>
-
+		</fieldset>
 </body>
 </html>

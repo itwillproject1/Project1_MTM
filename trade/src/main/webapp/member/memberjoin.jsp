@@ -129,7 +129,7 @@
 					document.join.user_id.focus();
 					return false;
 				}
-				let checkid = window.open("./Membercheckid.member","checkid","width=570,height=420, scrollbars=yes, resizable=yes");
+				let checkid = window.open("./Membercheckid.member","checkid","width=570,height=500, scrollbars=yes, resizable=yes");
 				
 				// checkid.document.getElementById("id").value = document.getElementById("user_id").value;
 				}

@@ -34,14 +34,15 @@ public class ProductPayAction implements Action {
 		dto.setUser_id(seller_id);
 		dto.setPay(pay);
 		
+		// 구매자 정보 업데이트
 		MemberDAO dao = new MemberDAO();
 		dao.productpay(dto);
 		
-		// 
+		// 판매자 정보 업데이트
 		dto.setUser_id(buyer_id);
 		dao.buyer_productpay(dto);
 		
-		//
+		// 글정보 업데이트
 		ProductDTO dto1 = new ProductDTO();
 		dto1.setDeal_user_id(buyer_id);
 		dto1.setBno(bno);
@@ -50,12 +51,26 @@ public class ProductPayAction implements Action {
 		dao1.deal(dto1);
 		
 		
+		
+		// 거래 내역 전달
+		
+		
+		
+		// 구매, 판매 제안 업데이트
+		
+		
+		
+		
+		
+		
+		
+		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println(" <script> ");
 		out.println("  alert('결제가 완료 되었습니다.'); ");
 		// out.println("location.href='../main/Main.com'");
-		out.println("  window.close(); ");
+		out.println("location.href='../main/Main.com'");
 		out.println(" </script> ");
 		out.close();
 		
