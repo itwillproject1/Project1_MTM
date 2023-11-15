@@ -13,9 +13,11 @@
                 <div class="col">
                   <h2 class="h3 mb-0 page-title">직원 목록</h2>
                 </div>
+                <c:if test="${sessionScope.emp_id == 'admin'}">
                 <div class="col-auto">
                   <button type="button" class="btn btn-primary" onclick="location.href='./EmployeeRegisterForm.emp'"><span class="fe fe-filter fe-12 mr-2"></span>직원 생성</button>
                 </div>
+                </c:if>
               </div>
               <div class="row">
               <!-- 직원 목록(1 페이지에 8명) -->

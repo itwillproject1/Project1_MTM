@@ -24,7 +24,7 @@ public class DeleteAction implements Action{
 		int result = dao.employeeInactive(emp, ad);
 		if(result == 1) {
 			JSConfirmMoveFunction move = new JSConfirmMoveFunction();
-			move.moveLocation(response, "./DeleteConfirm.emp?emp_id=" + emp.getEmp_id());
+			move.moveLocation(response, "./EmployeeDeleteConfirm.emp?emp_id=" + emp.getEmp_id());
 		}
 		else {
 			JSMoveFunction move = new JSMoveFunction();

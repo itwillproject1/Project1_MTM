@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.employee.dao.ComplainDAO;
 import com.itwillbs.employee.dao.DAO;
 import com.itwillbs.employee.dto.ComplainDTO;
+import com.itwillbs.employee.dto.SuspendDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -66,11 +67,10 @@ public class ComplainListAction implements Action{
 		/******************* 페이징처리 2 *********************/
 		
 
-		ArrayList list = dao.complainedUserList(startRow, pageSize);
+		ArrayList<SuspendDTO> list = dao.complainedUserList(startRow, pageSize);
 		
 		if(list == null)list = new ArrayList();
 		
-		String[] inquiryReason = {"계정", "이용", "거래", "결제", "기타"};
 		ActionForward forward = new ActionForward();
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("count", count);

@@ -36,42 +36,40 @@
                 	<tr>
                 		<th>피신고자</th>
                     	<th>최초 등록일자</th>
-                    	<th>신고 처리 상태</th> <!-- 일정 수가 누적되면 정지처리하도록 함 ->
-                    	<th>담당자</th><!-- emp_id -->
+                    	<th>신고 개수</th>
                     	<th>기타</th>
                  	</tr>
                 </thead>
                 <tbody>
+                	<c:forEach var="list" items="${list}">
                  	<tr class="accordion-toggle collapsed" id="c-2474" data-toggle="collapse" data-parent="#c-2474" href="#collap-2474" aria-expanded="false">
-                      <td>아이디</td>
-                            <td>등록일자</td>
-                            <td>3951</td>
-                            <td>Alexander Ellis</td>
-                            <td><span class="badge badge-pill badge-success mr-2">S</span><small class="text-muted">Paid</small></td>
+                      <td>${list.reported_id}</td>
+                            <td>${list.firstComplainedDate}</td>
+                            <td>${list.count}</td>
                             <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="text-muted sr-only">Action</span>
                               </button>
                               <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
+                                <a class="dropdown-item" href="#">회원 정지</a>
+                                <a class="dropdown-item" href="#">회원 상세 정보</a>
                               </div>
                             </td>
                           </tr>
+                          <c:forEach var="com" items="${i.reportList}">
                           <tr id="collap-2474" class="in p-3 bg-light collapse show" style="">
                             <td colspan="8">
                               <dl class="row mb-0 mt-1">
-                                <dt class="col-sm-1">Company</dt>
-                                <dd class="col-sm-2">Fringilla Ornare Consulting</dd>
-                                <dt class="col-sm-1">Address</dt>
-                                <dd class="col-sm-2">287-8300 Nisl. St.</dd>
-                                <dt class="col-sm-1">Phone</dt>
-                                <dd class="col-sm-2">(899) 881-3833</dd>
-                                <dt class="col-sm-1 text-truncate">Region</dt>
-                                <dd class="col-sm-2">Papua New Guinea</dd>
+                                <dt class="col-sm-1">신고자</dt>
+                                <dd class="col-sm-2">${com.reporter_id}</dd>
+                                <dt class="col-sm-1">신고 사유</dt>
+                                <dd class="col-sm-2">${com.complainReason}</dd>
+                                <dt class="col-sm-1">등록 일자</dt>
+                                <dd class="col-sm-2">${com.uploadDate}</dd>
                               </dl>
                             </td>
                           </tr>
+                          </c:forEach>
+                	</c:forEach>
                         </tbody>
                       </table>
               </c:if>

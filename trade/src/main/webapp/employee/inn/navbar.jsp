@@ -35,17 +35,6 @@
                   <a class="nav-link pl-lg-2" href="./BoardList.emp"><span class="ml-1">게시판</span></a>
                 </div>
               </li>
-             <c:if test="${sessionScope.emp_id == 'admin'}">
-             <li class="nav-item dropdown">
-                <a href="#" id="adminDropdown" class="dropdown-toggle nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="ml-lg-2">관리자</span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                  <a class="nav-link pl-lg-2" href="./EmployeeRegisterForm.emp"><span class="ml-1">직원 추가</span></a>
-                  <a class="nav-link pl-lg-2" href="./EmployeeDeleteForm.emp"><span class="ml-1">직원 삭제</span></a>
-                </div>
-              </li>
-             </c:if>
              <li class="nav-item dropdown more">
                 <a href="#" id="elseDropdown" class="dropdown-toggle more-horizontal nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="ml-lg-2"></span>

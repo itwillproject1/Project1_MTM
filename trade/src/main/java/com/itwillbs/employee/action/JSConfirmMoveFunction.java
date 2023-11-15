@@ -12,6 +12,7 @@ public class JSConfirmMoveFunction {
 			try {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
+				out.println("<script>");
 				out.println(" location.href='"+url+"'; ");
 				out.println("</script>");
 				out.close();

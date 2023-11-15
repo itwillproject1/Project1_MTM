@@ -6,115 +6,142 @@
 <main role="main" class="main-content">
         <div class="container-fluid">
           <div class="row justify-content-center">
-            <div class="col-12 col-lg-10 col-xl-8">
+            <div class="col-12">
               <div class="row align-items-center mb-4">
                 <div class="col">
-                  <h2 class="h5 page-title"><small class="text-muted text-uppercase">Invoice</small><br />#1806</h2>
+                  <h2 class="h5 page-title"><small class="text-muted text-uppercase">문의</small><br>${dto.bno}</h2>
                 </div>
                 <div class="col-auto">
-                  <button type="button" class="btn btn-secondary">Print</button>
-                  <button type="button" class="btn btn-primary">Pay</button>
+                  <button type="button" class="btn btn-secondary">뒤로가기</button>
+                  <button type="button" class="btn btn-primary">Assign</button>
                 </div>
+              </div> <!-- .row -->
+              <div class="row my-4">
+                <div class="col-md-9">
+                  <div class="card shadow mb-4">
+                    <div class="card-header">
+                      <strong class="card-title">${dto.subject}</strong>
+                      <span class="float-right"><i class="fe fe-flag mr-2"></i><span class="badge badge-pill badge-success text-white">${dto.category}</span></span>
+                    </div>
+                    <div class="card-body">
+                      <dl class="row align-items-center mb-0">
+                        <dt class="col-sm-2 mb-3 text-muted">질문자</dt>
+                        <dd class="col-sm-4 mb-3">
+                          <strong>${dto.user_id}</strong>
+                        </dd>
+                        <dt class="col-sm-2 mb-3 text-muted">답변자</dt>
+                        <dd class="col-sm-4 mb-3">
+                          <strong>${dto.emp_id}</strong>
+                        </dd>
+                      </dl>
+                      <dl class="row mb-0">
+                        <dt class="col-sm-2 mb-3 text-muted">Plan</dt>
+                        <dd class="col-sm-4 mb-3">Basic</dd>
+                        <dt class="col-sm-2 mb-3 text-muted">Department</dt>
+                        <dd class="col-sm-4 mb-3">Support</dd>
+                        <dt class="col-sm-2 mb-3 text-muted">Priority</dt>
+                        <dd class="col-sm-4 mb-3">
+                          <span class="badge badge-pill badge-danger">High</span>
+                          <div class="dropdown d-inline">
+                            <button class="btn btn-sm p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="sr-only">Change Priority</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">High</a>
+                              <a class="dropdown-item" href="#">Meddium</a>
+                              <a class="dropdown-item" href="#">Low</a>
+                            </div>
+                          </div>
+                        </dd>
+                        <dt class="col-sm-2 mb-3 text-muted">답변 상태</dt>
+                        <dd class="col-sm-4 mb-3">
+                          <span class="dot dot-md bg-warning mr-2"></span> Open
+                        </dd>
+                        <dt class="col-sm-2 mb-3 text-muted">문의 일자</dt>
+                        <dd class="col-sm-4 mb-3">${dto.uploadDate}</dd>
+                        <dt class="col-sm-2 mb-3 text-muted">답변일자</dt>
+                        <dd class="col-sm-4 mb-3">${dto.answerDate}</dd>
+                        <dt class="col-sm-2 text-muted">내용</dt>
+                        <dd class="col-sm-10"> ${dto.content} </dd>
+                      </dl>
+                    </div> <!-- .card-body -->
+                  </div> <!-- .card -->
+                  <div class="card shadow mb-4">
+                    <div class="card-body">
+                      <div class="row align-items-center mb-4">
+                        <div class="col-auto">
+                          <div class="avatar avatar-sm mb-3 mx-4">
+                            <img src="./assets/avatars/face-3.jpg" alt="..." class="avatar-img rounded-circle">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <strong>${dto.user_id}</strong>
+                          <div class="mb-2">${dto.content}</div>
+                           <c:if test="${dto.image == null}"></c:if>
+                          <c:if test="${dto.image != null}">
+                          <div class="card mb-3 bg-light w-50">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col-md-2 text-center">
+                                <img src="./assets/products/p1.jpg" alt="..." class="img-fluid rounded m-1">
+                              </div>
+                              <div class="col-md-10">
+                                <div class="card-body py-0">
+                                  <p class="card-title mb-0">${dto.image}</p>
+                                  <div class="card-text my-0 text-muted small"><span class="mr-2">1.2M</span><span class="mr-2">SVG</span></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </c:if>
+                          <small class="text-muted">${dto.uploadDate}</small>
+                        </div>
+                        <div class="col-auto">
+                          <span class="circle circle-sm bg-light">
+                            <i class="fe fe-corner-down-left"></i>
+                          </span>
+                        </div>
+                      </div> <!-- .row-->
+                      <c:if test="${dto.complete == 0}"></c:if>
+                      <c:if test="${dto.complete == 1}">
+                      <div class="row align-items-center mb-4">
+                        <div class="col-auto">
+                          <div class="avatar avatar-sm mb-3 mx-4">
+                            <img src="./assets/avatars/face-4.jpg" alt="..." class="avatar-img rounded-circle">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <strong>${dto.emp_id}</strong>
+                          <div class="mb-2">${dto.answerContent}</div>
+                          <small class="text-muted">${dto.answerDate}</small>
+                        </div>
+                      </div> <!-- .row-->
+                      </c:if>
+                      <hr class="my-4">
+                      <h6 class="mb-3">답변</h6>
+                      <form>
+                        <div class="form-group">
+                          <label for="exampleFormControlTextarea1" class="sr-only">답변</label>
+                          <textarea class="form-control bg-light" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="form-check form-check-inline ml-1">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">이메일 전송</label>
+                          </div>
+                          <div class="flex-fill mr-2 text-right">
+                            <a href="#" class="btn"><i class="fe fe-upload"></i></a>
+                            <a href="#" class="btn"><i class="fe fe-at-sign"></i></a>
+                          </div>
+                          <button type="submit" class="btn btn-primary">입력</button>
+                        </div>
+                      </form>
+                    </div> <!-- .card-body -->
+                  </div> <!-- .card -->
+                </div> <!-- .col-md -->
               </div>
-              <div class="card shadow">
-                <div class="card-body p-5">
-                  <div class="row mb-5">
-                    <div class="col-12 text-center mb-4">
-                      <img src="./assets/images/logo.svg" class="navbar-brand-img brand-sm mx-auto mb-4" alt="...">
-                      <h2 class="mb-0 text-uppercase">Invoice</h2>
-                      <p class="text-muted"> Altavista<br /> 9022 Suspendisse Rd. </p>
-                    </div>
-                    <div class="col-md-7">
-                      <p class="small text-muted text-uppercase mb-2">Invoice from</p>
-                      <p class="mb-4">
-                        <strong>Imani Lara</strong><br /> Asset Management<br /> 9022 Suspendisse Rd.<br /> High Wycombe<br /> (478) 446-9234<br />
-                      </p>
-                      <p>
-                        <span class="small text-muted text-uppercase">Invoice #</span><br />
-                        <strong>1806</strong>
-                      </p>
-                    </div>
-                    <div class="col-md-5">
-                      <p class="small text-muted text-uppercase mb-2">Invoice to</p>
-                      <p class="mb-4">
-                        <strong>Walter Sawyer</strong><br /> Human Resources<br /> Ap #992-8933 Sagittis Street<br /> Ivanteyevka<br /> (803) 792-2559<br />
-                      </p>
-                      <p>
-                        <small class="small text-muted text-uppercase">Due date</small><br />
-                        <strong>April, 20, 2020</strong>
-                      </p>
-                    </div>
-                  </div> <!-- /.row -->
-                  <table class="table table-borderless table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Description</th>
-                        <th scope="col" class="text-right">Rate</th>
-                        <th scope="col" class="text-right">Hours</th>
-                        <th scope="col" class="text-right">Ammout</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td> Creative Design<br />
-                          <span class="small text-muted">Design responsive website with existing prototype</span>
-                        </td>
-                        <td class="text-right">$15.00</td>
-                        <td class="text-right">2</td>
-                        <td class="text-right">$30.00</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td> Front-End Development<br />
-                          <span class="small text-muted">Markup conversion and adding JavaScript</span>
-                        </td>
-                        <td class="text-right">$20.00</td>
-                        <td class="text-right">5</td>
-                        <td class="text-right">$100.00</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td> Back-End Development<br />
-                          <span class="small text-muted">Database intergration with model functions</span>
-                        </td>
-                        <td class="text-right">$25.00</td>
-                        <td class="text-right">7</td>
-                        <td class="text-right">$155.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="row mt-5">
-                    <div class="col-2 text-center">
-                      <img src="./assets/images/qrcode.svg" class="navbar-brand-img brand-sm mx-auto my-4" alt="...">
-                    </div>
-                    <div class="col-md-5">
-                      <p class="text-muted small">
-                        <strong>Note :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. </p>
-                    </div>
-                    <div class="col-md-5">
-                      <div class="text-right mr-2">
-                        <p class="mb-2 h6">
-                          <span class="text-muted">Subtotal : </span>
-                          <strong>$285.00</strong>
-                        </p>
-                        <p class="mb-2 h6">
-                          <span class="text-muted">VAT (10%) : </span>
-                          <strong>$28.50</strong>
-                        </p>
-                        <p class="mb-2 h6">
-                          <span class="text-muted">Total : </span>
-                          <span>$313.50</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div> <!-- /.row -->
-                </div> <!-- /.card-body -->
-              </div> <!-- /.card -->
-            </div> <!-- /.col-12 -->
-          </div> <!-- .row -->
-        </div> <!-- .container-fluid -->
-      </main> <!-- main -->
+            </div>
+          </div> <!-- .col-12 -->
+        </div> <!-- .row -->
+    </main>
     </div> <!-- .wrapper -->
 <jsp:include page="../inn/footer.jsp"/>
