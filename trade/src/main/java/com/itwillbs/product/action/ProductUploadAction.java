@@ -76,7 +76,11 @@ public class ProductUploadAction implements Action {
 		dto.setPrice(Integer.parseInt(multi.getParameter("price")));
 		dto.setProduct_status(multi.getParameter("product_status"));
 		dto.setContent(multi.getParameter("content"));
-		dto.setFile_name(file_name);
+		if(!file_name.equals("")) {
+			dto.setFile_name(file_name);			
+		} else {
+			dto.setFile_name("default_product_image.png");
+		}
 
 		System.out.println("M: " + dto);
 
