@@ -127,7 +127,7 @@
                         </c:when>
                         <c:when test="${login_id ne dto.user_id}">
                            <!-- 로그인한 사용자 != 글 작성자 -->
-                           <input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
+                                 <input class="complain-button" type="button" value="🚨" onclick="openComplainModal();">
                         </c:when>
                      </c:choose>
                   </c:otherwise>
@@ -410,32 +410,28 @@
          <label for="productDescription">상품 설명: </label> ${dto.content }
       </div>
    </div>
-
-
 <!-- 판매 제안 -->
-
       <!-- 신고하기 모달창 -->
-      <form action="" method="post">
          <div id="complainModal" class="modal">
             <div class="modal-content">
                <input type="checkbox" id="postReportCheckbox" class="productCheckbox" data-productid="1">
                <label for="postReportCheckbox">게시글 신고</label><br>
                <div id="postReportOptions" style="display: none;">
-                  <input type="checkbox" class="reasonCheckbox" id="postReason1">
+                  <input type="checkbox" class="reasonCheckbox" value="postReason1">
                   <label for="postReason1">불법 상품 또는 서비스 판매</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="postReason2">
+                  <input type="checkbox" class="reasonCheckbox" value="postReason2">
                   <label for="postReason2">불쾌한, 혐오스러운 내용이나 이미지 포함</label><br> 
-                  <input type="checkbox" class="reasonCheckbox" id="postReason3">
+                  <input type="checkbox" class="reasonCheckbox" value="postReason3">
                   <label for="postReason3">거짓 정보, 거짓 광고, 또는 과장된 설명</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="postReason4">
+                  <input type="checkbox" class="reasonCheckbox" value="postReason4">
                   <label for="postReason4">저작권 침해 (타인의 이미지 또는 콘텐츠 무단 사용)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="postReason5">
+                  <input type="checkbox" class="reasonCheckbox" value="postReason5">
                   <label for="postReason5">사기성 게시글 (실제로 판매되지 않는 상품)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="postReason6">
+                  <input type="checkbox" class="reasonCheckbox" value="postReason6">
                   <label for="postReason6">개인 정보 침해 (타인의 개인 정보 공개)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="postReason7">
+                  <input type="checkbox" class="reasonCheckbox" value="postReason7">
                   <label for="postReason7">광고 스팸 또는 중복 게시글</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="postReason8" onchange="showTextarea()">
+                  <input type="checkbox" class="reasonCheckbox" value="postReason8" onchange="showTextarea()">
                   <label for="postReason8">기타</label><br>
                   <div id="otherReason" style="display: none;">
                      <textarea id="otherReasonText" placeholder="기타 이유를 입력하세요"></textarea>
@@ -444,21 +440,21 @@
                <input type="checkbox" id="authorReportCheckbox" class="productCheckbox" data-productid="2">
                <label for="authorReportCheckbox">작성자 신고</label><br>
                <div id="authorReportOptions" style="display: none;">
-                  <input type="checkbox" class="reasonCheckbox" id="authorReason1">
+                  <input type="checkbox" class="reasonCheckbox" value="authorReason1">
                   <label for="authorReason1">거래 사기 또는 부정행위 (상품 송금 후 발송하지 않음)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="authorReason2">
+                  <input type="checkbox" class="reasonCheckbox" value="authorReason2">
                   <label for="authorReason2">거래 후 불만 및 환불 요청 무시</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="authorReason3">
+                  <input type="checkbox" class="reasonCheckbox" value="authorReason3">
                   <label for="authorReason3">불쾌한 언행 또는 협상 방해</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="authorReason4">
+                  <input type="checkbox" class="reasonCheckbox" value="authorReason4">
                   <label for="authorReason4">거짓 프로필 정보 또는 사진 사용</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="authorReason5">
+                  <input type="checkbox" class="reasonCheckbox" value="authorReason5">
                   <label for="authorReason5">반복적인 불법 행동 (여러 사용자를 속임)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="authorReason6">
+                  <input type="checkbox" class="reasonCheckbox" value="authorReason6">
                   <label for="authorReason6">규정 위반 (중고거래 플랫폼의 규정을 어기는 행동)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="authorReason7">
+                  <input type="checkbox" class="reasonCheckbox" value="authorReason7">
                   <label for="authorReason7">욕설, 혐오 내용 또는 괴롭힘</label><br>
-                  <input type="checkbox" class="reasonCheckbox" id="authorReason8"
+                  <input type="checkbox" class="reasonCheckbox" value="authorReason8"
                      onchange="showTextarea()"> <label for="authorReason8">기타</label><br>
                   <div id="otherReason2" style="display: none;">
                      <textarea id="otherReasonText2" placeholder="기타 이유를 입력하세요"></textarea>
@@ -468,7 +464,6 @@
                <button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
             </div>
          </div>
-      </form>
       <!-- 신고하기 모달창 종료-->
 
       <script>
@@ -541,11 +536,12 @@
                var productIds = [];
 
                // 선택된 체크박스를 관리자에게 전달하는 코드 추가해야함!!!!!!!!!!!!
-               window.location.href = "관리자에게전달.com";
+               window.location.href = "./Complain.com?bno=${dto.bno }";
 
             }
          }
       </script>
+
 
       <!-- 상세페이지 오른쪽 ... 버튼 -->
       <script>
