@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.itwillbs.member.db.MemberDTO;
+
 public class ProductDAO {
 	// 공통 변수 선언
 	private Connection con = null;
@@ -685,5 +687,62 @@ public class ProductDAO {
 		}
 		return userProducts;		
 	}// getAllUserProducts(String userId) 종료
+
+	// 구매자의 정보를 불러오는 메서드
+	public MemberDTO buyer(String user_id) {
+		MemberDTO dto = null;
+		
+		try {
+			
+			con = getCon();
+			
+			sql = "select user_id, user_name, phone, address, pay from Member where user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new MemberDTO();
+				
+				// rs => dto 저장
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_name(rs.getString("user_name"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setAddress(rs.getString("address"));
+				dto.setPay(rs.getInt("pay"));
+			}
+			
+			System.out.println(" DAO : 구매자정보 조회 완료!");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return dto;
+	}
+	
+	public void deal(ProductDTO dto) {
+		
+		
+		try {
+			
+			con = getCon();
+			
+			sql = "update Product set deal_status = 0, deal_user_id = ? where bno = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getDeal_user_id());
+			pstmt.setInt(2, dto.getBno());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		
+	}
 	
 }

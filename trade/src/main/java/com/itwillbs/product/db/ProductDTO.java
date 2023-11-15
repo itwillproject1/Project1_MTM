@@ -18,7 +18,15 @@ public class ProductDTO {
 	private Timestamp date_time; // 글 작성일자, 시간
 	private String file_name; // 첨부파일명
 	private int like_count;
-	
+	private String deal_user_id;
+	public String getDeal_user_id() {
+		return deal_user_id;
+	}
+
+	public void setDeal_user_id(String deal_user_id) {
+		this.deal_user_id = deal_user_id;
+	}
+
 	// 생성자
 	public ProductDTO() {
 		System.out.println("DTO: 객체 초기화(생성), DB정보 저장 준비 완료");
@@ -129,12 +137,15 @@ public class ProductDTO {
 		this.like_count = like_count;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "ProductDTO [bno=" + bno + ", user_id=" + user_id + ", deal_way=" + deal_way + ", title=" + title
 				+ ", category=" + category + ", brand=" + brand + ", price=" + price + ", product_status="
 				+ product_status + ", content=" + content + ", views=" + views + ", date_time=" + date_time
-				+ ", file_name=" + file_name + ", like_count=" + like_count + "]";
-	}	
+				+ ", file_name=" + file_name + ", like_count=" + like_count + ", deal_user_id=" + deal_user_id + "]";
+	}
+
+	
 	
 }

@@ -144,7 +144,6 @@
 		
 		
 		<fieldset>
-		<legend> 회원가입 페이지 </legend>
 		<form action="./MemberJoinAction.member" method="post" name="join" onsubmit="return check();" enctype="multipart/form-data" >
 		<div id="callBackDiv">
 			아이디 <br>
