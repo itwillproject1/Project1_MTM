@@ -18,7 +18,7 @@ public class MemberUpdateProAction implements Action {
 		
 		// 로그인 세션제어
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("user_id");
 		
 		System.out.println(id);
 		

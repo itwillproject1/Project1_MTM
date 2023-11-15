@@ -13,7 +13,7 @@
 <br><br><br><br><br><br><br>
 <fieldset>
 <legend> 아이디 찾기 </legend>
-<form action="./MemberJoinAction.member" method="post" id="fo" >
+<form action="./findidAction.member" id="fo" >
 		
 
 			이름       :     <input type="text" name="user_name" class="in" id="na"><br>
