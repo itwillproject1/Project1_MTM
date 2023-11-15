@@ -17,14 +17,12 @@ public class LikeCheckAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("LikeCheckAction.execute() 호출");
-		// 로그인 아이디 받기
+		// 전달 정보 저장(로그인 아이디, 글번호)
 		HttpSession session = request.getSession();
 		String login_id = (String) session.getAttribute("user_id");
-		System.out.println("login_id: " + login_id);
-
 		int bno = Integer.parseInt(request.getParameter("bno"));
 
-		// 찜
+		// 찜 유무 확인
 		LikeDTO ldto = new LikeDTO();
 		ldto.setBno(bno);
 		ldto.setUser_id(login_id);

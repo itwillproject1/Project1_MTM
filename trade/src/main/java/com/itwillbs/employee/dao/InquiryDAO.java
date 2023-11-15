@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.itwillbs.employee.dto.InquiryDTO;
 import com.itwillbs.employee.dto.MemberDTO;
+import com.itwillbs.employee.dto.UserDTO;
 
 public class InquiryDAO extends DAO{
 
@@ -172,5 +173,37 @@ public class InquiryDAO extends DAO{
 			CloseDB();
 		}
 		return count;
+	}
+
+	public ArrayList userInfoInquiry(UserDTO udto) {
+		ArrayList list = null;
+		InquiryDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select * from Inquiry where user_id = ? order by bno desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, udto.getUser_id());
+			rs = pstmt.executeQuery();
+			list = new ArrayList();
+			while(rs.next()) {
+				dto = new InquiryDTO();
+				dto.setBno(rs.getInt("bno"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setCategory(rs.getInt("category"));
+				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				dto.setContent(rs.getString("content"));
+				dto.setComplete(rs.getBoolean("complete"));
+				dto.setEmp_id(rs.getString("emp_id"));
+				dto.setAnswerContent(rs.getString("answerContent"));
+				dto.setAnswerDate(rs.getTimestamp("answerDate"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return list;
 	}
 }

@@ -11,9 +11,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.apache.jasper.tagplugins.jstl.core.Out;
 
 import com.itwillbs.product.db.ProductDTO;
+
+
 
 public class MemberDAO {
 	// 공통 변수 선언
@@ -354,9 +355,94 @@ public class MemberDAO {
 		}
 			
 	
+		public MemberDTO findidmember(MemberDTO iddto) {
+			int result = -1; // -1  0  1
 			
+			try {
+				// 1.2. 디비 연결
+				con = getCon();
+				// 3. sql 작성(select) & pstmt 객체
+				sql = "select * from Member where user_name=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, iddto.getUser_name());
+				// 4. sql 실행			
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				if(rs.next()) {
+					
+					if(iddto.getJumin().equals(rs.getString("jumin"))) {
+						if(iddto.getPhone().equals(rs.getString("phone"))) {
+							// 3. sql 작성(delete) & pstmt 객체
+							iddto.setUser_id(rs.getString("user_id"));
+							// 4. sql 실행
+							result = 2; // 아이디찾기완료
+						}
+						else {
+							result = 1; //전화번호가 맞지 않음
+						}
+					}
+					else {
+						result = 0; // 주민번호가 맞지 않음
+					}
+				}
+				else {
+				    result = -1; // 회원이름이 없음	
+				}
+				System.out.println(" DAO : 회원아이디 조회중 ("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+
+			return iddto;
+		}	
+		
+		public int findidmember2(MemberDTO iddto) {
+			int result = -1; // -1  0  1
 			
+			try {
+				// 1.2. 디비 연결
+				con = getCon();
+				// 3. sql 작성(select) & pstmt 객체
+				sql = "select * from Member where user_name=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, iddto.getUser_name());
+				// 4. sql 실행			
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				if(rs.next()) {
+					
+					if(iddto.getJumin().equals(rs.getString("jumin"))) {
+						if(iddto.getPhone().equals(rs.getString("phone"))) {
+							// 3. sql 작성(delete) & pstmt 객체
+							iddto.setUser_id(rs.getString("user_id"));
+							// 4. sql 실행
+							result = 2; // 아이디찾기완료
+						}
+						else {
+							result = 1; //전화번호가 맞지 않음
+						}
+					}
+					else {
+						result = 0; // 주민번호가 맞지 않음
+					}
+				}
+				else {
+				    result = -1; // 회원이름이 없음	
+				}
+				System.out.println(" DAO : 회원아이디 조회중 ("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+
+			return result;
+		}	
 			
-			
-			
-}
+}			
+		
+

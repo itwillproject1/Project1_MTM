@@ -35,7 +35,11 @@
 	<div class="container">
 		<c:forEach var="product" items="${dto}">
 		<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
-			<div class="product" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
+			<div class="product  
+			<c:if test="${product.deal_status == 0 }">
+				disabled
+			</c:if>"
+			onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')" >				
 			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
 					alt="${product.title}">
 				<div class="product-info">
@@ -58,7 +62,11 @@
 	
 		<c:forEach var="product" items="${dto2}">
 		<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
-			<div class="product" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
+			<div class="product
+			<c:if test="${product.deal_status == 0 }">
+				disabled
+			</c:if>"
+			onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
 			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
 					alt="${product.title}">
 				<div class="product-info">

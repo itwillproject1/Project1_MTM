@@ -294,7 +294,6 @@ public class TradeDAO extends DAO{
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dto = new TradeDTO();
-				System.out.println(rs.getString("title"));
 				dto.setBno(rs.getInt("bno"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDeal_way(rs.getString("deal_way"));
@@ -396,5 +395,53 @@ public class TradeDAO extends DAO{
 			CloseDB();
 		}
 		return sellList;
+	}
+
+	public ArrayList userInfoLike(UserDTO udto) {
+		ArrayList list = null;
+		ArrayList<Integer> bnoList = null;
+		TradeDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select bno from Likes where user_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, udto.getUser_id());
+			rs = pstmt.executeQuery();
+			bnoList = new ArrayList<Integer>();
+			while(rs.next()){
+				bnoList.add(rs.getInt(1));
+			}
+			list = new ArrayList();
+			if(bnoList.size() > 0) {
+				for(int i = 0; i<bnoList.size(); i++) {
+					sql = "select * from Product where bno = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, bnoList.get(i));
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						dto = new TradeDTO();
+						dto.setBno(rs.getInt("bno"));
+						dto.setUser_id(rs.getString("user_id"));
+						dto.setDeal_way(rs.getString("deal_way"));
+						dto.setCategory(rs.getString("category"));
+						dto.setBrand(rs.getString("brand"));
+						dto.setTitle(rs.getString("title"));
+						dto.setContent(rs.getString("content"));
+						dto.setProduct_status(rs.getString("product_status"));
+						dto.setDeal_status(rs.getInt("deal_status"));
+						dto.setDate_time(rs.getTimestamp("date_time"));
+						dto.setFile_name(rs.getString("file_name"));
+						dto.setLike_count(rs.getInt("like_count"));
+						dto.setPrice(rs.getInt("price"));
+						dto.setDeal_status(rs.getInt("deal_status"));
+						dto.setDeal_user_id(rs.getString("deal_user_id"));
+						list.add(dto);
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

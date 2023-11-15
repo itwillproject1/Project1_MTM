@@ -223,6 +223,19 @@ public class MemberFrontController extends HttpServlet {
 			forward.setRedirect(false);
 		}
 		
+		else if(command.equals("/member/findidAction.member")){
+			
+			System.out.println(" C : /member/findidAction.member 호출 ");
+			
+			action = new findidAction();
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}
+		
 		/*
 		else if(command.equals("/member/mypage.member")) {
 		 

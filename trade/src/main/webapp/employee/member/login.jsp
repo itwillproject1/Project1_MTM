@@ -27,13 +27,11 @@
               <input type="checkbox" value="remember-me"> 사번 기억하기 </label>
           </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-          <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="location.href='./ChangePwForm.emp'">비밀번호 초기화</button>
+          <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="location.href='./ResetPwForm.emp'">비밀번호 초기화</button>
           <p class="mt-5 mb-3 text-muted">© 2023</p>
         </form>
       </div>
     </div>
     <jsp:include page="../../employee/inn/login/script.jsp"/>
   </body>
-</html>
-</body>
 </html>

@@ -82,6 +82,11 @@ body {
 	text-align: center;
 }
 
+.disabled {
+	opacity: 0.5;
+    background-color: #CCCCCC;
+}
+
 /* 미디어 쿼리를 사용하여 반응형으로 만들기(시도X) */
 @media ( max-width : 768px) {
 	.product {
