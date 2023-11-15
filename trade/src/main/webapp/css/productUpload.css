@@ -79,6 +79,10 @@ body {
    color: #333; /* 어두운 회색 텍스트 색상 */
 }
 
+textarea#content {
+	font-family: 'Noto Sans KR';
+}
+
 .form-group select {
    cursor: pointer;
 }

@@ -113,6 +113,7 @@ body {
 	box-sizing: border-box;
 	background-color: #f9f9f9; /* 매우 연한 회색 배경색 */
 	color: #333; /* 어두운 회색 텍스트 색상 */
+	
 }
 
 .form-group select {
