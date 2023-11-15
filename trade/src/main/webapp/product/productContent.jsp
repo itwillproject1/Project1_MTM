@@ -363,7 +363,6 @@
     }
 </script>
 <!-- 삽니다일때 판매하기 모달창 끝-->
-
             <!-- 거래 제안 현황 모달 시작-->
             <div id="suggestProductModal" class="modal">
                <div class="modal-content">
@@ -411,136 +410,134 @@
       </div>
    </div>
 <!-- 판매 제안 -->
-      <!-- 신고하기 모달창 -->
-         <div id="complainModal" class="modal">
-            <div class="modal-content">
-               <input type="checkbox" id="postReportCheckbox" class="productCheckbox" data-productid="1">
-               <label for="postReportCheckbox">게시글 신고</label><br>
-               <div id="postReportOptions" style="display: none;">
-                  <input type="checkbox" class="reasonCheckbox" value="postReason1">
-                  <label for="postReason1">불법 상품 또는 서비스 판매</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="postReason2">
-                  <label for="postReason2">불쾌한, 혐오스러운 내용이나 이미지 포함</label><br> 
-                  <input type="checkbox" class="reasonCheckbox" value="postReason3">
-                  <label for="postReason3">거짓 정보, 거짓 광고, 또는 과장된 설명</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="postReason4">
-                  <label for="postReason4">저작권 침해 (타인의 이미지 또는 콘텐츠 무단 사용)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="postReason5">
-                  <label for="postReason5">사기성 게시글 (실제로 판매되지 않는 상품)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="postReason6">
-                  <label for="postReason6">개인 정보 침해 (타인의 개인 정보 공개)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="postReason7">
-                  <label for="postReason7">광고 스팸 또는 중복 게시글</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="postReason8" onchange="showTextarea()">
-                  <label for="postReason8">기타</label><br>
-                  <div id="otherReason" style="display: none;">
-                     <textarea id="otherReasonText" placeholder="기타 이유를 입력하세요"></textarea>
-                  </div>
-               </div>
-               <input type="checkbox" id="authorReportCheckbox" class="productCheckbox" data-productid="2">
-               <label for="authorReportCheckbox">작성자 신고</label><br>
-               <div id="authorReportOptions" style="display: none;">
-                  <input type="checkbox" class="reasonCheckbox" value="authorReason1">
-                  <label for="authorReason1">거래 사기 또는 부정행위 (상품 송금 후 발송하지 않음)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="authorReason2">
-                  <label for="authorReason2">거래 후 불만 및 환불 요청 무시</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="authorReason3">
-                  <label for="authorReason3">불쾌한 언행 또는 협상 방해</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="authorReason4">
-                  <label for="authorReason4">거짓 프로필 정보 또는 사진 사용</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="authorReason5">
-                  <label for="authorReason5">반복적인 불법 행동 (여러 사용자를 속임)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="authorReason6">
-                  <label for="authorReason6">규정 위반 (중고거래 플랫폼의 규정을 어기는 행동)</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="authorReason7">
-                  <label for="authorReason7">욕설, 혐오 내용 또는 괴롭힘</label><br>
-                  <input type="checkbox" class="reasonCheckbox" value="authorReason8"
-                     onchange="showTextarea()"> <label for="authorReason8">기타</label><br>
-                  <div id="otherReason2" style="display: none;">
-                     <textarea id="otherReasonText2" placeholder="기타 이유를 입력하세요"></textarea>
-                  </div>
-               </div>
-               <button class="close-button" onclick="closeComplainModal()">닫기</button>
-               <button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
+<!-- 신고하기 모달창 -->
+<div id="complainModal" class="modal">
+    <div class="modal-content">
+        <form id="ComplainForm" action="./Complain.com?bno=${dto.bno}" method="post">
+            <input type="radio" id="postReportRadio" class="productRadio" name="reportType" value="postReport" data-productid="1">
+            <label for="postReportRadio">게시글 신고</label><br>
+            <div id="postReportOptions" style="display: none;">
+                <input type="radio" class="reasonRadio" name="reason" value="postReason1">
+                <label for="postReason1">불법 상품 또는 서비스 판매</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="postReason2">
+                <label for="postReason2">불쾌한, 혐오스러운 내용이나 이미지 포함</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="postReason3">
+                <label for="postReason3">거짓 정보, 거짓 광고, 또는 과장된 설명</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="postReason4">
+                <label for="postReason4">저작권 침해 (타인의 이미지 또는 콘텐츠 무단 사용)</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="postReason5">
+                <label for="postReason5">사기성 게시글 (실제로 판매되지 않는 상품)</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="postReason6">
+                <label for="postReason6">개인 정보 침해 (타인의 개인 정보 공개)</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="postReason7">
+                <label for="postReason7">광고 스팸 또는 중복 게시글</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="postReason8" onchange="showTextarea('post')">
+                <label for="postReason8">기타</label><br>
+                <div id="otherReason" style="display: none;">
+                    <textarea id="otherReasonText" placeholder="기타 이유를 입력하세요"></textarea>
+                </div>
             </div>
-         </div>
+            <input type="radio" id="authorReportRadio" class="productRadio" name="reportType" value="authorReport" data-productid="2">
+            <label for="authorReportRadio">작성자 신고</label><br>
+            <div id="authorReportOptions" style="display: none;">
+                <input type="radio" class="reasonRadio" name="reason" value="authorReason1">
+                <label for="authorReason1">거래 사기 또는 부정행위 (상품 송금 후 발송하)</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="authorReason2">
+                <label for="authorReason2">거래 후 불만 및 환불 요청 무시</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="authorReason3">
+                <label for="authorReason3">불쾌한 언행 또는 협상 방해</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="authorReason4">
+                <label for="authorReason4">거짓 프로필 정보 또는 사진 사용</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="authorReason5">
+                <label for="authorReason5">반복적인 불법 행동 (여러 사용자를 속임)</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="authorReason6">
+                <label for="authorReason6">규정 위반 (중고거래 플랫폼의 규정을 어기는 행동)</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="authorReason7">
+                <label for="authorReason7">욕설, 혐오 내용 또는 괴롭힘</label><br>
+                <input type="radio" class="reasonRadio" name="reason" value="authorReason8" onchange="showTextarea('author')">
+                <label for="authorReason8">기타</label><br>
+                <div id="otherReason2" style="display: none;">
+                    <textarea id="otherReasonText2" placeholder="기타 이유를 입력하세요"></textarea>
+                </div>
+            </div>
+            <button class="close-button" onclick="closeComplainModal()">닫기</button>
+            <button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
+        </form>
+    </div>
+</div>
       <!-- 신고하기 모달창 종료-->
 
-      <script>
-         var complainModal = document.getElementById("complainModal");
-         var postReportCheckbox = document.getElementById("postReportCheckbox");
-         var postReportOptions = document.getElementById("postReportOptions");
-         var authorReportCheckbox = document.getElementById("authorReportCheckbox");
-         var authorReportOptions = document.getElementById("authorReportOptions");
+   <script>
+   var complainModal = document.getElementById("complainModal");
+   var postReportRadio = document.getElementById("postReportRadio");
+   var postReportOptions = document.getElementById("postReportOptions");
+   var authorReportRadio = document.getElementById("authorReportRadio");
+   var authorReportOptions = document.getElementById("authorReportOptions");
 
-         function openComplainModal() {
-            // 체크박스가 하나도 선택되지 않은 경우에만 경고 메시지 표시
-            complainModal.style.display = "block";
-         }
+   function openComplainModal() {
+       complainModal.style.display = "block";
+   }
 
-         // 모달 닫기
-         function closeComplainModal() {
-            modal.style.display = "none";
-         }
+   function closeComplainModal() {
+       complainModal.style.display = "none";
+   }
 
-         // 모달 닫기
-         function closeProductModal() {
-            modal.style.display = "none";
-         }
+   window.onclick = function(event) {
+       if (event.target == complainModal) {
+           complainModal.style.display = "none";
+       }
+   }
 
-         // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
-         window.onclick = function(event) {
-            if (event.target == modal) {
-               modal.style.display = "none";
-            }
-         }
+   postReportRadio.addEventListener("change", function() {
+       postReportOptions.style.display = this.checked ? 'block' : 'none';
+       authorReportRadio.disabled = this.checked;
+   });
 
-         postReportCheckbox.addEventListener("change", function() {
-            postReportOptions.style.display = this.checked ? 'block' : 'none';
-            authorReportCheckbox.disabled = this.checked;
-         });
+   authorReportRadio.addEventListener("change", function() {
+       authorReportOptions.style.display = this.checked ? 'block' : 'none';
+       postReportRadio.disabled = this.checked;
+   });
 
-         authorReportCheckbox.addEventListener("change", function() {
-            authorReportOptions.style.display = this.checked ? 'block' : 'none';
-            postReportCheckbox.disabled = this.checked;
-         });
+   function showTextarea(type) {
+       var reasonRadio = document.querySelectorAll(`input[name=${type}Reason]`);
+       var otherReason = document.getElementById(`otherReason`);
+       var otherReason2 = document.getElementById(`otherReason2`);
 
-         function showTextarea() {
-            var postCheckbox = document.getElementById("postReason8");
-            var authorCheckbox = document.getElementById("authorReason8");
-            var postTextarea = document.getElementById("otherReason");
-            var authorTextarea = document.getElementById("otherReason2");
+       reasonRadio.forEach(radio => {
+           if (radio.checked && radio.value === `${type}Reason8`) {
+               if (type === 'post') {
+                   otherReason.style.display = 'block';
+                   otherReason2.style.display = 'none';
+               } else if (type === 'author') {
+                   otherReason2.style.display = 'block';
+                   otherReason.style.display = 'none';
+               }
+           }
+       });
+   }
 
-            if (postCheckbox.checked) {
-               postTextarea.style.display = "block";
-            } else {
-               postTextarea.style.display = "none";
-            }
+   function submitComplainOffer() {
 
-            if (authorCheckbox.checked) {
-               authorTextarea.style.display = "block";
-            } else {
-               authorTextarea.style.display = "none";
-            }
-         }
+       var postReportCheckboxes = postReportOptions.querySelectorAll('.reasonRadio:checked');
+       var authorReportCheckboxes = authorReportOptions.querySelectorAll('.reasonRadio:checked');
 
-         function submitComplainOffer() {
-            var postReportCheckboxes = postReportOptions .querySelectorAll('.reasonCheckbox:checked');
-            var authorReportCheckboxes = authorReportOptions .querySelectorAll('.reasonCheckbox:checked');
+       if (postReportCheckboxes.length === 0 && authorReportCheckboxes.length === 0) {
+           alert("신고 사유를 선택해주세요");
+       } else {
+           event.preventDefault();
+           var result = confirm('신고 접수를 하시겠습니까?');
 
-            if (postReportCheckboxes.length === 0
-                  && authorReportCheckboxes.length === 0
-                  && (!postReportCheckbox.checked || !authorReportCheckbox.checked)) {
-               alert("신고 사유를 선택해주세요");
-            } else {
-               var productIds = [];
-
-               // 선택된 체크박스를 관리자에게 전달하는 코드 추가해야함!!!!!!!!!!!!
-               window.location.href = "./Complain.com?bno=${dto.bno }";
-
-            }
-         }
-      </script>
+           if (result === true) {
+               // 확인을 클릭한 경우에만 제출
+               document.getElementById("ComplainForm").submit();
+           } else if((result === false)){
+               // 취소를 눌렀을 때의 동작
+               alert("신고 접수가 취소되었습니다");
+               return closeComplainModal();
+           }
+       }
+   }
+</script>
 
 
       <!-- 상세페이지 오른쪽 ... 버튼 -->
@@ -646,7 +643,7 @@
                document.getElementById("SubmitSuggestForm").submit();
             } else {
                alert('거래를 취소하셨습니다');
-               closeSuggestModal();
+               close();
             }
          }
       </script>

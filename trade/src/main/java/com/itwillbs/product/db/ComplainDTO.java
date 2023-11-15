@@ -6,6 +6,7 @@ public class ComplainDTO {
 	private int bno;
 	private String complainer_id;
 	private String user_id;
+	private int com_bno;
 	private String complainReason;
 	private Timestamp uploadDate;
 	private boolean complete;
@@ -29,6 +30,12 @@ public class ComplainDTO {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	public int getCom_bno() {
+		return com_bno;
+	}
+	public void setCom_bno(int com_bno) {
+		this.com_bno = com_bno;
 	}
 	public String getComplainReason() {
 		return complainReason;
@@ -60,13 +67,16 @@ public class ComplainDTO {
 	public void setCompleteDate(Timestamp completeDate) {
 		this.completeDate = completeDate;
 	}
-	
+
+
+
 	@Override
 	public String toString() {
-		return "ComplainDTO [bno=" + bno + ", complainer_id=" + complainer_id + ", user_id=" + user_id
-				+ ", complainReason=" + complainReason + ", uploadDate=" + uploadDate + ", complete=" + complete
-				+ ", emp_id=" + emp_id + ", completeDate=" + completeDate + "]";
+		return "ComplainDTO [bno=" + bno + ", complainer_id=" + complainer_id + ", user_id=" + user_id + ", com_bno="
+				+ com_bno + ", complainReason=" + complainReason + ", uploadDate=" + uploadDate + ", complete="
+				+ complete + ", emp_id=" + emp_id + ", completeDate=" + completeDate + "]";
 	}
+	
 	
 	
 }

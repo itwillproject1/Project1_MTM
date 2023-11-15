@@ -29,6 +29,8 @@ public class ComplainAction implements Action {
 		System.out.println("글 bno: " + bno);
 		String user_id = request.getParameter("user_id");
 		System.out.println("글 작성자: " + user_id);
+		String complainReason = request.getParameter("reason");
+		System.out.println("신고 사유: " + complainReason);
 		
 		ProductDTO sp_dto = new ProductDTO();
 		ProductDAO sp_dao = new ProductDAO();
@@ -39,7 +41,7 @@ public class ComplainAction implements Action {
 		cdto.setBno(bno);
 		cdto.setComplainer_id(login_id);
 		cdto.setUser_id(sp_dto.getUser_id());
-		cdto.setComplainReason(cdto.getComplainReason());
+		cdto.setComplainReason(complainReason);
 		cdto.setUploadDate(cdto.getUploadDate());
 		cdto.setEmp_id(cdto.getEmp_id());
 		cdto.setCompleteDate(cdto.getCompleteDate());

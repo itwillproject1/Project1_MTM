@@ -55,6 +55,7 @@ public class ComplainDAO {
 			        pstmt.setInt(1, cdto.getBno());
 			        pstmt.setString(2, cdto.getComplainer_id());
 			        pstmt.setString(3, cdto.getUser_id());
+			        
 			        pstmt.setString(4, cdto.getComplainReason());
 			        pstmt.setString(5, cdto.getEmp_id());
 			        pstmt.setTimestamp(6, cdto.getCompleteDate());
