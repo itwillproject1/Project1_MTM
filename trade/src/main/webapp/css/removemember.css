@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+fieldset {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input[type="password"] {
+            width: 50%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #222;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            text-align: center;
+       
+        }
+
+        input[type="submit"]:hover {
+            background-color: #000000;
+        }

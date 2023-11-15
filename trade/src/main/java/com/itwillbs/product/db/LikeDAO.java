@@ -50,7 +50,7 @@ public class LikeDAO {
 			con = getCon();
 			
 			// sql, pstmt
-			sql = "select * from Likes where bno = ? and (user_id = ? or user_id IS NULL);";
+			sql = "select * from Likes where bno = ? and user_id = ?;";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, ldto.getBno());
@@ -67,6 +67,8 @@ public class LikeDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
 		System.out.println("LDAO: result: " + result);
 		return result;
@@ -82,25 +84,105 @@ public class LikeDAO {
 			
 			// sql, pstmt
 			if(num == 0) { // 찜 기록이 없으면 데이터 insert 필요
-				sql = "insert into Likes (bno, user_id, like) values (?, ?, 1)";
+				sql = "insert into Likes (bno, user_id, do_like) values (?, ?, 1)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, ldto.getBno());
 				pstmt.setString(2, ldto.getUser_id());
 				
-				result = pstmt.executeUpdate();				
+				System.out.println("입력 성공!");
+				result = pstmt.executeUpdate();
+				
+				sql= "update Product set like_count = like_count+1 where bno = ?";
+				pstmt = con.prepareStatement(sql);	
+				pstmt.setInt(1, ldto.getBno());
+				
+				pstmt.executeUpdate();
 			} else { // 찜 기록이 있으면 찜을 취소해야하므로 delete 필요
-				sql = "delete from Likes where bno = ? and (user_id = ? or user_id IS NULL)";
+				sql = "delete from Likes where bno = ? and user_id = ?";
 				pstmt = con.prepareStatement(sql);	
 				pstmt.setInt(1, ldto.getBno());
 				pstmt.setString(2, ldto.getUser_id());
 				
-				result = 0;				
+				pstmt.executeUpdate();
+				
+				System.out.println("삭제 성공!");
+				result = 0;
+				
+				sql= "update Product set like_count = like_count-1 where bno = ?";
+				pstmt = con.prepareStatement(sql);	
+				pstmt.setInt(1, ldto.getBno());
+				
+				pstmt.executeUpdate();
 			}
+			System.out.println("LDAO: " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
 		return result;
 	} // likeAction(LikeDTO ldto) 종료
+	
+	
+	// 마이페이지에서 내가 찜한 상품만 불러오는 메소드
+	public ArrayList<LikeDTO> getlikeList(String user_id) {
+		ArrayList<LikeDTO> likedtolist = new ArrayList<LikeDTO>();
+		try {
+			// 디비연결정보
+			// 1. 드라이버 로드
+			// 2. 디비 연결
+			con = getCon();
 
+			// 3. SQL 작성(sele&ct) & pstmt 객체
+			sql = "select * from Likes where user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id); // %검색어%
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			// 5. 데이터 처리
+			// 글정보 전부 가져오기
+			while (rs.next()) {
+				LikeDTO dto = new LikeDTO();
+
+				dto.setBno(rs.getInt("bno"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setDo_like(rs.getInt("do_like"));
+				
+
+				// 글 하나의 정보를 배열의 한칸에 저장
+				likedtolist.add(dto);
+
+				System.out.println(" DAO : 내가 찜한 상품만 배열만들기성공! ");
+				System.out.println(" DAO : " + likedtolist.size());
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		
+		return likedtolist;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

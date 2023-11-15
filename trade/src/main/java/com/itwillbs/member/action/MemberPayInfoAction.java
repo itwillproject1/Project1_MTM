@@ -20,7 +20,7 @@ public class MemberPayInfoAction implements Action {
 		
 		// 로그인한 유저의 아이디
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("user_id");
 		
 		ActionForward forward = new ActionForward();
 		if( id == null ) {

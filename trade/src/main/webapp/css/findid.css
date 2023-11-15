@@ -3,10 +3,12 @@
 fieldset {
   border: 2px solid #222;
   border-radius: 10px;
-  width: 45%;
+  width: 25%;
   margin: 0 auto; /* Center the fieldset horizontally */
   padding: 20px;
 }
+
+form
 
 legend {
   font-size: 18px;
@@ -21,7 +23,7 @@ form select {
   padding: 8px;
   width: 28%;
   border-radius: 4px;
-  margin: 7px 2px 15px;
+  margin: 7px 2px 15px 10px;
 }
 
 form .in[type="button"],
@@ -66,4 +68,68 @@ form select {
 /* Optional: Style the "검색하기" button */
 form .in[type="button"]#searchButton {
   margin-left: 10px;
+}
+
+
+#jumin {
+	padding: 8px;
+  width: 14%;
+  border-radius: 4px;
+  margin: 7px 2px 15px 20px;
+	
+}
+
+#jumin2 {
+	padding: 8px;
+  width: 14%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+	
+}
+
+#jumin3 {
+	padding: 8px;
+  width: 14%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+	
+}
+
+#num {
+	padding: 8px;
+  width: 13%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+}
+
+#num2 {
+	padding: 8px;
+  width: 10%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+}
+
+#num3 {
+	padding: 8px;
+  width: 10%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+}
+
+#num3 {
+	padding: 8px;
+  width: 10%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+}
+
+#na {
+padding: 8px;
+  width: 28%;
+  border-radius: 4px;
+  margin: 7px 2px 15px 47px;
+}
+
+#bu {
+	margin: 7px 2px 15px 250px;
 }

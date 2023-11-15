@@ -46,6 +46,22 @@ public class JSMoveFunction {
 		}
 	}
 	
+	public static void alertBack(HttpServletResponse response,
+            String msg) {
+		System.out.println(" JSMoveFunction_alertBack()호출 ");
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println(" alert('"+msg+"'); ");
+			out.println(" history.back(); ");
+			out.println("</script>");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	
 	

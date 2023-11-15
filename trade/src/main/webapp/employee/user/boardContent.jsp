@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="../inn/head/main.jsp"/>
+<%-- <jsp:include page="../inn/head/main.jsp"/> --%>
 <title>게시판</title>
   <c:if test="${empty emp_id}">
 		<c:redirect url="./Login.emp"/>
