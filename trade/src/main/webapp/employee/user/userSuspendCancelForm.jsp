@@ -14,25 +14,16 @@
             <div class="col-12">
               <h2 class="page-title">유저 신고 취소</h2>
               <div class="card shadow mb-5">
-              <form action="./UserSuspendActiveAction.emp" method="post">
+              <form action="./UserSuspendCancelAction.emp" method="post">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
                       <div class="form-group mb-3">
-                       <label for="emp_id">피신고자</label>
-                        <input type="text" id="emp_id" value="${requestScope.user_id}" class="form-control" readonly value="Readonly value">
+                       <label for="user_id">피신고자</label>
+                        <input type="text" name="user_id" id="user_id" value="${dto.user_id}" class="form-control" readonly value="Readonly value">
                       </div>
                       <div class="form-group mb-3">
-                      	<p class="mb-2"><strong>신고 처리</strong></p>
-                        	<c:forEach var="i" items="complainList">
-                        		<div class="form-check">
-                        			<input class="form-check-input" name="complainCheck" type="checkbox" value="${i.bno}" id="${i.complainer_id}">
-                        			<label class="form-check-label" for="${i.complainer_id}"> ${i.uploadDate} : ${i.complainReason} </label>
-                      			</div>
-                        	</c:forEach>
-                      </div>
-                      <div class="form-group mb-3">
-                        <label for="password">비밀번호</label>
+                        <label for="emp_pw">비밀번호</label>
                         <input type="password" name="emp_pw" id="emp_pw" class="form-control" placeholder="비밀번호">
                       </div>
                       <button type="submit" id="board-btn" class="btn btn-primary">입력</button>

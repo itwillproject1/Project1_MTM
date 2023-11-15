@@ -4,32 +4,39 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class ComplainDTO {
+	private int idx;
 	private int bno;
-	private String reporter_id;
-	private String reported_id;
+	private String complainer_id;
+	private String user_id;
 	private String complainReason;
 	private Timestamp uploadDate;
 	private boolean complete;
 	private String emp_id;
 	private Timestamp completeDate;
 	private int count;
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
 	public int getBno() {
 		return bno;
 	}
 	public void setBno(int bno) {
 		this.bno = bno;
 	}
-	public String getReporter_id() {
-		return reporter_id;
+	public String getComplainer_id() {
+		return complainer_id;
 	}
-	public void setReporter_id(String reporter_id) {
-		this.reporter_id = reporter_id;
+	public void setComplainer_id(String complainer_id) {
+		this.complainer_id = complainer_id;
 	}
-	public String getReported_id() {
-		return reported_id;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setReported_id(String reported_id) {
-		this.reported_id = reported_id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getComplainReason() {
 		return complainReason;
@@ -69,7 +76,7 @@ public class ComplainDTO {
 	}
 	@Override
 	public String toString() {
-		return "ComplainDTO [bno=" + bno + ", reporter_id=" + reporter_id + ", reported_id=" + reported_id
+		return "ComplainDTO [idx=" + idx + ", bno=" + bno + ", complainer_id=" + complainer_id + ", user_id=" + user_id
 				+ ", complainReason=" + complainReason + ", uploadDate=" + uploadDate + ", complete=" + complete
 				+ ", emp_id=" + emp_id + ", completeDate=" + completeDate + ", count=" + count + ", toString()="
 				+ super.toString() + "]";
