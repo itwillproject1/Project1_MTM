@@ -257,6 +257,9 @@ h2 {
 } 
 
 /* 신고하기 모달창 */
+#postReportOptions, #authorReportOptions {
+	 margin-left: 40px; /*하위 사유 들여쓰기*/
+}
 
 .reasonCheckbox {
 	margin-left: 20px;

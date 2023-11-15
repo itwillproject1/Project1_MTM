@@ -295,12 +295,108 @@
 	                </div>
 	                
 	            </div>
-	            <button class="close-button" onclick="closeComplainModal()">닫기</button>
 	            <button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
 	        </form>
+	            <button class="close-button" onclick="closeComplainModal()">닫기</button>
 	    </div>
 	</div>
 	<!-- 신고하기 모달창 종료-->
+<!-- 신고창 시작 -->
+	<script>
+	var cModal = document.getElementById("complainModal");
+	var postReportRadio = document.getElementById("postReportRadio");
+	var postReportOptions = document.getElementById("postReportOptions");
+	var authorReportRadio = document.getElementById("authorReportRadio");
+	var authorReportOptions = document.getElementById("authorReportOptions");
+
+	function openComplainModal() {
+		cModal.style.display = "block";
+	    resetComplainForm();
+
+	}
+
+	
+	function closeComplainModal() {
+		cModal.style.display = "none";
+	    resetComplainForm();
+
+	    
+	}
+	
+	window.onclick = function(event) {
+		if (event.target == complainModal) {
+			cModal.style.display = "none";
+		    resetComplainForm();
+
+		}
+	}
+
+	postReportRadio.addEventListener("change", function() {
+		postReportOptions.style.display = this.checked ? 'block' : 'none';
+	    authorReportOptions.style.display = 'none'; // 게시글 신고 선택 시 작성자 신고의 하위 라디오 버튼을 숨김
+	    resetComplainForm();
+
+	});
+
+	authorReportRadio.addEventListener("change", function() {
+		authorReportOptions.style.display = this.checked ? 'block' : 'none';
+	    postReportOptions.style.display = 'none'; // 작성자 신고 선택 시 게시글 신고의 하위 라디오 버튼을 숨김
+	    resetComplainForm();
+
+	});
+
+	function resetComplainForm() {
+	    var radioGroups = document.querySelectorAll('input[name="reason"]');
+	    radioGroups.forEach(group => {
+	        group.checked = false;
+	    });
+	    var textareas = document.querySelectorAll('textarea');
+	    textareas.forEach(textarea => {
+	        textarea.value = "";
+	    });
+	}
+	
+	function showTextarea(type) {
+		var reasonRadios = document.getElementsByName(type + 'Reason');
+		var otherReason = document.getElementById('otherReason');
+	    var otherReason2 = document.getElementById('otherReason2');
+
+	    reasonRadios.forEach(radio => {
+			if (radio.checked && radio.value === type + 'Reason8') {
+				if (type === 'post') {
+					otherReason.style.display = 'block';
+					otherReason2.style.display = 'none';
+	            } else if (type === 'author') {
+					otherReason2.style.display = 'block';
+	                otherReason.style.display = 'none';
+				}
+			}
+		});
+	}
+
+	function submitComplainOffer() {
+
+ 		var postReportCheckboxes = postReportOptions.querySelectorAll('.reasonRadio:checked');
+		var authorReportCheckboxes = authorReportOptions.querySelectorAll('.reasonRadio:checked');
+
+		if (postReportCheckboxes.length === 0 && authorReportCheckboxes.length === 0) {
+			alert("신고 사유를 선택해주세요");
+		} else {
+			event.preventDefault();
+			var result = confirm('신고 접수를 하시겠습니까?');
+
+			if (result === true) {
+				// 확인을 클릭한 경우에만 제출
+				document.getElementById("ComplainForm").submit();
+			} else if((result === false)){
+				// 취소를 눌렀을 때의 동작
+				alert("신고 접수가 취소되었습니다");
+				return closeComplainModal();
+			}
+		}
+	}
+	</script>
+	<!-- 신고창 종료 -->
 
 	<!-- 판매하기 모달 시작 -->
 	<div id="sellModal" class="modal">
@@ -449,79 +545,7 @@
          </script>
 	<!-- 이미지 미리보기 종료 -->
 
-	<!-- 신고창 시작 -->
-	<script>
-	var complainModal = document.getElementById("complainModal");
-	var postReportRadio = document.getElementById("postReportRadio");
-	var postReportOptions = document.getElementById("postReportOptions");
-	var authorReportRadio = document.getElementById("authorReportRadio");
-	var authorReportOptions = document.getElementById("authorReportOptions");
-
-	function openComplainModal() {
-		complainModal.style.display = "block";
-	}
-
-	function closeComplainModal() {
-		complainModal.style.display = "none";
-	}
-
-	window.onclick = function(event) {
-		if (event.target == complainModal) {
-			complainModal.style.display = "none";
-		}
-	}
-
-	postReportRadio.addEventListener("change", function() {
-		postReportOptions.style.display = this.checked ? 'block' : 'none';
-		authorReportRadio.disabled = this.checked;
-	});
-
-	authorReportRadio.addEventListener("change", function() {
-		authorReportOptions.style.display = this.checked ? 'block' : 'none';
-		postReportRadio.disabled = this.checked;
-	});
-
-	function showTextarea(type) {
-		var reasonRadios = document.getElementsByName(type + 'Reason');
-		var otherReason = document.getElementById('otherReason');
-	    var otherReason2 = document.getElementById('otherReason2');
-
-	    reasonRadios.forEach(radio => {
-			if (radio.checked && radio.value === type + 'Reason8') {
-				if (type === 'post') {
-					otherReason.style.display = 'block';
-					otherReason2.style.display = 'none';
-	            } else if (type === 'author') {
-					otherReason2.style.display = 'block';
-	                otherReason.style.display = 'none';
-				}
-			}
-		});
-	}
-
-	function submitComplainOffer() {
-
- 		var postReportCheckboxes = postReportOptions.querySelectorAll('.reasonRadio:checked');
-		var authorReportCheckboxes = authorReportOptions.querySelectorAll('.reasonRadio:checked');
-
-		if (postReportCheckboxes.length === 0 && authorReportCheckboxes.length === 0) {
-			alert("신고 사유를 선택해주세요");
-		} else {
-			event.preventDefault();
-			var result = confirm('신고 접수를 하시겠습니까?');
-
-			if (result === true) {
-				// 확인을 클릭한 경우에만 제출
-				document.getElementById("ComplainForm").submit();
-			} else if((result === false)){
-				// 취소를 눌렀을 때의 동작
-				alert("신고 접수가 취소되었습니다");
-				return closeComplainModal();
-			}
-		}
-	}
-	</script>
-	<!-- 신고창 종료 -->
+	
 
 	<!-- 상세페이지 오른쪽 ... 버튼 시작-->
 	<script>
