@@ -75,14 +75,14 @@ public class MemberDAO {
 					pstmt.executeUpdate();
 					
 					if(dto.getRecommend() != null) {
-							sql = "update Member set pay = pay + 1000 where user_nickname = ?";
+							sql = "update Member set pay = pay + 1000 where user_id = ?";
 							pstmt = con.prepareStatement(sql);
-							pstmt.setString(1, dto.getRecommend());
+							pstmt.setString(1, dto.getUser_id());
 							
 							pstmt.executeUpdate();
 						}
 					
-					System.out.println("회원가입 완료");
+				 //	System.out.println("회원가입 완료");
 				} catch (Exception e) {
 					
 					e.printStackTrace();

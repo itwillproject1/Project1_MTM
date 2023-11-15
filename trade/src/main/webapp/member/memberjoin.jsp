@@ -74,20 +74,20 @@
 					return false;
 				}
 				var phone2 = document.join.phone2.value;
-				if (phone2 == "") {
+				if (phone2 == "" || document.join.phone2.value.length == 4) {
 					alert(' 휴대폰 번호를 확인하세요! ');
 					document.join.phone2.focus();
 					return false;
 				
 				}
 				var phone3 = document.join.phone3.value;
-				if (phone3 == "") {
+				if (phone3 == "" || document.join.phone3.value.length == 4) {
 					alert(' 휴대폰 번호를 확인하세요! ');
 					document.join.phone3.focus();
 					return false;
 				}
 				var address = document.join.address.value;
-				if (address == "") {
+				if (address == "" || document.join.phone3.value.length < 10) {
 					alert(' 주소를 확인하세요! ');
 					document.join.address.focus();
 					return false;
@@ -217,26 +217,33 @@
 						 <option value="017">017</option>
 						 <option value="031">031</option>
 						 </select> -
-						 <input type="text" name="phone2"> -
-						 <input type="text" name="phone3"><br>
+						 <input type="text" name="phone2" style="width:55px;height:15px;"> -
+						 <input type="text" name="phone3" style="width:55px;height:15px;"><br>
 						 
 			<div id="callBackDiv">			 
-			주 소  <br><input type="text" id="address" name="address"> <input type="button" value="검색하기" onclick="goPopup()" > <br>
+
+			주 소 : <input type="text" id="address" name="address" style="width:200px;height:15px;"> <input type="button" value="검색하기" onclick="goPopup()" > <br>
+
 			</div>
 			
 			닉네임 <br><input type="text" name="user_nickname"><br>
 			
 			
 			
-			프로필 <br><input type="file" name="profile" value="등록하기" accept="image/*"><br>
+
+
+			프로필 : <input type="file" name="profile" value="등록하기" accept="image/*"><br><br>
+
 			
 			
 			
 			추천인 입력(선택) <br><input type="text" name="recommend"><br>
 			
 			
-			약관 동의 <br><input type="radio" name="agree" value="동의"> 동의
-					<input type="radio" name="agree" value="비동의"> 비동의<br>
+
+			개인정보 수집 및 이용 : <input type="radio" name="agree" value="동의"> 동의
+									<input type="radio" name="agree" value="비동의"> 비동의<br>
+
 			
 			
 			
