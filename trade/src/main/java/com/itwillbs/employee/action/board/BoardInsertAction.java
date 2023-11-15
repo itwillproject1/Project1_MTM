@@ -24,6 +24,12 @@ public class BoardInsertAction implements Action{
 		mdto.setEmp_pw(request.getParameter("emp_pw"));
 		BoardDAO dao = new BoardDAO();
 		int result = dao.insertBoard(bdto, mdto);
+		if(result == 1) {
+			
+		}
+		else {
+			
+		}
 		return null;
 	}
 }
