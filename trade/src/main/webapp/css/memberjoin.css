@@ -15,8 +15,8 @@ legend {
 }
 
 /* Style form elements */
-form input[type="text"],
-form input[type="password"],
+form .in[type="text"],
+form .in[type="password"],
 form select {
   padding: 8px;
   width: 28%;
@@ -24,8 +24,8 @@ form select {
   margin: 7px 2px 15px;
 }
 
-form input[type="button"],
-form input[type="submit"] {
+form .in[type="button"],
+form .in[type="submit"] {
   margin: 10px 5px;
   padding: 10px 20px;
   background-color: #222;
@@ -36,7 +36,7 @@ form input[type="submit"] {
 }
 
 /* Style the radio buttons and labels */
-form input[type="radio"] {
+form .in[type="radio"] {
   margin-bottom: 10px;
 }
 
@@ -53,8 +53,8 @@ form hr {
 }
 
 /* Add a hover effect to buttons */
-form input[type="button"]:hover,
-form input[type="submit"]:hover {
+form .in[type="button"]:hover,
+form .in[type="submit"]:hover {
   background-color: #000000;
 }
 
@@ -64,6 +64,6 @@ form select {
 }
 
 /* Optional: Style the "검색하기" button */
-form input[type="button"]#searchButton {
+form .in[type="button"]#searchButton {
   margin-left: 10px;
 }

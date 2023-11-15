@@ -20,9 +20,12 @@ public class ProfileAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		MemberDAO dao = new MemberDAO();
 		
-		// 세션에서 로그인 중인 아이디 불러오기
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("emp_id");
+		String id = request.getParameter("emp_id");
+		if(id == null) {
+			HttpSession session = request.getSession();
+			// 세션에서 로그인 중인 아이디 불러오기
+			id = (String)session.getAttribute("emp_id");
+		}
 		
 		ActionForward forward = new ActionForward();
 		

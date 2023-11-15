@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+fieldset {
+  border: 2px solid #222;
+  border-radius: 10px;
+  width: 25%;
+  margin: 0 auto; /* Center the fieldset horizontally */
+  padding: 20px;
+}
+
+form
+
+legend {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Style form elements */
+form .in[type="text"],
+form .in[type="password"],
+form select {
+  padding: 8px;
+  width: 28%;
+  border-radius: 4px;
+  margin: 7px 2px 15px 10px;
+}
+
+form .in[type="button"],
+form .in[type="submit"] {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the radio buttons and labels */
+form .in[type="radio"] {
+  margin-bottom: 10px;
+}
+
+/* Add some spacing between elements */
+form hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+/* Style the address input and button */
+#address {
+  width: calc(80% - 20px);
+}
+
+/* Add a hover effect to buttons */
+form .in[type="button"]:hover,
+form .in[type="submit"]:hover {
+  background-color: #000000;
+}
+
+/* Optional: Style select dropdown */
+form select {
+  padding: 8px;
+}
+
+/* Optional: Style the "검색하기" button */
+form .in[type="button"]#searchButton {
+  margin-left: 10px;
+}
+
+
+#jumin {
+	padding: 8px;
+  width: 14%;
+  border-radius: 4px;
+  margin: 7px 2px 15px 20px;
+	
+}
+
+#jumin2 {
+	padding: 8px;
+  width: 14%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+	
+}
+
+#jumin3 {
+	padding: 8px;
+  width: 14%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+	
+}
+
+#num {
+	padding: 8px;
+  width: 13%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+}
+
+#num2 {
+	padding: 8px;
+  width: 10%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+}
+
+#num3 {
+	padding: 8px;
+  width: 10%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+}
+
+#num3 {
+	padding: 8px;
+  width: 10%;
+  border-radius: 4px;
+  margin: 7px 2px 15px;
+}
+
+#na {
+padding: 8px;
+  width: 28%;
+  border-radius: 4px;
+  margin: 7px 2px 15px 47px;
+}
+
+#bu {
+	margin: 7px 2px 15px 250px;
+}

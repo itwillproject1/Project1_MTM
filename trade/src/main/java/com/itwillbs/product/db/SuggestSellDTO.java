@@ -51,12 +51,14 @@ public class SuggestSellDTO {
 	public void setSeller_price(int seller_price) {
 		this.seller_price = seller_price;
 	}
+
 	@Override
 	public String toString() {
 		return "SuggestSellDTO [index=" + index + ", buy_bno=" + buy_bno + ", sell_bno=" + sell_bno + ", buyer_user_id="
 				+ buyer_user_id + ", seller_user_id=" + seller_user_id + ", buyer_price=" + buyer_price
 				+ ", seller_price=" + seller_price + "]";
 	}
+	
 
 	
 }

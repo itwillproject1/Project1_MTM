@@ -74,20 +74,20 @@
 					return false;
 				}
 				var phone2 = document.join.phone2.value;
-				if (phone2 == "" || document.join.phone2.value.length == 4) {
+				if (phone2 == "") {
 					alert(' 휴대폰 번호를 확인하세요! ');
 					document.join.phone2.focus();
 					return false;
 				
 				}
 				var phone3 = document.join.phone3.value;
-				if (phone3 == "" || document.join.phone3.value.length == 4) {
+				if (phone3 == "") {
 					alert(' 휴대폰 번호를 확인하세요! ');
 					document.join.phone3.focus();
 					return false;
 				}
 				var address = document.join.address.value;
-				if (address == "" || document.join.phone3.value.length < 10) {
+				if (address == "") {
 					alert(' 주소를 확인하세요! ');
 					document.join.address.focus();
 					return false;
@@ -144,19 +144,20 @@
 		
 		
 		<fieldset>
+		<legend> 회원가입 페이지 </legend>
 		<form action="./MemberJoinAction.member" method="post" name="join" onsubmit="return check();" enctype="multipart/form-data" >
 		<div id="callBackDiv">
 			아이디 <br>
-			<input type="text" name="user_id" id="user_id" placeholder="5~12자 이내로 입력해주세요"> 
-			<input type="button" value="ID 중복확인" onclick="checkid();" > <br>
+			<input type="text" name="user_id" id="user_id" placeholder="5~12자 이내로 입력해주세요" class="in"> 
+			<input type="button" value="ID 중복확인" onclick="checkid();" class="in"> <br>
 			</div>
 					 
 					 
-			비밀번호 <br> <input type="password" name="password" placeholder="6~15자 이내로 입력해주세요"><br>
-			비밀번호 확인 <br><input type="password" name="passwordcheck" placeholder="비밀번호를 한번 더 입력해주세요"><br>
+			비밀번호 <br> <input type="password" name="password" placeholder="6~15자 이내로 입력해주세요" class="in"><br>
+			비밀번호 확인 <br><input type="password" name="passwordcheck" placeholder="비밀번호를 한번 더 입력해주세요" class="in"><br>
 			
 			
-			이메일 <br><input type="text" name="email1">
+			이메일 <br><input type="text" name="email1" class="in">
 				<select id="email" name="email2" size="1" onchange="email_check()">
 				<option value="선택하세요">선택하세요</option>
 				<option value="@naver.com">@naver.com</option>
@@ -168,7 +169,7 @@
 				</select><br>
 				
 						
-			이름  <br><input type="text" name="user_name"><br>
+			이름  <br><input type="text" name="user_name" class="in"><br>
 			
 			
 			생년월일 <br>			
@@ -208,8 +209,8 @@
 				</c:forEach>
 			</select> <br> 
 			
-			성별 <br><input type="radio" name="gender" value="남"> 남
-		 		   <input type="radio" name="gender" value="여"> 여<br>
+			성별 <br><input type="radio" name="gender" value="남" class="in"> 남
+		 		   <input type="radio" name="gender" value="여" class="in"> 여<br>
 		 		   
 			휴대폰 번호 <br><select name="phone1">
 						 <option value="010">010</option>
@@ -217,39 +218,32 @@
 						 <option value="017">017</option>
 						 <option value="031">031</option>
 						 </select> -
-						 <input type="text" name="phone2" style="width:55px;height:15px;"> -
-						 <input type="text" name="phone3" style="width:55px;height:15px;"><br>
+						 <input type="text" name="phone2"> -
+						 <input type="text" name="phone3"><br>
 						 
 			<div id="callBackDiv">			 
-
-			주 소 : <input type="text" id="address" name="address" style="width:200px;height:15px;"> <input type="button" value="검색하기" onclick="goPopup()" > <br>
-
+			주 소  <br><input type="text" id="address" name="address" class="in"> <input type="button" value="검색하기" onclick="goPopup()" class="in"> <br>
 			</div>
 			
-			닉네임 <br><input type="text" name="user_nickname"><br>
+			닉네임 <br><input type="text" name="user_nickname" class="in"><br>
 			
 			
 			
-
-
-			프로필 : <input type="file" name="profile" value="등록하기" accept="image/*"><br><br>
-
+			프로필 <br><input type="file" name="profile" value="등록하기" accept="image/*" class="in"><br>
 			
 			
 			
-			추천인 입력(선택) <br><input type="text" name="recommend"><br>
+			추천인 입력(선택) <br><input type="text" name="recommend" class="in"><br>
 			
 			
-
-			개인정보 수집 및 이용 : <input type="radio" name="agree" value="동의"> 동의
-									<input type="radio" name="agree" value="비동의"> 비동의<br>
-
+			약관 동의 <br><input type="radio" name="agree" value="동의" class="in"> 동의
+					<input type="radio" name="agree" value="비동의" class="in"> 비동의<br>
 			
 			
 			
 			<hr>
-			<input type="submit" value="회원가입">		
-			<input type="button" value="취소">
+			<input type="submit" value="회원가입" class="in">		
+			<input type="button" value="취소" class="in">
 		</form>	
 	</fieldset>
 	

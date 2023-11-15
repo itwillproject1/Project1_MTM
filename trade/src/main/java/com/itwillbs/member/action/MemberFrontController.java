@@ -205,6 +205,37 @@ public class MemberFrontController extends HttpServlet {
 	
 		}
 		
+		else if(command.equals("/MypageLikeboardAction.member")){
+			
+			action = new MypageLikeboardAction();
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}
+		
+		else if(command.equals("/member/findid.member")){
+			
+			forward = new ActionForward();
+			forward.setPath("./findid.jsp");
+			forward.setRedirect(false);
+		}
+		
+		else if(command.equals("/member/findidAction.member")){
+			
+			System.out.println(" C : /member/findidAction.member 호출 ");
+			
+			action = new findidAction();
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}
+		
 		/*
 		else if(command.equals("/member/mypage.member")) {
 		 

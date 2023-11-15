@@ -4,11 +4,24 @@
 <jsp:include page="../inn/head/main.jsp"/>
 <jsp:include page="../inn/navbar.jsp"/>
    <!-- 메인 -->
+<title>${dto.name}프로필</title>
 <main role="main" class="main-content">
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-8">
-              <h2 class="h3 mb-4 page-title">프로필</h2>
+            	 <div class="row align-items-center mb-10">
+                	<div class="col">
+                  		<h2 class="h3 mb-4 page-title">프로필</h2>
+                	</div>
+                	<div class="col-auto">
+                		<c:if test="${dto.active == 1}">
+ 	                 		<button type="button" class="btn btn-secondary" onclick="location.href='./EmployeeDeleteForm.emp?emp_id=${dto.emp_id}'">비활성화</button>
+                		</c:if>
+                		<c:if test="${dto.active == 0}">
+	                  		<button type="button" class="btn btn-primary" onclick="location.href='./EmployeeActiveForm.emp?emp_id=${dto.emp_id}'">활성화</button>
+                		</c:if>
+                	</div>
+              	</div>
               <div class="my-4">
                	<div class="row mt-5 align-items-center">
                     <div class="col-md-3 text-center mb-5">

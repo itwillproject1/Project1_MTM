@@ -11,7 +11,7 @@ public class MemberDAO extends DAO{
 		int result = -1;
 		try {
 			con = getCon();
-			sql = "select emp_pw from Employees where emp_id = ?";
+			sql = "select emp_pw from Employees where emp_id = ? and active = 1";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getEmp_id());
 			rs = pstmt.executeQuery();
@@ -48,6 +48,7 @@ public class MemberDAO extends DAO{
 				result.setTel(rs.getString("tel"));
 				result.setJoin_date(rs.getDate("join_date"));
 				result.setImage(rs.getString("image"));
+				result.setActive(rs.getInt("active"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,7 +64,7 @@ public class MemberDAO extends DAO{
 			int result = -1;
 			try {
 				con = getCon();
-				sql = "update from Employee where emp_id = ?";
+				sql = "update from Employees where emp_id = ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.executeUpdate();
 			} catch (Exception e) {
@@ -74,91 +75,12 @@ public class MemberDAO extends DAO{
 			return result;
 		} // changeProfile();
 
-		// employeePasswordFind() : 관리자 비밀번호 찾기
-		public int employePwFind(MemberDTO dto) {
-			int result = -1;
-			try {
-				con = getCon();
-				sql = "select email from Employees where emp_id = ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, dto.getEmp_id());
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					if(rs.getString(0).equals(dto.getEmp_id())) {
-						result = 1;
-					}
-					result = 0;
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				CloseDB();
-			}
-			return result;
-		} // employeePasswordFind();
-		
-		// employeePwChange() : 관리자 비밀번호 변경
-		public int employeePwChange(MemberDTO dto, String newPw) {
-			int result = -1;
-			try {
-				con = getCon();
-				sql = "select emp_pw from Employees where emp_id = ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, dto.getEmp_id());
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					if(rs.getString(0).equals(dto.getEmp_pw())) {
-						result = 1;
-						sql = "update from Employees ";
-						pstmt = con.prepareStatement(sql);
-					}
-					result = 0;
-				}
-			} catch(Exception e) {
-				e.printStackTrace();
-			} finally {
-				CloseDB();
-			}
-			return result;
-		} // employeePwChange();
-		
-		// loadEmployeeList() : 직원 목록 return
-		public ArrayList loadEmployeeList(int currentPage) {
-			// 1페이지 8명
-			int content = 8;
-			ArrayList empList = null;
-			try {
-				con = getCon();
-				sql = "select * from Employees order by join_date limit ?, ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, (currentPage-1) * content);
-				pstmt.setInt(2, content);
-				rs = pstmt.executeQuery();
-				empList = new ArrayList();
-				while(rs.next()) {
-					MemberDTO dto = new MemberDTO();
-					dto.setEmp_id(rs.getString("emp_id"));
-					dto.setImage(rs.getString("image"));
-					dto.setName(rs.getString("name"));
-					dto.setTel(rs.getString("tel"));
-					dto.setJoin_date(rs.getDate("join_date"));
-					dto.setEmail(rs.getString("email"));
-					empList.add(dto);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				CloseDB();
-			}
-			return empList;
-		} // loadEemployeeList();
-		
 		// employeeCount() : 직원 수 return
 		public int employeeCount() {
 			int result = 0;
 			try {
 				con = getCon();
-				sql = "select count(*) from Employee";
+				sql = "select count(*) from Employees";
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
@@ -171,5 +93,142 @@ public class MemberDAO extends DAO{
 			}
 			return result;
 		} // employeeCount();
-			
+		
+		public ArrayList employeeList(int startRow, int pageNum) {
+			ArrayList list = null;
+			MemberDTO dto = null;
+			try {
+				con = getCon();
+				sql = "select * from Employees order by emp_id limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, pageNum);
+				rs = pstmt.executeQuery();
+				list = new ArrayList();
+				while(rs.next()) {
+					dto = new MemberDTO();
+					dto.setEmp_id(rs.getString("emp_id"));
+					dto.setEmp_pw(rs.getString("emp_pw"));
+					dto.setName(rs.getString("name"));
+					dto.setEmail(rs.getString("email"));
+					dto.setAddress(rs.getString("address"));
+					dto.setTel(rs.getString("tel"));
+					dto.setJoin_date(rs.getDate("join_date"));
+					dto.setImage(rs.getString("image"));
+					dto.setActive(rs.getInt("active"));
+					list.add(dto);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CloseDB();
+			}
+			return list;
+		}
+
+		public void employeeRegister(MemberDTO dto) {
+			try {
+				con = getCon();
+				sql = "insert into Employees (emp_id, emp_pw, name, email, tel, address, join_date) values(?,?,?,?,?,?,now())";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, dto.getEmp_id());
+				pstmt.setString(2, dto.getEmp_pw());
+				pstmt.setString(3, dto.getName());
+				pstmt.setString(4, dto.getEmail());
+				pstmt.setString(5, dto.getTel());
+				pstmt.setString(6, dto.getAddress());
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CloseDB();
+			}
+		}
+	
+	public int resetPw(MemberDTO dto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "select email from Employees where emp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getEmp_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(dto.getEmail().equals(rs.getString(1))) {
+					result = 1;
+					sql = "select tel from Employees where emp_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, dto.getEmp_id());
+					rs = pstmt.executeQuery();
+					if(rs.next()) dto.setTel(rs.getString("tel"));
+					String pw = dto.getTel().substring(dto.getTel().length() - 4);
+					sql = "update Employees set emp_pw = ? where emp_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, pw);
+					pstmt.setString(2, dto.getEmp_id());
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public int employeeInactive(MemberDTO emp, MemberDTO ad) {
+		// employeeInactive() : 직원 비활성화
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "select emp_pw from Employees where emp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ad.getEmp_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(ad.getEmp_pw())) {
+					result = 1;
+					sql = "update Employees set active = 0 where emp_id = ?";
+					pstmt =  con.prepareStatement(sql);
+					pstmt.setString(1, emp.getEmp_id());
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+
+	public int employeeActive(MemberDTO emp, MemberDTO ad) {
+		// employeeActive() : 직원 활성화
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "select emp_pw from Employees where emp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ad.getEmp_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(ad.getEmp_pw())) {
+					result = 1;
+					sql = "update Employees set active = 1 where emp_id = ?";
+					pstmt =  con.prepareStatement(sql);
+					pstmt.setString(1, emp.getEmp_id());
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
 }

@@ -1,6 +1,7 @@
 package com.itwillbs.member.action;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,15 +50,32 @@ public class MemberInfoAction implements Action {
 		// request 영역에 정보를 저장
 		session.setAttribute("dto", dto);
 		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println(" <script> ");
-		out.println("location.href='../member/MypageProductboardAction.member'");
-		out.println("  window.close(); ");
-		out.println(" </script> ");
-		out.close();
+		/*
+		 * response.setContentType("text/html; charset=utf-8"); PrintWriter out =
+		 * response.getWriter(); out.println(" <script> ");
+		 * out.println("location.href='../member/MypageProductboardAction.member'");
+		 * out.println("  window.close(); "); out.println(" </script> "); out.close();
+		 */
+		ArrayList MPBlist = new ArrayList();
 		
+		
+		
+		MPBlist = dao.getMPBlist(user_id);
+		
+		System.out.println("mpblist" + MPBlist);
+
+		// 전달정보 저장(deal_way, file_name, title, price)
+        request.setAttribute("mpbdto", MPBlist);
+        
+		// 페이지 이동
+		
+		forward.setPath("/MypageLikeboardAction.member");
+		forward.setRedirect(false);
+	
 		return forward;
 	}
+	
+	
+
 
 }

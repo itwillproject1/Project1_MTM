@@ -17,31 +17,30 @@ public class LikeCheckAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("LikeCheckAction.execute() 호출");
-		// 로그인 아이디 받기
+		// 전달 정보 저장(로그인 아이디, 글번호)
 		HttpSession session = request.getSession();
 		String login_id = (String) session.getAttribute("user_id");
-		
-		
-		int bno =Integer.parseInt(request.getParameter("bno"));
-		// 찜
+		int bno = Integer.parseInt(request.getParameter("bno"));
+
+		// 찜 유무 확인
 		LikeDTO ldto = new LikeDTO();
 		ldto.setBno(bno);
 		ldto.setUser_id(login_id);
-	
+
 		LikeDAO ldao = new LikeDAO();
 		int result = ldao.likeAction(ldto);
-		
+
 		// 총 찜 수
 		ProductDAO pdao = new ProductDAO();
 		ProductDTO pdto = pdao.getProduct(bno);
 		int like_count = pdto.getLike_count();
-	
-		// ajax에 값 반환		
+
+		// ajax에 값 반환
 		PrintWriter pw = response.getWriter();
-		pw.println(result+"");
-		pw.println(like_count+"");
+		pw.println(result);
+		pw.println(like_count);
 		pw.flush();
-		
+
 		return null;
 	}
 
