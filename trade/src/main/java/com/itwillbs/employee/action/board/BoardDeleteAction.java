@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.itwillbs.employee.action.JSConfirmMoveFunction;
 import com.itwillbs.employee.dao.BoardDAO;
 import com.itwillbs.employee.dao.DAO;
 import com.itwillbs.employee.dto.BoardDTO;
@@ -25,6 +26,8 @@ public class BoardDeleteAction implements Action{
 		int result = dao.deleteBoard(bdto, mdto);
 		if(result == 1) {
 			// 삭제 완료
+			JSConfirmMoveFunction move = new JSConfirmMoveFunction();
+			move.moveLocation(response, "./BoardDeleteConfirm.emp");
 		}
 		else {
 			// 삭제 안 됨
