@@ -7,8 +7,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class FileUpload {
 	@SuppressWarnings("deprecation")
-	public MultipartRequest fileUpload(HttpServletRequest request, String path) throws Exception {
-		String realPath = request.getRealPath("/upload" + path);
+	public MultipartRequest fileUpload(HttpServletRequest request) throws Exception {
+		String realPath = request.getRealPath("upload");
 		System.out.println("realPath = " + realPath);
 		
 		//파일 크기 제한(5MB)
