@@ -8,32 +8,20 @@ import com.itwillbs.employee.dto.UserDTO;
 
 public class InquiryDAO extends DAO{
 
-	public int updateInquiry(InquiryDTO idto, MemberDTO mdto) {
-		int result = -1;
+	public void updateInquiry(InquiryDTO dto) {
 		try {
 			con = getCon();
-			sql = "select emp_pw from Employee where emp_id = ?";
+			sql = "update Inquiry set complete = 1, emp_id = ?, answerContent = ?, answerDate = now() where bno = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mdto.getEmp_id());
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				if(mdto.getEmp_pw().equals(rs.getString(1))) {
-					result = 1;
-					sql = "update from Inquiry set complete = 1, emp_id = ?, answerContent = ? answerDate = now() where bno = ?";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, mdto.getEmp_id());
-					pstmt.setString(2, idto.getAnswerContent());
-					pstmt.setInt(3, idto.getBno());
-					pstmt.executeUpdate();
-				}
-				else result = 0;
-			}
+			pstmt.setString(1, dto.getEmp_id());
+			pstmt.setString(2, dto.getAnswerContent());
+			pstmt.setInt(3, dto.getBno());
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			CloseDB();
 		}
-		return result;
 	}
 	
 	public int deleteInquiry(InquiryDTO dto, MemberDTO mdto) {
@@ -124,6 +112,8 @@ public class InquiryDAO extends DAO{
 				dto.setSubject(rs.getString("subject"));
 				dto.setCategory(rs.getInt("category"));
 				dto.setUploadDate(rs.getTimestamp("uploadDate"));
+				dto.setImage(rs.getString("image"));
+				System.out.println(dto.getImage());
 				dto.setContent(rs.getString("content"));
 				dto.setComplete(rs.getBoolean("complete"));
 				dto.setEmp_id(rs.getString("emp_id"));

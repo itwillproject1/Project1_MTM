@@ -62,7 +62,7 @@
                   <a class="nav-link pl-3" href="./ProfileContent.emp?emp_id=${emp_id}">프로필 조회</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./LogoutAction.emp">로그아웃</a>
+                  <a class="nav-link pl-3" href="./Logout.emp">로그아웃</a>
                 </li>
               </ul>
             </li>

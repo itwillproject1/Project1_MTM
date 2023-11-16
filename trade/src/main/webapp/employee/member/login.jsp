@@ -17,11 +17,11 @@
           <h1 class="h1 mb-3">로그인</h1>
           <div class="form-group">
             <label for="inputId" class="sr-only">사번</label>
-            <c:if test="${cookie == ''}">	
+            <c:if test="${id_cookie == ''}">	
             	<input type="text" name="emp_id" id="inputId" class="form-control form-control-lg" placeholder="사번" required>
             </c:if>
-             <c:if test="${cookie != ''}">	
-            	<input type="text" name="emp_id" id="inputId" value="${cookie}" class="form-control form-control-lg" placeholder="사번" required>
+             <c:if test="${id_cookie != ''}">	
+            	<input type="text" name="emp_id" id="inputId" value="${id_cookie}" class="form-control form-control-lg" placeholder="사번" required>
             </c:if>
           </div>
           <div class="form-group">
@@ -30,10 +30,10 @@
           </div>
           <div class="checkbox mb-3">
             <label>
-            	<c:if test="${cookie == ''}">
+            	<c:if test="${id_cookie == ''}">
             		<input type="checkbox" name="remember" value="remember-me">
             	</c:if>
-            	<c:if test="${cookie != ''}">
+            	<c:if test="${id_cookie != ''}">
             		<input type="checkbox" name="remember" value="remember-me" checked>
             	</c:if>
             	 사번 기억하기

@@ -17,7 +17,7 @@ public class LoginForm implements Action{
 				id_cookie = cookies[i].getValue();
 			}
 		}
-		request.setAttribute("cookie", id_cookie);
+		request.setAttribute("id_cookie", id_cookie);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/member/login.jsp");
 		forward.setRedirect(false);

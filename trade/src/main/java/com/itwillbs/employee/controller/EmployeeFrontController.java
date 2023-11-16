@@ -40,6 +40,7 @@ import com.itwillbs.employee.action.member.DeleteFormAction;
 import com.itwillbs.employee.action.member.ListAction;
 import com.itwillbs.employee.action.member.LoginAction;
 import com.itwillbs.employee.action.member.LoginForm;
+import com.itwillbs.employee.action.member.LogoutAction;
 import com.itwillbs.employee.action.member.ProfileAction;
 import com.itwillbs.employee.action.member.RegisterAction;
 import com.itwillbs.employee.action.user.TradeContentAction;
@@ -89,6 +90,15 @@ public class EmployeeFrontController extends HttpServlet{
 		else if(command.equals("/Login.emp")) {
 			// 로그인 페이지(처음 이동할 때 session 조회하고 이동 예정)
 			action = new LoginForm();
+			try {
+				forward =  action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/Logout.emp")) {
+			action = new LogoutAction();
 			try {
 				forward =  action.execute(request, response);
 			} catch (Exception e) {

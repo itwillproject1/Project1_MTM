@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.employee.action.JSConfirmMoveFunction;
+import com.itwillbs.employee.dao.InquiryDAO;
 import com.itwillbs.employee.dto.InquiryDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
@@ -20,15 +21,11 @@ public class InquiryAction implements Action{
 		dto.setBno(Integer.parseInt(request.getParameter("bno")));
 		dto.setEmp_id((String)request.getSession().getAttribute("emp_id"));
 		dto.setAnswerContent(request.getParameter("answerContent"));
-		int result = 0;
-		if(result == 1) {
-			JSConfirmMoveFunction move = new JSConfirmMoveFunction();
-			move.moveLocation(response, "./InquiryContent.emp?bno=" + dto.getBno());
-		}
-		else {
-			JSMoveFunction move = new JSMoveFunction();
-			move.alertBack(response, "입력 오류");
-		}
+		InquiryDAO dao = new InquiryDAO();
+		dao.updateInquiry(dto);
+		
+		JSConfirmMoveFunction move = new JSConfirmMoveFunction();
+		move.moveLocation(response, "./InquiryContent.emp?bno=" + dto.getBno());
 		return null;
 	}
 }
