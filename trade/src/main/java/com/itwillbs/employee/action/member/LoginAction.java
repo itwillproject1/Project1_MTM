@@ -1,5 +1,8 @@
 package com.itwillbs.employee.action.member;
 
+import java.util.Date;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +22,24 @@ public class LoginAction implements Action{
 		
 		dto.setEmp_id(request.getParameter("emp_id"));
 		dto.setEmp_pw(request.getParameter("emp_pw"));
+		
+		String remember = request.getParameter("remember");
+		Cookie[] cookies = request.getCookies();
+		Cookie cookie;
+		if(remember == null) {
+			for(int i = 0; i<cookies.length; i++) {
+				if(cookies[i].getName().equals("emp_id")) {
+					cookies[i].setMaxAge(0);
+					response.addCookie(cookies[i]);
+					break;
+				}
+			}
+		}
+		else if(remember.equals("remember-me")) {
+			cookie = new Cookie("emp_id", dto.getEmp_id());
+			cookie.setMaxAge(60*60*24*365);
+			response.addCookie(cookie);
+		}
 		
 		int result = dao.loginEmployee(dto);
 		ActionForward forward = null;

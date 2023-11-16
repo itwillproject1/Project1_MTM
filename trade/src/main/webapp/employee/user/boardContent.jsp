@@ -36,13 +36,13 @@
 								<p>${dto.content}</p>	
                   			</div>
 						</div>
-						<c:if test="${dto.image != ''}">
-							<div class="row align-items-center">						
-								<div class="col" style="margin:auto;">
-									<img src="./employee/template/assets/images/eventEx.png" alt="..." class="eventImage">
-								</div>
+						<div class="row align-items-center" style="text-align: center;">						
+							<div class="col" style="margin:auto;">
+								<c:if test="${dto.image != ''}">	
+									<img src="./upload/${dto.image}" alt="..." class="${dto.subject } 이미지">
+								</c:if>
 							</div>
-						</c:if>
+						</div>
                 	</div> <!-- /.card-body -->
               	</div> <!-- /.card -->
               </div>

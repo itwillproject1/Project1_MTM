@@ -38,12 +38,9 @@
                         <label for="textarea">내용</label>
                         <textarea class="form-control" name="content" id="textarea" rows="4"></textarea>
                       </div>
-                      <div class="form-group mb-3">
-                          <label for="file">이미지 파일</label>
-                          <div class="file">
-                            <input type="file" name="image" class="custom-file-input" id="file">
-                            <label class="custom-file-label" for="file">파일 선택</label>
-                          </div>
+						<div class="form-group mb-3">
+                          <label for="fileinput">이미지 파일</label>
+                          <input type="file" name="image" id="fileinput" class="form-control-file">
                         </div>
                       <div class="form-group mb-3">
                         <label for="password">비밀번호</label>
