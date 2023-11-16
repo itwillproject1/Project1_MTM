@@ -210,10 +210,11 @@
 
 			<h3 id="h3">${dto.user_id}님의판매상품목록</h3>
 			<c:forEach var="userProduct" items="${userProducts }" >
+			<c:set var="fileNameArr4" value="${fn:split(userProduct.file_name, ',')}" />
 				<c:if test="${userProduct.deal_way == '팝니다'}">
 					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
 						<div>
-							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" >
+							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" alt="미리보기" >
 						</div>
 						<div id="pfDiv"> <span>상품명: ${userProduct.title}<br></span>
 						 <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
@@ -226,10 +227,11 @@
 			<br><br><br>
 			<h3 id="h3">${dto.user_id}님의구매상품목록</h3>
 			<c:forEach var="userProduct" items="${userProducts}">
+			<c:set var="fileNameArr4" value="${fn:split(userProduct.file_name, ',')}" />
 				<c:if test="${userProduct.deal_way == '삽니다'}">
 					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
 						<div>
-							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" >
+							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" alt="미리보기" >
 						</div>
 						<div id="pfDiv">
 							<span>상품명: ${userProduct.title}<br></span>
