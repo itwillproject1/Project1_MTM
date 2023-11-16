@@ -68,6 +68,7 @@
 		</div>
 
 		<!-- 이미지 영역 시작 -->
+		<c:set var="file_name" value="${dto.file_name }" scope="request"/>
 		<c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
 		<div class="form-group2">
 			<div class="image-container">

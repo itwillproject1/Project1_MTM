@@ -565,6 +565,10 @@ public class ProductDAO {
 
 			// sql 실행, 결과 저장
 			result = pstmt.executeUpdate();
+			
+			// 판매 제안 등 연관된 정보 삭제
+			sql = "delete from SuggestSell where buy_bno=? or sell_bno=?";
+			
 
 			System.out.println("DAO: 글 삭제 완료, 결과: " + result);
 		} catch (Exception e) {
