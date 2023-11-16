@@ -124,21 +124,30 @@ hr#hr1 {margin-top:10%;}
 	line-height: 1.9rem;
 	}
 #pfDiv {margin:4%;
-padding-top:35px;}
-
-img#sellImage, #pfImage {
-	float: left;
-	margin-right: 10%;
-	margin-left: 2%;
-	height: 130px;
+padding-top:35px;
+padding-left:50%;
 }
 
-/* img#pfImage {
-	max-width: 160px;
-	height: auto;
-	display: flex;
-	align-items: center;
-} */
+img#sellImage{
+	display: block;
+	float: left;
+	margin: 0 10% 0 2%;
+	height:135px;
+	width:40%;
+}
+
+#pfImage {
+	display: block;
+	float: left;
+	height:135px;
+	width:40%;
+	margin: -8px 10% 0 2%;
+	
+}
+
+#middle {
+	max-width:50%;
+}
 
 
 #sellCheckbox {transform: scale(1.5);}
@@ -147,7 +156,6 @@ img#sellImage, #pfImage {
    max-height: 500px;
    overflow-y: auto;
    overflow-x: hidden; /* 가로 스크롤바를 숨김 */
-      
   }
 
 /* 신고하기 모달창 */
