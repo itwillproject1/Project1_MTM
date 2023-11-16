@@ -244,6 +244,10 @@ h2 {
 	background-color: #ccc; /* 어두운 배경색 (예: 회색) */
 }
 
+.product-content {
+	margin: 50px;
+	font-size: 18px;
+}
 /* 모달 전체 스타일 */
 .modal {
 	display: none;

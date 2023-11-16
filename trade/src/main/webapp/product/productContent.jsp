@@ -32,6 +32,7 @@
             
             if(login_id == "null") {
 				alert('해당 기능은 로그인이 필요합니다');
+				window.location.href = "../main/login.member";
             } else {
                 $.ajax({
                   url : "./LikeCheck.com",
@@ -190,8 +191,8 @@
 				</c:if>	
 			</div>
 		</div>
-		<div class="form-group">
-			<label for="productDescription">상품 설명: </label> ${dto.content }
+		<div class="form-group product-content">
+			<label for="productDescription">상품 설명 </label> ${dto.content }
 		</div>
 	</div>
 
@@ -342,7 +343,7 @@
 				</c:if>
 				<c:if test="${empty login_id}">
 					<p id="noSell">
-						로그인이 필요합니다. <a href="../main/login.member">로그인</a>
+						해당 기능은 로그인이 필요합니다. <a href="../main/login.member">로그인</a>
 					</p>
 				</c:if>
 
@@ -603,7 +604,7 @@
 
     function requireLogin() {
         if (login_id === "null") {
-            alert("로그인을 해주세요");
+            alert("해당 기능은 로그인이 필요합니다");
             window.location.href = "../main/login.member";
         } else {
             openProductModal();
@@ -613,6 +614,11 @@
     // 판매 제안 모달 열기
     function openProductModal() {
         modal.style.display = "block";
+    }
+    
+ 	// 판매 제안 모달 닫기
+    function closeProductModal() {
+    	modal.style.display = 'none';
     }
 
     // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
