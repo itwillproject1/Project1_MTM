@@ -15,7 +15,7 @@
 
 	<header>
 
-		<span class="logo"> <a href="../main/Main.com">1JO/JG</a>
+		<span class="logo"> <a href="../main/Main.com"><img alt="로고" src="./img/logo(MTM).png" width="20"> </a>
 
 		</span>
 		

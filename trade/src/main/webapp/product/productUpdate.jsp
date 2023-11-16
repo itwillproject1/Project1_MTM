@@ -255,13 +255,13 @@
 								
 								<!-- 수정하기 또는 추가하기 버튼 클릭 시 아래 input 태그 나타남 -->
 								<c:if test="${fileNameArr[i-1] != null}">
-									<button type="button" class="updateImg" onclick="showFileInput(${i })" id="fbtn${i }">수정하기</button>
+									<button type="button" class="updateImg" onclick="showFileInput(${i })" id="fbtn${i }">수정</button>
 								</c:if>
 								<c:if test="${fileNameArr[i-1] == null}">
-									<button type="button" class="updateImg" onclick="showFileInput(${i })"id="fbtn${i }">추가하기</button>
+									<button type="button" class="updateImg" onclick="showFileInput(${i })"id="fbtn${i }">추가</button>
 								</c:if>
 
-								<button type="button" class="deleteImg" onclick="deleteImage(${i })" id="deletebtn${i}">삭제</button>
+								<button type="button" class="updateImg" onclick="deleteImage(${i })" id="deletebtn${i}">삭제</button>
 								
 							</div>
 							
@@ -316,11 +316,7 @@
 		    console.log(fileName);
 
 		    // 이미지의 src를 해당 파일의 경로로 설정
-		    var reader = new FileReader();
-			reader.onload = function(e) {
-				imagePreview.src = e.target.result;
-			};
-			reader.readAsDataURL(fileInput.files[0]);
+		    imagePreview.src = "<%= request.getContextPath() %>/upload/" + fileName;
 		  }
 		
 		<!-- 수정하기 누르면 파일 인풋태그 나타나게 -->

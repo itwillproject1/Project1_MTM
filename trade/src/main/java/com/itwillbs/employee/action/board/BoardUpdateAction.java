@@ -17,7 +17,7 @@ public class BoardUpdateAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		FileUpload upload = new FileUpload();
-		MultipartRequest multi = upload.fileUpload(request, "/employee");
+		MultipartRequest multi = upload.fileUpload(request);
 		BoardDTO bdto = new BoardDTO();
 		bdto.setBno(Integer.parseInt(multi.getParameter("bno")));
 		bdto.setCategory(multi.getParameter("category"));

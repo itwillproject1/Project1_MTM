@@ -70,28 +70,29 @@ public class ProductUpdateProAction implements Action {
 		ProductDAO dao = new ProductDAO();
 
 		int bno = dao.updateProduct(dto);
-		
-		// 원래 이미지 
-		String[] bFile_name = before_file_name.split(",");
-		File file = null;
-		
-		// 기존 이미지와 fileList 비교해서 없는 이미지는 삭제
-		for(String bFileName : bFile_name) {
-			boolean found = false;
-
-		    for (String fileName : fileList) {
-		        if (bFileName.equals(fileName)) {
-		            found = true;
-		            break;
-		        }
-		    }
-
-		    if (!found) {
-		        // bFileName 파일 삭제 수행
-		    	System.out.println("삭제 실행");
-		    	file = new File(realPath+"\\"+bFileName);
-		    	file.delete();
-		    }
+		 
+		if(!before_file_name.equals("default_product_image.png")) {
+			// 기존 이미지와 fileList 비교해서 없는 이미지는 삭제
+			String[] bFile_name = before_file_name.split(",");
+			File file = null;
+	
+			for(String bFileName : bFile_name) {
+				boolean found = false;
+	
+			    for (String fileName : fileList) {
+			        if (bFileName.equals(fileName)) {
+			            found = true;
+			            break;
+			        }
+			    }
+	
+			    if (!found) {
+			        // bFileName 파일 삭제 수행
+			    	System.out.println("삭제 실행");
+			    	file = new File(realPath+"\\"+bFileName);
+			    	file.delete();
+			    }
+			}
 		}
 
 		// 페이지 이동 준비
