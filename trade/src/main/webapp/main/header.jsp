@@ -20,7 +20,7 @@
 <!-- 이거 그거임 상품목록 카테고리별로 바꾸는 자스 근데 아직 
 구현 못해서 냅둘게요 -->
 
-	<nav>
+	<nav id="navbar">
 		<div class="rgt">
 		<span class="logo">
 			<a href="../main/Main.com"><img alt="로고" src="./img/logo(MTM).png" id="logo"> </a>
