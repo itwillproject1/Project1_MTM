@@ -26,19 +26,21 @@ header:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
-/* .logo img { */
-/*     max-width: 10px; */
-/*     height: auto; 이미지의 가로세로 비율 유지를 위해 필요한 속성 */
-/* } */
-
+.logo {
+	display: inline-block;
+}
 .logo a{
-	font-family: 'Lato','Roboto', 'Nanum Square', 'Nanum Gothic', Arial;
-	font-size: 25px;
-    font-weight: 900;
-	color: #333;
 	text-decoration: none;
 }
 
+#logo {
+	width: 50px;
+	margin: 20px;
+}
+
+#scmem {
+	width: 500px;
+}
 .category-a a {
     text-decoration: none;
     color: #333;
@@ -75,7 +77,7 @@ header:hover {
 }
 
 .rgt {
-	float: right;
+	float: center;
 	margin-right: 30px;
     padding-left: 20px;
 }
