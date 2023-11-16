@@ -15,7 +15,7 @@ public class SuspendActiveConfirmAction implements Action{
 		
 		request.setAttribute("dto", dto);
 		ActionForward forward = new ActionForward();
-		forward.setPath("./employee/user/userSuspendActiveConfirm.emp");
+		forward.setPath("./employee/user/userSuspendActiveConfirm.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

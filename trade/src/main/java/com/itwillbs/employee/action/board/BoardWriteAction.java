@@ -27,7 +27,8 @@ public class BoardWriteAction implements Action{
 		bdto.setSubject(multi.getParameter("subject"));
 		
 		mdto.setEmp_id((String)request.getSession().getAttribute("emp_id"));
-		mdto.setEmp_pw(request.getParameter("emp_pw"));
+		mdto.setEmp_pw(multi.getParameter("emp_pw"));
+		System.out.println(mdto.getEmp_id() + " : " + mdto.getEmp_pw());
 		BoardDAO dao = new BoardDAO();
 		int result = dao.insertBoard(bdto, mdto);
 		if(result == 1) {

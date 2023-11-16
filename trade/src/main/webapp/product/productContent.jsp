@@ -72,6 +72,7 @@
 		</div>
 
 		<!-- 이미지 영역 시작 -->
+		<c:set var="file_name" value="${dto.file_name }" scope="request"/>
 		<c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
 		<div class="form-group2">
 			<div class="image-container">
@@ -203,18 +204,21 @@
 	<!-- 프로필 모달 시작 -->
 	<div id="profileModal" class="modal">
 		<div class="modal-content">
+		<span class="close-button" onclick="closeProfileModal();">닫기</span>
+		<div id="productInfo">
 			<!-- 모달 내용 -->
 			<h2>
-				<img src="" alt="프로필"> ${dto.user_id} (평점) <span class="close-button" onclick="closeProfileModal();">닫기</span>
+				<img src="" alt="프로필"> ${dto.user_id} (평점) 
 			</h2>
 
 			<h3 id="h3">${dto.user_id}님의판매상품목록</h3>
 			<c:forEach var="userProduct" items="${userProducts }" >
+			<c:set var="fileNameArr4" value="${fn:split(userProduct.file_name, ',')}" />
 				<c:if test="${userProduct.deal_way == '팝니다'}">
 					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-						<div>
-							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" >
-						</div>
+						<span id="middle">
+							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" alt="미리보기" >
+						</span>
 						<div id="pfDiv"> <span>상품명: ${userProduct.title}<br></span>
 						 <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
 						</span>
@@ -226,11 +230,12 @@
 			<br><br><br>
 			<h3 id="h3">${dto.user_id}님의구매상품목록</h3>
 			<c:forEach var="userProduct" items="${userProducts}">
+			<c:set var="fileNameArr4" value="${fn:split(userProduct.file_name, ',')}" />
 				<c:if test="${userProduct.deal_way == '삽니다'}">
 					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-						<div>
-							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" >
-						</div>
+						<span id="middle">
+							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" alt="미리보기" >
+						</span>
 						<div id="pfDiv">
 							<span>상품명: ${userProduct.title}<br></span>
 							<span>가격: <fmt:formatNumber value="${userProduct.price}" />원 </span>
@@ -243,6 +248,7 @@
 			<c:if test="${empty userProducts}">
 				<p id="noSell">등록 상품이 없습니다.</p>
 			</c:if>
+		</div>
 		</div>
 	</div>
 	<!-- 프로필 모달 종료 -->
@@ -465,21 +471,23 @@
 
 	function openComplainModal() {
 		cModal.style.display = "block";
-	    resetComplainForm();
+	    window.addEventListener('click', outsideClick);
 	}
 
 	
 	function closeComplainModal() {
 		cModal.style.display = "none";
-	    resetComplainForm();
+	    window.removeEventListener('click', outsideClick);
 	}
 	
-	window.onclick = function(event) {
-		if (event.target == complainModal) {
-			cModal.style.display = "none";
-		    resetComplainForm();
-		}
-	}
+	// 모달 외부 클릭 시 닫기 함수
+	  function outsideClick(e) {
+	    if (e.target === cModal) {
+	    	cModal.style.display = 'none';
+	      // 모달 외부 클릭 이벤트 제거
+	      window.removeEventListener('click', outsideClick);
+	    }
+	  }
 
 	postReportRadio.addEventListener("change", function() {
 		postReportOptions.style.display = this.checked ? 'block' : 'none';
@@ -614,18 +622,23 @@
 	// 모달 열기 함수
 	function openProfileModal() {
 		pfModal.style.display = 'block';
+	    window.addEventListener('click', outsideClick1);
+
 	}
 
+	// 모달 외부 클릭 시 닫기 함수
+	  function outsideClick1(e) {
+	    if (e.target === pfModal) {
+	      pfModal.style.display = 'none';
+	      // 모달 외부 클릭 이벤트 제거
+	      window.removeEventListener('click', outsideClick1);
+	    }
+	  }
 	// 모달 닫기 함수
-	function closeProfileModal() {
+	function closeProfileModal1() {
 		pfModal.style.display = 'none';
-	}
+	    window.removeEventListener('click', outsideClick1);
 
-	// 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
-	window.onclick = function(event) {
-		if (event.target == pfModal) {
-			pfModal.style.display = "none";
-		}
 	}
 	</script>
 	<!-- 프로필 모달창 종료 -->
@@ -647,19 +660,25 @@
     // 판매 제안 모달 열기
     function openProductModal() {
         modal.style.display = "block";
+	    window.addEventListener('click', outsideClick2);
+
     }
     
  	// 판매 제안 모달 닫기
     function closeProductModal() {
     	modal.style.display = 'none';
+	    window.removeEventListener('click', outsideClick2);
+
     }
 
-    // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+ // 모달 외부 클릭 시 닫기 함수
+	  function outsideClick2(e) {
+	    if (e.target === modal) {
+	    	modal.style.display = 'none';
+	      // 모달 외부 클릭 이벤트 제거
+	      window.removeEventListener('click', outsideClick2);
+	    }
+	  }
 
     // 판매 제안 클릭
     function submitProductOffer() {
@@ -690,19 +709,23 @@
          // 모달 열기 함수
          function openSuggestModal() {
             spModal.style.display = 'block';
+    	    window.addEventListener('click', outsideClick3);
          }
 
          // 모달 닫기 함수
          function closeSuggestModal() {
             spModal.style.display = 'none';
+    	    window.removeEventListener('click', outsideClick3);
          }
 
-         // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
-         window.onclick = function(event) {
-            if (event.target == spModal) {
-               spModal.style.display = "none";
-            }
-         }
+      // 모달 외부 클릭 시 닫기 함수
+   	  function outsideClick3(e) {
+   	    if (e.target === spModal) {
+   	    	spModal.style.display = 'none';
+   	      // 모달 외부 클릭 이벤트 제거
+   	      window.removeEventListener('click', outsideClick3);
+   	    }
+   	  }
 
          function submitSuggest() {
             event.preventDefault();
@@ -725,19 +748,25 @@
          // 모달 열기 함수
          function openSuggestListModal() {
             slModal.style.display = 'block';
+    	    window.addEventListener('click', outsideClick4);
+
          }
 
          // 모달 닫기 함수
          function closeSuggestListModal() {
             slModal.style.display = 'none';
+    	    window.removeEventListener('click', outsideClick4);
+
          }
 
-         // 모달 외부 영역을 클릭하면 모달이 닫히도록 설정
-         window.onclick = function(event) {
-            if (event.target == slModal) {
-               slModal.style.display = "none";
-            }
-         }
+      // 모달 외부 클릭 시 닫기 함수
+   	  function outsideClick4(e) {
+   	    if (e.target === slModal) {
+   	    	slModal.style.display = 'none';
+   	      // 모달 외부 클릭 이벤트 제거
+   	      window.removeEventListener('click', outsideClick4);
+   	    }
+   	  }
 
          function cancleSuggest() {
             event.preventDefault();

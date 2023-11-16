@@ -11,6 +11,7 @@ import com.itwillbs.employee.dto.BoardDTO;
 import com.itwillbs.employee.dto.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
+import com.itwillbs.util.JSMoveFunction;
 
 public class BoardDeleteAction implements Action{
 	@Override
@@ -31,6 +32,8 @@ public class BoardDeleteAction implements Action{
 		}
 		else {
 			// 삭제 안 됨
+			JSMoveFunction move = new JSMoveFunction();
+			move.alertBack(response, "오류 발생!");
 		}
 		return null;
 	}
