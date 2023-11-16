@@ -12,12 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.employee.action.EmployeeMainAction;
 import com.itwillbs.employee.action.board.BoardContentAction;
 import com.itwillbs.employee.action.board.BoardDeleteAction;
-import com.itwillbs.employee.action.board.BoardDeleteConfirmAction;
-import com.itwillbs.employee.action.board.BoardInsertAction;
+import com.itwillbs.employee.action.board.BoardDeleteFormAction;
+import com.itwillbs.employee.action.board.BoardWriteAction;
 import com.itwillbs.employee.action.board.BoardListAction;
 import com.itwillbs.employee.action.board.BoardUpdateAction;
+import com.itwillbs.employee.action.board.BoardUpdateConfirmAction;
+import com.itwillbs.employee.action.board.BoardUpdateFormAction;
+import com.itwillbs.employee.action.board.BoardWriteConfirmAction;
 import com.itwillbs.employee.action.complain.ComplainListAction;
 import com.itwillbs.employee.action.complain.SuspendActiveAction;
+import com.itwillbs.employee.action.complain.SuspendActiveConfirmAction;
 import com.itwillbs.employee.action.complain.SuspendActiveFormAction;
 import com.itwillbs.employee.action.complain.SuspendCancelAction;
 import com.itwillbs.employee.action.complain.SuspendCancelConfirmAction;
@@ -28,13 +32,15 @@ import com.itwillbs.employee.action.inquiry.InquiryListAction;
 import com.itwillbs.employee.action.member.ActiveAction;
 import com.itwillbs.employee.action.member.ActiveConfirmAction;
 import com.itwillbs.employee.action.member.ActiveFormAction;
-import com.itwillbs.employee.action.member.ChangeProfileAction;
+import com.itwillbs.employee.action.member.ProfileChangeAction;
 import com.itwillbs.employee.action.member.ResetPwAction;
 import com.itwillbs.employee.action.member.DeleteAction;
 import com.itwillbs.employee.action.member.DeleteConfirmAction;
 import com.itwillbs.employee.action.member.DeleteFormAction;
 import com.itwillbs.employee.action.member.ListAction;
 import com.itwillbs.employee.action.member.LoginAction;
+import com.itwillbs.employee.action.member.LoginForm;
+import com.itwillbs.employee.action.member.LogoutAction;
 import com.itwillbs.employee.action.member.ProfileAction;
 import com.itwillbs.employee.action.member.RegisterAction;
 import com.itwillbs.employee.action.user.TradeContentAction;
@@ -83,10 +89,21 @@ public class EmployeeFrontController extends HttpServlet{
 		// -- 관리자 정보 관련
 		else if(command.equals("/Login.emp")) {
 			// 로그인 페이지(처음 이동할 때 session 조회하고 이동 예정)
-			forward = new ActionForward();
-			forward.setPath("./employee/member/login.jsp");
-			forward.setRedirect(false);
-			System.out.println("C : " + forward);
+			action = new LoginForm();
+			try {
+				forward =  action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/Logout.emp")) {
+			action = new LogoutAction();
+			try {
+				forward =  action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if(command.equals("/LoginAction.emp")) {
@@ -146,7 +163,7 @@ public class EmployeeFrontController extends HttpServlet{
 
 		else if(command.equals("/ProfileChangeAction.emp")) {
 			// 프로필 편집 실행(관리자)
-			action = new ChangeProfileAction();
+			action = new ProfileChangeAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -321,6 +338,15 @@ public class EmployeeFrontController extends HttpServlet{
 			}
 		}
 		
+		else if(command.equals("/UserSuspendActiveConfirm.emp")) {
+			action = new SuspendActiveConfirmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		else if(command.equals("/UserSuspendCancelAction.emp")) {
 			action = new SuspendCancelAction();
 			try {
@@ -379,13 +405,13 @@ public class EmployeeFrontController extends HttpServlet{
 		
 		else if(command.equals("/BoardWrite.emp")) {
 			forward = new ActionForward();
-			forward.setPath("./employee/user/boardWrite.jsp");
+			forward.setPath("./employee/user/boardWriteForm.jsp");
 			forward.setRedirect(false);
 			System.out.println("C : " + forward);
 		}
 		
 		else if(command.equals("/BoardWriteAction.emp")) {
-			action = new BoardInsertAction();
+			action = new BoardWriteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -393,8 +419,44 @@ public class EmployeeFrontController extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals("/BoardUpdate.emp")) {
+		else if(command.equals("/BoardWriteConfirm.emp")) {
+			action = new BoardWriteConfirmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardUpdateForm.emp")) {
+			action = new BoardUpdateFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardUpdateAction.emp")) {
 			action = new BoardUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardUpdateConfirm.emp")) {
+			action = new BoardUpdateConfirmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardDeleteForm.emp")) {
+			action = new BoardDeleteFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -412,12 +474,9 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/BoardDeleteConfirm.emp")) {
-			action = new BoardDeleteConfirmAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			forward = new ActionForward();
+			forward.setPath("./employee/user/boardDeleteConfirm.jsp");
+			forward.setRedirect(false);
 		}
 		
 		// -- 회원 정보 조회 및 관리

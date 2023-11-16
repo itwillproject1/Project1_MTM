@@ -20,20 +20,25 @@
                     <div class="col">
                       <div class="form-group mb-3">
                        <label for="user_id">피신고자</label>
-                        <input type="text" id="user_id" value="${requestScope.user_id}" class="form-control" readonly value="Readonly value">
+                        <input type="text" id="user_id" name="user_id" value="${dto.user_id}" class="form-control" readonly value="Readonly value">
                       </div>
                       <div class="form-group mb-3">
                       	<p class="mb-2"><strong>신고 처리</strong></p>
-                        <c:forEach var="i" items="complainList">
                         	<div class="form-check">
-                        		<input class="form-check-input" name="complainCheck" type="checkbox" value="${i.bno}" id="${i.complainer_id}">
-                        		<label class="form-check-label" for="${i.complainer_id}"> ${i.uploadDate} : ${i.complainReason} </label>
-                      		</div>
-                        </c:forEach>
+                        		<c:forEach var="i" items="${list}">
+                        			<input class="form-check-input" name="complainCheck" type="checkbox" value="${i.idx}" id="${i.complainer_id}">
+                        			<label class="form-check-label" for="${i.complainer_id}"> ${i.uploadDate} : ${i.complainReason} </label>
+                        			<br>
+                        		</c:forEach>
+                      	</div>
+                      </div>
+                      <div class="form-group mb-3">
+                        <label for="suspendReason">정지사유</label>
+                        <input type="text" name="suspendReason" id="suspendReason" class="form-control" placeholder="정지사유">
                       </div>
                       <div class="form-group mb-3">
                         <label for="sus_days">기간</label>
-                        <input type="number" name="sus_days" id="sus_days" class="form-control" placeholder="비밀번호">
+                        <input type="number" name="sus_days" id="sus_days" class="form-control" placeholder="기간">
                       </div>
                       <div class="form-group mb-3">
                         <label for="emp_pw">비밀번호</label>

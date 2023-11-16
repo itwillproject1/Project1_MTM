@@ -181,24 +181,22 @@ public class ComplainDAO extends DAO{
 	public ArrayList userInfoComplain(UserDTO udto) {
 		// userInfoComplain() : 유저 정보에 표시 될 신고처리 미완료된 목록
 		ArrayList list = null;
-		HashSet<String> set = new HashSet<String>();	// 중복 확인
 		ComplainDTO dto = null;
 		try {
 			con = getCon();
-			sql = "select * from Complain where reported_id = ? and complete = 0 order by bno desc";
+			sql = "select * from Complain where user_id = ? order by bno desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, udto.getUser_id());
 			rs = pstmt.executeQuery();
 			list = new ArrayList();
 			while(rs.next()) {
-				// 신고처리가 되지 않은 목록 중 중복된 신고 제거
-				if(set.contains(rs.getString("reported_id"))) continue;
 				dto = new ComplainDTO();
+				dto.setIdx(rs.getInt("idx"));
 				dto.setBno(rs.getInt("bno"));
-				dto.setReporter_id(rs.getString("reporter_id"));
+				dto.setComplainer_id(rs.getString("complainer_id"));
 				dto.setComplainReason(rs.getString("complainReason"));
 				dto.setUploadDate(rs.getTimestamp("uploadDate"));
-				set.add(dto.getReporter_id());
+				dto.setComplete(rs.getBoolean("complete"));
 				list.add(dto);
 			}
 		} catch (Exception e) {
@@ -211,19 +209,21 @@ public class ComplainDAO extends DAO{
 	
 	public ArrayList<SuspendDTO> complainedUserList(int startRow, int pageSize) {
 		// complainedUserList() : 피신고자 목록(정지x)
+		HashSet<String> set = new HashSet<String>();	// 중복 확인
 		ArrayList<SuspendDTO> list = null;
 		ComplainDTO cdto = null;
 		SuspendDTO sdto = null;
 		try {
 			con = getCon();
-			sql = "select reported_id from Complain"
-					+ " where complete = 0 group by reported_id limit ?, ?";
+			sql = "select user_id from Complain where complete = false group by user_id limit ?, ?;";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			list = new ArrayList<SuspendDTO>();
 			while(rs.next()) {
 				sdto = new SuspendDTO();
-				sdto.setReported_id(rs.getString(1));
+				sdto.setuser_id(rs.getString(1));
 				list.add(sdto);
 			}
 			
@@ -231,27 +231,31 @@ public class ComplainDAO extends DAO{
 			for(int i = 0; i<list.size(); i++) {
 				dtoList = new LinkedList<ComplainDTO>();
 				sdto = list.get(i);
-				sql = "select * from Complain where complete = 0 "
-						+ "and reported_id = ? order by uploadDate";
+				sql = "select * from Complain where complete = false and user_id = ? order by uploadDate";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, sdto.getReported_id());
+				pstmt.setString(1, sdto.getuser_id());
 				rs = pstmt.executeQuery();
 				int count = 0;
 				while(rs.next()) {
 					if (count == 0) {
 						sdto.setFirstComplainedDate(rs.getTimestamp("uploadDate"));
-						
 					}
+					// 신고처리가 되지 않은 목록 중 중복된 신고 제거
+					if(set.contains(rs.getString("complainer_id"))) continue;
 					cdto = new ComplainDTO();
+					cdto.setIdx(rs.getInt("idx"));
 					cdto.setBno(rs.getInt("bno"));
-					cdto.setReporter_id(rs.getString("reporter_id"));
+					cdto.setComplainer_id(rs.getString("complainer_id"));
 					cdto.setComplainReason(rs.getString("complainReason"));
 					cdto.setUploadDate(rs.getTimestamp("uploadDate"));
 					count++;
+					set.add(cdto.getComplainer_id());
 					dtoList.add(cdto);
 				}
 				sdto.setCount(count);
 				sdto.setReportList(dtoList);
+				list.set(i, sdto);
+				set.clear();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -265,7 +269,7 @@ public class ComplainDAO extends DAO{
 		int result = 0;
 		try {
 			con = getCon();
-			sql = "select count(*) from Complain group by reported_id where complete = 0";
+			sql = "select count(distinct user_id) from Complain where complete = false";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) result = rs.getInt(1);
@@ -292,5 +296,97 @@ public class ComplainDAO extends DAO{
 			CloseDB();
 		}
 		return isSuspended;
+	}
+	
+	public int userSuspendActive(UserDTO udto, MemberDTO mdto, 
+			ArrayList<Integer> complainIndex, int sus_days, String suspendReason) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "select emp_pw from Employees where emp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mdto.getEmp_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("emp_pw").equals(mdto.getEmp_pw())) {
+					result = 1;
+					String idx = "";
+					for(int i = 0; i<complainIndex.size(); i++) idx += complainIndex.get(i) + ",";
+					idx = idx.substring(0, idx.length()-1);
+					sql = "update Complain set complete = true, emp_id = ?, completeDate = now()";
+					sql += " where idx in("; sql += idx + ")"; 
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, mdto.getEmp_id());
+					pstmt.executeUpdate();
+					sql = "select complainer_id from Complain where idx in(" + idx + ")";
+					pstmt = con.prepareStatement(sql);
+					rs = pstmt.executeQuery();
+					ArrayList<String> complainer_list = new ArrayList<String>();
+					while(rs.next()) complainer_list.add(rs.getString(1));
+					String complainDuplicated = "";
+					for(int i = 0; i<complainer_list.size(); i++) {
+						complainDuplicated += "'" + complainer_list.get(i) + "',";
+					}
+					complainDuplicated = complainDuplicated.substring(0, complainDuplicated.length()-1);
+					
+					sql = "delete from Complain where complainer_id in (" + complainDuplicated + ") and complete = 0";
+					pstmt = con.prepareStatement(sql);
+					pstmt.executeUpdate();
+					
+					sql = "update Member set suspended = 1, sus_date = now(), sus_days = ?, suspendReason = ? WHERE (user_id = ?);";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, sus_days);
+					pstmt.setString(2, suspendReason);
+					pstmt.setString(3, udto.getUser_id());
+					pstmt.executeUpdate();
+					
+					sql = "select email from Member where user_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, udto.getUser_id());
+					rs = pstmt.executeQuery();
+					if(rs.next()) udto.setEmail(rs.getString(1));
+					
+					sql = "insert into SuspendHistory (user_id, user_email, suspendReason, suspendDays, suspendDate, emp_id) values"
+							+ " (?, ?, ?, ?, now(), ?)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, udto.getUser_id());
+					pstmt.setString(2, udto.getEmail());
+					pstmt.setString(3, suspendReason);
+					pstmt.setInt(4, sus_days);
+					pstmt.setString(5, mdto.getEmp_id());
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public int userSuspendCancel(UserDTO udto, MemberDTO mdto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "select emp_pw from Employees where emp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mdto.getEmp_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(mdto.getEmp_pw())) {
+					result = 1;
+					sql = "update Member set suspended = false, sus_days = 0 where user_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, udto.getUser_id());
+					pstmt.executeUpdate();
+				}
+				else result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }
