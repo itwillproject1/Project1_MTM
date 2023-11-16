@@ -248,7 +248,8 @@
 						<div>
 							<c:forEach var="i" begin="1" end="5" step="1">
 							<div id="load-img">
-							<%-- 글자 클릭 시 showImagePreview() 함수 호출 --%>
+								<input type="hidden" name="before_file_name" value="${pdto.file_name })">
+								<%-- 글자 클릭 시 showImagePreview() 함수 호출 --%>
 								<input type="text" id="fni${i}" name="file_name${i }" value="${fileNameArr[i-1]}"
 									onclick="showImagePreview(${i})" class="fntext" readonly>
 								
@@ -264,7 +265,7 @@
 								
 							</div>
 							
-							<!-- 파일 선택 시 previewImage() 함수 호출 -->
+								<!-- 파일 선택 시 previewImage() 함수 호출 -->
 								<input type="file" id="file${i }" name="file${i }"
 								accept="image/*" onchange="previewImage(${i })" style="display: none;">
 								<br>
@@ -315,7 +316,11 @@
 		    console.log(fileName);
 
 		    // 이미지의 src를 해당 파일의 경로로 설정
-		    imagePreview.src = "<%= request.getContextPath() %>/upload/" + fileName;
+		    var reader = new FileReader();
+			reader.onload = function(e) {
+				imagePreview.src = e.target.result;
+			};
+			reader.readAsDataURL(fileInput.files[0]);
 		  }
 		
 		<!-- 수정하기 누르면 파일 인풋태그 나타나게 -->

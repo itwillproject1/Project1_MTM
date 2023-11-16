@@ -1,5 +1,6 @@
 package com.itwillbs.product.action;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -25,8 +26,9 @@ public class ProductUpdateProAction implements Action {
 		
 		// 로그인 한 유저 아이디 세션에서 가져오기
 		HttpSession session = request.getSession();
-		String user_id = (String) session.getAttribute("id");
-		System.out.println("user_id: " + user_id);		
+		String user_id = (String) session.getAttribute("user_id");
+		
+		String before_file_name = request.getParameter("before_file_name");
 		
 		ActionForward forward = new ActionForward();
 		
@@ -75,6 +77,28 @@ public class ProductUpdateProAction implements Action {
 		ProductDAO dao = new ProductDAO();
 
 		int bno = dao.updateProduct(dto);
+		
+		// 원래 이미지 
+		String[] bFile_name = before_file_name.split(",");
+		File file = null;
+		
+		// 기존 이미지와 fileList 비교해서 없는 이미지는 삭제
+		for(String bFileName : bFile_name) {
+			boolean found = false;
+
+		    for (String fileName : fileList) {
+		        if (bFileName.equals(fileName)) {
+		            found = true;
+		            break;
+		        }
+		    }
+
+		    if (!found) {
+		        // bFileName 파일 삭제 수행
+		    	file = new File(realPath+"/upload/"+bFileName);
+		    	file.delete();
+		    }
+		}
 
 		// 페이지 이동 준비
 		forward.setPath("./ProductContent.com?bno=" + bno);
