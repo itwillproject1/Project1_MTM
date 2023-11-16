@@ -65,6 +65,8 @@
             
             <a href="#">찜</a>
             <a href="../member/MemberInfo.member">마이페이지</a>
+            <a href="../member/Member112.member">고객센터</a>
+            
         </span>	
 		<!-- <span class="user-menu">
             <a href="../main/login.member">로그인</a>
