@@ -12,10 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.employee.action.EmployeeMainAction;
 import com.itwillbs.employee.action.board.BoardContentAction;
 import com.itwillbs.employee.action.board.BoardDeleteAction;
-import com.itwillbs.employee.action.board.BoardDeleteConfirmAction;
-import com.itwillbs.employee.action.board.BoardInsertAction;
+import com.itwillbs.employee.action.board.BoardDeleteFormAction;
+import com.itwillbs.employee.action.board.BoardWriteAction;
 import com.itwillbs.employee.action.board.BoardListAction;
 import com.itwillbs.employee.action.board.BoardUpdateAction;
+import com.itwillbs.employee.action.board.BoardUpdateConfirmAction;
+import com.itwillbs.employee.action.board.BoardUpdateFormAction;
+import com.itwillbs.employee.action.board.BoardWriteConfirmAction;
 import com.itwillbs.employee.action.complain.ComplainListAction;
 import com.itwillbs.employee.action.complain.SuspendActiveAction;
 import com.itwillbs.employee.action.complain.SuspendActiveFormAction;
@@ -379,13 +382,13 @@ public class EmployeeFrontController extends HttpServlet{
 		
 		else if(command.equals("/BoardWrite.emp")) {
 			forward = new ActionForward();
-			forward.setPath("./employee/user/boardWrite.jsp");
+			forward.setPath("./employee/user/boardWriteForm.jsp");
 			forward.setRedirect(false);
 			System.out.println("C : " + forward);
 		}
 		
 		else if(command.equals("/BoardWriteAction.emp")) {
-			action = new BoardInsertAction();
+			action = new BoardWriteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -393,8 +396,44 @@ public class EmployeeFrontController extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals("/BoardUpdate.emp")) {
+		else if(command.equals("/BoardWriteConfirm.emp")) {
+			action = new BoardWriteConfirmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardUpdateForm.emp")) {
+			action = new BoardUpdateFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardUpdateAction.emp")) {
 			action = new BoardUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardUpdateConfirm.emp")) {
+			action = new BoardUpdateConfirmAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/BoardDelete.emp")) {
+			action = new BoardDeleteFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -412,12 +451,9 @@ public class EmployeeFrontController extends HttpServlet{
 		}
 		
 		else if(command.equals("/BoardDeleteConfirm.emp")) {
-			action = new BoardDeleteConfirmAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			forward = new ActionForward();
+			forward.setPath("./employee/user/boardDeleteConfirm.jsp");
+			forward.setRedirect(false);
 		}
 		
 		// -- 회원 정보 조회 및 관리

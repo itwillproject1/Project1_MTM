@@ -181,7 +181,6 @@ public class ComplainDAO extends DAO{
 	public ArrayList userInfoComplain(UserDTO udto) {
 		// userInfoComplain() : 유저 정보에 표시 될 신고처리 미완료된 목록
 		ArrayList list = null;
-		HashSet<String> set = new HashSet<String>();	// 중복 확인
 		ComplainDTO dto = null;
 		try {
 			con = getCon();
@@ -191,15 +190,13 @@ public class ComplainDAO extends DAO{
 			rs = pstmt.executeQuery();
 			list = new ArrayList();
 			while(rs.next()) {
-				// 신고처리가 되지 않은 목록 중 중복된 신고 제거
-				if(set.contains(rs.getString("complainer_id"))) continue;
 				dto = new ComplainDTO();
 				dto.setIdx(rs.getInt("idx"));
 				dto.setBno(rs.getInt("bno"));
 				dto.setComplainer_id(rs.getString("complainer_id"));
 				dto.setComplainReason(rs.getString("complainReason"));
 				dto.setUploadDate(rs.getTimestamp("uploadDate"));
-				set.add(dto.getComplainer_id());
+				dto.setComplete(rs.getBoolean("complete"));
 				list.add(dto);
 			}
 		} catch (Exception e) {
@@ -336,11 +333,27 @@ public class ComplainDAO extends DAO{
 					pstmt = con.prepareStatement(sql);
 					pstmt.executeUpdate();
 					
-					sql = "update Member set suspended = true, sus_days = ?, sus_date = now(), suspendReason = ? where user_id = ?";
+					sql = "update Member set suspended = 1, sus_date = now(), sus_days = ?, suspendReason = ? WHERE (user_id = ?);";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, sus_days);
 					pstmt.setString(2, suspendReason);
 					pstmt.setString(3, udto.getUser_id());
+					pstmt.executeUpdate();
+					
+					sql = "select email from Member where user_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, udto.getUser_id());
+					rs = pstmt.executeQuery();
+					if(rs.next()) udto.setEmail(rs.getString(1));
+					
+					sql = "insert into SuspendHistory (user_id, user_email, suspendReason, suspendDays, suspendDate, emp_id) values"
+							+ " (?, ?, ?, ?, now(), ?)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, udto.getUser_id());
+					pstmt.setString(2, udto.getEmail());
+					pstmt.setString(3, suspendReason);
+					pstmt.setInt(4, sus_days);
+					pstmt.setString(5, mdto.getEmp_id());
 					pstmt.executeUpdate();
 				}
 				else result = 0;

@@ -146,6 +146,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" style="">
                           <a class="dropdown-item" href="./BoardContent.emp?bno=${i.bno}&pageNum=${pageNum}">상세보기</a>
+                          <a class="dropdown-item" href="./BoardUpdateForm.emp?bno=${i.bno}">수정</a>
                           <a class="dropdown-item" href="./BoardDeleteForm.emp?bno=${i.bno}">삭제</a>
                         </div>
                       </div>

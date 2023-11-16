@@ -136,8 +136,9 @@ public class BoardDAO extends DAO{
 		BoardDTO dto = null;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "select * from Board where bno = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, index);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dto = new BoardDTO();
