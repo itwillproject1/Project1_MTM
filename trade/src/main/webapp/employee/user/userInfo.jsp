@@ -44,11 +44,11 @@
               				<div class="row mb-5">
                     			<div class="col-12 text-center mb-4">
                       				<div class="avatar avatar-xl">
-                      					<c:if test="${dto.profile == null}">
+                      					<c:if test="${dto.profile == ''}">
                     						<img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
                       					</c:if>
-                      					<c:if test="${dto.profile != null}">
-                    						<img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
+                      					<c:if test="${dto.profile != ''}">
+                    						<img src="./upload/${i.profile}" alt="..." class="avatar-img rounded-circle">
                       					</c:if>
                   					</div>
                       				<h2 class="mb-0 text-uppercase">${dto.user_id}</h2>
