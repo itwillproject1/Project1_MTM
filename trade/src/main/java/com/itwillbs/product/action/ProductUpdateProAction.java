@@ -1,5 +1,6 @@
 package com.itwillbs.product.action;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -20,30 +21,24 @@ public class ProductUpdateProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M: ProductUpdateProAction.execute 호출");
-		
-		// 서버에 올라가있는데 수정해서 필요 없어진 파일 어떻게 지울 건지?
-		
+				
 		// 로그인 한 유저 아이디 세션에서 가져오기
 		HttpSession session = request.getSession();
-		String user_id = (String) session.getAttribute("id");
-		System.out.println("user_id: " + user_id);		
+		String user_id = (String) session.getAttribute("user_id");
 		
 		ActionForward forward = new ActionForward();
-		
-		// 로그인 제어
-//		if(id == null) {
-//			forward.setPath("./Main.me");
-//			forward.setRedirect(true);
-//			return forward;
-//		}
 
 		// 첨부이미지
 		String realPath = request.getRealPath("upload");
+		System.out.println("realPath: "+ realPath);
 		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
+		System.out.println("request: " + request);
+		
 		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
 				new DefaultFileRenamePolicy());
 
 		List<String> fileList = new ArrayList<>();
+		System.out.println("fileList: " + fileList);
 		
 		for(int i=1; i<=5;i++) {
 			if(!multi.getParameter("file_name"+i).equals("")) {
@@ -53,8 +48,8 @@ public class ProductUpdateProAction implements Action {
 			}
 		}
 
+		String before_file_name = multi.getParameter("before_file_name");
 		String file_name = String.join(",", fileList);
-		System.out.println("file_name: " + file_name);
 
 		// 전달정보 저장(DTO)
 		ProductDTO dto = new ProductDTO();
@@ -75,6 +70,30 @@ public class ProductUpdateProAction implements Action {
 		ProductDAO dao = new ProductDAO();
 
 		int bno = dao.updateProduct(dto);
+		 
+		if(!before_file_name.equals("default_product_image.png")) {
+			// 기존 이미지와 fileList 비교해서 없는 이미지는 삭제
+			String[] bFile_name = before_file_name.split(",");
+			File file = null;
+	
+			for(String bFileName : bFile_name) {
+				boolean found = false;
+	
+			    for (String fileName : fileList) {
+			        if (bFileName.equals(fileName)) {
+			            found = true;
+			            break;
+			        }
+			    }
+	
+			    if (!found) {
+			        // bFileName 파일 삭제 수행
+			    	System.out.println("삭제 실행");
+			    	file = new File(realPath+"\\"+bFileName);
+			    	file.delete();
+			    }
+			}
+		}
 
 		// 페이지 이동 준비
 		forward.setPath("./ProductContent.com?bno=" + bno);
