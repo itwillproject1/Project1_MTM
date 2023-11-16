@@ -26,7 +26,7 @@
             <input type="submit" class="bu" value="로그인">
             <button type="button" class="bu" onclick="location.href='../member/memberjoin.member'">회원가입</button>
             <button type="button" class="bu" onclick="location.href='../member/findid.member'">아이디 찾기</button>
-            <button type="button" class="bu" onclick="location.href='../member/'">비밀번호 찾기</button>
+            <button type="button" class="bu" onclick="location.href='../member/findpw.member'">비밀번호 찾기</button>
         </form>
     </div>
 
