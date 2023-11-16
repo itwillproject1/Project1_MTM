@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<h1>checkid.jsp</h1>
+		
 		<%
 		String user_id = request.getParameter("user_id");
 		%>

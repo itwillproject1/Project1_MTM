@@ -197,4 +197,53 @@ public class SuggestSellDAO {
 		return result;
 	} // deleteProduct(bno) 종료
 	
+	
+	// 판매가 완료된글 (팝니다.)
+	
+	public void sell_bno(SuggestSellDTO dto) {
+		
+		try {
+			con = getCon();
+		
+		sql="delete from SuggestSell where sell_bno = ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, dto.getSell_bno());
+		
+		pstmt.executeUpdate();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	
+	}
+	
+	
+	// 판매 제안의 정보를 가져오는 메서드
+		public SuggestSellDTO buyer_price (int bno, String id) {
+			SuggestSellDTO dto = null;
+		try {
+			con = getCon();
+		
+		sql="select * from SuggestSell where sell_bno = ? and buyer_user_id = ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, bno);
+		pstmt.setString(2, id);
+		
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			dto = new SuggestSellDTO();
+			
+			dto.setBuyer_price(rs.getInt("buyer_price"));
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return dto;
+	}
+	
 }
