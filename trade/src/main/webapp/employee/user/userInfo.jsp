@@ -23,7 +23,7 @@
                           <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">기본 프로필</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" id="pills-trade-tab" data-toggle="pill" href="#pills-trade" role="tab" aria-controls="pills-trade" aria-selected="false">거래 이력</a>
+                          <a class="nav-link" id="pills-trade-tab" data-toggle="pill" href="#pills-trade" role="tab" aria-controls="pills-trade" aria-selected="false">거래 현황</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" id="pills-inquiry-tab" data-toggle="pill" href="#pills-inquiry" role="tab" aria-controls="pills-inquiry" aria-selected="false">문의 목록</a>
@@ -103,7 +103,7 @@
               				</div>
                   			<div class="row mb-12">
                   				<div class="col-6 text-center mb-12">
-              	 					<h3>거래 이력</h3>
+              	 					<h3>거래 등록</h3>
                   					<table class="table table-borderless table-striped">
                     					<thead>
                       						<tr>
@@ -118,7 +118,7 @@
                     					<c:forEach var="i" items="${tlist}">
                       						<tr>
                         						<th scope="row">${i.bno}</th>
-                        						<td>${i.title}<br>
+                        						<td>[${i.deal_way}]${i.title}<br>
                           							<span class="small text-muted">${i.content}</span>
                         						</td>
                         						<td class="text-right">${i.price}</td>

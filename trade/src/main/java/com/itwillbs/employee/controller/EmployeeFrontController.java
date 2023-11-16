@@ -44,6 +44,7 @@ import com.itwillbs.employee.action.member.LogoutAction;
 import com.itwillbs.employee.action.member.ProfileAction;
 import com.itwillbs.employee.action.member.RegisterAction;
 import com.itwillbs.employee.action.user.TradeContentAction;
+import com.itwillbs.employee.action.user.TradeHistory;
 import com.itwillbs.employee.action.user.TradeListAction;
 import com.itwillbs.employee.action.user.UserInfoAction;
 import com.itwillbs.employee.action.user.UserListAction;
@@ -378,6 +379,15 @@ public class EmployeeFrontController extends HttpServlet{
 		
 		else if(command.equals("/TradeContent.emp")) {
 			action = new TradeContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/TradeHistory.emp")) {
+			action = new TradeHistory();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -23,10 +23,10 @@
 	
 	<%
 		String menulink = "./TradeList.emp?";
-		link += search == null ? "" : "search=" + search;
-		link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
-		link += category == null ? "" : "&category=" + category;
-		link += checkComplete == null ? "" : "&checkComplete=" + checkComplete;
+		menulink += search == null ? "" : "search=" + search;
+		menulink += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
+		menulink += category == null ? "" : "&category=" + category;
+		menulink += checkComplete == null ? "" : "&checkComplete=" + checkComplete;
 	%>
   
 <jsp:include page="../inn/navbar.jsp"/>
@@ -216,7 +216,7 @@
                     <td>${i.category}</td>
                     <td>
                     	<p class="mb-0 text-muted">
-                    		<a href="./TradeContent.emp?bno=${i.bno}" class="text-muted">${i.title}</a>
+                    		<a href="./TradeContent.emp?bno=${i.bno}" class="text-muted">[${i.deal_way}] ${i.title}</a>
                     	</p>
 					</td>
                     <td style="text-align:right;">${i.price}</td>
