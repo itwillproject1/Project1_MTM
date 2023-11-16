@@ -254,8 +254,6 @@
 			<input type="radio" name="agree" value="동의" class="in"> 동의
 					<input type="radio" name="agree" value="비동의" class="in"> 비동의<br>
 			
-			
-			
 			<hr>
 			<div class="btn">
 			<input type="submit" value="회원가입" class="in">		
