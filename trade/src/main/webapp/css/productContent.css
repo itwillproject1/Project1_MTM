@@ -240,7 +240,7 @@ h2 {
 }
 
 .disabled {
-	pointer-events: none; /* 이벤트 무효화 */
+	opacity: 0.5;
 	background-color: #ccc; /* 어두운 배경색 (예: 회색) */
 }
 

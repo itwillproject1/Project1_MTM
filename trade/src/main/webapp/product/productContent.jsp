@@ -63,7 +63,10 @@
 
    <%@ include file="../main/header.jsp"%>
 
-	<div class="container">
+	<div class="container
+	<c:if test="${product.deal_status == 0 }">
+				disabled
+			</c:if>">
 		<div class="form-group h1">
 			<label for="productName">[${dto.deal_way }]${dto.title }</label>
 		</div>

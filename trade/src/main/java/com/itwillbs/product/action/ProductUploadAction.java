@@ -38,11 +38,11 @@ public class ProductUploadAction implements Action {
 		ActionForward forward = new ActionForward();
 		
 		// 로그인 제어
-//		if(id == null) {
-//			forward.setPath("./Main.me");
-//			forward.setRedirect(true);
-//			return forward;
-//		}
+		if(user_id == null) {
+			forward.setPath("./Main.me");
+			forward.setRedirect(true);
+			return forward;
+		}
 
 		// 첨부이미지
 		String realPath = request.getRealPath("upload");
