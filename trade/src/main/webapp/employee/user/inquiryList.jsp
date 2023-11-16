@@ -136,10 +136,10 @@
                           			<option>선택</option>
                         		</c:if>
                         		<c:if test="${category == '1'}">                        		
-                          			<option value="1" selected>계정</option>
+                          			<option value="1" selected>회원</option>
                         		</c:if>
                         		<c:if test="${category != '1'}">                        		
-                          			<option value="1">계정</option>
+                          			<option value="1">회원</option>
                         		</c:if>
                         		<c:if test="${category == '2'}">                        		
                           			<option value="2" selected>이용</option>

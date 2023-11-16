@@ -7,6 +7,8 @@ import com.itwillbs.employee.dto.BoardDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** BoardWriteConfirmAction() : 작성 확인 페이지 **/
+
 public class BoardWriteConfirmAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

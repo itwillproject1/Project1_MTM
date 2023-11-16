@@ -27,7 +27,7 @@
                         	<div class="form-check">
                         		<c:forEach var="i" items="${list}">
                         			<input class="form-check-input" name="complainCheck" type="checkbox" value="${i.idx}" id="${i.complainer_id}">
-                        			<label class="form-check-label" for="${i.complainer_id}"> ${i.uploadDate} : ${i.complainReason} </label>
+                        			<label class="form-check-label" for="${i.complainer_id}"> [${i.uploadDate}]${i.complainer_id} : ${i.complainReason} </label>
                         			<br>
                         		</c:forEach>
                       	</div>
