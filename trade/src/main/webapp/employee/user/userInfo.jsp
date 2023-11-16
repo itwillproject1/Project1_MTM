@@ -202,7 +202,7 @@
                         						<th scope="row">${i.bno}</th>
                           						<td>${i.category}</td>
                         						<td>${i.subject}</td>
-                        						<td>${i.uploadDate}</td>
+                        						<td style="text-align: right;">${i.uploadDate}</td>
                         						<td>
 													<c:if test="${i.complete}">
 														<span class="badge badge-pill badge-success">답변 완료</span>
@@ -231,7 +231,7 @@
               				</div>
                   			<div class="row mb-12">
                   				<div class="col-12 text-center mb-12"  style="margin:auto;">
-              	 					<h3>정지 이력</h3>
+              	 					<h3>신고 이력</h3>
                   					<table class="table table-borderless table-striped">
                     					<thead>
                       						<tr>
@@ -245,15 +245,15 @@
                     					<tbody>
                     					<c:forEach var="i" items="${clist}">
                       						<tr>
-                        						<th scope="row">${i.index}</th>
+                        						<th scope="row">${i.idx}</th>
                         						<td>${i.complainer_id}</td>
                         						<td class="text-right">${i.complainReason}</td>
                         						<td>${i.uploadDate}</td>
                         						<td class="text-right">
-													<c:if test="${i.complete == 1}">
+													<c:if test="${i.complete}">
 														<span class="badge badge-pill badge-success">처리 완료</span>
 													</c:if>
-													<c:if test="${i.complete == 0}">
+													<c:if test="${!i.complete}">
 														<span class="badge badge-pill badge-secondary">미처리</span>
 													</c:if>
 												</td>
