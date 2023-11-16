@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+#all {
+	width:1920px;
+	height: 1024px;
+	align-content: center;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+
 body {
 	font-family: 'Noto Sans KR', sans-serif;
 	margin: 0;
@@ -8,16 +18,9 @@ body {
 }
 
 .slider-container {
-/* 	width: 60%; */
 width: 60%; 
 text-align: -webkit-center;
-/*
-	margin: 100px auto 0; 위쪽 여백 추가 및 가운데 정렬
-	height: 60vh; 조절 가능한 높이
-	overflow: hidden;
-	position: relative; */
   margin: 100px auto 0; /* 위쪽 여백 추가 및 가운데 정렬 */
-  height: 100%; /* 조절 가능한 높이 */
   white-space: nowrap; /* 요소들을 가로로 나란히 표시 */
 }
 
@@ -100,14 +103,6 @@ object-position: center; /* 이미지 중앙에 위치 */
 .disabled {
 	opacity: 0.5;
     background-color: #CCCCCC;
-}
-
-/* 미디어 쿼리를 사용하여 반응형으로 만들기(시도X) */
-@media ( max-width : 768px) {
-	.product {
-		width: 48%;
-		margin: 1% 0;
-	}
 }
 
 /* 이미지에 마우스 호버 시 확대 효과 */
