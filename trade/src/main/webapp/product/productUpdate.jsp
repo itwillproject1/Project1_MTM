@@ -203,7 +203,7 @@
 
 		<div class="form-container">
 			<h2>글 수정하기</h2>
-			<form action="./ProductUpdateProAction.com?bno=${pdto.bno}"<%-- 나중에 서버에 올라간 파일 삭제 해야댐 --%> method="post" enctype="multipart/form-data">
+			<form action="./ProductUpdateProAction.com?bno=${pdto.bno}" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="dealWay">거래 방식:</label> <select id="deal_way"
 						name="deal_way" onchange="updateSecondDropdown2()">
@@ -248,7 +248,7 @@
 						<div>
 							<c:forEach var="i" begin="1" end="5" step="1">
 							<div id="load-img">
-								<input type="hidden" name="before_file_name" value="${pdto.file_name })">
+								<input type="hidden" name="before_file_name" value="${pdto.file_name }">
 								<%-- 글자 클릭 시 showImagePreview() 함수 호출 --%>
 								<input type="text" id="fni${i}" name="file_name${i }" value="${fileNameArr[i-1]}"
 									onclick="showImagePreview(${i})" class="fntext" readonly>
