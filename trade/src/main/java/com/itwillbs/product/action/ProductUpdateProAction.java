@@ -26,7 +26,6 @@ public class ProductUpdateProAction implements Action {
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
 		
-		
 		ActionForward forward = new ActionForward();
 
 		// 첨부이미지
