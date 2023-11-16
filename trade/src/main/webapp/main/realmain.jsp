@@ -41,7 +41,7 @@
 			</c:if>"
 			onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')" >				
 			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
-					alt="${product.title}">
+					alt="${product.title}" >
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>
 				</div>
@@ -52,7 +52,6 @@
 					</p>
 				</div>
 			</div>
-			<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
 		</c:forEach>
 	</div>
 	
@@ -68,7 +67,7 @@
 			</c:if>"
 			onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
 			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
-					alt="${product.title}">
+					alt="${product.title}" >
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>
 				</div>
@@ -79,7 +78,6 @@
 					</p>
 				</div>
 			</div>
-			<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
 		</c:forEach>
 	</div>
 	
