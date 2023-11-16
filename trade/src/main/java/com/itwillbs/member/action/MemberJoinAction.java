@@ -1,10 +1,4 @@
 package com.itwillbs.member.action;
-
-
-
-
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -57,16 +51,16 @@ public class MemberJoinAction implements Action  {
 		MemberDAO dao = new MemberDAO();
 		dao.insertMember(dto);
 		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println(" <script> ");
-		out.println("  alert('회원가입완료 '); ");
-		out.println("location.href='../main/Main.com'");
-		out.println(" </script> ");
-		out.close();
+//		response.setContentType("text/html; charset=utf-8");
+//		PrintWriter out = response.getWriter();
+//		out.println(" <script> ");
+//		out.println("  alert('회원가입완료 '); ");
+//		out.println("location.href='../main/Main.com'");
+//		out.println(" </script> ");
+//		out.close();
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./realmain.jsp");
+		forward.setPath("../main/realmain.jsp");
 		forward.setRedirect(false);
 		return forward;
 		
