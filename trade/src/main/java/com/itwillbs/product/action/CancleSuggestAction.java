@@ -19,6 +19,7 @@ public class CancleSuggestAction implements Action {
 		String[] cancle_bnoList = request.getParameterValues("cancle_bno");
 //		int[] cancle_bno2 = request.getParameterValues("cancle_bno");
 		String cancle_bno = String.join(",", cancle_bnoList);
+		System.out.println("cancle_bno: " + cancle_bno);
 				
 		// cancle 수행하는 메서드(SuggestSell 테이블 행 삭제) 실행
 		SuggestSellDAO ssdao = new SuggestSellDAO();
