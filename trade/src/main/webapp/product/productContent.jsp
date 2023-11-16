@@ -72,6 +72,7 @@
 		</div>
 
 		<!-- 이미지 영역 시작 -->
+		<c:set var="file_name" value="${dto.file_name }" scope="request"/>
 		<c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
 		<div class="form-group2">
 			<div class="image-container">
@@ -326,10 +327,10 @@
 						<c:forEach var="sellProduct" items="${sellProduct}">
 							<div>
 								<c:if test="${sellProduct.isOffered }">
-									<input type="checkbox" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }" disabled="disabled">
+									<input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }" disabled="disabled">
 								</c:if>
 								<c:if test="${!sellProduct.isOffered }">
-									<input type="checkbox" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }">
+									<input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }">
 								</c:if>
 								<img id="sellImage" src="<%=request.getContextPath()%>/upload/${sellProduct.file_name }" alt="미리보기">
 							</div>

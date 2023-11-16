@@ -559,12 +559,28 @@ public class ProductDAO {
 
 			// 비밀번호가 맞을 때
 			// sql, pstmt
+			sql = "delete from SuggestSell where buy_bno = ? or sell_bno = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setInt(2, bno);
+			
+			pstmt.executeUpdate();
+			
+			sql = "delete from Likes where bno = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			
+			pstmt.executeUpdate();
+			
 			sql = "delete from Product where bno=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bno);
+			
+			pstmt.executeUpdate();
 
 			// sql 실행, 결과 저장
-			result = pstmt.executeUpdate();
+			result = 1;
+			
 
 			System.out.println("DAO: 글 삭제 완료, 결과: " + result);
 		} catch (Exception e) {
