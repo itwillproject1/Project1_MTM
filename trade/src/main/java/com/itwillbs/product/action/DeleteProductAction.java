@@ -14,6 +14,8 @@ public class DeleteProductAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 전달 정보 저장
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		String file_name = request.getParameter("file_name");
+		System.out.println("file_name: " + file_name);
 		
 		// 글 삭제 메서드
 		ProductDAO dao = new ProductDAO();
