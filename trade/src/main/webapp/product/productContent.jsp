@@ -203,15 +203,13 @@
 	<!-- 프로필 모달 시작 -->
 	<div id="profileModal" class="modal">
 		<div class="modal-content">
-				<span class="close-button" onclick="closeProfileModal();">닫기</span>
-				<div id="productInfo">
 			<!-- 모달 내용 -->
 			<h2>
-				<img src="" alt="프로필"> ${dto.user_id} (평점) 
+				<img src="" alt="프로필"> ${dto.user_id} (평점) <span class="close-button" onclick="closeProfileModal();">닫기</span>
 			</h2>
 
 			<h3 id="h3">${dto.user_id}님의판매상품목록</h3>
-			<c:forEach var="userProduct" items="${userProducts }">
+			<c:forEach var="userProduct" items="${userProducts }" >
 				<c:if test="${userProduct.deal_way == '팝니다'}">
 					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
 						<div>
@@ -245,7 +243,6 @@
 			<c:if test="${empty userProducts}">
 				<p id="noSell">등록 상품이 없습니다.</p>
 			</c:if>
-			</div>
 		</div>
 	</div>
 	<!-- 프로필 모달 종료 -->
