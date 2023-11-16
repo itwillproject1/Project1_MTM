@@ -13,7 +13,8 @@
 	
 <%
 
-		response.sendRedirect("./main/Main.com");
+		response.sendRedirect("./member/memberhoin.member");
+// 		response.sendRedirect("./main/Main.com");
 // 		response.sendRedirect("./product/ProductContent.com?bno=79");
 // 		response.sendRedirect("./MemberJoin.com");
 %>
