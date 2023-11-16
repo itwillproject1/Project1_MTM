@@ -18,7 +18,7 @@
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productContent.css" rel="stylesheet" />
-<link href="../css/productPopup.css" rel="stylesheet" />
+<link href="../css/productModal.css" rel="stylesheet" />
 <title>상세페이지</title>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
@@ -206,33 +206,33 @@
 			</h2>
 
 			<h3 id="h3">${dto.user_id}님의판매상품목록</h3>
-			<c:forEach var="userProduct" items="${userProducts }" varStatus="loopStatus">
+			<c:forEach var="userProduct" items="${userProducts }" >
 				<c:if test="${userProduct.deal_way == '팝니다'}">
-					<c:if test="${!loopStatus.first}">
-						<hr>
-					</c:if>
 					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
 						<div>
-							<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px">
+							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" >
 						</div>
-						<span id="sellDiv"> <span>상품명: ${userProduct.title}<br></span> <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
+						<div id="pfDiv"> <span>상품명: ${userProduct.title}<br></span>
+						 <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
 						</span>
-						</span>
+						</div>
+						<hr id="pfHr">
 					</div>
 				</c:if>
 			</c:forEach>
-
+			<br><br><br>
 			<h3 id="h3">${dto.user_id}님의구매상품목록</h3>
 			<c:forEach var="userProduct" items="${userProducts}">
 				<c:if test="${userProduct.deal_way == '삽니다'}">
 					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
 						<div>
-							<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px">
+							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" >
 						</div>
-						<span id="sellDiv">
+						<div id="pfDiv">
 							<span>상품명: ${userProduct.title}<br></span>
-							<span>가격: <fmt:formatNumber value="${userProduct.price}" />원 <hr></span>
-						</span>
+							<span>가격: <fmt:formatNumber value="${userProduct.price}" />원 </span>
+						</div>
+						<hr id="pfHr">
 					</div>
 				</c:if>
 			</c:forEach>
@@ -515,30 +515,40 @@
 	    });
 	}
 	
-	
-
-
-
 	function submitComplainOffer() {
 
- 		var postReportCheckboxes = postReportOptions.querySelectorAll('.reasonRadio:checked');
-		var authorReportCheckboxes = authorReportOptions.querySelectorAll('.reasonRadio:checked');
+ 		var postReportRadio = postReportOptions.querySelectorAll('.reasonRadio:checked');
+		var authorReportRadio = authorReportOptions.querySelectorAll('.reasonRadio:checked');
 
-		if (postReportCheckboxes.length === 0 && authorReportCheckboxes.length === 0) {
-			alert("신고 사유를 선택해주세요");
-		} else {
-			event.preventDefault();
-			var result = confirm('신고 접수를 하시겠습니까?');
+		// 기타 라디오 버튼 체크 및 입력 확인
+	    var otherReasonTextarea = document.getElementById('otherReasonText');
+	    var otherReason2Textarea = document.getElementById('otherReasonText2');
+	    var isPostReportChecked = postReportRadio.length > 0 && postReportRadio[0].value === '8';
+	    var isAuthorReportChecked = authorReportRadio.length > 0 && authorReportRadio[0].value === '8';
+	    var isPostReasonTextareaEmpty = isPostReportChecked && otherReasonTextarea.value.trim() === '';
+	    var isAuthorReasonTextareaEmpty = isAuthorReportChecked && otherReason2Textarea.value.trim() === '';
 
-			if (result === true) {
-				// 확인을 클릭한 경우에만 제출
-				document.getElementById("ComplainForm").submit();
-			} else if((result === false)){
-				// 취소를 눌렀을 때의 동작
-				alert("신고 접수가 취소되었습니다");
-				return closeComplainModal();
-			}
-		}
+	    if ((isPostReportChecked && isPostReasonTextareaEmpty) || (isAuthorReportChecked && isAuthorReasonTextareaEmpty)) {
+	        alert('기타 이유를 알려주세요');
+	        event.preventDefault();
+	        return closeComplainModal();
+	    } else if (postReportRadio.length === 0 && authorReportRadio.length === 0) {
+	        alert('신고 사유를 선택해주세요');
+	        event.preventDefault();
+	        return closeComplainModal();
+	    } else {
+	        event.preventDefault();
+	        var result = confirm('신고 접수를 하시겠습니까?');
+
+	        if (result === true) {
+	            // 확인을 클릭한 경우에만 제출
+	            document.getElementById('ComplainForm').submit();
+	        } else {
+	            // 취소를 눌렀을 때의 동작
+	            alert('신고 접수가 취소되었습니다');
+	            return closeComplainModal();
+	        }
+	    }
 	}
 	</script>
 	<!-- 신고창 종료 -->
