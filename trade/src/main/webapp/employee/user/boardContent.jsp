@@ -18,29 +18,31 @@
                   <h2 class="h2 page-title"><small class="text-muted text-uppercase">#${dto.bno}</small><br>이벤트</h2>
                 </div>
                 <div class="col-auto">
-                  <button type="button" class="btn btn-secondary">삭제</button>
-                  <button type="button" class="btn btn-primary">수정</button>
+                  <button type="button" class="btn btn-secondary" onclick="location.href='./BoardDeleteForm.emp?bno=${dto.bno}'">삭제</button>
+                  <button type="button" class="btn btn-primary"  onclick="location.href='./BoardUpdateForm.emp?bno=${dto.bno}'">수정</button>
                 </div>
               </div>
               <div class="card shadow">
                 <div class="card-body p-5">
 					<div class="row align-items-center">
                     		<div class="col text-center">
-                      			<h4 class="mb-1">${dto.subject}제목</h4>
-                      			<span class="badge badge-dark">${dto.uploadDate}업로드 시간</span>
+                      			<h4 class="mb-1">${dto.subject}</h4>
+                      			<span class="badge badge-dark">${dto.uploadDate}</span>
                     		</div>
                   		</div>
                   		<div class="row align-items-center">
                     		<div class="col text-center">
                     		<hr>
-								<p>ㅁㅁㅁㅁㅁㅁ</p>	
+								<p>${dto.content}</p>	
                   			</div>
 						</div>
-						<div class="row align-items-center">						
-							<div class="col" style="margin:auto;">
-								<img src="./employee/template/assets/images/eventEx.png" alt="..." class="eventImage">
+						<c:if test="${dto.image != ''}">
+							<div class="row align-items-center">						
+								<div class="col" style="margin:auto;">
+									<img src="./employee/template/assets/images/eventEx.png" alt="..." class="eventImage">
+								</div>
 							</div>
-						</div>
+						</c:if>
                 	</div> <!-- /.card-body -->
               	</div> <!-- /.card -->
               </div>
