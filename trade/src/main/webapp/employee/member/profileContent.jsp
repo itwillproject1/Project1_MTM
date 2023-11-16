@@ -14,12 +14,14 @@
                   		<h2 class="h3 mb-4 page-title">프로필</h2>
                 	</div>
                 	<div class="col-auto">
+                	<c:if test="${dto.emp_id != 'admin'}">
                 		<c:if test="${dto.active == 1}">
  	                 		<button type="button" class="btn btn-secondary" onclick="location.href='./EmployeeDeleteForm.emp?emp_id=${dto.emp_id}'">비활성화</button>
                 		</c:if>
                 		<c:if test="${dto.active == 0}">
 	                  		<button type="button" class="btn btn-primary" onclick="location.href='./EmployeeActiveForm.emp?emp_id=${dto.emp_id}'">활성화</button>
                 		</c:if>
+                	</c:if>
                 	</div>
               	</div>
               <div class="my-4">
@@ -46,44 +48,44 @@
                     </div>
                   </div>
                <c:if test="${sessionScope.emp_id == dto.emp_id}">
-                <form>
+                <form action="./ProfileChangeAction.emp" method="post">
                   <hr class="my-4">
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputName">이름</label>
-                      <input type="text" name="emp_id" id="inputName" class="form-control" placeholder="${dto.name}">
+                      <input type="text" name="name" id="inputName" value="${dto.name}" class="form-control" placeholder="${dto.name}">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputAddress">주소</label>
-                      <input type="tel" name="address" class="form-control" id="inputAddress" placeholder="${dto.address}">
+                      <input type="tel" name="address" value="${dto.address}" class="form-control" id="inputAddress" placeholder="${dto.address}">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputTel">전화번호</label>
-                      <input type="tel" name="tel" id="inputTel" class="form-control" placeholder="${dto.tel}">
+                      <input type="tel" name="tel" id="inputTel" value="${dto.tel}" class="form-control" placeholder="${dto.tel}">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputEmail">이메일</label>
-                      <input type="email" name="email" class="form-control" id="inputEmail" placeholder="${dto.email}">
+                      <input type="email" name="email" value="${dto.email}" class="form-control" id="inputEmail" placeholder="${dto.email}">
                     </div>
                   </div>
                   <hr class="my-4">
                   <div class="row mb-4">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="inputPassword4">이전 비밀번호</label>
-                        <input type="password" name="past_pw" class="form-control" id="inputPassword5">
+                        <label for="past_pw">이전 비밀번호</label>
+                        <input type="password" name="past_pw" class="form-control" id="past_pw">
                       </div>
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
-                        <label for="inputPassword5">새 비밀번호</label>
-                        <input type="password" name="new_pw" class="form-control" id="inputPassword5">
+                        <label for="new_pw">새 비밀번호</label>
+                        <input type="password" name="new_pw" class="form-control" id="new_pw">
                       </div>
                       <div class="form-group">
-                        <label for="inputPassword6">비밀번호 확인</label>
-                        <input type="password" name="new_pwConfirm" class="form-control" id="inputPassword6">
+                        <label for="confirmPw">비밀번호 확인</label>
+                        <input type="password" name="confirm_pw" class="form-control" id="confirm_pw">
                       </div>
                     </div>
                   </div>

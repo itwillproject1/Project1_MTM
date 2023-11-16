@@ -47,7 +47,6 @@ public class MemberDAO extends DAO{
 				result.setAddress(rs.getString("address"));
 				result.setTel(rs.getString("tel"));
 				result.setJoin_date(rs.getDate("join_date"));
-				result.setImage(rs.getString("image"));
 				result.setActive(rs.getInt("active"));
 			}
 		} catch (Exception e) {
@@ -60,13 +59,48 @@ public class MemberDAO extends DAO{
 		
 		
 		// changeProfile() : 관리자 프로필 편집
-		public int changeProfile(MemberDTO dto) {
+		public int changeProfile(MemberDTO dto, String new_pw, String confirm_pw) {
 			int result = -1;
 			try {
 				con = getCon();
-				sql = "update from Employees where emp_id = ?";
+				sql = "select emp_pw from Employees where emp_id = ?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.executeUpdate();
+				pstmt.setString(1, dto.getEmp_id());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					if(rs.getString(1).equals(dto.getEmp_pw())) {
+						if(new_pw == null || confirm_pw == null || new_pw.equals("") || confirm_pw.equals("")) {
+							sql = "update Employees set name = ?, address = ?, email = ?, tel = ? where emp_id = ?";
+							pstmt = con.prepareStatement(sql);
+							pstmt.setString(1, dto.getName());
+							pstmt.setString(2, dto.getAddress());
+							pstmt.setString(3, dto.getEmail());
+							pstmt.setString(4, dto.getTel());
+							pstmt.setString(5, dto.getEmp_id());
+							pstmt.executeUpdate();
+							result = 1;
+						}
+						else {
+							if(new_pw.equals(confirm_pw)) {
+								sql = "update Employees set name = ?, address = ?, email = ?, tel = ?, "
+										+ "emp_pw = ? where emp_id = ?";
+								pstmt = con.prepareStatement(sql);
+								pstmt.setString(1, dto.getName());
+								pstmt.setString(2, dto.getAddress());
+								pstmt.setString(3, dto.getEmail());
+								pstmt.setString(4, dto.getTel());
+								pstmt.setString(5, new_pw);
+								pstmt.setString(6, dto.getEmp_id());
+								pstmt.executeUpdate();
+								result = 1;
+							}
+						}
+					}
+					else {
+						result = 0;
+					}
+				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -114,7 +148,6 @@ public class MemberDAO extends DAO{
 					dto.setAddress(rs.getString("address"));
 					dto.setTel(rs.getString("tel"));
 					dto.setJoin_date(rs.getDate("join_date"));
-					dto.setImage(rs.getString("image"));
 					dto.setActive(rs.getInt("active"));
 					list.add(dto);
 				}

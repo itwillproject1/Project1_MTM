@@ -175,11 +175,11 @@
                     </td>
                     <td>
                     	<div class="avatar avatar-md">
-                            <c:if test="${i.profile == null}">
+                            <c:if test="${i.profile == ''}">
                     			<img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
                     		</c:if>
-                    		<c:if test="${i.profile != null}">
-                    			<img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
+                    		<c:if test="${i.profile != ''}">
+                    			<img src="./upload/${i.profile}" alt="..." class="avatar-img rounded-circle">
                     		</c:if>    
                     	</div>
                     </td>

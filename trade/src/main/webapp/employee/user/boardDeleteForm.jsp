@@ -14,17 +14,17 @@
             <div class="col-12">
               <h2 class="page-title">삭제하기</h2>
               <div class="card shadow mb-5">
-              <form action="./BoardDeleteAction.emp" method="post">
+              <form action="./BoardDeleteAction.emp?bno=${dto.bno}" method="post">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
                       <div class="form-group mb-3">
                        <label for="emp_id">작성자</label>
-                        <input type="text" id="emp_id" value="${bno.emp_id}" class="form-control" readonly value="Readonly value">
+                        <input type="text" id="emp_id" value="${dto.emp_id}" class="form-control" readonly value="Readonly value">
                       </div>
                       <div class="form-group mb-3">
                         <label for="subject">제목</label>
-                        <input type="text" name="subject" id="subject" value="${bno.subject}" class="form-control" placeholder="제목">
+                        <input type="text" name="subject" id="subject" value="${dto.subject}" readonly value="Readonly value" class="form-control" placeholder="제목">
                       </div>
                       <div class="form-group mb-3">
                         <label for="password">비밀번호</label>

@@ -40,7 +40,7 @@
                   <span class="ml-lg-2"></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="elseDropdown">
-                  <a class="nav-link pl-lg-2" href="./EmployeeRegisterForm.emp"><span class="ml-1">마켓으로 이동</span></a>
+                  <a class="nav-link pl-lg-2" href="./main/Main.com"><span class="ml-1">마켓으로 이동</span></a>
                 </div>
               </li>
             </ul>
@@ -59,10 +59,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./MemberProfile.emp">프로필</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="./ProfileChangeForm.emp">프로필 편집</a>
+                  <a class="nav-link pl-3" href="./ProfileContent.emp?emp_id=${emp_id}">프로필 조회</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link pl-3" href="./LogoutAction.emp">로그아웃</a>

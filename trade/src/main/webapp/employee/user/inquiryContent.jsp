@@ -121,7 +121,7 @@
                       <form>
                         <div class="form-group">
                           <label for="exampleFormControlTextarea1" class="sr-only">답변</label>
-                          <textarea class="form-control bg-light" id="exampleFormControlTextarea1" rows="2"></textarea>
+                          <textarea class="form-control bg-light" name="answerContent" id="exampleFormControlTextarea1" rows="2"></textarea>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                           <div class="form-check form-check-inline ml-1">

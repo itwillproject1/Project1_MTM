@@ -42,7 +42,9 @@
                   	</div>
 					<div class="row align-items-center">						
 						<div class="col">
-							<img src="./employee/template/assets/images/productImage.png" alt="..." class="product-image">
+						<c:if test="${dto.file_name != ''}">
+							<img src="./upload/${dto.file_name}" alt="..." class="product-image">
+						</c:if>
 						</div>
 					</div>
                   	<div class="row align-items-center">

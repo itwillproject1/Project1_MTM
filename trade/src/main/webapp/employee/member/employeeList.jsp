@@ -27,12 +27,7 @@
                     <div class="card-body text-center">
                       <div class="avatar avatar-lg mt-4">
                         <a href="./ProfileContent.emp?emp_id=${i.emp_id}">
-                        <c:if test="${i.image == null}">
-                          <img src="./employee/template/assets/images/user.png" alt="${i.name}의 이미지" class="avatar-img rounded-circle">
-                         </c:if>
-                         <c:if test="${i.image != null}">
-                          <img src="./employee/template/assets/images/user.png" alt="${i.name}의 이미지" class="avatar-img rounded-circle">
-                         </c:if>
+                          <img src="./employee/template/assets/images/user.png" alt="${i.name}의 이미지" class="avatar-img rounded-circle">           
                         </a>
                       </div>
                       <div class="card-text my-2">

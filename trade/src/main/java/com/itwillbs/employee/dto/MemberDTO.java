@@ -8,7 +8,6 @@ public class MemberDTO {
 	private String name;
 	private String email;
 	private String address;
-	private String image;
 	private String tel;
 	private Date join_date;
 	private int active;
@@ -42,12 +41,6 @@ public class MemberDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	public String getTel() {
 		return tel;
 	}
@@ -69,7 +62,7 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		return "MemberDTO [emp_id=" + emp_id + ", emp_pw=" + emp_pw + ", name=" + name + ", email=" + email
-				+ ", address=" + address + ", image=" + image + ", tel=" + tel + ", join_date=" + join_date
+				+ ", address=" + address + ", tel=" + tel + ", join_date=" + join_date
 				+ ", active=" + active + ", toString()=" + super.toString() + "]";
 	}
 }
