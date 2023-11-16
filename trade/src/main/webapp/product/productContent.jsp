@@ -18,7 +18,7 @@
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productContent.css" rel="stylesheet" />
-<link href="../css/productPopup.css" rel="stylesheet" />
+<link href="../css/productModal.css" rel="stylesheet" />
 <title>상세페이지</title>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
@@ -203,39 +203,41 @@
 	<!-- 프로필 모달 시작 -->
 	<div id="profileModal" class="modal">
 		<div class="modal-content">
+				<span class="close-button" onclick="closeProfileModal();">닫기</span>
+				<div id="productInfo">
 			<!-- 모달 내용 -->
 			<h2>
-				<img src="" alt="프로필"> ${dto.user_id} (평점) <span class="close-button" onclick="closeProfileModal();">닫기</span>
+				<img src="" alt="프로필"> ${dto.user_id} (평점) 
 			</h2>
 
 			<h3 id="h3">${dto.user_id}님의판매상품목록</h3>
-			<c:forEach var="userProduct" items="${userProducts }" varStatus="loopStatus">
+			<c:forEach var="userProduct" items="${userProducts }">
 				<c:if test="${userProduct.deal_way == '팝니다'}">
-					<c:if test="${!loopStatus.first}">
-						<hr>
-					</c:if>
 					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
 						<div>
-							<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px">
+							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" >
 						</div>
-						<span id="sellDiv"> <span>상품명: ${userProduct.title}<br></span> <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
+						<div id="pfDiv"> <span>상품명: ${userProduct.title}<br></span>
+						 <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
 						</span>
-						</span>
+						</div>
+						<hr id="pfHr">
 					</div>
 				</c:if>
 			</c:forEach>
-
+			<br><br><br>
 			<h3 id="h3">${dto.user_id}님의구매상품목록</h3>
 			<c:forEach var="userProduct" items="${userProducts}">
 				<c:if test="${userProduct.deal_way == '삽니다'}">
 					<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
 						<div>
-							<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" width="60px" height="60px">
+							<img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" alt="미리보기" >
 						</div>
-						<span id="sellDiv">
+						<div id="pfDiv">
 							<span>상품명: ${userProduct.title}<br></span>
-							<span>가격: <fmt:formatNumber value="${userProduct.price}" />원 <hr></span>
-						</span>
+							<span>가격: <fmt:formatNumber value="${userProduct.price}" />원 </span>
+						</div>
+						<hr id="pfHr">
 					</div>
 				</c:if>
 			</c:forEach>
@@ -243,6 +245,7 @@
 			<c:if test="${empty userProducts}">
 				<p id="noSell">등록 상품이 없습니다.</p>
 			</c:if>
+			</div>
 		</div>
 	</div>
 	<!-- 프로필 모달 종료 -->
