@@ -518,30 +518,40 @@
 	    });
 	}
 	
-	
-
-
-
 	function submitComplainOffer() {
 
- 		var postReportCheckboxes = postReportOptions.querySelectorAll('.reasonRadio:checked');
-		var authorReportCheckboxes = authorReportOptions.querySelectorAll('.reasonRadio:checked');
+ 		var postReportRadio = postReportOptions.querySelectorAll('.reasonRadio:checked');
+		var authorReportRadio = authorReportOptions.querySelectorAll('.reasonRadio:checked');
 
-		if (postReportCheckboxes.length === 0 && authorReportCheckboxes.length === 0) {
-			alert("신고 사유를 선택해주세요");
-		} else {
-			event.preventDefault();
-			var result = confirm('신고 접수를 하시겠습니까?');
+		// 기타 라디오 버튼 체크 및 입력 확인
+	    var otherReasonTextarea = document.getElementById('otherReasonText');
+	    var otherReason2Textarea = document.getElementById('otherReasonText2');
+	    var isPostReportChecked = postReportRadio.length > 0 && postReportRadio[0].value === '8';
+	    var isAuthorReportChecked = authorReportRadio.length > 0 && authorReportRadio[0].value === '8';
+	    var isPostReasonTextareaEmpty = isPostReportChecked && otherReasonTextarea.value.trim() === '';
+	    var isAuthorReasonTextareaEmpty = isAuthorReportChecked && otherReason2Textarea.value.trim() === '';
 
-			if (result === true) {
-				// 확인을 클릭한 경우에만 제출
-				document.getElementById("ComplainForm").submit();
-			} else if((result === false)){
-				// 취소를 눌렀을 때의 동작
-				alert("신고 접수가 취소되었습니다");
-				return closeComplainModal();
-			}
-		}
+	    if ((isPostReportChecked && isPostReasonTextareaEmpty) || (isAuthorReportChecked && isAuthorReasonTextareaEmpty)) {
+	        alert('기타 이유를 알려주세요');
+	        event.preventDefault();
+	        return closeComplainModal();
+	    } else if (postReportRadio.length === 0 && authorReportRadio.length === 0) {
+	        alert('신고 사유를 선택해주세요');
+	        event.preventDefault();
+	        return closeComplainModal();
+	    } else {
+	        event.preventDefault();
+	        var result = confirm('신고 접수를 하시겠습니까?');
+
+	        if (result === true) {
+	            // 확인을 클릭한 경우에만 제출
+	            document.getElementById('ComplainForm').submit();
+	        } else {
+	            // 취소를 눌렀을 때의 동작
+	            alert('신고 접수가 취소되었습니다');
+	            return closeComplainModal();
+	        }
+	    }
 	}
 	</script>
 	<!-- 신고창 종료 -->
