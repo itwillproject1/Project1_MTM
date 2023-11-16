@@ -8,6 +8,8 @@ import com.itwillbs.employee.dto.BoardDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** BoardDeleteFormAction() : 게시판 수정 폼 **/
+
 public class BoardUpdateFormAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

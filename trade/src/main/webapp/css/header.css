@@ -20,26 +20,40 @@ header {
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     transition: box-shadow 0.3s; 
+    margin-bottom : 0;
 }
 
 header:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
+#navbar{
+	text-align:center;
+	align-items: center;
+}
+
 .logo {
-	display: inline-block;
+	display: flex;
 }
 .logo a{
 	text-decoration: none;
+	margin-left : -20px;
 }
 
 #logo {
-	width: 50px;
-	margin: 20px;
+	width: 70px;
+	transform: translate(20%, 15%);
 }
 
-#scmem {
-	width: 500px;
+
+
+#search {
+	justify-content: center;
+	transform: translate(120%, 0);
+}
+
+#user-menu{
+	margin-left:auto;
 }
 .category-a a {
     text-decoration: none;
@@ -80,6 +94,9 @@ header:hover {
 	float: center;
 	margin-right: 30px;
     padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .rgt1 {
@@ -96,14 +113,14 @@ header:hover {
     border: 1px solid #a3a3a3; /* 테두리  */
 /*     border-radius: 25px; */
     margin-right: 10px;
-    width: 200px;
+    width: 400px;
 }
 .search input:hover {
     padding: 10px;
     border: 1px solid #000; /* 테두리 */
 /*     border-radius: 25px; */
     margin-right: 10px;
-    width: 200px;
+    width: 400px;
 }
 
 .search button {

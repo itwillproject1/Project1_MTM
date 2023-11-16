@@ -441,7 +441,80 @@ public class MemberDAO {
 			}
 
 			return result;
-		}	
+		}
+		public MemberDTO findpwmember(MemberDTO pwdto) {
+			int result = -1; // -1  0  1
+			
+			try {
+				// 1.2. 디비 연결
+				con = getCon();
+				// 3. sql 작성(select) & pstmt 객체
+				sql = "select * from Member where user_name=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, pwdto.getUser_name());
+				// 4. sql 실행			
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				if(rs.next()) {
+					
+					if(pwdto.getUser_id().equals(rs.getString("user_id"))) {
+						pwdto.setPassword(rs.getString("passwoard"));
+						result = 1; // 일치
+					}
+					else {
+						result = 0; // 아이디가 맞지않음
+					}
+				}
+				else {
+				    result = -1; // 회원이름이 없음	
+				}
+				System.out.println(" DAO : 회원아이디 조회중 ("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+
+			return pwdto;
+		}
+		public int findpwmember2(MemberDTO pwdto) {
+			int result = -1; // -1  0  1
+			System.out.println("맞아?" +  pwdto.getUser_name());
+			try {
+				// 1.2. 디비 연결
+				con = getCon();
+				// 3. sql 작성(select) & pstmt 객체
+				sql = "select * from Member where user_name=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, pwdto.getUser_name());
+				// 4. sql 실행			
+				rs = pstmt.executeQuery();
+				// 5. 데이터 처리
+				if(rs.next()) {
+					System.out.println("여기까지왓니?");
+					if(pwdto.getUser_id().equals(rs.getString("user_id"))) {
+						pwdto.setPassword(rs.getString("password"));
+						result = 1; // 일치
+						
+					}
+					else {
+						result = 0; // 아이디가 맞지않음
+					}
+				}
+				else {
+				    result = -1; // 회원이름이 없음	
+				}
+				System.out.println(" DAO : 회원아이디 조회중 ("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+
+			return result;
+		}
 			
 }			
 		

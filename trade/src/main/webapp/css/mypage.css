@@ -29,7 +29,7 @@ body {
 }
 
 .image-container img {
-	max-width: 30%;
+	max-width: 50%;
 	max-height: 200px;
 	border-radius: 8px; /* 이미지에도 둥근 테두리 적용 */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 이미지에 그림자 추가 */
