@@ -87,22 +87,22 @@ $(function(){
             } 
             
             var year = document.join.jumin1.value;
-            if (year == "년" && "") {
+            if (year == "년") {
                alert(' 태어난 년도를 선택하세요! ');
                document.join.jumin1.focus();
                return false;
             } 
             
             var month = document.join.jumin2.value;
-            if (month == "월" && "") {
-               alert(' 태어난 년도를 선택하세요! ');
+            if (month == "월") {
+               alert(' 태어난 월을 선택하세요! ');
                document.join.jumin2.focus();
                return false;
             } 
             
             var day = document.join.jumin3.value;
-            if (day == "일" && "") {
-               alert(' 태어난 년도를 선택하세요! ');
+            if (day == "일") {
+               alert(' 태어난 일을 선택하세요! ');
                document.join.jumin3.focus();
                return false;
             } 
@@ -139,8 +139,16 @@ $(function(){
                document.join.user_nickname.focus();
                return false;
             }
+            
+              var profile = document.join.profile.value;
+              if (profile == "") {
+                  alert(' 프로필을 등록하세요! ');
+                  document.join.profile.focus();
+                  return false;
+               }
+               
+             
          }
-         
 
          function handleOnInput(el, maxlength) {
                  	  if(el.value.length > maxlength)  {
@@ -148,15 +156,7 @@ $(function(){
                  	      = el.value.substr(0, maxlength);
                  	  }
                  	}       
-         
-         function chk_han(id) {
-        	    var regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-        	    var value = $("#"+id).val();
-        	    if (regexp.user_name(value)) {
-        	        $("#"+id).val(value.replace(regexp, ''));
-        	    }
-        	}
-        	출처: https://solbel.tistory.com/2643 [개발자의 끄적끄적:티스토리]
+
          
          
 
@@ -314,15 +314,15 @@ $(function(){
     <label for="allCheck"><span>이용약관 전체동의</span></label>
     
     <hr>
-    <input class="must" id="agree1" type="checkbox" >
+    <input class="must" id="agree1" type="checkbox" name="agree1">
     <label id="label" for="agree1"><span>이용약관 동의 (필수)</span></label>
    <span class="show" onclick="openAgreeModal1()">내용보기</span><br>
     
-    <input class="must" id="agree2" type="checkbox" >
+    <input class="must" id="agree2" type="checkbox" name="agree2">
     <label id="label" for="agree2"><span>개인정보 수집 및 이용 동의 (필수)</span></label>
     <span class="show" onclick="openAgreeModal2()">내용보기</span><br>
     
-    <input class="must" id="agree3" type="checkbox" >
+    <input class="must" id="agree3" type="checkbox" name="agree3">
     <label id="label" for="agree3"><span>개인정보 제3자 제공 동의 (필수)</span></label>
     <span class="show" onclick="openAgreeModal3()">내용보기</span><br>
     
