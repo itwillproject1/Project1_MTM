@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link href="../css/memberjoin.css" rel="stylesheet" /> -->
+<link href="../css/memberjoin.css" rel="stylesheet" />
 </head>
 <body>
-<%--       <%@ include file="../main/header.jsp"%> --%>
+      <%@ include file="../main/header.jsp"%>
       
       <br><br>
       <br><br>
