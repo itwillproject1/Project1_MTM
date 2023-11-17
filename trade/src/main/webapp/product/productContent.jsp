@@ -31,7 +31,7 @@
             var login_id = '<%= session.getAttribute("user_id") %>';
             
             if(login_id == "null") {
-				alert('해당 기능은 로그인이 필요합니다');
+            alert('해당 기능은 로그인이 필요합니다');
             } else {
                 $.ajax({
                   url : "./LikeCheck.com",
@@ -59,9 +59,9 @@
    
    
    function payment(bno){
-		
-		location.href  = "../pay/payment.com?bno=" + bno;
-	}
+      
+      location.href  = "../pay/payment.com?bno=" + bno;
+   }
    
 </script>
 </head>
@@ -411,46 +411,46 @@
             <!-- 거래 제안 현황 모달 종료-->
             </div>
             </div>
-	      <div class="form-group">
-	         <label for="productDescription">상품 설명: </label> ${dto.content }
-	      </div>
+         <div class="form-group">
+            <label for="productDescription">상품 설명: </label> ${dto.content }
+         </div>
    </div>
 
-	<!-- 판매 제안 현황 리스트 모달 시작 -->
-	<div id="suggestListModal" class="modal">
-		<div class="modal-content">
-			<span class="close-button" onclick="closeSuggestListModal()">닫기</span>
-			
-			<!-- 모달 내용 -->
-			<h3 id="h3">현재 상품의 판매 제안 현황</h3>
-			<c:if test="${!empty ssldto }">
-				<form action="./CancleSuggest.com?bno=${dto.bno }" method="post" id="cancleSuggestForm">
-					<!-- 판매 제안한 상품 리스트 가져오기 -->
-					<c:forEach var="ssldto" items="${ssldto }">
-						<c:set var="fileNameArr3" value="${fn:split(ssldto.file_name, ',')}" />
-						<div>
-							<input type="checkbox" id="sellCheckbox" class="productCheckbox" name="cancle_bno" value="${ssldto.bno }">
-							<div id="productList" onclick="location.href='./ProductContent.com?bno=${ssldto.bno}';">
+   <!-- 판매 제안 현황 리스트 모달 시작 -->
+   <div id="suggestListModal" class="modal">
+      <div class="modal-content">
+         <span class="close-button" onclick="closeSuggestListModal()">닫기</span>
+         
+         <!-- 모달 내용 -->
+         <h3 id="h3">현재 상품의 판매 제안 현황</h3>
+         <c:if test="${!empty ssldto }">
+            <form action="./CancleSuggest.com?bno=${dto.bno }" method="post" id="cancleSuggestForm">
+               <!-- 판매 제안한 상품 리스트 가져오기 -->
+               <c:forEach var="ssldto" items="${ssldto }">
+                  <c:set var="fileNameArr3" value="${fn:split(ssldto.file_name, ',')}" />
+                  <div>
+                     <input type="checkbox" id="sellCheckbox" class="productCheckbox" name="cancle_bno" value="${ssldto.bno }">
+                     <div id="productList" onclick="location.href='./ProductContent.com?bno=${ssldto.bno}';">
 
-								<img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr3[0] }" alt="미리보기"> <span id="sellDiv"> <span>상품명: ${ssldto.title}<br></span> <span>상품상태: ${ssldto.product_status}<br></span> <span>가격: <span id="priceSpan"><fmt:formatNumber value="${dto.price}" />원 </span> <span id="priceSpan2"><fmt:formatNumber value="${ssldto.price}" />원 </span>
-								</span>
-								</span>
-							</div>
-							<hr id="hr1">
-						</div>
-					</c:forEach>
-					<button type="button" class="submit-button" onclick="cancleSuggest();">판매 제안 취소 하기</button>
-				</form>
-			</c:if>
-			<c:if test="${empty ssldto }">
-				<p id="noSell">판매 제안 내역이 없습니다.</p>
-			</c:if>
-		</div>
-	</div>
-	<!-- 판매 제안 현황 리스트 모달 종료 -->
+                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr3[0] }" alt="미리보기"> <span id="sellDiv"> <span>상품명: ${ssldto.title}<br></span> <span>상품상태: ${ssldto.product_status}<br></span> <span>가격: <span id="priceSpan"><fmt:formatNumber value="${dto.price}" />원 </span> <span id="priceSpan2"><fmt:formatNumber value="${ssldto.price}" />원 </span>
+                        </span>
+                        </span>
+                     </div>
+                     <hr id="hr1">
+                  </div>
+               </c:forEach>
+               <button type="button" class="submit-button" onclick="cancleSuggest();">판매 제안 취소 하기</button>
+            </form>
+         </c:if>
+         <c:if test="${empty ssldto }">
+            <p id="noSell">판매 제안 내역이 없습니다.</p>
+         </c:if>
+      </div>
+   </div>
+   <!-- 판매 제안 현황 리스트 모달 종료 -->
 
 
-	<!-- 판매 제안 -->
+   <!-- 판매 제안 -->
 
       <!-- 신고하기 모달창 -->
       <form action="" method="post">
@@ -721,7 +721,7 @@
 
             if (result === true) {
                // 제안 취소하기
-            	document.getElementById("cancleSuggestForm").submit();
+               document.getElementById("cancleSuggestForm").submit();
             } else {
                alert('제안을 유지합니다');
                location.reload();
