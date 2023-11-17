@@ -31,7 +31,8 @@
                   <a class="nav-link pl-lg-2" href="./UserList.emp"><span class="ml-1">유저 목록</span></a>
                   <a class="nav-link pl-lg-2" href="./InquiryList.emp"><span class="ml-1">문의 목록</span></a>
                   <a class="nav-link pl-lg-2" href="./ComplainList.emp"><span class="ml-1">피신고자 목록</span></a>
-                  <a class="nav-link pl-lg-2" href="./TradeList.emp"><span class="ml-1">거래 현황</span></a>
+                  <a class="nav-link pl-lg-2" href="./TradeList.emp"><span class="ml-1">거래 목록 </span></a>
+                  <a class="nav-link pl-lg-2" href="./TradeHistory.emp"><span class="ml-1">거래 내역 </span></a>
                   <a class="nav-link pl-lg-2" href="./BoardList.emp"><span class="ml-1">게시판</span></a>
                 </div>
               </li>

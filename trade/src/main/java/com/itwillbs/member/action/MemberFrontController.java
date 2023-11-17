@@ -236,15 +236,39 @@ public class MemberFrontController extends HttpServlet {
 	
 		}
 		
-		/*
-		else if(command.equals("/member/mypage.member")) {
-		 
-		forward = new ActionForward();
-		 
-		forward.setPath("./mypage.jsp"); forward.setRedirect(false);
-		
+		else if(command.equals("/member/findpw.member")){
+			
+			forward = new ActionForward();
+			forward.setPath("./findpw.jsp");
+			forward.setRedirect(false);
 		}
-		*/
+		
+
+		else if(command.equals("/member/AdjustSmtp.member")){
+			
+			System.out.println("/member/AdjustSmtp.member 호출 ");
+			
+			action = new AdjustSmtp();
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}
+		
+		else if(command.equals("/member/findpwAction.member")){
+			System.out.println("/findpwAction.member 호출 ");
+			action = new findpwAction();
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}
+		
+		
 		
 		//System.out.println("---------------2. 가상주소 매핑 종료---------------");
 		/************************2. 가상주소 매핑 종료************************/

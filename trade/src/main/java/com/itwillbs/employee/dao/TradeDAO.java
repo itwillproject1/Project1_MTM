@@ -441,7 +441,105 @@ public class TradeDAO extends DAO{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			CloseDB();
 		}
 		return list;
+	}
+	
+	public int tradeHistoryCount() {
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from TradeHistory";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) result = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	public ArrayList tradeHistory(int startRow, int pageSize) {
+		ArrayList th = null;
+		TradeDTO dto = null;
+		try {
+			con = getCon();
+			sql = "select th.bno, th.user_id, th.trader_id, p.category, "
+					+ "th.price, p.title, th.deal_way, tradeDate from TradeHistory th "
+					+ "left outer join Product p on th.bno = p.bno "
+					+ "order by bno limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			th = new ArrayList();
+			while(rs.next()) {
+				dto = new TradeDTO();
+				dto.setBno(rs.getInt(1));
+				dto.setUser_id(rs.getString(2));
+				dto.setDeal_user_id(rs.getString(3));
+				dto.setCategory(rs.getString(4));
+				dto.setPrice(rs.getInt(5));
+				dto.setTitle(rs.getString(6));
+				dto.setDeal_way(rs.getString(7));
+				dto.setDate_time(rs.getTimestamp(8));
+				th.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return th;
+	}
+	
+	public ArrayList tradeHistorySearch(String category, String search, String searchKeyword, int startRow, int pageSize) {
+		ArrayList th = null;
+		TradeDTO dto = null;
+
+		try {
+			con = getCon();
+			sql = "select th.bno bno, th.user_id, th.trader_id, "
+					+ "p.category, th.price, p.title, th.deal_way, tradeDate "
+					+ "from TradeHistory th left outer join Product p on th.bno = p.bno "
+					+ "where ";
+			
+			if(search == null || searchKeyword == null) {
+				sql += "category = '" + category + "'";
+			}
+			else if(category == null) {
+				sql += "th." + search + " like '%" + searchKeyword + "%'";
+			}
+			else {
+				sql += "th." + search + " like '%" + searchKeyword + "%' and category = '" + category +"'";
+			}
+			sql += " order by th.bno limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			th = new ArrayList();
+			while(rs.next()) {
+				dto = new TradeDTO();
+				dto.setBno(rs.getInt(1));
+				dto.setUser_id(rs.getString(2));
+				dto.setDeal_user_id(rs.getString(3));
+				dto.setCategory(rs.getString(4));
+				dto.setPrice(rs.getInt(5));
+				dto.setTitle(rs.getString(6));
+				dto.setDeal_way(rs.getString(7));
+				dto.setDate_time(rs.getTimestamp(8));
+				th.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return th;
 	}
 }
