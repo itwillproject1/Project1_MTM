@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <title>로그인</title>
 <html lang="UTF-8">
@@ -16,7 +17,12 @@
           <h1 class="h1 mb-3">로그인</h1>
           <div class="form-group">
             <label for="inputId" class="sr-only">사번</label>
-            <input type="text" name="emp_id" id="inputId" class="form-control form-control-lg" placeholder="사번" required>
+            <c:if test="${id_cookie == ''}">	
+            	<input type="text" name="emp_id" id="inputId" class="form-control form-control-lg" placeholder="사번" required>
+            </c:if>
+             <c:if test="${id_cookie != ''}">	
+            	<input type="text" name="emp_id" id="inputId" value="${id_cookie}" class="form-control form-control-lg" placeholder="사번" required>
+            </c:if>
           </div>
           <div class="form-group">
             <label for="inputPassword" class="sr-only">비밀번호</label>
@@ -24,7 +30,14 @@
           </div>
           <div class="checkbox mb-3">
             <label>
-              <input type="checkbox" value="remember-me"> 사번 기억하기 </label>
+            	<c:if test="${id_cookie == ''}">
+            		<input type="checkbox" name="remember" value="remember-me">
+            	</c:if>
+            	<c:if test="${id_cookie != ''}">
+            		<input type="checkbox" name="remember" value="remember-me" checked>
+            	</c:if>
+            	 사번 기억하기
+            </label>
           </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
           <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="location.href='./ResetPwForm.emp'">비밀번호 초기화</button>

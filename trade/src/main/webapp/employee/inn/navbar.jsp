@@ -31,7 +31,8 @@
                   <a class="nav-link pl-lg-2" href="./UserList.emp"><span class="ml-1">유저 목록</span></a>
                   <a class="nav-link pl-lg-2" href="./InquiryList.emp"><span class="ml-1">문의 목록</span></a>
                   <a class="nav-link pl-lg-2" href="./ComplainList.emp"><span class="ml-1">피신고자 목록</span></a>
-                  <a class="nav-link pl-lg-2" href="./TradeList.emp"><span class="ml-1">거래 현황</span></a>
+                  <a class="nav-link pl-lg-2" href="./TradeList.emp"><span class="ml-1">거래 목록 </span></a>
+                  <a class="nav-link pl-lg-2" href="./TradeHistory.emp"><span class="ml-1">거래 내역 </span></a>
                   <a class="nav-link pl-lg-2" href="./BoardList.emp"><span class="ml-1">게시판</span></a>
                 </div>
               </li>
@@ -40,7 +41,7 @@
                   <span class="ml-lg-2"></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="elseDropdown">
-                  <a class="nav-link pl-lg-2" href="./EmployeeRegisterForm.emp"><span class="ml-1">마켓으로 이동</span></a>
+                  <a class="nav-link pl-lg-2" href="./main/Main.com"><span class="ml-1">마켓으로 이동</span></a>
                 </div>
               </li>
             </ul>
@@ -59,13 +60,10 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./MemberProfile.emp">프로필</a>
+                  <a class="nav-link pl-3" href="./ProfileContent.emp?emp_id=${emp_id}">프로필 조회</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link pl-3" href="./ProfileChangeForm.emp">프로필 편집</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="./LogoutAction.emp">로그아웃</a>
+                  <a class="nav-link pl-3" href="./Logout.emp">로그아웃</a>
                 </li>
               </ul>
             </li>

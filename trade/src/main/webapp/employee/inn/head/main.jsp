@@ -4,7 +4,7 @@
 <html lang="UTF-8">
 <head>
   	<link href="./employee/template/assets/images/titleIcon.ico" rel="shortcut icon" type="image/x-icon">
-  	
+  	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <!-- Fonts CSS -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

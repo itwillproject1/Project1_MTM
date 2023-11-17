@@ -136,10 +136,10 @@
                           			<option>선택</option>
                         		</c:if>
                         		<c:if test="${category == '1'}">                        		
-                          			<option value="1" selected>계정</option>
+                          			<option value="1" selected>회원</option>
                         		</c:if>
                         		<c:if test="${category != '1'}">                        		
-                          			<option value="1">계정</option>
+                          			<option value="1">회원</option>
                         		</c:if>
                         		<c:if test="${category == '2'}">                        		
                           			<option value="2" selected>이용</option>
@@ -171,7 +171,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="submit" class="btn mb-2 btn-primary btn-block">검색</button>
-                      <button type="reset" class="btn mb-2 btn-secondary btn-block" onclick="">초기화</button>
+                      <button type="reset" class="btn mb-2 btn-secondary btn-block">초기화</button>
                     </div>
                   </div>                  
                  </form>
@@ -231,7 +231,7 @@
                           <span class="text-muted sr-only">Action</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" style="">
-                          <a class="dropdown-item" href="./InquiryContent.emp?bno=${i.bno}&pageNum=${pageNum}">상세보기</a>
+                          <a class="dropdown-item" href="./InquiryContent.emp?bno=${i.bno}">상세보기</a>
                         </div>
                       </div>
                     </td>

@@ -23,7 +23,7 @@
                           <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">기본 프로필</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" id="pills-trade-tab" data-toggle="pill" href="#pills-trade" role="tab" aria-controls="pills-trade" aria-selected="false">거래 이력</a>
+                          <a class="nav-link" id="pills-trade-tab" data-toggle="pill" href="#pills-trade" role="tab" aria-controls="pills-trade" aria-selected="false">거래 현황</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" id="pills-inquiry-tab" data-toggle="pill" href="#pills-inquiry" role="tab" aria-controls="pills-inquiry" aria-selected="false">문의 목록</a>
@@ -44,11 +44,11 @@
               				<div class="row mb-5">
                     			<div class="col-12 text-center mb-4">
                       				<div class="avatar avatar-xl">
-                      					<c:if test="${dto.profile == null}">
+                      					<c:if test="${dto.profile == ''}">
                     						<img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
                       					</c:if>
-                      					<c:if test="${dto.profile != null}">
-                    						<img src="./employee/template/assets/images/user.png" alt="..." class="avatar-img rounded-circle">
+                      					<c:if test="${dto.profile != ''}">
+                    						<img src="./upload/${i.profile}" alt="..." class="avatar-img rounded-circle">
                       					</c:if>
                   					</div>
                       				<h2 class="mb-0 text-uppercase">${dto.user_id}</h2>
@@ -103,7 +103,7 @@
               				</div>
                   			<div class="row mb-12">
                   				<div class="col-6 text-center mb-12">
-              	 					<h3>거래 이력</h3>
+              	 					<h3>거래 등록</h3>
                   					<table class="table table-borderless table-striped">
                     					<thead>
                       						<tr>
@@ -118,7 +118,7 @@
                     					<c:forEach var="i" items="${tlist}">
                       						<tr>
                         						<th scope="row">${i.bno}</th>
-                        						<td>${i.title}<br>
+                        						<td>[${i.deal_way}]${i.title}<br>
                           							<span class="small text-muted">${i.content}</span>
                         						</td>
                         						<td class="text-right">${i.price}</td>
@@ -202,7 +202,7 @@
                         						<th scope="row">${i.bno}</th>
                           						<td>${i.category}</td>
                         						<td>${i.subject}</td>
-                        						<td>${i.uploadDate}</td>
+                        						<td style="text-align: right;">${i.uploadDate}</td>
                         						<td>
 													<c:if test="${i.complete}">
 														<span class="badge badge-pill badge-success">답변 완료</span>
@@ -225,8 +225,8 @@
                   					<h2 class="h5 page-title"><small class="text-muted text-uppercase">${dto.user_nickname}</small><br>${dto.user_id}</h2>
                 				</div>
                 				<div class="col-auto">
-                  					<button type="button" class="btn btn-secondary" onclick="./UserSuspendCancelForm.emp?user_id=${dto.user_id}&suspended=${dto.suspended}">정지 취소</button>
-                  					<button type="button" class="btn btn-primary" onclick="./UserSuspendActiveForm.emp?user_id=${dto.user_id}&suspended=${dto.suspended}">유저 정지</button>
+                  					<button type="button" class="btn btn-secondary" onclick="location.href='./UserSuspendCancelForm.emp?user_id=${dto.user_id}'">정지 취소</button>
+                  					<button type="button" class="btn btn-primary" onclick="location.href='./UserSuspendActiveForm.emp?user_id=${dto.user_id}'">유저 정지</button>
                 				</div>
               				</div>
                   			<div class="row mb-12">
@@ -245,12 +245,12 @@
                     					<tbody>
                     					<c:forEach var="i" items="${clist}">
                       						<tr>
-                        						<th scope="row">${i.bno}</th>
+                        						<th scope="row">${i.idx}</th>
                         						<td>${i.complainer_id}</td>
                         						<td class="text-right">${i.complainReason}</td>
                         						<td>${i.uploadDate}</td>
                         						<td class="text-right">
-													<c:if test="${!i.complete}">
+													<c:if test="${i.complete}">
 														<span class="badge badge-pill badge-success">처리 완료</span>
 													</c:if>
 													<c:if test="${!i.complete}">

@@ -203,7 +203,7 @@
 
 		<div class="form-container">
 			<h2>글 수정하기</h2>
-			<form action="./ProductUpdateProAction.com?bno=${pdto.bno}"<%-- 나중에 서버에 올라간 파일 삭제 해야댐 --%> method="post" enctype="multipart/form-data">
+			<form action="./ProductUpdateProAction.com?bno=${pdto.bno}" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="dealWay">거래 방식:</label> <select id="deal_way"
 						name="deal_way" onchange="updateSecondDropdown2()">
@@ -248,23 +248,24 @@
 						<div>
 							<c:forEach var="i" begin="1" end="5" step="1">
 							<div id="load-img">
-							<%-- 글자 클릭 시 showImagePreview() 함수 호출 --%>
+								<input type="hidden" name="before_file_name" value="${pdto.file_name }">
+								<%-- 글자 클릭 시 showImagePreview() 함수 호출 --%>
 								<input type="text" id="fni${i}" name="file_name${i }" value="${fileNameArr[i-1]}"
 									onclick="showImagePreview(${i})" class="fntext" readonly>
 								
 								<!-- 수정하기 또는 추가하기 버튼 클릭 시 아래 input 태그 나타남 -->
 								<c:if test="${fileNameArr[i-1] != null}">
-									<button type="button" class="updateImg" onclick="showFileInput(${i })" id="fbtn${i }">수정하기</button>
+									<button type="button" class="updateImg" onclick="showFileInput(${i })" id="fbtn${i }">수정</button>
 								</c:if>
 								<c:if test="${fileNameArr[i-1] == null}">
-									<button type="button" class="updateImg" onclick="showFileInput(${i })"id="fbtn${i }">추가하기</button>
+									<button type="button" class="updateImg" onclick="showFileInput(${i })"id="fbtn${i }">추가</button>
 								</c:if>
 
-								<button type="button" class="deleteImg" onclick="deleteImage(${i })" id="deletebtn${i}">삭제</button>
+								<button type="button" class="updateImg" onclick="deleteImage(${i })" id="deletebtn${i}">삭제</button>
 								
 							</div>
 							
-							<!-- 파일 선택 시 previewImage() 함수 호출 -->
+								<!-- 파일 선택 시 previewImage() 함수 호출 -->
 								<input type="file" id="file${i }" name="file${i }"
 								accept="image/*" onchange="previewImage(${i })" style="display: none;">
 								<br>
