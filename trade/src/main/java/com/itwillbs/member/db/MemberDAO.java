@@ -82,7 +82,7 @@ public class MemberDAO {
 							
 							pstmt.executeUpdate();
 						}
-					
+					System.out.println(dto.getAgree());
 					System.out.println("회원가입 완료");
 				} catch (Exception e) {
 					
@@ -220,14 +220,18 @@ public class MemberDAO {
 					System.out.println(rs.getString("password"));
 					if(dto.getUser_id() != null) {
 						//3. sql 작성(update) & pstmt객체
-						sql = "update Member set password=?,user_nickname=?,email=?,address=?,phone=? where user_id=?";
+						System.out.println(rs.getString("password"));
+						sql = "update Member set password=?,user_nickname=?,email=?,address=?,phone=?,agree=? where user_id=?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, dto.getPassword());
 						pstmt.setString(2, dto.getUser_nickname());
 						pstmt.setString(3, dto.getEmail());
 						pstmt.setString(4, dto.getAddress());
 						pstmt.setString(5, dto.getPhone());
-						pstmt.setString(6, dto.getUser_id());
+						pstmt.setString(6, dto.getAgree());
+						pstmt.setString(7, dto.getUser_id());
+						
+						
 						
 						//4. sql 실행
 						result = pstmt.executeUpdate();
@@ -564,6 +568,40 @@ public class MemberDAO {
 			return result;
 		}
 			
+		// 구매자의 정보를 불러오는 메서드
+		public MemberDTO user_search(String user_id) {
+			MemberDTO dto = null;
+			
+			try {
+				
+				con = getCon();
+				
+				sql = "select user_id, user_name, phone, address, pay from Member where user_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, user_id);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					dto = new MemberDTO();
+					
+					// rs => dto 저장
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setUser_name(rs.getString("user_name"));
+					dto.setPhone(rs.getString("phone"));
+					dto.setAddress(rs.getString("address"));
+					dto.setPay(rs.getInt("pay"));
+				}
+				
+				System.out.println(" DAO : 구매자정보 조회 완료!");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return dto;
+		}
 				
 					
 		}

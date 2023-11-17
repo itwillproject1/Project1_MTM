@@ -27,10 +27,13 @@
 		}
 		function check() {
 			
-			var price = parseInt("<c:out value='${dto2.buyer_price}'/>");
-			var pay = parseInt("<c:out value='${dto.pay}'/>");
-			var buyer_id = "<c:out value='${dto.user_id}'/>";
-			var seller_id = "<c:out value='${dto1.user_id}'/>";
+			var price = parseInt(${probuyerdto.price});
+			var pay = parseInt(${membuyerdto.pay});
+			var buyer_id = "<c:out value='${membuyerdto.user_id}'/>";
+			var seller_id = "<c:out value='${prosellerdto.user_id}'/>";
+			
+			//alert("잔액"+pay);
+			//alert("구매금액"+price);
 			
 			if(pay < price){
 
@@ -47,27 +50,29 @@
 
 <body>
 		<fieldset>
-		<form action="../product/ProductPayAction.com" method="post" name="pay" onsubmit="return check();">
+		<form action="../product/ProductTradePayAction.com" method="post" name="pay" onsubmit="return check();">
 		주문자명 : 
-		${dto.user_name}<br>
+		${membuyerdto.user_name}<br>
 		전화번호 : 
-		${dto.phone}<br>
+		${membuyerdto.phone}<br>
 		<hr>
 		배송지<br>
-		<input type="text" name="address" value="${dto.address}"> <input type="button" value="변경하기" onclick="goPopup()" class="in">
+		<input type="text" name="address" value="${membuyerdto.address}"> <input type="button" value="변경하기" onclick="goPopup()" class="in">
 		<!--  <input type="button" value="변경" class="bu" style="float: right;"><hr> --> 	
 		<br><hr>
 		주문상품<br>
-		<input type="hidden" name="seller_id" value="${dto1.user_id}">
-		<input type="hidden" name="price" value="${dto2.buyer_price}">
-		<input type="hidden" name="bno" value="${dto1.bno}">
-		<input type="hidden" name="deal_way" value="${dto1.deal_way}">
-		${dto1.category} / ${dto1.brand} / ${dto1.product_status} <br><hr>
+		<input type="hidden" name="seller_id" value="${prosellerdto.user_id}">
+		<input type="hidden" name="price" value="${probuyerdto.price}">
+		<input type="hidden" name="sell_bno" value="${prosellerdto.bno}">
+		<input type="hidden" name="buy_bno" value="${probuyerdto.bno}">
+		<input type="hidden" name="buy_deal_way" value="${probuyerdto.deal_way}">
+		<input type="hidden" name="sell_deal_way" value="${probuyerdto.deal_way}">
+		${probuyerdto.category} / ${probuyerdto.brand} / ${probuyerdto.product_status} <br><hr>
 		상품 설명<br>
-		${dto1.title}
+		${probuyerdto.title}
 		<hr>
 		주문금액 :
-		 <p><STRIKE>${dto1.price}</STRIKE> ${dto2.buyer_price}</p> 
+		 <p><STRIKE>${prosellerdto.price}</STRIKE> ${probuyerdto.price}</p> 
 		<hr>
 		
 		

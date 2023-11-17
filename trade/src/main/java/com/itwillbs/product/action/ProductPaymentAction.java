@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.itwillbs.member.db.MemberDAO;
 import com.itwillbs.member.db.MemberDTO;
 import com.itwillbs.product.db.ProductDAO;
 import com.itwillbs.product.db.ProductDTO;
@@ -18,18 +19,18 @@ public class ProductPaymentAction implements Action {
 		// 세션에 아이디, 판매상품 전달
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id");
-		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		// System.out.println(user_id);
 
 		// 구매자 정보를 가져옴
-		ProductDAO dao = new ProductDAO();
-		MemberDTO dto = dao.buyer(user_id);
-		request.setAttribute("dto", dto);		
+		MemberDAO memdao = new MemberDAO();
+		MemberDTO user_dto = memdao.user_search(user_id);
+		request.setAttribute("user_dto", user_dto);		
 		
 		//판매자 글의 정보를 가져옴
-		ProductDTO dto1 = dao.getProduct(bno);
-		request.setAttribute("dto1", dto1);
+		ProductDAO selldao = new ProductDAO();
+		ProductDTO selldto = selldao.getProduct(Integer.parseInt(request.getParameter("bno")));
+		request.setAttribute("selldto", selldto);
 		
 		
 		// 페이지 이동
