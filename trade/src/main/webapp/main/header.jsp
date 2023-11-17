@@ -23,7 +23,7 @@
    <nav id="navbar">
       <div class="rgt">
       <span class="logo">
-         <a href="../main/Main.com"><img alt="로고" src="./img/logo(MTM).png" id="logo"> </a>
+         <a href="../main/Main.com"><img alt="로고" src="../main/img/logo(MTM).png" id="logo"> </a>
       </span>   
       <div id="search">
          <div class="rgt1">
