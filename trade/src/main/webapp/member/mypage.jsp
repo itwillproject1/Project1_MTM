@@ -38,7 +38,6 @@ function pay() {
 <div class="container">
 		<div class="form-group h1">
 			<label for="productName">${dto.user_id }님의 마이페이지입니당</label>
-			<button onclick="pay();">포인트 충전하기</button>
 		</div>
 		
 		
@@ -60,7 +59,7 @@ function pay() {
 				<h2>
 					내 정보
 					<div class="dropdown">
-					<input class="update-button" type="button" value="넣을거 있으면">
+					<input class="submit-button" type="button" value="충전하기" onclick="pay();">
 					</div>
 				</h2>
 			

@@ -32,6 +32,7 @@
 					<button type="submit" value="search">검색</button>
 				</form>
 			</div>
+
 		</div>
 		<div id="user-menu">
 			<span class="user-menu">
@@ -52,7 +53,7 @@
 	            </c:if>
 	            
 	            <a href="../member/MemberInfo.member">마이페이지</a>
-	            <a href="#">고객센터</a>
+	            <a href="../member/Member112.member">고객센터</a>
 	        </span>	
 		</div>
 		</div>

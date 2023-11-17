@@ -441,7 +441,55 @@ public class MemberDAO {
 			}
 
 			return result;
-		}
+
+		}	
+		// 거래를 진행하는 메서드(판매자)
+		public void productpay(MemberDTO dto) {
+					
+					
+					try {
+						
+						con = getCon();
+						
+						sql = "update Member set pay = pay + ? where user_id = ?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, dto.getPay());
+						pstmt.setString(2, dto.getUser_id());
+						pstmt.executeUpdate();
+								
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						closeDB();
+					}
+					
+					
+				}//
+					
+				// 거래를 진행하는 메서드(구매자)
+						public void buyer_productpay(MemberDTO dto) {
+							
+							
+							try {
+								
+								con = getCon();
+								
+								sql = "update Member set pay = pay - ? where user_id = ?";
+								pstmt = con.prepareStatement(sql);
+								pstmt.setInt(1, dto.getPay());
+								pstmt.setString(2, dto.getUser_id());
+								pstmt.executeUpdate();
+								
+							} catch (Exception e) {
+								e.printStackTrace();
+							} finally {
+								closeDB();
+							}
+							
+							
+						}//
+								
+
 		public MemberDTO findpwmember(MemberDTO pwdto) {
 			int result = -1; // -1  0  1
 			
@@ -516,6 +564,6 @@ public class MemberDAO {
 			return result;
 		}
 			
-}			
-		
-
+				
+					
+		}

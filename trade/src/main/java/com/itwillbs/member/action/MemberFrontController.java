@@ -234,6 +234,16 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 	
+		}else if(command.equals("/member/Member112.member")) {
+			
+			
+			action = new Member112Action();
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
 		}
 		
 		else if(command.equals("/member/findpw.member")){
