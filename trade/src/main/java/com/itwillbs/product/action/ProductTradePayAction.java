@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.itwillbs.employee.dto.SuggestDTO;
 import com.itwillbs.member.db.MemberDAO;
 import com.itwillbs.member.db.MemberDTO;
 import com.itwillbs.product.db.ProductDAO;
@@ -18,25 +17,36 @@ import com.itwillbs.product.db.TradeHistoryDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class ProductPayAction implements Action {
+public class ProductTradePayAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		
+		// 세션에 저장된 값 가져오기
 		HttpSession session = request.getSession();
 		String buyer_id = (String)session.getAttribute("user_id");
-		
-		
 		String seller_id = request.getParameter("seller_id");
-		String deal_way = request.getParameter("deal_way");
-		int pay = Integer.parseInt(request.getParameter("price"));
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		String buy_deal_way = request.getParameter("buy_deal_way");
+		String sell_deal_way = request.getParameter("sell_deal_way");
+		int buy_pay = Integer.parseInt(request.getParameter("price"));
+		int buy_bno = Integer.parseInt(request.getParameter("buy_bno"));
+		int sell_bno = Integer.parseInt(request.getParameter("sell_bno"));
+		
+		
+		//System.out.println(buyer_id);
+		//System.out.println(seller_id);
+		//System.out.println(buy_deal_way);
+		//System.out.println(sell_deal_way);
+		//System.out.println(buy_pay);
+		//System.out.println(buy_bno);
+		//System.out.println(sell_bno);
 		
 		
 		// 판매자 정보 업데이트
 		MemberDTO memdto = new MemberDTO();
 		memdto.setUser_id(seller_id);
-		memdto.setPay(pay);		
+		memdto.setPay(buy_pay);		
 		MemberDAO memdao = new MemberDAO();
 		memdao.productpay(memdto);
 		
@@ -47,36 +57,44 @@ public class ProductPayAction implements Action {
 		// 판매완료 업데이트
 		ProductDTO prodto = new ProductDTO();
 		prodto.setDeal_user_id(buyer_id);
-		prodto.setBno(bno);
-		
+		prodto.setBno(sell_bno);
+				
 		ProductDAO prodao = new ProductDAO();
 		prodao.deal(prodto);
 		
+		// 구매완료 업데이트
+		prodto.setDeal_user_id(seller_id);
+		prodto.setBno(buy_bno);
+		prodao.deal(prodto);
 		
-		
-		// 거래 내역 전달
+		// 거래 내역 전달 // 삽니다
 		TradeHistoryDTO historydto = new TradeHistoryDTO();
 		historydto.setUser_id(buyer_id);
-		historydto.setDeal_way(deal_way);
-		historydto.setBno(bno);
+		historydto.setDeal_way(buy_deal_way);
+		historydto.setBno(buy_bno);
 		historydto.setTrader_id(seller_id);
-		historydto.setPrice(pay);
-		
+		historydto.setPrice(buy_pay);
+				
 		TradeHistoryDAO historydao = new TradeHistoryDAO();
 		historydao.tradehistory(historydto);
 		
+		//팝니다.
+		historydto.setUser_id(buyer_id);
+		historydto.setTrader_id(seller_id);
+		historydto.setDeal_way(sell_deal_way);
+		historydto.setBno(sell_bno);
+		
 		// 구매, 판매 제안 업데이트	
 		SuggestSellDTO Suggest = new SuggestSellDTO();
-		Suggest.setSell_bno(bno);		
+		Suggest.setSell_bno(buy_bno);		
 		SuggestSellDAO Suggestdao = new SuggestSellDAO();
 		
+		//구매
 		Suggestdao.sell_bno(Suggest);
-
 		
-		
-		
-		
-		
+		//판매
+		Suggest.setBuy_bno(buy_bno);
+		Suggestdao.sell_bno(Suggest);
 		
 		
 		//페이지 이동

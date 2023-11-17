@@ -31,10 +31,10 @@
 	}
 	function check() {
 		
-		var price = parseInt("<c:out value='${dto1.price}'/>");
-		var pay = parseInt("<c:out value='${dto.pay}'/>");
-		var buyer_id = "<c:out value='${dto.user_id}'/>";
-		var seller_id = "<c:out value='${dto1.user_id}'/>";
+		var price = parseInt("<c:out value='${selldto.price}'/>");
+		var pay = parseInt("<c:out value='${user_dto.pay}'/>");
+		var buyer_id = "<c:out value='${user_dto.user_id}'/>";
+		var seller_id = "<c:out value='${selldto.user_id}'/>";
 		
 		if(pay < price){
 
@@ -54,25 +54,25 @@
 		<fieldset>
 		<form action="../product/ProductPayAction.com" method="post" name="pay" onsubmit="return check();">
 		주문자명 : 
-		${dto.user_name}<br>
+		${user_dto.user_name}<br>
 		전화번호 : 
-		${dto.phone}<br>
+		${user_dto.phone}<br>
 		<hr>
 		배송지<br>
-		<input type="text" name="address" value="${dto.address}"> <input type="button" value="변경하기" onclick="goPopup()" class="in">
+		<input type="text" name="address" value="${user_dto.address}"> <input type="button" value="변경하기" onclick="goPopup()" class="in">
 		<!--  <input type="button" value="변경" class="bu" style="float: right;"><hr> --> 	
 		<br><hr>
 		주문상품<br>
-		<input type="hidden" name="seller_id" value="${dto1.user_id}">
-		<input type="hidden" name="price" value="${dto1.price}">
-		<input type="hidden" name="bno" value="${dto1.bno}">
-		<input type="hidden" name="deal_way" value="${dto1.deal_way}">
-		${dto1.category} / ${dto1.brand} / ${dto1.product_status} <br><hr>
+		<input type="hidden" name="seller_id" value="${selldto.user_id}">
+		<input type="hidden" name="price" value="${selldto.price}">
+		<input type="hidden" name="bno" value="${selldto.bno}">
+		<input type="hidden" name="deal_way" value="${selldto.deal_way}">
+		${selldto.category} / ${selldto.brand} / ${selldto.product_status} <br><hr>
 		상품 설명<br>
-		${dto1.title} ${spdto.title}
+		${selldto.title}
 		<hr>
 		주문금액 :
-		${dto1.price}
+		${selldto.price}
 		<hr>
 		
 		

@@ -564,6 +564,40 @@ public class MemberDAO {
 			return result;
 		}
 			
+		// 구매자의 정보를 불러오는 메서드
+		public MemberDTO user_search(String user_id) {
+			MemberDTO dto = null;
+			
+			try {
+				
+				con = getCon();
+				
+				sql = "select user_id, user_name, phone, address, pay from Member where user_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, user_id);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					dto = new MemberDTO();
+					
+					// rs => dto 저장
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setUser_name(rs.getString("user_name"));
+					dto.setPhone(rs.getString("phone"));
+					dto.setAddress(rs.getString("address"));
+					dto.setPay(rs.getInt("pay"));
+				}
+				
+				System.out.println(" DAO : 구매자정보 조회 완료!");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			
+			return dto;
+		}
 				
 					
 		}

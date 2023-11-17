@@ -208,16 +208,24 @@ public class ProductFrontController extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-      }else if(command.equals("/product/PaymentAction.com")) {
+      }else if(command.equals("/product/ProductTradeAction.com")) {
     	  
-    	  action = new ProductPaymentAction2();
+    	  action = new ProductTradeAction();
     	  try {
 			forward = action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}    	  
+      }else if(command.equals("/product/ProductTradePayAction.com")) {
+    	 
+    	  action = new ProductTradePayAction();
+    	  try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}  
+    	  
       }
-
       System.out.println("---------------2. 가상주소 매핑 종료---------------");
       /************************2. 가상주소 매핑 종료************************/
       
