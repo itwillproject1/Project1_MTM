@@ -235,13 +235,13 @@
          
    <input id="allCheck" type="checkbox">이용약관 전체동의
     <hr>
-    <input class="must" id="agree1" type="checkbox">이용약관 동의 (필수)
+    <input class="must" id="agree1" type="checkbox" required="required">이용약관 동의 (필수)
     <span class="show">내용보기</span><br>
-    <input class="must" id="agree2" type="checkbox">개인정보 수집 및 이용 동의 (필수)
+    <input class="must" id="agree2" type="checkbox" required="required">개인정보 수집 및 이용 동의 (필수)
     <span class="show">내용보기</span><br>
-    <input class="must" id="agree3" type="checkbox">개인정보 제3자 제공 동의 (필수)
+    <input class="must" id="agree3" type="checkbox" required="required">개인정보 제3자 제공 동의 (필수)
     <span class="show">내용보기</span><br>
-    <input class="must" id="agree4" type="checkbox">개인정보 처리 위탁 동의 (필수)
+    <input class="must" id="agree4" type="checkbox" required="required">개인정보 처리 위탁 동의 (필수)
     <span class="show">내용보기</span><br>
     <input class="choice" type="checkbox">개인정보 수집 및 이용 동의(선택)
     <span class="show">내용보기</span><br>
@@ -258,38 +258,10 @@
             choiceCheckbox.checked = document.getElementById("allCheck").checked;
         });
         
-        function validateForm(event) {
-            var mustCheckboxes = document.querySelectorAll('.must');
-            var allMustChecked = true;
-
-            mustCheckboxes.forEach(function(checkbox) {
-                if (!checkbox.checked) {
-                    allMustChecked = false;
-                }
-            });
-
-            if (allMustChecked) {
-            	var result = confirm('회원가입이 완료되었습니다. 로그인 페이지로 이동하시겠습니까?');
-            	if (result === true) {
-    	            // 확인을 클릭한 경우에만 제출
-    	            windows.location.href = "../main/login.member";
-    	            return true;
-    	        } else {
-    	            // 취소를 눌렀을 때의 동작
-    	        	windows.location.href = "../main/Main.com";
-    	        	return true;
-    	        }
-            	 
-            } else {
-                alert('필수약관을 동의해주세요');
-    	        event.preventDefault();
-    	        return false;
-    	        }
-        }
-        
     </script>
          <hr>
-         <input type="submit" value="회원가입" class="in" onclick="validateForm(event)">     
+         <input type="submit" value="회원가입" class="in" >     
+<!--          <input type="submit" value="회원가입" class="in" onclick="validateForm(event)">      -->
          <input type="button" value="취소" class="in">
       </form>   
    </fieldset>
