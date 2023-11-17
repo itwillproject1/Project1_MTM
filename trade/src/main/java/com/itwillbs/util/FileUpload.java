@@ -7,7 +7,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class FileUpload {
 	@SuppressWarnings("deprecation")
-	public MultipartRequest fileUpload(HttpServletRequest request) throws Exception {
+	public static MultipartRequest fileUpload(HttpServletRequest request) throws Exception {
 		String realPath = request.getRealPath("upload");
 		System.out.println("realPath = " + realPath);
 		

@@ -6,7 +6,7 @@ public class InquiryDTO {
 	private int bno;
 	private String user_id;
 	private String subject;
-	private int category;
+	private String category;
 	private String content;
 	private String image;
 	private Timestamp uploadDate;
@@ -14,7 +14,6 @@ public class InquiryDTO {
 	private String emp_id;
 	private String answerContent;
 	private Timestamp answerDate;
-	
 	public int getBno() {
 		return bno;
 	}
@@ -33,10 +32,10 @@ public class InquiryDTO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 	public String getContent() {
@@ -81,7 +80,6 @@ public class InquiryDTO {
 	public void setAnswerDate(Timestamp answerDate) {
 		this.answerDate = answerDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "InquiryDTO [bno=" + bno + ", user_id=" + user_id + ", subject=" + subject + ", category=" + category

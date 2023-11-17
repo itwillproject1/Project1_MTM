@@ -34,6 +34,7 @@
                   <a class="nav-link pl-lg-2" href="./TradeList.emp"><span class="ml-1">거래 목록 </span></a>
                   <a class="nav-link pl-lg-2" href="./TradeHistory.emp"><span class="ml-1">거래 내역 </span></a>
                   <a class="nav-link pl-lg-2" href="./BoardList.emp"><span class="ml-1">게시판</span></a>
+                  <a class="nav-link pl-lg-2" href="./EmployeeMailList.emp"><span class="ml-1">메일 목록</span></a>
                 </div>
               </li>
              <li class="nav-item dropdown more">

@@ -8,6 +8,23 @@
 <title>Insert title here</title>
 <link href="../css/memberjoin.css" rel="stylesheet" />
 <link href="../css/agreeModal.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+$(function(){
+    $(".name").keyup(function (event) {
+         regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+         v = $(this).val();
+         if (regexp.test(v)) {
+             alert("한글만 입력가능 합니다.");
+             $(this).val(v.replace(regexp, ''));
+         }
+     });
+});
+</script>
+
+
 </head>
 <body>
       <%@ include file="../main/header.jsp"%>
@@ -43,10 +60,10 @@
                return false;
             }            
             
-            
+            var passwordcheck = document.join.passwordcheck.value;
             if(password != passwordcheck ){
                alert('비밀번호가 일치하지 않습니다!')
-               document.join.password.focus();
+               document.join.passwordcheck.focus();
                return false;
             }
             
@@ -69,6 +86,28 @@
                return false;
             } 
             
+            var year = document.join.jumin1.value;
+            if (year == "년") {
+               alert(' 태어난 년도를 선택하세요! ');
+               document.join.jumin1.focus();
+               return false;
+            } 
+            
+            var month = document.join.jumin2.value;
+            if (month == "월") {
+               alert(' 태어난 월을 선택하세요! ');
+               document.join.jumin2.focus();
+               return false;
+            } 
+            
+            var day = document.join.jumin3.value;
+            if (day == "일") {
+               alert(' 태어난 일을 선택하세요! ');
+               document.join.jumin3.focus();
+               return false;
+            } 
+   
+            
             var gender = document.join.gender.value;
             if (gender == "") {
                alert(' 성별을 확인하세요! ');
@@ -87,6 +126,7 @@
                document.join.phone3.focus();
                return false;
             }
+            
             var address = document.join.address.value;
             if (address == "") {
                alert(' 주소를 확인하세요! ');
@@ -99,8 +139,27 @@
                document.join.user_nickname.focus();
                return false;
             }
+            
+              var profile = document.join.profile.value;
+              if (profile == "") {
+                  alert(' 프로필을 등록하세요! ');
+                  document.join.profile.focus();
+                  return false;
+               }
+               
+             
          }
+
+         function handleOnInput(el, maxlength) {
+                 	  if(el.value.length > maxlength)  {
+                 	    el.value 
+                 	      = el.value.substr(0, maxlength);
+                 	  }
+                 	}       
+
          
+         
+
          function goPopup(){
             // 주소검색을 수행할 팝업 페이지를 호출합니다.
             // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://business.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
@@ -175,7 +234,7 @@
             
                   
          <label>이름</label>
-         <input type="text" name="user_name" class="in"><br>
+         <input type="text" name="user_name" class="name" onkeyup="chk_han('user_name')"><br>
          
          <div class="birth">
             <label>생년월일</label>      
@@ -228,8 +287,8 @@
             <option value="017">017</option>
             <option value="031">031</option>
          </select> -
-         <input type="text" name="phone2"> -
-         <input type="text" name="phone3">
+         <input type="number" name="phone2" oninput= "handleOnInput(this, 4)"> -
+         <input type="number" name="phone3" oninput= "handleOnInput(this, 4)" >
           </div>  
                    
          <div id="callBackDiv">          
@@ -255,15 +314,15 @@
     <label for="allCheck"><span>이용약관 전체동의</span></label>
     
     <hr>
-    <input class="must" id="agree1" type="checkbox" required="required">
+    <input class="must" id="agree1" type="checkbox" name="agree1">
     <label id="label" for="agree1"><span>이용약관 동의 (필수)</span></label>
    <span class="show" onclick="openAgreeModal1()">내용보기</span><br>
     
-    <input class="must" id="agree2" type="checkbox" required="required">
+    <input class="must" id="agree2" type="checkbox" name="agree2">
     <label id="label" for="agree2"><span>개인정보 수집 및 이용 동의 (필수)</span></label>
     <span class="show" onclick="openAgreeModal2()">내용보기</span><br>
     
-    <input class="must" id="agree3" type="checkbox" required="required">
+    <input class="must" id="agree3" type="checkbox" name="agree3">
     <label id="label" for="agree3"><span>개인정보 제3자 제공 동의 (필수)</span></label>
     <span class="show" onclick="openAgreeModal3()">내용보기</span><br>
     
