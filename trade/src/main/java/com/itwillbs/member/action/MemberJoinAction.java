@@ -1,107 +1,80 @@
-package com.itwillbs.member.db;
+package com.itwillbs.member.action;
+import java.io.PrintWriter;
 
-public class MemberDTO {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-   private String user_id;
-   private String password;
-   private String email;
-   private String user_name;
-   private String jumin;
-   private String gender;
-   private String phone;
-   private String address;
-   private String user_nickname;
-   private String profile;
-   private String recommend;
-   private String agree;
-   private int pay;
-   public String getUser_id() {
-      return user_id;
-   }
-   public void setUser_id(String user_id) {
-      this.user_id = user_id;
-   }
-   public String getPassword() {
-      return password;
-   }
-   public void setPassword(String password) {
-      this.password = password;
-   }
-   public String getEmail() {
-      return email;
-   }
-   public void setEmail(String email) {
-      this.email = email;
-   }
-   public String getUser_name() {
-      return user_name;
-   }
-   public void setUser_name(String user_name) {
-      this.user_name = user_name;
-   }
-   public String getJumin() {
-      return jumin;
-   }
-   public void setJumin(String jumin) {
-      this.jumin = jumin;
-   }
-   public String getGender() {
-      return gender;
-   }
-   public void setGender(String gender) {
-      this.gender = gender;
-   }
-   public String getPhone() {
-      return phone;
-   }
-   public void setPhone(String phone) {
-      this.phone = phone;
-   }
-   public String getAddress() {
-      return address;
-   }
-   public void setAddress(String address) {
-      this.address = address;
-   }
-   public String getUser_nickname() {
-      return user_nickname;
-   }
-   public void setUser_nickname(String user_nickname) {
-      this.user_nickname = user_nickname;
-   }
-   public String getProfile() {
-      return profile;
-   }
-   public void setProfile(String profile) {
-      this.profile = profile;
-   }
-   public String getRecommend() {
-      return recommend;
-   }
-   public void setRecommend(String recommend) {
-      this.recommend = recommend;
-   }
-   public String getAgree() {
-      return agree;
-   }
-   public void setAgree(String agree) {
-      this.agree = agree;
-   }
-   public int getPay() {
-      return pay;
-   }
-   public void setPay(int pay) {
-      this.pay = pay;
-   }
-   
-   @Override
-   public String toString() {
-      return "MemberDTO [user_id=" + user_id + ", password=" + password + ", email=" + email + ", user_name="
-            + user_name + ", jumin=" + jumin + ", gender=" + gender + ", phone=" + phone + ", address=" + address
-            + ", user_nickname=" + user_nickname + ", profile=" + profile + ", recommend=" + recommend + ", agree="
-            + agree + ", pay=" + pay + "]";
-   }
-   
-   
-   
+import com.itwillbs.member.db.MemberDAO;
+import com.itwillbs.member.db.MemberDTO;
+import com.itwillbs.util.Action;
+import com.itwillbs.util.ActionForward;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+
+public class MemberJoinAction implements Action  {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		System.out.println(" M : MemberJoinAction_execute() 실행 ");
+		// 한글처리
+		request.setCharacterEncoding("UTF-8");
+		
+		String realPath = request.getRealPath("/uploadprofile");
+		System.out.println(" M : realPath :"+realPath);
+		
+		int maxSize = 5 * 1024 * 1024;
+		MultipartRequest multi = new MultipartRequest(request,realPath,maxSize,"UTF-8",new DefaultFileRenamePolicy());
+		
+		// 드롭다운 전달정보 (생년월일, 휴대폰번호, 이메일)
+		String jumin = multi.getParameter("jumin1")+"-"+multi.getParameter("jumin2")+"-"+multi.getParameter("jumin3");
+		String phone = multi.getParameter("phone1")+"-"+multi.getParameter("phone2")+"-"+multi.getParameter("phone3");
+		String email = multi.getParameter("email1")+multi.getParameter("email2");
+		String agree = multi.getParameter("agree");
+		if(agree==null) {
+			agree="비동의";
+		} else {
+			agree="동의";
+		} 
+		
+		// 전달정보
+		MemberDTO dto = new MemberDTO();
+		dto.setUser_id(multi.getParameter("user_id"));
+		dto.setPassword(multi.getParameter("password"));
+		dto.setEmail(email);
+		dto.setUser_name(multi.getParameter("user_name"));
+		dto.setJumin(jumin);
+		dto.setGender(multi.getParameter("gender"));
+		dto.setPhone(phone);
+		dto.setAddress(multi.getParameter("address"));
+		dto.setUser_nickname(multi.getParameter("user_nickname"));
+		dto.setProfile(multi.getFilesystemName("profile"));
+		dto.setRecommend(multi.getParameter("recommend"));
+		dto.setAgree(agree);
+		
+		System.out.println(" M : "+dto);
+		MemberDAO dao = new MemberDAO();
+		dao.insertMember(dto);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("var result = confirm('회원가입이 완료되었습니다. 로그인 페이지로 이동하시겠습니까?');");
+		out.println("if (result === true) {");
+		out.println("  location.href ='../main/login.member';");
+		out.println("} else {");
+		out.println("  location.href='../main/Main.com';");
+		out.println("}");
+		out.println("</script>");
+		out.close();
+		
+		return null;
+		
+	}
+
+	
+
+	
+	
 }
