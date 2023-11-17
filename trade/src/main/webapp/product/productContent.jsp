@@ -380,7 +380,9 @@
 				<!-- 모달 내용 -->
 				<h3 id="h3">거래 제안 현황</h3>
 				<c:if test="${!empty suggestList }">
+
 					<form action="../product/ProductTradeAction.com?buy_bno=${dto.bno}"  method="post" id="SubmitSuggestForm">
+
 						<!-- 거래 제안 들어온 상품 목록 가져오기 -->
 						<c:forEach var="spdto" items="${spdto }">
 							<c:set var="fileNameArr2" value="${fn:split(spdto.file_name, ',')}" />

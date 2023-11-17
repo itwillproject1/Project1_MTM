@@ -37,7 +37,7 @@
 	var br7 = ["소니", "보스", "마샬", "기타"];
 	
 	function updateSecondDropdown() {
-	    var selectedCategory = document.getElementById('category').value;
+	    var selectedCategory = document.getElementById('productCategory').value;
 	    var brandDropdown = document.getElementById('brand');
 	    
 	    brandDropdown.innerHTML = ''; // 두 번째 드롭다운 목록 비우기
@@ -203,7 +203,7 @@
 
 		<div class="form-container">
 			<h2>글 수정하기</h2>
-			<form action="./ProductUpdateProAction.com?bno=${pdto.bno}" method="post" enctype="multipart/form-data">
+			<form action="./ProductUpdateProAction.com?bno=${pdto.bno}" name="fr1" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="dealWay">거래 방식:</label> <select id="deal_way"
 						name="deal_way" onchange="updateSecondDropdown2()">
@@ -215,7 +215,7 @@
 				
 				<div class="form-group">
 					<label for="productCategory">카테고리:</label> 
-					<select id="category" name="category" onchange="updateSecondDropdown()" >
+					<select id="productCategory" name="productCategory" onchange="updateSecondDropdown()" >
 						<option disabled selected>카테고리를 선택하세요</option>
 						<c:forEach var="cgValue" items="${cg }" >
 							<option value="${cgValue}" <c:if test="${pdto.category eq cgValue}">selected</c:if>>${cgValue}</option>
@@ -351,6 +351,59 @@
 	        imagePreview.src = "";
 		}
 		
+		<!-- 글 유효성 검사 -->
+		function check() {
+			var deal_way = document.fr1.deal_way.value;
+			var productCategory = document.fr1.productCategory.value;
+			var brand = document.fr1.brand.value;
+			var product_status = document.fr1.product_status.value;
+			var price = document.fr1.price.value;
+			var title = document.fr1.title.value;
+			var content = document.fr1.content.value;
+			
+			if(deal_way == "default") {
+				alert('거래 방식을 선택하세요.');
+				document.fr1.deal_way.focus();
+				return false;
+			}
+			
+			if(productCategory == "default") {
+				alert('카테고리를 선택하세요.');
+				document.fr1.productCategory.focus();
+				return false;
+			}
+			
+			if(productCategory == "기타" && brand == "default") {
+				alert('브랜드를 선택하세요.');
+				document.fr1.productCategory.focus();
+				return false;
+			}
+			
+			if(deal_way == "팝니다" && product_status == "default") {
+				alert('상품 상태를 선택하세요.');
+				document.fr1.product_status.focus();
+				return false;
+			}
+
+			if(price == "") {
+				alert('가격을 입력하세요.');
+				document.fr1.price.focus();
+				return false;
+			}
+
+			if(title == "") {
+				alert('제목을 입력하세요.');
+				document.fr1.title.focus();
+				return false;
+			}
+			
+			if(content == "") {
+				alert('상품 설명을 입력하세요.');
+				document.fr1.content.focus();
+				return false;
+			}
+		}
+	</script>
 		
 	</script>
 

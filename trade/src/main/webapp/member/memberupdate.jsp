@@ -66,7 +66,21 @@ function passwordcheck() {
 	주소 : <br><input type="text" id="add" name="address" value="${dto.address }" class="in"> <input type="button" value="검색하기" onclick="goPopup()" class="in"> <br>
 	</div>
 	
-	전화번호 : <input type="text" name="phone" value="${dto.phone }" class="in"><br>
+	전화번호 : <input type="text" name="phone" value="${dto.phone }" class="in"><br><br>
+				
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<개인정보 수집 동의><br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		동의 : <input class="in" id="agree1" name="agree" type="radio" value="동의" checked>
+		비동의 : <input class="in" id="agree2" name="agree" type="radio" value="비동의"><br><br>
+	
+	
 	
 	<input type="submit" value="정보수정하기" class="in">
 	

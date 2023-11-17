@@ -260,7 +260,7 @@
     <span class="show">내용보기</span><br>
     <input class="must" id="agree4" type="checkbox" required="required">개인정보 처리 위탁 동의 (필수)
     <span class="show">내용보기</span><br>
-    <input class="choice" type="checkbox">개인정보 수집 및 이용 동의(선택)
+    <input type="checkbox" id="agreeCheckbox" value="동의" name="agree" onchange="updateValue(this)" > 개인정보 수집 및 이용 동의(선택)
     <span class="show">내용보기</span><br>
 
       <script>
@@ -275,6 +275,9 @@
             choiceCheckbox.checked = document.getElementById("allCheck").checked;
         });
         
+        function updateValue(checkbox) {
+            checkbox.value = checkbox.checked ? "동의" : "비동의";
+          }
     </script>
          <hr>
          <div class="btn">
