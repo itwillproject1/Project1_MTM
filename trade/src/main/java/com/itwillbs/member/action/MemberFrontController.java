@@ -278,6 +278,37 @@ public class MemberFrontController extends HttpServlet {
 	
 		}
 		
+		else if(command.equals("/member/Qna.member")){
+			System.out.println("/Qna.member 호출 ");
+			
+			forward = new ActionForward();
+
+			forward.setPath("./qna.jsp");
+			forward.setRedirect(false);
+		}
+		
+		else if(command.equals("/member/QnaAction.member")){
+			System.out.println("/QnaAction.member 호출 ");
+			action = new QnaAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/member/QnaContent.member")){
+			System.out.println("/QnaContent.member 호출 ");
+			action = new QnaContentAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		
 		//System.out.println("---------------2. 가상주소 매핑 종료---------------");

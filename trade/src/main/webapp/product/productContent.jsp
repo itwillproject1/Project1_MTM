@@ -731,8 +731,6 @@
    	  }
 
          function submitSuggest() {
-            event.preventDefault();
-            
             var result = confirm('해당 상품을 구매하시겠습니까?');
 
             if (result === true) {
@@ -740,6 +738,7 @@
             } else {
                alert('거래를 취소하셨습니다');
                location.reload();
+               return false;
             }
          }
       </script>
@@ -772,8 +771,6 @@
    	  }
 
          function cancleSuggest() {
-            event.preventDefault();
-            
             var result = confirm('해당 제안을 취소하시겠습니까?');
 
             if (result === true) {
@@ -782,6 +779,7 @@
             } else {
                alert('제안을 유지합니다');
                location.reload();
+               return false;
             }
          }
       </script>
