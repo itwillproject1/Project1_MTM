@@ -28,7 +28,6 @@
             // 현재 URL에서 bno 값 추출
             var urlParams = new URLSearchParams(window.location.search);
             var bno = urlParams.get('bno');
-            var login_id = '<%= session.getAttribute("user_id") %>';
             
             if(login_id == "null") {
 				alert('해당 기능은 로그인이 필요합니다');
@@ -634,7 +633,7 @@
 	    }
 	  }
 	// 모달 닫기 함수
-	function closeProfileModal1() {
+	function closeProfileModal() {
 		pfModal.style.display = 'none';
 	    window.removeEventListener('click', outsideClick1);
 
