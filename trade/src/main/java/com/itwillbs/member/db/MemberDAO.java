@@ -444,7 +444,7 @@ public class MemberDAO {
 
 		}	
 		// 거래를 진행하는 메서드(판매자)
-				public void productpay(MemberDTO dto) {
+		public void productpay(MemberDTO dto) {
 					
 					
 					try {

@@ -5,13 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+   href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
+<link href="../css/checkid.css" rel="stylesheet" />
 </head>
 <body>
-		
 		<%
 		String user_id = request.getParameter("user_id");
 		%>
-<script type="text/javascript">
+		<script type="text/javascript">
  
  		window.onload=function() {    // 창 실행시 자동실행 현재 text = memberjsp user_id 넣기
  		document.getElementById("user_id").value = opener.document.getElementById("user_id").value;
@@ -51,15 +53,20 @@
  		
  		
  		window.close();
-    	}
- 		
-</script>
+    	} 		
+	</script>
 
-<form action="./MemberCheckIdAction.member" method="post" name="check_id" onsubmit="return check();">
-<input type="text" name="user_id" id="user_id">
-<input type="submit" value="중복확인"> 
-<input type="button" value="사용하기" name="use_id" onclick="sendid();">
-</form>
+	<div class="center">
+		<h1>아이디 중복 확인</h1>
+		<hr>		
+		<form action="./MemberCheckIdAction.member" method="post" name="check_id" onsubmit="return check();" class="form-group">
+			<div class="center">
+				<input type="text" name="user_id" id="user_id">
+			</div>
+			<input type="submit" value="중복확인" class="btn"> 
+			<input type="button" value="사용하기" name="use_id" onclick="sendid();" class="btn">
+		</form>
+	</div>
  
 </body>
 </html>

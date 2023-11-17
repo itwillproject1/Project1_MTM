@@ -30,8 +30,8 @@
   </script>
 </head>
 <body>
+<div id="all">
    <%@ include file="../main/header.jsp"%>
-
    <!-- 이벤트 슬라이더 -->
    <div class="slider-container">
       <div class="slider">
@@ -102,5 +102,6 @@
    <footer>
       <p>&copy; 1조 전자기기 중고거래</p>
    </footer>
+   </div>
 </body>
 </html>
