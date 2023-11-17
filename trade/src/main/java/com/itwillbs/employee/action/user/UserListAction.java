@@ -10,27 +10,29 @@ import com.itwillbs.employee.dao.UserDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class UserListAction implements Action{
+public class UserListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null) pageNum = "1";
-		
+		if (pageNum == null)
+			pageNum = "1";
+
 		// all, agree, notAgree, suspended
 		String pageCategory = request.getParameter("pageCategory");
-		if(pageCategory == null) pageCategory = "all";
-		
+		if (pageCategory == null)
+			pageCategory = "all";
+
 		String search = request.getParameter("search");
 		String searchKeyword = request.getParameter("searchKeyword");
 		UserDAO dao = new UserDAO();
-		
+
 		int[] count = new int[4];
-		
+
 		count[0] = dao.userCount("all", search, searchKeyword);
 		count[1] = dao.userCount("agree", search, searchKeyword);
 		count[2] = dao.userCount("notAgree", search, searchKeyword);
 		count[3] = dao.userCount("suspended", search, searchKeyword);
-		
+
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
 		int pageSize = 12;
@@ -45,7 +47,7 @@ public class UserListAction implements Action{
 		int endRow = currentPage * pageSize;
 
 		/********************* 페이징처리 1 *******************/
-		
+
 		/******************* 페이징처리 2 *********************/
 		// 페이지 블럭(1,2,3,.....,10) 생성
 
@@ -53,11 +55,15 @@ public class UserListAction implements Action{
 		// 글 15 / 페이지당 10 => 2개
 		// 글 78 / 페이지당 10 => 8개
 		int c = 0;
-		if(pageCategory.equals("all")) c = count[0];
-		else if(pageCategory.equals("agree")) c = count[1];
-		else if(pageCategory.equals("notAgree")) c = count[2];
-		else if(pageCategory.equals("suspended")) c = count[3];
-		
+		if (pageCategory.equals("all"))
+			c = count[0];
+		else if (pageCategory.equals("agree"))
+			c = count[1];
+		else if (pageCategory.equals("notAgree"))
+			c = count[2];
+		else if (pageCategory.equals("suspended"))
+			c = count[3];
+
 		int pageCount = c / pageSize + (c % pageSize == 0 ? 0 : 1);
 
 		// 한 화면에 보여줄 페이지 블럭개수
@@ -77,9 +83,9 @@ public class UserListAction implements Action{
 		}
 
 		/******************* 페이징처리 2 *********************/
-		
+
 		ArrayList list = dao.userList(pageCategory, search, searchKeyword, startRow, pageSize);
-		
+
 		ActionForward forward = new ActionForward();
 		request.setAttribute("pageCategory", pageCategory);
 		request.setAttribute("list", list);

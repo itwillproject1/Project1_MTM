@@ -11,7 +11,7 @@ import com.itwillbs.util.JSMoveFunction;
 
 /** 관리자 회원가입(admin만 가능) **/
 
-public class RegisterAction implements Action{
+public class RegisterAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		MemberDTO dto = new MemberDTO();
@@ -22,7 +22,7 @@ public class RegisterAction implements Action{
 		dto.setAddress(request.getParameter("address"));
 		dto.setTel(request.getParameter("tel"));
 		dto.setName(request.getParameter("name"));
-		
+
 		MemberDAO dao = new MemberDAO();
 		dao.employeeRegister(dto);
 		JSMoveFunction move = new JSMoveFunction();

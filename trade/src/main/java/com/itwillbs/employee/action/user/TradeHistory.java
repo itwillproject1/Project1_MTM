@@ -9,25 +9,28 @@ import com.itwillbs.employee.dao.TradeDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class TradeHistory implements Action{
+public class TradeHistory implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//request.setCharacterEncoding("utf-8");
+		// request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null) pageNum = "1";
+		if (pageNum == null)
+			pageNum = "1";
 		// all, buy, sell, complete
 		String search = request.getParameter("search");
-		if(search == null || search.equals("선택")) search = null;
+		if (search == null || search.equals("선택"))
+			search = null;
 		String searchKeyword = request.getParameter("searchKeyword");
-				
+
 		String category = request.getParameter("category");
-		String[] catInfo = {"휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라","음향기기", "기타"};
-		if(category == null || category.equals("선택")) category = null;
+		String[] catInfo = { "휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라", "음향기기", "기타" };
+		if (category == null || category.equals("선택"))
+			category = null;
 		else {
 			int i = Integer.parseInt(category);
 			category = catInfo[i];
 		}
-		
+
 		TradeDAO dao = new TradeDAO();
 
 		/********************* 페이징처리 1 *******************/
@@ -44,7 +47,7 @@ public class TradeHistory implements Action{
 		int endRow = currentPage * pageSize;
 
 		/********************* 페이징처리 1 *******************/
-		
+
 		/******************* 페이징처리 2 *********************/
 		// 페이지 블럭(1,2,3,.....,10) 생성
 
@@ -72,12 +75,13 @@ public class TradeHistory implements Action{
 		}
 
 		/******************* 페이징처리 2 *********************/
-		
+
 		ArrayList list;
-		if(search == null && searchKeyword == null && category == null)
+		if (search == null && searchKeyword == null && category == null)
 			list = dao.tradeHistory(startRow, pageSize);
-		else list = dao.tradeHistorySearch(category, search, searchKeyword, startRow, pageSize);
-		
+		else
+			list = dao.tradeHistorySearch(category, search, searchKeyword, startRow, pageSize);
+
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("pageNum", pageNum);
@@ -88,7 +92,7 @@ public class TradeHistory implements Action{
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/user/tradeHistory.jsp");
 		forward.setRedirect(false);

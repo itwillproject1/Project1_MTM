@@ -13,8 +13,8 @@ import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 import com.itwillbs.util.JSMoveFunction;
 
-/** BoardDeleteAction() :  게시판 삭제 **/
-public class BoardDeleteAction implements Action{
+/** BoardDeleteAction() : 게시판 삭제 **/
+public class BoardDeleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		BoardDAO dao = new BoardDAO();
@@ -23,15 +23,14 @@ public class BoardDeleteAction implements Action{
 		bdto.setBno(bno);
 		HttpSession session = request.getSession();
 		MemberDTO mdto = new MemberDTO();
-		mdto.setEmp_id((String)session.getAttribute("emp_id"));
+		mdto.setEmp_id((String) session.getAttribute("emp_id"));
 		mdto.setEmp_pw(request.getParameter("emp_pw"));
 		int result = dao.deleteBoard(bdto, mdto);
-		if(result == 1) {
+		if (result == 1) {
 			// 삭제 완료
 			JSConfirmMoveFunction move = new JSConfirmMoveFunction();
-			move.moveLocation(response, "./BoardDeleteConfirm.emp");
-		}
-		else {
+			move.moveLocation(response, "./BoardDeleteConfirm.emp?");
+		} else {
 			// 삭제 안 됨
 			JSMoveFunction move = new JSMoveFunction();
 			move.alertBack(response, "오류 발생!");
