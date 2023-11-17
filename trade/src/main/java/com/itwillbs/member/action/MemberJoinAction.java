@@ -33,7 +33,7 @@ public class MemberJoinAction implements Action  {
 		String email = multi.getParameter("email1")+multi.getParameter("email2");
 		
 		
-		
+		System.out.println(multi.getParameter("agree"));
 		// 전달정보
 		MemberDTO dto = new MemberDTO();
 		dto.setUser_id(multi.getParameter("user_id"));

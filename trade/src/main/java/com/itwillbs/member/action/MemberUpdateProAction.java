@@ -39,6 +39,7 @@ public class MemberUpdateProAction implements Action {
 		dto.setEmail(request.getParameter("email"));
 		dto.setAddress(request.getParameter("address"));
 		dto.setPhone(request.getParameter("phone"));
+		dto.setAgree(request.getParameter("agree"));
 		
 		
 		// MemberDAO객체 - 정보수정메서드 호출
