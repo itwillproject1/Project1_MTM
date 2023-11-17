@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .b {
-    font-familsy: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
     display: flex;
     align-items: center;
@@ -16,6 +16,34 @@
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 400px;
+}
+
+
+/*아이디·비밀번호 찾기 */
+.findId, .findPw {
+    background: none;
+    border: none;
+    color: #656565;
+}
+
+.findId {
+	margin-right:5px;
+}
+.findId:hover ,.findPw:hover {
+	color:black;
+}
+.findPw {
+	margin-left:5px;
+}
+
+.button-container {
+	margin-left: auto;
+	margin-right: auto;
+    display: flex;
+}
+
+#dash {
+	color:#656565;
 }
 
 .f {
@@ -33,7 +61,7 @@
     margin-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #ddd;
+    border: 1px solid #656565;
     border-radius: 4px;
 }
 
