@@ -366,22 +366,22 @@
    </div>
    <!-- 판매하기 모달 종료 -->
 
-   <!-- 거래 제안 현황 모달 시작-->
-   <div id="suggestProductModal" class="modal">
-      <div class="modal-content">
-         <span class="close-button" onclick="closeSuggestModal()">닫기</span>
-         <div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
-            <!-- 모달 내용 -->
-            <h3 id="h3">거래 제안 현황</h3>
-            <c:if test="${!empty suggestList }">
-               <form action="결제페이지" method="post" id="SubmitSuggestForm">
-                  <!-- 거래 제안 들어온 상품 목록 가져오기 -->
-                  <c:forEach var="spdto" items="${spdto }">
-                     <c:set var="fileNameArr2" value="${fn:split(spdto.file_name, ',')}" />
-                     <div>
-                        <input type="radio" id="sellCheckbox" class="productCheckbox" name="sell_bno" value="${spdto.bno }">
-                        <div id="productList" onclick="location.href='./ProductContent.com?bno=${spdto.bno}';">
 
+	<!-- 거래 제안 현황 모달 시작-->
+	<div id="suggestProductModal" class="modal">
+		<div class="modal-content">
+			<span class="close-button" onclick="closeSuggestModal()">닫기</span>
+			<div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+				<!-- 모달 내용 -->
+				<h3 id="h3">거래 제안 현황</h3>
+				<c:if test="${!empty suggestList }">
+					<form action="../product/PaymentAction.com" method="post" id="SubmitSuggestForm">
+						<!-- 거래 제안 들어온 상품 목록 가져오기 -->
+						<c:forEach var="spdto" items="${spdto }">
+							<c:set var="fileNameArr2" value="${fn:split(spdto.file_name, ',')}" />
+							<div>
+								<input type="radio" id="sellCheckbox" class="productCheckbox" name="sell_bno" value="${spdto.bno }">
+								<div id="productList" onclick="location.href='./ProductContent.com?bno=${spdto.bno}';">
                            <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr2[0] }" alt="미리보기">
                            <span id="sellDiv">
                               <span>상품명: ${spdto.title}<br></span>
