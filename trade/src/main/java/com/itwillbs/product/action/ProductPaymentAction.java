@@ -23,9 +23,9 @@ public class ProductPaymentAction implements Action {
 		// System.out.println(user_id);
 
 		// 구매자 정보를 가져옴
-		MemberDAO dao = new MemberDAO();
-		MemberDTO user_dto = dao.user_search(user_id);
-		request.setAttribute("dto", user_dto);		
+		MemberDAO memdao = new MemberDAO();
+		MemberDTO user_dto = memdao.user_search(user_id);
+		request.setAttribute("user_dto", user_dto);		
 		
 		//판매자 글의 정보를 가져옴
 		ProductDAO selldao = new ProductDAO();
