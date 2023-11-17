@@ -184,16 +184,18 @@ public class ProductFrontController extends HttpServlet{
        }
       else if(command.equals("/product/CancleSuggest.com")) {
     	  System.out.println(" C: /product/CancleSuggest.com 호출");
-<<<<<<< HEAD
-    	  System.out.println(" C: 패턴2 - DB 사용 O, 페이지 이동");
-    	  
-    	  action = new CancleSuggestAction();
-    	  
-    	  try {
-			forward = action.execute(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    	  System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
+          
+          //  Complain() 객체 생성
+          action = new CancleSuggestAction();
+          
+          try {
+             forward = action.execute(request, response);
+          } catch (Exception e) {
+             e.printStackTrace();
+       }
+       
+      
       }else if(command.equals("/pay/payment.com")) {
     	  action = new ProductPaymentAction();
     	  try {
@@ -217,20 +219,9 @@ public class ProductFrontController extends HttpServlet{
 			e.printStackTrace();
 		}    	  
       }
-=======
-    	  System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
-          
-          //  Complain() 객체 생성
-          action = new CancleSuggestAction();
-          
-          try {
-             forward = action.execute(request, response);
-          } catch (Exception e) {
-             e.printStackTrace();
-          }
-       }
+
+    	
       
->>>>>>> 1653e9bcfd1fa75e1d19db2c64ddbe5250415136
       System.out.println("---------------2. 가상주소 매핑 종료---------------");
       /************************2. 가상주소 매핑 종료************************/
       

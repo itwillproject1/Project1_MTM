@@ -441,10 +441,10 @@ public class MemberDAO {
 			}
 
 			return result;
-<<<<<<< .merge_file_VlczX2
+
 		}	
 		// 거래를 진행하는 메서드(판매자)
-				public void productpay(MemberDTO dto) {
+		public void productpay(MemberDTO dto) {
 					
 					
 					try {
@@ -479,8 +479,21 @@ public class MemberDAO {
 								pstmt.setInt(1, dto.getPay());
 								pstmt.setString(2, dto.getUser_id());
 								pstmt.executeUpdate();
-=======
-		}
+							} catch (Exception e) {
+								e.printStackTrace();
+							} finally {
+								closeDB();
+							}
+							
+							
+						}//
+					
+					
+					
+					
+		
+
+		
 		public MemberDTO findpwmember(MemberDTO pwdto) {
 			int result = -1; // -1  0  1
 			
@@ -556,20 +569,5 @@ public class MemberDAO {
 		}
 			
 }			
-		
->>>>>>> .merge_file_fNBAlX
 
 								
-							} catch (Exception e) {
-								e.printStackTrace();
-							} finally {
-								closeDB();
-							}
-							
-							
-						}//
-					
-					
-					
-					
-		}
