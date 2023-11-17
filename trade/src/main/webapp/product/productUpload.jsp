@@ -39,34 +39,35 @@
 				</div>
 
 				<div class="form-group">
-					<label for="productCategory">카테고리:</label> <select id="category"
-						name="category" onchange="updateSecondDropdown()">
-						<option disabled selected>카테고리를 선택하세요</option>
-						<option value="휴대폰&태블릿">휴대폰&태블릿</option>
-						<option value="데스크탑">데스크탑</option>
-						<option value="노트북">노트북</option>
-						<option value="게임기기">게임기기</option>
-						<option value="가전제품">가전제품</option>
-						<option value="카메라">카메라</option>
-						<option value="음향기기">음향기기</option>
-						<option value="기타">기타</option>
-					</select>
+					<label for="productCategory">카테고리:</label>
+						<select id="productCategory" name="productCategory" onchange="updateDropdown()">
+							<option disabled selected>카테고리를 선택하세요</option>
+							<option value="휴대폰&태블릿">휴대폰&태블릿</option>
+							<option value="데스크탑">데스크탑</option>
+							<option value="노트북">노트북</option>
+							<option value="게임기기">게임기기</option>
+							<option value="가전제품">가전제품</option>
+							<option value="카메라">카메라</option>
+							<option value="음향기기">음향기기</option>
+							<option value="기타">기타</option>
+						</select>
 				</div>
 
 				<div class="form-group">
-					<label for="productBrand">브랜드:</label> <select id="brand"
-						name="brand">
+					<label for="productBrand">브랜드:</label>
+					<select id="brand" name="brand">
 						<option disabled selected>브랜드를 선택하세요</option>
 					</select>
-				</div>
+				</div>z
 
 				<!-- 첫번째 드롭다운 항목에 따라 두번째 드롭다운 항목이 바뀌는 코드 -->
 				<script>
-					function updateSecondDropdown() {
-						var selectedCategory = document
-								.getElementById('category').value;
+					function updateDropdown() {
+						var selectedCategory = document.getElementById('productCategory').value;
 						var brandDropdown = document.getElementById('brand');
-						brandDropdown.innerHTML = ''; // 두 번째 드롭다운 목록 비우기
+						console.log(selectedCategory);
+						brandDropdown.innerHTML = ''; // 두 번째 드롭다운 비우기
+						
 
 						if (selectedCategory === '휴대폰&태블릿') {
 							// 휴대폰&태블릿를 선택한 경우
@@ -136,8 +137,8 @@
 				</script>
 
 				<div class="form-group">
-					<label for="productCondition">상품 상태:</label> <select
-						id="product_status" name="product_status">
+					<label for="productCondition">상품 상태:</label>
+					<select id="product_status" name="product_status">
 						<option disabled selected>상품 상태를 선택하세요</option>
 					</select>
 				</div>
@@ -145,10 +146,8 @@
 				<!-- 거래방식 항목에 따라 상품상태 항목이 바뀌는 코드 -->
 				<script>
 					function updateSecondDropdown2() {
-						var selectedDeal_way = document
-								.getElementById('deal_way').value;
-						var product_statusDropdown = document
-								.getElementById('product_status');
+						var selectedDeal_way = document.getElementById('deal_way').value;
+						var product_statusDropdown = document.getElementById('product_status');
 						product_statusDropdown.innerHTML = ''; // 두 번째 드롭다운 목록 비우기
 
 						if (selectedDeal_way === '팝니다') {
