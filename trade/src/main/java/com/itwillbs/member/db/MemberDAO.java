@@ -14,10 +14,8 @@ import javax.sql.DataSource;
 
 import com.itwillbs.product.db.ProductDTO;
 
-
-
 public class MemberDAO {
-	// 공통 변수 선언
+		// 공통 변수 선언
 		private Connection con = null;
 		private PreparedStatement pstmt = null;
 		private ResultSet rs = null;

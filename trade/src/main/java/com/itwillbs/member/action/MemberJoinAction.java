@@ -31,9 +31,13 @@ public class MemberJoinAction implements Action  {
 		String jumin = multi.getParameter("jumin1")+"-"+multi.getParameter("jumin2")+"-"+multi.getParameter("jumin3");
 		String phone = multi.getParameter("phone1")+"-"+multi.getParameter("phone2")+"-"+multi.getParameter("phone3");
 		String email = multi.getParameter("email1")+multi.getParameter("email2");
+		String agree = multi.getParameter("agree");
+		if(agree==null) {
+			agree="비동의";
+		} else {
+			agree="동의";
+		} 
 		
-		
-		System.out.println(multi.getParameter("agree"));
 		// 전달정보
 		MemberDTO dto = new MemberDTO();
 		dto.setUser_id(multi.getParameter("user_id"));
@@ -47,7 +51,7 @@ public class MemberJoinAction implements Action  {
 		dto.setUser_nickname(multi.getParameter("user_nickname"));
 		dto.setProfile(multi.getFilesystemName("profile"));
 		dto.setRecommend(multi.getParameter("recommend"));
-		dto.setAgree(multi.getParameter("agree"));
+		dto.setAgree(agree);
 		
 		System.out.println(" M : "+dto);
 		MemberDAO dao = new MemberDAO();
