@@ -342,6 +342,8 @@ public class MemberDAO {
 					dto.setDate_time(rs.getTimestamp("date_time"));
 					dto.setFile_name(rs.getString("file_name"));
 					dto.setLike_count(rs.getInt("like_count"));
+					dto.setDeal_status(rs.getInt("deal_status"));
+					
 
 					// 글 하나의 정보를 배열의 한칸에 저장
 					MPBlist.add(dto);
