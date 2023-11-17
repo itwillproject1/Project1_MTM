@@ -250,7 +250,7 @@
 			
 			<!-- http://localhost:8088/trade/member/memberjoin.member -->
 			
-<input id="allCheck" type="checkbox">이용약관 전체동의
+	<input id="allCheck" type="checkbox">이용약관 전체동의
     <hr>
     <input class="must" id="agree1" type="checkbox" required="required">이용약관 동의 (필수)
     <span class="show">내용보기</span><br>
@@ -277,9 +277,11 @@
         
     </script>
          <hr>
+         <div class="btn">
          <input type="submit" value="회원가입" class="in" >     
 <!--          <input type="submit" value="회원가입" class="in" onclick="validateForm(event)">      -->
          <input type="button" value="취소" class="in">
+         </div>
       </form>   
    </fieldset>		
 		
