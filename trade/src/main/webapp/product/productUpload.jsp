@@ -15,7 +15,6 @@
 
 <title>글쓰기</title>
 </head>
-
 <body>
 	<%@ include file="../main/header.jsp"%>
 	<div class="container">
@@ -26,47 +25,46 @@
 
 		<div class="form-container">
 			<h2>글쓰기</h2>
-			<form action="./ProductUploadAction.com" method="post"
-				enctype="multipart/form-data">
-
+			<form action="./ProductUploadAction.com" method="post" name="fr1" enctype="multipart/form-data" onsubmit="return check();">
 				<div class="form-group">
-					<label for="dealWay">거래 방식:</label> <select id="deal_way"
-						name="deal_way" onchange="updateSecondDropdown2()">
-						<option disabled selected>원하는 거래를 선택하세요</option>
+					<label for="dealWay">거래 방식:</label>
+					<select id="deal_way" name="deal_way" onchange="updateSecondDropdown2()">
+						<option disabled selected value="default">원하는 거래를 선택하세요</option>
 						<option value="삽니다">삽니다</option>
 						<option value="팝니다">팝니다</option>
 					</select>
 				</div>
 
 				<div class="form-group">
-					<label for="productCategory">카테고리:</label> <select id="category"
-						name="category" onchange="updateSecondDropdown()">
-						<option disabled selected>카테고리를 선택하세요</option>
-						<option value="휴대폰&태블릿">휴대폰&태블릿</option>
-						<option value="데스크탑">데스크탑</option>
-						<option value="노트북">노트북</option>
-						<option value="게임기기">게임기기</option>
-						<option value="가전제품">가전제품</option>
-						<option value="카메라">카메라</option>
-						<option value="음향기기">음향기기</option>
-						<option value="기타">기타</option>
-					</select>
+					<label for="productCategory">카테고리:</label>
+						<select id="productCategory" name="productCategory" onchange="updateDropdown()">
+							<option disabled selected value="default">카테고리를 선택하세요</option>
+							<option value="휴대폰&태블릿">휴대폰&태블릿</option>
+							<option value="데스크탑">데스크탑</option>
+							<option value="노트북">노트북</option>
+							<option value="게임기기">게임기기</option>
+							<option value="가전제품">가전제품</option>
+							<option value="카메라">카메라</option>
+							<option value="음향기기">음향기기</option>
+							<option value="기타">기타</option>
+						</select>
 				</div>
 
 				<div class="form-group">
-					<label for="productBrand">브랜드:</label> <select id="brand"
-						name="brand">
-						<option disabled selected>브랜드를 선택하세요</option>
+					<label for="productBrand">브랜드:</label>
+					<select id="brand" name="brand">
+						<option disabled selected value="default">브랜드를 선택하세요</option>
 					</select>
 				</div>
 
 				<!-- 첫번째 드롭다운 항목에 따라 두번째 드롭다운 항목이 바뀌는 코드 -->
 				<script>
-					function updateSecondDropdown() {
-						var selectedCategory = document
-								.getElementById('category').value;
+					function updateDropdown() {
+						var selectedCategory = document.getElementById('productCategory').value;
 						var brandDropdown = document.getElementById('brand');
-						brandDropdown.innerHTML = ''; // 두 번째 드롭다운 목록 비우기
+						console.log(selectedCategory);
+						brandDropdown.innerHTML = ''; // 두 번째 드롭다운 비우기
+						
 
 						if (selectedCategory === '휴대폰&태블릿') {
 							// 휴대폰&태블릿를 선택한 경우
@@ -136,19 +134,17 @@
 				</script>
 
 				<div class="form-group">
-					<label for="productCondition">상품 상태:</label> <select
-						id="product_status" name="product_status">
-						<option disabled selected>상품 상태를 선택하세요</option>
+					<label for="productCondition">상품 상태:</label>
+					<select id="product_status" name="product_status">
+						<option disabled selected value="default">상품 상태를 선택하세요</option>
 					</select>
 				</div>
 
 				<!-- 거래방식 항목에 따라 상품상태 항목이 바뀌는 코드 -->
 				<script>
 					function updateSecondDropdown2() {
-						var selectedDeal_way = document
-								.getElementById('deal_way').value;
-						var product_statusDropdown = document
-								.getElementById('product_status');
+						var selectedDeal_way = document.getElementById('deal_way').value;
+						var product_statusDropdown = document.getElementById('product_status');
 						product_statusDropdown.innerHTML = ''; // 두 번째 드롭다운 목록 비우기
 
 						if (selectedDeal_way === '팝니다') {
@@ -188,13 +184,13 @@
 				<c:set var="file_name" value="${fileNames }" scope="request" />
 
 				<div class="form-group">
-					<label for="productName">제목:</label> <input type="text" id="title"
-						name="title" required>
+					<label for="productName">제목:</label>
+					<input type="text" id="title" name="title">
 				</div>
 
 				<div class="form-group">
 					<label for="productDescription">상품 설명:</label>
-					<textarea id="content" name="content" rows="4" required></textarea>
+					<textarea id="content" name="content" rows="4"></textarea>
 				</div>
 
 				<button type="submit" class="submit-button">상품 등록</button>
@@ -202,8 +198,8 @@
 		</div>
 	</div>
 
-	<!-- 이미지 미리보기 관련 스크립트 -->
 	<script>
+		<!-- 이미지 미리보기 관련 스크립트 -->
 		function previewImage(index) {
 			var fileInput = document.getElementById("file" + index);
 			var imagePreview = document.getElementById("imagePreview");
@@ -219,8 +215,60 @@
 				imagePreview.src = "";
 			}
 		}
+		
+		<!-- 글 유효성 검사 -->
+		function check() {
+			var deal_way = document.fr1.deal_way.value;
+			var productCategory = document.fr1.productCategory.value;
+			var brand = document.fr1.brand.value;
+			var product_status = document.fr1.product_status.value;
+			var price = document.fr1.price.value;
+			var title = document.fr1.title.value;
+			var content = document.fr1.content.value;
+			
+			if(deal_way == "default") {
+				alert('거래 방식을 선택하세요.');
+				document.fr1.deal_way.focus();
+				return false;
+			}
+			
+			if(productCategory == "default") {
+				alert('카테고리를 선택하세요.');
+				document.fr1.productCategory.focus();
+				return false;
+			}
+			
+			if(productCategory == "기타" && brand == "default") {
+				alert('브랜드를 선택하세요.');
+				document.fr1.productCategory.focus();
+				return false;
+			}
+			
+			if(deal_way == "팝니다" && product_status == "default") {
+				alert('상품 상태를 선택하세요.');
+				document.fr1.product_status.focus();
+				return false;
+			}
+
+			if(price == "") {
+				alert('가격을 입력하세요.');
+				document.fr1.price.focus();
+				return false;
+			}
+
+			if(title == "") {
+				alert('제목을 입력하세요.');
+				document.fr1.title.focus();
+				return false;
+			}
+			
+			if(content == "") {
+				alert('상품 설명을 입력하세요.');
+				document.fr1.content.focus();
+				return false;
+			}
+		}
 	</script>
-
-
+	
 </body>
 </html>
