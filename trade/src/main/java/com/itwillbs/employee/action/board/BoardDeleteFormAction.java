@@ -10,13 +10,13 @@ import com.itwillbs.util.ActionForward;
 
 /** BoardDeleteFormAction() : 게시판 삭제 폼 **/
 
-public class BoardDeleteFormAction implements Action{
+public class BoardDeleteFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		BoardDAO dao = new BoardDAO();
 		BoardDTO dto = dao.boardContent(bno);
-		
+
 		request.setAttribute("dto", dto);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/user/boardDeleteForm.jsp");

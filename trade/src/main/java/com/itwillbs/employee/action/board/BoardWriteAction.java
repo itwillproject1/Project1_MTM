@@ -16,7 +16,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 /** BoardWriteAction() : 게시판 작성 후 업로드 **/
 
-public class BoardWriteAction implements Action{
+public class BoardWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		FileUpload upload = new FileUpload();
@@ -27,17 +27,16 @@ public class BoardWriteAction implements Action{
 		bdto.setContent(multi.getParameter("content"));
 		bdto.setImage(multi.getFilesystemName("image"));
 		bdto.setSubject(multi.getParameter("subject"));
-		
-		mdto.setEmp_id((String)request.getSession().getAttribute("emp_id"));
+
+		mdto.setEmp_id((String) request.getSession().getAttribute("emp_id"));
 		mdto.setEmp_pw(multi.getParameter("emp_pw"));
 		System.out.println(mdto.getEmp_id() + " : " + mdto.getEmp_pw());
 		BoardDAO dao = new BoardDAO();
 		int result = dao.insertBoard(bdto, mdto);
-		if(result == 1) {
+		if (result == 1) {
 			JSConfirmMoveFunction move = new JSConfirmMoveFunction();
 			move.moveLocation(response, "./BoardWriteConfirm.emp?subject=" + bdto.getSubject());
-		}
-		else {
+		} else {
 			JSMoveFunction move = new JSMoveFunction();
 			move.alertBack(response, "오류 발생");
 		}

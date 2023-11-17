@@ -24,24 +24,27 @@ public class DAO {
 	protected ResultSet rs = null;
 	protected String sql = "";
 	protected PreparedStatement pstmt = null;
-	
+
 	// Connection 설정
-	protected Connection getCon() throws Exception{
+	protected Connection getCon() throws Exception {
 		Context initCTX = new InitialContext();
-		Context envCTX = (Context)initCTX.lookup("java:comp/env");
-		DataSource ds = (DataSource)envCTX.lookup("jdbc/mvc");
+		Context envCTX = (Context) initCTX.lookup("java:comp/env");
+		DataSource ds = (DataSource) envCTX.lookup("jdbc/mvc");
 		con = ds.getConnection();
 		System.out.println("DAO : DB 연결 성공");
 		System.out.println("DAO : " + con);
 		return con;
 	}// getCon();
-	
+
 	// 데이터베이스 닫기
 	protected void CloseDB() {
 		try {
-			if(rs != null) rs.close();
-			if(pstmt != null) pstmt.close();
-			if(con != null) con.close();
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (con != null)
+				con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

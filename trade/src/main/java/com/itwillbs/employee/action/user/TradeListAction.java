@@ -11,68 +11,67 @@ import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class TradeListAction implements Action{
+public class TradeListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		//request.setCharacterEncoding("utf-8");
+		// request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null) pageNum = "1";
+		if (pageNum == null)
+			pageNum = "1";
 		// all, buy, sell, complete
 		String pageCategory = request.getParameter("pageCategory");
-		if(pageCategory == null) pageCategory = "all";
-		
+		if (pageCategory == null)
+			pageCategory = "all";
+
 		String search = request.getParameter("search");
 		String searchKeyword = request.getParameter("searchKeyword");
-		
+
 		String category = request.getParameter("category");
-		String[] catInfo = {"휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", 
-				"카메라","음향기기", "기타"};
-		if(category == null || category.equals("선택"));
+		String[] catInfo = { "휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라", "음향기기", "기타" };
+		if (category == null || category.equals("선택"))
+			;
 		else {
 			int i = Integer.parseInt(category);
 			category = catInfo[i];
 		}
 		String checkComplete = request.getParameter("checkComplete");
-		
+
 		TradeDAO dao = new TradeDAO();
 		ArrayList list = null;
-		
+
 		// pageCategory (전체, 구매, 판매, 거래 완료)
 		// category (물품 종류)
 		// search/searchKeyword 컬럼 = '값'
 		// checkComplete deal_status = 0 포함
-		
+
 		int[] count = new int[4];
-		if(search == null && category == null && searchKeyword == null) {
-			if(checkComplete == null) {
+		if (search == null && category == null && searchKeyword == null) {
+			if (checkComplete == null) {
+				count[0] = dao.tradeCount("all", checkComplete);
+				count[1] = dao.tradeCount("buy", checkComplete);
+				count[2] = dao.tradeCount("sell", checkComplete);
+				count[3] = dao.tradeCount("complete", checkComplete);
+			} else {
 				count[0] = dao.tradeCount("all", checkComplete);
 				count[1] = dao.tradeCount("buy", checkComplete);
 				count[2] = dao.tradeCount("sell", checkComplete);
 				count[3] = dao.tradeCount("complete", checkComplete);
 			}
-			else {
-				count[0] = dao.tradeCount("all", checkComplete);
-				count[1] = dao.tradeCount("buy", checkComplete);
-				count[2] = dao.tradeCount("sell", checkComplete);
-				count[3] = dao.tradeCount("complete", checkComplete);
-			}
-		}
-		else {
-			if(checkComplete == null) {
+		} else {
+			if (checkComplete == null) {
 				count[0] = dao.tradeCount("all", category, search, searchKeyword, checkComplete);
 				count[1] = dao.tradeCount("buy", category, search, searchKeyword, checkComplete);
 				count[2] = dao.tradeCount("sell", category, search, searchKeyword, checkComplete);
 				count[3] = dao.tradeCount("complete", category, search, searchKeyword, checkComplete);
-			}
-			else {
+			} else {
 				count[0] = dao.tradeCount("all", category, search, searchKeyword, checkComplete);
 				count[1] = dao.tradeCount("buy", category, search, searchKeyword, checkComplete);
 				count[2] = dao.tradeCount("sell", category, search, searchKeyword, checkComplete);
 				count[3] = dao.tradeCount("complete", category, search, searchKeyword, checkComplete);
 			}
 		}
-		
+
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
 		int pageSize = 12;
@@ -87,7 +86,7 @@ public class TradeListAction implements Action{
 		int endRow = currentPage * pageSize;
 
 		/********************* 페이징처리 1 *******************/
-		
+
 		/******************* 페이징처리 2 *********************/
 		// 페이지 블럭(1,2,3,.....,10) 생성
 
@@ -95,11 +94,15 @@ public class TradeListAction implements Action{
 		// 글 15 / 페이지당 10 => 2개
 		// 글 78 / 페이지당 10 => 8개
 		int c = 0;
-		if(pageCategory.equals("all")) c = count[0];
-		else if(pageCategory.equals("buy")) c = count[1];
-		else if(pageCategory.equals("sell")) c = count[2];
-		else if(pageCategory.equals("complete")) c = count[3];
-		
+		if (pageCategory.equals("all"))
+			c = count[0];
+		else if (pageCategory.equals("buy"))
+			c = count[1];
+		else if (pageCategory.equals("sell"))
+			c = count[2];
+		else if (pageCategory.equals("complete"))
+			c = count[3];
+
 		int pageCount = c / pageSize + (c % pageSize == 0 ? 0 : 1);
 
 		// 한 화면에 보여줄 페이지 블럭개수
@@ -119,13 +122,12 @@ public class TradeListAction implements Action{
 		}
 
 		/******************* 페이징처리 2 *********************/
-		
-		if(search == null && category == null && searchKeyword == null)
+
+		if (search == null && category == null && searchKeyword == null)
 			list = dao.tradeList(pageCategory, startRow, pageSize);
 		else
 			list = dao.tradeList(pageCategory, category, search, searchKeyword, checkComplete, startRow, pageSize);
-		
-		
+
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("pageNum", pageNum);
