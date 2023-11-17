@@ -210,7 +210,7 @@
             <img src="" alt="프로필"> ${dto.user_id} (평점) 
          </h2>
 
-         <h3 id="h3">${dto.user_id}님의판매상품목록</h3>
+         <h3 id="h3">${dto.user_id}님의 판매상품목록</h3>
          <c:forEach var="userProduct" items="${userProducts }" >
          <c:set var="fileNameArr4" value="${fn:split(userProduct.file_name, ',')}" />
             <c:if test="${userProduct.deal_way == '팝니다'}">

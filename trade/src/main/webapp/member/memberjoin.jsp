@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="../css/memberjoin.css" rel="stylesheet" />
+<link href="../css/agreeModal.css" rel="stylesheet" />
 </head>
 <body>
 		<%@ include file="../main/header.jsp"%>
@@ -249,21 +250,230 @@
 
 			
 			<!-- http://localhost:8088/trade/member/memberjoin.member -->
-			
-	<input id="allCheck" type="checkbox">이용약관 전체동의
+	<div id="checkDiv">		
+	<input id="allCheck" type="checkbox">
+	 <label for="allCheck"><span>이용약관 전체동의</span></label>
+    
     <hr>
-    <input class="must" id="agree1" type="checkbox" required="required">이용약관 동의 (필수)
-    <span class="show">내용보기</span><br>
-    <input class="must" id="agree2" type="checkbox" required="required">개인정보 수집 및 이용 동의 (필수)
-    <span class="show">내용보기</span><br>
-    <input class="must" id="agree3" type="checkbox" required="required">개인정보 제3자 제공 동의 (필수)
-    <span class="show">내용보기</span><br>
-    <input class="must" id="agree4" type="checkbox" required="required">개인정보 처리 위탁 동의 (필수)
-    <span class="show">내용보기</span><br>
-    <input class="choice" type="checkbox">개인정보 수집 및 이용 동의(선택)
-    <span class="show">내용보기</span><br>
+    <input class="must" id="agree1" type="checkbox" required="required">
+    <label id="label" for="agree1"><span>이용약관 동의 (필수)</span></label>
+	<span class="show" onclick="openAgreeModal1()">내용보기</span><br>
+    
+    <input class="must" id="agree2" type="checkbox" required="required">
+    <label id="label" for="agree2"><span>개인정보 수집 및 이용 동의 (필수)</span></label>
+    <span class="show" onclick="openAgreeModal2()">내용보기</span><br>
+    
+    <input class="must" id="agree3" type="checkbox" required="required">
+    <label id="label" for="agree3"><span>개인정보 제3자 제공 동의 (필수)</span></label>
+    <span class="show" onclick="openAgreeModal3()">내용보기</span><br>
+    
+    <input class="choice" id="choice" type="checkbox" name="agree" >
+<!--     <input class="choice" id="choice" type="checkbox" name="agree" onchange="updateValue(this)"> -->
+        <label id="ladbel" for="choice"><span>개인정보 수집 및 이용 동의(선택)</span></label>
+    <span class="show" id="show1" onclick="openAgreeModal4()">내용보기</span><br>
+</div>
+	
+<!-- ========================================================================== -->
+ <!-- 1. 이용약관 동의(필수) -->
+<div id="agree1Modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeAgreeModal1()">닫기</span>
+        <div id="modalContent">
+            <h2><u>이용 약관</u></h2>
+            <div>
+            	<span id="countAgree1"> 
+				fetchFileContent1();
+				</span><br> 
+			</div>
+        </div>
+    </div>
+</div> 
 
-      <script>
+ <!-- 2. 개인정보 수집 및 이용 동의 (필수) -->
+<div id="agree2Modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeAgreeModal2()">닫기</span>
+        <div id="modalContent">
+            <h2><u>개인정보 수집 및 이용 동의 (필수)</u></h2>
+            <div>
+            	<span id="countAgree2"> 
+				fetchFileContent2();
+				</span><br> 
+			</div>
+        </div>
+    </div>
+</div>
+
+ <!-- 3. 개인정보 제3자 제공 동의 (필수) -->
+<div id="agree3Modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeAgreeModal3()">닫기</span>
+        <div id="modalContent">
+            <h2><u>개인정보 제3자 제공 동의 (필수)</u></h2>
+            <div>
+            	<span id="countAgree3"> 
+				fetchFileContent3();
+				</span><br> 
+			</div>
+        </div>
+    </div>
+</div>
+
+ <!-- 4. 개인정보 수집 및 이용 동의(선택) -->
+<div id="agree4Modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeAgreeModal4()">닫기</span>
+        <div id="modalContent">
+            <h2><u>개인정보 수집 및 이용 동의(선택)</u></h2>
+            <div>
+            	<span id="countAgree4"> 
+				fetchFileContent4();
+				</span><br> 
+			</div>
+        </div>
+    </div>
+</div>
+<script>
+//==========================================================================
+// 1. 이용약관 동의(필수)
+  function fetchFileContent1() {
+      fetch('../member/agree1.txt') // 서버에서 파일을 가져올 경로
+          .then(response => response.text()) // 파일 내용을 텍스트로 읽음
+          .then(data => {
+              // 가져온 파일 내용을 countAgree 요소에 삽입
+              document.getElementById('countAgree1').innerText = data;
+          })
+          .catch(error => {
+              console.error('파일을 가져오는 도중 오류가 발생했습니다.', error);
+          });
+  }
+//==========================================================================
+// 2. 개인정보 수집 및 이용 동의 (필수)
+  function fetchFileContent2() {
+      fetch('../member/agree2.txt') 
+          .then(response => response.text()) 
+          .then(data => {
+              document.getElementById('countAgree2').innerText = data;
+          })
+          .catch(error => {
+              console.error('파일을 가져오는 도중 오류가 발생했습니다.', error);
+          });
+  }
+//==========================================================================
+// 3. 개인정보 제3자 제공 동의 (필수)
+  function fetchFileContent3() {
+      fetch('../member/agree3.txt') 
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('countAgree3').innerText = data;
+          })
+          .catch(error => {
+              console.error('파일을 가져오는 도중 오류가 발생했습니다.', error);
+          });
+  }
+//==========================================================================
+// 4. 개인정보 수집 및 이용 동의(선택)
+  function fetchFileContent4() {
+      fetch('../member/agree4.txt') 
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('countAgree4').innerText = data;
+          })
+          .catch(error => {
+              console.error('파일을 가져오는 도중 오류가 발생했습니다.', error);
+          });
+  }
+  
+  
+  window.onload = function() {
+	    fetchFileContent1();
+	    fetchFileContent2();
+	    fetchFileContent3();
+	    fetchFileContent4();
+	};
+//==========================================================================
+      /*1. 이용약관 동의 (필수)*/
+      var modal1 = document.getElementById('agree1Modal'); 
+      function openAgreeModal1() {
+          modal1.style.display = 'block';
+          window.addEventListener('click', outsideClick1);
+      }
+      function closeAgreeModal1() {
+    	  modal1.style.display = 'none';
+          window.removeEventListener('click', outsideClick1);
+      }
+      // 모달 외부 클릭 시 닫기 함수
+      function outsideClick1(e) {
+          if (e.target === modal1) {
+        	  modal1.style.display = 'none';
+              // 모달 외부 클릭 이벤트 제거
+              window.removeEventListener('click', outsideClick1);
+          }
+      }
+      //===========================================================
+   	  /*2. 개인정보 수집 및 이용 동의 (필수)*/
+      var modal2 = document.getElementById('agree2Modal'); 
+      function openAgreeModal2() {
+          modal2.style.display = 'block';
+          window.addEventListener('click', outsideClick2);
+      }
+      function closeAgreeModal2() {
+    	  modal2.style.display = 'none';
+          window.removeEventListener('click', outsideClick2);
+      }
+      // 모달 외부 클릭 시 닫기 함수
+      function outsideClick2(e) {
+          if (e.target === modal2) {
+        	  modal2.style.display = 'none';
+              // 모달 외부 클릭 이벤트 제거
+              window.removeEventListener('click', outsideClick2);
+          }
+      }
+      //===========================================================
+   	  /*3. 개인정보 제3자 제공 동의 (필수)*/
+      var modal3 = document.getElementById('agree3Modal'); 
+      function openAgreeModal3() {
+          modal3.style.display = 'block';
+          window.addEventListener('click', outsideClick3);
+      }
+      function closeAgreeModal3() {
+    	  modal3.style.display = 'none';
+          window.removeEventListener('click', outsideClick3);
+      }
+      // 모달 외부 클릭 시 닫기 함수
+      function outsideClick3(e) {
+          if (e.target === modal3) {
+        	  modal3.style.display = 'none';
+              // 모달 외부 클릭 이벤트 제거
+              window.removeEventListener('click', outsideClick3);
+          }
+      }
+
+      //===========================================================
+   	  /*4. 개인정보 수집 및 이용 동의(선택) */
+      var modal4 = document.getElementById('agree4Modal'); 
+      function openAgreeModal4() {
+    	  modal4.style.display = 'block';
+          window.addEventListener('click', outsideClick4);
+      }
+      function closeAgreeModal4() {
+    	  modal4.style.display = 'none';
+          window.removeEventListener('click', outsideClick4);
+      }
+      // 모달 외부 클릭 시 닫기 함수
+      function outsideClick4(e) {
+          if (e.target === modal4) {
+        	  modal4.style.display = 'none';
+              // 모달 외부 클릭 이벤트 제거
+              window.removeEventListener('click', outsideClick4);
+          }
+      }
+		   
+      /* function updateValue(checkbox) {
+          checkbox.value = checkbox.checked ? "동의" : "비동의";
+        } */
+	   
+      /* 전체 동의*/
         document.getElementById("allCheck").addEventListener("click", function() {
             var mustCheckboxes = document.querySelectorAll('.must');
             var choiceCheckbox = document.querySelector('.choice');
@@ -279,7 +489,6 @@
          <hr>
          <div class="btn">
          <input type="submit" value="회원가입" class="in" >     
-<!--          <input type="submit" value="회원가입" class="in" onclick="validateForm(event)">      -->
          <input type="button" value="취소" class="in">
          </div>
       </form>   
