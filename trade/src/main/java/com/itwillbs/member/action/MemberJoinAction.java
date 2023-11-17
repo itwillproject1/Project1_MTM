@@ -1,8 +1,4 @@
 package com.itwillbs.member.action;
-
-
-
-
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,16 +55,17 @@ public class MemberJoinAction implements Action  {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		out.println(" <script> ");
-		out.println("  alert('회원가입완료 '); ");
-		out.println("location.href='../main/Main.com'");
-		out.println(" </script> ");
+		out.println("<script>");
+		out.println("var result = confirm('회원가입이 완료되었습니다. 로그인 페이지로 이동하시겠습니까?');");
+		out.println("if (result === true) {");
+		out.println("  location.href ='../main/login.member';");
+		out.println("} else {");
+		out.println("  location.href='../main/Main.com';");
+		out.println("}");
+		out.println("</script>");
 		out.close();
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./realmain.jsp");
-		forward.setRedirect(false);
-		return forward;
+		return null;
 		
 	}
 
