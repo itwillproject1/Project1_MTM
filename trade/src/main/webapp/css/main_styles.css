@@ -18,17 +18,12 @@ body {
 }
 
 .slider-container {
-width: 60%; 
+width: 100%; 
 text-align: -webkit-center;
   margin: 100px auto 0; /* 위쪽 여백 추가 및 가운데 정렬 */
   white-space: nowrap; /* 요소들을 가로로 나란히 표시 */
 }
 
-.bx-wrapper {
-   box-shadow: 0 0 5px #fff;
-   border:none;
-   background:#fff;
-}
 
 .slider {
   width: 100%;
