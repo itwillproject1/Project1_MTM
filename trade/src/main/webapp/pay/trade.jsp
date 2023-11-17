@@ -27,10 +27,13 @@
 		}
 		function check() {
 			
-			var price = parseInt("<c:out value='${probuyerdto.price}'/>");
-			var pay = parseInt("<c:out value='${membuyerdto.pay}'/>");
+			var price = parseInt(${probuyerdto.price});
+			var pay = parseInt(${membuyerdto.pay});
 			var buyer_id = "<c:out value='${membuyerdto.user_id}'/>";
 			var seller_id = "<c:out value='${prosellerdto.user_id}'/>";
+			
+			//alert("잔액"+pay);
+			//alert("구매금액"+price);
 			
 			if(pay < price){
 
