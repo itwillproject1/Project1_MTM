@@ -9,14 +9,14 @@ import com.itwillbs.util.ActionForward;
 
 /** BoardWriteConfirmAction() : 작성 확인 페이지 **/
 
-public class BoardWriteConfirmAction implements Action{
+public class BoardWriteConfirmAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		BoardDTO dto = new BoardDTO();
 		dto.setSubject(request.getParameter("subject"));
-		
+
 		request.setAttribute("dto", dto);
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/user/boardWriteConfirm.jsp");
 		forward.setRedirect(false);

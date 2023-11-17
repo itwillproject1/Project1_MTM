@@ -12,11 +12,11 @@ import com.itwillbs.employee.dao.UserDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class EmployeeMainAction implements Action{
+public class EmployeeMainAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		
+
 		UserDAO udao = new UserDAO();
 		TradeDAO tdao = new TradeDAO();
 		InquiryDAO idao = new InquiryDAO();

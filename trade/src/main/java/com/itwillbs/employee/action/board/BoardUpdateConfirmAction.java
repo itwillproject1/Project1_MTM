@@ -9,14 +9,14 @@ import com.itwillbs.util.ActionForward;
 
 /** BoardUpdateConfirmAction() : 게시판 업로드 확인 **/
 
-public class BoardUpdateConfirmAction implements Action{
+public class BoardUpdateConfirmAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		BoardDTO dto = new BoardDTO();
 		dto.setSubject(request.getParameter("subject"));
-		
+
 		request.setAttribute("dto", dto);
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/user/boardUpdateConfirm.jsp");
 		forward.setRedirect(false);
