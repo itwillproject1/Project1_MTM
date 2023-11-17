@@ -72,7 +72,7 @@ body {
 
 .product1 img {
 	width: 100%;
-	height: auto;
+	height: 200px;
 	object-fit: cover;
 	object-position: center top;
 	transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
