@@ -17,13 +17,13 @@ import com.itwillbs.util.JSMoveFunction;
 
 /** SuspendedActiveAction : 피신고자 정지처리 **/
 
-public class SuspendActiveAction implements Action{
+public class SuspendActiveAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		UserDTO udto = new UserDTO();
 		udto.setUser_id(request.getParameter("user_id"));
 		MemberDTO mdto = new MemberDTO();
-		mdto.setEmp_id((String)request.getSession().getAttribute("emp_id"));
+		mdto.setEmp_id((String) request.getSession().getAttribute("emp_id"));
 		mdto.setEmp_pw(request.getParameter("emp_pw"));
 		String[] checkComplain = request.getParameterValues("complainCheck");
 		if (checkComplain == null) {
@@ -31,26 +31,24 @@ public class SuspendActiveAction implements Action{
 			move.alertBack(response, "선택된 신고 내역이 없습니다!");
 		}
 		ArrayList<Integer> complainIndex = new ArrayList<Integer>();
-		for(int i = 0; i<checkComplain.length; i++) {
+		for (int i = 0; i < checkComplain.length; i++) {
 			complainIndex.add(Integer.parseInt(checkComplain[i]));
 		}
 		String suspendReason = request.getParameter("suspendReason");
 		String susDays = request.getParameter("sus_days");
 		int sus_days = 0;
 		ComplainDAO dao = new ComplainDAO();
-		if(suspendReason == null || susDays == null) {
+		if (suspendReason == null || susDays == null) {
 			JSMoveFunction move = new JSMoveFunction();
 			move.alertBack(response, "정지 일수 및 정지 사유 오류");
-		}
-		else {
+		} else {
 			sus_days = Integer.parseInt(susDays);
 		}
 		int result = dao.userSuspendActive(udto, mdto, complainIndex, sus_days, suspendReason);
-		if(result == 1) {
+		if (result == 1) {
 			JSConfirmMoveFunction move = new JSConfirmMoveFunction();
 			move.moveLocation(response, "./UserSuspendActiveConfirm.emp?user_id=" + udto.getUser_id());
-		}
-		else {
+		} else {
 			JSMoveFunction move = new JSMoveFunction();
 			move.alertBack(response, "오류 발생");
 		}

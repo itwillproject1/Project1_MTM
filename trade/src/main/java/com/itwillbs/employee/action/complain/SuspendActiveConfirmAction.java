@@ -7,12 +7,12 @@ import com.itwillbs.employee.dto.UserDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class SuspendActiveConfirmAction implements Action{
+public class SuspendActiveConfirmAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		UserDTO dto = new UserDTO();
 		dto.setUser_id(request.getParameter("user_id"));
-		
+
 		request.setAttribute("dto", dto);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/user/userSuspendActiveConfirm.jsp");

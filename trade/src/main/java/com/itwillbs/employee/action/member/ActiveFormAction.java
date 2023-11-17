@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-public class ActiveFormAction implements Action{
+public class ActiveFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String emp_id = request.getParameter("emp_id");
