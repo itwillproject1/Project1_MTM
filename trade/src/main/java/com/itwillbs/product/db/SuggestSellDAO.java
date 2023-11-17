@@ -218,6 +218,29 @@ public class SuggestSellDAO {
 		}
 	
 	}
+	// 구매가 완료된글 (삽니다.)
+	public void buy_bno(SuggestSellDTO dto) {
+		
+		try {
+			con = getCon();
+		
+		sql="delete from SuggestSell where buy_bno = ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, dto.getBuy_bno());
+		
+		pstmt.executeUpdate();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	
+	}
+	
+	
+	
+	
 	
 	
 	// 판매 제안의 정보를 가져오는 메서드
