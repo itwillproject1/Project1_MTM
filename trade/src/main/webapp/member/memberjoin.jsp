@@ -130,7 +130,7 @@
                document.join.user_id.focus();
                return false;
             }
-            let checkid = window.open("./Membercheckid.member","checkid","width=570,height=500, scrollbars=yes, resizable=yes");
+            let checkid = window.open("./Membercheckid.member","checkid"," width=460, height=220, left=350 , top=280 , scrollbars=yes, resizable=yes");
             
             // checkid.document.getElementById("id").value = document.getElementById("user_id").value;
             }
@@ -468,10 +468,6 @@
               window.removeEventListener('click', outsideClick4);
           }
       }
-         
-      /* function updateValue(checkbox) {
-          checkbox.value = checkbox.checked ? "동의" : "비동의";
-        } */
       
       /* 전체 동의*/
         document.getElementById("allCheck").addEventListener("click", function() {
@@ -487,10 +483,8 @@
         
     </script>
          <hr>
-         <div class="btn">
          <input type="submit" value="회원가입" class="in" >     
          <input type="button" value="취소" class="in">
-         </div>
       </form>   
    </fieldset>      
       

@@ -22,7 +22,7 @@
             <label for="password" class="l">비밀번호</label>
             <input type="password" class="i" id="password" name="password" required>
             
-            <input type="submit" class="bu" value="로그인">
+            <input type="submit" id="log" class="bu" value="로그인">
             <button type="button" class="bu" onclick="location.href='../member/memberjoin.member'">회원가입</button>
             <div class="button-container">
 		    <button type="button" class="findId" onclick="location.href='../member/findid.member'">아이디 찾기</button>

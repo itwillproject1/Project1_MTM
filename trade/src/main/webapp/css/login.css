@@ -17,7 +17,9 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 400px;
 }
-
+#log {
+	margin-top: 10px;
+}
 
 /*아이디·비밀번호 찾기 */
 .findId, .findPw {
