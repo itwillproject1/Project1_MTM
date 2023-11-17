@@ -115,3 +115,10 @@ body {
    opacity: 0.5;
     background-color: #CCCCCC;
 }
+
+footer {
+   color: #000;
+   text-align: center;
+   padding: 10px 0;
+   align-self: flex-end; /* 푸터를 아래쪽으로 정렬 */
+}
