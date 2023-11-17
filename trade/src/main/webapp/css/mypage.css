@@ -44,7 +44,7 @@ body {
 
 
 .image-container img {
-   max-width: 30%;     /*이미지 줄이기 부분이다 */
+   max-width: 50%;     /*이미지 줄이기 부분이다 */
    max-height: 100%;
    border-radius: 8px; /* 이미지에도 둥근 테두리 적용 */
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 이미지에 그림자 추가 */
@@ -237,10 +237,6 @@ h2 {
 	padding-bottom: 5px;
 }
 
-.disabled {
-	pointer-events: none; /* 이벤트 무효화 */
-	background-color: #ccc; /* 어두운 배경색 (예: 회색) */
-}
 
 /* 모달 전체 스타일 */
 .modal {
@@ -289,3 +285,4 @@ div#postReportOptions, #authorpostReportOptions {
 #productList {
 	cursor: pointer;
 }
+

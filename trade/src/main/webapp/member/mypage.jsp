@@ -142,7 +142,12 @@ function pay() {
 	
 		<c:forEach var="product" items="${mpbdto}">
 		<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
-			<div class="product1" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
+			
+			<div class="product1 
+			<c:if test="${product.deal_status == 0 }">
+			disabled1
+			</c:if>
+			" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
 			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
 					alt="${product.title}">
 				<div class="product-info">
