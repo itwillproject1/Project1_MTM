@@ -32,8 +32,8 @@
 			var buyer_id = "<c:out value='${membuyerdto.user_id}'/>";
 			var seller_id = "<c:out value='${prosellerdto.user_id}'/>";
 			
-			alert("잔액"+pay);
-			alert("구매금액"+price);
+			//alert("잔액"+pay);
+			//alert("구매금액"+price);
 			
 			if(pay < price){
 
