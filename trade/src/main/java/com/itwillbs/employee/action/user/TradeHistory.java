@@ -1,42 +1,44 @@
-package com.itwillbs.employee.action.board;
+package com.itwillbs.employee.action.user;
 
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.employee.dao.BoardDAO;
-import com.itwillbs.employee.dao.DAO;
+import com.itwillbs.employee.dao.TradeDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-/** BoardListAction() : 게시판 목록 불러오기 **/
-
-public class BoardListAction implements Action{
+public class TradeHistory implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum = "1";
-		String pageCategory = request.getParameter("pageCategory");
-		if(pageCategory == null) pageCategory = "notice";
-		
+		// all, buy, sell, complete
 		String search = request.getParameter("search");
+		if(search == null || search.equals("선택")) search = null;
 		String searchKeyword = request.getParameter("searchKeyword");
+				
+		String category = request.getParameter("category");
+		String[] catInfo = {"휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라","음향기기", "기타"};
+		if(category == null || category.equals("선택")) category = null;
+		else {
+			int i = Integer.parseInt(category);
+			category = catInfo[i];
+		}
 		
-		BoardDAO dao = new BoardDAO();
-		int[] count = new int[2];
-		count[0] = dao.boardCount("notice");
-		count[1] = dao.boardCount("event");
-		
+		TradeDAO dao = new TradeDAO();
+
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
-		int pageSize = 8;
+		int pageSize = 12;
 
 		// 시작행 번호 계산하기
 		// 1 11 21 31 41 .....
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize;
-		
+
 		// 끝행 번호 계산
 		// 10 20 30 40 50 .....
 		int endRow = currentPage * pageSize;
@@ -49,14 +51,10 @@ public class BoardListAction implements Action{
 		// 전체 페이지수
 		// 글 15 / 페이지당 10 => 2개
 		// 글 78 / 페이지당 10 => 8개
-		
-		int c = 0;
-		
-		if(pageCategory.equals("notice")) c = count[0];
-		else if(pageCategory.equals("event")) c = count[1];
-		
-		int pageCount = c / pageSize + (c % pageSize == 0 ? 0 : 1);
-		System.out.println(pageCount);
+		int count = dao.tradeHistoryCount();
+
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+
 		// 한 화면에 보여줄 페이지 블럭개수
 		int pageBlock = 5;
 
@@ -72,28 +70,28 @@ public class BoardListAction implements Action{
 		if (endPage > pageCount) {
 			endPage = pageCount;
 		}
+
 		/******************* 페이징처리 2 *********************/
 		
-		ArrayList list = null;
-		if(search == null || searchKeyword == null)
-			list = dao.boardList(pageCategory, startRow, pageSize);
-		else list = dao.boardList(pageCategory, search, searchKeyword, startRow, pageSize);
+		ArrayList list;
+		if(search == null && searchKeyword == null && category == null)
+			list = dao.tradeHistory(startRow, pageSize);
+		else list = dao.tradeHistorySearch(category, search, searchKeyword, startRow, pageSize);
 		
-		
-		System.out.println(list.size());
-		ActionForward forward = new ActionForward();
-		forward.setPath("./employee/user/boardList.jsp");
-		forward.setRedirect(false);
-		request.setAttribute("pageCategory", pageCategory);
 		request.setAttribute("count", count);
-		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("list", list);
+		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("search", search);
 		request.setAttribute("searchKeyword", searchKeyword);
+		request.setAttribute("category", category);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
+		
+		ActionForward forward = new ActionForward();
+		forward.setPath("./employee/user/tradeHistory.jsp");
+		forward.setRedirect(false);
 		return forward;
 	}
 }

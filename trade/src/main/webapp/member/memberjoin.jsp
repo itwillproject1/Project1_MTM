@@ -239,8 +239,6 @@
 			<label>닉네임</label>
 			<input type="text" name="user_nickname" class="in"><br>
 			
-			
-			
 			<label>프로필</label>
 			<input type="file" name="profile" value="등록하기" accept="image/*" class="in"><br>
 			
@@ -248,12 +246,51 @@
 			
 			<label>추천인 입력(선택)</label>
 			<input type="text" name="recommend" class="in"><br>
+
+			
+			<!-- http://localhost:8088/trade/member/memberjoin.member -->
+			
+			<input id="allCheck" type="checkbox">이용약관 전체동의
+    <hr>
+    <input class="must" type="checkbox">이용약관 동의 (필수)
+    <span class="show">내용보기</span><br>
+    <input class="must" type="checkbox">개인정보 수집 및 이용 동의 (필수)
+    <span class="show">내용보기</span><br>
+    <input class="must" type="checkbox">개인정보 제3자 제공 동의 (필수)
+    <span class="show">내용보기</span><br>
+    <input class="must" type="checkbox">개인정보 처리 위탁 동의 (필수)
+    <span class="show">내용보기</span><br>
+    <input class="choice" type="checkbox">개인정보 수집 및 이용 동의(선택)
+    <span class="show">내용보기</span><br>
+
+		<script>
+        document.getElementById("allCheck").addEventListener("click", function() {
+            var mustCheckboxes = document.querySelectorAll('.must');
+            var choiceCheckbox = document.querySelector('.choice');
+
+            mustCheckboxes.forEach(function(checkbox) {
+                checkbox.checked = document.getElementById("allCheck").checked;
+            });
+
+            choiceCheckbox.checked = document.getElementById("allCheck").checked;
+        });
+    </script>
+			
+
+
+
+
+
+
+
+
+
+
+
+
 			
 			
-			<label>약관 동의</label>
-			<input type="radio" name="agree" value="동의" class="in"> 동의
-					<input type="radio" name="agree" value="비동의" class="in"> 비동의<br>
-			
+>>>>>>> 1653e9bcfd1fa75e1d19db2c64ddbe5250415136
 			<hr>
 			<div class="btn">
 			<input type="submit" value="회원가입" class="in">		
