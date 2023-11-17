@@ -309,6 +309,17 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}
 		
+		else if(command.equals("/member/QnaList.member")){
+			System.out.println("/QnaContent.member 호출 ");
+			action = new QnaListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		
 		//System.out.println("---------------2. 가상주소 매핑 종료---------------");

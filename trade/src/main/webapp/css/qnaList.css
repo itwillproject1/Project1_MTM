@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f5f5f5; /* 연한 회색 배경색 */
+	color: #333; /* 어두운 회색 계열 텍스트 색상 */
+}
+
+.container {
+	max-width: 800px;
+	margin: 200px auto;
+	padding: 20px;
+	background-color: #fff; /* 흰색 배경색 */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.form-container {
+	flex: 1;
+	padding-left: 20px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-group2 {
+	margin: 5px auto;
+	font-size: 18px;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+/* 
+table {
+	border-collapse: collapse;
+} */
+.tr1 th {
+	border-bottom: 1px solid;
+}
+
+.tr1 th, .tr1 td {
+	line-height: 2em;
+}
+
+.form-group select {
+	cursor: pointer;
+}
+
+.submit-button {
+	float: right;
+   width: 150px;
+   padding: 10px;
+   background-color: #222; /* 어두운 검정 계열 배경색 */
+   color: #fff; /* 흰색 텍스트 색상 */
+   text-align: center;
+   text-decoration: none;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼에 그림자 추가 */
+   margin: 5px;
+}
+
+.submit-button:hover {
+	background-color: #333; /* 더 어두운 검정 계열로 호버 시 변경 */
+}
+
+h1 {
+	font-size: 30px;
+	color: #222; /* 어두운 검정 계열 텍스트 색상 */
+	margin-bottom: 20px;
+	border-bottom: 2px solid #333; /* 어두운 회색 계열의 밑줄 추가 */
+	padding-bottom: 5px;
+}
+
+h2 {
+	font-size: 24px;
+	color: #222; /* 어두운 검정 계열 텍스트 색상 */
+	margin-bottom: 20px;
+	border-bottom: 2px solid #333; /* 어두운 회색 계열의 밑줄 추가 */
+	padding-bottom: 5px;
+}
+
+.t1 {
+	width: 50px;
+	text-align: center;
+}
+
+.t2 {
+	width: 400px;
+}
+
+.t3 {
+	width: 100px;
+	text-align: center;
+}
+
+.t4 {
+	width: 200px;
+	text-align: center;
+}

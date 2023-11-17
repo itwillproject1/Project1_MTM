@@ -25,6 +25,7 @@ $(document).ready(function() {
 	<div class="container">
 		<div class="form-group h1">
 			<label for="productName">무엇을 도와드릴까요?</label>
+			<button class="btn" onclick="openQnaList();">1:1 문의내역</button>
 			<button class="btn" onclick="openQna();">1:1 문의하기</button>
 		</div>
 		
@@ -120,6 +121,16 @@ $(document).ready(function() {
  				alert('해당 기능은 로그인이 필요합니다.');
  			} else {
  				location.href="../member/Qna.member";
+ 			}
+ 		}
+ 		
+ 		function openQnaList() {
+			var login_id = '<%= session.getAttribute("user_id") %>';
+ 			
+ 			if(login_id == "null") {
+ 				alert('해당 기능은 로그인이 필요합니다.');
+ 			} else {
+ 				location.href="../member/QnaList.member";
  			}
  		}
  	</script>
