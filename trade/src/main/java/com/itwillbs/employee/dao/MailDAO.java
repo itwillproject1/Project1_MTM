@@ -50,12 +50,14 @@ public class MailDAO extends DAO {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
+			list = new ArrayList();
 			while (rs.next()) {
 				dto = new MailDTO();
 				dto.setIdx(rs.getInt(1));
 				dto.setEmp_id(rs.getString(2));
 				dto.setSubject(rs.getString(3));
 				dto.setContent(rs.getString(4));
+				list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,6 +79,7 @@ public class MailDAO extends DAO {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
+			list = new ArrayList();
 			while (rs.next()) {
 				dto = new MailDTO();
 				dto.setIdx(rs.getInt(1));
@@ -84,6 +87,7 @@ public class MailDAO extends DAO {
 				dto.setSubject(rs.getString(3));
 				dto.setContent(rs.getString(4));
 				dto.setSendDate(rs.getTimestamp(6));
+				list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

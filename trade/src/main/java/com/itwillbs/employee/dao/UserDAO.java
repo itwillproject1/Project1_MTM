@@ -155,9 +155,11 @@ public class UserDAO extends DAO {
 			sql = "select user_id, email from Member where agree = '동의'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			list = new ArrayList<UserDTO>();
 			while(rs.next()) {
 				dto = new UserDTO();
-				dto.setAddress(rs.getString(1));
+				dto.setUser_id(rs.getString(1));
+				dto.setAddress(rs.getString(2));
 				list.add(dto);
 			}
 		} catch (Exception e) {

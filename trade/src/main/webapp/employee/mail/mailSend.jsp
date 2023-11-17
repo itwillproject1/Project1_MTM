@@ -11,7 +11,7 @@
 			$('#content').attr('value', con);
 			$(".card-body").attr({
 				"method" : "post",
-				"action" : "./Mail.emp",
+				"action" : "./EmployeeMailSendAction.emp",
 				"enctype" : "multipart/form-data"
 		}).submit();
 		});
