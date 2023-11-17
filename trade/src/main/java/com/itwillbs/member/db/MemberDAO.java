@@ -479,6 +479,7 @@ public class MemberDAO {
 								pstmt.setInt(1, dto.getPay());
 								pstmt.setString(2, dto.getUser_id());
 								pstmt.executeUpdate();
+								
 							} catch (Exception e) {
 								e.printStackTrace();
 							} finally {
@@ -487,13 +488,8 @@ public class MemberDAO {
 							
 							
 						}//
-					
-					
-					
-					
-		
+								
 
-		
 		public MemberDTO findpwmember(MemberDTO pwdto) {
 			int result = -1; // -1  0  1
 			
@@ -568,6 +564,6 @@ public class MemberDAO {
 			return result;
 		}
 			
-}			
-
-								
+				
+					
+		}
