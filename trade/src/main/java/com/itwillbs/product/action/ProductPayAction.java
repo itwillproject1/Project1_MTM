@@ -72,7 +72,11 @@ public class ProductPayAction implements Action {
 		
 		Suggestdao.sell_bno(Suggest);
 
-		
+		// 판매자에게 이메일 보내기
+		MemberDTO sellerDto = memdao.getMember(seller_id); // 판매자 모든 정보 가져옴
+		request.setAttribute("seller_email", sellerDto.getEmail());
+		SendMail smail = new SendMail();
+		smail.execute(request, response);
 		
 		
 		
