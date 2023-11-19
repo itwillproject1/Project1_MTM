@@ -203,7 +203,7 @@ function pay() {
  
  <!--  내가 구매한 상품 목록 -->
  
-  <div class="title1">내가 찜한 상품</div>
+  <div class="title1">내가 구매한 상품</div>
  <div class="container1">
 	
 		<c:forEach var="product" items="${productlikelist}">
