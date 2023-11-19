@@ -51,9 +51,9 @@ header:hover {
 }
 
 
-.category-b { margin-left: 20px;}
+.mainCategory { margin-left: 20px;}
 
-.category-b a {
+.mainCategory a {
 	left: -20px;
 	font-size: 14px;
     text-decoration: none;
@@ -61,7 +61,7 @@ header:hover {
     margin-right: 20px;
 }
 
-.category-b a:hover {
+.mainCategory a:hover {
     color: #A9A9A9; 
     text-decoration: none; 
 }

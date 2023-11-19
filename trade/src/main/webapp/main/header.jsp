@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="com.itwillbs.product.db.ProductDAO"%>
+<%@page import="com.itwillbs.product.db.ProductDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +11,7 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css?afterr" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <title>헤더</title>
 </head>
 <body>
@@ -22,7 +25,7 @@
 		<span class="category-a" id="category-aa"> <a href="../product/ProductList.com?deal_way=삽니다">삽니다</a> <a href="../product/ProductList.com?deal_way=팝니다">팝니다</a>
 		</span>
 
-        <span class="category-b">
+        <span class="mainCategory">
             <a href="../product/ProductList.com?category=휴대폰%26태블릿">휴대폰&태블릿</a>
             <a href="../product/ProductList.com?category=데스크탑">데스크탑</a>
             <a href="../product/ProductList.com?category=노트북">노트북</a>
@@ -32,10 +35,6 @@
             <a href="../product/ProductList.com?category=음향기기">음향기기</a>
             <a href="../product/ProductList.com?category=기타">기타</a>
         </span>
-        
-         <script src="../product/listJS.js"></script> 
-<!-- 이거 그거임 상품목록 카테고리별로 바꾸는 자스 근데 아직 
-구현 못해서 냅둘게요 -->
 
 
        <div class="rgt"> 

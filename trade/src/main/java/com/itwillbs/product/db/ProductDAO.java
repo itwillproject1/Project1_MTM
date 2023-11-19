@@ -359,6 +359,7 @@ public class ProductDAO {
 	        // SQL 작성 & pstmt 객체
 	        StringBuilder sql = new StringBuilder("select * from Product where 1=1");
 
+	        
 	        // 카테고리 선택했을 시 카테고리 조건문 추가
 	        if (category != null) {
 	            sql.append(" and category = ?");
@@ -439,14 +440,6 @@ public class ProductDAO {
 	        // SQL 실행
 			    
 		           rs = pstmt.executeQuery();
-		           
-//		           ResultSet countRs = countPstmt.executeQuery();
-//		           
-//		           if (countRs.next()) {
-//		              count = countRs.getInt("cnt");
-//		           }
-//
-//		           System.out.println("총 글 수: " + count);
 
 	      
 			// 5. 데이터 처리
@@ -484,6 +477,37 @@ public class ProductDAO {
 			closeDB();
 		}
 		return ProductList;
+	}
+	
+	// 브랜드만 따로 가져오는 메서드
+	public ArrayList<String> getBrandList(String category) {
+	    ArrayList<String> brandList = new ArrayList<>();
+
+	    try {
+	        // 디비연결정보
+	        con = getCon();
+
+	        // SQL 작성 & pstmt 객체
+	        String sql = "SELECT DISTINCT brand FROM Product WHERE category = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, category);
+
+	        // SQL 실행
+	        rs = pstmt.executeQuery();
+
+	        // 데이터 처리
+	        while (rs.next()) {
+	            // 브랜드를 리스트에 추가
+	            brandList.add(rs.getString("brand"));
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeDB();
+	    }
+
+	    return brandList;
 	}
 	
 
