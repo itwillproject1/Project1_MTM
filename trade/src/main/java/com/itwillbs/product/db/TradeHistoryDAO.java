@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -49,13 +50,9 @@ public class TradeHistoryDAO {
 		
 	// 거래 기록 저장
 		public void tradehistory (TradeHistoryDTO dto) {
-			
 			try {
-				
 				con = getCon();
-				
 				sql = "insert into TradeHistory (user_id, deal_way, bno, trader_id, price, tradeDate) values(?,?,?,?,?,now())";
-				
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, dto.getUser_id());
@@ -63,17 +60,13 @@ public class TradeHistoryDAO {
 				pstmt.setInt(3, dto.getBno());
 				pstmt.setString(4, dto.getTrader_id());
 				pstmt.setInt(5, dto.getPrice());
-				
-				
 				pstmt.executeUpdate();
-						
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				closeDB();
 			}
-			
 		}
 		
 		
-}
+}	

@@ -21,7 +21,8 @@ public class ProductTradePayAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+	    System.out.println("M: ProductTradePayAction_execute() 호출");
+
 		
 		// 세션에 저장된 값 가져오기
 		HttpSession session = request.getSession();

@@ -203,35 +203,31 @@ function pay() {
  
  <!--  내가 구매한 상품 목록 -->
  
-  <div class="title1">내가 찜한 상품</div>
- <div class="container1">
-	
-		<c:forEach var="product" items="${productlikelist}">
-		<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
-			<div class="product1" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
-			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
-					alt="${product.title}">
-				<div class="product-info">
-					<h3>[${product.deal_way }]${product.title }</h3>
-				</div>
-				<div class="product-price">
-					<p>
-						<fmt:formatNumber value="${product.price }" />
-						원
-					</p>
-				</div>
-			</div>
-		</c:forEach>
+<div class="title1">내가 구매한 상품</div>
+<div class="container1">
+    <c:forEach var="dto" items="${tradeOkList}">
+        <c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
+        <div class="product
+            <c:if test="${dto.deal_status == 0}">
+                disabled
+            </c:if>"
+            onclick="toProductContent('../product/ProductContent.com?bno=${dto.bno}')">
+            <div class="product.image">
+                <img src="${pageContext.request.contextPath}/upload/${dto.file_name}" alt="${dto.title}">
+            </div>
+            <div class="product-info">
+                <h3>[${dto.deal_way}]${dto.title}</h3>
+            </div>
+            <div class="product-price">
+                <p>
+                    <fmt:formatNumber value="${dto.price}" /> 원
+                </p>
+            </div>
+            <!-- 확인을 위해 추가한 출력 -->
+            <p>Deal Status: ${dto.deal_status}</p>
+        </div>
+    </c:forEach>
 </div>
- 
- <!--  내가 구매한 상품 목록 끝 -->
- 
- 
- 
- 
- 
- 
- 
  
  
  <footer>

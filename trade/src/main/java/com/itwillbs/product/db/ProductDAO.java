@@ -744,6 +744,37 @@ public class ProductDAO {
 		
 	}
 	
+	// 마이페이지에서 내가 구매한 상품만 불러오는 메소드
+	public List<ProductDTO> getTradeOkList(ProductDTO dto) {
+	    List<ProductDTO> tradeOkList = new ArrayList<ProductDTO>();
+	    try {
+	        con = getCon(); 
+
+	        String sql = "SELECT * FROM Product WHERE deal_status = 0 AND deal_user_id = ? AND bno = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, dto.getDeal_user_id());
+	        pstmt.setInt(2, dto.getBno());
+
+	        rs = pstmt.executeQuery();
+	        
+	        while (rs.next()) {
+	            ProductDTO tdto = new ProductDTO();
+	            tdto.setBno(rs.getInt("bno"));
+	            tdto.setUser_id(rs.getString("user_id"));
+	            tdto.setDeal_status(rs.getInt("deal_status"));
+
+	            tradeOkList.add(tdto);
+	            System.out.println("SQL 실행 결과: " + tradeOkList.size());
+
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeDB();
+	    }
+	    return tradeOkList;
+	}
+		
 	
 	
 	
