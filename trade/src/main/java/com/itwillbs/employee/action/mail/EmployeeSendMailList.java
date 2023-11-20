@@ -10,6 +10,8 @@ import com.itwillbs.employee.dao.MailDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** EmployeeSendMailList() : 발송된 메일 리스트 **/
+
 public class EmployeeSendMailList implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

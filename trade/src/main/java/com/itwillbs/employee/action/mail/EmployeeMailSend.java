@@ -28,6 +28,7 @@ public class EmployeeMailSend {
 	private static Transport transport;
 
 	private static Session setSession(Properties prop) {
+		// 메일 세션 설정
 		return Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(id, pw);
@@ -36,6 +37,7 @@ public class EmployeeMailSend {
 	}
 
 	private static MimeMessage getMessage() {
+		// 세션에 의한 메일 생성 및 발신자 이메일 적용
 		MimeMessage message = new MimeMessage(session);
 		try {
 			message.setFrom(new InternetAddress(id + email));
@@ -124,9 +126,9 @@ public class EmployeeMailSend {
 			messageBodyPart.setContent(mdto.getContent(), "text/html;charset=utf-8");
 
 			multipart.addBodyPart(messageBodyPart);
-			FileDataSource image = new FileDataSource(realPath + mdto.getImage());
+			FileDataSource image = new FileDataSource(realPath + mdto.getImage());	// 파일 데이터 경로(/upload/fileName)
 
-			messageBodyPart.setDataHandler(new DataHandler(image));
+			messageBodyPart.setDataHandler(new DataHandler(image));	// 파일 데이터 불러오기 및 저장
 			message.setContent(multipart);
 
 			transport.connect();
@@ -135,8 +137,8 @@ public class EmployeeMailSend {
 			transport.close();
 		} catch (MessagingException e) {
 			e.printStackTrace();
-			return false;
+			return false;	// 발송 실패
 		}
-		return true;
+		return true;	// 발송 성공
 	}
 }
