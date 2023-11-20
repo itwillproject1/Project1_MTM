@@ -189,36 +189,6 @@
 			<div class="product1
             <c:if test="${buyList[i].deal_status == 0}">
                 disabled1
-<<<<<<< HEAD
-            </c:if>"
-            onclick="toProductContent('../product/ProductContent.com?bno=${trade.bno}')">
-            <div class="product.image">
-                <img src="${pageContext.request.contextPath}/upload/${trade.file_name}" alt="${trade.title}">
-            </div>
-            <div class="product-info">
-                <h3>[${trade.deal_way}]${trade.title}</h3>
-            </div>
-            <div class="product-price">
-                <p>
-                    <fmt:formatNumber value="${trade.price}" /> 원
-                </p>
-            </div>
-        </div>
-    </c:forEach>
-</div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-  <%@ include file="../main/footer.jsp"%>
- 
-=======
             </c:if>" onclick="toProductContent('../product/ProductContent.com?bno=${buyList[i].bno}')">
 				<div>
 					<img src="${pageContext.request.contextPath}/upload/${buyList[i].file_name}" alt="${buyList[i].title}">
@@ -241,6 +211,5 @@
 	<footer>
    <p>&copy; 1조 전자기기 중고거래</p>
 </footer>
->>>>>>> b92c6bc9dbfc02bf8789a8926f7c3374b059be31
 </body>
 </html>

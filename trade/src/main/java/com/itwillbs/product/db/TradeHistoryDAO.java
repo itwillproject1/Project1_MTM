@@ -108,15 +108,9 @@ public class TradeHistoryDAO {
 
 			try {
 				con = getCon();
-<<<<<<< HEAD
-				
-				sql = "insert into TradeHistory (user_id, deal_way, bno, trader_id, price, address ,tradeDate) values(?,?,?,?,?,?,now())";
-				
-=======
 
 				// sql, pstmt
 				sql = "select * from TradeHistory where order_id = ?";
->>>>>>> b92c6bc9dbfc02bf8789a8926f7c3374b059be31
 				pstmt = con.prepareStatement(sql);
 
 				pstmt.setInt(1, order_id);
@@ -138,17 +132,6 @@ public class TradeHistoryDAO {
 					thdto.setTradeDate(rs.getTimestamp("tradeDate"));
 				}
 				
-<<<<<<< HEAD
-				pstmt.setString(1, dto.getUser_id());
-				pstmt.setString(2, dto.getDeal_way());	//삽니다. 팝니다.
-				pstmt.setInt(3, dto.getBno());
-				pstmt.setString(4, dto.getTrader_id());
-				pstmt.setInt(5, dto.getPrice());
-				pstmt.setString(6, dto.getAddress());
-				
-				pstmt.executeUpdate();
-=======
->>>>>>> b92c6bc9dbfc02bf8789a8926f7c3374b059be31
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
