@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="../css/memberupdate.css" rel="stylesheet" />
+<link href="../css/agreeModal.css" rel="stylesheet" />
+
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
@@ -68,7 +70,7 @@ function passwordcheck() {
 	
 	전화번호 : <input type="text" name="phone" value="${dto.phone }" class="in"><br><br>
 				
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -78,12 +80,69 @@ function passwordcheck() {
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		동의 : <input class="in" id="agree1" name="agree" type="radio" value="동의" checked>
-		비동의 : <input class="in" id="agree2" name="agree" type="radio" value="비동의"><br><br>
+		비동의 : <input class="in" id="agree2" name="agree" type="radio" value="비동의"><br><br> -->
+	
+	<div id="checkDiv">
+	 <input class="choice" id="choice" type="checkbox" name="agree" checked>
+        <label id="ladbel" for="choice"></label>
+        <span id="choiceSpan">개인정보 수집 및 이용 동의(선택)</span>
+    <span class="show" id="show1" onclick="openAgreeModal4()">내용보기</span><br>
+    </div>
+
+<div id="agree4Modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeAgreeModal4()">닫기</span>
+        <div id="modalContent">
+            <h2><u>개인정보 수집 및 이용 동의(선택)</u></h2>
+            <div>
+               <span id="countAgree4"> 
+            fetchFileContent4();
+            </span><br> 
+         </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 4. 개인정보 수집 및 이용 동의(선택)
+  function fetchFileContent4() {
+      fetch('../member/agree4.txt') 
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('countAgree4').innerText = data;
+          })
+          .catch(error => {
+              console.error('파일을 가져오는 도중 오류가 발생했습니다.', error);
+          });
+  }
+  
+  
+  window.onload = function() {
+       fetchFileContent4();
+   };
+  /*4. 개인정보 수집 및 이용 동의(선택) */
+      var modal4 = document.getElementById('agree4Modal'); 
+      function openAgreeModal4() {
+         modal4.style.display = 'block';
+          window.addEventListener('click', outsideClick4);
+      }
+      function closeAgreeModal4() {
+         modal4.style.display = 'none';
+          window.removeEventListener('click', outsideClick4);
+      }
+      // 모달 외부 클릭 시 닫기 함수
+      function outsideClick4(e) {
+          if (e.target === modal4) {
+             modal4.style.display = 'none';
+              // 모달 외부 클릭 이벤트 제거
+              window.removeEventListener('click', outsideClick4);
+          }
+      }
+</script>
 	
 	
 	
 	<input type="submit" value="정보수정하기" class="in">
-	
 	<input type="button" value="돌아가기" class="in" onclick="location.href='../member/MemberInfo.member'">
 	
 </form>	

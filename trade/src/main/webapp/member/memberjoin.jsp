@@ -354,7 +354,6 @@ $(function(){
     <span class="show" onclick="openAgreeModal3()">내용보기</span><br>
     
     <input class="choice" id="choice" type="checkbox" name="agree" >
-<!--     <input class="choice" id="choice" type="checkbox" name="agree" onchange="updateValue(this)"> -->
         <label id="ladbel" for="choice"><span>개인정보 수집 및 이용 동의(선택)</span></label>
     <span class="show" id="show1" onclick="openAgreeModal4()">내용보기</span><br>
 </div>

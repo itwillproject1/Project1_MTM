@@ -41,7 +41,6 @@ public class MemberUpdateProAction implements Action {
 		dto.setPhone(request.getParameter("phone"));
 		dto.setAgree(request.getParameter("agree"));
 		
-		
 		// MemberDAO객체 - 정보수정메서드 호출
 		MemberDAO dao = new MemberDAO();
 		int result = dao.updateMember(dto);
