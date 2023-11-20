@@ -30,6 +30,7 @@ import com.itwillbs.employee.action.inquiry.InquiryAction;
 import com.itwillbs.employee.action.inquiry.InquiryContentAction;
 import com.itwillbs.employee.action.inquiry.InquiryListAction;
 import com.itwillbs.employee.action.mail.EmployeeMailSendAction;
+import com.itwillbs.employee.action.mail.EmployeeMailSendConfirm;
 import com.itwillbs.employee.action.mail.EmployeeSendMailContent;
 import com.itwillbs.employee.action.mail.EmployeeSendMailList;
 import com.itwillbs.employee.action.member.ActiveAction;
@@ -528,7 +529,12 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 		
 		else if(command.equals("/EmployeeMailSendConfirm.emp")) {
-			
+			action = new EmployeeMailSendConfirm();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// -- 회원 정보 조회 및 관리

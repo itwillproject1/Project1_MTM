@@ -18,17 +18,20 @@ public class InquiryListAction implements Action {
 		if (pageNum == null)
 			pageNum = "1";
 
-		// all, 0, 1
+		// all, 0(미완료), 1(완료)
 		String pageCategory = request.getParameter("pageCategory");
 		if (pageCategory == null)
 			pageCategory = "all";
 
 		InquiryDAO dao = new InquiryDAO();
-
+		
+		// 검색
 		String search = request.getParameter("search");
 		if (search == null || search.equals("선택"))
 			search = null;
 		String searchKeyword = request.getParameter("searchKeyword");
+		
+		// 카테고리
 		String category = request.getParameter("category");
 		if (category == null || category.equals("선택"))
 			category = null;

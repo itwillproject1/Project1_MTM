@@ -13,7 +13,7 @@ import com.itwillbs.util.FileUpload;
 import com.itwillbs.util.JSMoveFunction;
 import com.oreilly.servlet.MultipartRequest;
 
-/** BoardUpdateAction() : 게시판 수정 **/
+/** BoardUpdateAction : 게시판 수정 **/
 
 public class BoardUpdateAction implements Action {
 	@Override

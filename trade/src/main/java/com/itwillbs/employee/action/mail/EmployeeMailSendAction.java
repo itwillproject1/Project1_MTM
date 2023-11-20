@@ -17,8 +17,9 @@ import com.itwillbs.util.FileUpload;
 import com.itwillbs.util.JSMoveFunction;
 import com.oreilly.servlet.MultipartRequest;
 
+/** EmployeeMailSendAction : 메일 전송 진행 **/
+
 public class EmployeeMailSendAction implements Action{
-	@SuppressWarnings("deprecation")
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		UserDAO dao = new UserDAO();
