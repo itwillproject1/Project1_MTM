@@ -3,7 +3,7 @@
 .b {
     font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -16,6 +16,7 @@
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 400px;
+    margin-top: 150px;
 }
 #log {
 	margin-top: 10px;
