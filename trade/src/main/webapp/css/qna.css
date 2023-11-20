@@ -69,7 +69,7 @@ textarea#content {
 }
 
 .submit-button {
-   display: block;
+   /* display: block; */
    width: 150px;
    padding: 10px;
    background-color: #222; /* 어두운 검정 계열 배경색 */
@@ -93,4 +93,11 @@ h2 {
    margin-bottom: 20px;
    border-bottom: 2px solid #333; /* 어두운 회색 계열의 밑줄 추가 */
    padding-bottom: 5px;
+}
+
+#hi {
+	
+	margin-left: 476px;
+	
+	
 }

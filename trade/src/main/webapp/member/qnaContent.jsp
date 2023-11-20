@@ -59,7 +59,7 @@
 				</div>
 			</c:if>
 			<div class="center-btn">
-				<button class="submit-button" onclick="location.href='../member/MemberInfo.member';">마이페이지로</button>
+				<button class="submit-button" onclick="history.back();">돌아가기</button>
 			</div>
 		</div>
 	</div>
