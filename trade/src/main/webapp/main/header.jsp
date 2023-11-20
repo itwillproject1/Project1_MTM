@@ -12,6 +12,9 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css?afterr" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+ <script type="text/javascript">
+</script>
+    
 <title>헤더</title>
 </head>
 <body>
@@ -22,20 +25,25 @@
 
 		</span>
 		
-		<span class="category-a" id="category-aa"> <a href="../product/ProductList.com?deal_way=삽니다">삽니다</a> <a href="../product/ProductList.com?deal_way=팝니다">팝니다</a>
-		</span>
+		<dl class="main-1">
+		
+		<ul id="category-a">
+		<li><a href="../product/ProductList.com?deal_way=삽니다">삽니다</a></li>
+		<li><a href="../product/ProductList.com?deal_way=팝니다">팝니다</a></li>
+		</ul>
 
-        <span class="mainCategory">
-            <a href="../product/ProductList.com?category=휴대폰%26태블릿">휴대폰&태블릿</a>
-            <a href="../product/ProductList.com?category=데스크탑">데스크탑</a>
-            <a href="../product/ProductList.com?category=노트북">노트북</a>
-            <a href="../product/ProductList.com?category=게임기기">게임기기</a>
-            <a href="../product/ProductList.com?category=가전제품">가전제품</a>
-            <a href="../product/ProductList.com?category=카메라">카메라</a>
-            <a href="../product/ProductList.com?category=음향기기">음향기기</a>
-            <a href="../product/ProductList.com?category=기타">기타</a>
-        </span>
+         <ul id="mainCategory">
+            <li><a href="../product/ProductList.com?category=휴대폰%26태블릿">휴대폰&태블릿</a></li>
+            <li><a href="../product/ProductList.com?category=데스크탑">데스크탑</a></li>
+            <li><a href="../product/ProductList.com?category=노트북">노트북</a></li>
+            <li><a href="../product/ProductList.com?category=게임기기">게임기기</a></li>
+            <li><a href="../product/ProductList.com?category=가전제품">가전제품</a></li>
+            <li><a href="../product/ProductList.com?category=카메라">카메라</a></li>
+            <li><a href="../product/ProductList.com?category=음향기기">음향기기</a></li>
+            <li><a href="../product/ProductList.com?category=기타">기타</a></li>
+            </ul>
 
+			</dl>
 
        <div class="rgt"> 
         <div class="rgt1">

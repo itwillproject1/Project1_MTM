@@ -7,6 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="com.itwillbs.product.db.ProductDAO"%>
 <%@page import="com.itwillbs.product.db.ProductDTO"%>
+<% ProductDAO productDAO = new ProductDAO(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,55 +19,44 @@
 <link href="../css/productList.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
  <script type="text/javascript">
+ 
+ 
  $(document).ready(function () {
 	 
-	 function getBrandListFromServer(category, callback) {
-		  var xhr = new XMLHttpRequest();
-		  var url = '../your-server-endpoint?category=' + encodeURIComponent(category);
+	 // 카테고리 - 동적 브랜드
+	 function getBrandsByCategory(category) {
+	     // JavaScript에서 서버로 데이터를 전달하는 부분
+	     var selectedCategory = category;
+	     $.ajax({
+	         type: 'GET',
+	         url: './ProductListAction',
+	         data: { category: selectedCategory },
+	         success: function (response) {
+	             updateBrandList(response, selectedCategory);
+	         },
+	         error: function () {
+	             console.error('Error fetching brands');
+	         }
+	     });
+	 }
 
-		  xhr.onreadystatechange = function () {
-		    if (xhr.readyState === XMLHttpRequest.DONE) {
-		      if (xhr.status === 200) {
-		        // 성공적으로 데이터를 받아왔을 때 콜백 함수 호출
-		        var brandList = JSON.parse(xhr.responseText);
-		        callback(brandList);
-		      } else {
-		        // 에러 처리
-		        console.error('브랜드 목록을 가져오는 중 에러 발생');
-		      }
-		    }
-		  };
+	 function updateBrandList(brandList, selectedCategory) {
+	     var subCategory = $('#subCategory');
+	     subCategory.empty();
 
-		  xhr.open('GET', url, true);
-		  xhr.send();
-		}
-
-	  // 브랜드 목록을 동적으로 생성하는 함수
-	  function createBrandList(category) {
-	    // 브랜드 목록 가져오기
-	    var brandList = getBrandList(category);
-
-	    // ul 요소 가져오기
-	    var ul = document.getElementById('subCategory');
-
-	    // 기존 목록 초기화
-	    ul.innerHTML = '';
-
-	    // 브랜드 목록을 li 요소로 동적 생성하여 ul에 추가
-	    for (var i = 0; i < brandList.length; i++) {
-	      var brand = brandList[i];
-	      var li = document.createElement('li');
-	      var a = document.createElement('a');
-	      a.href = '../product/ProductList.com?category=' + category + '&brand=' + encodeURIComponent(brand);
-	      a.textContent = brand;
-	      li.appendChild(a);
-	      ul.appendChild(li);
-	    }
-	  }
-
-	  // 페이지 로드 시 초기 브랜드 목록 생성 (여기에서는 휴대폰&태블릿으로 초기화)
-	  createBrandList('휴대폰%26태블릿');
-		  
+	     for (var i = 0; i < brandList.length; i++) {
+	         var brand = brandList[i];
+	         var listItem = $('<li><a href="../product/ProductList.com?category=' + selectedCategory + '&brand=' + brand + '">' + brand + '</a></li>');
+	         subCategory.append(listItem);
+	     }
+	 }
+	 
+	    // 카테고리가 선택되면 브랜드 목록을 가져오도록 설정
+	    $('#yourCategoryElementId').change(function () {
+	        var selectedCategory = $(this).val();
+	        getBrandsByCategory(selectedCategory);
+	    });
+	  
 		  
      // 페이지 번호 클릭 시 이벤트 처리
      $('.page-number').on('click', function () {
@@ -132,54 +122,21 @@
 
 		<dt class="blind">상품 분류 리스트</dt>
 		<dd>
-				<ul>
-					<li><a href="../product/ProductList.com?deal_way=삽니다">삽니다</a></li>
-					<li><a href="../product/ProductList.com?deal_way=팝니다">팝니다</a></li>
+				<ul id="dealWayList">
+				<c:forEach var="dealWay" items="${dealWayList}">
+						<li><a href="../product/ProductList.com?deal_way=${param.deal_way}">${dealWay }</a></li>
+				</c:forEach>
 				</ul>
 				
-				<ul id="subCategory">
-					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=삼성">삼성</a></li>
-					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=애플">애플</a></li>
-					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=기타">기타</a></li>
-					
-					<li><a href="../product/ProductList.com?category=데스크탑&brand=삼성">삼성</a></li>
-					<li><a href="../product/ProductList.com?category=데스크탑&brand=엘지">엘지</a></li>
-					<li><a href="../product/ProductList.com?category=데스크탑&brand=애플">애플</a></li>
-					<li><a href="../product/ProductList.com?category=데스크탑&brand=HP">HP</a></li>
-					<li><a href="../product/ProductList.com?category=데스크탑&brand=기타">기타</a></li>
-					
-					<li><a href="../product/ProductList.com?category=노트북brand=삼성">삼성</a></li>
-					<li><a href="../product/ProductList.com?category=노트북&brand=엘지">엘지</a></li>
-					<li><a href="../product/ProductList.com?category=노트북&brand=애플">애플</a></li>
-					<li><a href="../product/ProductList.com?category=노트북&brand=HP">HP</a></li>
-					<li><a href="../product/ProductList.com?category=노트북&brand=레노버">레노버</a></li>
-					<li><a href="../product/ProductList.com?category=노트북&brand=기타">기타</a></li>
-					
-					<li><a href="../product/ProductList.com?category=게임기기&brand=플레이스테이션">PS</a></li>
-					<li><a href="../product/ProductList.com?category=게임기기&brand=닌텐도">닌텐도</a></li>
-					<li><a href="../product/ProductList.com?category=게임기기&brand=기타">기타</a></li>
-					
-					<li><a href="../product/ProductList.com?category=가전제품&brand=삼성">삼성</a></li>
-					<li><a href="../product/ProductList.com?category=가전제품&brand=엘지">엘지</a></li>
-					<li><a href="../product/ProductList.com?category=가전제품&brand=기타">기타</a></li>
-					
-					<li><a href="../product/ProductList.com?category=카메라&brand=캐논">캐논</a></li>
-					<li><a href="../product/ProductList.com?category=카메라&brand=니콘">니콘</a></li>
-					<li><a href="../product/ProductList.com?category=카메라&brand=소니">소니</a></li>
-					<li><a href="../product/ProductList.com?category=카메라&brand=라이카">라이카</a></li>
-					<li><a href="../product/ProductList.com?category=카메라&brand=코닥">코닥</a></li>
-					<li><a href="../product/ProductList.com?category=카메라&brand=기타">기타</a></li>
-					
-					<li><a href="../product/ProductList.com?category=음향기기&brand=소니">소니</a></li>
-					<li><a href="../product/ProductList.com?category=음향기기&brand=보스">보스</a></li>
-					<li><a href="../product/ProductList.com?category=음향기기&brand=마샬">마샬</a></li>
-					<li><a href="../product/ProductList.com?category=음향기기&brand=기타">기타</a></li>
-				</ul>
+
+        <ul id="subCategory">
+            <c:forEach var="brand" items="${brandList}">
+                <li><a href="../product/ProductList.com?category=${param.category}&brand=${brand}">${brand}</a></li>
+            </c:forEach>
+        </ul>
+
+
 				
-<!-- 				<form action="../product/ProductList.com" method="get" class="search"> -->
-<!-- 				<input type="text" name="searchPart" placeholder="카테고리 내 검색어 입력"> -->
-<!-- 				<button type="submit" value="search">검색</button> -->
-<!-- 				</form> 카테고리별 검색 보류	 -->
 		</dd>
 	</dl>
 	</div>

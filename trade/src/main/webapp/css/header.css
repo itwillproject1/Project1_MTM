@@ -39,13 +39,31 @@ header:hover {
 	text-decoration: none;
 }
 
-.category-a a {
+dl {
+	display: inline-block;
+}
+
+ul {
+	display: inline-block;
+}
+
+li {
+    list-style: none;
+    text-decoration: none;
+}
+
+.main-1 li {
+    display: inline-block;
+    margin-right: 10px; /* 원하는 간격으로 조절하세요 */
+}
+
+.category-a li {
     text-decoration: none;
     color: #333;
     margin-left: 20px;
 }
 
-.category-a a:hover {
+.category-a li:hover {
     color: #A9A9A9; 
     text-decoration: none; 
 }
@@ -53,7 +71,7 @@ header:hover {
 
 .mainCategory { margin-left: 20px;}
 
-.mainCategory a {
+.mainCategory li {
 	left: -20px;
 	font-size: 14px;
     text-decoration: none;
@@ -61,7 +79,7 @@ header:hover {
     margin-right: 20px;
 }
 
-.mainCategory a:hover {
+.mainCategory li:hover {
     color: #A9A9A9; 
     text-decoration: none; 
 }

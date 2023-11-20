@@ -1,5 +1,6 @@
 package com.itwillbs.product.action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ public class ProductListAction implements Action {
 		String deal_way = request.getParameter("deal_way");
 		String searchAll = request.getParameter("searchAll");
 		String searchPart = request.getParameter("searchPart");
+		String selectedCategory = request.getParameter("category");
 
 		System.out.println(" M : 전체검색어 : " + searchAll);
 		System.out.println(" M : 부분검색어 : " + searchPart);
@@ -80,8 +82,132 @@ public class ProductListAction implements Action {
 		
 
 		/********************* 페이징처리 1 *******************/
+		
+		ArrayList<String> brandList = new ArrayList<>();
 
-//		// DAO - 글정보 모두(list)를 가져오는 메서드 호출
+		// 여기에서 원하는 브랜드를 하드코딩하여 추가
+		if ("핸드폰%26태블릿".equals(selectedCategory)) {
+		    brandList.add("삼성");
+		    brandList.add("엘지");
+		    brandList.add("기타");
+
+		} else if ("데스크탑".equals(selectedCategory)) {
+		    brandList.add("삼성");
+		    brandList.add("엘지");
+		    brandList.add("애플");
+		    brandList.add("hp");
+		    brandList.add("기타");
+		    
+		} else if ("노트북".equals(selectedCategory)) {
+		    brandList.add("삼성");
+		    brandList.add("엘지");
+		    brandList.add("애플");
+		    brandList.add("hp");
+		    brandList.add("레노버");
+		    brandList.add("기타");
+		    
+		} else if ("게임기기".equals(selectedCategory)) {
+		    brandList.add("플레이스테이션");
+		    brandList.add("닌텐도");
+		    brandList.add("기타");
+		    
+		} else if ("가전제품".equals(selectedCategory)) {
+		    brandList.add("삼성");
+		    brandList.add("엘지");
+		    brandList.add("기타");
+		    
+		} else if ("카메라".equals(selectedCategory)) {
+		    brandList.add("캐논");
+		    brandList.add("니콘");
+		    brandList.add("소니");
+		    brandList.add("라이카");
+		    brandList.add("코닥");
+		    brandList.add("기타");
+		    
+		} else if ("음향기기".equals(selectedCategory)) {
+		    brandList.add("소니");
+		    brandList.add("보스");
+		    brandList.add("마샬");
+		    brandList.add("기타");
+		
+		}
+
+		// 브랜드 목록을 JSON 형식으로 응답
+		response.setContentType("application/json; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print("[");
+		for (int i = 0; i < brandList.size(); i++) {
+		    out.print("\"" + brandList.get(i) + "\"");
+		    if (i < brandList.size() - 1) {
+		        out.print(",");
+		    }
+		}
+		out.print("]");
+		
+		request.setAttribute("brandList", brandList);
+		System.out.println(" M : size :" + brandList.size());
+		
+		ArrayList<String> dealWayList = new ArrayList<>();
+
+		// 여기에서 원하는 딜 웨이를 하드코딩하여 추가
+		if ("핸드폰%26태블릿".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+		} else if ("데스크탑".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("노트북".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("게임기기".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("가전제품".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("카메라".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("음향기기".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+		}
+
+		// 딜 웨이 목록을 JSON 형식으로 응답
+		response.setContentType("application/json; charset=UTF-8");
+		PrintWriter outDealWay = response.getWriter();
+		outDealWay.print("[");
+		for (int i = 0; i < dealWayList.size(); i++) {
+		    outDealWay.print("\"" + dealWayList.get(i) + "\"");
+		    if (i < dealWayList.size() - 1) {
+		        outDealWay.print(",");
+		    }
+		}
+		outDealWay.print("]");
+
+		request.setAttribute("dealWayList", dealWayList);
+		System.out.println(" M : size :" + dealWayList.size());
+
+		// DAO - 글정보 모두(list)를 가져오는 메서드 호출
 		ArrayList ProductList = new ArrayList();
 		
 		try {
@@ -100,16 +226,6 @@ public class ProductListAction implements Action {
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
-
-		
-//		ArrayList<ProductDTO> productList = dao.getProductList(startRow, pageSize, category, brand, deal_way, searchAll, searchPart);
-//	
-//		System.out.println(" M : size :" + ProductList.size());
-//		ArrayList<ProductDTO> productList = dao.getProductCount();
-//		int count = ProductList.size();
-//		System.out.println(" M : 글 개수 : " + count);
-//
-		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		
 
 		/******************* 페이징처리 2 *********************/

@@ -498,7 +498,11 @@ public class ProductDAO {
 	        // 데이터 처리
 	        while (rs.next()) {
 	            // 브랜드를 리스트에 추가
-	            brandList.add(rs.getString("brand"));
+	            String brand = rs.getString("brand");
+	            brandList.add(brand);
+	            
+	            // 로그 추가
+	            System.out.println("Brand added: " + brand);
 	        }
 
 	    } catch (Exception e) {
@@ -509,6 +513,42 @@ public class ProductDAO {
 
 	    return brandList;
 	}
+	
+	// 딜 웨이 목록을 가져오는 메서드
+    public ArrayList<String> getDealWayList() {
+        ArrayList<String> dealWayList = new ArrayList<>();
+
+        try {
+            // 디비연결정보
+            con = getCon();
+
+            // SQL 작성 & pstmt 객체
+            String sql = "SELECT DISTINCT deal_way FROM Product";
+            pstmt = con.prepareStatement(sql);
+
+            // SQL 실행
+            rs = pstmt.executeQuery();
+
+            // 데이터 처리
+            while (rs.next()) {
+                // 딜 웨이를 리스트에 추가
+                String dealWay = rs.getString("deal_way");
+                dealWayList.add(dealWay);
+
+                // 로그 추가
+                System.out.println("Deal Way added: " + dealWay);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeDB();
+        }
+
+        return dealWayList;
+    }
+
+
 	
 
 
