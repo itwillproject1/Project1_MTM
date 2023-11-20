@@ -21,6 +21,8 @@ $(function(){
              $(this).val(v.replace(regexp, ''));
          }
      });
+    
+    
 });
 </script>
 
@@ -146,7 +148,31 @@ $(function(){
                   document.join.profile.focus();
                   return false;
                }
+              
+              var agree1 = document.getElementsByName("agree1").length;
+              var agree2 = document.getElementsByName("agree2").length;
+              var agree3 = document.getElementsByName("agree3").length;
+              
+              for (var i=0; i<agree1; i++) {
+                  if (document.getElementsByName("agree1")[i].checked == false) {
+                      alert("이용약관에 동의해주세요!");
+                      return false;
+                  } 
+              }
                
+              for (var i=0; i<agree2; i++) {
+                  if (document.getElementsByName("agree2")[i].checked == false) {
+                      alert("개인정보 수집 및 이용에 동의해주세요!");
+                      return false;
+                  }
+              }
+              
+              for (var i=0; i<agree3; i++) {
+                  if (document.getElementsByName("agree3")[i].checked == false) {
+                      alert("개인정보 제3자  제공에 동의해주세요!");
+                      return false;
+                  }
+              }
              
          }
 
@@ -230,6 +256,7 @@ $(function(){
             <option value="@nate.com">@nate.com</option>
             <option value="@samsung.com">@samsung.com</option>
             <option value="@gmail.com">@gmail.com</option>
+            <option value="@kakao.com">@kakao.com</option>
             </select><br>
             
                   
@@ -314,15 +341,15 @@ $(function(){
     <label for="allCheck"><span>이용약관 전체동의</span></label>
     
     <hr>
-    <input class="must" id="agree1" type="checkbox" name="agree1">
+    <input class="must" id="agree1" type="checkbox" name="agree1" value="1">
     <label id="label" for="agree1"><span>이용약관 동의 (필수)</span></label>
    <span class="show" onclick="openAgreeModal1()">내용보기</span><br>
     
-    <input class="must" id="agree2" type="checkbox" name="agree2">
+    <input class="must" id="agree2" type="checkbox" name="agree2" value="2">
     <label id="label" for="agree2"><span>개인정보 수집 및 이용 동의 (필수)</span></label>
     <span class="show" onclick="openAgreeModal2()">내용보기</span><br>
     
-    <input class="must" id="agree3" type="checkbox" name="agree3">
+    <input class="must" id="agree3" type="checkbox" name="agree3" value="3">
     <label id="label" for="agree3"><span>개인정보 제3자 제공 동의 (필수)</span></label>
     <span class="show" onclick="openAgreeModal3()">내용보기</span><br>
     

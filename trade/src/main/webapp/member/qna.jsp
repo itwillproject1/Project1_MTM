@@ -19,8 +19,9 @@
 	<%@ include file="../main/header.jsp"%>
 	<div class="container">
 		<div class="form-container">
-			<h2>문의글 작성</h2>
-			<form action="../member/QnaAction.member" method="post" name="fr1" enctype="multipart/form-data" onsubmit="return check();">
+			<h2>문의글 작성 </h2>
+			
+			<form action="../member/QnaAction.member" method="post" name="fr1" enctype="multipart/form-data" onsubmit="return check();" >
 				<div class="form-group">
 					<label for="qnaCategory">카테고리:</label>
 						<select id="qnaCategory" name="qnaCategory">
@@ -34,12 +35,12 @@
 				
 				<div class="form-group">
 					<label for="subject">제목:</label>
-					<input type="text" name="subject">
+					<input type="text" name="subject" id="subject">
 				</div>
 
 				<div class="form-group">
 					<label for="content">문의 내용:</label>
-					<textarea rows="30" cols="50" name="content"></textarea>
+					<textarea rows="30" cols="50" name="content" id="content"></textarea>
 				</div>
 
 				<div class="form-group">
@@ -50,34 +51,36 @@
 				</div>
 				
 				<div class="center-btn">
-					<button type="submit" class="submit-button">문의글 등록</button>
+					<input type="submit" class="submit-button" value="문의글 등록">
+					<input type="button" class="submit-button" id="hi" onclick="history.back();" value="돌아가기">
 				</div>
 			</form>
+			
 		</div>
 	</div>
 
 	<script>		
 		<!-- 글 유효성 검사 -->
 		function check() {
-			var qnaCategory = document.fr1.qnaCategory.value;
-			var subject = document.fr1.subject.value;
-			var content = document.fr1.content.value;
-			
-			if(qnaCategory == "default") {
-				alert('문의 카테고리를 선택하세요.');
-				document.fr1.qnaCategory.focus();
-				return false;
-			}
+			var qnaCategory = document.getElementById("qnaCategory").value;
+	        var subject = document.getElementById("subject").value;
+	        var content = document.getElementById("content").value;
+	        
+	        if(qnaCategory == "default") {
+	            alert('문의 카테고리를 선택하세요.');
+	            document.getElementById("qnaCategory").focus();
+	            return false;
+	        }
 
 			if(subject == "") {
 				alert('제목을 입력하세요.');
-				document.fr1.subject.focus();
+				document.getElementById("subject").focus();
 				return false;
 			}
 
 			if(content == "") {
 				alert('내용을 입력하세요.');
-				document.fr1.content.focus();
+				document.getElementById("content").focus();
 				return false;
 			}
 		}
