@@ -10,7 +10,7 @@ body {
 
 .container {
    max-width: 800px;
-   margin: 100px auto;
+   margin: 200px auto 70px;
    padding: 20px;
    background-color: #fff; /* 흰색 배경색 */
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
