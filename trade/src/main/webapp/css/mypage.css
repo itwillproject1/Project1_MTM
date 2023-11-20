@@ -10,7 +10,7 @@ body {
 
 .container {
 	max-width: 80%;
-	margin: 100px auto; /* 여기서 상단 여백 조정 */
+	margin: 200px auto 70px; /* 여기서 상단 여백 조정 */
 	padding: 20px;
 	background-color: #fff; /* 흰색 배경색 */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -92,12 +92,18 @@ body {
 }
 
 .form-group2 {
+	margin-bottom: 20px;
 	display: flex;
 }
 
 .form-group label {
 	/* display: block; */
 	margin-bottom: 8px;
+	font-weight: bold;
+	color: #555; /* 어두운 회색 텍스트 색상 */
+}
+
+.form-group2 label {
 	font-weight: bold;
 	color: #555; /* 어두운 회색 텍스트 색상 */
 }
