@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** 메일 전송 확인 **/
+
 public class EmployeeMailSendConfirm implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

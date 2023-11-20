@@ -108,11 +108,11 @@ public class MemberFrontController extends HttpServlet {
 			}
 
 		}
-
-		else if (command.equals("/member/MemberInfo.member")) {
-			System.out.println(" C : /MemberInfo.me 호출 ");
-			System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
-
+		
+		else if(command.equals("/member/MemberInfo.member")) {
+		//	System.out.println(" C : /MemberInfo.me 호출 ");
+		//	System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
+			
 			// MemberInfoAction() 객체생성
 			action = new MemberInfoAction();
 			try {
@@ -121,12 +121,12 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		// 마이페이지 내가 올린 글
-		else if (command.equals("/member/MypageProductboardAction.member")) {
-			System.out.println(" C : /MypageProductboardAction.member 호출 ");
-			System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
-
+		
+		//마이페이지 내가 올린 글
+		else if(command.equals("/member/MypageProductboardAction.member")) {
+	//		System.out.println(" C : /MypageProductboardAction.member 호출 ");
+		//	System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
+			
 			// MemberInfoAction() 객체생성
 			action = new MypageProductboardAction();
 			try {
@@ -213,11 +213,11 @@ public class MemberFrontController extends HttpServlet {
 			forward.setPath("./findid.jsp");
 			forward.setRedirect(false);
 		}
-
-		else if (command.equals("/member/findidAction.member")) {
-
-			System.out.println(" C : /member/findidAction.member 호출 ");
-
+		
+		else if(command.equals("/member/findidAction.member")){
+			
+		//	System.out.println(" C : /member/findidAction.member 호출 ");
+			
 			action = new findidAction();
 			try {
 				forward = action.execute(request, response);
@@ -243,10 +243,10 @@ public class MemberFrontController extends HttpServlet {
 			forward.setRedirect(false);
 		}
 
-		else if (command.equals("/member/AdjustSmtp.member")) {
-
-			System.out.println("/member/AdjustSmtp.member 호출 ");
-
+		else if(command.equals("/member/AdjustSmtp.member")){
+			
+		//	System.out.println("/member/AdjustSmtp.member 호출 ");
+			
 			action = new AdjustSmtp();
 			try {
 				forward = action.execute(request, response);
@@ -255,9 +255,9 @@ public class MemberFrontController extends HttpServlet {
 			}
 
 		}
-
-		else if (command.equals("/member/findpwAction.member")) {
-			System.out.println("/findpwAction.member 호출 ");
+		
+		else if(command.equals("/member/findpwAction.member")){
+		//	System.out.println("/findpwAction.member 호출 ");
 			action = new findpwAction();
 			try {
 				forward = action.execute(request, response);
@@ -266,18 +266,18 @@ public class MemberFrontController extends HttpServlet {
 			}
 
 		}
-
-		else if (command.equals("/member/Qna.member")) {
-			System.out.println("/Qna.member 호출 ");
-
+		
+		else if(command.equals("/member/Qna.member")){
+		//	System.out.println("/Qna.member 호출 ");
+			
 			forward = new ActionForward();
 
 			forward.setPath("./qna.jsp");
 			forward.setRedirect(false);
 		}
-
-		else if (command.equals("/member/QnaAction.member")) {
-			System.out.println("/QnaAction.member 호출 ");
+		
+		else if(command.equals("/member/QnaAction.member")){
+		//	System.out.println("/QnaAction.member 호출 ");
 			action = new QnaAction();
 
 			try {
@@ -286,9 +286,9 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		else if (command.equals("/member/QnaContent.member")) {
-			System.out.println("/QnaContent.member 호출 ");
+		
+		else if(command.equals("/member/QnaContent.member")){
+		//	System.out.println("/QnaContent.member 호출 ");
 			action = new QnaContentAction();
 
 			try {
@@ -297,9 +297,9 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		else if (command.equals("/member/QnaList.member")) {
-			System.out.println("/QnaContent.member 호출 ");
+		
+		else if(command.equals("/member/QnaList.member")){
+		//	System.out.println("/QnaContent.member 호출 ");
 			action = new QnaListAction();
 
 			try {

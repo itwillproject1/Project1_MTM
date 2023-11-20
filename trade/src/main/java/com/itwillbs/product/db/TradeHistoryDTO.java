@@ -67,7 +67,6 @@ public class TradeHistoryDTO {
 	public void setTradeDate(Timestamp tradeDate) {
 		this.tradeDate = tradeDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "TradeHistoryDTO [order_id=" + order_id + ", user_id=" + user_id + ", deal_way=" + deal_way + ", bno="

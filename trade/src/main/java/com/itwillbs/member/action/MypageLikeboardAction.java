@@ -24,7 +24,7 @@ public class MypageLikeboardAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M: MypageLikeboardAction.execute() 호출");
+		//System.out.println("M: MypageLikeboardAction.execute() 호출");
 		
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
@@ -69,7 +69,7 @@ public class MypageLikeboardAction implements Action {
 		ActionForward forward = new ActionForward();
 		forward.setPath("/member/mypage.jsp");
 		forward.setRedirect(false);
-		System.out.println("mypage 루트 지정성공!");
+	//	System.out.println("mypage 루트 지정성공!");
 		return forward;
 		
 	}

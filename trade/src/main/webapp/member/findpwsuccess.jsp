@@ -28,6 +28,6 @@
 		</fieldset>
 		
 		<% session.removeAttribute("pwdto"); %>
-		
+		 <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

@@ -27,3 +27,5 @@
 				<input type="button" value="메인가기" class="in" onclick="location.href='../main/Main.com'">		
 			</form>			
 		</fieldset>
+		
+		 <%@ include file="../main/footer.jsp"%>

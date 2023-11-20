@@ -780,5 +780,7 @@
          }
       </script>
       <!-- 판매 제안 현황 모달창 종료 -->
+      
+       <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

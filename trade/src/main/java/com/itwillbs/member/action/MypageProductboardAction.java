@@ -19,7 +19,7 @@ public class MypageProductboardAction implements Action {
 	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MypageProductboardAction_execute() 실행");
+	//	System.out.println("MypageProductboardAction_execute() 실행");
 		
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id");
@@ -31,7 +31,7 @@ public class MypageProductboardAction implements Action {
 		
 		MPBlist = dao.getMPBlist(user_id);
 		
-		System.out.println("mpblist" + MPBlist);
+	//	System.out.println("mpblist" + MPBlist);
 
 		// 전달정보 저장(deal_way, file_name, title, price)
         request.setAttribute("mpbdto", MPBlist);

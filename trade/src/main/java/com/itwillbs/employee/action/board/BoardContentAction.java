@@ -9,7 +9,7 @@ import com.itwillbs.employee.dto.BoardDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-/** BoardContentAction() : 게시판 정보 불러오기 **/
+/** BoardContentAction : 게시판 정보 불러오기 **/
 public class BoardContentAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

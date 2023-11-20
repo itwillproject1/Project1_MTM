@@ -23,9 +23,9 @@ public class InquiryAction implements Action {
 		dto.setAnswerContent(request.getParameter("answerContent"));
 		InquiryDAO dao = new InquiryDAO();
 		dao.updateInquiry(dto);
-
-		JSConfirmMoveFunction move = new JSConfirmMoveFunction();
-		move.moveLocation(response, "./InquiryContent.emp?bno=" + dto.getBno());
+		
+		// 문의 상세 페이지 재이동
+		JSConfirmMoveFunction.moveLocation(response, "./InquiryContent.emp?bno=" + dto.getBno());
 		return null;
 	}
 }

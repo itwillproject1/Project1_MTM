@@ -12,7 +12,7 @@ public class QnaContentAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("QnaContentAction.execute() 호출");
+	//	System.out.println("QnaContentAction.execute() 호출");
 		
 		// 전달정보 저장
 		int bno = Integer.parseInt(request.getParameter("bno"));

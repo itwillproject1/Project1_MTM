@@ -130,7 +130,7 @@ $(function(){
             }
             
             var address = document.join.address.value;
-            if (address == "") {
+            if (address == "" || document.join.address.value.length < 10) {
                alert(' 주소를 확인하세요! ');
                document.join.address.focus();
                return false;
@@ -573,6 +573,6 @@ $(function(){
          <input type="button" value="취소" class="in">
       </form>   
    </fieldset>      
-      
+       <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

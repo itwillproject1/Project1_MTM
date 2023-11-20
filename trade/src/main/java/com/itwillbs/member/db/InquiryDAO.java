@@ -27,8 +27,8 @@ public class InquiryDAO {
 			DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/mvc");
 			con = ds.getConnection();
 			
-			System.out.println("DAO: DB 연결 성공");
-			System.out.println("DAO: " + con);
+	//		System.out.println("DAO: DB 연결 성공");
+	//		System.out.println("DAO: " + con);
 			
 			return con;
 		}
@@ -62,7 +62,7 @@ public class InquiryDAO {
 					bno = rs.getInt(1) + 1;
 				}
 
-				System.out.println("IDAO: 글번호: " + bno);
+	//			System.out.println("IDAO: 글번호: " + bno);
 
 				// sql, pstmt
 				sql = "insert into Inquiry (bno, user_id, subject, category, content, image, uploadDate)"
@@ -81,7 +81,7 @@ public class InquiryDAO {
 				pstmt.executeUpdate();
 				
 				idto.setBno(bno);
-				System.out.println("DAO: " + bno + "번 글 작성 완료");
+	//			System.out.println("DAO: " + bno + "번 글 작성 완료");
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -122,7 +122,7 @@ public class InquiryDAO {
 					idto.setAnswerContent(rs.getString("answerContent"));
 					idto.setAnswerDate(rs.getTimestamp("answerDate"));
 				}
-				System.out.println("DAO: 글 정보 조회 완료!");
+	//			System.out.println("DAO: 글 정보 조회 완료!");
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -151,7 +151,7 @@ public class InquiryDAO {
 				if (rs.next()) {
 					result = rs.getInt(1);
 				}
-				System.out.println(" DAO : 개수 " + result + "개");
+	//			System.out.println(" DAO : 개수 " + result + "개");
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -203,8 +203,8 @@ public class InquiryDAO {
 
 				} // while
 
-				System.out.println(" DAO : 글 목록 조회성공! ");
-				System.out.println(" DAO : " + QnaList.size());
+		//		System.out.println(" DAO : 글 목록 조회성공! ");
+		//		System.out.println(" DAO : " + QnaList.size());
 
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -11,6 +11,8 @@ import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 import com.itwillbs.util.JSMoveFunction;
 
+/** SuspendActiveFormAction : 정지 처리 폼 페이지 **/
+
 public class SuspendActiveFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -20,9 +22,8 @@ public class SuspendActiveFormAction implements Action {
 		boolean result = cdao.isSuspended(udto);
 
 		if (result) {
-			// 정지처리 된 경우
-			JSMoveFunction move = new JSMoveFunction();
-			move.alertBack(response, "이미 정지처리 된 계정입니다!");
+			// 이미 정지 상태인 경우
+			JSMoveFunction.alertBack(response, "이미 정지처리 된 계정입니다!");
 		}
 
 		ArrayList complainList = cdao.userInfoComplain(udto);

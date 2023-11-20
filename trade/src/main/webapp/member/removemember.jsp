@@ -57,6 +57,6 @@ function check() {
 				<input type="submit" value="삭제하기">			
 			</form>			
 		</fieldset>
-
+ <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

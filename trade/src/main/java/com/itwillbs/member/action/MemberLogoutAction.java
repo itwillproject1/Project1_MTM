@@ -13,7 +13,7 @@ public class MemberLogoutAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" M : MemberLogoutAction_execute() 호출 ");
+	//	System.out.println(" M : MemberLogoutAction_execute() 호출 ");
 		
 		// 로그아웃 처리 => 세션의 정보를 초기화
 		HttpSession session = request.getSession();
