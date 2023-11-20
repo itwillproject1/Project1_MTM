@@ -22,7 +22,7 @@ public class MemberJoinAction implements Action  {
 		request.setCharacterEncoding("UTF-8");
 		
 		String realPath = request.getRealPath("/uploadprofile");
-		System.out.println(" M : realPath :"+realPath);
+	//	System.out.println(" M : realPath :"+realPath);
 		
 		int maxSize = 5 * 1024 * 1024;
 		MultipartRequest multi = new MultipartRequest(request,realPath,maxSize,"UTF-8",new DefaultFileRenamePolicy());
@@ -53,7 +53,7 @@ public class MemberJoinAction implements Action  {
 		dto.setRecommend(multi.getParameter("recommend"));
 		dto.setAgree(agree);
 		
-		System.out.println(" M : "+dto);
+	//	System.out.println(" M : "+dto);
 		MemberDAO dao = new MemberDAO();
 		dao.insertMember(dto);
 		

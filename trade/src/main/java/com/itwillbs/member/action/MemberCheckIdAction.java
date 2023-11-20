@@ -24,7 +24,7 @@ public class MemberCheckIdAction implements Action {
 		
 		MemberDAO dao = new MemberDAO();
 		int result = dao.checkid(dto);
-		System.out.println(" M : 중복값 result : "+result);
+		// System.out.println(" M : 중복값 result : "+result);
 		
 		
 		

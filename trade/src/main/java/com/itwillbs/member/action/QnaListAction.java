@@ -15,7 +15,7 @@ public class QnaListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("QnaListAction.execute() 호출");
+	//	System.out.println("QnaListAction.execute() 호출");
 
 		// 아이디 저장
 		HttpSession session = request.getSession();
@@ -34,7 +34,7 @@ public class QnaListAction implements Action {
 		InquiryDAO idao = new InquiryDAO();
 
 		int count = idao.getQnaCount(user_id);
-		System.out.println(" M : 글 개수 : " + count);
+//		System.out.println(" M : 글 개수 : " + count);
 
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
@@ -61,7 +61,7 @@ public class QnaListAction implements Action {
 		ArrayList qnaList = new ArrayList();
 		qnaList = idao.getQnaList(startRow, pageSize, user_id);
 
-		System.out.println(" M : size :" + qnaList.size());
+	//	System.out.println(" M : size :" + qnaList.size());
 
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("qnaList", qnaList);
