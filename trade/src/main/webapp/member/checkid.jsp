@@ -57,14 +57,16 @@
 	</script>
 
 	<div class="center">
-		<h1>아이디 중복 확인</h1>
+		<h2>ID 중복 확인</h2>
 		<hr>		
 		<form action="./MemberCheckIdAction.member" method="post" name="check_id" onsubmit="return check();" class="form-group">
 			<div class="center">
 				<input type="text" name="user_id" id="user_id">
 			</div>
-			<input type="submit" value="중복확인" class="btn"> 
+			<div class="center">
+			<input type="submit" value="중복확인" class="btn">
 			<input type="button" value="사용하기" name="use_id" onclick="sendid();" class="btn">
+			</div>
 		</form>
 	</div>
  

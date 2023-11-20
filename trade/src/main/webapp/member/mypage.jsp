@@ -152,7 +152,6 @@
 					</p>
 				</div>
 			</div>
-			<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
 		</c:forEach>
 </div>
  
@@ -188,24 +187,42 @@
 					</p>
 				</div>
 			</div>
-			<!--   <script src="mainproductScript.js"></script> 몰라이거아직구현안함ㅋㅋㅋ -->
 		</c:forEach>
 </div>
  
  <!--  내가 찜한 상품 끝 -->
  
  
+ <!--  내가 구매한 상품 목록 -->
+ 
+<div class="title1">내가 구매한 상품</div>
+<div class="container1">
+<%-- ${tradeOkList } --%>
+    <c:forEach var="trade" items="${tradeOkList}">
+        <c:set var="fileNameArr" value="${fn:split(trade.file_name, ',')}" />
+        <div class="product1
+            <c:if test="${trade.deal_status == 0}">
+                disabled1
+            </c:if>"
+            onclick="toProductContent('../product/ProductContent.com?bno=${trade.bno}')">
+            <div class="product.image">
+                <img src="${pageContext.request.contextPath}/upload/${trade.file_name}" alt="${trade.title}">
+            </div>
+            <div class="product-info">
+                <h3>[${trade.deal_way}]${trade.title}</h3>
+            </div>
+            <div class="product-price">
+                <p>
+                    <fmt:formatNumber value="${trade.price}" /> 원
+                </p>
+            </div>
+        </div>
+    </c:forEach>
+</div>
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ <footer>
+   <p>&copy; 1조 전자기기 중고거래</p>
+</footer>
 </body>
 </html>

@@ -21,7 +21,6 @@ public class ProductTradePayAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		// 세션에 저장된 값 가져오기
 		HttpSession session = request.getSession();
 		String buyer_id = (String) session.getAttribute("user_id");
