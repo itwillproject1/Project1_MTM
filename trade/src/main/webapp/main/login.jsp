@@ -14,6 +14,7 @@
 
 <body class="b">
 <%@ include file="header.jsp"%>
+ 
     <div class="login-container">
         <form id="login-form" class="f" action="./MemberLoginAction.member" method="post">
             <label for="username" class="l">아이디</label>
@@ -31,9 +32,10 @@
 			</div>
         </form>
     </div>
-
+	 
     <script src="script.js"></script>
+     
 </body>
-
+ 
 
 </html>

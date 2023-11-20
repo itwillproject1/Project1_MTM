@@ -157,5 +157,6 @@ ${sessionScope.random }
 <% session.removeAttribute("random");%>
 <% session.removeAttribute("rcemail"); %>
 </fieldset>
+ <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

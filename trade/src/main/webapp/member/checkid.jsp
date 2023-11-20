@@ -67,6 +67,6 @@
 			<input type="button" value="사용하기" name="use_id" onclick="sendid();" class="btn">
 		</form>
 	</div>
- 
+  <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

@@ -579,6 +579,6 @@ $(function(){
          </div>
       </form>   
    </fieldset>      
-      
+       <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

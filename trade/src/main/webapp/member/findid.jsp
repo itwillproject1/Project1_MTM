@@ -70,5 +70,6 @@
 			<input type="button" value="돌아가기" class="in" id="bu">
 		</form>	
 	</fieldset>
+	 <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

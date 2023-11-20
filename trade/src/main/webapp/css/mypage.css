@@ -182,7 +182,7 @@ body {
 /* 판매하기 모달 */
 .submit-button {
 	/* display: block; */
-	width: 100%;
+	width: 50%;
 	padding: 10px;
 	margin: 5px;
 	background-color: #222; /* 어두운 검정 계열 배경색 */

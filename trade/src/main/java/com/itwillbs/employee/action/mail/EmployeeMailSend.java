@@ -6,6 +6,7 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;
@@ -18,6 +19,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import com.itwillbs.employee.dto.MailDTO;
+
+/** EmployeeMailSend : 직원용 단체 메일 발송 **/
 
 public class EmployeeMailSend {
 	private static final String id = "qhtjd0812";   //발신메일 (이 사람 계정으로 보내겠다.)
@@ -84,8 +87,12 @@ public class EmployeeMailSend {
 			message.setContent(multipart);
 
 			transport.connect();
-			message.setRecipients(Message.RecipientType.TO, address);
-			transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+			//message.setRecipients(Message.RecipientType.TO, address);
+			//transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+			for(int i = 0; i<address.length; i++) {
+				message.setRecipient(Message.RecipientType.TO, address[i]);
+				Transport.send(message);
+			}
 			transport.close();
 		} catch (MessagingException e) {
 			e.printStackTrace();
@@ -132,8 +139,12 @@ public class EmployeeMailSend {
 			message.setContent(multipart);
 
 			transport.connect();
-			message.setRecipients(Message.RecipientType.TO, address);
-			transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+			//message.setRecipients(Message.RecipientType.TO, address);
+			//transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+			for(int i = 0; i<address.length; i++) {
+				message.setRecipient(Message.RecipientType.TO, address[i]);
+				Transport.send(message);
+			}
 			transport.close();
 		} catch (MessagingException e) {
 			e.printStackTrace();

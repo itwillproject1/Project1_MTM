@@ -8,7 +8,7 @@ import com.itwillbs.employee.dto.MailDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-/** EmployeeSendMailContent() : 발송된 메일 컨텐츠 불러오기 **/
+/** EmployeeSendMailContent : 발송된 메일 컨텐츠 불러오기 **/
 
 public class EmployeeSendMailContent implements Action{
 	@Override
