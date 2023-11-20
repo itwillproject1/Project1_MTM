@@ -91,7 +91,7 @@ public class SuggestSellDAO {
 				ssdto.setBuyer_user_id(rs.getString("buyer_user_id"));
 				ssdto.setSeller_user_id(rs.getString("seller_user_id"));
 				ssdto.setBuyer_price(rs.getInt("buyer_price"));
-				ssdto.setSeller_price(rs.getInt("seller_price"));			
+				ssdto.setSeller_price(rs.getInt("seller_price"));
 
 				// 글 하나의 정보를 배열의 한칸에 저장
 				suggestList.add(ssdto);
@@ -105,41 +105,41 @@ public class SuggestSellDAO {
 		}
 		return suggestList;
 	} // getSuggestList() 종료
-	
+
 	// 중복제안 여부확인
 	public List<ProductDTO> getofferOK(List<ProductDTO> sellProduct, int buy_bno) {
-	    ProductDTO pdto = null;
-	    try {
-	        con = getCon();
-	        for(int i = 0; i<sellProduct.size(); i++) {
-	        	pdto = (ProductDTO)sellProduct.get(i);
-	        	String sql = "SELECT * FROM SuggestSell WHERE buy_bno = ? AND sell_bno = ?";
-	 	        pstmt = con.prepareStatement(sql);
-	 	        pstmt.setInt(1, buy_bno);
-	 	        pstmt.setInt(2, pdto.getBno());
-	 	        rs = pstmt.executeQuery();
+		ProductDTO pdto = null;
+		try {
+			con = getCon();
+			for (int i = 0; i < sellProduct.size(); i++) {
+				pdto = (ProductDTO) sellProduct.get(i);
+				String sql = "SELECT * FROM SuggestSell WHERE buy_bno = ? AND sell_bno = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, buy_bno);
+				pstmt.setInt(2, pdto.getBno());
+				rs = pstmt.executeQuery();
 
-	 	        if (rs.next()) {
-	 	            // 중복 제안이 존재하면 true 반환
-	 	            pdto.setIsOffered(true);
-	 	            System.out.println("DAO : 중복 제안이 확인되었습니다!");
-	 	        } else {
-	 	            // 중복 제안이 존재하지 않으면 false 반환
-	 	        	pdto.setIsOffered(false);
-	 	            System.out.println("DAO : 중복 제안이 없습니다.");
-	 	        }
-	 	        sellProduct.set(i, pdto);
-	        }
+				if (rs.next()) {
+					// 중복 제안이 존재하면 true 반환
+					pdto.setIsOffered(true);
+					System.out.println("DAO : 중복 제안이 확인되었습니다!");
+				} else {
+					// 중복 제안이 존재하지 않으면 false 반환
+					pdto.setIsOffered(false);
+					System.out.println("DAO : 중복 제안이 없습니다.");
+				}
+				sellProduct.set(i, pdto);
+			}
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        closeDB();
-	    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
 
-	    return sellProduct;
+		return sellProduct;
 	}
-		 
+
 	// 판매를 제안한 모든 글의 bno를 받아오는 메서드 getSuggestSellList()
 	public ArrayList<Integer> getSuggestSellList(int sell_bno) {
 		ArrayList<Integer> suggestSellList = new ArrayList<Integer>();
@@ -156,7 +156,7 @@ public class SuggestSellDAO {
 			// 5. 데이터 처리
 			// 글 하나의 정보를 DTO에 저장 후 해당 DTO를 ArrayList에 add
 			while (rs.next()) {
-				buy_bno = rs.getInt("buy_bno");	
+				buy_bno = rs.getInt("buy_bno");
 
 				// 글 하나의 정보를 배열의 한칸에 저장
 				suggestSellList.add(buy_bno);
@@ -169,7 +169,7 @@ public class SuggestSellDAO {
 		System.out.println("suggestSellList" + suggestSellList);
 		return suggestSellList;
 	} // getSuggestSellList() 종료
-	
+
 	// 판매 제안을 취소하는 cancleSuggest()
 	public int cancleSuggest(int sell_bno, String cancle_bno) {
 		int result = -1; // -1(글정보없음, 에러), 0(비밀번호 오류), 1(정상처리)
@@ -186,87 +186,82 @@ public class SuggestSellDAO {
 			// sql 실행, 결과 저장
 			pstmt.executeUpdate();
 			result = 1;
-			
+
 			System.out.println("DAO: 제안 취소 완료, 결과: " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
-		
+
 		return result;
 	} // deleteProduct(bno) 종료
-	
-	
+
 	// 판매가 완료된글 (팝니다.)
-	
+
 	public void sell_bno(SuggestSellDTO dto) {
-		
+
 		try {
 			con = getCon();
-		
-		sql="delete from SuggestSell where sell_bno = ?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, dto.getSell_bno());
-		
-		pstmt.executeUpdate();
-		
+
+			sql = "delete from SuggestSell where sell_bno = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getSell_bno());
+
+			pstmt.executeUpdate();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
-	
+
 	}
+
 	// 구매가 완료된글 (삽니다.)
 	public void buy_bno(SuggestSellDTO dto) {
-		
+
 		try {
 			con = getCon();
-		
-		sql="delete from SuggestSell where buy_bno = ?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, dto.getBuy_bno());
-		
-		pstmt.executeUpdate();
-		
+
+			sql = "delete from SuggestSell where buy_bno = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getBuy_bno());
+
+			pstmt.executeUpdate();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
-	
+
 	}
-	
-	
-	
-	
-	
-	
+
 	// 판매 제안의 정보를 가져오는 메서드
-		public SuggestSellDTO buyer_price (int bno, String id) {
-			SuggestSellDTO dto = null;
+	public SuggestSellDTO buyer_price(int bno, String id) {
+		SuggestSellDTO dto = null;
 		try {
 			con = getCon();
-		
-		sql="select * from SuggestSell where sell_bno = ? and buyer_user_id = ?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, bno);
-		pstmt.setString(2, id);
-		
-		rs = pstmt.executeQuery();
-		if(rs.next()) {
-			dto = new SuggestSellDTO();
-			
-			dto.setBuyer_price(rs.getInt("buyer_price"));
-		}
+
+			sql = "select * from SuggestSell where sell_bno = ? and buyer_user_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, id);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto = new SuggestSellDTO();
+
+				dto.setBuyer_price(rs.getInt("buyer_price"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
-		
+
 		return dto;
 	}
-	
+
 }

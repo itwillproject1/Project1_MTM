@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="../css/kakaopay.css" rel="stylesheet">
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script src="../js/jquery-3.7.1.js"></script>
 
@@ -52,19 +53,22 @@ IMP.request_pay({
 </script>
 </head>
 <body>
-<table border="1" >
-<tr>
-<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99C4EF3C5C0358F601" width="250" height="150" alt="카카오페이">
-</tr>
-</table><br>
-<input type="radio" name="item" id="item" value="5000"> 5,000 <br>
+<div class="image-container">
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99C4EF3C5C0358F601" width="250" alt="카카오페이"><br>
+</div>
+<p class="explain">
+카카오페이의 최소 충전금액은 5,000원이며 <br>
+최대 충전금액은 1,000,000원 입니다.
+</p>
+
 <input type="radio" name="item" id="item" value="10000"> 10,000 <br>
 <input type="radio" name="item" id="item" value="30000"> 30,000 <br>
 <input type="radio" name="item" id="item" value="50000"> 50,000 <br>
 <input type="radio" name="item" id="item" value="100000"> 100,000 <br>
-<p  style="color: #ac2925;">카카오페이의 최소 충전금액은 5,000원이며 <br/>최대 충전금액은 100,000원 입니다.</p>
+<input type="radio" name="item" id="item" value="500000"> 500,000 <br>
+<input type="radio" name="item" id="item" value="1000000"> 1,000,000 <br>
 <hr> 
-<button onclick="pay()">결제하기</button>
+<button class="btn" onclick="pay()">결제하기</button>
 
 </body>
 </html>
