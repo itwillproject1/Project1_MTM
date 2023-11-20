@@ -13,8 +13,9 @@ public class TradeHistoryDTO {
 	private int bno;
 	private String trader_id;
 	private int price;
+	private String address;
 	private String trader_date;
-	
+
 	
 	public String getUser_id() {
 		return user_id;
@@ -46,18 +47,25 @@ public class TradeHistoryDTO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public String getTrader_date() {
 		return trader_date;
 	}
 	public void setTrader_date(String trader_date) {
 		this.trader_date = trader_date;
 	}
-	
 	@Override
 	public String toString() {
 		return "TradeHistoryDTO [user_id=" + user_id + ", deal_way=" + deal_way + ", bno=" + bno + ", trader_id="
-				+ trader_id + ", price=" + price + ", trader_date=" + trader_date + "]";
+				+ trader_id + ", price=" + price + ", address=" + address + ", trader_date=" + trader_date + "]";
 	}
 	
 	
+	
+		
 }

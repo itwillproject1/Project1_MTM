@@ -51,8 +51,8 @@ public class MemberDAO {
 				
 				try {
 					con = getCon();
-					sql = "insert into Member (user_id,password,email,user_name,jumin,gender,phone,address,user_nickname,profile,recommend,agree) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+					sql = "insert into Member (user_id,password,email,user_name,jumin,gender,phone,address,user_nickname,profile,recommend,agree,date) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,now())";
 					
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, dto.getUser_id());
@@ -69,6 +69,7 @@ public class MemberDAO {
 					pstmt.setString(10, dto.getProfile());
 					
 					pstmt.setString(11, dto.getRecommend());
+					pstmt.setString(12, dto.getAgree());
 					pstmt.setString(12, dto.getAgree());
 					
 					pstmt.executeUpdate();

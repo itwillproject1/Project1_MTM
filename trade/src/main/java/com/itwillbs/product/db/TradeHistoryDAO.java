@@ -54,7 +54,7 @@ public class TradeHistoryDAO {
 				
 				con = getCon();
 				
-				sql = "insert into TradeHistory (user_id, deal_way, bno, trader_id, price, tradeDate) values(?,?,?,?,?,now())";
+				sql = "insert into TradeHistory (user_id, deal_way, bno, trader_id, price, address ,tradeDate) values(?,?,?,?,?,?,now())";
 				
 				pstmt = con.prepareStatement(sql);
 				
@@ -63,7 +63,7 @@ public class TradeHistoryDAO {
 				pstmt.setInt(3, dto.getBno());
 				pstmt.setString(4, dto.getTrader_id());
 				pstmt.setInt(5, dto.getPrice());
-				
+				pstmt.setString(6, dto.getAddress());
 				
 				pstmt.executeUpdate();
 						

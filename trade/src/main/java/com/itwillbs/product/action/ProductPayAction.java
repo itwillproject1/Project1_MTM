@@ -31,6 +31,8 @@ public class ProductPayAction implements Action {
 		int pay = Integer.parseInt(request.getParameter("price"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
+		
+		
 		// 판매자 정보 업데이트
 		MemberDTO memdto = new MemberDTO();
 		memdto.setUser_id(seller_id);
@@ -57,6 +59,7 @@ public class ProductPayAction implements Action {
 		historydto.setBno(bno);
 		historydto.setTrader_id(seller_id);
 		historydto.setPrice(pay);
+		historydto.setAddress(request.getParameter("address"));
 		
 		TradeHistoryDAO historydao = new TradeHistoryDAO();
 		historydao.tradehistory(historydto);

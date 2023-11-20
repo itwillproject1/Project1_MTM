@@ -71,6 +71,7 @@ public class ProductTradePayAction implements Action {
 		historydto.setBno(buy_bno);
 		historydto.setTrader_id(seller_id);
 		historydto.setPrice(buy_pay);
+		historydto.setAddress(request.getParameter("address"));
 
 		TradeHistoryDAO historydao = new TradeHistoryDAO();
 		historydao.tradehistory(historydto);
