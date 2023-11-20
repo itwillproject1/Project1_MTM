@@ -96,7 +96,7 @@ body {
 }
 
 .form-group label {
-	display: block;
+	/* display: block; */
 	margin-bottom: 8px;
 	font-weight: bold;
 	color: #555; /* 어두운 회색 텍스트 색상 */
@@ -175,7 +175,7 @@ body {
 }
 /* 판매하기 모달 */
 .submit-button {
-	display: block;
+	/* display: block; */
 	width: 100%;
 	padding: 10px;
 	margin: 5px;
