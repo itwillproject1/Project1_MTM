@@ -133,3 +133,18 @@ a {
 	text-decoration: none;
 	color: #555;
 }
+
+.none1 {
+	display: none;
+}
+
+.arrow {
+	text-align: center;
+	margin: 0 auto;
+	width: 100px;
+}
+.arrow img{
+	text-align: center;
+	width: 50px;
+	cursor: pointer;
+}
