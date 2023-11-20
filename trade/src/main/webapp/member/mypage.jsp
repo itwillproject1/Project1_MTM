@@ -205,26 +205,25 @@ function pay() {
  
 <div class="title1">내가 구매한 상품</div>
 <div class="container1">
-    <c:forEach var="dto" items="${tradeOkList}">
-        <c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
-        <div class="product
-            <c:if test="${dto.deal_status == 0}">
-                disabled
+<%-- ${tradeOkList } --%>
+    <c:forEach var="trade" items="${tradeOkList}">
+        <c:set var="fileNameArr" value="${fn:split(trade.file_name, ',')}" />
+        <div class="product1
+            <c:if test="${trade.deal_status == 0}">
+                disabled1
             </c:if>"
-            onclick="toProductContent('../product/ProductContent.com?bno=${dto.bno}')">
+            onclick="toProductContent('../product/ProductContent.com?bno=${trade.bno}')">
             <div class="product.image">
-                <img src="${pageContext.request.contextPath}/upload/${dto.file_name}" alt="${dto.title}">
+                <img src="${pageContext.request.contextPath}/upload/${trade.file_name}" alt="${trade.title}">
             </div>
             <div class="product-info">
-                <h3>[${dto.deal_way}]${dto.title}</h3>
+                <h3>[${trade.deal_way}]${trade.title}</h3>
             </div>
             <div class="product-price">
                 <p>
-                    <fmt:formatNumber value="${dto.price}" /> 원
+                    <fmt:formatNumber value="${trade.price}" /> 원
                 </p>
             </div>
-            <!-- 확인을 위해 추가한 출력 -->
-            <p>Deal Status: ${dto.deal_status}</p>
         </div>
     </c:forEach>
 </div>

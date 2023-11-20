@@ -42,6 +42,23 @@ public class MypageLikeboardAction implements Action {
 		
 		request.setAttribute("productlikelist", productlikelist);
 		
+		
+		
+		
+		 ProductDTO tdto = new ProductDTO();
+	    tdto.setDeal_user_id(user_id);
+
+	    ProductDAO tdao = new ProductDAO();
+	    List<ProductDTO> tradeOkList = tdao.getTradeOkList(tdto);
+
+	    System.out.println("TradeOkList Size: " + tradeOkList.size());
+
+	    request.setAttribute("tradeOkList", tradeOkList);
+		
+		
+		
+		
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/member/mypage.jsp");
 		forward.setRedirect(false);

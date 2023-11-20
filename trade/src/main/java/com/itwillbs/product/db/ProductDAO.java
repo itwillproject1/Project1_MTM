@@ -750,18 +750,31 @@ public class ProductDAO {
 	    try {
 	        con = getCon(); 
 
-	        String sql = "SELECT * FROM Product WHERE deal_status = 0 AND deal_user_id = ? AND bno = ?";
+	        String sql = "SELECT * FROM Product WHERE deal_status = 0 AND deal_user_id = ? ";
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setString(1, dto.getDeal_user_id());
-	        pstmt.setInt(2, dto.getBno());
 
 	        rs = pstmt.executeQuery();
 	        
 	        while (rs.next()) {
 	            ProductDTO tdto = new ProductDTO();
+	            
 	            tdto.setBno(rs.getInt("bno"));
-	            tdto.setUser_id(rs.getString("user_id"));
-	            tdto.setDeal_status(rs.getInt("deal_status"));
+				tdto.setContent(rs.getString("content"));
+				tdto.setUser_id(rs.getString("user_id"));
+				tdto.setDeal_way(rs.getString("deal_way"));
+				tdto.setTitle(rs.getString("title"));
+				tdto.setCategory(rs.getString("category"));
+				tdto.setBrand(rs.getString("brand"));
+				tdto.setPrice(rs.getInt("price"));
+				tdto.setProduct_status(rs.getString("product_status"));
+				tdto.setContent(rs.getString("content"));
+				tdto.setViews(rs.getInt("views"));
+				tdto.setDate_time(rs.getTimestamp("date_time"));
+				tdto.setFile_name(rs.getString("file_name"));
+				tdto.setLike_count(rs.getInt("like_count"));
+				tdto.setDeal_status(rs.getInt("deal_status"));
+				tdto.setDeal_user_id(rs.getString("deal_user_id"));
 
 	            tradeOkList.add(tdto);
 	            System.out.println("SQL 실행 결과: " + tradeOkList.size());
