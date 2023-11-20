@@ -1,9 +1,6 @@
 package com.itwillbs.employee.action.mail;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Properties;
-import java.util.Queue;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -21,7 +18,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import com.itwillbs.employee.dto.MailDTO;
-import com.itwillbs.employee.dto.UserDTO;
 
 public class EmployeeMailSend {
 	private static final String id = "qhtjd0812";   //발신메일 (이 사람 계정으로 보내겠다.)
@@ -51,19 +47,8 @@ public class EmployeeMailSend {
 		return message;
 	}
 
-	private static InternetAddress[] getAddress(ArrayList<UserDTO> udto, int start, int size) {
-		InternetAddress[] address = new InternetAddress[size];
-		for (int i = start; i < start + size; i++) {
-			try {
-				address[i] = new InternetAddress(udto.get(i).getAddress());
-			} catch (AddressException e) {
-				e.printStackTrace();
-			}
-		}
-		return address;
-	}
 
-	public static void sendMail(MailDTO mdto, ArrayList<UserDTO> udto) throws MessagingException {
+	public static boolean sendMail(MailDTO mdto, InternetAddress[] address){
 		// 이미지 없이 발송
 		Properties prop = new Properties();
 		try {
@@ -86,35 +71,28 @@ public class EmployeeMailSend {
 		}
 
 		MimeMessage message = getMessage();
-		message.setSubject(mdto.getSubject());
+		try {
+			message.setSubject(mdto.getSubject());
+			MimeMultipart multipart = new MimeMultipart("related");
 
-		MimeMultipart multipart = new MimeMultipart("related");
+			BodyPart messageBodyPart = new MimeBodyPart();
+			messageBodyPart.setContent(mdto.getContent(), "text/html;charset=utf-8");
 
-		BodyPart messageBodyPart = new MimeBodyPart();
-		messageBodyPart.setContent(mdto.getContent(), "text/html;charset=utf-8");
+			multipart.addBodyPart(messageBodyPart);
+			message.setContent(multipart);
 
-		multipart.addBodyPart(messageBodyPart);
-		message.setContent(multipart);
-		Queue<InternetAddress> queue = new LinkedList<InternetAddress>();
-		int count = 0;
-		while (queue.size() < udto.size()) {
-			queue.add(new InternetAddress(udto.get(count++).getAddress()));
+			transport.connect();
+			message.setRecipients(Message.RecipientType.TO, address);
+			transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+			transport.close();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			return false;
 		}
-		InternetAddress[] address = null;
-		count = 0;
-		address = new InternetAddress[queue.size()];
-		while (queue.size() > 0) {
-			address[count] = queue.poll();
-			count++;
-		}
-
-		transport.connect();
-		message.setRecipients(Message.RecipientType.TO, address);
-		transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-		transport.close();
+		return true;
 	}
 
-	public static void sendMail(MailDTO mdto, ArrayList<UserDTO> udto, String realPath) throws MessagingException {
+	public static boolean sendMail(MailDTO mdto, InternetAddress[] address, String realPath) {
 		// 이미지 포함 발송
 		Properties prop = new Properties();
 		try {
@@ -137,34 +115,28 @@ public class EmployeeMailSend {
 		}
 
 		MimeMessage message = getMessage();
-		message.setSubject(mdto.getSubject());
+		try {
+			message.setSubject(mdto.getSubject());
+			
+			MimeMultipart multipart = new MimeMultipart("related");
 
-		MimeMultipart multipart = new MimeMultipart("related");
+			BodyPart messageBodyPart = new MimeBodyPart();
+			messageBodyPart.setContent(mdto.getContent(), "text/html;charset=utf-8");
 
-		BodyPart messageBodyPart = new MimeBodyPart();
-		messageBodyPart.setContent(mdto.getContent(), "text/html;charset=utf-8");
+			multipart.addBodyPart(messageBodyPart);
+			FileDataSource image = new FileDataSource(realPath + mdto.getImage());
 
-		multipart.addBodyPart(messageBodyPart);
-		FileDataSource image = new FileDataSource(realPath + mdto.getImage());
+			messageBodyPart.setDataHandler(new DataHandler(image));
+			message.setContent(multipart);
 
-		messageBodyPart.setDataHandler(new DataHandler(image));
-		message.setContent(multipart);
-		Queue<InternetAddress> queue = new LinkedList<InternetAddress>();
-		int count = 0;
-		while (queue.size() < udto.size()) {
-			queue.add(new InternetAddress(udto.get(count++).getAddress()));
+			transport.connect();
+			message.setRecipients(Message.RecipientType.TO, address);
+			transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+			transport.close();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			return false;
 		}
-		InternetAddress[] address = null;
-		count = 0;
-		address = new InternetAddress[queue.size()];
-		while (queue.size() > 0) {
-			address[count] = queue.poll();
-			count++;
-		}
-
-		transport.connect();
-		message.setRecipients(Message.RecipientType.TO, address);
-		transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-		transport.close();
+		return true;
 	}
 }
