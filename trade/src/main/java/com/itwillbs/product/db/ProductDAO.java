@@ -723,8 +723,6 @@ public class ProductDAO {
 	
 	// 판매완료 메서드
 	public void deal(ProductDTO dto) {
-		
-		
 		try {
 			
 			con = getCon();
@@ -743,10 +741,7 @@ public class ProductDAO {
 		
 		
 	}
-	
-	
-	
-	
+
 	
 	
 }

@@ -321,7 +321,7 @@
             <!-- 상품 정보 -->
 
             <c:if test="${!empty sellProduct}">
-               <h2>${login_id }님의판매상품목록</h2>
+               <h2>${login_id }님의 판매상품목록</h2>
                <form action="./SuggestSell.com?bno=${dto.bno }" method="post" id="SuggestSellForm">
                   <c:forEach var="sellProduct" items="${sellProduct}">
                      <div>

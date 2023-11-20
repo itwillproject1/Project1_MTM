@@ -1,5 +1,7 @@
 package com.itwillbs.product.db;
 
+import java.sql.Timestamp;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,15 +10,21 @@ import com.itwillbs.util.ActionForward;
 
 public class TradeHistoryDTO {
 	
+	private int order_id;
 	private String user_id;
 	private String deal_way;
 	private int bno;
 	private String trader_id;
 	private int price;
 	private String address;
-	private String trader_date;
-
+	private Timestamp tradeDate;
 	
+	public int getOrder_id() {
+		return order_id;
+	}
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -53,19 +61,20 @@ public class TradeHistoryDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getTrader_date() {
-		return trader_date;
+	public Timestamp getTradeDate() {
+		return tradeDate;
 	}
-	public void setTrader_date(String trader_date) {
-		this.trader_date = trader_date;
+	public void setTradeDate(Timestamp tradeDate) {
+		this.tradeDate = tradeDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "TradeHistoryDTO [user_id=" + user_id + ", deal_way=" + deal_way + ", bno=" + bno + ", trader_id="
-				+ trader_id + ", price=" + price + ", address=" + address + ", trader_date=" + trader_date + "]";
+		return "TradeHistoryDTO [order_id=" + order_id + ", user_id=" + user_id + ", deal_way=" + deal_way + ", bno="
+				+ bno + ", trader_id=" + trader_id + ", price=" + price + ", address=" + address + ", tradeDate="
+				+ tradeDate + "]";
 	}
 	
 	
 	
-		
 }

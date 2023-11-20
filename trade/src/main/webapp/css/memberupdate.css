@@ -1,61 +1,158 @@
 @charset "UTF-8";
 
-		.ff {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 40px;
-            background-color: #f3f3f3;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+.ff {
+    max-width: 400px;
+    margin: 1.5rem auto;
+    padding: 40px;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        /* Style form elements */
-        .in[type="text"],
-        .in[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
+/* Style form elements */
+.in[type="text"],
+.in[type="password"] {
+    width: 95%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
 
-        .in[type="text"]:focus,
-        .in[type="password"]:focus {
-            border: 1px solid #007bff;
-        }
+.in[type="text"]:focus,
+.in[type="password"]:focus {
+    border: 1px solid #007bff;
+}
 
-        .in[type="submit"],
-        .in[type="button"] {
-            background-color: #222;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
+.in[type="submit"],
+.in[type="button"] {
+    background-color: #222;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
 
-        .in[type="submit"]:hover,
-        .in[type="button"]:hover {
-            background-color: #000000;
-        }
+.in[type="submit"]:hover,
+.in[type="button"]:hover {
+    background-color: #000000;
+}
 
-        /* Style the "검색하기" button */
-        .in[type="button"] {
-            background-color: #222;
-        }
+/* Style the "검색하기" button */
+.in[type="button"] {
+    background-color: #222;
+}
 
-        /* Style the "주소" input */
-        #add {
-            width: 70%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
+/* Style the "주소" input */
+#add {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
 
-        /* Style the form labels */
-        .la {
-            display: block;
-            font-weight: bold;
-            margin-top: 10px;
-        }
+/* Style the form labels */
+.la {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* 개인정보 수집 동의 */
+#checkDiv {
+	font-family: 'Noto Sans KR';
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+#ladbel {
+  /* 원하는 너비와 높이 설정 */
+  width: 20px;
+  height: 20px;
+}
+
+
+
+/* 체크박스 기본 스타일 */
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    font-size: 13px;
+    position: relative;
+    padding-left: 25px; /* 체크박스와 텍스트 간격을 조절할 수 있는 값 */
+    cursor: pointer;
+}
+
+input[type="checkbox"] + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 13px; /* 체크박스 크기 조절 */
+    height: 13px; /* 체크박스 크기 조절 */
+    border: 1.4px solid #656565; /* 체크박스 테두리 색상 */
+    border-radius: 2px;
+}
+
+/* 체크박스 선택 시 스타일 변경 */
+input[type="checkbox"]:checked + label:before {
+    background-color: #656565; /* 체크박스 선택됐을 때 색상 변경 */
+}
+
+input[type="checkbox"]:checked + label:after {
+    content: '\2713'; /* 체크 표시(체크마크)를 유니코드로 설정 */
+    font-size: 13px; /* 체크 표시 크기 */
+    position: absolute;
+    top: -2.2px;
+    left: 3px;
+    color: white;
+}
+
+input[type="checkbox"]:checked + label:after,
+input[type="checkbox"]:checked + .custom-checkbox:after {
+    content: '\2713'; /* 체크 표시(체크마크)를 유니코드로 설정 */
+    font-size: 13px; /* 체크 표시 크기 */
+    position: absolute;
+    top: -2.2px;
+    left: 3px;
+    color: white;
+}
+/* allCheck와 choice에 적용할 스타일 */
+
+#choiceSpan {
+  position: relative;
+  top: -4px; 
+}
+
+#choice + label {
+    font-size: 16px;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+}
+
+#choice + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 13px;
+    height: 13px;
+    border: 1.4px solid #656565;
+    border-radius: 2px;
+}
+
+#choice:checked + label:before {
+    background-color: #656565;
+}
+
+/* 약관 동의 */
+.show {
+	color: darkgray;
+	font-size: 13px;
+	float:right;
+}

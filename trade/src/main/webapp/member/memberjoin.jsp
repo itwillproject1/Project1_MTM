@@ -130,7 +130,7 @@ $(function(){
             }
             
             var address = document.join.address.value;
-            if (address == "") {
+            if (address == "" || document.join.address.value.length < 10) {
                alert(' 주소를 확인하세요! ');
                document.join.address.focus();
                return false;
@@ -215,7 +215,7 @@ $(function(){
                document.join.user_id.focus();
                return false;
             }
-            let checkid = window.open("./Membercheckid.member","checkid","width=570,height=500, scrollbars=yes, resizable=yes");
+            let checkid = window.open("./Membercheckid.member","checkid"," width=460, height=220, left=350 , top=280 , scrollbars=yes, resizable=yes");
             
             // checkid.document.getElementById("id").value = document.getElementById("user_id").value;
             }
@@ -354,7 +354,6 @@ $(function(){
     <span class="show" onclick="openAgreeModal3()">내용보기</span><br>
     
     <input class="choice" id="choice" type="checkbox" name="agree" >
-<!--     <input class="choice" id="choice" type="checkbox" name="agree" onchange="updateValue(this)"> -->
         <label id="ladbel" for="choice"><span>개인정보 수집 및 이용 동의(선택)</span></label>
     <span class="show" id="show1" onclick="openAgreeModal4()">내용보기</span><br>
 </div>
@@ -554,10 +553,6 @@ $(function(){
               window.removeEventListener('click', outsideClick4);
           }
       }
-         
-      /* function updateValue(checkbox) {
-          checkbox.value = checkbox.checked ? "동의" : "비동의";
-        } */
       
       /* 전체 동의*/
         document.getElementById("allCheck").addEventListener("click", function() {
@@ -573,10 +568,8 @@ $(function(){
         
     </script>
          <hr>
-         <div class="btn">
          <input type="submit" value="회원가입" class="in" >     
          <input type="button" value="취소" class="in">
-         </div>
       </form>   
    </fieldset>      
        <%@ include file="../main/footer.jsp"%>

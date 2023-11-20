@@ -20,7 +20,9 @@
     margin-left: 725px;
 }
 #log {
-	margin-top: 10px;
+	margin-top: 1.7rem;
+	height: 3rem;
+	font-size: 16px;
 }
 
 /*아이디·비밀번호 찾기 */
@@ -41,36 +43,7 @@
 }
 
 .button-container {
-	margin-left: auto;
-	margin-right: auto;
-    display: flex;
-}
-
-#dash {
-	color:#656565;
-}
-
-
-/*아이디·비밀번호 찾기 */
-.findId, .findPw {
-    background: none;
-    border: none;
-    color: #656565;
-}
-
-.findId {
-	margin-right:5px;
-}
-.findId:hover ,.findPw:hover {
-	color:black;
-}
-.findPw {
-	margin-left:5px;
-}
-
-.button-container {
-	margin-left: auto;
-	margin-right: auto;
+	margin: 15px auto auto;
     display: flex;
 }
 
@@ -84,13 +57,13 @@
 }
 
 .l {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     color: #333;
 }
 
 .i {
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 6px;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #656565;

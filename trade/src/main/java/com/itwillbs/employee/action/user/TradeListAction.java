@@ -141,7 +141,7 @@ public class TradeListAction implements Action {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		forward.setPath("./employee/user/tradeList.jsp");
-		System.out.println(list.size());
+		//System.out.println(list.size());
 		forward.setRedirect(false);
 		return forward;
 	}
