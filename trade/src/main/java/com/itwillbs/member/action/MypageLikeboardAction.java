@@ -29,7 +29,7 @@ public class MypageLikeboardAction implements Action {
 		
 		
 		
-		
+		// 마이페이지 - 내가 찜한 상품 목록
 		LikeDAO likedao = new LikeDAO();
 		ArrayList<LikeDTO> likedtoList = likedao.getlikeList(user_id);
 		
@@ -44,20 +44,14 @@ public class MypageLikeboardAction implements Action {
 		
 		
 		
-		
-		 ProductDTO tdto = new ProductDTO();
+		// 마이페이지 - 내가 구매한 상품 목록
+		ProductDTO tdto = new ProductDTO();
 	    tdto.setDeal_user_id(user_id);
 
 	    ProductDAO tdao = new ProductDAO();
 	    List<ProductDTO> tradeOkList = tdao.getTradeOkList(tdto);
-
 	    System.out.println("TradeOkList Size: " + tradeOkList.size());
-
 	    request.setAttribute("tradeOkList", tradeOkList);
-		
-		
-		
-		
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/member/mypage.jsp");

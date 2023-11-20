@@ -215,16 +215,6 @@ public class MemberFrontController extends HttpServlet {
 			}
 	
 		}
-		else if(command.equals("/TradeOkAction.member")){
-			
-			action = new TradeOkAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		}
 		
 		else if(command.equals("/member/findid.member")){
 			
