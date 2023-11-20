@@ -208,8 +208,6 @@
 	<!--  내가 구매한 상품 목록 끝 -->
 
 
-	<footer>
-   <p>&copy; 1조 전자기기 중고거래</p>
-</footer>
+	 <%@ include file="../main/footer.jsp"%>
 </body>
 </html>
