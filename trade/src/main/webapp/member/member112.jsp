@@ -135,8 +135,6 @@ $(document).ready(function() {
  		}
  	</script>
 
-	<footer>
-		<p>&copy; 1조 전자기기 중고거래</p>
-	</footer>
+	 <%@ include file="../main/footer.jsp"%>
 </body>
 </html>
