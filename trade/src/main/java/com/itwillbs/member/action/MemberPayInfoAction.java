@@ -16,7 +16,7 @@ public class MemberPayInfoAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println(" M : MemberInfoAction_execute() 호출 ");
+	//	System.out.println(" M : MemberInfoAction_execute() 호출 ");
 		
 		// 로그인한 유저의 아이디
 		HttpSession session = request.getSession();
@@ -35,7 +35,7 @@ public class MemberPayInfoAction implements Action {
 		
 		// 회원정보 가져오는 메서드 호출
 		MemberDTO dto = dao.getMember(id);
-		System.out.println(" M : 조회결과 "+dto);
+	//	System.out.println(" M : 조회결과 "+dto);
 		
 // 		화면에 직접출력 X		
 //		response.setContentType("text/html; charset=UTF-8");

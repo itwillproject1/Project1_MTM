@@ -14,13 +14,13 @@ public class MemberUpdateProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" M : MemberUpdateProAction_execute() 호출 ");
+	//	System.out.println(" M : MemberUpdateProAction_execute() 호출 ");
 		
 		// 로그인 세션제어
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("user_id");
 		
-		System.out.println(id);
+	//	System.out.println(id);
 		
 		ActionForward forward = new ActionForward();
 		if(id == null) {

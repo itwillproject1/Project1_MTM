@@ -485,9 +485,9 @@ public class TradeDAO extends DAO {
 		TradeDTO dto = null;
 		try {
 			con = getCon();
-			sql = "select th.bno, th.user_id, th.trader_id, p.category, "
+			sql = "select th.order_id, th.user_id, th.trader_id, p.category, "
 					+ "th.price, p.title, th.deal_way, tradeDate from TradeHistory th "
-					+ "left outer join Product p on th.bno = p.bno " + "order by bno limit ?, ?";
+					+ "left outer join Product p on th.bno = p.bno " + "order by order_id limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);

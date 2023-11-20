@@ -146,6 +146,6 @@ function passwordcheck() {
 	<input type="button" value="돌아가기" class="in" onclick="location.href='../member/MemberInfo.member'">
 	
 </form>	
-
+ <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

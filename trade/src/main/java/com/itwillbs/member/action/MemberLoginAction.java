@@ -18,7 +18,7 @@ public class MemberLoginAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		System.out.println(" M : MemberLoginAction_execute() 호출 ");
+	//	System.out.println(" M : MemberLoginAction_execute() 호출 ");
 		// 한글처리 인코딩
 		request.setCharacterEncoding("UTF-8");
 		
@@ -33,7 +33,7 @@ public class MemberLoginAction implements Action {
 		MemberDAO dao = new MemberDAO();
 		
 		int result = dao.loginMember(dto);
-		System.out.println(" M : result : "+result);
+//		System.out.println(" M : result : "+result);
 		
 		ActionForward forward = null;
 		if(result == 1) {

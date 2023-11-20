@@ -21,13 +21,13 @@ public class MemberFrontController extends HttpServlet {
 		/************************1. 가상주소 계산 시작************************/
 		//System.out.println("\n---------------1. 가상주소 계산 시작---------------");
 		String requestURI = request.getRequestURI(); // 가상주소
-		System.out.println("\tC: requestURI: " + requestURI);
+	//	System.out.println("\tC: requestURI: " + requestURI);
 		
 		String CTXPath = request.getContextPath(); // 프로젝트 이름
 		//System.out.println("\tC: CTXPath: " + CTXPath);
 		
 		String command = requestURI.substring(CTXPath.length());
-		System.out.println("\tC: command: " + command);
+	//	System.out.println("\tC: command: " + command);
 		//System.out.println("---------------1. 가상주소 계산 종료---------------");
 		/************************1. 가상주소 계산 종료************************/	
 	
@@ -117,8 +117,8 @@ public class MemberFrontController extends HttpServlet {
 		}
 		
 		else if(command.equals("/member/MemberInfo.member")) {
-			System.out.println(" C : /MemberInfo.me 호출 ");
-			System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
+		//	System.out.println(" C : /MemberInfo.me 호출 ");
+		//	System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
 			
 			// MemberInfoAction() 객체생성
 			action = new MemberInfoAction();
@@ -131,8 +131,8 @@ public class MemberFrontController extends HttpServlet {
 		
 		//마이페이지 내가 올린 글
 		else if(command.equals("/member/MypageProductboardAction.member")) {
-			System.out.println(" C : /MypageProductboardAction.member 호출 ");
-			System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
+	//		System.out.println(" C : /MypageProductboardAction.member 호출 ");
+		//	System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
 			
 			// MemberInfoAction() 객체생성
 			action = new MypageProductboardAction();
@@ -225,7 +225,7 @@ public class MemberFrontController extends HttpServlet {
 		
 		else if(command.equals("/member/findidAction.member")){
 			
-			System.out.println(" C : /member/findidAction.member 호출 ");
+		//	System.out.println(" C : /member/findidAction.member 호출 ");
 			
 			action = new findidAction();
 			try {
@@ -256,7 +256,7 @@ public class MemberFrontController extends HttpServlet {
 
 		else if(command.equals("/member/AdjustSmtp.member")){
 			
-			System.out.println("/member/AdjustSmtp.member 호출 ");
+		//	System.out.println("/member/AdjustSmtp.member 호출 ");
 			
 			action = new AdjustSmtp();
 			try {
@@ -268,7 +268,7 @@ public class MemberFrontController extends HttpServlet {
 		}
 		
 		else if(command.equals("/member/findpwAction.member")){
-			System.out.println("/findpwAction.member 호출 ");
+		//	System.out.println("/findpwAction.member 호출 ");
 			action = new findpwAction();
 			try {
 			forward = action.execute(request, response);
@@ -279,7 +279,7 @@ public class MemberFrontController extends HttpServlet {
 		}
 		
 		else if(command.equals("/member/Qna.member")){
-			System.out.println("/Qna.member 호출 ");
+		//	System.out.println("/Qna.member 호출 ");
 			
 			forward = new ActionForward();
 
@@ -288,7 +288,7 @@ public class MemberFrontController extends HttpServlet {
 		}
 		
 		else if(command.equals("/member/QnaAction.member")){
-			System.out.println("/QnaAction.member 호출 ");
+		//	System.out.println("/QnaAction.member 호출 ");
 			action = new QnaAction();
 			
 			try {
@@ -299,7 +299,7 @@ public class MemberFrontController extends HttpServlet {
 		}
 		
 		else if(command.equals("/member/QnaContent.member")){
-			System.out.println("/QnaContent.member 호출 ");
+		//	System.out.println("/QnaContent.member 호출 ");
 			action = new QnaContentAction();
 			
 			try {
@@ -310,7 +310,7 @@ public class MemberFrontController extends HttpServlet {
 		}
 		
 		else if(command.equals("/member/QnaList.member")){
-			System.out.println("/QnaContent.member 호출 ");
+		//	System.out.println("/QnaContent.member 호출 ");
 			action = new QnaListAction();
 			
 			try {

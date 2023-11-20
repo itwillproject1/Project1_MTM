@@ -74,5 +74,6 @@
 			<input type="submit" value="아이디 찾기" class="in" id="find">		
 		</form>	
 	</fieldset>
+	 <%@ include file="../main/footer.jsp"%>
 </body>
 </html>

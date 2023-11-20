@@ -27,8 +27,7 @@ public class MemberDAO {
 			DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/mvc");
 			con = ds.getConnection();
 			
-			System.out.println("DAO: DB 연결 성공");
-			System.out.println("DAO: " + con);
+		
 			
 			return con;
 		}
@@ -81,8 +80,8 @@ public class MemberDAO {
 							
 							pstmt.executeUpdate();
 						}
-					System.out.println(dto.getAgree());
-					System.out.println("회원가입 완료");
+					
+					
 				} catch (Exception e) {
 					
 					e.printStackTrace();
@@ -117,7 +116,7 @@ public class MemberDAO {
 					result = -1;
 				}
 				
-				System.out.println(" DAO : 로그인 처리 완료 ("+result+")");
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -144,7 +143,7 @@ public class MemberDAO {
 										}
 									
 									
-									System.out.println("아이디 중복 확인 " + result);
+								
 									
 								} catch (Exception e) {
 									
@@ -189,7 +188,7 @@ public class MemberDAO {
 					dto.setPay(rs.getInt("pay"));
 				}
 				
-				System.out.println(" DAO : 회원정보 조회 완료!");
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -215,11 +214,10 @@ public class MemberDAO {
 				rs = pstmt.executeQuery();
 				//5. 데이터처리 
 				if(rs.next()) {
-					System.out.println(dto.getPassword());
-					System.out.println(rs.getString("password"));
+					
 					if(dto.getUser_id() != null) {
 						//3. sql 작성(update) & pstmt객체
-						System.out.println(rs.getString("password"));
+						
 						sql = "update Member set password=?,user_nickname=?,email=?,address=?,phone=?,agree=? where user_id=?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, dto.getPassword());
@@ -243,7 +241,7 @@ public class MemberDAO {
 					result = -1; // 회원정보X,에러발생
 				}
 				
-				System.out.println(" DAO : 회원정보 수정완료! ("+result+")");
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -281,7 +279,7 @@ public class MemberDAO {
 				}else {
 				    result = -1; // 회원정보 없음	
 				}
-				System.out.println(" DAO : 회원정보 삭제 ("+result+")");
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -349,7 +347,7 @@ public class MemberDAO {
 					// 글 하나의 정보를 배열의 한칸에 저장
 					MPBlist.add(dto);
 				} // while
-				System.out.println(" DAO : 상품 정보 조회성공!");
+				
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -393,7 +391,7 @@ public class MemberDAO {
 				else {
 				    result = -1; // 회원이름이 없음	
 				}
-				System.out.println(" DAO : 회원아이디 조회중 ("+result+")");
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -437,7 +435,7 @@ public class MemberDAO {
 				else {
 				    result = -1; // 회원이름이 없음	
 				}
-				System.out.println(" DAO : 회원아이디 조회중 ("+result+")");
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -521,7 +519,7 @@ public class MemberDAO {
 				else {
 				    result = -1; // 회원이름이 없음	
 				}
-				System.out.println(" DAO : 회원아이디 조회중 ("+result+")");
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -533,7 +531,7 @@ public class MemberDAO {
 		}
 		public int findpwmember2(MemberDTO pwdto) {
 			int result = -1; // -1  0  1
-			System.out.println("맞아?" +  pwdto.getUser_name());
+			
 			try {
 				// 1.2. 디비 연결
 				con = getCon();
@@ -545,7 +543,7 @@ public class MemberDAO {
 				rs = pstmt.executeQuery();
 				// 5. 데이터 처리
 				if(rs.next()) {
-					System.out.println("여기까지왓니?");
+					
 					if(pwdto.getUser_id().equals(rs.getString("user_id"))) {
 						pwdto.setPassword(rs.getString("password"));
 						result = 1; // 일치
@@ -558,7 +556,7 @@ public class MemberDAO {
 				else {
 				    result = -1; // 회원이름이 없음	
 				}
-				System.out.println(" DAO : 회원아이디 조회중 ("+result+")");
+			
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -593,7 +591,7 @@ public class MemberDAO {
 					dto.setPay(rs.getInt("pay"));
 				}
 				
-				System.out.println(" DAO : 구매자정보 조회 완료!");
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();

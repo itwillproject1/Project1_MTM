@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** DeleteConfirmAction : 직원 계정 비활성화 확인 **/
+
 public class DeleteConfirmAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

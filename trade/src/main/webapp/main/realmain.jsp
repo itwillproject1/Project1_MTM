@@ -33,6 +33,7 @@
 <body>
 <div id="all">
    <%@ include file="../main/header.jsp"%>
+   
    <!-- 이벤트 슬라이더 -->
    <div class="slider-container">
       <div class="slider">
@@ -100,9 +101,7 @@
   }
 </script>
    
-   <footer>
-      <p>&copy; 1조 전자기기 중고거래</p>
-   </footer>
+  <%@ include file="../main/footer.jsp"%>
    </div>
 </body>
 </html>
