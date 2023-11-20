@@ -12,7 +12,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
@@ -125,7 +124,7 @@
 	<!--  내가 올린 상품  시작-->
 	<div class="title1">내가 올린 상품</div>
 	<div class="container1">
-
+		
 		<c:forEach var="product" items="${mpbdto}">
 			<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
 
@@ -143,16 +142,19 @@
 						<fmt:formatNumber value="${product.price }" />
 						원
 					</p>
+					
 				</div>
 			</div>
 		</c:forEach>
 	</div>
-
+	
 	<script>
 		function toProductContent(url) {
 			window.location.href = url;
 		}
 	</script>
+	
+
 	<!--  내가 올린 상품 끝 -->
 
 

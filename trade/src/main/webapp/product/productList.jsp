@@ -114,9 +114,7 @@
 
 	<!-- 추후 추가 가능 -->
 
-	<footer>
-		<p>&copy; 1조 전자기기 중고거래</p>
-	</footer>
+<%@ include file="../main/footer.jsp"%>
 
 </body>
 </html>
