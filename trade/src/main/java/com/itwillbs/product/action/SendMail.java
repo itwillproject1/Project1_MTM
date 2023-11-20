@@ -45,14 +45,7 @@ public class SendMail implements Action {
 
 		String seller_email = (String) request.getAttribute("seller_email");
 
-		System.out.println(" 전달받은 이메일은" + seller_email);
-
-		List<String> arr = new ArrayList<String>();
-
-		/*
-		 * for (int i=0;i<args.length;i++) { arr.add(args[i]); }
-		 */
-		// SMTP 서버 정보를 설정한다.
+		// SMTP 서버 정보 설정
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
 		prop.put("mail.smtp.port", port);
@@ -66,27 +59,9 @@ public class SendMail implements Action {
 			}
 		});
 
-		StringBuffer sb = new StringBuffer();
-
 		// 메시징 예외처리
 		try {
-			sb.append("<div class=\"container\"\r\n"
-					+ "style=\"max-width: 350px; max-height: 630px; overflow: hidden; margin: 30px auto 0; box-shadow: 0 0 40px #a0a0a0; font-family: '\r\n"
-					+ "OpenSans', sans-serif; OpenSans', sans-serif;\">\r\n" + "<div class=\"timeline\">\r\n"
-					+ "<ul\r\n"
-					+ "style=\"padding: 1em 0 0 2em; margin: 0; list-style: none; position: relative;\">\r\n"
-					+ "<li>\r\n" + "<div class=\"bullet pink\"\r\n"
-					+ "style=\"width: 1em; height: 1em; box-sizing: border-box; border-radius: 50%; background: #fff; z-index: 1; margin-right: 1em; border: 2px solid #f93b69; display: inline-block; margin: 1em 0; vertical-align: top;\"></div>\r\n"
-					+ "<div class=\"time\"\r\n"
-					+ "style=\"width: 20%; font-size: 0.75em; padding-top: 0.25em; display: inline-block; margin: 1em 0; vertical-align: top;\"> "
-					+ "</div>\r\n" + "<div class=\"desc\"\r\n"
-					+ "style=\"width: 50%; display: inline-block; margin: 1em 0; vertical-align:" + " top;\">\r\n"
-					+ "<h3 style=\"font-size: 0.9em; font-weight: 400; margin: 0;\">인증번호입니당</h3>\r\n"
-					+ "<h4\r\n"
-					+ "style=\"margin: 0; font-size: 0.7em; font-weight: 400; color: #808080;\">  rc이메일 들어갓니? "
-					+ "</h4>\r\n" + "</div>\r\n" + "</li>\r\n" + "</ul>\r\n" + "</div>\r\n" + "</div>");
-
-//			String html = sb.toString();
+			// 메일 내용 작성
 			String html = "상품 정보가 업데이트 되었습니다.";
 
 			// 메시지 포맷을 담기위해 생성

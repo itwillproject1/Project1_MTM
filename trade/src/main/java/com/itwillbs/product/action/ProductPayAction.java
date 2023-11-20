@@ -26,12 +26,10 @@ public class ProductPayAction implements Action {
 		HttpSession session = request.getSession();
 		String buyer_id = (String)session.getAttribute("user_id");
 		
-		
 		String seller_id = request.getParameter("seller_id");
 		String deal_way = request.getParameter("deal_way");
 		int pay = Integer.parseInt(request.getParameter("price"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		
 		
 		// 판매자 정보 업데이트
 		MemberDTO memdto = new MemberDTO();
@@ -51,9 +49,7 @@ public class ProductPayAction implements Action {
 		
 		ProductDAO prodao = new ProductDAO();
 		prodao.deal(prodto);
-		
-		
-		
+
 		// 거래 내역 전달
 		TradeHistoryDTO historydto = new TradeHistoryDTO();
 		historydto.setUser_id(buyer_id);
@@ -76,12 +72,7 @@ public class ProductPayAction implements Action {
 		MemberDTO sellerDto = memdao.getMember(seller_id); // 판매자 모든 정보 가져옴
 		request.setAttribute("seller_email", sellerDto.getEmail());
 		SendMail smail = new SendMail();
-		smail.execute(request, response);
-		
-		
-		
-		
-		
+		smail.execute(request, response);		
 		
 		//페이지 이동
 		response.setContentType("text/html; charset=utf-8");
