@@ -165,24 +165,6 @@ public class LikeDAO {
 		
 		
 		return likedtolist;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 
 }

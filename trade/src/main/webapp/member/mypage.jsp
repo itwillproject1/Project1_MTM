@@ -118,30 +118,23 @@
 			</div>
 			<!--  내 정보 영역 끝 -->
 
-
-
-
 		</div>
 		<!-- 본문 내용 끝 -->
 	</div>
 
-
-
-
 	<!--  내가 올린 상품  시작-->
- <div class="title1">내가 올린 상품</div>
- <div class="container1">
-	
+	<div class="title1">내가 올린 상품</div>
+	<div class="container1">
+
 		<c:forEach var="product" items="${mpbdto}">
-		<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
-			
+			<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
+
 			<div class="product1 
 			<c:if test="${product.deal_status == 0 }">
 			disabled1
 			</c:if>
-			" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
-			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
-					alt="${product.title}">
+			" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">
+				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" alt="${product.title}">
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>
 				</div>
@@ -153,30 +146,24 @@
 				</div>
 			</div>
 		</c:forEach>
-</div>
- 
- <script>
-  function toProductContent(url) {
-      window.location.href = url;
-  }
-</script>
- 
- 
- 
- 
- <!--  내가 올린 상품 끝 -->
- 
- 
- <!--  내가 찜한 상품 시작-->
- 
-  <div class="title1">내가 찜한 상품</div>
- <div class="container1">
-	
+	</div>
+
+	<script>
+		function toProductContent(url) {
+			window.location.href = url;
+		}
+	</script>
+	<!--  내가 올린 상품 끝 -->
+
+
+	<!--  내가 찜한 상품 시작-->
+	<div class="title1">내가 찜한 상품</div>
+	<div class="container1">
+
 		<c:forEach var="product" items="${productlikelist}">
-		<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
-			<div class="product1" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">				
-			<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
-					alt="${product.title}">
+			<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
+			<div class="product1" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">
+				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" alt="${product.title}">
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>
 				</div>
@@ -188,40 +175,40 @@
 				</div>
 			</div>
 		</c:forEach>
-</div>
- 
- <!--  내가 찜한 상품 끝 -->
- 
- 
- <!--  내가 구매한 상품 목록 -->
- 
-<div class="title1">내가 구매한 상품</div>
-<div class="container1">
-<%-- ${tradeOkList } --%>
-    <c:forEach var="trade" items="${tradeOkList}">
-        <c:set var="fileNameArr" value="${fn:split(trade.file_name, ',')}" />
-        <div class="product1
-            <c:if test="${trade.deal_status == 0}">
+	</div>
+	<!--  내가 찜한 상품 끝 -->
+
+
+	<!--  내가 구매한 상품 목록 -->
+	<div class="title1">내가 구매한 상품</div>
+	<div class="container1">
+		<c:forEach var="i" begin="0" end="${tradeOkList.size()-1 }">
+		<div class="form-group">
+			<label>주문번호: <a href="./tradeDetail.member?order_id=${tradeOkList[i].order_id }">${tradeOkList[i].order_id }</a> </label>
+			<c:set var="fileNameArr" value="${fn:split(buyList[i].file_name, ',')}" />
+			<div class="product1
+            <c:if test="${buyList[i].deal_status == 0}">
                 disabled1
-            </c:if>"
-            onclick="toProductContent('../product/ProductContent.com?bno=${trade.bno}')">
-            <div class="product.image">
-                <img src="${pageContext.request.contextPath}/upload/${trade.file_name}" alt="${trade.title}">
-            </div>
-            <div class="product-info">
-                <h3>[${trade.deal_way}]${trade.title}</h3>
-            </div>
-            <div class="product-price">
-                <p>
-                    <fmt:formatNumber value="${trade.price}" /> 원
-                </p>
-            </div>
-        </div>
-    </c:forEach>
-</div>
- 
- 
- <footer>
+            </c:if>" onclick="toProductContent('../product/ProductContent.com?bno=${buyList[i].bno}')">
+				<div>
+					<img src="${pageContext.request.contextPath}/upload/${buyList[i].file_name}" alt="${buyList[i].title}">
+				</div>
+				<div class="product-info">
+					<h3>[${buyList[i].deal_way}]${buyList[i].title}</h3>
+				</div>
+				<div class="product-price">
+					<p>
+						<fmt:formatNumber value="${buyList[i].price}" />원
+					</p>
+				</div>
+			</div>
+		</div>
+		</c:forEach>
+	</div>
+	<!--  내가 구매한 상품 목록 끝 -->
+
+
+	<footer>
    <p>&copy; 1조 전자기기 중고거래</p>
 </footer>
 </body>

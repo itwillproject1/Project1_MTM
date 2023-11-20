@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.product.db.ProductDAO;
 import com.itwillbs.product.db.ProductDTO;
+import com.itwillbs.product.db.TradeHistoryDAO;
+import com.itwillbs.product.db.TradeHistoryDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -24,8 +26,8 @@ public class TradeOkAction implements Action {
 	    tdto.setDeal_user_id(user_id);
 	    tdto.setBno(Integer.parseInt(request.getParameter("bno")));
 
-	    ProductDAO tdao = new ProductDAO();
-	    List<ProductDTO> tradeOkList = tdao.getTradeOkList(tdto);
+	    TradeHistoryDAO thdao = new TradeHistoryDAO();
+	    List<TradeHistoryDTO> tradeOkList = thdao.getTradeOkList(user_id);
 
 	    System.out.println("TradeOkList Size: " + tradeOkList.size());
 

@@ -15,6 +15,8 @@ import com.itwillbs.product.db.ProductDAO;
 import com.itwillbs.product.db.ProductDTO;
 import com.itwillbs.product.db.SuggestSellDAO;
 import com.itwillbs.product.db.SuggestSellDTO;
+import com.itwillbs.product.db.TradeHistoryDAO;
+import com.itwillbs.product.db.TradeHistoryDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -45,13 +47,24 @@ public class MypageLikeboardAction implements Action {
 		
 		
 		// 마이페이지 - 내가 구매한 상품 목록
-		ProductDTO tdto = new ProductDTO();
-	    tdto.setDeal_user_id(user_id);
+		TradeHistoryDAO thdao = new TradeHistoryDAO();
+		ProductDTO pdto = new ProductDTO();
+	    pdto.setDeal_user_id(user_id);
 
 	    ProductDAO tdao = new ProductDAO();
-	    List<ProductDTO> tradeOkList = tdao.getTradeOkList(tdto);
-	    System.out.println("TradeOkList Size: " + tradeOkList.size());
+	    List<TradeHistoryDTO> tradeOkList = thdao.getTradeOkList(user_id);
 	    request.setAttribute("tradeOkList", tradeOkList);
+	    
+	    List<ProductDTO> buyList = new ArrayList<ProductDTO>();
+	    
+	    for(int i=0; i<tradeOkList.size(); i++) {
+	    	pdto = PLdao.getProduct(tradeOkList.get(i).getBno());
+	    	System.out.println(tradeOkList.get(i).getBno());
+	    	System.out.println(pdto);
+	    	buyList.add(pdto);
+	    }
+	    request.setAttribute("buyList", buyList);
+	    System.out.println("buyList: " + buyList);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/member/mypage.jsp");

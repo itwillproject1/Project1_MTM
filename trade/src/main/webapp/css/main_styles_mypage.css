@@ -35,7 +35,7 @@ body {
 
 
 .product1 {
-	width: 23%;
+	width: 250px;
 	margin: 5% 0;
 	background-color: #fff;
 	border-radius: 10px;
@@ -127,4 +127,9 @@ body {
 	cursor: pointer;
 	transition: background-color 0.3s;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+a {
+	text-decoration: none;
+	color: #555;
 }

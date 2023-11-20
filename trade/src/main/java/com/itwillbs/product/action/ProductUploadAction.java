@@ -71,7 +71,7 @@ public class ProductUploadAction implements Action {
 		dto.setUser_id(user_id);
 		dto.setDeal_way(multi.getParameter("deal_way"));
 		dto.setTitle(multi.getParameter("title"));
-		dto.setCategory(multi.getParameter("category"));
+		dto.setCategory(multi.getParameter("productCategory"));
 		dto.setBrand(multi.getParameter("brand"));
 		dto.setPrice(Integer.parseInt(multi.getParameter("price")));
 		dto.setProduct_status(multi.getParameter("product_status"));
