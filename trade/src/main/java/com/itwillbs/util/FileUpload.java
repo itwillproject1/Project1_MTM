@@ -9,7 +9,7 @@ public class FileUpload {
 	@SuppressWarnings("deprecation")
 	public static MultipartRequest fileUpload(HttpServletRequest request) throws Exception {
 		String realPath = request.getRealPath("upload");
-		System.out.println("realPath = " + realPath);
+	//	System.out.println("realPath = " + realPath);
 		
 		//파일 크기 제한(5MB)
 		int maxSize = 5 * 1024 * 1024;
@@ -20,7 +20,7 @@ public class FileUpload {
 				maxSize, 
 				"UTF-8", 
 				new DefaultFileRenamePolicy());
-		System.out.println("파일 업로드 성공!");
+	//	System.out.println("파일 업로드 성공!");
 
 		return multi;
 	}

@@ -25,7 +25,7 @@ public class ProductContentAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M: ProductContentAction.execute() 호출");
+	//	System.out.println("M: ProductContentAction.execute() 호출");
 		
 		// 로그인 아이디 받기
 		HttpSession session = request.getSession();
@@ -60,25 +60,25 @@ public class ProductContentAction implements Action {
 		
 		LikeDAO ldao = new LikeDAO();
 		int likeResult = ldao.likeCheck(ldto); // 찜 여부(0 또는 1)
-		System.out.println("찜 체크 결과: " + likeResult);
+		//System.out.println("찜 체크 결과: " + likeResult);
 
 		request.setAttribute("likeResult", likeResult);
 
 		/* 프로필 조회에 필요한 정보 */
 		List<ProductDTO> userProducts =  dao.getAllUserProducts(dto.getUser_id());
 		request.setAttribute("userProducts", userProducts);
-		System.out.println(userProducts);
+		//System.out.println(userProducts);
 
 		/* 판매하기 모달에 필요한 정보 */
 		List<ProductDTO> sellProduct =  dao.getAllUserProducts(login_id, "팝니다");
 		request.setAttribute("sellProduct", sellProduct);
-		System.out.println("sellProduct"+sellProduct);
+		//System.out.println("sellProduct"+sellProduct);
 		
 		/* 거래 제안 현황 조회에 필요한 정보 */
 		SuggestSellDAO ssdao = new SuggestSellDAO();
 		ArrayList<SuggestSellDTO> suggestList = ssdao.getSuggestList(bno);
 		request.setAttribute("suggestList", suggestList);
-		System.out.println("suggestList" + suggestList);
+		//System.out.println("suggestList" + suggestList);
 		
 		ArrayList<ProductDTO> spdto = new ArrayList<ProductDTO>();
 		

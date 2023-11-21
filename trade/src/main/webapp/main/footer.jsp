@@ -32,10 +32,11 @@
     <div class="footer-info">
       <div class="contact-info">
       <br>
-        <div class="mail">
-  <div id="d1">손보성 qhtjd0812@naver.com<br>김영미 010829mii@gmail.com<br>이주현 zugusdl@gmail.com</div>
-  <div id="d2">변치욱 imrealtwinkle@naver.com<br>정윤정 qjadj98@gmail.com<br>임소언 smtpcyuil@gmail.com</div>
-</div>
+      <table>
+      	<tr><th>손보성</th><td>qhtjd0812@naver.com</td><th>김영미</th><td>010829mii@gmail.com</td></tr>
+      	<tr><th>이주현</th><td>zugusdl@gmail.com</td><th>변치욱</th><td>imrealtwinkle@naver.com</td></tr>
+      	<tr><th>정윤정</th><td>qjadj98@gmail.com</td><th>임소언</th><td>mtpcyuil@gmail.com</td></tr>
+      </table>
       </div>
       <div class="logo">
         <a href="../main/Main.com"><img src="../main/img/logo(MTM).png" alt="로고"></a>

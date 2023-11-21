@@ -17,7 +17,7 @@ public class MemberJoinAction implements Action  {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println(" M : MemberJoinAction_execute() 실행 ");
+	//	System.out.println(" M : MemberJoinAction_execute() 실행 ");
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		

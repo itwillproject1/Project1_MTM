@@ -36,7 +36,7 @@ public class SendMail implements Action {
 	// Parameters : 에러날짜, 에러시간, 에러타입, (+Shell에서 파일명) ex) 20210420, 14:01:00, DDC,
 	// (+FileName)
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" M : SendMail.execute() 호출");
+	//	System.out.println(" M : SendMail.execute() 호출");
 
 		final String user = "qhtjd0812@gmail.com"; // 발신메일 (이 사람 계정으로 보내겠다.)
 		final String password = "vnoefkhfagpbbpzd"; // 패스워드
@@ -104,7 +104,7 @@ public class SendMail implements Action {
 			Transport.send(message); // javax.mail.Transport임
 
 			// 전송 후, Console 확인용
-			System.out.println("전송완료");
+		//	System.out.println("전송완료");
 
 		} catch (AddressException e) {
 			e.printStackTrace();

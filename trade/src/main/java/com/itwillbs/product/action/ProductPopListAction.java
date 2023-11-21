@@ -14,7 +14,7 @@ public class ProductPopListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ProductPopListAction_execute() 실행");
+	//	System.out.println("ProductPopListAction_execute() 실행");
 		ProductDAO dao = new ProductDAO();
 		ArrayList popList = new ArrayList();
 		popList = dao.getPopularList();
@@ -22,8 +22,8 @@ public class ProductPopListAction implements Action {
 		ArrayList recList = new ArrayList();
 		recList = dao.getRecentList();
 		
-		System.out.println("popList" + popList);
-		System.out.println("recList" + recList);
+	//	System.out.println("popList" + popList);
+	//	System.out.println("recList" + recList);
 		
 		// 전달정보 저장(deal_way, file_name, title, price)
         request.setAttribute("dto", popList);

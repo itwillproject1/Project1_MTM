@@ -55,7 +55,7 @@
                <a href="../member/MemberInfo.member">마이페이지</a>
                <a href="../member/Member112.member">고객센터</a>
                <c:if test="${user_id == 'admin' }">
-               		<a href="../Main.emp">관리자 페이지</a>
+               		<a href="../Main.emp">관리자페이지</a>
                </c:if>
            </span>   
       </div>

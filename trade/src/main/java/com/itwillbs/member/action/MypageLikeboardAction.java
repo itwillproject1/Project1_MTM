@@ -59,12 +59,12 @@ public class MypageLikeboardAction implements Action {
 	    
 	    for(int i=0; i<tradeOkList.size(); i++) {
 	    	pdto = PLdao.getProduct(tradeOkList.get(i).getBno());
-	    	System.out.println(tradeOkList.get(i).getBno());
-	    	System.out.println(pdto);
+	   // 	System.out.println(tradeOkList.get(i).getBno());
+	   // 	System.out.println(pdto);
 	    	buyList.add(pdto);
 	    }
 	    request.setAttribute("buyList", buyList);
-	    System.out.println("buyList: " + buyList);
+	  //  System.out.println("buyList: " + buyList);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/member/mypage.jsp");

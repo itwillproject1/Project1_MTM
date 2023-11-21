@@ -24,7 +24,7 @@ public class SuggestSellDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/mvc");
 		con = ds.getConnection();
 
-		System.out.println("SSDAO: DB 연결 성공");
+	//	System.out.println("SSDAO: DB 연결 성공");
 
 		return con;
 	}
@@ -96,7 +96,7 @@ public class SuggestSellDAO {
 				// 글 하나의 정보를 배열의 한칸에 저장
 				suggestList.add(ssdto);
 			} // while
-			System.out.println(" DAO : 제안 정보 조회성공!");
+	//		System.out.println(" DAO : 제안 정보 조회성공!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,11 +122,11 @@ public class SuggestSellDAO {
 				if (rs.next()) {
 					// 중복 제안이 존재하면 true 반환
 					pdto.setIsOffered(true);
-					System.out.println("DAO : 중복 제안이 확인되었습니다!");
+		//			System.out.println("DAO : 중복 제안이 확인되었습니다!");
 				} else {
 					// 중복 제안이 존재하지 않으면 false 반환
 					pdto.setIsOffered(false);
-					System.out.println("DAO : 중복 제안이 없습니다.");
+		//			System.out.println("DAO : 중복 제안이 없습니다.");
 				}
 				sellProduct.set(i, pdto);
 			}
@@ -166,7 +166,7 @@ public class SuggestSellDAO {
 		} finally {
 			closeDB();
 		}
-		System.out.println("suggestSellList" + suggestSellList);
+	//	System.out.println("suggestSellList" + suggestSellList);
 		return suggestSellList;
 	} // getSuggestSellList() 종료
 
@@ -187,7 +187,7 @@ public class SuggestSellDAO {
 			pstmt.executeUpdate();
 			result = 1;
 
-			System.out.println("DAO: 제안 취소 완료, 결과: " + result);
+		//	System.out.println("DAO: 제안 취소 완료, 결과: " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

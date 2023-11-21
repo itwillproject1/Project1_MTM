@@ -15,11 +15,11 @@ public class SuggestSellAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M: SellSuggestAction 호출");
+	//	System.out.println("M: SellSuggestAction 호출");
 		int buy_bno = Integer.parseInt(request.getParameter("bno"));
-		System.out.println("글 bno: " + buy_bno);
+	//	System.out.println("글 bno: " + buy_bno);
 		int sell_bno = Integer.parseInt(request.getParameter("sellProductBno"));
-		System.out.println("판매제안 bno: " + sell_bno);
+	//	System.out.println("판매제안 bno: " + sell_bno);
 		
 		ProductDAO pdao = new ProductDAO();
 		ProductDTO buy_pdto = new ProductDTO();

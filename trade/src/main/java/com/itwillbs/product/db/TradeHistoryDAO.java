@@ -91,7 +91,7 @@ public class TradeHistoryDAO {
 				thdto.setTradeDate(rs.getTimestamp("tradeDate"));
 
 				tradeOkList.add(thdto);
-				System.out.println("SQL 실행 결과: " + tradeOkList.size());
+			//	System.out.println("SQL 실행 결과: " + tradeOkList.size());
 
 			}
 		} catch (Exception e) {

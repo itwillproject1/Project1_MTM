@@ -15,7 +15,7 @@ public class ProductListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" M : ProductListAction_execute() 실행 ");
+	//	System.out.println(" M : ProductListAction_execute() 실행 ");
 
 		// 전달정보 검색어 정보 저장
 		String search = request.getParameter("search");
