@@ -705,7 +705,7 @@ public class ProductDAO {
 				// 글 하나의 정보를 배열의 한칸에 저장
 				productRecList.add(dto2);
 			} // while
-			System.out.println(" DAO : 상품 정보 조회성공!");
+			//System.out.println(" DAO : 상품 정보 조회성공!");
 
 		} catch (Exception e) {
 			e.printStackTrace();

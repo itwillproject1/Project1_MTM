@@ -218,7 +218,7 @@ public class MemberDAO {
 					if(dto.getUser_id() != null) {
 						//3. sql 작성(update) & pstmt객체
 						
-						sql = "update Member set password=?,user_nickname=?,email=?,address=?,phone=?,agree=? where user_id=?";
+						sql = "update Member set password=?,user_nickname=?,email=?,address=?,phone=?,agree=?,profile=? where user_id=?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, dto.getPassword());
 						pstmt.setString(2, dto.getUser_nickname());
@@ -226,7 +226,8 @@ public class MemberDAO {
 						pstmt.setString(4, dto.getAddress());
 						pstmt.setString(5, dto.getPhone());
 						pstmt.setString(6, dto.getAgree());
-						pstmt.setString(7, dto.getUser_id());
+						pstmt.setString(7, dto.getProfile());
+						pstmt.setString(8, dto.getUser_id());
 						
 						
 						
