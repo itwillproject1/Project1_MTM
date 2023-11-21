@@ -12,6 +12,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#arrow1').click(function(){
+			var img_src = document.getElementById('down1').src;
+			console.log("img_src: " + img_src);
+			
+			if(img_src == 'http://localhost:8088/trade/member/img/down_arrow.png') {
+				$('.none1').css('display', 'inline-block');
+				$('#down1').attr('src','./img/up_arrow.png');
+			} else if(img_src == 'http://localhost:8088/trade/member/img/up_arrow.png') {
+				$('.none1').css('display', 'none');
+				$('#down1').attr('src','./img/down_arrow.png');
+				
+				$('html, body').animate({
+		            scrollTop: $('#title1').offset().top
+		        });
+			}
+		});
+	});
+</script>
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
@@ -122,15 +143,17 @@
 	</div>
 
 	<!--  내가 올린 상품  시작-->
-	<div class="title1">내가 올린 상품</div>
+	<div class="title1" id="title1">내가 올린 상품</div>
 	<div class="container1">
-		
-		<c:forEach var="product" items="${mpbdto}">
+		<c:forEach var="product" items="${mpbdto}" varStatus="loop">
 			<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
 
-			<div class="product1 
+			<div class="product1
 			<c:if test="${product.deal_status == 0 }">
-			disabled1
+				 disabled1
+			</c:if>
+			<c:if test="${loop.index > 3 }">
+				 none1
 			</c:if>
 			" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">
 				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" alt="${product.title}">
@@ -147,7 +170,12 @@
 			</div>
 		</c:forEach>
 	</div>
-	
+	<c:if test="${mpbdto.size() > 4 }">
+		<div class="arrow" id="arrow1">
+			<img src="./img/down_arrow.png" id="down1">
+		</div>
+	</c:if>
+
 	<script>
 		function toProductContent(url) {
 			window.location.href = url;
@@ -159,12 +187,18 @@
 
 
 	<!--  내가 찜한 상품 시작-->
-	<div class="title1">내가 찜한 상품</div>
+	<div class="title1" id="title2">내가 찜한 상품</div>
 	<div class="container1">
 
-		<c:forEach var="product" items="${productlikelist}">
+		<c:forEach var="product" items="${productlikelist}"  varStatus="loop">
 			<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
-			<div class="product1" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">
+			<div class="product1
+			<c:if test="${product.deal_status == 0 }">
+				 disabled1
+			</c:if>
+			<c:if test="${loop.index > 3 }">
+				 none1
+			</c:if>" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">
 				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" alt="${product.title}">
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>
@@ -178,19 +212,27 @@
 			</div>
 		</c:forEach>
 	</div>
+	<c:if test="${productlikelist.size() > 4 }">
+		<div class="arrow">
+			<img src="./img/down_arrow.png" id="down">
+		</div>
+	</c:if>
 	<!--  내가 찜한 상품 끝 -->
 
 	<!--  내가 구매한 상품 목록 -->
-	<div class="title1">내가 구매한 상품</div>
+	<div class="title1" id="title3">내가 구매한 상품</div>
 	<div class="container1">
 		<c:forEach var="i" items="${tradeOkList}">
 		<div class="form-group">
-			<label>주문번호: <a href="./tradeDetail.member?order_id=${tradeOkList[i].order_id }">${tradeOkList[i].order_id }</a> </label>
+			<label><a href="./tradeDetail.member?order_id=${tradeOkList[i].order_id }">주문번호: ${tradeOkList[i].order_id }</a> </label>
 			<c:set var="fileNameArr" value="${fn:split(buyList[i].file_name, ',')}" />
 			<div class="product1
             <c:if test="${buyList[i].deal_status == 0}">
                 disabled1
-            </c:if>" onclick="toProductContent('../product/ProductContent.com?bno=${buyList[i].bno}')">
+            </c:if>
+			<c:if test="${i > 3 }">
+				 none1
+			</c:if>" onclick="toProductContent('../product/ProductContent.com?bno=${buyList[i].bno}')">
 				<div>
 					<img src="${pageContext.request.contextPath}/upload/${buyList[i].file_name}" alt="${buyList[i].title}">
 				</div>
@@ -206,6 +248,11 @@
 		</div>
 		</c:forEach>
 	</div>
+	<c:if test="${tradeOkList.size() > 4 }">
+		<div class="arrow">
+			<img src="./img/down_arrow.png" id="down">
+		</div>
+	</c:if>
 	<!--  내가 구매한 상품 목록 끝 -->
 
 
