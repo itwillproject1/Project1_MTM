@@ -22,13 +22,13 @@ public class MemberFrontController extends HttpServlet {
 		/************************ 1. 가상주소 계산 시작 ************************/
 		// System.out.println("\n---------------1. 가상주소 계산 시작---------------");
 		String requestURI = request.getRequestURI(); // 가상주소
-		System.out.println("\tC: requestURI: " + requestURI);
+	//	System.out.println("\tC: requestURI: " + requestURI);
 
 		String CTXPath = request.getContextPath(); // 프로젝트 이름
 		// System.out.println("\tC: CTXPath: " + CTXPath);
 
 		String command = requestURI.substring(CTXPath.length());
-		System.out.println("\tC: command: " + command);
+	//	System.out.println("\tC: command: " + command);
 		// System.out.println("---------------1. 가상주소 계산 종료---------------");
 		/************************ 1. 가상주소 계산 종료 ************************/
 
@@ -310,7 +310,7 @@ public class MemberFrontController extends HttpServlet {
 		}
 		
 		else if (command.equals("/member/tradeDetail.member")) {
-			System.out.println("/tradeDetail.member 호출 ");
+		//	System.out.println("/tradeDetail.member 호출 ");
 			action = new tradeDetailAction();
 			
 			try {

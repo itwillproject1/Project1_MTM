@@ -16,14 +16,14 @@ public class findpwAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" M : findpwAction() 호출");
+	//	System.out.println(" M : findpwAction() 호출");
 
 		
 		  // 로그인 세션제어 HttpSession session = request.getSession();
 
 		String user_name = request.getParameter("user_name");
 		String user_id = request.getParameter("user_id");
-		System.out.println("설마 너" + user_name);
+	//	System.out.println("설마 너" + user_name);
 		// 전달정보 저장(id,pw) -> DTO에 저장
 		MemberDTO pwdto = new MemberDTO();
 		
