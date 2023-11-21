@@ -136,10 +136,11 @@ $(document).ready(function () {
 		<c:forEach var="dto" items="${ProductList }">
 			<!-- 상품들 -->
 			<div class="product 
-			<c:if test="${dto.deal_status == 0 }">
-            disabled
-         </c:if>"
-			 onclick="toProductContent('./ProductContent.com?bno=${dto.bno}')">
+    <c:if test="${dto.deal_status == 0 }">
+        disabled
+    </c:if>"
+    data-bno="${dto.bno}"
+    onclick="toProductContent('./ProductContent.com?bno=${dto.bno}')">
 				<div class="product.image">
 					<img src="<%=request.getContextPath() %>/upload/${dto.file_name}"
 						alt="${dto.title}">
