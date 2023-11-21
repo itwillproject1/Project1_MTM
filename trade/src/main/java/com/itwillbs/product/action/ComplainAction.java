@@ -42,9 +42,9 @@ public class ComplainAction implements Action {
 		
 		// 전달정보 저장
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		System.out.println("글 bno: " + bno);
+	//	System.out.println("글 bno: " + bno);
 		String complainReason = request.getParameter("reason");
-		System.out.println("신고 사유: " + complainReason);
+	//	System.out.println("신고 사유: " + complainReason);
 		
 		int res = Integer.parseInt(request.getParameter("reason"));
 		
@@ -78,7 +78,7 @@ public class ComplainAction implements Action {
 		ComplainDTO write_bno = cdao.addComplain(cdto);
 		
 		request.setAttribute("complain", cdto);
-		System.out.println("complain: " + cdto);
+		//System.out.println("complain: " + cdto);
 		
 		// 원래 페이지로 이동
 		JSMoveFunction.alertLocation(response, "신고가 접수되었습니다", "./ProductContent.com?bno="+bno);

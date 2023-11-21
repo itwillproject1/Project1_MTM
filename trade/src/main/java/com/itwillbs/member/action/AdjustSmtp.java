@@ -35,7 +35,7 @@ import com.itwillbs.util.JSMoveFunction;
 public class AdjustSmtp implements Action {
 	//Parameters : 에러날짜, 에러시간, 에러타입, (+Shell에서 파일명)	 ex) 20210420, 14:01:00, DDC, (+FileName)
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" M : findpwAction_execute() 호출");
+	//	System.out.println(" M : findpwAction_execute() 호출");
 		
 		final String user = "qhtjd0812@gmail.com";   //발신메일 (이 사람 계정으로 보내겠다.)
         final String password = "vnoefkhfagpbbpzd";   //패스워드
@@ -44,7 +44,7 @@ public class AdjustSmtp implements Action {
         
 		String rcemail = request.getParameter("email");
         
-        System.out.println(" 전달받은 이메일은" + rcemail);
+       // System.out.println(" 전달받은 이메일은" + rcemail);
         
         Random random = new Random();
         
@@ -54,8 +54,8 @@ public class AdjustSmtp implements Action {
         HttpSession session = request.getSession();
 		session.setAttribute("random", ran);
 		session.setAttribute("rcemail", rcemail);
-		System.out.println("리퀘스트에 저장된 숫자는" + session.getAttribute("random"));
-		System.out.println("숫자" + ran);
+		//System.out.println("리퀘스트에 저장된 숫자는" + session.getAttribute("random"));
+		//System.out.println("숫자" + ran);
 		
 		
 		
@@ -151,7 +151,7 @@ public class AdjustSmtp implements Action {
             Transport.send(message); //javax.mail.Transport임
             
             //전송 후, Console 확인용
-            System.out.println("전송완료");
+          //  System.out.println("전송완료");
             
         } catch (AddressException e) {
             e.printStackTrace();

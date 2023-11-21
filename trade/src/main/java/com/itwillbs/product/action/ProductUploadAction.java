@@ -27,12 +27,12 @@ public class ProductUploadAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M: ProductUploadAction.execute() 호출");
+	//	System.out.println("M: ProductUploadAction.execute() 호출");
 		
 		// 로그인 한 유저 아이디 세션에서 가져오기
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
-		System.out.println("user_id: " + user_id);
+	//	System.out.println("user_id: " + user_id);
 		
 		
 		ActionForward forward = new ActionForward();
@@ -63,7 +63,7 @@ public class ProductUploadAction implements Action {
 		}
 
 		String file_name = String.join(",", fileList);
-		System.out.println("file_name: " + file_name);
+	//	System.out.println("file_name: " + file_name);
 
 		// 전달정보 저장(DTO)
 		ProductDTO dto = new ProductDTO();
@@ -82,7 +82,7 @@ public class ProductUploadAction implements Action {
 			dto.setFile_name("default_product_image.png");
 		}
 
-		System.out.println("M: " + dto);
+	//	System.out.println("M: " + dto);
 
 		// DAO 글작성 수행 메서드
 		ProductDAO dao = new ProductDAO();

@@ -18,7 +18,7 @@ public class tradeDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("tradeDetailAction.execute() 호출");
+		//System.out.println("tradeDetailAction.execute() 호출");
 		// 아이디 저장
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");

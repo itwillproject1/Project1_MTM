@@ -17,7 +17,7 @@ public class TradeOkAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	    System.out.println("M: TradeOkAction_execute() 호출");
+	 //   System.out.println("M: TradeOkAction_execute() 호출");
 	    
 	    HttpSession session = request.getSession();
 	    String user_id = (String) session.getAttribute("user_id");
@@ -29,7 +29,7 @@ public class TradeOkAction implements Action {
 	    TradeHistoryDAO thdao = new TradeHistoryDAO();
 	    List<TradeHistoryDTO> tradeOkList = thdao.getTradeOkList(user_id);
 
-	    System.out.println("TradeOkList Size: " + tradeOkList.size());
+	 //   System.out.println("TradeOkList Size: " + tradeOkList.size());
 
 	    request.setAttribute("tradeOkList", tradeOkList);
 

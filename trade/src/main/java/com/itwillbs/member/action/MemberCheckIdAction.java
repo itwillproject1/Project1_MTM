@@ -16,7 +16,7 @@ public class MemberCheckIdAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println(" M : MemberCheckId_execute() 호출 ");
+	//	System.out.println(" M : MemberCheckId_execute() 호출 ");
 		request.setCharacterEncoding("UTF-8");
 		
 		MemberDTO dto = new MemberDTO();
