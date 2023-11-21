@@ -156,17 +156,19 @@
             <!-- 구매 판매 찜 등 버튼 -->
             <c:if test="${dto.deal_status == 1 }">
                <c:if test="${dto.deal_way.equals('삽니다')}">
-                  <c:choose>
-                     <c:when test="${empty login_id}">
-                        <input type="button" class="submit-button" value="판매 제안" onclick="requireLogin();">
-                     </c:when>
-                     <c:when test="${login_id eq dto.user_id}">
-                        <button class="submit-button" onclick="openSuggestModal();">거래 제안 현황</button>
-                     </c:when>
-                     <c:when test="${!empty login_id and login_id ne dto.user_id}">
-                        <button class="submit-button" onclick="openProductModal();">판매 제안</button>
-                     </c:when>
-                  </c:choose>
+	               <div class="button-container">
+	                  <c:choose>
+	                     <c:when test="${empty login_id}">
+	                        <input type="button" class="submit-button" value="판매 제안" onclick="requireLogin();">
+	                     </c:when>
+	                     <c:when test="${login_id eq dto.user_id}">
+	                        <button class="submit-button" onclick="openSuggestModal();">거래 제안 현황</button>
+	                     </c:when>
+	                     <c:when test="${!empty login_id and login_id ne dto.user_id}">
+	                        <button class="submit-button" onclick="openProductModal();">판매 제안</button>
+	                     </c:when>
+	                  </c:choose>
+					</div>
                </c:if>
             </c:if>   
 
@@ -638,7 +640,7 @@
        }
      }
    // 모달 닫기 함수
-   function closeProfileModal1() {
+   function closeProfileModal() {
       pfModal.style.display = 'none';
        window.removeEventListener('click', outsideClick1);
 
