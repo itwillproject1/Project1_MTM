@@ -146,10 +146,14 @@ a {
 .arrow {
 	text-align: center;
 	margin: 0 auto;
-	width: 100px;
+	width: 200px;
+	vertical-align: center;
 }
 .arrow img{
 	text-align: center;
-	width: 50px;
+	width: 15px;
+	cursor: pointer;
+}
+.arrow label {
 	cursor: pointer;
 }
