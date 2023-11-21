@@ -1,10 +1,35 @@
 @charset "UTF-8";
 
     body {
-      margin: 0;
-      padding: 0;
-      
+      padding:0;
+      bottom: 0;
+      align-items: center;
+      margin:0;
+      width:100%;
     }
+    
+ #footerAll {
+  display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    /* Other styles for your footer components */
+    /* ... */
+
+    /* Adjustments for smaller screens */
+    @media (max-width: 768px) {
+      /* Add your responsive styles here */
+      /* For example, you might change the layout or adjust font sizes for smaller screens */
+    }
+
+.mail {
+  display: flex;
+}
+
+#d1 {
+	padding-right: 15px;
+}
 
     #scrollToTopBtn {
   display: none; /* 초기에는 숨김 상태로 설정합니다. */
@@ -21,6 +46,17 @@
   
 }
 
+.search button {
+	font-family: 'Noto Sans KR', sans-serif;
+    padding: 10px 15px;
+    background-color: #585858;
+    color: #fff;
+    border: 2px solid #585858;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
 #scrollToTopBtn:hover {
   background-color: #999;
   
@@ -35,6 +71,7 @@ html {
       color: #fff;
       padding: 20px;
       text-align: center;
+      margin-top: 15rem;
     }
 
     .footer-info {
@@ -57,7 +94,7 @@ html {
     }
 
     .logo img {
-      max-width: 50px;
+      max-width: 70px;
       border-radius: 0%; /* 로고 이미지를 원 모양으로 깎기 */
       margin-left: 30px;
     }

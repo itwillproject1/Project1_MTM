@@ -38,14 +38,14 @@
 					<label for="productCategory">카테고리:</label>
 						<select id="productCategory" name="productCategory" onchange="updateDropdown()">
 							<option disabled selected value="default">카테고리를 선택하세요</option>
-							<option value="휴대폰&태블릿">휴대폰&태블릿</option>
-							<option value="데스크탑">데스크탑</option>
-							<option value="노트북">노트북</option>
-							<option value="게임기기">게임기기</option>
-							<option value="가전제품">가전제품</option>
-							<option value="카메라">카메라</option>
-							<option value="음향기기">음향기기</option>
-							<option value="기타">기타</option>
+							<option value="0">휴대폰&태블릿</option>
+							<option value="1">데스크탑</option>
+							<option value="2">노트북</option>
+							<option value="3">게임기기</option>
+							<option value="4">가전제품</option>
+							<option value="5">카메라</option>
+							<option value="6">음향기기</option>
+							<option value="7">기타</option>
 						</select>
 				</div>
 
@@ -65,14 +65,14 @@
 						brandDropdown.innerHTML = ''; // 두 번째 드롭다운 비우기
 						
 
-						if (selectedCategory === '휴대폰&태블릿') {
+						if (selectedCategory === '0') {
 							// 휴대폰&태블릿를 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
 							brandDropdown.innerHTML += '<option value="삼성">삼성</option>';
 							brandDropdown.innerHTML += '<option value="애플">애플</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
-						} else if (selectedCategory === '데스크탑') {
+						} else if (selectedCategory === '1') {
 							// 데스크탑 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -81,7 +81,7 @@
 							brandDropdown.innerHTML += '<option value="애플">애플</option>';
 							brandDropdown.innerHTML += '<option value="hp">hp</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
-						} else if (selectedCategory === '노트북') {
+						} else if (selectedCategory === '2') {
 							// 노트북 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -91,21 +91,21 @@
 							brandDropdown.innerHTML += '<option value="hp">hp</option>';
 							brandDropdown.innerHTML += '<option value="레노버">레노버</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
-						} else if (selectedCategory === '게임기기') {
+						} else if (selectedCategory === '3') {
 							// 게임기기를 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
 							brandDropdown.innerHTML += '<option value="플레이스테이션">플레이스테이션</option>';
 							brandDropdown.innerHTML += '<option value="닌텐도">닌텐도</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
-						} else if (selectedCategory === '가전제품') {
+						} else if (selectedCategory === '4') {
 							// 가전제품을 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
 							brandDropdown.innerHTML += '<option value="삼성">삼성</option>';
 							brandDropdown.innerHTML += '<option value="엘지">엘지</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
-						} else if (selectedCategory === '카메라') {
+						} else if (selectedCategory === '5') {
 							// 카메라를 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -115,7 +115,7 @@
 							brandDropdown.innerHTML += '<option value="라이카">라이카</option>';
 							brandDropdown.innerHTML += '<option value="코닥">코닥</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
-						} else if (selectedCategory === '음향기기') {
+						} else if (selectedCategory === '6') {
 							// 음향기기를 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -123,7 +123,7 @@
 							brandDropdown.innerHTML += '<option value="보스">보스</option>';
 							brandDropdown.innerHTML += '<option value="마샬">마샬</option>';
 							brandDropdown.innerHTML += '<option value="기타">기타 브랜드</option>';
-						} else if (selectedCategory === '기타') {
+						} else if (selectedCategory === '7') {
 							//기타를 선택한 경우
 							brandDropdown.disabled = true; // 두 번째 드롭다운 비활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';

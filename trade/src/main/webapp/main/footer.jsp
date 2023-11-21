@@ -25,6 +25,7 @@
 
 </head>
 <body>
+<div id="footerAll">
   <button onclick="scrollToTop()" id="scrollToTopBtn" title="맨 위로 이동">Top</button>
   <script src="../main/script.js"></script>
   <div class="footer">
@@ -32,9 +33,9 @@
       <div class="contact-info">
       <br>
       <table>
-      	<tr><th>손보성</th><td>qhtjd0812@naver.com</td><th>김영미</th><td>example@naver.com</td></tr>
-      	<tr><th>이주현</th><td>example@example.com</td><th>변치욱</th><td>example@naver.com</td></tr>
-      	<tr><th>정윤정</th><td>qjadj98@gmail.com</td><th>임소언</th><td>example@naver.com</td></tr>
+      	<tr><th>손보성</th><td>qhtjd0812@naver.com</td><th>김영미</th><td>010829mii@gmail.com</td></tr>
+      	<tr><th>이주현</th><td>zugusdl@gmail.com</td><th>변치욱</th><td>imrealtwinkle@naver.com</td></tr>
+      	<tr><th>정윤정</th><td>qjadj98@gmail.com</td><th>임소언</th><td>mtpcyuil@gmail.com</td></tr>
       </table>
       </div>
       <div class="logo">
@@ -52,6 +53,6 @@
       <p>&copy; 1조 전자기기 중고거래</p>
     </div>
   </div>
-  
+  </div>
 </body>
 </html>

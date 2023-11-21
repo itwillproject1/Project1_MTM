@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../css/memberjoin.css" rel="stylesheet" />
-<link href="../css/main_styles_mypage.css" rel="stylesheet" />
+<link href="../css/pay.css" rel="stylesheet" />
 </head>
 		
 		<script type="text/javascript">
@@ -49,39 +48,39 @@
 		</script>
 
 <body>
-		<fieldset>
-		<form action="../product/ProductTradePayAction.com" method="post" name="pay" onsubmit="return check();">
-		주문자명 : 
-		${membuyerdto.user_name}<br>
-		전화번호 : 
-		${membuyerdto.phone}<br>
-		<hr>
-		배송지<br>
-		<input type="text" name="address" style="width:330px;" value="${membuyerdto.address}"> <input type="button" value="변경하기" onclick="goPopup()" class="in">
-		<!--  <input type="button" value="변경" class="bu" style="float: right;"><hr> --> 	
-		<br><hr>
-		주문상품<br>
-		<input type="hidden" name="seller_id" value="${prosellerdto.user_id}">
-		<input type="hidden" name="price" value="${probuyerdto.price}">
-		<input type="hidden" name="sell_bno" value="${prosellerdto.bno}">
-		<input type="hidden" name="buy_bno" value="${probuyerdto.bno}">
-		<input type="hidden" name="buy_deal_way" value="${probuyerdto.deal_way}">
-		<input type="hidden" name="sell_deal_way" value="${probuyerdto.deal_way}">
-		${probuyerdto.category} / ${probuyerdto.brand} / ${probuyerdto.product_status} <br><hr>
-		상품 설명<br>
-		${probuyerdto.title}
-		<hr>
-		주문금액 :
-		 <p><STRIKE>${prosellerdto.price}</STRIKE> ${probuyerdto.price}</p> 
-		<hr>
-		
-		
-		<input class="in" type="submit" value="구매하기" >
-		<input class="in" type="button" value="취소하기" onclick="cancel();">
-		
-		
+		<fieldset class="container">
+		<form action="../product/ProductPayAction.com" method="post" name="pay" onsubmit="return check();">
+		<div class="form-group">
+				<label>주문자명: ${membuyerdto.user_name}</label>
+				<hr>
+				<label>전화번호: ${membuyerdto.phone}</label>
+				<hr>
+				<label>배송지:</label>
+				<div class="btn">
+					<input type="text" name="address" id="address" value="${membuyerdto.address}">
+					<input type="button" class="submit-button" value="변경하기" onclick="goPopup();">
+				</div>
+				<hr>			
+				<label>주문상품:
+				<input type="hidden" name="seller_id" value="${prosellerdto.user_id}">
+				<input type="hidden" name="price" value="${probuyerdto.price}">
+				<input type="hidden" name="sell_bno" value="${prosellerdto.bno}">
+				<input type="hidden" name="buy_bno" value="${probuyerdto.bno}">
+				<input type="hidden" name="buy_deal_way" value="${probuyerdto.deal_way}">
+				<input type="hidden" name="sell_deal_way" value="${probuyerdto.deal_way}">
+				${probuyerdto.category} / ${probuyerdto.brand} / ${probuyerdto.product_status}
+				</label>
+				<hr>
+				<label>상품명: ${probuyerdto.title}</label>
+				<hr>				
+				<label>주문금액: <STRIKE>${prosellerdto.price}</STRIKE> ${probuyerdto.price}</label>
+				
+				<div class="btn">
+					<input type="submit" class="submit-button" value="결제하기">
+					<input type="button" class="submit-button" value="취소하기" onclick="cancel();">
+				</div>
+		</div>
 		</form>
-		</fieldset>
-
+	</fieldset>
 </body>
 </html>
