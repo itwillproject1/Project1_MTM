@@ -89,7 +89,7 @@
     }
 
     .logo img {
-      max-width: 50px;
+      max-width: 70px;
       border-radius: 0%; /* 로고 이미지를 원 모양으로 깎기 */
       margin-left: 30px;
     }
