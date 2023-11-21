@@ -1,24 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="com.itwillbs.product.db.ProductDAO"%>
+<%@page import="com.itwillbs.product.db.ProductDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-   href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
-<link href="../css/header.css?afterr" rel="stylesheet" />
-<link href="./img/16px.ico" rel="shortcut icon" type="image/x-icon">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" >
+<link href="../css/header.css?" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+ <script type="text/javascript">
+</script>
 <title>헤더</title>
 </head>
 <body>
 
-   <header>   
-        
-<!--         <script src="../product/listJS.js"></script> -->
-<!-- 이거 그거임 상품목록 카테고리별로 바꾸는 자스 근데 아직 
-구현 못해서 냅둘게요 -->
+	<header>
 
    <nav id="navbar">
       <div class="rgt">
@@ -32,6 +31,7 @@
                <button type="submit" value="search">검색</button>
             </form>
          </div>
+
 
       </div>
       <div id="user-menu">
@@ -74,12 +74,6 @@
            </span>
         </div>
         
-      <!-- <span class="user-menu">
-            <a href="../main/login.member">로그인</a>
-            <a href="../product/ProductUpload.com">글등록</a>
-            <a href="#">찜</a>
-            <a href="#">마이페이지</a>
-        </span> -->
      </nav>
     </header>
     <!-- 나머지 콘텐츠 -->

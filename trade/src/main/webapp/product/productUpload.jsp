@@ -65,7 +65,7 @@
 						brandDropdown.innerHTML = ''; // 두 번째 드롭다운 비우기
 						
 
-						if (selectedCategory === '휴대폰&태블릿') {
+						if (selectedCategory === '휴대폰%26태블릿') {
 							// 휴대폰&태블릿를 선택한 경우
 							brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 							brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';

@@ -7,6 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="com.itwillbs.product.db.ProductDAO"%>
 <%@page import="com.itwillbs.product.db.ProductDTO"%>
+<% ProductDAO productDAO = new ProductDAO(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,22 +17,91 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+ <script type="text/javascript">
+$(document).ready(function () {
+
+        // 각 링크에 대한 클릭 이벤트 리스너 추가
+        $('.dealWayLink, .brandLink').on('click', function (event) {
+            event.preventDefault(); // 기본 동작 중지 (링크 이동 방지)
+
+            // 현재 URL 가져오기
+            var currentUrl = window.location.href;
+
+            // 클릭된 링크의 href 속성 가져오기
+            var linkHref = $(this).attr('href');
+
+            // 현재 URL에서 deal_way 또는 brand 매개변수 제거
+            currentUrl = currentUrl.replace(/&deal_way=[^&]*/g, '');
+            currentUrl = currentUrl.replace(/&brand=[^&]*/g, '');
+
+            // 클릭된 링크의 href를 현재 URL에 추가하여 새로운 URL 생성
+            var newUrl = currentUrl.indexOf('?') === -1 ? currentUrl + linkHref : currentUrl + '&' + linkHref;
+
+            // 생성된 URL로 페이지 이동
+            window.location.href = newUrl;
+        });
+
+    /////////////////////////////////////////////////////////////
+	  
+    // 페이지 이동 함수
+    function changePage(pageNum, search, deal_way, category, brand) {
+        var url = "./ProductList.com?pageNum=" + pageNum + "&search=" + search;
+
+        if (deal_way) {
+            url += "&deal_way=" + deal_way;
+        }
+
+        if (category) {
+            url += "&category=" + category;
+        }
+
+        if (brand) {
+            url += "&brand=" + brand;
+        }
+
+        window.location.href = url;
+    }
+
+    // 상세 페이지로 이동하는 함수
+    function toProductContent(url) {
+        window.location.href = url;
+    }
+
+    // 상세 페이지 이벤트
+    $('.product').on('click', function () {
+        var bno = $(this).data('bno');
+        toProductContent('./ProductContent.com?bno=' + bno);
+    });
+
+    // 페이지 번호 클릭 시 이벤트 처리
+    $('.page-number').on('click', function () {
+        var pageNum = $(this).text();
+        changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}');
+    });
+
+    // 이전 페이지 클릭 시 이벤트 처리
+    $('.prev-page').on('click', function () {
+        var pageNum = parseInt('${startPage - pageBlock}');
+        changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}', '${param.brand}');
+    });
+
+    // 다음 페이지 클릭 시 이벤트 처리
+    $('.next-page').on('click', function () {
+        var pageNum = parseInt('${startPage + pageBlock}');
+        changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}', '${param.brand}');
+    });
+});
+     
+
+</script>
 <title>상품 목록</title>
 </head>
-<style>
-
-
-
-</style>
 <body>
 
 	<jsp:include page="../main/header.jsp" />
 	
 	<div class="title" id="product-list-title">상품 목록</div>
-	
-<!-- 	<script src="listJS.js"></script> -->
-<!-- 이거 그거임 상품목록 카테고리별로 바꾸는 자스 근데 아직 
-구현 못해서 냅둘게요 -->
 	
 	<div id="allproduct">
 	<div class ="prd-smenu">
@@ -40,20 +110,26 @@
 
 		<dt class="blind">상품 분류 리스트</dt>
 		<dd>
-				<ul>
-					<li><a href="../product/ProductList.com?deal_way=삽니다">삽니다</a></li>
-					<li><a href="../product/ProductList.com?deal_way=팝니다">팝니다</a></li>
+				<ul id="dealWayList">
+				<c:forEach var="dealWay" items="${dealWayList}">
+						<li><a href="../product/ProductList.com?category=${param.category}&deal_way=${dealWay}">${dealWay}</a></li>
+				</c:forEach>
 				</ul>
 				
-				<ul>
-					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=삼성">삼성</a></li>
-					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=애플">애플</a></li>
-					<li><a href="../product/ProductList.com?category=휴대폰%26태블릿&brand=엘지">엘지</a></li>
-				</ul>
+
+        <ul id="subCategory">
+            <c:forEach var="brand" items="${brandList }">
+                <li><a href="../product/ProductList.com?category=${param.category}&brand=${brand}">${brand}</a></li>
+            </c:forEach>
+        </ul>
+
+
+				
 		</dd>
 	</dl>
 	</div>
 </div>
+
 
 	<!-- 여기에 상품 목록 들어갈 부분 -->
 	<div class="container">
@@ -82,39 +158,29 @@
 		</c:forEach>
 	</div>
 
-	<div id="page_control">
-		<c:if test="${startPage > pageBlock }">
-			<a
-				href="./ProductList.com?pageNum=${startPage-pageBlock }&search=${param.search}&category=${param.category}"
-				class="prev-page">이전 페이지</a>
-		</c:if>
 
-		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-			<c:choose>
-				<c:when test="${i != 0}">
-					<a href="./ProductList.com?pageNum=${i }&search=${param.search}&category=${param.category}"
-						class="page-number">${i }</a>
-				</c:when>
-			</c:choose>
-		</c:forEach>
+<div id="page_control">
+    <c:if test="${startPage > pageBlock }">
+        <a href="#" class="prev-page">이전 페이지</a>
+    </c:if>
+    
+    <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+        <c:choose>
+            <c:when test="${i != 0}">
+                <a href="#" class="page-number">${i }</a>
+            </c:when>
+        </c:choose>
+    </c:forEach>
 
-		<c:if test="${endPage < pageCount }">
-			<a
-				href="./ProductList.com?pageNum=${startPage+pageBlock }&search=${param.search}&category=${param.category}"
-				class="next-page">다음 페이지</a>
-		</c:if>
-	</div>
+    <c:if test="${endPage < pageCount }">
+        <a href="#" class="next-page">다음 페이지</a>
+    </c:if>
+    
+    	</div>
 
-
-<script>
-    function toProductContent(url) {
-        window.location.href = url;
-    }
-</script>
-
-	<!-- 추후 추가 가능 -->
 
 <%@ include file="../main/footer.jsp"%>
+
 
 </body>
 </html>
