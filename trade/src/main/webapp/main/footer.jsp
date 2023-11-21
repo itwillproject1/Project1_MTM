@@ -9,19 +9,9 @@
 <link href="../css/footer.css" rel="stylesheet" />
 <title>푸터</title>
 
-
-
-
-
-
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-
-
-
-
 
 </head>
 <body>
@@ -32,13 +22,13 @@
     <div class="footer-info">
       <div class="contact-info">
       <br>
-      <table>
+      <table id="team">
       	<tr><th>손보성</th><td>qhtjd0812@naver.com</td><th>김영미</th><td>010829mii@gmail.com</td></tr>
       	<tr><th>이주현</th><td>zugusdl@gmail.com</td><th>변치욱</th><td>imrealtwinkle@naver.com</td></tr>
       	<tr><th>정윤정</th><td>qjadj98@gmail.com</td><th>임소언</th><td>mtpcyuil@gmail.com</td></tr>
       </table>
       </div>
-      <div class="logo">
+      <div class="logo1">
         <a href="../main/Main.com"><img src="../main/img/logo(MTM).png" alt="로고"></a>
       </div>
       <div class="customer-center">

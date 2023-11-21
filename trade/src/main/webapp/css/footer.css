@@ -1,110 +1,111 @@
 @charset "UTF-8";
 
-    body {
-      padding:0;
-      bottom: 0;
-      align-items: center;
-      margin:0;
-      width:100%;
-    }
-    
- #footerAll {
-  display: flex;
-      flex-direction: column;
-      min-height: 100%;
-    }
+body {
+	padding: 0;
+	bottom: 0;
+	align-items: center;
+	margin: 0;
+	width: 100%;
+}
 
-    /* Other styles for your footer components */
-    /* ... */
+#footerAll {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
 
-    /* Adjustments for smaller screens */
-    @media (max-width: 768px) {
-      /* Add your responsive styles here */
-      /* For example, you might change the layout or adjust font sizes for smaller screens */
-    }
+/* Other styles for your footer components */
+/* ... */
+
+/* Adjustments for smaller screens */
+@media ( max-width : 768px) { /* Add your responsive styles here */
+	/* For example, you might change the layout or adjust font sizes for smaller screens */
+}
 
 .mail {
-  display: flex;
+	display: flex;
 }
 
 #d1 {
 	padding-right: 15px;
 }
 
-    #scrollToTopBtn {
-  display: none; /* 초기에는 숨김 상태로 설정합니다. */
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #999;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  scroll-behavior: smooth;
-  
+#scrollToTopBtn {
+	display: none; /* 초기에는 숨김 상태로 설정합니다. */
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: #999;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	cursor: pointer;
+	scroll-behavior: smooth;
 }
 
 .search button {
 	font-family: 'Noto Sans KR', sans-serif;
-    padding: 10px 15px;
-    background-color: #585858;
-    color: #fff;
-    border: 2px solid #585858;
-    cursor: pointer;
-    transition: background-color 0.2s;
+	padding: 10px 15px;
+	background-color: #585858;
+	color: #fff;
+	border: 2px solid #585858;
+	cursor: pointer;
+	transition: background-color 0.2s;
 }
 
-
 #scrollToTopBtn:hover {
-  background-color: #999;
-  
+	background-color: #999;
 }
 
 html {
-      scroll-behavior: smooth;
-    }
+	scroll-behavior: smooth;
+}
 
-    .footer {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-      margin-top: 15rem;
-    }
+.footer {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+	margin-top: 15rem;
+}
 
-    .footer-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-align: left;
-      line-height: 1.9rem;
-    }
+.footer-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: left;
+	line-height: 1.9rem;
+}
 
-    .contact-info,
-    .customer-center {
-      flex: 1;
-    }
+.contact-info, .customer-center {
+	flex: 1;
+}
 
-    .contact-info p,
-    .customer-center p {
-      margin: 0;
-      color: #ccc; /* 추가적인 스타일링 */
-    }
+.contact-info p, .customer-center p {
+	margin: 0;
+	color: #ccc; /* 추가적인 스타일링 */
+}
 
-    .logo img {
-      max-width: 70px;
-      border-radius: 0%; /* 로고 이미지를 원 모양으로 깎기 */
-      margin-left: 30px;
-    }
+.logo1 img {
+	max-width: 70px;
+	border-radius: 0%; /* 로고 이미지를 원 모양으로 깎기 */
+}
 
-    .customer-center {
-      text-align: right;
-    }
+.customer-center {
+	text-align: right;
+}
 
-    .copyright {
-      margin-top: 20px;
-      color: #ccc; /* 추가적인 스타일링 */
-    }
-    
+.copyright {
+	margin-top: 20px;
+	color: #ccc; /* 추가적인 스타일링 */
+}
+
+th {
+	width: 60px;
+	text-align: center;
+}
+
+td {
+	width: 180px;
+}
