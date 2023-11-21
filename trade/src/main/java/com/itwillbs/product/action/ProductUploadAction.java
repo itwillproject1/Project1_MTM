@@ -68,10 +68,12 @@ public class ProductUploadAction implements Action {
 		// 전달정보 저장(DTO)
 		ProductDTO dto = new ProductDTO();
 
+		String[] catInfo = { "휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라", "음향기기", "기타" };
+		String category = catInfo[Integer.parseInt(multi.getParameter("productCategory"))];
 		dto.setUser_id(user_id);
 		dto.setDeal_way(multi.getParameter("deal_way"));
 		dto.setTitle(multi.getParameter("title"));
-		dto.setCategory(multi.getParameter("productCategory"));
+		dto.setCategory(category);
 		dto.setBrand(multi.getParameter("brand"));
 		dto.setPrice(Integer.parseInt(multi.getParameter("price")));
 		dto.setProduct_status(multi.getParameter("product_status"));
