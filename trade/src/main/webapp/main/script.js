@@ -15,9 +15,6 @@ function scrollFunction() {
 
 // 맨 위로 스크롤하는 함수
 function scrollToTop() {
-      const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-      if (currentScroll > 0) {
-        window.requestAnimationFrame(scrollToTop);
-        window.scrollTo(0, currentScroll - currentScroll / 11);
-      }
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     }
