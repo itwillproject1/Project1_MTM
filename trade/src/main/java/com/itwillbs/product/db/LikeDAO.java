@@ -89,7 +89,7 @@ public class LikeDAO {
 				pstmt.setInt(1, ldto.getBno());
 				pstmt.setString(2, ldto.getUser_id());
 				
-				System.out.println("입력 성공!");
+			//	System.out.println("입력 성공!");
 				result = pstmt.executeUpdate();
 				
 				sql= "update Product set like_count = like_count+1 where bno = ?";
@@ -105,7 +105,7 @@ public class LikeDAO {
 				
 				pstmt.executeUpdate();
 				
-				System.out.println("삭제 성공!");
+		//		System.out.println("삭제 성공!");
 				result = 0;
 				
 				sql= "update Product set like_count = like_count-1 where bno = ?";

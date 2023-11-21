@@ -63,7 +63,7 @@ public class ProductDAO {
 				bno = rs.getInt(1) + 1;
 			}
 
-			System.out.println("DAO: 글번호: " + bno);
+		//	System.out.println("DAO: 글번호: " + bno);
 
 			// sql, pstmt
 			sql = "insert into Product (bno, user_id, deal_way, title, category, brand, "
