@@ -20,29 +20,6 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
  <script type="text/javascript">
 $(document).ready(function () {
-
-        // 각 링크에 대한 클릭 이벤트 리스너 추가
-        $('.dealWayLink, .brandLink').on('click', function (event) {
-            event.preventDefault(); // 기본 동작 중지 (링크 이동 방지)
-
-            // 현재 URL 가져오기
-            var currentUrl = window.location.href;
-
-            // 클릭된 링크의 href 속성 가져오기
-            var linkHref = $(this).attr('href');
-
-            // 현재 URL에서 deal_way 또는 brand 매개변수 제거
-            currentUrl = currentUrl.replace(/&deal_way=[^&]*/g, '');
-            currentUrl = currentUrl.replace(/&brand=[^&]*/g, '');
-
-            // 클릭된 링크의 href를 현재 URL에 추가하여 새로운 URL 생성
-            var newUrl = currentUrl.indexOf('?') === -1 ? currentUrl + linkHref : currentUrl + '&' + linkHref;
-
-            // 생성된 URL로 페이지 이동
-            window.location.href = newUrl;
-        });
-
-    /////////////////////////////////////////////////////////////
 	  
     // 페이지 이동 함수
     function changePage(pageNum, search, deal_way, category, brand) {
