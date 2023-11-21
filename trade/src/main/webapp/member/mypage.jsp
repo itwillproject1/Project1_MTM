@@ -172,7 +172,7 @@
 	</div>
 	<c:if test="${mpbdto.size() > 4 }">
 		<div class="arrow" id="arrow1">
-			<img src="./img/down_arrow.png" id="down1">
+			<img src="../member/img/down_arrow.png" id="down1">
 		</div>
 	</c:if>
 
