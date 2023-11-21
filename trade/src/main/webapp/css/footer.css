@@ -17,11 +17,18 @@
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
+  scroll-behavior: smooth;
+  
 }
 
 #scrollToTopBtn:hover {
   background-color: #999;
+  
 }
+
+html {
+      scroll-behavior: smooth;
+    }
 
     .footer {
       background-color: #333;
