@@ -54,7 +54,7 @@ function passwordcheck() {
 
 </script>
 
-<form action="./MemberUpdateProAction.member" method="post" onsubmit="return passwordcheck();" name="join" class="ff">
+<form action="./MemberUpdateProAction.member" method="post" onsubmit="return passwordcheck();" name="join" class="ff" enctype="multipart/form-data">
 	
 	현재 비밀번호 :<input type="password" name="nowpassword" id=nowpassword class="in"><br>
 	
@@ -67,6 +67,9 @@ function passwordcheck() {
 	<div id="callBackDiv">
 	주소 : <br><input type="text" id="add" name="address" value="${dto.address }" class="in"> <input type="button" value="검색하기" onclick="goPopup()" class="in"> <br>
 	</div>
+	
+	<br>
+     프로필 :  <input type="file" name="profile" value="등록하기" accept="image/*" class="in"><br><br>
 	
 	전화번호 : <input type="text" name="phone" value="${dto.phone }" class="in"><br><br>
 				

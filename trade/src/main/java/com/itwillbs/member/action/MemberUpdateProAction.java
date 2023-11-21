@@ -9,6 +9,8 @@ import com.itwillbs.member.db.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 import com.itwillbs.util.JSMoveFunction;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class MemberUpdateProAction implements Action {
 
@@ -31,15 +33,23 @@ public class MemberUpdateProAction implements Action {
 		
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
+		
+		String realPath = request.getRealPath("/uploadprofile");
+		
+		
+		int maxSize = 5 * 1024 * 1024;
+		MultipartRequest multi = new MultipartRequest(request,realPath,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		// 전달된 수정정보 저장(DTO)
+		
 		MemberDTO dto = new MemberDTO();
 		dto.setUser_id(id);
-		dto.setPassword(request.getParameter("password"));
-		dto.setUser_nickname(request.getParameter("user_nickname"));
-		dto.setEmail(request.getParameter("email"));
-		dto.setAddress(request.getParameter("address"));
-		dto.setPhone(request.getParameter("phone"));
-		dto.setAgree(request.getParameter("agree"));
+		dto.setPassword(multi.getParameter("password"));
+		dto.setUser_nickname(multi.getParameter("user_nickname"));
+		dto.setEmail(multi.getParameter("email"));
+		dto.setAddress(multi.getParameter("address"));
+		dto.setPhone(multi.getParameter("phone"));
+		dto.setAgree(multi.getParameter("agree"));
+		dto.setProfile(multi.getFilesystemName("profile"));
 		
 		// MemberDAO객체 - 정보수정메서드 호출
 		MemberDAO dao = new MemberDAO();

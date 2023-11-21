@@ -113,7 +113,12 @@
 			<div class="image-container">
 
 				<div class="image-preview">
+					<c:if test="${dto.profile != null}" >
 					<img src="<%=request.getContextPath() %>/uploadprofile/${dto.profile }" id="imagePreview" alt="미리보기">
+					</c:if>
+					<c:if test="${dto.profile == null}" >
+					<img src="./img/member.png" id="imagePreview" alt="미리보기">
+					</c:if>
 				</div>
 			</div>
 			<!-- 이미지 영역 종료 -->

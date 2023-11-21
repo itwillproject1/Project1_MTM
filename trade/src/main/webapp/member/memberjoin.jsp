@@ -142,12 +142,12 @@ $(function(){
                return false;
             }
             
-              var profile = document.join.profile.value;
+              /* var profile = document.join.profile.value;
               if (profile == "") {
                   alert(' 프로필을 등록하세요! ');
                   document.join.profile.focus();
                   return false;
-               }
+               } */
               
               var agree1 = document.getElementsByName("agree1").length;
               var agree2 = document.getElementsByName("agree2").length;
