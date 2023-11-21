@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.itwillbs.member.db.MemberDAO;
+import com.itwillbs.member.db.MemberDTO;
 import com.itwillbs.product.db.LikeDAO;
 import com.itwillbs.product.db.LikeDTO;
 import com.itwillbs.product.db.ProductDAO;
@@ -45,6 +47,11 @@ public class ProductContentAction implements Action {
 		// BoardDAO 객체 - 특정 글의 정보를 가져옴()
 		ProductDTO dto = dao.getProduct(bno);
 		request.setAttribute("dto", dto);
+		
+		/* 글 작성자 정보 */
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = mdao.getMember(dto.getUser_id());
+		request.setAttribute("mdto", mdto);
 		
 		/* 찜 여부 확인 */
 		LikeDTO ldto = new LikeDTO();

@@ -254,7 +254,7 @@
 	</div>
 	<c:if test="${productlikelist.size() > 4 }">
 		<div class="arrow" id="arrow2">
-			<label><img src="../member/img/down_arrow.png" id="down1"> 펼쳐보기</label>
+			<label><img src="../member/img/down_arrow.png" id="down2"> 펼쳐보기</label>
 		</div>
 	</c:if>
 	<!--  내가 찜한 상품 끝 -->
@@ -295,7 +295,7 @@
 	</div>
 	<c:if test="${tradeOkList.size() > 4 }">
 		<div class="arrow" id="arrow3">
-			<label><img src="../member/img/down_arrow.png" id="down1"> 펼쳐보기</label>
+			<label><img src="../member/img/down_arrow.png" id="down3"> 펼쳐보기</label>
 		</div>
 	</c:if>
 	<!--  내가 구매한 상품 목록 끝 -->
