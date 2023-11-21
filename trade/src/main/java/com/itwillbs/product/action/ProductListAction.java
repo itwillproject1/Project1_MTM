@@ -131,18 +131,6 @@ public class ProductListAction implements Action {
 		    brandList.add("기타");
 		
 		}
-
-		// 브랜드 목록을 JSON 형식으로 응답
-		response.setContentType("application/json; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.print("[");
-		for (int i = 0; i < brandList.size(); i++) {
-		    out.print("\"" + brandList.get(i) + "\"");
-		    if (i < brandList.size() - 1) {
-		        out.print(",");
-		    }
-		}
-		out.print("]");
 		
 		request.setAttribute("brandList", brandList);
 		System.out.println(" M : size :" + brandList.size());
@@ -192,17 +180,6 @@ public class ProductListAction implements Action {
 
 		}
 
-		// 딜 웨이 목록을 JSON 형식으로 응답
-		response.setContentType("application/json; charset=UTF-8");
-		PrintWriter outDealWay = response.getWriter();
-		outDealWay.print("[");
-		for (int i = 0; i < dealWayList.size(); i++) {
-		    outDealWay.print("\"" + dealWayList.get(i) + "\"");
-		    if (i < dealWayList.size() - 1) {
-		        outDealWay.print(",");
-		    }
-		}
-		outDealWay.print("]");
 
 		request.setAttribute("dealWayList", dealWayList);
 		System.out.println(" M : size :" + dealWayList.size());

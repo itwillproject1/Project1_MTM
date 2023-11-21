@@ -19,93 +19,81 @@
 <link href="../css/productList.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
  <script type="text/javascript">
- 
- 
- $(document).ready(function () {
-	 
-	 // 카테고리 - 동적 브랜드
-	 function getBrandsByCategory(category) {
-	     // JavaScript에서 서버로 데이터를 전달하는 부분
-	     var selectedCategory = category;
-	     $.ajax({
-	         type: 'GET',
-	         url: './ProductListAction',
-	         data: { category: selectedCategory },
-	         success: function (response) {
-	             updateBrandList(response, selectedCategory);
-	         },
-	         error: function () {
-	             console.error('Error fetching brands');
-	         }
-	     });
-	 }
+$(document).ready(function () {
 
-	 function updateBrandList(brandList, selectedCategory) {
-	     var subCategory = $('#subCategory');
-	     subCategory.empty();
+        // 각 링크에 대한 클릭 이벤트 리스너 추가
+        $('.dealWayLink, .brandLink').on('click', function (event) {
+            event.preventDefault(); // 기본 동작 중지 (링크 이동 방지)
 
-	     for (var i = 0; i < brandList.length; i++) {
-	         var brand = brandList[i];
-	         var listItem = $('<li><a href="../product/ProductList.com?category=' + selectedCategory + '&brand=' + brand + '">' + brand + '</a></li>');
-	         subCategory.append(listItem);
-	     }
-	 }
-	 
-	    // 카테고리가 선택되면 브랜드 목록을 가져오도록 설정
-	    $('#yourCategoryElementId').change(function () {
-	        var selectedCategory = $(this).val();
-	        getBrandsByCategory(selectedCategory);
-	    });
+            // 현재 URL 가져오기
+            var currentUrl = window.location.href;
+
+            // 클릭된 링크의 href 속성 가져오기
+            var linkHref = $(this).attr('href');
+
+            // 현재 URL에서 deal_way 또는 brand 매개변수 제거
+            currentUrl = currentUrl.replace(/&deal_way=[^&]*/g, '');
+            currentUrl = currentUrl.replace(/&brand=[^&]*/g, '');
+
+            // 클릭된 링크의 href를 현재 URL에 추가하여 새로운 URL 생성
+            var newUrl = currentUrl.indexOf('?') === -1 ? currentUrl + linkHref : currentUrl + '&' + linkHref;
+
+            // 생성된 URL로 페이지 이동
+            window.location.href = newUrl;
+        });
+
+    /////////////////////////////////////////////////////////////
 	  
-		  
-     // 페이지 번호 클릭 시 이벤트 처리
-     $('.page-number').on('click', function () {
-         var pageNum = $(this).text();
-         changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}');
-     });
+    // 페이지 이동 함수
+    function changePage(pageNum, search, deal_way, category, brand) {
+        var url = "./ProductList.com?pageNum=" + pageNum + "&search=" + search;
 
-     // 이전 페이지 클릭 시 이벤트 처리
-     $('.prev-page').on('click', function () {
-         var pageNum = parseInt('${startPage - pageBlock}');
-         changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}','${param.brand}');
-     });
+        if (deal_way) {
+            url += "&deal_way=" + deal_way;
+        }
 
-     // 다음 페이지 클릭 시 이벤트 처리
-     $('.next-page').on('click', function () {
-         var pageNum = parseInt('${startPage + pageBlock}');
-         changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}','${param.brand}');
-     });
+        if (category) {
+            url += "&category=" + category;
+        }
+
+        if (brand) {
+            url += "&brand=" + brand;
+        }
+
+        window.location.href = url;
+    }
+
+    // 상세 페이지로 이동하는 함수
+    function toProductContent(url) {
+        window.location.href = url;
+    }
+
+    // 상세 페이지 이벤트
+    $('.product').on('click', function () {
+        var bno = $(this).data('bno');
+        toProductContent('./ProductContent.com?bno=' + bno);
+    });
+
+    // 페이지 번호 클릭 시 이벤트 처리
+    $('.page-number').on('click', function () {
+        var pageNum = $(this).text();
+        changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}');
+    });
+
+    // 이전 페이지 클릭 시 이벤트 처리
+    $('.prev-page').on('click', function () {
+        var pageNum = parseInt('${startPage - pageBlock}');
+        changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}', '${param.brand}');
+    });
+
+    // 다음 페이지 클릭 시 이벤트 처리
+    $('.next-page').on('click', function () {
+        var pageNum = parseInt('${startPage + pageBlock}');
+        changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}', '${param.brand}');
+    });
+});
      
-     function toProductContent(url) {
- 	    window.location.href = url;
- 	}
-     
- 	 // 상세 페이지 이벤트
-     $('.product').on('click', function () {
-         var bno = $(this).data('bno');
-         toProductContent('./ProductContent.com?bno=' + bno);
-     });
- 	 
 
-     // 페이지 이동 함수
-     function changePage(pageNum, search, deal_way, category, brand) {
-         var url = "./ProductList.com?pageNum=" + pageNum + "&search=" + search;
-
-         if (deal_way) {
-             url += "&deal_way=" + deal_way;
-         }
-
-         if (category) {
-             url += "&category=" + category;
-         }
-         
-         if (brand) {
-             url += "&brand=" + brand;
-         }
-
-         window.location.href = url;
-     }
- });
 </script>
 <title>상품 목록</title>
 </head>
@@ -124,13 +112,13 @@
 		<dd>
 				<ul id="dealWayList">
 				<c:forEach var="dealWay" items="${dealWayList}">
-						<li><a href="../product/ProductList.com?deal_way=${param.deal_way}">${dealWay }</a></li>
+						<li><a href="../product/ProductList.com?category=${param.category}&deal_way=${dealWay}">${dealWay}</a></li>
 				</c:forEach>
 				</ul>
 				
 
         <ul id="subCategory">
-            <c:forEach var="brand" items="${brandList}">
+            <c:forEach var="brand" items="${brandList }">
                 <li><a href="../product/ProductList.com?category=${param.category}&brand=${brand}">${brand}</a></li>
             </c:forEach>
         </ul>
