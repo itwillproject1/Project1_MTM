@@ -180,7 +180,7 @@ body {
 	width: 100%;
 	padding: 10px;
 	margin: 5px;
-	background-color: #222; /* 어두운 검정 계열 배경색 */
+	background-color: #333; /* 어두운 검정 계열 배경색 */
 	color: #fff; /* 흰색 텍스트 색상 */
 	text-align: center;
 	text-decoration: none;
@@ -193,7 +193,7 @@ body {
 }
 
 .submit-button:hover {
-	background-color: #333; /* 더 어두운 검정 계열로 호버 시 변경 */
+	background-color: #222; /* 더 어두운 검정 계열로 호버 시 변경 */
 }
 
 #priceSpan {
