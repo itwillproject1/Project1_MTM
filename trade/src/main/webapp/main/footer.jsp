@@ -33,9 +33,9 @@
       <div class="contact-info">
       <br>
       <table>
-      	<tr><th>손보성</th><td>qhtjd0812@naver.com</td><th>김영미</th><td>example@naver.com</td></tr>
-      	<tr><th>이주현</th><td>example@example.com</td><th>변치욱</th><td>example@naver.com</td></tr>
-      	<tr><th>정윤정</th><td>qjadj98@gmail.com</td><th>임소언</th><td>example@naver.com</td></tr>
+      	<tr><th>손보성</th><td>qhtjd0812@naver.com</td><th>김영미</th><td>010829mii@gmail.com</td></tr>
+      	<tr><th>이주현</th><td>zugusdl@gmail.com</td><th>변치욱</th><td>imrealtwinkle@naver.com</td></tr>
+      	<tr><th>정윤정</th><td>qjadj98@gmail.com</td><th>임소언</th><td>mtpcyuil@gmail.com</td></tr>
       </table>
       </div>
       <div class="logo">
