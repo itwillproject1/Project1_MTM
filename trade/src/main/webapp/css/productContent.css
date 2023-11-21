@@ -244,3 +244,8 @@ h2 {
 	margin: 50px;
 	font-size: 18px;
 }
+
+a {
+	text-decoration: none;
+	color: #555;
+}

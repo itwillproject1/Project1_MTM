@@ -63,9 +63,6 @@ public class ProductListAction implements Action {
 		    System.out.println("M: 검색어 있음! (" + search + ")");
 		    count = dao.getProductCount(search);
 		}
-
-
-
 		
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
