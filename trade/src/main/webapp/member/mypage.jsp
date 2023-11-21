@@ -15,19 +15,19 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.arrow').click(function(){
-			var img_src = document.getElementById('down').src;
+		$('#arrow1').click(function(){
+			var img_src = document.getElementById('down1').src;
 			console.log("img_src: " + img_src);
 			
 			if(img_src == 'http://localhost:8088/trade/member/img/down_arrow.png') {
 				$('.none1').css('display', 'inline-block');
-				$('#down').attr('src','./img/up_arrow.png');
+				$('#down1').attr('src','./img/up_arrow.png');
 			} else if(img_src == 'http://localhost:8088/trade/member/img/up_arrow.png') {
 				$('.none1').css('display', 'none');
-				$('#down').attr('src','./img/down_arrow.png');
+				$('#down1').attr('src','./img/down_arrow.png');
 				
 				$('html, body').animate({
-		            scrollTop: $('.title1').offset().top
+		            scrollTop: $('#title1').offset().top
 		        });
 			}
 		});
@@ -143,7 +143,7 @@
 	</div>
 
 	<!--  내가 올린 상품  시작-->
-	<div class="title1">내가 올린 상품</div>
+	<div class="title1" id="title1">내가 올린 상품</div>
 	<div class="container1">
 		<c:forEach var="product" items="${mpbdto}" varStatus="loop">
 			<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
@@ -170,8 +170,8 @@
 		</c:forEach>
 	</div>
 	<c:if test="${mpbdto.size() > 4 }">
-		<div class="arrow">
-			<img src="./img/down_arrow.png" id="down">
+		<div class="arrow" id="arrow1">
+			<img src="./img/down_arrow.png" id="down1">
 		</div>
 	</c:if>
 
@@ -184,7 +184,7 @@
 
 
 	<!--  내가 찜한 상품 시작-->
-	<div class="title1">내가 찜한 상품</div>
+	<div class="title1" id="title2">내가 찜한 상품</div>
 	<div class="container1">
 
 		<c:forEach var="product" items="${productlikelist}"  varStatus="loop">
@@ -218,11 +218,11 @@
 
 
 	<!--  내가 구매한 상품 목록 -->
-	<div class="title1">내가 구매한 상품</div>
+	<div class="title1" id="title3">내가 구매한 상품</div>
 	<div class="container1">
 		<c:forEach var="i" begin="0" end="${tradeOkList.size()-1 }">
 		<div class="form-group">
-			<label>주문번호: <a href="./tradeDetail.member?order_id=${tradeOkList[i].order_id }">${tradeOkList[i].order_id }</a> </label>
+			<label><a href="./tradeDetail.member?order_id=${tradeOkList[i].order_id }">주문번호: ${tradeOkList[i].order_id }</a> </label>
 			<c:set var="fileNameArr" value="${fn:split(buyList[i].file_name, ',')}" />
 			<div class="product1
             <c:if test="${buyList[i].deal_status == 0}">
