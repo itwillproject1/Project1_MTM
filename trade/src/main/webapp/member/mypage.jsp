@@ -180,11 +180,10 @@
 	</div>
 	<!--  내가 찜한 상품 끝 -->
 
-
 	<!--  내가 구매한 상품 목록 -->
 	<div class="title1">내가 구매한 상품</div>
 	<div class="container1">
-		<c:forEach var="i" begin="0" end="${tradeOkList.size()-1 }">
+		<c:forEach var="i" items="${tradeOkList}">
 		<div class="form-group">
 			<label>주문번호: <a href="./tradeDetail.member?order_id=${tradeOkList[i].order_id }">${tradeOkList[i].order_id }</a> </label>
 			<c:set var="fileNameArr" value="${fn:split(buyList[i].file_name, ',')}" />
