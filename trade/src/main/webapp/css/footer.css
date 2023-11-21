@@ -7,17 +7,21 @@
     }
 
     #scrollToTopBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #656565;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 15px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+  display: none; /* 초기에는 숨김 상태로 설정합니다. */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #999;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#scrollToTopBtn:hover {
+  background-color: #999;
+}
 
     .footer {
       background-color: #333;
@@ -60,7 +64,3 @@
       color: #ccc; /* 추가적인 스타일링 */
     }
     
-
-    strong {
-    
-	    }

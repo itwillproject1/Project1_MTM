@@ -25,7 +25,8 @@
 
 </head>
 <body>
-  <button id="scrollToTopBtn">Top</button>
+  <button onclick="scrollToTop()" id="scrollToTopBtn" title="맨 위로 이동">Top</button>
+  <script src="../main/script.js"></script>
   <div class="footer">
     <div class="footer-info">
       <div class="contact-info">
@@ -38,7 +39,7 @@
         <a href="../main/Main.com"><img src="../main/img/logo(MTM).png" alt="로고"></a>
       </div>
       <div class="customer-center">
-        <p><img src="address.png" width="20px">아이티윌 : 서울시 강남구 가로수길 123</p><p><strong>고객센터:</strong> 080-1234-5678</p><br>
+        <p><img src="../main/address.png" width="20px">아이티윌 : 서울시 강남구 가로수길 123</p><p><strong>고객센터:</strong> 080-1234-5678</p><br>
         <form action="../product/ProductList.com" method="get" class="search">
                <input type="text" name="search" placeholder="검색어 입력">
                <button type="submit" value="search">검색</button>
@@ -49,6 +50,6 @@
       <p>&copy; 1조 전자기기 중고거래</p>
     </div>
   </div>
-  <script src="script.js"></script>
+  
 </body>
 </html>

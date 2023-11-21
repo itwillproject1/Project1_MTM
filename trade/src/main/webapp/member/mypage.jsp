@@ -165,6 +165,7 @@
 						<fmt:formatNumber value="${product.price }" />
 						원
 					</p>
+					
 				</div>
 			</div>
 		</c:forEach>
@@ -180,6 +181,8 @@
 			window.location.href = url;
 		}
 	</script>
+	
+
 	<!--  내가 올린 상품 끝 -->
 
 
@@ -216,11 +219,10 @@
 	</c:if>
 	<!--  내가 찜한 상품 끝 -->
 
-
 	<!--  내가 구매한 상품 목록 -->
 	<div class="title1" id="title3">내가 구매한 상품</div>
 	<div class="container1">
-		<c:forEach var="i" begin="0" end="${tradeOkList.size()-1 }">
+		<c:forEach var="i" items="${tradeOkList}">
 		<div class="form-group">
 			<label><a href="./tradeDetail.member?order_id=${tradeOkList[i].order_id }">주문번호: ${tradeOkList[i].order_id }</a> </label>
 			<c:set var="fileNameArr" value="${fn:split(buyList[i].file_name, ',')}" />
