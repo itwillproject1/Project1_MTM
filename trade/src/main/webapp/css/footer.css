@@ -59,7 +59,12 @@
 
 #scrollToTopBtn:hover {
   background-color: #999;
+  
 }
+
+html {
+      scroll-behavior: smooth;
+    }
 
     .footer {
       background-color: #333;

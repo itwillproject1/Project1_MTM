@@ -12,10 +12,8 @@
 
 </head>
 
-<body>
-<%@ include file="header.jsp"%>
-
-
+<body class="b">
+	<%@ include file="../main/header.jsp"%>
     <div class="login-container">
         
         <form id="login-form" class="f" action="./MemberLoginAction.member" method="post">
