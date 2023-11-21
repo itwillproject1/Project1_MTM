@@ -1,5 +1,6 @@
 package com.itwillbs.product.action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,23 +20,46 @@ public class ProductListAction implements Action {
 		// 전달정보 검색어 정보 저장
 		String search = request.getParameter("search");
 		String category = request.getParameter("category");
-		System.out.println(" M : 검색어 : "+search );
-		
-		// 기존에 저장된 글정보를 가져와서 화면에 출력
+		String brand = request.getParameter("brand");
+		String deal_way = request.getParameter("deal_way");
+		String searchAll = request.getParameter("searchAll");
+		String searchPart = request.getParameter("searchPart");
+		String selectedCategory = request.getParameter("category");
+
+		System.out.println(" M : 전체검색어 : " + searchAll);
+		System.out.println(" M : 부분검색어 : " + searchPart);
+
+		// 기존에 저장된 글정보를 가져와서 화면에 출력;
 		ProductDAO dao = new ProductDAO();
 		
-		int count = 0;
-		if(search == null && category == null) { // 검색어 X, 카테고리 X
-			System.out.println(" M : 검색어 없음! ");
-			count = dao.getProductCount();
-		} else if(category != null){ // 카테고리 O
-			System.out.println(" M : 카테고리 있음! ("+category+")");
-			count = dao.getCategoryProductCount(category);
-		} else { // 검색어 O - 검색결과O/X 
-			System.out.println(" M : 검색어 있음! ("+search+")");
-			count = dao.getProductCount(search);
-		}		
-		System.out.println(" M : 글 개수 : " + count);
+	      int count = 0;
+
+	      if (searchAll == null && category == null && brand == null) {
+	    	    // 검색어 X, 카테고리 X, 브랜드 X
+	    	    System.out.println(" M : 검색어, 카테고리, 브랜드 없음! ");
+	    	    count = dao.getProductCount();
+	    	} else if (deal_way != null) {
+	    	    // 딜웨이 O
+	    	    System.out.println(" M : 딜웨이 있음! (" + deal_way + ")");
+	    	    count = dao.getDealWayProductCount(deal_way);
+	    	} else if (category != null) {
+	    	    if (brand != null) {
+	    	        // 카테고리 O, 브랜드 O
+	    	        System.out.println(" M : 카테고리, 브랜드 있음! (" + category + ", " + brand + ")");
+	    	        count = dao.getProductCount(category, brand);
+	    	    } else {
+	    	        // 카테고리 O, 브랜드 X
+	    	        System.out.println(" M : 카테고리 있음! (" + category + ")");
+	    	        count = dao.getCategoryProductCount(category);
+	    	    }
+	    	} else { 
+	    	    // 검색어 O - 검색결과 O/X
+	    	    System.out.println(" M : 검색어 있음! (" + searchAll + ")");
+	    	    count = dao.getProductCount(searchAll);
+	    	}
+
+
+
 		
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
@@ -55,31 +79,138 @@ public class ProductListAction implements Action {
 		// 끝행 번호 계산
 		// 10 20 30 40 50 .....
 		int endRow = currentPage * pageSize;
+		
 
 		/********************* 페이징처리 1 *******************/
+		
+		ArrayList<String> brandList = new ArrayList<>();
+
+		// 여기에서 원하는 브랜드를 하드코딩하여 추가
+		if ("핸드폰%26태블릿".equals(selectedCategory)) {
+		    brandList.add("삼성");
+		    brandList.add("엘지");
+		    brandList.add("기타");
+
+		} else if ("데스크탑".equals(selectedCategory)) {
+		    brandList.add("삼성");
+		    brandList.add("엘지");
+		    brandList.add("애플");
+		    brandList.add("hp");
+		    brandList.add("기타");
+		    
+		} else if ("노트북".equals(selectedCategory)) {
+		    brandList.add("삼성");
+		    brandList.add("엘지");
+		    brandList.add("애플");
+		    brandList.add("hp");
+		    brandList.add("레노버");
+		    brandList.add("기타");
+		    
+		} else if ("게임기기".equals(selectedCategory)) {
+		    brandList.add("플레이스테이션");
+		    brandList.add("닌텐도");
+		    brandList.add("기타");
+		    
+		} else if ("가전제품".equals(selectedCategory)) {
+		    brandList.add("삼성");
+		    brandList.add("엘지");
+		    brandList.add("기타");
+		    
+		} else if ("카메라".equals(selectedCategory)) {
+		    brandList.add("캐논");
+		    brandList.add("니콘");
+		    brandList.add("소니");
+		    brandList.add("라이카");
+		    brandList.add("코닥");
+		    brandList.add("기타");
+		    
+		} else if ("음향기기".equals(selectedCategory)) {
+		    brandList.add("소니");
+		    brandList.add("보스");
+		    brandList.add("마샬");
+		    brandList.add("기타");
+		
+		}
+		
+		request.setAttribute("brandList", brandList);
+		System.out.println(" M : size :" + brandList.size());
+		
+		ArrayList<String> dealWayList = new ArrayList<>();
+
+		// 여기에서 원하는 딜 웨이를 하드코딩하여 추가
+		if ("핸드폰%26태블릿".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+		} else if ("데스크탑".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("노트북".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("게임기기".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("가전제품".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("카메라".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+
+		} else if ("음향기기".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+		}
+
+
+		request.setAttribute("dealWayList", dealWayList);
+		System.out.println(" M : size :" + dealWayList.size());
 
 		// DAO - 글정보 모두(list)를 가져오는 메서드 호출
 		ArrayList ProductList = new ArrayList();
-		if (count > 0 && search == null && category == null) { // 검색어도 없고 카테고리도 선택 안 했을 때
-			ProductList = dao.getProductList(startRow, pageSize);
-		}else if(count > 0 && category != null ) { // 카테고리 눌렀을 때
-			ProductList = dao.getCategoryProductList(startRow, pageSize, category);
-		}else if(count > 0 && search != null ) { // 검색했을 떄
-			ProductList = dao.getProductList(startRow, pageSize, search);
-		}else {
-			// 글이 없는경우
-		}
-		System.out.println(" M : size :" + ProductList.size());
+		
+		try {
+		    if (count > 0) {
+		        // 공통된 메서드 호출 부분
+		        ProductList = dao.getProductList(startRow, pageSize, category, brand, deal_way, searchAll, searchPart);
+		        
+		        System.out.println("");
 
-		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
-		request.setAttribute("ProductList", ProductList);
+		        // 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
+		        request.setAttribute("ProductList", ProductList);
+		    }
+
+		    System.out.println(" M : size :" + ProductList.size());
+
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
 
 		/******************* 페이징처리 2 *********************/
 		// 전체 페이지수
 		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 
 		// 한 화면에 보여줄 페이지 블럭개수
-		int pageBlock = 8;
+		int pageBlock = 5;
 
 		// 페이지 블럭의 시작번호 계산
 		int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
