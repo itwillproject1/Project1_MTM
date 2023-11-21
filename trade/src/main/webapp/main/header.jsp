@@ -75,14 +75,14 @@
 					<a href="../product/ProductList.com?category=팝니다">팝니다</a>
 				</span>
 				<span class="category-b">
-					<a href="../product/ProductList.com?category=휴대폰%26태블릿">휴대폰&태블릿</a>
-					<a href="../product/ProductList.com?category=데스크탑">데스크탑</a>
-					<a href="../product/ProductList.com?category=노트북">노트북</a>
-					<a href="../product/ProductList.com?category=게임기기">게임기기</a>
-					<a href="../product/ProductList.com?category=가전제품">가전제품</a>
-					<a href="../product/ProductList.com?category=카메라">카메라</a>
-					<a href="../product/ProductList.com?category=음향기기">음향기기</a>
-					<a href="../product/ProductList.com?category=기타">기타</a>
+					<a href="../product/ProductList.com?category=0">휴대폰&태블릿</a>
+					<a href="../product/ProductList.com?category=1">데스크탑</a>
+					<a href="../product/ProductList.com?category=2">노트북</a>
+					<a href="../product/ProductList.com?category=3">게임기기</a>
+					<a href="../product/ProductList.com?category=4">가전제품</a>
+					<a href="../product/ProductList.com?category=5">카메라</a>
+					<a href="../product/ProductList.com?category=6">음향기기</a>
+					<a href="../product/ProductList.com?category=7">기타</a>
 				</span>
 			</div>
 

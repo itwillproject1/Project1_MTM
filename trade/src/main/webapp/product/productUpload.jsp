@@ -38,7 +38,7 @@
 					<label for="productCategory">카테고리:</label>
 						<select id="productCategory" name="productCategory" onchange="updateDropdown()">
 							<option disabled selected value="default">카테고리를 선택하세요</option>
-							<option value="0">휴대폰&태블릿</option>
+							<option value="0">휴대폰&amp;태블릿</option>
 							<option value="1">데스크탑</option>
 							<option value="2">노트북</option>
 							<option value="3">게임기기</option>

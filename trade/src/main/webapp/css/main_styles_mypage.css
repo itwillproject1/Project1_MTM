@@ -141,7 +141,7 @@ body {
 	width: 150px;
 	padding: 10px;
 	margin: 5px;
-	background-color: #222; /* 어두운 검정 계열 배경색 */
+	background-color: #333; /* 어두운 검정 계열 배경색 */
 	color: #fff; /* 흰색 텍스트 색상 */
 	text-align: center;
 	text-decoration: none;
@@ -153,13 +153,17 @@ body {
 	float: right;
 }
 
+.qnaBtn:hover {
+	background-color: #222;
+}
+
 .payBtn {
 	display: inline-block;
 	width: 100px;
 	height: fit-content;
 	padding: 3px;
 	margin: 0 0 0 20px;
-	background-color: #222; /* 어두운 검정 계열 배경색 */
+	background-color: #333; /* 어두운 검정 계열 배경색 */
 	color: #fff; /* 흰색 텍스트 색상 */
 	text-align: center;
 	text-decoration: none;
@@ -168,6 +172,10 @@ body {
 	cursor: pointer;
 	transition: background-color 0.3s;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.payBtn {
+	background-color: #222;
 }
 
 a {
