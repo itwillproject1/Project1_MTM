@@ -26,13 +26,13 @@ public class ProductListAction implements Action {
 		
 		int count = 0;
 		if(search == null && category == null) { // 검색어 X, 카테고리 X
-			System.out.println(" M : 검색어 없음! ");
+			//System.out.println(" M : 검색어 없음! ");
 			count = dao.getProductCount();
 		} else if(category != null){ // 카테고리 O
-			System.out.println(" M : 카테고리 있음! ("+category+")");
+		//	System.out.println(" M : 카테고리 있음! ("+category+")");
 			count = dao.getCategoryProductCount(category);
 		} else { // 검색어 O - 검색결과O/X 
-			System.out.println(" M : 검색어 있음! ("+search+")");
+		//	System.out.println(" M : 검색어 있음! ("+search+")");
 			count = dao.getProductCount(search);
 		}		
 		//System.out.println(" M : 글 개수 : " + count);

@@ -58,7 +58,7 @@ public class ProductUploadAction implements Action {
 		    String fName = multi.getFilesystemName(fieldName);
 		    if (fName != null) {
 		        fileList.add(fName);
-		        System.out.println("fName: " + fName);
+		    //    System.out.println("fName: " + fName);
 		    }
 		}
 
