@@ -13,7 +13,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
-<link href="../css/header.css" rel="stylesheet" />
 <link href="../css/main_styles.css" rel="stylesheet" />
 <link href="../css/jquery.bxslider.css" rel="stylesheet" />
 <title>쇼핑몰 메인 페이지</title>

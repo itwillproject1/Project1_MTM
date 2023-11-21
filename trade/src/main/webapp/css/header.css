@@ -1,151 +1,167 @@
 @charset "UTF-8";
 
 body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #ffffff;
-    margin: 0;
-    padding: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color: #ffffff;
+	margin: 0;
+	padding: 0;
 }
 
 header {
-     position: fixed; 
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 설정 */
-    background-color: #ffffff; 
-    color: #333; 
-    /* display: flex; */
-    align-items: center;
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    transition: box-shadow 0.3s; 
-    margin-bottom : 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 설정 */
+	background-color: #ffffff;
+	color: #333;
+	/* display: flex; */
+	align-items: center;
+	padding: 10px 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.3s;
+	margin-bottom: 0;
 }
 
 header:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-#navbar{
-   text-align:center;
-   align-items: center;
+#navbar {
+	text-align: center;
+	align-items: center;
 }
 
 .logo {
-   display: flex;
+	display: flex;
+	width: 30%;
+	text-align: left;
+	vertical-align: center;
 }
-.logo a{
-   text-decoration: none;
-   margin-left : -20px;
+
+.logo a {
+	text-decoration: none;
+	margin-left: -20px;
 }
 
 #logo {
-   width: 70px;
-   transform: translate(20%, 15%);
+	width: 70px;
+	transform: translate(50%, 15%);
 }
-
-
 
 #search {
-   justify-content: center;
-   transform: translate(120%, 0);
+	justify-content: center;
+	margin: 0 auto;
+	width: 40%;
 }
 
-#user-menu{
-   margin-left:auto;
+#user-menu {
+	margin-left: auto;
+	width: 30%;
 }
+
+.user-menu span {
+	display: inline-block;
+}
+
 .category-a a {
-    text-decoration: none;
-    color: #333;
-    margin-left: 20px;
+	text-decoration: none;
+	color: #333;
+	margin-left: 20px;
 }
 
 .category-a a:hover {
-    color: #A9A9A9; 
-    text-decoration: none; 
+	color: #A9A9A9;
+	text-decoration: none;
 }
 
-
-.category-b { margin-left: 20px;}
+.category-b {
+	margin-left: 20px;
+}
 
 .category-b a {
-   left: -20px;
-   font-size: 14px;
-    text-decoration: none;
-    color: #333;
-    margin-right: 20px;
+	left: -20px;
+	font-size: 14px;
+	text-decoration: none;
+	color: #333;
+	margin-right: 20px;
 }
 
 .category-b a:hover {
-    color: #A9A9A9; 
-    text-decoration: none; 
+	color: #A9A9A9;
+	text-decoration: none;
 }
 
 .category-c a {
-   left: -20px;
-   font-size: 14px;
-    text-decoration: none;
-    color: #333;
-    margin-right: 20px; 
+	left: -20px;
+	font-size: 14px;
+	text-decoration: none;
+	color: #333;
+	margin-right: 20px;
 }
 
 .rgt {
-   float: center;
-   margin-right: 30px;
-    padding-left: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	float: center;
+	/* margin-right: 30px; */
+	/* padding-left: 20px; */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .rgt1 {
-   margin-right: 20px;
+	margin-right: 20px;
 }
 
 .rgt>* {
-   display: inline-block;
+	display: inline-block;
+}
+
+.search {
+	margin: 0 auto;
+	display: inline-block;
 }
 
 .search input {
-   font-family: 'Noto Sans KR', sans-serif;
-    padding: 10px;
-    border: 1px solid #a3a3a3; /* 테두리  */
-/*     border-radius: 25px; */
-    margin-right: 10px;
-    width: 400px;
+	font-family: 'Noto Sans KR', sans-serif;
+	padding: 10px;
+	border: 1px solid #a3a3a3; /* 테두리  */
+	/*     border-radius: 25px; */
+	margin-right: 10px;
+	width: 400px;
 }
+
 .search input:hover {
-    padding: 10px;
-    border: 1px solid #000; /* 테두리 */
-/*     border-radius: 25px; */
-    margin-right: 10px;
-    width: 400px;
+	padding: 10px;
+	border: 1px solid #000; /* 테두리 */
+	/*     border-radius: 25px; */
+	margin-right: 10px;
+	width: 400px;
 }
 
 .search button {
-   font-family: 'Noto Sans KR', sans-serif;
-    padding: 10px 15px;
-    background-color: #333; /* 버튼 */
-    color: #fff;
-    border: none;
-/*     border-radius: 25px; */
-    cursor: pointer;
-    transition: background-color 0.2s;
+	font-family: 'Noto Sans KR', sans-serif;
+	padding: 10px 15px;
+	background-color: #333; /* 버튼 */
+	color: #fff;
+	border: none;
+	/*     border-radius: 25px; */
+	cursor: pointer;
+	transition: background-color 0.2s;
 }
 
 .search button:hover {
-    background-color: #555; 
+	background-color: #555;
 }
 
 .user-menu a {
-   word-spacing: -10px;
-    color: #222;
-    margin-right: 30px; 
-    text-decoration: none;
+	word-spacing: -10px;
+	color: #222;
+	margin-right: 30px;
+	text-decoration: none;
 }
 
 .user-menu a:hover {
-    color: #A9A9A9; 
-    text-decoration: none;
+	color: #A9A9A9;
+	text-decoration: none;
 }
