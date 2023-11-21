@@ -156,27 +156,32 @@
             <!-- 구매 판매 찜 등 버튼 -->
             <c:if test="${dto.deal_status == 1 }">
                <c:if test="${dto.deal_way.equals('삽니다')}">
-                  <c:choose>
-                     <c:when test="${empty login_id}">
-                        <input type="button" class="submit-button" value="판매 제안" onclick="requireLogin();">
-                     </c:when>
-                     <c:when test="${login_id eq dto.user_id}">
-                        <button class="submit-button" onclick="openSuggestModal();">거래 제안 현황</button>
-                     </c:when>
-                     <c:when test="${!empty login_id and login_id ne dto.user_id}">
-                        <button class="submit-button" onclick="openProductModal();">판매 제안</button>
-                     </c:when>
-                  </c:choose>
+	               <div class="button-container">
+	                  <c:choose>
+	                     <c:when test="${empty login_id}">
+	                        <input type="button" class="submit-button" value="판매 제안" onclick="requireLogin();">
+	                     </c:when>
+	                     <c:when test="${login_id eq dto.user_id}">
+	                        <button class="submit-button" onclick="openSuggestModal();">거래 제안 현황</button>
+	                     </c:when>
+	                     <c:when test="${!empty login_id and login_id ne dto.user_id}">
+	                        <button class="submit-button" onclick="openProductModal();">판매 제안</button>
+	                     </c:when>
+	                  </c:choose>
+					</div>
                </c:if>
+            </c:if>   
 
                <c:if test="${dto.deal_way.equals('팝니다') }">
                   <div class="button-container">
+                  <c:if test="${dto.deal_status == 1 }">
                      <c:if test="${login_id eq dto.user_id}">
                         <input class="submit-button" type="button" value="판매 제안 현황" onclick="openSuggestListModal();">
                      </c:if>
                      <c:if test="${login_id ne dto.user_id}">
                         <input class="submit-button" type="button" value="구매하기" onclick="location.href='../pay/payment.com?bno=${dto.bno}';">
                      </c:if>
+                  </c:if>
 
 
                      <!-- 찜 기능 시작 -->
@@ -191,7 +196,6 @@
                      <!--  찜 기능 끝 -->
                   </div>
                </c:if>
-            </c:if>   
          </div>
       </div>
       <div class="form-group product-content">
@@ -207,7 +211,7 @@
       <div id="productInfo">
          <!-- 모달 내용 -->
          <h2>
-            <img src="" alt="프로필"> ${dto.user_id} (평점) 
+            <img src="<%=request.getContextPath() %>/uploadpriflie/${mdto.profile}" alt="프로필"> ${dto.user_id} (평점) 
          </h2>
 
          <h3 id="h3">${dto.user_id}님의 판매상품목록</h3>
@@ -636,7 +640,7 @@
        }
      }
    // 모달 닫기 함수
-   function closeProfileModal1() {
+   function closeProfileModal() {
       pfModal.style.display = 'none';
        window.removeEventListener('click', outsideClick1);
 

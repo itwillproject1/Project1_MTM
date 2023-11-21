@@ -28,7 +28,7 @@
 				
 				$('html, body').animate({
 		            scrollTop: $('#title1').offset().top
-		        });
+		        },'fast');
 			}
 		});
 		
@@ -37,10 +37,10 @@
 			console.log("img_src: " + img_src);
 			
 			if(img_src == 'http://localhost:8088/trade/member/img/down_arrow.png') {
-				$('.none1').css('display', 'inline-block');
+				$('.none2').css('display', 'inline-block');
 				$('#down2').attr('src','../member/img/up_arrow.png');
 			} else if(img_src == 'http://localhost:8088/trade/member/img/up_arrow.png') {
-				$('.none1').css('display', 'none');
+				$('.none2').css('display', 'none');
 				$('#down2').attr('src','../member/img/down_arrow.png');
 				
 				$('html, body').animate({
@@ -54,10 +54,10 @@
 			console.log("img_src: " + img_src);
 			
 			if(img_src == 'http://localhost:8088/trade/member/img/down_arrow.png') {
-				$('.none1').css('display', 'inline-block');
+				$('.none3').css('display', 'inline-block');
 				$('#down3').attr('src','../member/img/up_arrow.png');
 			} else if(img_src == 'http://localhost:8088/trade/member/img/up_arrow.png') {
-				$('.none1').css('display', 'none');
+				$('.none3').css('display', 'none');
 				$('#down3').attr('src','../member/img/down_arrow.png');
 				
 				$('html, body').animate({
@@ -177,8 +177,9 @@
 	</div>
 
 	<!--  내가 올린 상품  시작-->
-	<div class="title1" id="title1">내가 올린 상품</div>
+	<div class="title1" id="title1">내가 업로드한 상품</div>
 	<div class="container1">
+		<c:if test="${!empty mpbdto }">
 		<c:forEach var="product" items="${mpbdto}" varStatus="loop">
 			<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
 
@@ -203,6 +204,10 @@
 				</div>
 			</div>
 		</c:forEach>
+		</c:if>
+	<c:if test="${empty mpbdto }">
+		<label>업로드한 상품이 없습니다.</label>
+	</c:if>
 	</div>
 	<c:if test="${mpbdto.size() > 4 }">
 		<div class="arrow" id="arrow1">
@@ -215,15 +220,13 @@
 			window.location.href = url;
 		}
 	</script>
-	
-
 	<!--  내가 올린 상품 끝 -->
 
 
 	<!--  내가 찜한 상품 시작-->
 	<div class="title1" id="title2">내가 찜한 상품</div>
 	<div class="container1">
-
+	<c:if test="${!empty productlikelist }">
 		<c:forEach var="product" items="${productlikelist}"  varStatus="loop">
 			<c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
 			<div class="product1
@@ -231,7 +234,7 @@
 				 disabled1
 			</c:if>
 			<c:if test="${loop.index > 3 }">
-				 none1
+				 none2
 			</c:if>" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">
 				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" alt="${product.title}">
 				<div class="product-info">
@@ -245,10 +248,15 @@
 				</div>
 			</div>
 		</c:forEach>
+		</c:if>
+		<c:if test="${empty productlikelist }">
+		<label>찜한 상품이 없습니다.</label>
+	</c:if>
 	</div>
+	
 	<c:if test="${productlikelist.size() > 4 }">
 		<div class="arrow" id="arrow2">
-			<label><img src="../member/img/down_arrow.png" id="down1"> 펼쳐보기</label>
+			<label><img src="../member/img/down_arrow.png" id="down2"> 펼쳐보기</label>
 		</div>
 	</c:if>
 	<!--  내가 찜한 상품 끝 -->
@@ -256,18 +264,19 @@
 	<!--  내가 구매한 상품 목록 -->
 	<div class="title1" id="title3">내가 구매한 상품</div>
 	<div class="container1">
-	<c:if test="${!empty tardeOkList }">
+	<c:if test="${!empty buyList }">
 		<c:forEach var="i" begin="0" end="${tradeOkList.size()-1 }">
-		<div class="form-group">
+		<div class="form-group
+			<c:if test="${i > 3 }">
+				 none3
+			</c:if>">
 			<label><a href="./tradeDetail.member?order_id=${tradeOkList[i].order_id }">주문번호: ${tradeOkList[i].order_id }</a> </label>
 			<c:set var="fileNameArr" value="${fn:split(buyList[i].file_name, ',')}" />
 			<div class="product1
             <c:if test="${buyList[i].deal_status == 0}">
                 disabled1
             </c:if>
-			<c:if test="${i > 3 }">
-				 none1
-			</c:if>" onclick="toProductContent('../product/ProductContent.com?bno=${buyList[i].bno}')">
+			" onclick="toProductContent('../product/ProductContent.com?bno=${buyList[i].bno}')">
 				<div>
 					<img src="${pageContext.request.contextPath}/upload/${buyList[i].file_name}" alt="${buyList[i].title}">
 				</div>
@@ -283,13 +292,13 @@
 		</div>
 		</c:forEach>
 	</c:if>
-	<c:if test="${empty tardeOkList }">
+	<c:if test="${empty buyList }">
 		<label>구매 상품이 없습니다.</label>
 	</c:if>
 	</div>
 	<c:if test="${tradeOkList.size() > 4 }">
 		<div class="arrow" id="arrow3">
-			<label><img src="../member/img/down_arrow.png" id="down1"> 펼쳐보기</label>
+			<label><img src="../member/img/down_arrow.png" id="down3"> 펼쳐보기</label>
 		</div>
 	</c:if>
 	<!--  내가 구매한 상품 목록 끝 -->

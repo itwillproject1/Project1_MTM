@@ -24,7 +24,7 @@ public class ProductDTO {
 	
 	// 생성자
 	public ProductDTO() {
-		System.out.println("DTO: 객체 초기화(생성), DB정보 저장 준비 완료");
+	//	System.out.println("DTO: 객체 초기화(생성), DB정보 저장 준비 완료");
 	}
 	
 	// 메서드

@@ -33,7 +33,7 @@ public class DeleteProductAction implements Action {
 			
 			for(String dFileName : dFile_name) {
 				// dFileName 파일 삭제 수행
-				System.out.println("삭제 실행");
+			//	System.out.println("삭제 실행");
 				file = new File(realPath+"\\"+dFileName);
 				file.delete();
 			}

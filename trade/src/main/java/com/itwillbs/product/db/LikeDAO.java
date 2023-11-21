@@ -23,7 +23,7 @@ public class LikeDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/mvc");
 		con = ds.getConnection();
 
-		System.out.println("LDAO: DB 연결 성공");
+	//	System.out.println("LDAO: DB 연결 성공");
 
 		return con;
 	}
@@ -70,7 +70,7 @@ public class LikeDAO {
 		} finally {
 			closeDB();
 		}
-		System.out.println("LDAO: result: " + result);
+	//	System.out.println("LDAO: result: " + result);
 		return result;
 	} // likeCheck(LikeDTO ldto) 종료
 	
@@ -89,7 +89,7 @@ public class LikeDAO {
 				pstmt.setInt(1, ldto.getBno());
 				pstmt.setString(2, ldto.getUser_id());
 				
-				System.out.println("입력 성공!");
+			//	System.out.println("입력 성공!");
 				result = pstmt.executeUpdate();
 				
 				sql= "update Product set like_count = like_count+1 where bno = ?";
@@ -105,7 +105,7 @@ public class LikeDAO {
 				
 				pstmt.executeUpdate();
 				
-				System.out.println("삭제 성공!");
+		//		System.out.println("삭제 성공!");
 				result = 0;
 				
 				sql= "update Product set like_count = like_count-1 where bno = ?";
@@ -114,7 +114,7 @@ public class LikeDAO {
 				
 				pstmt.executeUpdate();
 			}
-			System.out.println("LDAO: " + result);
+		//	System.out.println("LDAO: " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -152,8 +152,8 @@ public class LikeDAO {
 				// 글 하나의 정보를 배열의 한칸에 저장
 				likedtolist.add(dto);
 
-				System.out.println(" DAO : 내가 찜한 상품만 배열만들기성공! ");
-				System.out.println(" DAO : " + likedtolist.size());
+		//		System.out.println(" DAO : 내가 찜한 상품만 배열만들기성공! ");
+		//		System.out.println(" DAO : " + likedtolist.size());
 
 			}
 

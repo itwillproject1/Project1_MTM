@@ -24,7 +24,7 @@ public class ComplainDAO {
 			DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/mvc");
 			con = ds.getConnection();
 
-			System.out.println("CDAO: DB 연결 성공");
+	//		System.out.println("CDAO: DB 연결 성공");
 
 			return con;
 		}
@@ -62,7 +62,7 @@ public class ComplainDAO {
 			        
 					// sql 실행
 			        pstmt.executeUpdate();
-					System.out.println("CDAO: 신고 정보 전송 완료!");
+				//	System.out.println("CDAO: 신고 정보 전송 완료!");
 					
 				} catch (Exception e) {
 					e.printStackTrace();

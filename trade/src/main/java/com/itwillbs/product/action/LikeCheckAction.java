@@ -16,7 +16,7 @@ import com.itwillbs.util.ActionForward;
 public class LikeCheckAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("LikeCheckAction.execute() 호출");
+	//	System.out.println("LikeCheckAction.execute() 호출");
 		// 전달 정보 저장(로그인 아이디, 글번호)
 		HttpSession session = request.getSession();
 		String login_id = (String) session.getAttribute("user_id");
