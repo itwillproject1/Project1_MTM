@@ -13,9 +13,7 @@
 </head>
 
 <body class="b">
-<%@ include file="header.jsp"%>
-
-
+	<%@ include file="../main/header.jsp"%>
     <div class="login-container">
         
         <form id="login-form" class="f" action="./MemberLoginAction.member" method="post">
@@ -39,9 +37,7 @@
    
 	 
     <script src="script.js"></script>
-    
-    
-    
+
   </div>
  <%@ include file="../main/footer.jsp"%>
 </body>
