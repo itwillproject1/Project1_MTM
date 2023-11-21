@@ -37,9 +37,7 @@
    
 	 
     <script src="script.js"></script>
-    
-    
-    
+
   </div>
  <%@ include file="../main/footer.jsp"%>
 </body>
