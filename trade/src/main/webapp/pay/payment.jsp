@@ -59,7 +59,7 @@
 		${user_dto.phone}<br>
 		<hr>
 		배송지<br>
-		<input type="text" name="address" value="${user_dto.address}"> <input type="button" value="변경하기" onclick="goPopup()" class="in">
+		<input type="text" name="address" style="width:330px;" value="${user_dto.address}"> <input type="button" value="변경하기" onclick="goPopup()" class="in">
 		<!--  <input type="button" value="변경" class="bu" style="float: right;"><hr> --> 	
 		<br><hr>
 		주문상품<br>

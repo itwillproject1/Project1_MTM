@@ -199,6 +199,7 @@
 						<fmt:formatNumber value="${product.price }" />
 						원
 					</p>
+					
 				</div>
 			</div>
 		</c:forEach>
@@ -214,6 +215,8 @@
 			window.location.href = url;
 		}
 	</script>
+	
+
 	<!--  내가 올린 상품 끝 -->
 
 
@@ -249,7 +252,6 @@
 		</div>
 	</c:if>
 	<!--  내가 찜한 상품 끝 -->
-
 
 	<!--  내가 구매한 상품 목록 -->
 	<div class="title1" id="title3">내가 구매한 상품</div>
@@ -292,6 +294,7 @@
 	</c:if>
 	<!--  내가 구매한 상품 목록 끝 -->
 
-	<%@ include file="../main/footer.jsp"%>
+
+	 <%@ include file="../main/footer.jsp"%>
 </body>
 </html>
