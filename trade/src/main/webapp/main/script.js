@@ -15,8 +15,9 @@ function scrollFunction() {
 
 // 맨 위로 스크롤하는 함수
 function scrollToTop() {
- window.scrollTo({
-    top: 0,
-    behavior: 'smooth' // 부드러운 스크롤을 위해 추가한 옵션
-  });
-}
+      const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(scrollToTop);
+        window.scrollTo(0, currentScroll - currentScroll / 11);
+      }
+    }
