@@ -15,33 +15,96 @@
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/main_styles.css" rel="stylesheet" />
-<link href="../css/jquery.bxslider.css" rel="stylesheet" />
+<link href="../css/swiper-bundle.min.css" rel="stylesheet" />
 <title>쇼핑몰 메인 페이지</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <script>
-    $(document).ready(function(){
-      $(".slider").bxSlider({
-    	  infiniteLoop: false,
-    	  hideControlOnEnd: true,
-    	  slideWidth: 1000
-      });
-    });
-  </script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper">
+     <style>
+        /* 슬라이드 컨테이너 스타일 */
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        /* 각 슬라이드 아이템 스타일 */
+        .swiper-slide img {
+            margin-top: 9rem;
+            width: 800px;
+            height: auto;
+            object-fit: cover; /* 이미지 비율 유지 */
+        }
+        
+.swiper-horizontal>.swiper-pagination-bullets,.swiper-pagination-bullets.swiper-pagination-horizontal,.swiper-pagination-custom,.swiper-pagination-fraction {
+    bottom: var(--swiper-pagination-bottom,8px);
+    top: var(--swiper-pagination-top,auto);
+    left: 0;
+    width: 100%;
+    top: 38rem;
+}
+
+
+.swiper-button-prev,
+.swiper-button-next {
+    bottom: auto !important;
+    top: 23rem !important;
+}
+
+.swiper-button-prev {
+    left: 8rem !important;
+}
+
+.swiper-button-next {
+    right: 8rem !important;
+}
+
+    </style>
+
 </head>
 <body>
 <div id="all">
    <%@ include file="../main/header.jsp"%>
-   
-   <!-- 이벤트 슬라이더 -->
-   <div class="slider-container">
-      <div class="slider">
-         <img src="event1.png" alt="이미지 1">
-         <img src="event2.png" alt="이미지 2">
-         <img src="event3.png" alt="이미지 3">
-      </div>
-   </div>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="../main/img/event1.png" alt="이미지 1">
+        </div>
+        <div class="swiper-slide">
+            <img src="../main/img/event2.png" alt="이미지 2">
+        </div>
+        <div class="swiper-slide">
+            <img src="../main/img/event3.png" alt="이미지 3">
+        </div>
+    </div>
+    <!-- 이전, 다음 버튼 -->
+<!--     <div class="swiper-button-prev"></div> -->
+<!--     <div class="swiper-button-next"></div> -->
+    <!-- 페이지네이션 -->
+    <div class="swiper-pagination"></div>
+</div>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        // 슬라이드 방향 지정 (수평 슬라이드)
+        direction: 'horizontal',
+        // 슬라이드 전환 속도 (밀리초)
+        speed: 600,
+        // 자동 재생 설정 (3초마다)
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        // 이전/다음 버튼 추가
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        // 페이지네이션 추가
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+</script>
 
 <!-- 추천상품 -->
    <div class="title">추천 상품</div>
