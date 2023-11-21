@@ -43,7 +43,7 @@
 	    brandDropdown.innerHTML = ''; // 두 번째 드롭다운 목록 비우기
 	    brandDropdown.disabled = true; // 두 번째 드롭다운 비활성화
 	
-	    if (selectedCategory === '휴대폰&태블릿') {
+	    if (selectedCategory === '0') {
 	        brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 	        brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
 	        for (var i = 0; i < br1.length; i++) {
@@ -55,7 +55,7 @@
 	            }
 	            brandDropdown.appendChild(option);
 	        }
-	    } else if (selectedCategory === '데스크탑') {
+	    } else if (selectedCategory === '1') {
 			// 데스크탑 선택한 경우
 			brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 			brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -69,7 +69,7 @@
 	            }
 	            brandDropdown.appendChild(option);
 	        }
-		} else if (selectedCategory === '노트북') {
+		} else if (selectedCategory === '2') {
 			// 노트북 선택한 경우
 			brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 			brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -83,7 +83,7 @@
 	            }
 	            brandDropdown.appendChild(option);
 	        }
-		} else if (selectedCategory === '게임기기') {
+		} else if (selectedCategory === '3') {
 			// 게임기기를 선택한 경우
 			brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 			brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -97,7 +97,7 @@
 	            }
 	            brandDropdown.appendChild(option);
 	        }
-		} else if (selectedCategory === '가전제품') {
+		} else if (selectedCategory === '4') {
 			// 가전제품을 선택한 경우
 			brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 			brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -111,7 +111,7 @@
 	            }
 	            brandDropdown.appendChild(option);
 	        }
-		} else if (selectedCategory === '카메라') {
+		} else if (selectedCategory === '5') {
 			// 카메라를 선택한 경우
 			brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 			brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -125,7 +125,7 @@
 	            }
 	            brandDropdown.appendChild(option);
 	        }
-		} else if (selectedCategory === '음향기기') {
+		} else if (selectedCategory === '6') {
 			// 음향기기를 선택한 경우
 			brandDropdown.disabled = false; // 두 번째 드롭다운 활성화
 			brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';
@@ -139,7 +139,7 @@
 	            }
 	            brandDropdown.appendChild(option);
 	        }
-		} else if (selectedCategory === '기타') {
+		} else if (selectedCategory === '7') {
 			//기타를 선택한 경우
 			brandDropdown.disabled = true; // 두 번째 드롭다운 비활성화
 			brandDropdown.innerHTML += '<option disabled selected>브랜드를 선택하세요</option>';

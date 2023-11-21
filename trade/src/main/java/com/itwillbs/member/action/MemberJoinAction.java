@@ -22,7 +22,7 @@ public class MemberJoinAction implements Action  {
 		request.setCharacterEncoding("UTF-8");
 		
 		String realPath = request.getRealPath("/uploadprofile");
-	//	System.out.println(" M : realPath :"+realPath);
+	    //System.out.println(" M : realPath :"+realPath);
 		
 		int maxSize = 5 * 1024 * 1024;
 		MultipartRequest multi = new MultipartRequest(request,realPath,maxSize,"UTF-8",new DefaultFileRenamePolicy());

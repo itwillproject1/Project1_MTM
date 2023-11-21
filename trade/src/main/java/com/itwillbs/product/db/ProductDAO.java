@@ -196,7 +196,7 @@ public class ProductDAO {
 	// 글 개수 계산 메서드 - getProductCount()
 
 	// 검색시 글 개수 계산 메서드 - getProductCount(search)
-	public int getProductCount(String searchAll) {
+	public int getProductCount(String search) {
 		int result = 0;
 
 		try {
@@ -207,7 +207,7 @@ public class ProductDAO {
 			// 3. sql 작성(select) & pstmt 객체
 			sql = "select count(*) from Product " + "where title like ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "%" + searchAll + "%");
+			pstmt.setString(1, "%" + search + "%");
 
 			// 4. sql 실행
 			rs = pstmt.executeQuery();
@@ -336,12 +336,51 @@ public class ProductDAO {
 	
 	// 카테고리별 글 개수 및 브랜드 글 개수 계산 메서드 - getProductCount(category, brand)
 	
+	// 카테고리별 글 개수 및 딜웨이 글 개수 계산 메서드 - getProductCount(category, deal_way)
+	public int getDealWayCategoryProductCount(String category, String deal_way) {
+	    int result = 0;
+
+	    try {
+	        // 드라이버 로드 및 디비 연결
+	        con = getCon();
+
+	        // sql 작성(select) & pstmt 객체
+	        // 카테고리와 딜웨이 모두 고려하여 쿼리 작성
+	        sql = "select count(*) from Product where category like ? and deal_way like ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, "%" + category + "%");
+	        pstmt.setString(2, "%" + deal_way + "%");
+	        
+	        System.out.println("deal_way: " + deal_way);
+	        System.out.println("category: " + category);
+
+	        // sql 실행
+	        rs = pstmt.executeQuery();
+
+	        // 데이터 처리 - 개수를 저장
+	        if (rs.next()) {
+	            result = rs.getInt(1);
+	        }
+
+	        System.out.println(" DAO : 개수 " + result + "개");
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeDB();
+	    }
+
+	    return result;
+	}
+	
+	// 카테고리별 글 개수 및 브랜드 글 개수 계산 메서드 - getProductCount(category, deal_way)
+	
 	
 
 	// 글 전체, 전체 검색, 카테고리별, 브랜드별 상품 목록 가져오는 메서드 - (int startRow, int pageSize, String
 	// category, String brand, String deal_way, String searchAll, String searchPart)
 
-	public ArrayList getProductList(int startRow, int pageSize, String category, String brand, String deal_way, String searchAll, String searchPart) {
+	public ArrayList getProductList(int startRow, int pageSize, String category, String brand, String deal_way, String search, String searchPart) {
 	    
 		ArrayList ProductList = new ArrayList();
 		
@@ -354,11 +393,11 @@ public class ProductDAO {
 	        // searchAll 값이 있을 때는 true, 없으면 false 
 	        // 전체 검색일 때는 타 조건문 없이 구성되어야 한다 ex) select * from Product where 1=1 and title like ?
 	        // 부분 검색일 때는 타 조건문이 붙을 수 있다 ex) select * from Product where 1=1 and category = ? and brand = ? and title like ?
-	        boolean isSearchAll = (searchAll != null);
+	        boolean isSearch = (search != null);
 
 	      
 	        // 전체 검색이거나 부분 검색이거나
-	        String search = (searchAll != null) ? searchAll : searchPart;
+	        String searchAll = (search != null) ? search : searchPart;
 
 	        // SQL 작성 & pstmt 객체
 	        StringBuilder sql = new StringBuilder("select * from Product where 1=1");
@@ -432,7 +471,7 @@ public class ProductDAO {
 	            System.out.println("category: " + category);
 			    System.out.println("brand: " + brand);
 			    System.out.println("deal_way: " + deal_way);
-			    System.out.println("searchAll: " + searchAll);
+			    System.out.println("searchAll: " + search);
 			    System.out.println("searchPart: " + searchPart);
 			    System.out.println("productListSql"+productListSql);
 			    System.out.println("productListCntSql"+productListCntSql);
@@ -666,7 +705,7 @@ public class ProductDAO {
 				// 글 하나의 정보를 배열의 한칸에 저장
 				productRecList.add(dto2);
 			} // while
-			System.out.println(" DAO : 상품 정보 조회성공!");
+			//System.out.println(" DAO : 상품 정보 조회성공!");
 
 		} catch (Exception e) {
 			e.printStackTrace();

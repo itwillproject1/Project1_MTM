@@ -10,6 +10,14 @@
 <body>
 <%@ include file="../main/header.jsp"%>
 
+
+<script type="text/javascript">
+function back(){
+	history.back();
+	return false;
+}
+</script>
+
 <fieldset>
 <legend> 아이디 찾기 </legend>
 <form action="./findidAction.member" id="fo" >
@@ -70,7 +78,7 @@
 			</span>
 			
 			<hr>
-			<input type="button" value="돌아가기" class="in" id="pre">
+			<input type="button" value="돌아가기" class="in" id="pre" onclick="back();">
 			<input type="submit" value="아이디 찾기" class="in" id="find">		
 		</form>	
 	</fieldset>
