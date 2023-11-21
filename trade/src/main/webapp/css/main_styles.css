@@ -57,20 +57,27 @@ object-position: center; /* 이미지 중앙에 위치 */
    max-width: 1200px;
    margin: 50px auto;
    padding: 0 20px;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   gap: 30px; /* 아이템 사이의 간격 */
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 30px; 
 }
+
 
 .product {
    width: 250px;
+/*    width: calc(25% - 30px); */
+/*    margin-bottom: 30px; */
    margin: 5% 0;
    background-color: #fff;
    border-radius: 10px;
    overflow: hidden;
    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
    transition: box-shadow 0.3s ease-in-out;
+} 
+
+.container .product:nth-child(n+5) {
+   grid-column: span 1;
+    margin-top: 30px;
 }
 
 .product:hover { /* 틀 그림자 무지개 호버 */
