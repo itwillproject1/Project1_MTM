@@ -31,9 +31,11 @@
     <div class="footer-info">
       <div class="contact-info">
       <br>
-        <strong>손보성:</strong> qhtjd0812@naver.com <strong>김영미:</strong> sonbosen@example.com<br>
-        <strong>이주현:</strong> sonbosen@example.com <strong>변치욱:</strong> sonbosen@example.com<br>
-        <strong>정윤정:</strong> sonbosen@example.com <strong>임소언:</strong> sonbosen@example.com
+      <table>
+      	<tr><th>손보성</th><td>qhtjd0812@naver.com</td><th>김영미</th><td>example@naver.com</td></tr>
+      	<tr><th>이주현</th><td>example@example.com</td><th>변치욱</th><td>example@naver.com</td></tr>
+      	<tr><th>정윤정</th><td>qjadj98@gmail.com</td><th>임소언</th><td>example@naver.com</td></tr>
+      </table>
       </div>
       <div class="logo">
         <a href="../main/Main.com"><img src="../main/img/logo(MTM).png" alt="로고"></a>
