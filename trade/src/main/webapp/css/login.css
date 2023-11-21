@@ -1,10 +1,8 @@
 @charset "UTF-8";
 
-.b {
+body {
     font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
-    
-    height: 100vh;
     background-color: #ffffff; /* 흰 배경색 */
 }
 
@@ -14,10 +12,7 @@
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 400px;
-    margin-top: 300px;
-    margin-right: 150px;
-    margin-bottom: 150px;
-    margin-left: 725px;
+   margin: 300px auto 20rem auto;
 }
 #log {
 	margin-top: 1.7rem;

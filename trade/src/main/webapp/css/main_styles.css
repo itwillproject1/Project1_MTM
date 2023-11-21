@@ -4,7 +4,7 @@
    width: 100%;
    height: 100%;
    align-content: center;
-   margin-left: 200px auto 70px;
+   margin: 200px  auto 0 auto;
 }
 
 
@@ -13,6 +13,7 @@ body {
    margin: 0;
    padding: 0;
    background-color: #ffffff;
+   height: 100%;
 }
 
 .slider-container {
