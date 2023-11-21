@@ -13,10 +13,10 @@ public class ActionForward {
 	private boolean isRedirect;
 	
 	public ActionForward() {
-		System.out.println(" -------------------");
-		System.out.println(" 티켓정보 생성 ");
-		System.out.println(" 목적지-X, 방식-X ");
-		System.out.println(" -------------------");
+	//	System.out.println(" -------------------");
+	//	System.out.println(" 티켓정보 생성 ");
+	//	System.out.println(" 목적지-X, 방식-X ");
+	//	System.out.println(" -------------------");
 	}
 	
 	// alt shift s + r  (get/set)

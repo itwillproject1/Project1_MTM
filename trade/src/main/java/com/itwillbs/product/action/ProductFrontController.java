@@ -19,30 +19,30 @@ import com.itwillbs.util.ActionForward;
 public class ProductFrontController extends HttpServlet{
 
    protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      System.out.println("C: ProductFrontController.doProcess()");
+    //  System.out.println("C: ProductFrontController.doProcess()");
       
       /************************1. 가상주소 계산 시작************************/
-      System.out.println("\n---------------1. 가상주소 계산 시작---------------");
-      String requestURI = request.getRequestURI(); // 가상주소
-      System.out.println("\tC: requestURI: " + requestURI);
+    //  System.out.println("\n---------------1. 가상주소 계산 시작---------------");
+        String requestURI = request.getRequestURI(); // 가상주소
+    //  System.out.println("\tC: requestURI: " + requestURI);
       
       String CTXPath = request.getContextPath(); // 프로젝트 이름
-      System.out.println("\tC: CTXPath: " + CTXPath);
+    //  System.out.println("\tC: CTXPath: " + CTXPath);
       
       String command = requestURI.substring(CTXPath.length());
-      System.out.println("\tC: command: " + command);
-      System.out.println("---------------1. 가상주소 계산 종료---------------");
+     // System.out.println("\tC: command: " + command);
+      //System.out.println("---------------1. 가상주소 계산 종료---------------");
       /************************1. 가상주소 계산 종료************************/
       
       
       /************************2. 가상주소 매핑 시작************************/
-      System.out.println("\n---------------2. 가상주소 매핑 시작---------------");
+    //  System.out.println("\n---------------2. 가상주소 매핑 시작---------------");
       ActionForward forward = new ActionForward();
       Action action = null;
       
       if(command.equals("/main/Main.com")) {
-         System.out.println("\tC: /Main.com 호출");
-         System.out.println("\tC: 패턴3 - DB 사용 O, 뷰페이지 출력");
+    //     System.out.println("\tC: /Main.com 호출");
+   //      System.out.println("\tC: 패턴3 - DB 사용 O, 뷰페이지 출력");
          
          action = new ProductPopListAction();
          
@@ -54,16 +54,16 @@ public class ProductFrontController extends HttpServlet{
          
       }
       else if(command.equals("/product/ProductUpload.com")) {
-         System.out.println("\tC: /ProductUpload.com 호출");
-         System.out.println("\tC: 패턴1 - DB 사용 X, 뷰페이지 출력");
+   //      System.out.println("\tC: /ProductUpload.com 호출");
+    //     System.out.println("\tC: 패턴1 - DB 사용 X, 뷰페이지 출력");
          
          forward = new ActionForward();
          forward.setPath("./productUpload.jsp");
          forward.setRedirect(false);
       }
       else if(command.equals("/product/ProductUploadAction.com")) {
-         System.out.println("\tC: /ProductUploadAction.com 호출");
-         System.out.println("\tC: 패턴2 - DB 사용 O, 페이지 이동");
+   //      System.out.println("\tC: /ProductUploadAction.com 호출");
+    //     System.out.println("\tC: 패턴2 - DB 사용 O, 페이지 이동");
          
          action = new ProductUploadAction();
          
@@ -74,8 +74,8 @@ public class ProductFrontController extends HttpServlet{
          }
       }
       else if(command.equals("/product/ProductContent.com")) {
-         System.out.println("\tC: /product/ProductContent.com 호출");
-         System.out.println("\tC: 패턴3 - DB 사용 O, 뷰페이지 출력");
+    //     System.out.println("\tC: /product/ProductContent.com 호출");
+     //    System.out.println("\tC: 패턴3 - DB 사용 O, 뷰페이지 출력");
          
          // BoardContentAction() 객체 생성
          action = new ProductContentAction();
@@ -87,8 +87,8 @@ public class ProductFrontController extends HttpServlet{
          }
       }
       else if(command.equals("/product/ProductList.com")) {
-         System.out.println(" C : /product/ProductList.com 호출 ");
-         System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
+     //    System.out.println(" C : /product/ProductList.com 호출 ");
+      //   System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
          
          //  ProductListAction() 객체 생성
          action = new ProductListAction();
@@ -100,8 +100,8 @@ public class ProductFrontController extends HttpServlet{
          }
       }
       else if(command.equals("/main/Main.com")) {
-         System.out.println(" C : /main/Main.com 호출 ");
-         System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
+      //   System.out.println(" C : /main/Main.com 호출 ");
+      //   System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
          
          //  ProductPopularListAction() 객체 생성
          action = new ProductPopListAction();
@@ -113,8 +113,8 @@ public class ProductFrontController extends HttpServlet{
          }
       }
       else if(command.equals("/product/DeleteProduct.com")) {
-    	  System.out.println(" C : /product/DeleteProduct.com 호출 ");
-          System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
+    //	  System.out.println(" C : /product/DeleteProduct.com 호출 ");
+     //     System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
           
           action = new DeleteProductAction();
           
@@ -125,8 +125,8 @@ public class ProductFrontController extends HttpServlet{
 		}
       }
       else if(command.equals("/product/ProductUpdate.com")) {
-    	  System.out.println(" C : /product/ProductUpdate.com 호출 ");
-    	  System.out.println(" C : 패턴 3 - DB 사용 O, 페이지 출력");
+    //	  System.out.println(" C : /product/ProductUpdate.com 호출 ");
+    //	  System.out.println(" C : 패턴 3 - DB 사용 O, 페이지 출력");
     	  
     	  action = new ProductUpdateAction();
     	  
@@ -137,8 +137,8 @@ public class ProductFrontController extends HttpServlet{
 		}
       }
       else if(command.equals("/product/ProductUpdateProAction.com")) {
-    	  System.out.println(" C : /product/deleteProduct.com 호출 ");
-          System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
+    //	  System.out.println(" C : /product/deleteProduct.com 호출 ");
+     //     System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
           
           action = new ProductUpdateProAction();
           
@@ -149,8 +149,8 @@ public class ProductFrontController extends HttpServlet{
 		}
       }
       else if(command.equals("/product/SuggestSell.com")) {
-    	  System.out.println(" C : /product/SuggestSell.com 호출 ");
-          System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
+    //	  System.out.println(" C : /product/SuggestSell.com 호출 ");
+     //     System.out.println(" C : 패턴2 - DB 사용 O, 페이지 이동");
           
           action = new SuggestSellAction();
           
@@ -161,7 +161,7 @@ public class ProductFrontController extends HttpServlet{
 		}
       }
       else if(command.equals("/product/LikeCheck.com")) {
-    	  System.out.println(" C: /product/LikeCheck.com 호출");
+    //	  System.out.println(" C: /product/LikeCheck.com 호출");
     	  action = new LikeCheckAction();
     	  try {
 			forward = action.execute(request, response);
@@ -170,8 +170,8 @@ public class ProductFrontController extends HttpServlet{
 		}
       }
       else if(command.equals("/product/Complain.com")) {
-    	  System.out.println(" C: /product/Complain.com 호출");
-    	  System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
+    //	  System.out.println(" C: /product/Complain.com 호출");
+    //	  System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력");
           
           //  Complain() 객체 생성
           action = new ComplainAction();
@@ -183,9 +183,9 @@ public class ProductFrontController extends HttpServlet{
           }
        }
       else if(command.equals("/product/CancleSuggest.com")) {
-    	  System.out.println(" C: /product/CancleSuggest.com 호출");
+    	//  System.out.println(" C: /product/CancleSuggest.com 호출");
 
-    	  System.out.println(" C: 패턴2 - DB 사용 O, 페이지 이동");
+    	//  System.out.println(" C: 패턴2 - DB 사용 O, 페이지 이동");
     	  
     	  action = new CancleSuggestAction();
     	  
@@ -226,39 +226,39 @@ public class ProductFrontController extends HttpServlet{
 		}  
     	  
       }
-      System.out.println("---------------2. 가상주소 매핑 종료---------------");
+   //   System.out.println("---------------2. 가상주소 매핑 종료---------------");
       /************************2. 가상주소 매핑 종료************************/
       
       /************************3. 가상주소 이동 시작************************/
-      System.out.println("\n---------------3. 가상주소 이동 시작---------------");
+    //  System.out.println("\n---------------3. 가상주소 이동 시작---------------");
       if(forward != null) {
          if(forward.isRedirect()) {
             // true
-            System.out.println("\tC: 이동주소: " + forward.getPath());
-            System.out.println("\tC: 이동방법: sendRedirect() 방식");
+         //   System.out.println("\tC: 이동주소: " + forward.getPath());
+        //    System.out.println("\tC: 이동방법: sendRedirect() 방식");
             response.sendRedirect(forward.getPath());
          } else {
             // false
-            System.out.println("\tC: 이동주소: " + forward.getPath());
-            System.out.println("\tC: 이동방법: forward() 방식");
+        //    System.out.println("\tC: 이동주소: " + forward.getPath());
+       //     System.out.println("\tC: 이동방법: forward() 방식");
             RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
             dis.forward(request, response);
          }
       }
-      System.out.println("---------------3. 가상주소 이동 종료---------------");
+   //   System.out.println("---------------3. 가상주소 이동 종료---------------");
       /************************3. 가상주소 이동 종료************************/
       
    }
    
    @Override
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      System.out.println("C: ProductFrontController.doGet()");
+    //  System.out.println("C: ProductFrontController.doGet()");
       doProcess(request, response);
    }
 
    @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      System.out.println("C: ProductFrontController.doPost()");
+    //  System.out.println("C: ProductFrontController.doPost()");
       doProcess(request, response);
    }
    

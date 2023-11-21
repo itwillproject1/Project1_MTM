@@ -26,7 +26,7 @@ public class ProductDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/mvc");
 		con = ds.getConnection();
 
-		System.out.println("DAO: DB 연결 성공");
+	//	System.out.println("DAO: DB 연결 성공");
 
 		return con;
 	}
@@ -87,7 +87,7 @@ public class ProductDAO {
 			// sql 실행
 			pstmt.executeUpdate();
 			dto.setBno(bno);
-			System.out.println("DAO: " + bno + "번 글 작성 완료");
+			//System.out.println("DAO: " + bno + "번 글 작성 완료");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,7 +112,7 @@ public class ProductDAO {
 			// 3. sql 실행
 			pstmt.executeUpdate();
 
-			System.out.println("DAO: 게시판 조회수 1 증가 완료!");
+		//	System.out.println("DAO: 게시판 조회수 1 증가 완료!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -157,7 +157,7 @@ public class ProductDAO {
 				dto.setDeal_status(rs.getInt("deal_status"));
 				dto.setDeal_user_id(rs.getString("deal_user_id"));
 			}
-			System.out.println("DAO: 글 정보 조회 완료!");
+		//	System.out.println("DAO: 글 정보 조회 완료!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -183,7 +183,7 @@ public class ProductDAO {
 			if (rs.next()) {
 				result = rs.getInt(1);
 			}
-			System.out.println(" DAO : 개수 " + result + "개");
+		//	System.out.println(" DAO : 개수 " + result + "개");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -217,7 +217,7 @@ public class ProductDAO {
 				result = rs.getInt(1);
 				// result = rs.getInt("count(*)");
 			}
-			System.out.println(" DAO : 개수 " + result + "개");
+		//	System.out.println(" DAO : 개수 " + result + "개");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -252,7 +252,7 @@ public class ProductDAO {
 				// result = rs.getInt("count(*)");
 			}
 
-			System.out.println(" DAO : 개수 " + result + "개");
+		//	System.out.println(" DAO : 개수 " + result + "개");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -308,8 +308,8 @@ public class ProductDAO {
 
 			} // while
 
-			System.out.println(" DAO : 글 목록 조회성공! ");
-			System.out.println(" DAO : " + ProductList.size());
+		//	System.out.println(" DAO : 글 목록 조회성공! ");
+		//	System.out.println(" DAO : " + ProductList.size());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -364,8 +364,8 @@ public class ProductDAO {
 				ProductList.add(dto);
 
 			} // while
-			System.out.println(" DAO : 검색창 글 목록 조회성공! ");
-			System.out.println(" DAO : " + ProductList.size());
+		//	System.out.println(" DAO : 검색창 글 목록 조회성공! ");
+		//	System.out.println(" DAO : " + ProductList.size());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -419,8 +419,8 @@ public class ProductDAO {
 				// 글 하나의 정보를 배열의 한칸에 저장
 				ProductList.add(dto);
 
-				System.out.println(" DAO : 카테고리별 글 목록 조회성공! ");
-				System.out.println(" DAO : " + ProductList.size());
+		//		System.out.println(" DAO : 카테고리별 글 목록 조회성공! ");
+		//		System.out.println(" DAO : " + ProductList.size());
 
 			}
 
@@ -495,7 +495,7 @@ public class ProductDAO {
 				// 글 하나의 정보를 배열의 한칸에 저장
 				productPopList.add(dto);
 			} // while
-			System.out.println(" DAO : 상품 정보 조회성공!");
+		//	System.out.println(" DAO : 상품 정보 조회성공!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -541,7 +541,7 @@ public class ProductDAO {
 				// 글 하나의 정보를 배열의 한칸에 저장
 				productRecList.add(dto2);
 			} // while
-			System.out.println(" DAO : 상품 정보 조회성공!");
+		//	System.out.println(" DAO : 상품 정보 조회성공!");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -584,7 +584,7 @@ public class ProductDAO {
 			result = 1;
 			
 
-			System.out.println("DAO: 글 삭제 완료, 결과: " + result);
+		//	System.out.println("DAO: 글 삭제 완료, 결과: " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -617,7 +617,7 @@ public class ProductDAO {
 
 			// sql 실행
 			pstmt.executeUpdate();
-			System.out.println("DAO: " + bno + "번 글 수정 완료");
+		//	System.out.println("DAO: " + bno + "번 글 수정 완료");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -663,7 +663,7 @@ public class ProductDAO {
 				// 글 하나의 정보를 리스트에 추가
 				userProducts.add(dto);
 			}
-			System.out.println(" DAO: 상품 정보 조회 성공!");
+		//	System.out.println(" DAO: 상품 정보 조회 성공!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -710,7 +710,7 @@ public class ProductDAO {
 				// 글 하나의 정보를 리스트에 추가
 				userProducts.add(dto);
 			}
-			System.out.println(" DAO: 상품 정보 조회 성공!");
+		//	System.out.println(" DAO: 상품 정보 조회 성공!");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -14,12 +14,12 @@ public class ProductListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println(" M : ProductListAction_execute() 실행 ");
+	//	System.out.println(" M : ProductListAction_execute() 실행 ");
 
 		// 전달정보 검색어 정보 저장
 		String search = request.getParameter("search");
 		String category = request.getParameter("category");
-		System.out.println(" M : 검색어 : "+search );
+		//System.out.println(" M : 검색어 : "+search );
 		
 		// 기존에 저장된 글정보를 가져와서 화면에 출력
 		ProductDAO dao = new ProductDAO();
@@ -35,7 +35,7 @@ public class ProductListAction implements Action {
 			System.out.println(" M : 검색어 있음! ("+search+")");
 			count = dao.getProductCount(search);
 		}		
-		System.out.println(" M : 글 개수 : " + count);
+		//System.out.println(" M : 글 개수 : " + count);
 		
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
@@ -69,7 +69,7 @@ public class ProductListAction implements Action {
 		}else {
 			// 글이 없는경우
 		}
-		System.out.println(" M : size :" + ProductList.size());
+		//System.out.println(" M : size :" + ProductList.size());
 
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("ProductList", ProductList);

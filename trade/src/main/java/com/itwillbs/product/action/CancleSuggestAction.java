@@ -13,13 +13,13 @@ public class CancleSuggestAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("CancleSuggestAction.execute() 호출");
+	//	System.out.println("CancleSuggestAction.execute() 호출");
 		// 전달정보 저장
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		String[] cancle_bnoList = request.getParameterValues("cancle_bno");
 //		int[] cancle_bno2 = request.getParameterValues("cancle_bno");
 		String cancle_bno = String.join(",", cancle_bnoList);
-		System.out.println("cancle_bno: " + cancle_bno);
+	//	System.out.println("cancle_bno: " + cancle_bno);
 				
 		// cancle 수행하는 메서드(SuggestSell 테이블 행 삭제) 실행
 		SuggestSellDAO ssdao = new SuggestSellDAO();

@@ -20,7 +20,7 @@ public class ProductUpdateProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M: ProductUpdateProAction.execute 호출");
+	//	System.out.println("M: ProductUpdateProAction.execute 호출");
 				
 		// 로그인 한 유저 아이디 세션에서 가져오기
 		HttpSession session = request.getSession();
@@ -30,15 +30,15 @@ public class ProductUpdateProAction implements Action {
 
 		// 첨부이미지
 		String realPath = request.getRealPath("upload");
-		System.out.println("realPath: "+ realPath);
+	//	System.out.println("realPath: "+ realPath);
 		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
-		System.out.println("request: " + request);
+	//	System.out.println("request: " + request);
 		
 		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
 				new DefaultFileRenamePolicy());
 
 		List<String> fileList = new ArrayList<>();
-		System.out.println("fileList: " + fileList);
+	//	System.out.println("fileList: " + fileList);
 		
 		for(int i=1; i<=5;i++) {
 			if(!multi.getParameter("file_name"+i).equals("")) {
@@ -64,7 +64,7 @@ public class ProductUpdateProAction implements Action {
 		dto.setContent(multi.getParameter("content"));
 		dto.setFile_name(file_name);
 
-		System.out.println("M: " + dto);
+	//	System.out.println("M: " + dto);
 
 		// DAO 글 수정 수행 메서드
 		ProductDAO dao = new ProductDAO();
@@ -88,7 +88,7 @@ public class ProductUpdateProAction implements Action {
 	
 			    if (!found) {
 			        // bFileName 파일 삭제 수행
-			    	System.out.println("삭제 실행");
+			  //  	System.out.println("삭제 실행");
 			    	file = new File(realPath+"\\"+bFileName);
 			    	file.delete();
 			    }
