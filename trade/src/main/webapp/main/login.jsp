@@ -12,7 +12,7 @@
 
 </head>
 
-<body class="b">
+<body>
 <%@ include file="header.jsp"%>
 
 
@@ -39,9 +39,6 @@
    
 	 
     <script src="script.js"></script>
-    
-    
-    
   </div>
  <%@ include file="../main/footer.jsp"%>
 </body>

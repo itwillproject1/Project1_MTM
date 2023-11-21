@@ -15,6 +15,8 @@ function scrollFunction() {
 
 // 맨 위로 스크롤하는 함수
 function scrollToTop() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+ window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // 부드러운 스크롤을 위해 추가한 옵션
+  });
 }
