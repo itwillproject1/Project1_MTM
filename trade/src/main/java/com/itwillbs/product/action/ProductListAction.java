@@ -18,45 +18,51 @@ public class ProductListAction implements Action {
 	//	System.out.println(" M : ProductListAction_execute() 실행 ");
 
 		// 전달정보 검색어 정보 저장
-		String search = request.getParameter("search");
 		String category = request.getParameter("category");
+		String[] catInfo = { "휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라", "음향기기", "기타" };
+		if (category == null || category.equals("선택"))
+			category = null;
+		else {
+			int i = Integer.parseInt(category);
+			category = catInfo[i];
+		}
 		String brand = request.getParameter("brand");
 		String deal_way = request.getParameter("deal_way");
-		String searchAll = request.getParameter("searchAll");
+		String search = request.getParameter("search");
 		String searchPart = request.getParameter("searchPart");
 		String selectedCategory = request.getParameter("category");
 
-		System.out.println(" M : 전체검색어 : " + searchAll);
-		System.out.println(" M : 부분검색어 : " + searchPart);
+		System.out.println(" M : 전체검색어 : " + search);
 
 		// 기존에 저장된 글정보를 가져와서 화면에 출력;
 		ProductDAO dao = new ProductDAO();
-		
-	      int count = 0;
+		int count = 0;
 
-	      if (searchAll == null && category == null && brand == null) {
-	    	    // 검색어 X, 카테고리 X, 브랜드 X
-	    	    System.out.println(" M : 검색어, 카테고리, 브랜드 없음! ");
-	    	    count = dao.getProductCount();
-	    	} else if (deal_way != null) {
-	    	    // 딜웨이 O
-	    	    System.out.println(" M : 딜웨이 있음! (" + deal_way + ")");
-	    	    count = dao.getDealWayProductCount(deal_way);
-	    	} else if (category != null) {
-	    	    if (brand != null) {
-	    	        // 카테고리 O, 브랜드 O
-	    	        System.out.println(" M : 카테고리, 브랜드 있음! (" + category + ", " + brand + ")");
-	    	        count = dao.getProductCount(category, brand);
-	    	    } else {
-	    	        // 카테고리 O, 브랜드 X
-	    	        System.out.println(" M : 카테고리 있음! (" + category + ")");
-	    	        count = dao.getCategoryProductCount(category);
-	    	    }
-	    	} else { 
-	    	    // 검색어 O - 검색결과 O/X
-	    	    System.out.println(" M : 검색어 있음! (" + searchAll + ")");
-	    	    count = dao.getProductCount(searchAll);
-	    	}
+		if (search == null && category == null && brand == null && deal_way == null) {
+		    // 검색어 X, 카테고리 X, 브랜드 X, 딜웨이 X
+		    System.out.println("M: 검색어, 카테고리, 브랜드, 딜웨이 없음!");
+		    count = dao.getProductCount();
+		} else if (category != null && deal_way != null) {
+		    // 카테고리 O, 딜웨이 0
+		    System.out.println("M: 카테고리, 딜웨이 있음! ( " + category + "," + deal_way + ",)");
+		    count = dao.getDealWayCategoryProductCount(category, deal_way);
+		} else if (deal_way != null) {
+		    // 딜웨이 O, 카테고리 X
+		    System.out.println("M: 딜웨이 있음! (" + deal_way + ")");
+		    count = dao.getDealWayProductCount(deal_way);
+		} else if (category != null && brand != null) {
+		    // 카테고리 O, 브랜드 O
+		    System.out.println("M: 카테고리, 브랜드 있음! (" + category + ", " + brand + ")");
+		    count = dao.getProductCount(category, brand);
+		} else if (category != null) {
+		    // 카테고리 O, 브랜드 X
+		    System.out.println("M: 카테고리 있음! (" + category + ")");
+		    count = dao.getCategoryProductCount(category);
+		} else {
+		    // 검색어 O - 검색결과 O/X
+		    System.out.println("M: 검색어 있음! (" + search + ")");
+		    count = dao.getProductCount(search);
+		}
 
 
 
@@ -86,19 +92,20 @@ public class ProductListAction implements Action {
 		ArrayList<String> brandList = new ArrayList<>();
 
 		// 여기에서 원하는 브랜드를 하드코딩하여 추가
-		if ("핸드폰%26태블릿".equals(selectedCategory)) {
+		if ("0".equals(selectedCategory)) {
 		    brandList.add("삼성");
+		    brandList.add("애플");
 		    brandList.add("엘지");
 		    brandList.add("기타");
 
-		} else if ("데스크탑".equals(selectedCategory)) {
+		} else if ("1".equals(selectedCategory)) {
 		    brandList.add("삼성");
 		    brandList.add("엘지");
 		    brandList.add("애플");
 		    brandList.add("hp");
 		    brandList.add("기타");
 		    
-		} else if ("노트북".equals(selectedCategory)) {
+		} else if ("2".equals(selectedCategory)) {
 		    brandList.add("삼성");
 		    brandList.add("엘지");
 		    brandList.add("애플");
@@ -106,17 +113,17 @@ public class ProductListAction implements Action {
 		    brandList.add("레노버");
 		    brandList.add("기타");
 		    
-		} else if ("게임기기".equals(selectedCategory)) {
+		} else if ("3".equals(selectedCategory)) {
 		    brandList.add("플레이스테이션");
 		    brandList.add("닌텐도");
 		    brandList.add("기타");
 		    
-		} else if ("가전제품".equals(selectedCategory)) {
+		} else if ("4".equals(selectedCategory)) {
 		    brandList.add("삼성");
 		    brandList.add("엘지");
 		    brandList.add("기타");
 		    
-		} else if ("카메라".equals(selectedCategory)) {
+		} else if ("5".equals(selectedCategory)) {
 		    brandList.add("캐논");
 		    brandList.add("니콘");
 		    brandList.add("소니");
@@ -124,7 +131,7 @@ public class ProductListAction implements Action {
 		    brandList.add("코닥");
 		    brandList.add("기타");
 		    
-		} else if ("음향기기".equals(selectedCategory)) {
+		} else if ("6".equals(selectedCategory)) {
 		    brandList.add("소니");
 		    brandList.add("보스");
 		    brandList.add("마샬");
@@ -138,46 +145,51 @@ public class ProductListAction implements Action {
 		ArrayList<String> dealWayList = new ArrayList<>();
 
 		// 여기에서 원하는 딜 웨이를 하드코딩하여 추가
-		if ("핸드폰%26태블릿".equals(selectedCategory)) {
+		if ("0".equals(selectedCategory)) {
 		    // 딜 웨이 목록 추가
 		    dealWayList.add("삽니다");
 		    dealWayList.add("팝니다");
 
-		} else if ("데스크탑".equals(selectedCategory)) {
-		    // 딜 웨이 목록 추가
-		    dealWayList.add("삽니다");
-		    dealWayList.add("팝니다");
-
-
-		} else if ("노트북".equals(selectedCategory)) {
+		} else if ("1".equals(selectedCategory)) {
 		    // 딜 웨이 목록 추가
 		    dealWayList.add("삽니다");
 		    dealWayList.add("팝니다");
 
 
-		} else if ("게임기기".equals(selectedCategory)) {
+		} else if ("2".equals(selectedCategory)) {
 		    // 딜 웨이 목록 추가
 		    dealWayList.add("삽니다");
 		    dealWayList.add("팝니다");
 
 
-		} else if ("가전제품".equals(selectedCategory)) {
+		} else if ("3".equals(selectedCategory)) {
 		    // 딜 웨이 목록 추가
 		    dealWayList.add("삽니다");
 		    dealWayList.add("팝니다");
 
 
-		} else if ("카메라".equals(selectedCategory)) {
+		} else if ("4".equals(selectedCategory)) {
 		    // 딜 웨이 목록 추가
 		    dealWayList.add("삽니다");
 		    dealWayList.add("팝니다");
 
 
-		} else if ("음향기기".equals(selectedCategory)) {
+		} else if ("5".equals(selectedCategory)) {
 		    // 딜 웨이 목록 추가
 		    dealWayList.add("삽니다");
 		    dealWayList.add("팝니다");
 
+
+		} else if ("6".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+
+		}  else if ("7".equals(selectedCategory)) {
+		    // 딜 웨이 목록 추가
+		    dealWayList.add("삽니다");
+		    dealWayList.add("팝니다");
+		    
 		}
 
 
@@ -190,7 +202,7 @@ public class ProductListAction implements Action {
 		try {
 		    if (count > 0) {
 		        // 공통된 메서드 호출 부분
-		        ProductList = dao.getProductList(startRow, pageSize, category, brand, deal_way, searchAll, searchPart);
+		        ProductList = dao.getProductList(startRow, pageSize, category, brand, deal_way, search, searchPart);
 		        
 		        System.out.println("");
 
