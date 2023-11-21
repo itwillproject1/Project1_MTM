@@ -42,9 +42,11 @@
     
     
     
+    
+    
+    
+    
   </div>
  <%@ include file="../main/footer.jsp"%>
 </body>
-  
-
 </html>
