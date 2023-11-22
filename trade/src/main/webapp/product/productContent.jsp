@@ -76,12 +76,15 @@
          <div class="image-container">
             <!-- 이미지를 클릭하면 JavaScript로 크게 보이게 설정 -->
             <div class="image-preview">
-               <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" id="imagePreview" alt="미리보기">
+               <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" 
+               		onerror="this.onerror=null; this.src='../product/img/default_product_image.png';">
             </div>
 
             <div class="image-preview-choice">
                <c:forEach var="file_name" items="${fileNameArr}">
-                  <img src="<%=request.getContextPath() %>/upload/${file_name}" id="imagePreviewChoice" class="clickable-image" alt="미리보기">
+                  <img src="<%=request.getContextPath() %>/upload/${file_name}"
+                  	onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+                    id="imagePreviewChoice" class="clickable-image" alt="미리보기">
                </c:forEach>
             </div>
          </div>

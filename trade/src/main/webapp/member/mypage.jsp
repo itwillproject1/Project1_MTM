@@ -196,7 +196,9 @@
 				 none1
 			</c:if>
 			" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">
-				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" alt="${product.title}">
+				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" 
+					onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" 
+					alt="${product.title}">
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>
 				</div>
@@ -241,7 +243,9 @@
 			<c:if test="${loop.index > 3 }">
 				 none2
 			</c:if>" onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">
-				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" alt="${product.title}">
+				<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }" 
+					onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" 
+					alt="${product.title}">
 				<div class="product-info">
 					<h3>[${product.deal_way }]${product.title }</h3>
 				</div>
@@ -283,7 +287,9 @@
             </c:if>
 			" onclick="toProductContent('../product/ProductContent.com?bno=${buyList[i].bno}')">
 				<div>
-					<img src="${pageContext.request.contextPath}/upload/${buyList[i].file_name}" alt="${buyList[i].title}">
+					<img src="${pageContext.request.contextPath}/upload/${buyList[i].file_name}" 
+						onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" 
+						alt="${buyList[i].title}">
 				</div>
 				<div class="product-info">
 					<h3>[${buyList[i].deal_way}]${buyList[i].title}</h3>

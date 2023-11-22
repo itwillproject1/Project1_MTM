@@ -400,7 +400,7 @@ public class ProductDAO {
 	        String searchAll = (search != null) ? search : searchPart;
 
 	        // SQL 작성 & pstmt 객체
-	        StringBuilder sql = new StringBuilder("select * from Product where 1=1 ");
+	        StringBuilder sql = new StringBuilder("select * from Product where 1=1");
 
 	        
 	        // 카테고리 선택했을 시 카테고리 조건문 추가
@@ -423,7 +423,7 @@ public class ProductDAO {
 	            sql.append(" and title like ?");
 	        }
 	        
-	        sql.append("order by date_time DESC limit ?,? ");
+	        sql.append("order by date_time desc limit ?,?");
 
 	        String productListSql = sql.toString();
 	        String productListCntSql = productListSql.replace("*", "COUNT(*) AS cnt");
@@ -533,7 +533,7 @@ public class ProductDAO {
 	        con = getCon();
 
 	        // SQL 작성 & pstmt 객체
-	        String sql = "SELECT DISTINCT brand FROM Product WHERE category = ? order by date_time DESC";
+	        String sql = "SELECT DISTINCT brand FROM Product WHERE category = ?";
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setString(1, category);
 
