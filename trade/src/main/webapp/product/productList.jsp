@@ -16,10 +16,13 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
-<link href="../css/productList.css" rel="stylesheet" />
+<link href="../css/productList.css?aaaa" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+	
+	var selectedDealWay = "${param.deal_way}";
+	var selectedSubCategory = "${param.brand}";
 
     // 페이지 이동 함수
     function changePage(pageNum, search, deal_way, category, brand) {
@@ -27,6 +30,7 @@ $(document).ready(function () {
 
         if (deal_way) {
             url += "&deal_way=" + deal_way;
+            selectedDealWay = deal_way;
         }
 
         if (category) {
@@ -35,10 +39,58 @@ $(document).ready(function () {
 
         if (brand) {
             url += "&brand=" + brand;
+            selectedSubCategory = brand;
         }
 
         window.location.href = url;
     }
+    
+ // dealWay 및 subCategory 클릭 시 이벤트 처리
+    $('#dealWayList a, #subCategory a').on('click', function () {
+        var categoryType = $(this).closest('ul').attr('id'); // 어떤 카테고리를 클릭했는지 확인
+
+        if (categoryType === 'dealWayList') {
+            // dealWay 클릭 시
+            var dealWay = $(this).text();
+            // 현재 선택된 dealWay와 클릭한 dealWay가 다를 때에만 변경
+            if (selectedDealWay !== dealWay) {
+                // 이전에 선택된 dealWay의 스타일 초기화
+                $('#dealWayList a').css({
+                    'color': '',
+                    'background-color': ''
+                });
+                // 현재 선택된 dealWay 업데이트
+                selectedDealWay = dealWay;
+                // 새로 클릭한 dealWay에 스타일 적용
+                $(this).css({
+                    'color': '#fff',
+                    'background-color': '#6D6D6D'
+                });
+                // 페이지 이동 함수 호출
+                changePage(1, '${param.search}', dealWay, '${param.category}', selectedSubCategory);
+            }
+        } else if (categoryType === 'subCategory') {
+            // subCategory 클릭 시
+            var subCategory = $(this).text();
+            // 현재 선택된 subCategory와 클릭한 subCategory가 다를 때에만 변경
+            if (selectedSubCategory !== subCategory) {
+                // 이전에 선택된 subCategory의 스타일 초기화
+                $('#subCategory a').css({
+                    'color': '',
+                    'background-color': ''
+                });
+                // 현재 선택된 subCategory 업데이트
+                selectedSubCategory = subCategory;
+                // 새로 클릭한 subCategory에 스타일 적용
+                $(this).css({
+                    'color': '#fff',
+                    'background-color': '#6D6D6D'
+                });
+                // 페이지 이동 함수 호출
+                changePage(1, '${param.search}', selectedDealWay, '${param.category}', subCategory);
+            }
+        }
+    });
 
     // 상세 페이지로 이동하는 함수
     function toProductContent(url) {
@@ -68,6 +120,26 @@ $(document).ready(function () {
         var pageNum = parseInt('${startPage + pageBlock}');
         changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}', '${param.brand}');
     });
+    
+ 	// 초기 로딩 시 현재 선택된 dealWay와 subCategory에 해당하는 스타일 적용
+    $('#dealWayList a').each(function () {
+        if ($(this).text() === selectedDealWay) {
+            $(this).css({
+                'color': '#fff',
+                'background-color': '#6D6D6D'
+            });
+        }
+    });
+
+    $('#subCategory a').each(function () {
+        if ($(this).text() === selectedSubCategory) {
+            $(this).css({
+                'color': '#fff',
+                'background-color': '#6D6D6D'
+            });
+        }
+    });
+    
 });
 </script>
 <title>상품 목록</title>
