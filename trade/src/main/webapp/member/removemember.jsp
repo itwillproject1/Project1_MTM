@@ -52,9 +52,9 @@ function check() {
 			<form action="./MemberDeleteAction.member" method="post" name="join" onsubmit="return check();">
 			    <input type="hidden" name="user_id" value="${dto.user_id }">
 				
-				비밀번호 : <input type="password" name="pw" id="pw"><br>
-				비밀번호 확인 : <input type="password" name="pw2" id="pw2"><br>
-				
+				<label>비밀번호</label> <input type="password" name="pw" id="pw"><br>
+				<label>비밀번호 확인</label> <input type="password" name="pw2" id="pw2"><br>
+				<hr>
 				<input type="submit" value="삭제하기">			
 			</form>			
 		</fieldset>
