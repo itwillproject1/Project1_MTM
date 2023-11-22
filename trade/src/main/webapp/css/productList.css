@@ -110,6 +110,30 @@ a {
     text-decoration: none;
 }
 
+.refresh-btn{
+	border:1px solid transparent;
+	background-color: transparent;
+	text-align: center;
+    vertical-align: middle;
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+}
+
+.refresh-btn img {
+	width:30px;
+}
+
+.refresh-btn:hover {
+	color: #6c757d;
+	text-decoration: none; 
+}
+.refresh-btn:focus, .refresh-btn.focus {
+	outline: 0;
+	box-shadow: 0 0 0 0.2rem rgba(27, 104, 255, 0.25); 
+}
+.refresh-btn.disabled, .refresh-btn:disabled { opacity: 0.65; }
+.refresh-btn:not(:disabled):not(.disabled) { cursor: pointer; }
+
 .ir *, .blind { /* 상품분류 리스트 가리기 */
     z-index: -1;
     position: absolute;
@@ -152,7 +176,7 @@ a {
 
 .product img {
 	width: 100%;
-	height: auto;
+	height: 16rem;
 	object-fit: cover;
 	object-position: center top;
 	transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -163,6 +187,14 @@ a {
 	padding: 15px;
 	text-align: center;
 	font-weight: bold;
+}
+
+.product-info h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-price { /* 가격 글자 크기, 가운데 정렬 */

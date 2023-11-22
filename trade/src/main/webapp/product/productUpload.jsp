@@ -12,8 +12,9 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/productUpload.css" rel="stylesheet" />
 
-<title>글쓰기</title>
+<title>MTM | 상품 업로드</title>
 </head>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <body>
 	<%@ include file="../main/header.jsp"%>
 	<div class="container">
@@ -165,7 +166,7 @@
 
 				<div class="form-group">
 					<label for="productPrice">가격(원):</label> <input type="number"
-						id="price" name="price" step="10" placeholder="배송비 포함 금액을 입력하세요">
+						id="price" name="price" step="500" placeholder="배송비 포함 금액을 입력하세요">
 				</div>
 
 				<div class="form-group">

@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문내역</title>
+<title>MTM | 주문내역</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/tradeDetail.css" rel="stylesheet" />
 </head>
@@ -24,16 +25,17 @@
 				<label class="h3">상품 정보</label>
 				<c:set var="fileNameArr" value="${fn:split(pdto.file_name, ',')}" />
 				<div class="product-group" onclick="location.href='../product/ProductContent.com?bno=${pdto.bno}';">
-					<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" id="imagePreview" alt="상품사진">
+					<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" 
+						onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" 
+						id="imagePreview" alt="상품사진">
 					<div class="product-detail">
-					상품명: ${pdto.title } <br>
-					카테고리: ${pdto.category }
+					상품명: ${pdto.title }
 					</div>
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="h3">결제금액</label>
+				<label class="h3">결제 금액</label>
 				<label><fmt:formatNumber value="${thdto.price}" />원</label>
 			</div>
 

@@ -31,22 +31,40 @@ body {
    margin: 50px auto;
    padding: 0 20px;
    display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   gap: 30px; 
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   grid-gap: 30px;
+   justify-items: center; /* 아이템을 가운데 정렬 */
 }
-
-
 .product {
-   width: 250px;
-/*    width: calc(25% - 30px); */
-/*    margin-bottom: 30px; */
-   margin: 5% 0;
+   width: 100%;
    background-color: #fff;
    border-radius: 10px;
    overflow: hidden;
    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
    transition: box-shadow 0.3s ease-in-out;
-} 
+}
+/* 4개씩만 보이도록 설정 */
+@media screen and (min-width: 768px) {
+   .container {
+      grid-template-columns: repeat(4, 1fr);
+   }
+}
+
+/* 작은 화면일 때 한 줄에 2개씩 보이도록 설정 */
+@media screen and (max-width: 768px) {
+   .container {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+/* 아주 작은 화면일 때, 한 줄에 1개씩 보이도록 설정 */
+@media screen and (max-width: 480px) {
+   .container {
+      grid-template-columns: repeat(1, 1fr);
+   }
+}
+
+
 
 .container .product:nth-child(n+5) {
    grid-column: span 1;
@@ -60,11 +78,21 @@ body {
 
 .product img {
    width: 100%;
-   height: 200px;
+   height: 16rem;
    object-fit: cover;
    object-position: center top;
    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
    /* 이미지 확대 더 부드럽게 */
+}
+
+/*제목 두줄 이상시 ...으로*/
+.product-info h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  white-space: normal;
 }
 
 .product-info { /* 상품 글자 크기, 가운데 정렬 */
@@ -95,5 +123,4 @@ body {
     75% { box-shadow: 0 0 8px rgba(0, 0, 255, 0.1); }
     100% { box-shadow: 0 0 8px rgba(255, 0, 255, 0.1); }
 }
-
 

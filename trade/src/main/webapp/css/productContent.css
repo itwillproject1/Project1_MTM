@@ -10,7 +10,7 @@ body {
 
 .container {
 	max-width: 80%;
-	margin: 200px auto; /* 여기서 상단 여백 조정 */
+	margin: 200px auto 70px; /* 여기서 상단 여백 조정 */
 	padding: 20px;
 	background-color: #fff; /* 흰색 배경색 */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -177,7 +177,7 @@ body {
 /* 판매하기 모달 */
 .submit-button {
 	display: block;
-	width: 100%;
+	width: 80%;
 	padding: 10px;
 	margin: 5px;
 	background-color: #333; /* 어두운 검정 계열 배경색 */
@@ -196,6 +196,23 @@ body {
 	background-color: #222; /* 더 어두운 검정 계열로 호버 시 변경 */
 }
 
+.no-button {
+	display: block;
+	width: 80%;
+	padding: 10px;
+	margin: 5px;
+	background-color: #c0c0c0; /* 어두운 검정 계열 배경색 */
+	color: #5e5e5e; /* 흰색 텍스트 색상 */
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼에 그림자 추가 */
+	cursor: default;
+}
+
 #priceSpan {
 	text-decoration: line-through;
 }
@@ -210,11 +227,11 @@ body {
 .button-container {
 	margin: 10px auto; /* 여기서 상단 여백 조정 */
 	padding: 20px;
-	background-color: #fff; /* 흰색 배경색 */
 	border-radius: 8px;
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
+	justify-content:center;
 }
 
 .h1 {
@@ -248,4 +265,9 @@ h2 {
 a {
 	text-decoration: none;
 	color: #555;
+}
+
+#pf {
+	width: 50px;
+	border-radius: 30%;
 }

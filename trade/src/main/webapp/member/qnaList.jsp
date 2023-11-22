@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/qnaList.css" rel="stylesheet" />
-
-<title>문의내역</title>
+<title>MTM | 1:1 문의내역</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 </head>
 <body>
 	<%@ include file="../main/header.jsp"%>

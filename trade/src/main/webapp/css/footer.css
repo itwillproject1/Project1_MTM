@@ -1,17 +1,22 @@
 @charset "UTF-8";
 
+footer {
+   width: 100%;
+   margin: 0 auto;
+}
+
 body {
-	padding: 0;
-	bottom: 0;
-	align-items: center;
-	margin: 0;
-	width: 100%;
+   padding: 0;
+   bottom: 0;
+   align-items: center;
+   margin: 0;
+   width: 100%;
 }
 
 #footerAll {
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
+   display: flex;
+   flex-direction: column;
+   min-height: 100%;
 }
 
 /* Other styles for your footer components */
@@ -19,93 +24,112 @@ body {
 
 /* Adjustments for smaller screens */
 @media ( max-width : 768px) { /* Add your responsive styles here */
-	/* For example, you might change the layout or adjust font sizes for smaller screens */
+   /* For example, you might change the layout or adjust font sizes for smaller screens */
 }
 
 .mail {
-	display: flex;
+   display: flex;
 }
 
 #d1 {
-	padding-right: 15px;
+   padding-right: 15px;
 }
 
 #scrollToTopBtn {
-	display: none; /* 초기에는 숨김 상태로 설정합니다. */
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
-	background-color: #999;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	padding: 10px;
-	cursor: pointer;
-	scroll-behavior: smooth;
+   display: none; /* 초기에는 숨김 상태로 설정합니다. */
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   background-color: #999;
+   color: #fff;
+   border: none;
+   border-radius: 5px;
+   padding: 10px;
+   cursor: pointer;
+   scroll-behavior: smooth;
 }
 
 .search button {
-	font-family: 'Noto Sans KR', sans-serif;
-	padding: 10px 15px;
-	background-color: #585858;
-	color: #fff;
-	border: 2px solid #585858;
-	cursor: pointer;
-	transition: background-color 0.2s;
+   font-family: 'Noto Sans KR', sans-serif;
+   padding: 10px 15px;
+   background-color: #585858;
+   color: #fff;
+   border: 2px solid #585858;
+   cursor: pointer;
+   transition: background-color 0.2s;
+}
+
+.search {
+   width:100%;
+   margin:0 auto;
+   display: inline-block;
 }
 
 #scrollToTopBtn:hover {
-	background-color: #999;
+   background-color: #999;
 }
 
 html {
-	scroll-behavior: smooth;
+   scroll-behavior: smooth;
 }
 
 .footer {
-	background-color: #333;
-	color: #fff;
-	padding: 20px;
-	text-align: center;
-	margin-top: 15rem;
+   width: 100%;
+   background-color: #333;
+   color: #fff;
+   padding: 20px;
+   text-align: center;
+   margin-top: 100px;
+   box-sizing: border-box;
 }
 
 .footer-info {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	text-align: left;
-	line-height: 1.9rem;
+   display: flex;
+   flex-direction:row;
+   align-items: center;
+   line-height: 1.9rem;
 }
 
-.contact-info, .customer-center {
-	flex: 1;
+.contact-info {
+   width: 40%;
+   text-align: left;
 }
 
 .contact-info p, .customer-center p {
-	margin: 0;
-	color: #ccc; /* 추가적인 스타일링 */
+   margin: 0;
+   color: #ccc; /* 추가적인 스타일링 */
+}
+
+.logo1 {
+   width: 20%;
+   text-align: center;
 }
 
 .logo1 img {
-	max-width: 70px;
-	border-radius: 0%; /* 로고 이미지를 원 모양으로 깎기 */
+   max-width: 70px;
+   border-radius: 0%; /* 로고 이미지를 원 모양으로 깎기 */
 }
 
 .customer-center {
-	text-align: right;
+   width: 40%;
+   text-align: right;
 }
 
 .copyright {
-	margin-top: 20px;
-	color: #ccc; /* 추가적인 스타일링 */
+   margin-top: 20px;
+   color: #ccc; /* 추가적인 스타일링 */
+}
+
+#sear {
+   width: 30%; /* 초기 값으로 100% 설정 */
 }
 
 th {
-	width: 60px;
-	text-align: center;
+   width: 60px;
+   text-align: center;
+white-space: nowrap;
 }
 
 td {
-	width: 180px;
+   width: 180px;
 }

@@ -18,7 +18,7 @@
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/productContent.css" rel="stylesheet" />
 <link href="../css/productModal.css" rel="stylesheet" />
-<title>상세페이지</title>
+<title>MTM | 상품 상세보기</title>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
@@ -58,6 +58,7 @@
       });
 </script>
 </head>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <body>
 
    <%@ include file="../main/header.jsp"%>
@@ -83,7 +84,7 @@
             <div class="image-preview-choice">
                <c:forEach var="file_name" items="${fileNameArr}">
                   <img src="<%=request.getContextPath() %>/upload/${file_name}"
-                  	onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+                  	onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"  
                     id="imagePreviewChoice" class="clickable-image" alt="미리보기">
                </c:forEach>
             </div>
@@ -138,7 +139,7 @@
             </div>
 
             <div class="form-group">
-               <label for="productCategory">카테고리: <a href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
+               <label for="productCategory">카테고리: <a href="../product/ProductList.com?category=${category }">${dto.category }</a></label>
             </div>
 
             <div class="form-group">
@@ -156,9 +157,9 @@
             </div>
 
             <!-- 구매 판매 찜 등 버튼 -->
-            <c:if test="${dto.deal_status == 1 }">
-               <c:if test="${dto.deal_way.equals('삽니다')}">
+            <c:if test="${dto.deal_way.equals('삽니다')}">
 	               <div class="button-container">
+            	<c:if test="${dto.deal_status == 1 }">
 	                  <c:choose>
 	                     <c:when test="${empty login_id}">
 	                        <input type="button" class="submit-button" value="판매 제안" onclick="requireLogin();">
@@ -170,9 +171,13 @@
 	                        <button class="submit-button" onclick="openProductModal();">판매 제안</button>
 	                     </c:when>
 	                  </c:choose>
+            	</c:if>
+            	<c:if test="${dto.deal_status == 0 }">
+            		<input type="button" class="no-button" value="거래 완료">
+            	</c:if> 
 					</div>
-               </c:if>
-            </c:if>   
+            	  
+            </c:if>
 
                <c:if test="${dto.deal_way.equals('팝니다') }">
                   <div class="button-container">
@@ -184,6 +189,9 @@
                         <input class="submit-button" type="button" value="구매하기" onclick="location.href='../pay/payment.com?bno=${dto.bno}';">
                      </c:if>
                   </c:if>
+                  <c:if test="${dto.deal_status == 0 }">
+					  <input type="button" class="no-button" value="거래 완료">
+				  </c:if>
 
 
                      <!-- 찜 기능 시작 -->
@@ -213,7 +221,10 @@
       <div id="productInfo">
          <!-- 모달 내용 -->
          <h2>
-            <img src="<%=request.getContextPath() %>/uploadpriflie/${mdto.profile}" alt="프로필"> ${dto.user_id} (평점) 
+            <img src="<%=request.getContextPath() %>/uploadprofile/${mdto.profile }" 
+            onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+            alt="프로필" id="pf">
+            ${dto.user_id}
          </h2>
 
          <h3 id="h3">${dto.user_id}님의 판매상품목록</h3>
@@ -222,7 +233,9 @@
             <c:if test="${userProduct.deal_way == '팝니다'}">
                <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
                   <span id="middle">
-                     <img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" alt="미리보기" >
+                     <img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" 
+                     onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+                     alt="미리보기" >
                   </span>
                   <div id="pfDiv"> <span>상품명: ${userProduct.title}<br></span>
                    <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
@@ -239,7 +252,9 @@
             <c:if test="${userProduct.deal_way == '삽니다'}">
                <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
                   <span id="middle">
-                     <img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" alt="미리보기" >
+                     <img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" 
+                     onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+                     alt="미리보기" >
                   </span>
                   <div id="pfDiv">
                      <span>상품명: ${userProduct.title}<br></span>
@@ -311,7 +326,9 @@
                    </div>
                    
                </div>
-               <button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
+               <div class="button-container1" >
+               	<button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
+               </div>
            </form>
                <button class="close-button" onclick="closeComplainModal()">닫기</button>
        </div>
@@ -337,7 +354,9 @@
                         <c:if test="${!sellProduct.isOffered }">
                            <input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }">
                         </c:if>
-                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${sellProduct.file_name }" alt="미리보기">
+                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${sellProduct.file_name }" 
+                        onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+                        alt="미리보기">
                      </div>
                      <div>
                         <span id="sellDiv">
@@ -364,7 +383,9 @@
             </c:if>
 
             <c:if test="${!empty login_id && !empty sellProduct}">
+            <div class="button-container">
                <button class="submit-button" onclick="submitProductOffer();">판매 제안</button>
+               </div>
             </c:if>
 
          </div>
@@ -377,7 +398,7 @@
 	<div id="suggestProductModal" class="modal">
 		<div class="modal-content">
 			<span class="close-button" onclick="closeSuggestModal()">닫기</span>
-			<div id="productInfo" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+			<div id="productInfo">
 				<!-- 모달 내용 -->
 				<h3 id="h3">거래 제안 현황</h3>
 				<c:if test="${!empty suggestList }">
@@ -390,7 +411,9 @@
 							<div>
 								<input type="radio" id="sellCheckbox" class="productCheckbox" name="sell_bno" value="${spdto.bno }">
 								<div id="productList" onclick="location.href='./ProductContent.com?bno=${spdto.bno}';">
-                           <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr2[0] }" alt="미리보기">
+                           <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr2[0] }" 
+                           onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+                           alt="미리보기">
                            <span id="sellDiv">
                               <span>상품명: ${spdto.title}<br></span>
                               <span>상품상태: ${spdto.product_status}<br></span>
@@ -402,7 +425,9 @@
                         <hr id="hr1">
                      </div>
                   </c:forEach>
-                  <button type="button" class="submit-button" onclick="submitSuggest();">거래 하기</button>
+                  <div class="button-container">
+                  	<button type="button" class="submit-button" onclick="submitSuggest();">거래 하기</button>
+                  </div>
                </form>
             </c:if>
             <c:if test="${empty suggestList }">
@@ -429,7 +454,9 @@
                      <input type="checkbox" id="sellCheckbox" class="productCheckbox" name="cancle_bno" value="${ssldto.bno }">
                      <div id="productList" onclick="location.href='./ProductContent.com?bno=${ssldto.bno}';">
 
-                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr3[0] }" alt="미리보기">
+                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr3[0] }" 
+                        onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+                        alt="미리보기">
                         <span id="sellDiv">
                            <span>상품명: ${ssldto.title}<br></span>
                            <span>상품상태: ${ssldto.product_status}<br></span>
@@ -441,7 +468,9 @@
                      <hr id="hr1">
                   </div>
                </c:forEach>
-               <button type="button" class="submit-button" onclick="cancleSuggest();">판매 제안 취소 하기</button>
+               <div class="button-container">
+               	<button type="button" class="submit-button" onclick="cancleSuggest();">판매 제안 취소 하기</button>
+               </div>
             </form>
          </c:if>
          <c:if test="${empty ssldto }">
@@ -618,6 +647,9 @@
 
          if (shouldDelete) {
             location.href = newURL;
+         } else {
+        	 alert('글 삭제를 취소하였습니다.');
+        	 location.reload();
          }
       }
    </script>

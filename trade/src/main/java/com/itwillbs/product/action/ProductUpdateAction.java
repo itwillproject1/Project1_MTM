@@ -24,7 +24,7 @@ public class ProductUpdateAction implements Action {
 		request.setAttribute("pdto", pdto);
 		
 		// category 값 배열에 저장
-		String[] cg = {"휴대폰%26태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라", "음향기기", "기타"};
+		String[] cg = {"휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라", "음향기기", "기타"};
 		request.setAttribute("cg", cg);
 		
 		ActionForward forward = new ActionForward();

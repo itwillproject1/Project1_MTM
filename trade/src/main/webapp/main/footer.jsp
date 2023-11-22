@@ -8,13 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="../css/footer.css" rel="stylesheet" />
 <title>푸터</title>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
+<footer>
 <div id="footerAll">
   <button onclick="scrollToTop()" id="scrollToTopBtn" title="맨 위로 이동">Top</button>
   <script src="../main/script.js"></script>
@@ -34,7 +30,7 @@
       <div class="customer-center">
         <p><img src="../main/img/address.png" width="20px">아이티윌 : 부산광역시 부산진구 동천로 109 삼한골든게이트빌딩 7층</p><p><strong>고객센터:</strong> 080-1234-5678</p><br>
         <form action="../product/ProductList.com" method="get" class="search">
-               <input type="text" name="search" placeholder="검색어 입력">
+               <input type="text" id="sear"name="search" placeholder="검색어 입력">
                <button type="submit" value="search">검색</button>
             </form>
       </div>
@@ -44,5 +40,6 @@
     </div>
   </div>
   </div>
+</footer>
 </body>
 </html>

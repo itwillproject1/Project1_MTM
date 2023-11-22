@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>MTM | 마이페이지</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <link href="../css/mypage.css" rel="stylesheet" />
 <link href="../css/main_styles_mypage.css" rel="stylesheet" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -17,7 +18,6 @@
 	$(document).ready(function() {
 		$('#arrow1').click(function(){
 			var img_src = document.getElementById('down1').src;
-			console.log("img_src: " + img_src);
 			
 			if(img_src == 'http://localhost:8088/trade/member/img/down_arrow.png') {
 				$('.none1').css('display', 'inline-block');
@@ -114,7 +114,9 @@
 
 				<div class="image-preview">
 					<c:if test="${dto.profile != null}" >
-					<img src="<%=request.getContextPath() %>/uploadprofile/${dto.profile }" id="imagePreview" alt="미리보기">
+					<img src="<%=request.getContextPath() %>/uploadprofile/${dto.profile }" 
+					onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+					id="imagePreview" alt="미리보기">
 					</c:if>
 					<c:if test="${dto.profile == null}" >
 					<img src="./img/member.png" id="imagePreview" alt="미리보기">

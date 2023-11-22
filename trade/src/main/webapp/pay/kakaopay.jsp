@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MTM | 포인트 충전</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <link href="../css/kakaopay.css" rel="stylesheet">
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script src="../js/jquery-3.7.1.js"></script>
@@ -50,6 +51,8 @@ IMP.request_pay({
     }
 });
 }
+
+
 </script>
 </head>
 <body>
@@ -57,18 +60,23 @@ IMP.request_pay({
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99C4EF3C5C0358F601" width="250" alt="카카오페이"><br>
 </div>
 <p class="explain">
-카카오페이의 최소 충전금액은 5,000원이며 <br>
+카카오페이의 최소 충전금액은 10,000원이며 <br>
 최대 충전금액은 1,000,000원 입니다.
 </p>
-
-<input type="radio" name="item" id="item" value="10000"> 10,000 <br>
-<input type="radio" name="item" id="item" value="30000"> 30,000 <br>
-<input type="radio" name="item" id="item" value="50000"> 50,000 <br>
-<input type="radio" name="item" id="item" value="100000"> 100,000 <br>
-<input type="radio" name="item" id="item" value="500000"> 500,000 <br>
+<p class="center">
+<input type="radio" name="item" id="item" value="10000"> 10,000
+<input type="radio" name="item" id="item" value="30000"> 30,000
+<input type="radio" name="item" id="item" value="50000"> 50,000<br>
+<input type="radio" name="item" id="item" value="100000"> 100,000
+<input type="radio" name="item" id="item" value="500000"> 500,000
 <input type="radio" name="item" id="item" value="1000000"> 1,000,000 <br>
+</p>
 <hr> 
-<button class="btn" onclick="pay()">결제하기</button>
+
+<div class="find-btn">
+<button class="btn" onclick="pay();">결제하기</button>
+<input type="button" class="btn" value="취소하기" onclick='window.close()'>
+</div>
 
 </body>
 </html>
