@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문내역</title>
+<title>MTM | 주문내역</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/tradeDetail.css" rel="stylesheet" />
 </head>

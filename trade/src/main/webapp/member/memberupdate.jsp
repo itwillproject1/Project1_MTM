@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MTM | 회원정보수정</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">/title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="../css/memberupdate.css" rel="stylesheet" />
 <link href="../css/agreeModal.css" rel="stylesheet" />
@@ -72,18 +73,6 @@ function passwordcheck() {
      프로필 :  <input type="file" name="profile" value="등록하기" accept="image/*" class="in"><br><br>
 	
 	전화번호 : <input type="text" name="phone" value="${dto.phone }" class="in"><br><br>
-				
-		<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<개인정보 수집 동의><br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		동의 : <input class="in" id="agree1" name="agree" type="radio" value="동의" checked>
-		비동의 : <input class="in" id="agree2" name="agree" type="radio" value="비동의"><br><br> -->
 	
 	<div id="checkDiv">
 	 <input class="choice" id="choice" type="checkbox" name="agree" checked>
