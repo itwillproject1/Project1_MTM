@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="/trade/css/login.css" rel="stylesheet" />
-    <title>로그인 페이지</title>
+    <title>MTM | 로그인</title>
 
 </head>
 

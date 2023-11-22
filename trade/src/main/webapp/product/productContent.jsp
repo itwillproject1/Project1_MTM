@@ -18,7 +18,7 @@
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/productContent.css" rel="stylesheet" />
 <link href="../css/productModal.css" rel="stylesheet" />
-<title>상세페이지</title>
+<title>MTM | 상품 상세보기</title>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
@@ -58,6 +58,7 @@
       });
 </script>
 </head>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <body>
 
    <%@ include file="../main/header.jsp"%>

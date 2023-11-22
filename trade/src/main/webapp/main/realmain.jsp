@@ -15,11 +15,10 @@
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/main_styles.css" rel="stylesheet" />
 <link href="../css/mainSlider.css" rel="stylesheet" />
-<title>쇼핑몰 메인 페이지</title>
+<title>Modern Tech Market</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper">
-
-
 </head>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <body>
 <div id="all">
    <%@ include file="../main/header.jsp"%>
