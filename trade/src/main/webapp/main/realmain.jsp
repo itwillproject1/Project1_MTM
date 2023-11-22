@@ -27,16 +27,19 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <img src="../main/img/event1.png" alt="이미지1">
+            <img src="../main/img/event111.png" alt="이미지1">
         </div>
         <div class="swiper-slide">
-            <img src="../main/img/event2.png" alt="이미지2">
+            <img src="../main/img/event222.png" alt="이미지2">
         </div>
         <div class="swiper-slide">
-            <img src="../main/img/event3.png" alt="이미지3">
+            <img src="../main/img/event333.png" alt="이미지3">
         </div>
         <div class="swiper-slide">
-            <img src="../main/img/event4.png" alt="이미지4">
+            <img src="../main/img/event444.png" alt="이미지4">
+        </div>
+         <div class="swiper-slide">
+            <img src="../main/img/event555.png" alt="이미지4">
         </div>
     </div>
     <!-- 페이지네이션 -->
@@ -66,7 +69,7 @@
 </script>
 
 <!-- 추천상품 -->
-   <div class="title">추천 상품</div>
+   <div class="title"><img src="../main/img/producttop.gif" alt="추천상품"></div>
    <div class="container">
       <c:forEach var="product" items="${dto}">
       <c:set var="fileNameArr" value="${fn:split(product.file_name, ',')}" />
@@ -91,7 +94,7 @@
       </c:forEach>
    </div>
 <!-- 최신상품 -->
-   <div class="title">최신 상품</div>
+   <div class="title"><img src="../main/img/producttopp.gif" alt="추천상품"></div>
    <div class="container">
    
       <c:forEach var="product" items="${dto2}">

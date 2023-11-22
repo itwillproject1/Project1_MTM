@@ -199,6 +199,13 @@ header:hover {
    align-items: center;
 }
 
+#headerimage {
+    display: block; 
+    margin: -20px;
+    margin-bottom: 5px;
+    width: 100%; 
+}
+
 #login {
 	width: 40px;
 	margin-right:5px;
