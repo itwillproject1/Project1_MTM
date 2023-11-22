@@ -76,7 +76,7 @@
          </c:if>"
          onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')" >            
          <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
-         	  onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+              onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
               alt="${product.title}" >
             <div class="product-info">
                <h3>[${product.deal_way }]${product.title }</h3>
@@ -90,7 +90,6 @@
          </div>
       </c:forEach>
    </div>
-   
 <!-- 최신상품 -->
    <div class="title">최신 상품</div>
    <div class="container">
@@ -103,7 +102,7 @@
          </c:if>"
          onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">            
          <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" 
-         	  onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+              onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
               alt="${product.title}" >
             <div class="product-info">
                <h3>[${product.deal_way }]${product.title }</h3>

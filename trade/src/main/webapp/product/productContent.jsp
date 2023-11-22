@@ -83,7 +83,7 @@
             <div class="image-preview-choice">
                <c:forEach var="file_name" items="${fileNameArr}">
                   <img src="<%=request.getContextPath() %>/upload/${file_name}"
-                  	onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+                  	onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"  
                     id="imagePreviewChoice" class="clickable-image" alt="미리보기">
                </c:forEach>
             </div>
