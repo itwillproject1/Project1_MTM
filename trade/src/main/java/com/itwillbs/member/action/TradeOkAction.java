@@ -17,25 +17,25 @@ public class TradeOkAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	 //   System.out.println("M: TradeOkAction_execute() 호출");
-	    
-	    HttpSession session = request.getSession();
-	    String user_id = (String) session.getAttribute("user_id");
+		// System.out.println("M: TradeOkAction_execute() 호출");
 
-	    ProductDTO tdto = new ProductDTO();
-	    tdto.setDeal_user_id(user_id);
-	    tdto.setBno(Integer.parseInt(request.getParameter("bno")));
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
 
-	    TradeHistoryDAO thdao = new TradeHistoryDAO();
-	    List<TradeHistoryDTO> tradeOkList = thdao.getTradeOkList(user_id);
+		ProductDTO tdto = new ProductDTO();
+		tdto.setDeal_user_id(user_id);
+		tdto.setBno(Integer.parseInt(request.getParameter("bno")));
 
-	 //   System.out.println("TradeOkList Size: " + tradeOkList.size());
+		TradeHistoryDAO thdao = new TradeHistoryDAO();
+		List<TradeHistoryDTO> tradeOkList = thdao.getTradeOkList(user_id);
 
-	    request.setAttribute("tradeOkList", tradeOkList);
+		// System.out.println("TradeOkList Size: " + tradeOkList.size());
+
+		request.setAttribute("tradeOkList", tradeOkList);
 
 		ActionForward forward = new ActionForward();
-	    forward.setPath("/member/mypage.jsp"); 
-	    forward.setRedirect(false);
-	    return forward;
+		forward.setPath("/member/mypage.jsp");
+		forward.setRedirect(false);
+		return forward;
 	}
 }

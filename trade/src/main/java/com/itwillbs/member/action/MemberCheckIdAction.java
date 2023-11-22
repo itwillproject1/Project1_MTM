@@ -10,6 +10,7 @@ import com.itwillbs.member.db.MemberDAO;
 import com.itwillbs.member.db.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
+import com.itwillbs.util.JSMoveFunction;
 
 public class MemberCheckIdAction implements Action {
 
@@ -32,21 +33,9 @@ public class MemberCheckIdAction implements Action {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", dto.getUser_id());
 			
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println(" <script> ");
-			out.println("  alert(' 사용중인 아이디 입니다. '); ");
-			out.println("  history.back(); ");
-			out.println(" </script> ");
-			out.close();	
+			JSMoveFunction.alertHistory(response, "사용중인 아이디 입니다.");	
 		}else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println(" <script> ");
-			out.println("  alert(' 사용가능한 아이디 입니다. '); ");
-			out.println("  history.back(); ");
-			out.println(" </script> ");
-			out.close();
+			JSMoveFunction.alertHistory(response, "사용가능한 아이디 입니다.");	
 		}
 		return null;
 }

@@ -1,4 +1,5 @@
 package com.itwillbs.member.action;
+
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,33 +12,35 @@ import com.itwillbs.util.ActionForward;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-
-public class MemberJoinAction implements Action  {
+public class MemberJoinAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-	//	System.out.println(" M : MemberJoinAction_execute() 실행 ");
+
+		// System.out.println(" M : MemberJoinAction_execute() 실행 ");
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
-		
+
 		String realPath = request.getRealPath("/uploadprofile");
-	    //System.out.println(" M : realPath :"+realPath);
-		
+		// System.out.println(" M : realPath :"+realPath);
+
 		int maxSize = 5 * 1024 * 1024;
-		MultipartRequest multi = new MultipartRequest(request,realPath,maxSize,"UTF-8",new DefaultFileRenamePolicy());
-		
+		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
+				new DefaultFileRenamePolicy());
+
 		// 드롭다운 전달정보 (생년월일, 휴대폰번호, 이메일)
-		String jumin = multi.getParameter("jumin1")+"-"+multi.getParameter("jumin2")+"-"+multi.getParameter("jumin3");
-		String phone = multi.getParameter("phone1")+"-"+multi.getParameter("phone2")+"-"+multi.getParameter("phone3");
-		String email = multi.getParameter("email1")+multi.getParameter("email2");
+		String jumin = multi.getParameter("jumin1") + "-" + multi.getParameter("jumin2") + "-"
+				+ multi.getParameter("jumin3");
+		String phone = multi.getParameter("phone1") + "-" + multi.getParameter("phone2") + "-"
+				+ multi.getParameter("phone3");
+		String email = multi.getParameter("email1") + multi.getParameter("email2");
 		String agree = multi.getParameter("agree");
-		if(agree==null) {
-			agree="비동의";
+		if (agree == null) {
+			agree = "비동의";
 		} else {
-			agree="동의";
-		} 
-		
+			agree = "동의";
+		}
+
 		// 전달정보
 		MemberDTO dto = new MemberDTO();
 		dto.setUser_id(multi.getParameter("user_id"));
@@ -52,11 +55,11 @@ public class MemberJoinAction implements Action  {
 		dto.setProfile(multi.getFilesystemName("profile"));
 		dto.setRecommend(multi.getParameter("recommend"));
 		dto.setAgree(agree);
-		
-	//	System.out.println(" M : "+dto);
+
+		// System.out.println(" M : "+dto);
 		MemberDAO dao = new MemberDAO();
 		dao.insertMember(dto);
-		
+
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
@@ -68,13 +71,9 @@ public class MemberJoinAction implements Action  {
 		out.println("}");
 		out.println("</script>");
 		out.close();
-		
+
 		return null;
-		
+
 	}
 
-	
-
-	
-	
 }
