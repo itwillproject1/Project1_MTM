@@ -68,7 +68,6 @@ public class ProductContentAction implements Action {
 		/* 카테고리 조회에 필요한 정보 */
 		String[] catInfo = { "휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라", "음향기기", "기타" };
 		int category = Arrays.asList(catInfo).indexOf(dto.getCategory());
-		System.out.println("category: " + category);
 		request.setAttribute("category", category);
 
 		/* 프로필 조회에 필요한 정보 */

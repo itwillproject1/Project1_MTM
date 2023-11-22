@@ -214,10 +214,12 @@
 			</div>
 		</c:forEach>
 		</c:if>
-	<c:if test="${empty mpbdto }">
-		<label>업로드한 상품이 없습니다.</label>
-	</c:if>
 	</div>
+	<c:if test="${empty mpbdto }">
+	<div class="cen">
+		<label>업로드한 상품이 없습니다.</label>
+	</div>
+	</c:if>
 	<c:if test="${mpbdto.size() > 4 }">
 		<div class="arrow" id="arrow1">
 			<label><img src="../member/img/down_arrow.png" id="down1"> 펼쳐보기</label>
@@ -260,10 +262,12 @@
 			</div>
 		</c:forEach>
 		</c:if>
-		<c:if test="${empty productlikelist }">
-		<label>찜한 상품이 없습니다.</label>
-	</c:if>
 	</div>
+		<c:if test="${empty productlikelist }">
+		<div class="cen">
+		<label>찜한 상품이 없습니다.</label>
+		</div>
+		</c:if>
 	
 	<c:if test="${productlikelist.size() > 4 }">
 		<div class="arrow" id="arrow2">
@@ -305,10 +309,12 @@
 		</div>
 		</c:forEach>
 	</c:if>
-	<c:if test="${empty buyList }">
-		<label>구매 상품이 없습니다.</label>
-	</c:if>
 	</div>
+	<c:if test="${empty buyList }">
+	<div class="cen">
+		<label>구매 상품이 없습니다.</label>
+	</div>
+	</c:if>
 	<c:if test="${tradeOkList.size() > 4 }">
 		<div class="arrow" id="arrow3">
 			<label><img src="../member/img/down_arrow.png" id="down3"> 펼쳐보기</label>
