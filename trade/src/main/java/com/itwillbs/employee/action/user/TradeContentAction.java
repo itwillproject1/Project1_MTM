@@ -12,6 +12,8 @@ import com.itwillbs.employee.dto.UserDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** TradeContentAction : 거래 상세보기 **/
+
 public class TradeContentAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

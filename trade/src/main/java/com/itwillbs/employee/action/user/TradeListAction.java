@@ -11,6 +11,8 @@ import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** TradeListAction : 거래 목록 **/
+
 public class TradeListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -81,10 +83,6 @@ public class TradeListAction implements Action {
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize;
 
-		// 끝행 번호 계산
-		// 10 20 30 40 50 .....
-		int endRow = currentPage * pageSize;
-
 		/********************* 페이징처리 1 *******************/
 
 		/******************* 페이징처리 2 *********************/
@@ -127,7 +125,9 @@ public class TradeListAction implements Action {
 			list = dao.tradeList(pageCategory, startRow, pageSize);
 		else
 			list = dao.tradeList(pageCategory, category, search, searchKeyword, checkComplete, startRow, pageSize);
-
+		
+		if(list.size() == 0) list = new ArrayList();
+		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("pageNum", pageNum);
@@ -141,7 +141,7 @@ public class TradeListAction implements Action {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		forward.setPath("./employee/user/tradeList.jsp");
-		System.out.println(list.size());
+		//System.out.println(list.size());
 		forward.setRedirect(false);
 		return forward;
 	}

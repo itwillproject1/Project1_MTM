@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** ActiveFormAction : 직원 활성화 폼 **/
+
 public class ActiveFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

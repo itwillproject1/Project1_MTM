@@ -28,12 +28,10 @@ public class BoardDeleteAction implements Action {
 		int result = dao.deleteBoard(bdto, mdto);
 		if (result == 1) {
 			// 삭제 완료
-			JSConfirmMoveFunction move = new JSConfirmMoveFunction();
-			move.moveLocation(response, "./BoardDeleteConfirm.emp?");
+			JSConfirmMoveFunction.moveLocation(response, "./BoardDeleteConfirm.emp?");
 		} else {
 			// 삭제 안 됨
-			JSMoveFunction move = new JSMoveFunction();
-			move.alertBack(response, "오류 발생!");
+			JSMoveFunction.alertBack(response, "오류 발생!");
 		}
 		return null;
 	}

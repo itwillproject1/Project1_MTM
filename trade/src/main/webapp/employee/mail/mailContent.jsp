@@ -16,7 +16,7 @@
 				<div class="row align-items-center mb-4">
 					<div class="col">
 						<h2 class="h2 page-title">
-							<small class="text-muted text-uppercase">#${dto.emp_id}</small><br>#${dto.bno}
+							<small class="text-muted text-uppercase">#${dto.emp_id}</small><br>#${dto.idx}
 						</h2>
 					</div>
 				</div>

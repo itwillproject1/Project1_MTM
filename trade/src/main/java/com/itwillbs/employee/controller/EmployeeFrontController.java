@@ -30,6 +30,7 @@ import com.itwillbs.employee.action.inquiry.InquiryAction;
 import com.itwillbs.employee.action.inquiry.InquiryContentAction;
 import com.itwillbs.employee.action.inquiry.InquiryListAction;
 import com.itwillbs.employee.action.mail.EmployeeMailSendAction;
+import com.itwillbs.employee.action.mail.EmployeeMailSendConfirm;
 import com.itwillbs.employee.action.mail.EmployeeSendMailContent;
 import com.itwillbs.employee.action.mail.EmployeeSendMailList;
 import com.itwillbs.employee.action.member.ActiveAction;
@@ -54,27 +55,28 @@ import com.itwillbs.employee.action.user.UserListAction;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+@SuppressWarnings("serial")
 @WebServlet("*.emp")
 public class EmployeeFrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("C : EmployeeFrontController doProcess() 실행");
-		System.out.println("C : GET/POST 동작 모두 처리");
+		//System.out.println("C : EmployeeFrontController doProcess() 실행");
+		//System.out.println("C : GET/POST 동작 모두 처리");
 		// ------------------가상주소 계산----------------
-		System.out.println("\n1. 가상주소 계산 시작");
+		//System.out.println("\n1. 가상주소 계산 시작");
 		// System.out.println(request.getRequestURL());
 		String requestURI = request.getRequestURI();
-		System.out.println("C : requestURI : " + requestURI);
+		//System.out.println("C : requestURI : " + requestURI);
 		String CTXPath = request.getContextPath();
-		System.out.println("C : CTXPath : " + CTXPath);
+		//System.out.println("C : CTXPath : " + CTXPath);
 		String command = requestURI.substring(CTXPath.length());
-		System.out.println("C : command : " + command);
-		System.out.println("\n1. 가상주소 계산 끝");
+		//System.out.println("C : command : " + command);
+		//System.out.println("\n1. 가상주소 계산 끝");
 		// ------------------가상주소 계산----------------
 
 		// ------------------가상주소 매핑----------------
-		System.out.println("\n2. 가상주소 매핑 시작");
+		//System.out.println("\n2. 가상주소 매핑 시작");
 		ActionForward forward = null;
 		Action action = null;
 
@@ -91,7 +93,7 @@ public class EmployeeFrontController extends HttpServlet {
 
 		// -- 관리자 정보 관련
 		else if (command.equals("/Login.emp")) {
-			// 로그인 페이지(처음 이동할 때 session 조회하고 이동 예정)
+			// 로그인 페이지
 			action = new LoginForm();
 			try {
 				forward = action.execute(request, response);
@@ -101,6 +103,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/Logout.emp")) {
+			// 로그아웃
 			action = new LogoutAction();
 			try {
 				forward = action.execute(request, response);
@@ -263,6 +266,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/UserInfo.emp")) {
+			// 유저 상세 정보
 			action = new UserInfoAction();
 			try {
 				forward = action.execute(request, response);
@@ -315,6 +319,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/UserSuspendActiveForm.emp")) {
+			// 회원 정지 진행 폼
 			action = new SuspendActiveFormAction();
 			try {
 				forward = action.execute(request, response);
@@ -324,6 +329,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/UserSuspendActiveAction.emp")) {
+			// 회원 정지 진행
 			action = new SuspendActiveAction();
 			try {
 				forward = action.execute(request, response);
@@ -332,16 +338,9 @@ public class EmployeeFrontController extends HttpServlet {
 			}
 		}
 
-		else if (command.equals("/UserSuspendCancelForm.emp")) {
-			action = new SuspendCancelFormAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 
 		else if (command.equals("/UserSuspendActiveConfirm.emp")) {
+			// 회원 정지 진행 확인
 			action = new SuspendActiveConfirmAction();
 			try {
 				forward = action.execute(request, response);
@@ -350,7 +349,18 @@ public class EmployeeFrontController extends HttpServlet {
 			}
 		}
 
+		else if (command.equals("/UserSuspendCancelForm.emp")) {
+			// 회원 정지 취소 폼
+			action = new SuspendCancelFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		else if (command.equals("/UserSuspendCancelAction.emp")) {
+			// 회원 정지 취소 진행
 			action = new SuspendCancelAction();
 			try {
 				forward = action.execute(request, response);
@@ -360,6 +370,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/UserSuspendCancelConfirm.emp")) {
+			// 회원 정지 취소 확인
 			action = new SuspendCancelConfirmAction();
 			try {
 				forward = action.execute(request, response);
@@ -380,6 +391,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/TradeContent.emp")) {
+			// 거래 상세 정보
 			action = new TradeContentAction();
 			try {
 				forward = action.execute(request, response);
@@ -389,6 +401,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/TradeHistory.emp")) {
+			// 거래이력 테이블
 			action = new TradeHistory();
 			try {
 				forward = action.execute(request, response);
@@ -398,6 +411,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardList.emp")) {
+			// 게시판 리스트(공지사항, 이벤트)
 			action = new BoardListAction();
 			try {
 				forward = action.execute(request, response);
@@ -407,6 +421,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardContent.emp")) {
+			// 게시판 글 상세 정보
 			action = new BoardContentAction();
 			try {
 				forward = action.execute(request, response);
@@ -416,6 +431,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardWrite.emp")) {
+			// 게시판 글 작성 폼
 			forward = new ActionForward();
 			forward.setPath("./employee/user/boardWriteForm.jsp");
 			forward.setRedirect(false);
@@ -423,6 +439,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardWriteAction.emp")) {
+			// 게시판 글 작성 진행
 			action = new BoardWriteAction();
 			try {
 				forward = action.execute(request, response);
@@ -432,6 +449,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardWriteConfirm.emp")) {
+			// 게시판 글 작성 완료
 			action = new BoardWriteConfirmAction();
 			try {
 				forward = action.execute(request, response);
@@ -441,6 +459,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardUpdateForm.emp")) {
+			// 게시판 글 수정 폼
 			action = new BoardUpdateFormAction();
 			try {
 				forward = action.execute(request, response);
@@ -450,6 +469,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardUpdateAction.emp")) {
+			// 게시판 글 수정 진행
 			action = new BoardUpdateAction();
 			try {
 				forward = action.execute(request, response);
@@ -459,6 +479,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardUpdateConfirm.emp")) {
+			// 게시판 글 수정 완료
 			action = new BoardUpdateConfirmAction();
 			try {
 				forward = action.execute(request, response);
@@ -468,6 +489,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardDeleteForm.emp")) {
+			// 게시판 글 삭제 폼
 			action = new BoardDeleteFormAction();
 			try {
 				forward = action.execute(request, response);
@@ -477,6 +499,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardDeleteAction.emp")) {
+			// 게시판 글 삭제 진행
 			action = new BoardDeleteAction();
 			try {
 				forward = action.execute(request, response);
@@ -486,6 +509,7 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/BoardDeleteConfirm.emp")) {
+			// 게시판 글 삭제 확인
 			forward = new ActionForward();
 			forward.setPath("./employee/user/boardDeleteConfirm.jsp");
 			forward.setRedirect(false);
@@ -512,13 +536,14 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 
 		else if (command.equals("/EmployeeMailSend.emp")) {
-			// 광고성 메일 전송(수신동의자 한정)
+			// 광고성 메일 전송 폼(수신동의자 한정)
 			forward = new ActionForward();
 			forward.setPath("./employee/mail/mailSend.jsp");
 			forward.setRedirect(false);
 		}
 		
 		else if(command.equals("/EmployeeMailSendAction.emp")) {
+			// 메일 전송 실행
 			action = new EmployeeMailSendAction();
 			try {
 				forward = action.execute(request, response);
@@ -528,26 +553,30 @@ public class EmployeeFrontController extends HttpServlet {
 		}
 		
 		else if(command.equals("/EmployeeMailSendConfirm.emp")) {
-			
+			// 메일 전송 확인
+			action = new EmployeeMailSendConfirm();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
-
-		// -- 회원 정보 조회 및 관리
 
 		// ------------------가상주소 매핑----------------
 
 		// ------------------가상주소 이동----------------
-		System.out.println("\n3. 가상주소 이동 시작");
+		//System.out.println("\n3. 가상주소 이동 시작");
 		if (forward != null) { // 이동 정보가 존재할 때
 			if (forward.isRedirect()) {
-				System.out.println("C : " + forward.getPath() + "로, 이동방식 : " + forward.isRedirect());
+				//System.out.println("C : " + forward.getPath() + "로, 이동방식 : " + forward.isRedirect());
 				response.sendRedirect(forward.getPath());
 			} else {
-				System.out.println("C : " + forward.getPath() + "로, 이동방식 : " + forward.isRedirect());
+				//System.out.println("C : " + forward.getPath() + "로, 이동방식 : " + forward.isRedirect());
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
 			}
 		}
-		System.out.println("\n3. 가상주소 이동 끝");
+		//System.out.println("\n3. 가상주소 이동 끝");
 		// ------------------가상주소 이동----------------
 	}
 

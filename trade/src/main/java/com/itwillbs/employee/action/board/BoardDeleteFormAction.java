@@ -8,7 +8,7 @@ import com.itwillbs.employee.dto.BoardDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-/** BoardDeleteFormAction() : 게시판 삭제 폼 **/
+/** BoardDeleteFormAction : 게시판 삭제 폼 **/
 
 public class BoardDeleteFormAction implements Action {
 	@Override

@@ -101,7 +101,7 @@ public class MailDAO extends DAO {
 		MailDTO dto = null;
 		try {
 			con = getCon();
-			sql = "selece * from Mail where idx = ?";
+			sql = "select * from Mail where idx = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			rs = pstmt.executeQuery();
@@ -125,8 +125,12 @@ public class MailDAO extends DAO {
 	public void mailInsert(MailDTO dto) {
 		try {
 			con = getCon();
-			sql = "";
+			sql = "insert into Mail (emp_id, subject, content, image, sendDate) values(?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getEmp_id());
+			pstmt.setString(2, dto.getSubject());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setString(4, dto.getImage());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

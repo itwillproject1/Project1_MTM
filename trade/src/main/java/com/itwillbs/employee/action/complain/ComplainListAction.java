@@ -71,7 +71,7 @@ public class ComplainListAction implements Action {
 		ArrayList<SuspendDTO> list = dao.complainedUserList(startRow, pageSize);
 
 		if (list == null)
-			list = new ArrayList();
+			list = new ArrayList<SuspendDTO>();
 
 		ActionForward forward = new ActionForward();
 		request.setAttribute("pageNum", pageNum);

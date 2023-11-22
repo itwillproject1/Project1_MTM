@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.itwillbs.employee.dao.DAO;
 import com.itwillbs.employee.dao.MemberDAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
-import com.itwillbs.util.JSMoveFunction;
+
+/** 직원 리스트  **/
 
 public class ListAction implements Action {
 	@Override
@@ -48,7 +47,6 @@ public class ListAction implements Action {
 		// 글 78 / 페이지당 10 => 8개
 
 		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		System.out.println(pageCount);
 		// 한 화면에 보여줄 페이지 블럭개수
 		int pageBlock = 5;
 

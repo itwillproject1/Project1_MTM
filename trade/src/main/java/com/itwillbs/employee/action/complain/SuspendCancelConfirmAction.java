@@ -7,6 +7,8 @@ import com.itwillbs.employee.dto.UserDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
+/** SuspendCancelConfirmAction : 피신고자 정지 취소 확인 **/
+
 public class SuspendCancelConfirmAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

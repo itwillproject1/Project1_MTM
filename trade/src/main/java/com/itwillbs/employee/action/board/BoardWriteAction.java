@@ -14,7 +14,7 @@ import com.itwillbs.util.FileUpload;
 import com.itwillbs.util.JSMoveFunction;
 import com.oreilly.servlet.MultipartRequest;
 
-/** BoardWriteAction() : 게시판 작성 후 업로드 **/
+/** BoardWriteAction : 게시판 작성 후 업로드 **/
 
 public class BoardWriteAction implements Action {
 	@Override

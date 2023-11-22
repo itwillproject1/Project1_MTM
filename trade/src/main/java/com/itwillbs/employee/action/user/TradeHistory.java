@@ -10,6 +10,7 @@ import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
 public class TradeHistory implements Action {
+	/** TradeHistory : 거래 내역 **/
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// request.setCharacterEncoding("utf-8");
@@ -41,10 +42,6 @@ public class TradeHistory implements Action {
 		// 1 11 21 31 41 .....
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize;
-
-		// 끝행 번호 계산
-		// 10 20 30 40 50 .....
-		int endRow = currentPage * pageSize;
 
 		/********************* 페이징처리 1 *******************/
 

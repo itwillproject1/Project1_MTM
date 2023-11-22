@@ -16,13 +16,19 @@ public class InquiryContentAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		InquiryDAO idao = new InquiryDAO();
+		// 문의 글 정보 불러오기
 		InquiryDTO idto = idao.inquiryContent(Integer.parseInt(request.getParameter("bno")));
+		
+		// 문의 한 회원 정보 불러오기
 		UserDAO udao = new UserDAO();
 		UserDTO udto = udao.userInfo(idto.getUser_id());
+		
+		
 		request.setAttribute("udto", udto);
 		request.setAttribute("idto", idto);
 		request.setAttribute("pageNum", request.getParameter("pageNum"));
 		request.setAttribute("complete", request.getParameter("complete"));
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./employee/user/inquiryContent.jsp");
 		forward.setRedirect(false);

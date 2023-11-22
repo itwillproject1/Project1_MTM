@@ -42,10 +42,6 @@ public class UserListAction implements Action {
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize;
 
-		// 끝행 번호 계산
-		// 10 20 30 40 50 .....
-		int endRow = currentPage * pageSize;
-
 		/********************* 페이징처리 1 *******************/
 
 		/******************* 페이징처리 2 *********************/

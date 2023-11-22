@@ -109,7 +109,7 @@ link += search == null || searchKeyword == null || search.equals("선택") ? ""
 						<tbody>
 							<c:forEach var="i" items="${list}">
 								<tr>
-									<td>${i.bno}</td>
+									<td>${i.idx}</td>
 									<td>
 										<p class="mb-0 text-muted">
 											<a href="./ProfileContent.emp?emp_id=${i.emp_id}"
@@ -118,10 +118,9 @@ link += search == null || searchKeyword == null || search.equals("선택") ? ""
 									</td>
 									<td>
 										<p class="mb-0 text-muted">
-											<a href="./EmployeeMailContent.emp?bno=${i.bno}" class="text-muted">${i.subject}</a>
+											<a href="./EmployeeMailContent.emp?bno=${i.idx}" class="text-muted">${i.subject}</a>
 										</p>
 									</td>
-									<td>${i.content}</td>
 									<td>${i.sendDate}</td>
 									<td>
 										<div class="dropdown">
@@ -132,7 +131,7 @@ link += search == null || searchKeyword == null || search.equals("선택") ? ""
 											</button>
 											<div class="dropdown-menu dropdown-menu-right" style="">
 												<a class="dropdown-item"
-													href="./MailContent.emp?bno=${i.bno}">상세보기</a>
+													href="./MailContent.emp?bno=${i.idx}">상세보기</a>
 											</div>
 										</div>
 									</td>

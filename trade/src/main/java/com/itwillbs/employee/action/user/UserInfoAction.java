@@ -14,6 +14,8 @@ import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 import com.itwillbs.util.JSMoveFunction;
 
+/** UserInfoAction : 유저 정보 조회 **/
+
 public class UserInfoAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

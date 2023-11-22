@@ -152,7 +152,7 @@ public class UserDAO extends DAO {
 		UserDTO dto = null;
 		try {
 			con = getCon();
-			sql = "select user_id, email from Member where agree = '동의'";
+			sql = "select user_id, email from Member where agree = '동의' and email like '%@%'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			list = new ArrayList<UserDTO>();

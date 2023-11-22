@@ -10,7 +10,7 @@ import com.itwillbs.employee.dao.DAO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
-/** BoardListAction() : 게시판 목록 불러오기 **/
+/** BoardListAction : 게시판 목록 불러오기 **/
 
 public class BoardListAction implements Action {
 	@Override
