@@ -650,7 +650,7 @@ public class MemberDAO {
 						String sus_days = rs.getString(1);
 						Date sus_date = rs.getDate(2);
 						String suspendReason = rs.getString(3);
-						result = user_id + "님은 " + suspendReason + "의 사유로 인해<br>" + sus_date + " 부터 "
+						result = user_id + "님은 " + suspendReason + "의 사유로 인해\\n" + sus_date + " 부터 "
 								+ sus_days + "일 동안 정지처리 되었습니다.";
 					}
 				}
