@@ -15,6 +15,7 @@
 
 </head>
 <body>
+<footer>
 <div id="footerAll">
   <button onclick="scrollToTop()" id="scrollToTopBtn" title="맨 위로 이동">Top</button>
   <script src="../main/script.js"></script>
@@ -44,5 +45,6 @@
     </div>
   </div>
   </div>
+</footer>
 </body>
 </html>
