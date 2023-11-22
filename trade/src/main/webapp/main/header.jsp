@@ -18,6 +18,7 @@
 <body>
 <header>
    <nav id="navbar">
+   <img alt="헤더사진" src="../main/img/headerimage.png" id="headerimage">
       <div class="rgt">
          <div class="logo">
             <a href="../main/Main.com"><img alt="로고" src="../main/img/logosero.png" id="logo"> </a>
