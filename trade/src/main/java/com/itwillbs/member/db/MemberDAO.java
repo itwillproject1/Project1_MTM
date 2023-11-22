@@ -269,7 +269,7 @@ public class MemberDAO {
 				if(rs.next()) {
 					if(dto.getPassword().equals(rs.getString("password"))) {
 						// 3. sql 작성(delete) & pstmt 객체
-						sql = "delete from Member where user_id=?";
+						sql = "update Member set active = 0 where user_id = ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, dto.getUser_id());
 						// 4. sql 실행
