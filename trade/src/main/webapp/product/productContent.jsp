@@ -156,9 +156,9 @@
             </div>
 
             <!-- 구매 판매 찜 등 버튼 -->
-            <c:if test="${dto.deal_status == 1 }">
-               <c:if test="${dto.deal_way.equals('삽니다')}">
+            <c:if test="${dto.deal_way.equals('삽니다')}">
 	               <div class="button-container">
+            	<c:if test="${dto.deal_status == 1 }">
 	                  <c:choose>
 	                     <c:when test="${empty login_id}">
 	                        <input type="button" class="submit-button" value="판매 제안" onclick="requireLogin();">
@@ -170,9 +170,13 @@
 	                        <button class="submit-button" onclick="openProductModal();">판매 제안</button>
 	                     </c:when>
 	                  </c:choose>
+            	</c:if>
+            	<c:if test="${dto.deal_status == 0 }">
+            		<input type="button" class="no-button" value="거래 완료">
+            	</c:if> 
 					</div>
-               </c:if>
-            </c:if>   
+            	  
+            </c:if>
 
                <c:if test="${dto.deal_way.equals('팝니다') }">
                   <div class="button-container">
@@ -184,6 +188,9 @@
                         <input class="submit-button" type="button" value="구매하기" onclick="location.href='../pay/payment.com?bno=${dto.bno}';">
                      </c:if>
                   </c:if>
+                  <c:if test="${dto.deal_status == 0 }">
+					  <input type="button" class="no-button" value="거래 완료">
+				  </c:if>
 
 
                      <!-- 찜 기능 시작 -->
@@ -618,6 +625,9 @@
 
          if (shouldDelete) {
             location.href = newURL;
+         } else {
+        	 alert('글 삭제를 취소하였습니다.');
+        	 location.reload();
          }
       }
    </script>
