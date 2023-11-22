@@ -9,9 +9,8 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="/trade/css/login.css" rel="stylesheet" />
     <title>MTM | 로그인</title>
-
 </head>
-
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <body class="b">
 	<%@ include file="../main/header.jsp"%>
     <div class="login-container">
