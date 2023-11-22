@@ -120,6 +120,7 @@ $(document).ready(function () {
     onclick="toProductContent('./ProductContent.com?bno=${dto.bno}')">
 				<div class="product.image">
 					<img src="<%=request.getContextPath() %>/upload/${dto.file_name}"
+						onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
 						alt="${dto.title}">
 				</div>
 

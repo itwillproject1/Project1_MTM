@@ -116,7 +116,8 @@
          </c:if>"
          onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')" >            
          <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
-               alt="${product.title}" >
+         	  onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+              alt="${product.title}" >
             <div class="product-info">
                <h3>[${product.deal_way }]${product.title }</h3>
             </div>
@@ -141,8 +142,9 @@
             disabled
          </c:if>"
          onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">            
-         <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
-               alt="${product.title}" >
+         <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" 
+         	  onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+              alt="${product.title}" >
             <div class="product-info">
                <h3>[${product.deal_way }]${product.title }</h3>
             </div>
