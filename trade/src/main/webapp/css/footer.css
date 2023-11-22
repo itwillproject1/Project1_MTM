@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+footer {
+	width: 100%;
+	margin: 0 auto;
+}
+
 body {
 	padding: 0;
 	bottom: 0;
@@ -63,28 +68,35 @@ html {
 }
 
 .footer {
+	width: 100%;
 	background-color: #333;
 	color: #fff;
 	padding: 20px;
 	text-align: center;
-	margin-top: 15rem;
+	margin-top: 100px;
+	box-sizing: border-box;
 }
 
 .footer-info {
 	display: flex;
-	justify-content: space-between;
+	flex-direction:row;
 	align-items: center;
-	text-align: left;
 	line-height: 1.9rem;
 }
 
-.contact-info, .customer-center {
-	flex: 1;
+.contact-info {
+	width: 40%;
+	text-align: left;
 }
 
 .contact-info p, .customer-center p {
 	margin: 0;
 	color: #ccc; /* 추가적인 스타일링 */
+}
+
+.logo1 {
+	width: 20%;
+	text-align: center;
 }
 
 .logo1 img {
@@ -93,6 +105,7 @@ html {
 }
 
 .customer-center {
+	width: 40%;
 	text-align: right;
 }
 

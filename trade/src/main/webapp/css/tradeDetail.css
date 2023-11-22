@@ -53,7 +53,7 @@ body {
 }
 
 .product-group img {
-	width: 100px;
+	height: 80px;
 	cursor: pointer;
 }
 
@@ -62,7 +62,7 @@ body {
 	margin-bottom: 8px;
 	font-weight: bold;
 	cursor: pointer;
-	line-height: 30px;
+	line-height: 80px;
 }
 
 h2 {
