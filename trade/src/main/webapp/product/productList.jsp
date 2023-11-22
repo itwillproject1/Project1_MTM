@@ -170,7 +170,7 @@ $(document).ready(function () {
 							<li><a href="<%=brandLink%>&brand=${brand}">${brand}</a></li>
 						</c:forEach>
 					</ul>
-					<c:if test="${search == null}">
+					<c:if test="${search == null && category != null}">
 						<button class="refresh-btn" type="button" onclick="location.href='<%=link%>'"><img src="./img/refresh.png"></button>
 					</c:if>
 				</dd>
