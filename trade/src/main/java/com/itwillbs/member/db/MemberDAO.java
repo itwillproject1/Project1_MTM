@@ -98,7 +98,7 @@ public class MemberDAO {
 				// 1.2. 디비연결
 				con = getCon();
 				// 3. sql 작성 & pstmt 객체
-				sql = "select password from Member where user_id = ?";
+				sql = "select password from Member where user_id = ? and active = 1";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, dto.getUser_id());
 				// 4. sql 실행
@@ -186,6 +186,7 @@ public class MemberDAO {
 					dto.setRecommend(rs.getString("recommend"));
 					dto.setAgree(rs.getString("agree"));
 					dto.setPay(rs.getInt("pay"));
+					dto.setActive(rs.getInt("active"));
 				}
 				
 				

@@ -215,63 +215,67 @@
 
    <!-- Modal 시작 -->
    <!-- 프로필 모달 시작 -->
-   <div id="profileModal" class="modal">
-      <div class="modal-content">
-      <span class="close-button" onclick="closeProfileModal();">닫기</span>
-      <div id="productInfo">
-         <!-- 모달 내용 -->
-         <h2>
-            <img src="<%=request.getContextPath() %>/uploadprofile/${mdto.profile }" 
-            onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
-            alt="프로필" id="pf">
-            ${dto.user_id}
-         </h2>
+	<div id="profileModal" class="modal">
+		<div class="modal-content">
+			<span class="close-button" onclick="closeProfileModal();">닫기</span>
+			<div id="productInfo">
+				<!-- 모달 내용 -->
+				<h2>
+					<img src="<%=request.getContextPath() %>/uploadprofile/${mdto.profile }" onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" alt="프로필" id="pf"> ${dto.user_id}
+				</h2>
 
-         <h3 id="h3">${dto.user_id}님의 판매상품목록</h3>
-         <c:forEach var="userProduct" items="${userProducts }" >
-         <c:set var="fileNameArr4" value="${fn:split(userProduct.file_name, ',')}" />
-            <c:if test="${userProduct.deal_way == '팝니다'}">
-               <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-                  <span id="middle">
-                     <img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" 
-                     onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
-                     alt="미리보기" >
-                  </span>
-                  <div id="pfDiv"> <span>상품명: ${userProduct.title}<br></span>
-                   <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
-                  </span>
-                  </div>
-                  <hr id="pfHr">
-               </div>
-            </c:if>
-         </c:forEach>
-         <br><br><br>
-         <h3 id="h3">${dto.user_id}님의구매상품목록</h3>
-         <c:forEach var="userProduct" items="${userProducts}">
-         <c:set var="fileNameArr4" value="${fn:split(userProduct.file_name, ',')}" />
-            <c:if test="${userProduct.deal_way == '삽니다'}">
-               <div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
-                  <span id="middle">
-                     <img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" 
-                     onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
-                     alt="미리보기" >
-                  </span>
-                  <div id="pfDiv">
-                     <span>상품명: ${userProduct.title}<br></span>
-                     <span>가격: <fmt:formatNumber value="${userProduct.price}" />원 </span>
-                  </div>
-                  <hr id="pfHr">
-               </div>
-            </c:if>
-         </c:forEach>
+				<h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
+				<c:forEach var="userProduct" items="${userProducts }">
+					<c:set var="fileNameArr4" value="${fn:split(userProduct.file_name, ',')}" />
+					<c:choose>
+						<c:when test="${userProduct.deal_way == '팝니다'}">
+							<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
+								<span id="middle"> <img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" alt="미리보기">
+								</span>
+								<div id="pfDiv">
+									<span>상품명: ${userProduct.title}<br></span> <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
+									</span>
+								</div>
+								<hr id="pfHr">
+							</div>
+						</c:when>
+						<c:otherwise>
+	            			<div id="no-item">판매 상품이 없습니다.</div>
+	            		</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+				<br>
+				<br>
+				
+				<h3 id="h3">${dto.user_id}님의 구매 상품 목록</h3>
+				<c:forEach var="userProduct" items="${userProducts}">
+					<c:set var="fileNameArr4" value="${fn:split(userProduct.file_name, ',')}" />
+					<c:choose>
+						<c:when test="${userProduct.deal_way == '삽니다'}">
+							<div id="productList" onclick="location.href='./ProductContent.com?bno=${userProduct.bno}';">
+								<span id="middle"> <img id="pfImage" src="<%=request.getContextPath() %>/upload/${fileNameArr4[0]}" onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" alt="미리보기">
+								</span>
+								<div id="pfDiv">
+									<span>상품명: ${userProduct.title}<br></span> <span>가격: <fmt:formatNumber value="${userProduct.price}" />원
+									</span>
+								</div>
+								<hr id="pfHr">
+							</div>
+						</c:when>
+						<c:otherwise>
+	            			<div id="no-item">구매 상품이 없습니다.</div>
+	            		</c:otherwise>
+					</c:choose>
 
-         <c:if test="${empty userProducts}">
-            <p id="noSell">등록 상품이 없습니다.</p>
-         </c:if>
-      </div>
-      </div>
-   </div>
-   <!-- 프로필 모달 종료 -->
+					<c:if test="${empty userProducts}">
+						<p id="noSell">등록 상품이 없습니다.</p>
+					</c:if>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+	<!-- 프로필 모달 종료 -->
    
      <!-- 신고하기 모달창 -->
    <div id="complainModal" class="modal">
