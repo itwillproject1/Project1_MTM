@@ -189,6 +189,14 @@ a {
 	font-weight: bold;
 }
 
+.product-info h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .product-price { /* 가격 글자 크기, 가운데 정렬 */
 	padding: 12px;
 	text-align: center;
