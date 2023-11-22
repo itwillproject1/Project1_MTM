@@ -126,6 +126,13 @@ body {
 	float: right;
 }
 
+#deleteB, #updateB {
+	float:left;
+}
+#pencil, #trash {
+	float:right;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -142,7 +149,7 @@ body {
 /* 버튼 스타일 수정 */
 .dropdown-content button {
     display: block;
-    width: 100%;
+    width: 9rem;
     padding: 8px;
     margin: 4px 0;
     background-color: #fff;
@@ -151,42 +158,13 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
+#deleteW {
+	color:red;	
+}
 /* 버튼에 호버 효과 추가 */
 .dropdown-content button:hover {
      background-color: #f5f5f5;
 }
-
-
-/* .dropdown-content {
-	display: none;
-	position: absolute;
-	text-align: center;
-	vertical-align: center;
-	background-color : #f9f9f9;
-	min-width: 100px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-	right: 0;
-	top: 100%;
-	background-color: #f9f9f9; 위에서 아래로 표시되도록 조정
-	border-radius: 4px;
-}
-
-.dropdown-content button {
-	display: block;
-	text-decoration: none;
-	color: #333;
-	background-color: #f9f9f9;
-	font-size: 15px;
-	border: none;
-	font-weight: bolder;
-}
-
-.dropdown-content button:hover {
-	cursor: pointer;
-} */
-
 
 .dropdown:hover .dropdown-content {
 	display: block;
