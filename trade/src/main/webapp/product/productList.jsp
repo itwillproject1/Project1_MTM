@@ -18,9 +18,9 @@
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productList.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
- <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function () {
-	  
+
     // 페이지 이동 함수
     function changePage(pageNum, search, deal_way, category, brand) {
         var url = "./ProductList.com?pageNum=" + pageNum + "&search=" + search;
@@ -69,45 +69,38 @@ $(document).ready(function () {
         changePage(pageNum, '${param.search}', '${param.deal_way}', '${param.category}', '${param.brand}');
     });
 });
-     
-
 </script>
 <title>상품 목록</title>
 </head>
 <body>
-
 	<jsp:include page="../main/header.jsp" />
-	
 	<div class="title" id="product-list-title">상품 목록</div>
-	
 	<div id="allproduct">
-	<div class ="prd-smenu">
-	
-	<dl class="cate-1">
-
-		<dt class="blind">상품 분류 리스트</dt>
-		<dd>
-				<ul id="dealWayList">
-				<c:forEach var="dealWay" items="${dealWayList}">
-						<li><a href="../product/ProductList.com?category=${param.category}&deal_way=${dealWay}">${dealWay}</a></li>
-				</c:forEach>
-				</ul>
-				
-
-        <ul id="subCategory">
-            <c:forEach var="brand" items="${brandList }">
-                <li><a href="../product/ProductList.com?category=${param.category}&brand=${brand}">${brand}</a></li>
-            </c:forEach>
-        </ul>
-
-
-				
-		</dd>
-	</dl>
+		<div class="prd-smenu">
+			<dl class="cate-1">
+				<dt class="blind">상품 분류 리스트</dt>
+				<dd>
+					<%
+					String link = "../product/ProductList.com?category=" + request.getParameter("category");
+					String deal_way = request.getParameter("deal_way");
+					String brand = request.getParameter("brand");
+					String dealLink = link + "&brand=" + (brand == null ? "" : brand);
+					String brandLink = link + "&deal_way=" + (deal_way == null ? "" : deal_way);
+					%>
+					<ul id="dealWayList">
+						<c:forEach var="dealWay" items="${dealWayList}">
+							<li><a href="<%=dealLink%>&deal_way=${dealWay}">${dealWay}</a></li>
+						</c:forEach>
+					</ul>
+					<ul id="subCategory">
+						<c:forEach var="brand" items="${brandList }">
+							<li><a href="<%=brandLink%>&brand=${brand}">${brand}</a></li>
+						</c:forEach>
+					</ul>
+				</dd>
+			</dl>
+		</div>
 	</div>
-</div>
-
-
 	<!-- 여기에 상품 목록 들어갈 부분 -->
 	<div class="container">
 		<c:forEach var="dto" items="${ProductList }">
@@ -116,18 +109,16 @@ $(document).ready(function () {
     <c:if test="${dto.deal_status == 0 }">
         disabled
     </c:if>"
-    data-bno="${dto.bno}"
-    onclick="toProductContent('./ProductContent.com?bno=${dto.bno}')">
+				data-bno="${dto.bno}"
+				onclick="toProductContent('./ProductContent.com?bno=${dto.bno}')">
 				<div class="product.image">
 					<img src="<%=request.getContextPath() %>/upload/${dto.file_name}"
 						onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
 						alt="${dto.title}">
 				</div>
-
 				<div class="product-info">
 					<h3>[${dto.deal_way }]${dto.title }</h3>
 				</div>
-
 				<div class="product-price">
 					<p>
 						<fmt:formatNumber value="${dto.price }" /> 원
@@ -136,30 +127,22 @@ $(document).ready(function () {
 			</div>
 		</c:forEach>
 	</div>
-
-
-<div id="page_control">
-    <c:if test="${startPage > pageBlock }">
-        <a href="#" class="prev-page">이전 페이지</a>
-    </c:if>
-    
-    <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-        <c:choose>
-            <c:when test="${i != 0}">
-                <a href="#" class="page-number">${i }</a>
-            </c:when>
-        </c:choose>
-    </c:forEach>
-
-    <c:if test="${endPage < pageCount }">
-        <a href="#" class="next-page">다음 페이지</a>
-    </c:if>
-    
-    	</div>
-
-
-<%@ include file="../main/footer.jsp"%>
-
-
+	<div id="page_control">
+		<c:if test="${startPage > pageBlock }">
+			<a href="#" class="prev-page">이전 페이지</a>
+		</c:if>
+		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+			<c:choose>
+				<c:when test="${i != 0}">
+					<a href="#" class="page-number">${i }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${endPage < pageCount }">
+			<a href="#" class="next-page">다음 페이지</a>
+		</c:if>
+	</div>
+	<%@ include file="../main/footer.jsp"%>
 </body>
 </html>
+
