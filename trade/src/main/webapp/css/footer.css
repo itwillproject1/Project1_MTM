@@ -1,8 +1,10 @@
 @charset "UTF-8";
 
 footer {
-	width: 100%;
-	margin: 0 auto;
+	position: fixed; /* 화면에 고정시킴 */
+      bottom: 0;
+      left: 0;
+      width: 100%;
 }
 
 body {
@@ -66,6 +68,7 @@ body {
 html {
 	scroll-behavior: smooth;
 }
+
 
 .footer {
 	width: 100%;
