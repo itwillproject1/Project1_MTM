@@ -27,13 +27,16 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <img src="../main/img/event1.png" alt="이미지 1">
+            <img src="../main/img/event1.png" alt="이미지1">
         </div>
         <div class="swiper-slide">
-            <img src="../main/img/event2.png" alt="이미지 2">
+            <img src="../main/img/event2.png" alt="이미지2">
         </div>
         <div class="swiper-slide">
-            <img src="../main/img/event3.png" alt="이미지 3">
+            <img src="../main/img/event3.png" alt="이미지3">
+        </div>
+        <div class="swiper-slide">
+            <img src="../main/img/event4.png" alt="이미지4">
         </div>
     </div>
     <!-- 페이지네이션 -->
