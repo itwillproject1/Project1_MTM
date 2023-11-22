@@ -26,7 +26,7 @@ body {
    margin-top: 5rem;
 }
 
-.container {
+/* .container {
    max-width: 1200px;
    margin: 50px auto;
    padding: 0 20px;
@@ -38,15 +38,57 @@ body {
 
 .product {
    width: 250px;
-/*    width: calc(25% - 30px); */
-/*    margin-bottom: 30px; */
+   width: calc(25% - 30px);
+   margin-bottom: 30px;
    margin: 5% 0;
    background-color: #fff;
    border-radius: 10px;
    overflow: hidden;
    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
    transition: box-shadow 0.3s ease-in-out;
-} 
+}  */
+
+.container {
+   max-width: 1200px;
+   margin: 50px auto;
+   padding: 0 20px;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   grid-gap: 30px;
+   justify-items: center; /* 아이템을 가운데 정렬 */
+}
+
+/* 4개씩만 보이도록 설정 */
+@media screen and (min-width: 768px) {
+   .container {
+      grid-template-columns: repeat(4, 1fr);
+   }
+}
+
+.product {
+   width: 100%;
+   background-color: #fff;
+   border-radius: 10px;
+   overflow: hidden;
+   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+   transition: box-shadow 0.3s ease-in-out;
+}
+
+/* 작은 화면일 때 한 줄에 2개씩 보이도록 설정 */
+@media screen and (max-width: 768px) {
+   .container {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+/* 아주 작은 화면일 때, 한 줄에 1개씩 보이도록 설정 */
+@media screen and (max-width: 480px) {
+   .container {
+      grid-template-columns: repeat(1, 1fr);
+   }
+}
+
+
 
 .container .product:nth-child(n+5) {
    grid-column: span 1;
@@ -95,5 +137,4 @@ body {
     75% { box-shadow: 0 0 8px rgba(0, 0, 255, 0.1); }
     100% { box-shadow: 0 0 8px rgba(255, 0, 255, 0.1); }
 }
-
 
