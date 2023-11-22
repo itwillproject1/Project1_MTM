@@ -20,6 +20,7 @@
 <link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 </head>
 <body>
+
 <div id="all">
    <%@ include file="../main/header.jsp"%>
 
@@ -121,8 +122,7 @@
       window.location.href = url;
   }
 </script>
-   
   <%@ include file="../main/footer.jsp"%>
-   </div>
+</div>
 </body>
 </html>

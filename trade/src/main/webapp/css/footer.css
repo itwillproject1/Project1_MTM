@@ -40,8 +40,8 @@ body {
    position: fixed;
    bottom: 20px;
    right: 20px;
-   background-color: #999;
-   color: #fff;
+   background-color: unset;
+   color: #555;
    border: none;
    border-radius: 5px;
    padding: 10px;
@@ -65,9 +65,9 @@ body {
    display: inline-block;
 }
 
-#scrollToTopBtn:hover {
+/* #scrollToTopBtn:hover {
    background-color: #999;
-}
+} */
 
 html {
    scroll-behavior: smooth;
