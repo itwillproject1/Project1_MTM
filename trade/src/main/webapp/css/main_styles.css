@@ -85,6 +85,16 @@ body {
    /* 이미지 확대 더 부드럽게 */
 }
 
+/*제목 두줄 이상시 ...으로*/
+.product-info h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  white-space: normal;
+}
+
 .product-info { /* 상품 글자 크기, 가운데 정렬 */
    padding: 15px;
    text-align: center;
