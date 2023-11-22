@@ -133,7 +133,7 @@ public class EmployeeMailSend {
 			messageBodyPart.setContent(mdto.getContent(), "text/html;charset=utf-8");
 
 			multipart.addBodyPart(messageBodyPart);
-			FileDataSource image = new FileDataSource(realPath + mdto.getImage());	// 파일 데이터 경로(/upload/fileName)
+			FileDataSource image = new FileDataSource(realPath + "\\" + mdto.getImage());	// 파일 데이터 경로(/upload/fileName)"
 
 			messageBodyPart.setDataHandler(new DataHandler(image));	// 파일 데이터 불러오기 및 저장
 			message.setContent(multipart);

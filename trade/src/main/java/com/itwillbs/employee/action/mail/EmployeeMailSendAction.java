@@ -57,7 +57,7 @@ public class EmployeeMailSendAction implements Action{
 			String result = "result=" + list.get(0).getUser_id();
 			result += "&size=" + list.size();
 			
-			JSConfirmMoveFunction.moveLocation(response, result);
+			JSConfirmMoveFunction.moveLocation(response, "./EmployeeMailSendConfirm.emp?" + result);
 		}
 		else {
 			JSMoveFunction.alertBack(response, "오류 발생");
