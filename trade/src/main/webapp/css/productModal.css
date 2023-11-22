@@ -116,24 +116,24 @@ hr#hr1 {margin-top:10%;}
 	}
 #pfDiv {margin:4%;
 padding-top:35px;
-padding-left:50%;
 }
 
-img#sellImage{
+#sellImage{
 	display: block;
 	float: left;
-	margin: 0 10% 0 2%;
 	height:135px;
-	width:40%;
+	width:135px;
+	margin: -8px 10% 0 2%;
+	object-fit: contain;
 }
 
 #pfImage {
 	display: block;
 	float: left;
 	height:135px;
-	width:40%;
+	width:135px;
 	margin: -8px 10% 0 2%;
-	
+	object-fit: contain;
 }
 
 #middle {
