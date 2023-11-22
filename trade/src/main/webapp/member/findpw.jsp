@@ -7,60 +7,6 @@
 <title>MTM | 비밀번호 찾기</title>
 <link rel="icon" href="../main/img/16px.ico" type="image/x-icon">title>
 <link href="../css/findpw.css" rel="stylesheet" />
-<style>
-fieldset {
-    border: 2px solid #000; /* 테두리 선 색상 */
-    padding: 10px; /* 내부 여백 */
-    border-radius: 5px; /* 테두리 둥글기 */
-    width: 400px; /* 필요한 경우 너비 지정 */
-    margin: 0 auto; /* 가운데 정렬 */
-}
-
-/* form 스타일 */
-form {
-    margin-bottom: 0px; /* 폼 간격 조절 */
-}
-
-/* input 스타일 */
-input {
-    padding: 5px; /* 내부 여백 */
-    margin: 5px 0px 10px 10px; /* 마진 설정 */
-}
-
-/* button 스타일 */
-input[type="submit"], input[type="button"] {
-    background-color: #000; /* 배경 색상 */
-    color: #fff; /* 글자 색상 */
-    padding: 8px 15px; /* 내부 여백 */
-    border: none; /* 테두리 없음 */
-    border-radius: 3px; /* 둥근 테두리 */
-    cursor: pointer; /* 커서 타입 */
-}
-
-/* hr 스타일 */
-hr {
-    border: 1px solid #000; /* 수평선 색상 */
-    margin-top: 20px; /* 윗쪽 간격 조절 */
-    margin-bottom: 20px; /* 아래쪽 간격 조절 */
-}
-
-#a {
-	margin: 5px 0px 10px 10px;
-}
-
-#c {
-	margin: 5px 0px 10px 11px;
-}
-
-#d {
-	margin: 5px 0px 10px 10px;
-}
-
-#e {
-	margin: 5px 0px 10px 175px;
-}
-
-</style>
 </head>
 <body>
 <%@ include file="../main/header.jsp"%>
@@ -137,6 +83,7 @@ hr {
 ${sessionScope.random }
 <fieldset>
 <!--  ${sessionScope.random } -->
+<legend>비밀번호 찾기</legend>
 <form action="../member/AdjustSmtp.member" name="em">
 이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="email" id="a" value="${sessionScope.rcemail }">		
 <input type="submit" value="인증번호 받기" onclick="return emailcheck();"><br>

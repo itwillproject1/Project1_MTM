@@ -17,8 +17,8 @@
 <link href="../css/mainSlider.css" rel="stylesheet" />
 <title>Modern Tech Market</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper">
-</head>
 <link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
+</head>
 <body>
 <div id="all">
    <%@ include file="../main/header.jsp"%>

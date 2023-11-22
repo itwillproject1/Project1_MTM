@@ -263,17 +263,76 @@ public class MemberDAO {
 				sql = "select password from Member where user_id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, dto.getUser_id());
+				
 				// 4. sql 실행			
 				rs = pstmt.executeQuery();
+				
 				// 5. 데이터 처리
 				if(rs.next()) {
 					if(dto.getPassword().equals(rs.getString("password"))) {
 						// 3. sql 작성(delete) & pstmt 객체
-						sql = "delete from Member where user_id=?";
+						// 작성자의 거래하지 않은 상품 삭제
+						// 제안상품 삭제
+						sql = "delete from SuggestSell where buyer_user_id = ? or seller_user_id = ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, dto.getUser_id());
-						// 4. sql 실행
+						pstmt.setString(2, dto.getUser_id());
+						
+						pstmt.executeUpdate();
+						
+						// 찜 한 글의 찜 수 -1
+						sql = "select * from Likes where user_id = ?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getUser_id());
+						
+						rs = pstmt.executeQuery();
+						
+						while(rs.next()) {
+							sql = "update Product set like_count = like_count-1 where bno = ?";
+							pstmt = con.prepareStatement(sql);
+							pstmt.setInt(1, rs.getInt("bno"));
+							
+							pstmt.executeUpdate();
+						}
+						
+						// 내가 찜한 목록 삭제
+						sql = "delete from Likes where user_id = ?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getUser_id());
+						
+						pstmt.executeUpdate();
+						
+						// 내 상품에 찜한 목록 삭제
+						sql = "select bno from Product where user_id = ?";
+						
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getUser_id());
+						
+						rs = pstmt.executeQuery();
+						
+						while(rs.next()) {
+							sql = "delete from Likes where bno = ?";
+							pstmt = con.prepareStatement(sql);
+							pstmt.setInt(1, rs.getInt("bno"));
+							
+							pstmt.executeUpdate();
+						}
+						
+						// 등록 상품 중 거래 전 상품만 삭제
+						sql = "delete from Product where user_id = ? and deal_status = 1";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getUser_id());
+						
+						pstmt.executeUpdate();
+						
+						// 회원 탈퇴 수행
+						sql = "update Member set active = 0 where user_id = ?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getUser_id());
+						
 						result = pstmt.executeUpdate(); // 삭제완료
+						
+						
 					}else {
 						result = 0; // 비밀번호 오류
 					}
@@ -289,7 +348,7 @@ public class MemberDAO {
 			}
 			
 			return result;
-		}	
+		}
 
 		//결제금액 충전
 		public void Pay(MemberDTO dto) {
