@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.itwillbs.product.db.ProductDAO;
+
 import com.itwillbs.product.db.ProductDTO;
 
 public class MemberDAO {
@@ -288,19 +288,35 @@ public class MemberDAO {
 						rs = pstmt.executeQuery();
 						
 						while(rs.next()) {
-							sql = "update Products set like_count = like_count-1 where bno = ?";
+							sql = "update Product set like_count = like_count-1 where bno = ?";
 							pstmt = con.prepareStatement(sql);
 							pstmt.setInt(1, rs.getInt("bno"));
 							
 							pstmt.executeUpdate();
 						}
 						
-						// 찜목록 삭제
+						// 내가 찜한 목록 삭제
 						sql = "delete from Likes where user_id = ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, dto.getUser_id());
 						
 						pstmt.executeUpdate();
+						
+						// 내 상품에 찜한 목록 삭제
+						sql = "select bno from Product where user_id = ?";
+						
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getUser_id());
+						
+						rs = pstmt.executeQuery();
+						
+						while(rs.next()) {
+							sql = "delete from Likes where bno = ?";
+							pstmt = con.prepareStatement(sql);
+							pstmt.setInt(1, rs.getInt("bno"));
+							
+							pstmt.executeUpdate();
+						}
 						
 						// 등록 상품 중 거래 전 상품만 삭제
 						sql = "delete from Product where user_id = ? and deal_status = 1";
@@ -310,7 +326,7 @@ public class MemberDAO {
 						pstmt.executeUpdate();
 						
 						// 회원 탈퇴 수행
-						sql = "delete from Member where user_id=?";
+						sql = "update Member set active = 0 where user_id = ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, dto.getUser_id());
 						
@@ -332,7 +348,7 @@ public class MemberDAO {
 			}
 			
 			return result;
-		}	
+		}
 
 		//결제금액 충전
 		public void Pay(MemberDTO dto) {

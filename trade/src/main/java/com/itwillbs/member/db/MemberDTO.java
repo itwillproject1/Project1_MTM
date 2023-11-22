@@ -16,9 +16,21 @@ public class MemberDTO {
 	private String agree;
 	private int pay;
 	private String date;
+	private int active;
 	
 	
-	
+	public int getActive() {
+		return active;
+	}
+
+
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+
+
 	public String getUser_id() {
 		return user_id;
 	}
@@ -192,7 +204,7 @@ public class MemberDTO {
 		return "MemberDTO [user_id=" + user_id + ", password=" + password + ", email=" + email + ", user_name="
 				+ user_name + ", jumin=" + jumin + ", gender=" + gender + ", phone=" + phone + ", address=" + address
 				+ ", user_nickname=" + user_nickname + ", profile=" + profile + ", recommend=" + recommend + ", agree="
-				+ agree + ", pay=" + pay + ", date=" + date + "]";
+				+ agree + ", pay=" + pay + ", date=" + date + ", active=" + active + "]";
 	}
 	
 	
