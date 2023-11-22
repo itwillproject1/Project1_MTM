@@ -70,8 +70,9 @@ $(document).ready(function () {
     });
 });
 </script>
-<title>상품 목록</title>
+<title>MTM | 상품 목록</title>
 </head>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<div class="title" id="product-list-title">상품 목록</div>

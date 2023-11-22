@@ -22,9 +22,9 @@
 	});
 } */
 </script>
-<title>글쓰기</title>
+<title>MTM | 상품 수정</title>
 </head>
-
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <!-- 첫번째 드롭다운 항목에 따라 두번째 드롭다운 항목이 바뀌는 코드 -->
 <script>
 	var selectedBrand = '<%=((ProductDTO) request.getAttribute("pdto")).getBrand()%>';

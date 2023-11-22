@@ -31,8 +31,8 @@ public class DAO {
 		Context envCTX = (Context) initCTX.lookup("java:comp/env");
 		DataSource ds = (DataSource) envCTX.lookup("jdbc/mvc");
 		con = ds.getConnection();
-		System.out.println("DAO : DB 연결 성공");
-		System.out.println("DAO : " + con);
+		//System.out.println("DAO : DB 연결 성공");
+		//System.out.println("DAO : " + con);
 		return con;
 	}// getCon();
 
