@@ -38,6 +38,7 @@ public class ProductListAction implements Action {
 		int count = 0;
 
 		count = dao.getProductCount(category, brand, deal_way, search);
+		System.out.println("count : " + count);
 		
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
@@ -52,12 +53,7 @@ public class ProductListAction implements Action {
 		// 시작행 번호 계산하기
 		// 1 11 21 31 41 .....
 		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * pageSize + 1;
-
-		// 끝행 번호 계산
-		// 10 20 30 40 50 .....
-		int endRow = currentPage * pageSize;
-		
+		int startRow = (currentPage - 1) * pageSize;		
 
 		/********************* 페이징처리 1 *******************/
 		

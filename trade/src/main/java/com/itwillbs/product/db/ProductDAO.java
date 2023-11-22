@@ -171,15 +171,15 @@ public class ProductDAO {
 		try {
 			con = getCon();
 			// 정지된 회원은 제외
-			sql = "SELECT COUNT(p.user_id) as '건수' FROM Product p "
+			sql = "SELECT COUNT(p.bno), COUNT(p.user_id) as '건수' FROM Product p "
 					+ "LEFT OUTER JOIN Member m ON p.user_id = m.user_id " + "where m.suspended = 0";
-			
+
 			// 거래 방식
 			if (deal_way == null)
 				; // null check
 			else if (deal_way != null)
 				sql += " and deal_way = '" + deal_way + "'";
-			
+
 			// 카테고리
 			if (category == null)
 				; // null check
@@ -219,10 +219,10 @@ public class ProductDAO {
 			// 디비연결정보
 			con = getCon();
 			// 정지된 회원은 제외
-			sql = "SELECT bno, p.user_id, deal_way, " + "title, brand, product_status, content,"
-					+ "price, category, views, date_time, " + "file_name, like_count, deal_user_id, "
-					+ "product_status, deal_status FROM Product p "
-					+ "LEFT OUTER JOIN Member m ON p.user_id = m.user_id " + "where m.suspended = 0";
+			sql = "SELECT bno, p.user_id, deal_way, " + "title, brand, product_status, "
+					+ "content,price, category, views, " + "date_time, file_name, like_count, "
+					+ "deal_user_id, product_status, deal_status " + "FROM Product p LEFT OUTER JOIN Member m "
+					+ "ON p.user_id = m.user_id where suspended = 0";
 
 			if (deal_way == null)
 				; // null check
@@ -248,9 +248,8 @@ public class ProductDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);
-			//System.out.println(pstmt.toString());
+			System.out.println(pstmt.toString());
 			rs = pstmt.executeQuery();
-
 			// 5. 데이터 처리
 			// 글정보 전부 가져오기
 			while (rs.next()) {
@@ -279,7 +278,7 @@ public class ProductDAO {
 			} // while
 
 			// System.out.println(" DAO : 글 목록 조회성공! ");
-			// System.out.println(" DAO : " + ProductList.size());
+			System.out.println(" DAO : " + ProductList.size());
 
 		} catch (Exception e) {
 			e.printStackTrace();
