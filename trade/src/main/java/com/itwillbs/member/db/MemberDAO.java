@@ -630,18 +630,21 @@ public class MemberDAO {
 			con = getCon();
 			sql = "select datediff(now(), date_add(sus_date, interval sus_days day)) as '만료일자' from Member where user_id = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getInt(1) >= 0) {
 					// 정지 해제
 					sql = "update Member set sus_days = 0, suspended = 0 where user_id = ?";
 					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, user_id);
 					pstmt.executeUpdate();
 				}
 				else {
 					// 정지 x
 					sql = "select sus_days, sus_date, suspendReason from Member where user_id = ?";
 					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, user_id);
 					rs = pstmt.executeQuery();
 					if(rs.next()) {
 						String sus_days = rs.getString(1);
