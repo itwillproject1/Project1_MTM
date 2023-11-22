@@ -72,7 +72,19 @@ public class ProductContentAction implements Action {
 
 		/* 프로필 조회에 필요한 정보 */
 		List<ProductDTO> userProducts =  dao.getAllUserProducts(dto.getUser_id());
-		request.setAttribute("userProducts", userProducts);
+		request.setAttribute("userProducts", userProducts); // 전체 상품 목록
+		int sellCount = 0;
+		int buyCount = 0;
+		
+		for(int i = 0; i<userProducts.size(); i++) {
+			ProductDTO d = userProducts.get(i);
+			if(d.getDeal_way().equals("팝니다")) sellCount++;
+			else buyCount++;
+		}
+		
+		request.setAttribute("sellCount", sellCount);
+		request.setAttribute("buyCount", buyCount);
+		
 		//System.out.println(userProducts);
 
 		/* 판매하기 모달에 필요한 정보 */
