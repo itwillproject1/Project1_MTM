@@ -34,18 +34,21 @@
          <div id="user-menu">
             <span class="user-menu">
             
-               <span>
+<!--                <span> -->
+<span>
                <c:if test="${empty user_id }">
                      <a href="../main/login.member" id="loginLink"><img alt="로그인" src="../main/img/login.png" id="login"></a>
                </c:if> 
                
                <c:if test="${!empty user_id }">
-                  <span id="loginname">${user_id }님</span>
-                  <a href="../main/MemberLogout.member" id="logoutLink"><img alt="로그아웃" src="../main/img/logout.png" id="logout"></a>
-               </c:if>
-               
-               </span>
+                  <span id="loginname">${user_id }님</span><br>
+                 <span><a href="../main/MemberLogout.member" id="logoutLink"><img alt="로그아웃" src="../main/img/logout.png" id="logout"></a>
+                
+                 </span></c:if>
+              
+<!--                </span> -->
                <!-- 아이디x 글등록 => 로그인창 -->
+               
                <span>
                <c:if test="${empty user_id }">
                   <a href="../main/login.member" id="loginLink"><img alt="글등록" src="../main/img/edit.png" id="write"></a>
@@ -58,6 +61,7 @@
                </span>
                <span>
                <a href="../member/MemberInfo.member"><img alt="마이페이지" src="../main/img/user.png" id="mypage"></a>
+               </span>
                </span>
                <span>
                <c:if test="${user_id == 'admin' }">

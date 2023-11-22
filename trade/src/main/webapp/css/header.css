@@ -165,7 +165,20 @@ header:hover {
    color: #A9A9A9;
    text-decoration: none;
 } */
+.rgt {
+   display: flex !important;
+   justify-content: space-between !important;
+   align-items: center !important;
+}
 
+#loginname {
+   order: -1 !important; /* -1로 설정하여 #loginname을 첫 번째로 위치시킵니다. */
+}
+
+#login, #logout, #write, #mypage {
+   display: flex !important;
+   align-items: center !important;
+}
 
 body {
    font-family: 'Noto Sans KR', sans-serif;
@@ -220,6 +233,7 @@ header:hover {
 }
 
 #loginname {
+	float:left;
 	Display: flex;
     FONT-WEIGHT: 700;
 }
@@ -272,8 +286,8 @@ header:hover {
 
 #user-menu {
    margin-left: auto;
-   width: 30%;
-   transform: translate(-30%, 105%);
+   width: 20%;
+   transform: translate(-30%, 50%);
 }
 
 .user-menu span {
