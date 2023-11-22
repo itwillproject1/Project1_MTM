@@ -109,8 +109,8 @@
                                  <img src="./img/etc-button.png" alt="기타" width="20">
                               </button>
                               <div class="dropdown-content" style="display: none;">
-                                 <button onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';">글 수정하기</button>
-                                 <button onclick="confirmDelete();">글 삭제하기</button>
+                                 <button onclick="location.href='./ProductUpdate.com?bno=${dto.bno}';"><b>글 수정하기</b></button>
+                                 <button onclick="confirmDelete();"><b>글 삭제하기</b></button>
                               </div>
                            </div>
                         </c:when>
