@@ -54,6 +54,7 @@
 												<div class="avatar avatar-xl">
 													<c:if test="${dto.profile == ''}">
 														<img src="./employee/template/assets/images/user.png"
+														onerror="this.onerror=null; this.src='./employee/template/assets/images/user.png';"
 															alt="..." class="avatar-img rounded-circle">
 													</c:if>
 													<c:if test="${dto.profile != ''}">
@@ -156,7 +157,7 @@
 												</table>
 											</div>
 											<div class="col-6 text-center mb-12">
-												<h3>마음함 목록</h3>
+												<h3>찜 목록</h3>
 												<table class="table table-borderless table-striped">
 													<thead>
 														<tr>

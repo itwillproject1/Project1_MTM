@@ -216,6 +216,7 @@ link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
 											</c:if>
 											<c:if test="${i.profile != ''}">
 												<img src="./upload/${i.profile}" alt="..."
+												onerror="this.onerror=null; this.src='./employee/template/assets/images/user.png';"
 													class="avatar-img rounded-circle">
 											</c:if>
 										</div>
