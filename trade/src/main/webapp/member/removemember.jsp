@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MTM | 회원탈퇴</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <link href="../css/removemember.css" rel="stylesheet" />
 </head>
 <body>

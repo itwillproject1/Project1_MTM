@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MTM | 포인트 충전</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <link href="../css/kakaopay.css" rel="stylesheet">
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script src="../js/jquery-3.7.1.js"></script>

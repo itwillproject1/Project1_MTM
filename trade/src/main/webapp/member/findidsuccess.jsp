@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MTM | 아이디 찾기</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="../css/findidsuccess.css" rel="stylesheet" />
 

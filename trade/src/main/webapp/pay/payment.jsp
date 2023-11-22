@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <link href="../css/pay.css" rel="stylesheet" />
-<title>Insert title here</title>
+<title>MTM | 결제페이지</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 </head>
 <body>
 	<script type="text/javascript">
