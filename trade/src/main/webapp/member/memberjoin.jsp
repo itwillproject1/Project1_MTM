@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MTM | 회원가입</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">e>
 <link href="../css/memberjoin.css" rel="stylesheet" />
 <link href="../css/agreeModal.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>

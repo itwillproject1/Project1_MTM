@@ -13,6 +13,7 @@
 }
 
 .modal-content {
+	top:10%;
     background-color: #fff; /* 화이트 색상 */ 
     width: 600px;
     margin: 10% auto;
@@ -24,7 +25,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
     transition: box-shadow 0.3s; /* hover 시 그림자 변경 효과 설정 */
     margin-top: 10rem; 
-    max-height: 70vh; /* 모달 창 최대 높이를 화면 높이의 70%로 제한 */
+/*     max-height: 70vh; 모달 창 최대 높이를 화면 높이의 70%로 제한 */
     overflow-y: auto; /* 모달 내용이 높이를 넘어갈 때 세로 스크롤 허용 */
 }
 
@@ -195,7 +196,7 @@ div#postReportOptions, #authorpostReportOptions {
     display: block;
 	width: 100%;
 	padding: 10px;
-	margin-top: 5%;
+	margin-top: 3%;
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 5px;
@@ -209,6 +210,14 @@ div#postReportOptions, #authorpostReportOptions {
 	transition: background-color 0.3s;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼에 그림자 추가 */
 }
+.button-container1 {
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 
 .confirm-button:hover {
     background-color: #444; /* 마우스 오버 시 배경색 변경 (예: 조금 더 어두운 회색) */

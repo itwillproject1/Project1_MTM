@@ -189,8 +189,8 @@ link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
 					<table class="table border table-hover bg-white">
 						<thead>
 							<tr role="row">
-								<th>이미지</th>
 								<th>아이디</th>
+								<th>이미지</th>
 								<th>이름</th>
 								<th>주소</th>
 								<th>전화번호</th>
@@ -216,6 +216,7 @@ link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
 											</c:if>
 											<c:if test="${i.profile != ''}">
 												<img src="./upload/${i.profile}" alt="..."
+												onerror="this.onerror=null; this.src='./employee/template/assets/images/user.png';"
 													class="avatar-img rounded-circle">
 											</c:if>
 										</div>

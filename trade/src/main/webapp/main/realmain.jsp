@@ -15,11 +15,10 @@
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/main_styles.css" rel="stylesheet" />
 <link href="../css/mainSlider.css" rel="stylesheet" />
-<title>쇼핑몰 메인 페이지</title>
+<title>Modern Tech Market</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper">
-
-
 </head>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <body>
 <div id="all">
    <%@ include file="../main/header.jsp"%>
@@ -76,7 +75,7 @@
          </c:if>"
          onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')" >            
          <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0] }"
-         	  onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+              onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
               alt="${product.title}" >
             <div class="product-info">
                <h3>[${product.deal_way }]${product.title }</h3>
@@ -90,7 +89,6 @@
          </div>
       </c:forEach>
    </div>
-   
 <!-- 최신상품 -->
    <div class="title">최신 상품</div>
    <div class="container">
@@ -103,7 +101,7 @@
          </c:if>"
          onclick="toProductContent('../product/ProductContent.com?bno=${product.bno}')">            
          <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" 
-         	  onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+              onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
               alt="${product.title}" >
             <div class="product-info">
                <h3>[${product.deal_way }]${product.title }</h3>

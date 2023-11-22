@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8"">
-<title>Insert title here</title>
+<title>MTM | 비밀번호 찾기</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">title>
 <link href="../css/findpw.css" rel="stylesheet" />
 <style>
 fieldset {

@@ -30,8 +30,13 @@ public class ProductListAction implements Action {
 		if(deal_way == null || deal_way.isEmpty()) deal_way = null;
 		String search = request.getParameter("search");
 		String selectedCategory = request.getParameter("category");
-
-		System.out.println(" M : 전체검색어 : " + search);
+		
+		request.setAttribute("category", selectedCategory);
+		request.setAttribute("deal_way", deal_way);
+		request.setAttribute("brand", brand);
+		request.setAttribute("search", search);
+		
+		//System.out.println(" M : 전체검색어 : " + search);
 
 		// 기존에 저장된 글정보를 가져와서 화면에 출력;
 		ProductDAO dao = new ProductDAO();

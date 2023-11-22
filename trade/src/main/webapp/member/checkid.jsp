@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MTM | ID 중복확인</title>
+<link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <link rel="stylesheet"
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/checkid.css" rel="stylesheet" />

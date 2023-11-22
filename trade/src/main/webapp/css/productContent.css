@@ -266,3 +266,8 @@ a {
 	text-decoration: none;
 	color: #555;
 }
+
+#pf {
+	width: 50px;
+	border-radius: 30%;
+}
