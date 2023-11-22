@@ -61,6 +61,12 @@ body {
 	transition: background-color 0.2s;
 }
 
+.search {
+	width:100%;
+	margin:0 auto;
+	display: inline-block;
+}
+
 #scrollToTopBtn:hover {
 	background-color: #999;
 }
@@ -117,9 +123,14 @@ html {
 	color: #ccc; /* 추가적인 스타일링 */
 }
 
+#sear {
+	width: 30%; /* 초기 값으로 100% 설정 */
+}
+
 th {
 	width: 60px;
 	text-align: center;
+white-space: nowrap;
 }
 
 td {
