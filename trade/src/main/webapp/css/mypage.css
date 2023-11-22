@@ -8,6 +8,10 @@ body {
 	color: #333; /* 어두운 회색 계열 텍스트 색상 */
 }
 
+#fform {
+	line-height: 1.7rem;
+}
+
 .container {
 	max-width: 80%;
 	margin: 200px auto 70px; /* 여기서 상단 여백 조정 */

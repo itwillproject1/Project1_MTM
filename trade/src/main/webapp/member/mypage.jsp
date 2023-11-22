@@ -129,6 +129,7 @@
 			<div class="form-container">
 				<h2> 내 정보 </h2>
 				
+				<div id="fform">
 				<div class="form-group">
 					<label for="user">아이디 : ${dto.user_id }</label>
 				</div>
@@ -167,7 +168,7 @@
 				<div class="form-group">
 					<label for="user">전화번호: ${dto.phone }</label>
 				</div>
-
+</div>
 
 
 				<div class="button-container">
