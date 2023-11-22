@@ -26,7 +26,7 @@
          <div id="search">
             <div class="rgt1">
                <form action="../product/ProductList.com" method="get" class="search">
-                  <input type="text" name="search" placeholder="중고 전자기기는 MTM에서!">
+                  <input type="text" name="search" placeholder="어떤 상품을 찾으시나요?">
                   <button type="submit" value="search">검색</button>
                </form>
             </div>
