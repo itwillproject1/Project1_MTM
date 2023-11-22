@@ -38,7 +38,7 @@
 .swiper-slide img {
 /* 	padding-left: 5rem; */
 /* 	padding-right: 5rem; */
-    margin-top: 8rem;
+    margin-top: 12.5rem;
     width: 100%;
     height: 840px;
 /*     object-fit: cover; */
@@ -49,7 +49,7 @@
     top: var(--swiper-pagination-top,auto);
     left: 0;
     width: 100%;
-    top: 38rem;
+    top: 65rem;
 }
 
 .swiper {
