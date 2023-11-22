@@ -1,13 +1,11 @@
 package com.itwillbs.product.action;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.product.db.ProductDAO;
-import com.itwillbs.product.db.ProductDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
 
@@ -27,7 +25,9 @@ public class ProductListAction implements Action {
 			category = catInfo[i];
 		}
 		String brand = request.getParameter("brand");
+		if(brand == null || brand.isEmpty()) brand = "";
 		String deal_way = request.getParameter("deal_way");
+		if(deal_way == null || deal_way.isEmpty()) deal_way = "";
 		String search = request.getParameter("search");
 		String searchPart = request.getParameter("searchPart");
 		String selectedCategory = request.getParameter("category");

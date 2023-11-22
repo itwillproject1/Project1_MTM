@@ -71,8 +71,8 @@
 
 			<div id="category">
 				<span class="category-a" id="category-aa">
-					<a href="../product/ProductList.com?category=삽니다">삽니다</a>
-					<a href="../product/ProductList.com?category=팝니다">팝니다</a>
+					<a href="../product/ProductList.com?deal_way=삽니다">삽니다</a>
+					<a href="../product/ProductList.com?deal_way=팝니다">팝니다</a>
 				</span>
 				<span class="category-b">
 					<a href="../product/ProductList.com?category=0">휴대폰&태블릿</a>
