@@ -112,6 +112,11 @@ a {
     text-decoration: none;
 }
 
+.refresh{
+	display:block;
+	max-width: 100%;
+}
+
 .refresh-btn{
 	border:1px solid transparent;
 	background-color: transparent;
@@ -154,6 +159,7 @@ a {
 .container {
 	max-width: 1200px;
 	margin: 50px auto;
+	margin-top:0px;
 	padding: 0 20px;
 	display: flex;
 	flex-wrap: wrap;
