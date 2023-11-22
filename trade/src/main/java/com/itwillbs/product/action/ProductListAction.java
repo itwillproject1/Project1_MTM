@@ -25,11 +25,10 @@ public class ProductListAction implements Action {
 			category = catInfo[i];
 		}
 		String brand = request.getParameter("brand");
-		if(brand == null || brand.isEmpty()) brand = "";
+		if(brand == null || brand.isEmpty()) brand = null;
 		String deal_way = request.getParameter("deal_way");
-		if(deal_way == null || deal_way.isEmpty()) deal_way = "";
+		if(deal_way == null || deal_way.isEmpty()) deal_way = null;
 		String search = request.getParameter("search");
-		String searchPart = request.getParameter("searchPart");
 		String selectedCategory = request.getParameter("category");
 
 		System.out.println(" M : 전체검색어 : " + search);
@@ -38,31 +37,7 @@ public class ProductListAction implements Action {
 		ProductDAO dao = new ProductDAO();
 		int count = 0;
 
-		if (search == null && category == null && brand == null && deal_way == null) {
-		    // 검색어 X, 카테고리 X, 브랜드 X, 딜웨이 X
-		    System.out.println("M: 검색어, 카테고리, 브랜드, 딜웨이 없음!");
-		    count = dao.getProductCount();
-		} else if (category != null && deal_way != null) {
-		    // 카테고리 O, 딜웨이 0
-		    System.out.println("M: 카테고리, 딜웨이 있음! ( " + category + "," + deal_way + ",)");
-		    count = dao.getDealWayCategoryProductCount(category, deal_way);
-		} else if (deal_way != null) {
-		    // 딜웨이 O, 카테고리 X
-		    System.out.println("M: 딜웨이 있음! (" + deal_way + ")");
-		    count = dao.getDealWayProductCount(deal_way);
-		} else if (category != null && brand != null) {
-		    // 카테고리 O, 브랜드 O
-		    System.out.println("M: 카테고리, 브랜드 있음! (" + category + ", " + brand + ")");
-		    count = dao.getProductCount(category, brand);
-		} else if (category != null) {
-		    // 카테고리 O, 브랜드 X
-		    System.out.println("M: 카테고리 있음! (" + category + ")");
-		    count = dao.getCategoryProductCount(category);
-		} else {
-		    // 검색어 O - 검색결과 O/X
-		    System.out.println("M: 검색어 있음! (" + search + ")");
-		    count = dao.getProductCount(search);
-		}
+		count = dao.getProductCount(category, brand, deal_way, search);
 		
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
@@ -199,7 +174,7 @@ public class ProductListAction implements Action {
 		try {
 		    if (count > 0) {
 		        // 공통된 메서드 호출 부분
-		        ProductList = dao.getProductList(startRow, pageSize, category, brand, deal_way, search, searchPart);
+		        ProductList = dao.getProductList(startRow, pageSize, category, brand, deal_way, search);
 		        
 		        System.out.println("");
 
