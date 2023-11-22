@@ -288,7 +288,7 @@ public class MemberDAO {
 						rs = pstmt.executeQuery();
 						
 						while(rs.next()) {
-							sql = "update Products set like_count = like_count-1 where bno = ?";
+							sql = "update Product set like_count = like_count-1 where bno = ?";
 							pstmt = con.prepareStatement(sql);
 							pstmt.setInt(1, rs.getInt("bno"));
 							
