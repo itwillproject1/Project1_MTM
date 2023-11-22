@@ -184,7 +184,7 @@ header {
    color: #333;
    /* display: flex; */
    align-items: center;
-   padding: 10px 20px;
+   padding: 20px 20px;
    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
    transition: box-shadow 0.3s;
    margin-bottom: 0;
@@ -199,10 +199,55 @@ header:hover {
    align-items: center;
 }
 
+#login {
+	width: 40px;
+	margin-right:5px;
+}
+
+.login {
+	display: flex;
+	width: 30%;
+}
+
+#logout {
+	width: 27px;
+	margin-bottom: 7px
+}
+
+.logout {
+	display: flex;
+	width: 30%;
+}
+
+#loginname {
+	Display: flex;
+    FONT-WEIGHT: 700;
+}
+
+#write {
+	width: 25px;
+	margin-bottom: 9px
+}
+
+.write {
+	display: flex;
+	width: 30%;
+}
+
+#mypage {
+	width: 25px;
+	margin-bottom: 9px
+}
+
+.mypage {
+	display: flex;
+	width: 30%;
+}
+
 .logo {
    display: flex;
    width: 30%;
-   text-align: left;
+   text-align: right;
    vertical-align: center;
 }
 
@@ -211,10 +256,13 @@ header:hover {
    margin-left: -20px;
 }
 
+
+
 #logo {
-   width: 70px;
-   transform: translate(50%, 15%);
+    width: 150px;
+    transform: translate(-30%, 44%);
 }
+
 
 #search {
    justify-content: center;
@@ -225,6 +273,7 @@ header:hover {
 #user-menu {
    margin-left: auto;
    width: 30%;
+   transform: translate(-30%, 105%);
 }
 
 .user-menu span {
@@ -324,8 +373,9 @@ header:hover {
 .user-menu a {
    word-spacing: -10px;
    color: #222;
-   margin-right: 30px;
+   margin-right: 10px;
    text-decoration: none;
+   font-size: 14px;
 }
 
 .user-menu a:hover {
