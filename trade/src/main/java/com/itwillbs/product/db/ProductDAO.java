@@ -423,7 +423,7 @@ public class ProductDAO {
 	            sql.append(" and title like ?");
 	        }
 	        
-	        sql.append(" order by date_time DESC limit ?,?");
+	        sql.append(" ORDER BY date_time DESC limit ?,?");
 
 	        String productListSql = sql.toString();
 	        String productListCntSql = productListSql.replace("*", "COUNT(*) AS cnt");
