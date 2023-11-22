@@ -45,6 +45,9 @@
 
 		}
 	</script>
+	
+	<%@ include file="../main/header.jsp"%>
+	
 	<fieldset class="container">
 		<form action="../product/ProductPayAction.com" method="post" name="pay" onsubmit="return check();">
 		<div class="form-group">
@@ -63,12 +66,12 @@
 				<input type="hidden" name="price" value="${selldto.price}">
 				<input type="hidden" name="bno" value="${selldto.bno}">
 				<input type="hidden" name="deal_way" value="${selldto.deal_way}">
-				${selldto.category} / ${selldto.brand} / ${selldto.product_status}
+				${selldto.category}
 				</label>
 				<hr>
 				<label>상품명: ${selldto.title}</label>
 				<hr>				
-				<label>주문금액: ${selldto.price}</label>
+				<label>주문금액: <fmt:formatNumber value="${selldto.price}"/>원</label>
 				
 				<div class="btn">
 					<input type="submit" class="submit-button" value="결제하기">
@@ -77,5 +80,7 @@
 		</div>
 		</form>
 	</fieldset>
+	
+	<%@ include file="../main/footer.jsp"%>
 </body>
 </html>
