@@ -10,6 +10,7 @@ import com.itwillbs.member.db.MemberDAO;
 import com.itwillbs.member.db.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
+import com.itwillbs.util.JSMoveFunction;
 
 public class MemberPayAction implements Action {
 	
@@ -28,21 +29,8 @@ public class MemberPayAction implements Action {
 		
 		MemberDAO dao = new MemberDAO();
 		dao.Pay(dto);
-		
-		
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println(" <script> ");
-		out.println("  alert('포인트 충전 완료'); ");
-		out.println("location.href='../main/Main.com'");
-		out.println("  window.close(); ");
-		out.println(" </script> ");
-		out.close();
-		
-		
-		
+
+		JSMoveFunction.alertLocation(response, "포인트 충전 완료", "../main/Main.com");
 		return null;
 	}
-
 }

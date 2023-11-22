@@ -14,35 +14,33 @@ import com.itwillbs.util.ActionForward;
 
 public class MypageProductboardAction implements Action {
 
-	
-	// 안쓰는 파일!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! memberinfoaction에 합쳤음!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	
+	// 안쓰는 파일!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// memberinfoaction에 합쳤음!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	//	System.out.println("MypageProductboardAction_execute() 실행");
-		
+		// System.out.println("MypageProductboardAction_execute() 실행");
+
 		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("user_id");
-		
+		String user_id = (String) session.getAttribute("user_id");
+
 		MemberDAO dao = new MemberDAO();
 		ArrayList MPBlist = new ArrayList();
-		
-		
-		
+
 		MPBlist = dao.getMPBlist(user_id);
-		
-	//	System.out.println("mpblist" + MPBlist);
+
+		// System.out.println("mpblist" + MPBlist);
 
 		// 전달정보 저장(deal_way, file_name, title, price)
-        request.setAttribute("mpbdto", MPBlist);
-        
+		request.setAttribute("mpbdto", MPBlist);
+
 		// 페이지 이동
 		ActionForward forward = new ActionForward();
 		forward.setPath("./mypage.jsp");
 		forward.setRedirect(false);
-	
+
 		return forward;
-		
+
 	}
 
 }

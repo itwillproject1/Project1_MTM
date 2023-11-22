@@ -33,10 +33,10 @@ public class QnaAction implements Action {
 		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
 		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
 				new DefaultFileRenamePolicy());
-		
+
 		// 전달정보 저장(DTO)
 		InquiryDTO idto = new InquiryDTO();
-		
+
 		idto.setUser_id(user_id);
 		idto.setSubject(multi.getParameter("subject"));
 		idto.setCategory(multi.getParameter("qnaCategory"));
@@ -47,9 +47,9 @@ public class QnaAction implements Action {
 		// DAO 글작성 메서드
 		InquiryDAO idao = new InquiryDAO();
 		int bno = idao.uploadQna(idto);
-		
+
 		JSMoveFunction.alertLocation(response, "문의글 등록에 성공했습니다.", "../member/QnaContent.member?bno=" + bno);
-		
+
 		return null;
 	}
 

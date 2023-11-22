@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
+import com.itwillbs.util.JSMoveFunction;
 
 public class MemberLogoutAction implements Action{
 
@@ -21,13 +22,7 @@ public class MemberLogoutAction implements Action{
 		session.invalidate();
 		
 		// 페이지 이동(js) -> 메인페이지로 이동
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.print("<script>");
-		out.print(" alert('회원님의 정보가 안전하게 로그아웃 되었습니다!'); ");
-		out.print(" location.href='../main/Main.com'; ");
-		out.print("</script>");
-		out.close();
+		JSMoveFunction.alertLocation(response, "회원님의 정보가 안전하게 로그아웃 되었습니다!", "../main/Main.com");
 		
 //		컨트롤러 이동방식		
 //		ActionForward forward = new ActionForward();

@@ -57,26 +57,12 @@ public class MemberLoginAction implements Action {
 
 		} else if (result == 0) {
 			// 페이지 이동(JS)
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println(" <script> ");
-			out.println("  alert(' 사용자 비밀번호 오류! '); ");
-			out.println("  history.back(); ");
-			out.println(" </script> ");
-			out.close();
-
+			JSMoveFunction.alertBack(response, "사용자 비밀번호 오류!");
 			return null; // ActionForward정보가 null=>컨트롤러 페이지이동X
 		} else { // result == -1
 			// 페이지 이동(JS)
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println(" <script> ");
-			out.println("  alert('회원정보 없음!!'); ");
-			out.println("  history.back(); ");
-			out.println(" </script> ");
-			out.close();
+			JSMoveFunction.alertBack(response, "회원정보 없음!!");
 		}
-
 		return null;
 	}// execute
 
