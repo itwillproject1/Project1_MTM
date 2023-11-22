@@ -54,11 +54,11 @@
 												<div class="avatar avatar-xl">
 													<c:if test="${dto.profile == ''}">
 														<img src="./employee/template/assets/images/user.png"
-														onerror="this.onerror=null; this.src='./employee/template/assets/images/user.png';"
 															alt="..." class="avatar-img rounded-circle">
 													</c:if>
 													<c:if test="${dto.profile != ''}">
 														<img src="./upload/${i.profile}" alt="..."
+														onerror="this.onerror=null; this.src='./employee/template/assets/images/user.png';"
 															class="avatar-img rounded-circle">
 													</c:if>
 												</div>
