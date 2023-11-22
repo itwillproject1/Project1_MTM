@@ -423,7 +423,7 @@ public class ProductDAO {
 	            sql.append(" and title like ?");
 	        }
 	        
-	        sql.append("order by date_time desc limit ?,?");
+	        sql.append(" order by date_time desc limit ?,?");
 
 	        String productListSql = sql.toString();
 	        String productListCntSql = productListSql.replace("*", "COUNT(*) AS cnt");
@@ -462,7 +462,7 @@ public class ProductDAO {
 //	        	    // searchPart
 //	        	}
 	        	
-	        	  sql.append(" limit ?,?");
+	        	  sql.append(" order by date_time desc limit ?,?");
 		          pstmt.setInt(++index, startRow -1);
 			      pstmt.setInt(++index, pageSize);
 	        	
@@ -533,7 +533,7 @@ public class ProductDAO {
 	        con = getCon();
 
 	        // SQL 작성 & pstmt 객체
-	        String sql = "SELECT DISTINCT brand FROM Product WHERE category = ?";
+	        String sql = "SELECT DISTINCT brand FROM Product WHERE category = ? and views desc";
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setString(1, category);
 
