@@ -239,7 +239,7 @@
 
 				<div class="form-group">
 					<label for="productPrice">가격(원):</label>
-					<input type="number" id="price" name="price" value="${pdto.price }" step="10">
+					<input type="number" id="price" name="price" value="${pdto.price }" step="500">
 				</div>
 				
 				<div class="form-group">

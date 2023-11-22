@@ -53,11 +53,6 @@
             delay: 2000,
             disableOnInteraction: false,
         },
-        // 이전/다음 버튼 추가
-//         navigation: {
-//             nextEl: '.swiper-button-next',
-//             prevEl: '.swiper-button-prev',
-//         },
         // 페이지네이션 추가
         pagination: {
             el: '.swiper-pagination',
