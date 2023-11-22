@@ -326,7 +326,7 @@
                    </div>
                    
                </div>
-               <div class="button-container">
+               <div class="button-container1" >
                	<button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
                </div>
            </form>

@@ -11,7 +11,7 @@ body {
 
 .title {
     width: 250px;
-    margin: 150px auto 50px;
+    margin: 200px auto 50px;
     text-align: center;
     height: 40px;
     line-height: 40px;
@@ -79,7 +79,7 @@ li {
 
 .cate-1 li {
     display: inline-block;
-    margin-right: 10px; /* 원하는 간격으로 조절하세요 */
+    margin-right: 10px; 
 }
 
 .cate-1 li a {
@@ -90,20 +90,22 @@ li {
     width: 100px;
     padding: 10px;
     border: 1px solid #F0F0F0;
-    text-align: center; /* 가운데 정렬을 위해 추가 */
-    text-decoration: none; /* 링크의 밑줄 제거 */
+    text-align: center; 
+    text-decoration: none; 
+    transition: color 0.3s, background-color 0.3s;
 }
 
 
 .cate-1 li:hover a, .cate-1 li:visited a{
-    color: #000; /* 텍스트색 */
+    color: #000; 
     background-color: #fff;
 }
 
 .cate-1 li:hover a, .cate-1 li:active a{
-    color: #fff; /* 클릭 시 텍스트색 */
+    color: #fff; 
     background-color: #6D6D6D;
 }
+
 
 a {
     color: #6D6D6D;
@@ -187,6 +189,14 @@ a {
 	padding: 15px;
 	text-align: center;
 	font-weight: bold;
+}
+
+.product-info h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-price { /* 가격 글자 크기, 가운데 정렬 */

@@ -35,9 +35,6 @@ body {
    grid-gap: 30px;
    justify-items: center; /* 아이템을 가운데 정렬 */
 }
-
-
-
 .product {
    width: 100%;
    background-color: #fff;
@@ -86,6 +83,16 @@ body {
    object-position: center top;
    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
    /* 이미지 확대 더 부드럽게 */
+}
+
+/*제목 두줄 이상시 ...으로*/
+.product-info h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  white-space: normal;
 }
 
 .product-info { /* 상품 글자 크기, 가운데 정렬 */
