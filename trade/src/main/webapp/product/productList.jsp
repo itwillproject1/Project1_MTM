@@ -97,8 +97,10 @@ $(document).ready(function () {
 							<li><a href="<%=brandLink%>&brand=${brand}">${brand}</a></li>
 						</c:forEach>
 					</ul>
+					<button class="refresh-btn" type="button" onclick="location.href='<%=link%>'"><img src="./img/refresh.png"></button>
 				</dd>
 			</dl>
+			
 		</div>
 	</div>
 	<!-- 여기에 상품 목록 들어갈 부분 -->
