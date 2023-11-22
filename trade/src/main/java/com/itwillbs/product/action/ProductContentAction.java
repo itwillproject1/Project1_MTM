@@ -3,6 +3,7 @@ package com.itwillbs.product.action;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -63,6 +64,12 @@ public class ProductContentAction implements Action {
 		//System.out.println("찜 체크 결과: " + likeResult);
 
 		request.setAttribute("likeResult", likeResult);
+		
+		/* 카테고리 조회에 필요한 정보 */
+		String[] catInfo = { "휴대폰&태블릿", "데스크탑", "노트북", "게임기기", "가전제품", "카메라", "음향기기", "기타" };
+		int category = Arrays.asList(catInfo).indexOf(dto.getCategory());
+		System.out.println("category: " + category);
+		request.setAttribute("category", category);
 
 		/* 프로필 조회에 필요한 정보 */
 		List<ProductDTO> userProducts =  dao.getAllUserProducts(dto.getUser_id());

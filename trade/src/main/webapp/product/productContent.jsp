@@ -138,7 +138,7 @@
             </div>
 
             <div class="form-group">
-               <label for="productCategory">카테고리: <a href="../product/ProductList.com?category=${dto.category }">${dto.category }</a></label>
+               <label for="productCategory">카테고리: <a href="../product/ProductList.com?category=${category }">${dto.category }</a></label>
             </div>
 
             <div class="form-group">
@@ -318,7 +318,9 @@
                    </div>
                    
                </div>
-               <button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
+               <div class="button-container">
+               	<button class="confirm-button" onclick="submitComplainOffer()">신고하기</button>
+               </div>
            </form>
                <button class="close-button" onclick="closeComplainModal()">닫기</button>
        </div>
@@ -371,7 +373,9 @@
             </c:if>
 
             <c:if test="${!empty login_id && !empty sellProduct}">
+            <div class="button-container">
                <button class="submit-button" onclick="submitProductOffer();">판매 제안</button>
+               </div>
             </c:if>
 
          </div>
@@ -409,7 +413,9 @@
                         <hr id="hr1">
                      </div>
                   </c:forEach>
-                  <button type="button" class="submit-button" onclick="submitSuggest();">거래 하기</button>
+                  <div class="button-container">
+                  	<button type="button" class="submit-button" onclick="submitSuggest();">거래 하기</button>
+                  </div>
                </form>
             </c:if>
             <c:if test="${empty suggestList }">
@@ -448,7 +454,9 @@
                      <hr id="hr1">
                   </div>
                </c:forEach>
-               <button type="button" class="submit-button" onclick="cancleSuggest();">판매 제안 취소 하기</button>
+               <div class="button-container">
+               	<button type="button" class="submit-button" onclick="cancleSuggest();">판매 제안 취소 하기</button>
+               </div>
             </form>
          </c:if>
          <c:if test="${empty ssldto }">

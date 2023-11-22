@@ -17,7 +17,6 @@
 	$(document).ready(function() {
 		$('#arrow1').click(function(){
 			var img_src = document.getElementById('down1').src;
-			console.log("img_src: " + img_src);
 			
 			if(img_src == 'http://localhost:8088/trade/member/img/down_arrow.png') {
 				$('.none1').css('display', 'inline-block');
