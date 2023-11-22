@@ -98,7 +98,9 @@ $(document).ready(function () {
 							<li><a href="<%=brandLink%>&brand=${brand}">${brand}</a></li>
 						</c:forEach>
 					</ul>
-					<button class="refresh-btn" type="button" onclick="location.href='<%=link%>'"><img src="./img/refresh.png"></button>
+					<c:if test="${search == null}">
+						<button class="refresh-btn" type="button" onclick="location.href='<%=link%>'"><img src="./img/refresh.png"></button>
+					</c:if>
 				</dd>
 			</dl>
 			
