@@ -12,7 +12,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.itwillbs.product.db.ProductDAO;
 import com.itwillbs.product.db.ProductDTO;
+import com.itwillbs.util.deleteFile;
 
 public class MemberDAO {
 	// 공통 변수 선언
@@ -258,15 +260,8 @@ public class MemberDAO {
 				if (dto.getPassword().equals(rs.getString("password"))) {
 					// 3. sql 작성(delete) & pstmt 객체
 					// 작성자의 거래하지 않은 상품 삭제
-					// 제안상품 삭제
-					sql = "delete from SuggestSell where buyer_user_id = ? or seller_user_id = ?";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, dto.getUser_id());
-					pstmt.setString(2, dto.getUser_id());
-
-					pstmt.executeUpdate();
-
-					// 찜 한 글의 찜 수 -1
+					
+					// 내가 찜 한 글의 찜 수 -1
 					sql = "select * from Likes where user_id = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, dto.getUser_id());
@@ -308,6 +303,31 @@ public class MemberDAO {
 					sql = "delete from Product where user_id = ? and deal_status = 1";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, dto.getUser_id());
+
+					pstmt.executeUpdate();
+					
+					// 등록 상품 중 거래 전 상품만 삭제
+					// deleteProduct 메서드 가져와서 수행
+//					sql = "select bno from Product where user_id = ? and deal_status=1";
+//					pstmt = con.prepareStatement(sql);
+//					pstmt.setString(1, dto.getUser_id());
+//					rs = pstmt.executeQuery();
+//					while(rs.next()) {
+//						// 파일 삭제
+//						deleteFile df = new deleteFile();
+//						df.dFile(null, null, rs.getInt("bno"));
+//					
+//						ProductDAO pdao = new ProductDAO();
+//						pdao.deleteProduct(rs.getInt("bno"));
+//					}
+					
+					
+
+					// 제안상품 삭제
+					sql = "delete from SuggestSell where buyer_user_id = ? or seller_user_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, dto.getUser_id());
+					pstmt.setString(2, dto.getUser_id());
 
 					pstmt.executeUpdate();
 

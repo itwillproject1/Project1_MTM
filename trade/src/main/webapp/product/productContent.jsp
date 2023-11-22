@@ -472,7 +472,7 @@
             </form>
          </c:if>
          <c:if test="${empty ssldto }">
-            <p id="noSell">판매 제안 내역이 없습니다.</p>
+            <p id="noSell">판매 제안 현황이 없습니다.</p>
          </c:if>
       </div>
    </div>
