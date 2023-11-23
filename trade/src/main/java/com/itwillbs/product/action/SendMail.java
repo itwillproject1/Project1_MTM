@@ -80,7 +80,7 @@ public class SendMail implements Action {
 	        		        + " top;\">\r\n"
 	        		        + "<h3 style=\"font-size: 0.9em; font-weight: 400; margin: 0;\">상품정보가 업데이트 되었습니다.</h3>\r\n"
 	        		        + "<h4\r\n"
-	        		        + "style=\"margin: 0; font-size: 0.7em; font-weight: 400; color: #808080;\">  이름: "+ request.getAttribute("buyer_name")
+	        		        + "style=\"margin: 0; font-size: 0.7em; font-weight: 400; color: #808080;\">  구매자 정보<br> 이름: "+ request.getAttribute("buyer_name")
 	        		        + "<br>번호: " + request.getAttribute("buyer_phone")
 	        		        + "<br>주소: " + request.getAttribute("address")
 	        		        + "<br>판매 물건: <a href='http://c7d2307t1.itwillbs.com/trade/product/ProductContent.com?bno="+ request.getAttribute("sell_bno") +"'>글번호: "+ request.getAttribute("sell_bno") +"</a>" 
@@ -114,7 +114,7 @@ public class SendMail implements Action {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(seller_email));
 
 			// 제목
-			message.setSubject("상품 정보가 업데이트 되었습니다.");
+			message.setSubject("MTM 상품 정보가 업데이트 되었습니다.");
 			
 			// 메일 콘텐츠 - 내용
 			mTextPart.setText(html, bodyEncoding, "html");
