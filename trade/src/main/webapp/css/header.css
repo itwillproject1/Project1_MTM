@@ -295,13 +295,11 @@ header:hover {
     text-align: left;
 }
 
-.user-menu span {
-   margin-botton: -20px;
-}
-
 .category-a a {
    text-decoration: none;
    color: #333;
+   font-size: 16px;
+   FONT-WEIGHT: 700;
    margin-left: 20px;
 }
 
