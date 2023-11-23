@@ -188,6 +188,7 @@ ProductDAO productDAO = new ProductDAO();
 					});
 </script>
 <title>MTM | 상품 목록</title>
+<script src="../product/custom.js"></script>
 </head>
 <link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <body>
