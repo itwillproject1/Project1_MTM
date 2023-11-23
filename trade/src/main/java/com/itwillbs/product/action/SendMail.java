@@ -58,12 +58,22 @@ public class SendMail implements Action {
 				return new PasswordAuthentication(user, password);
 			}
 		});
-
-		// 메시징 예외처리
-		try {
-			// 메일 내용 작성
-			String html = "상품 정보가 업데이트 되었습니다.";
-
+		
+			StringBuffer sb = new StringBuffer();
+            
+	        //메시징 예외처리
+	        try {
+	        sb.append("상품정보가 업데이트 되었습니다.<br>"
+	        + "이름: " + request.getAttribute("buyer_name")
+	        + "번호: " + request.getAttribute("buyer_phone")
+	        + "주소: " + request.getAttribute("address")
+	        + "판매 물건: <a href='http://c7d2307t1.itwillbs.com/trade/product/ProductContent.com?bno="+ request.getAttribute("sell_bno") +"'>글번호: "+ request.getAttribute("sell_bno") +"</a>" 
+	        );
+	        
+	        //sb.append(arr.get(0)+"\n");
+	        //sb.append(arr.get(1)+"\n");
+	        String html = sb.toString();
+			
 			// 메시지 포맷을 담기위해 생성
 			MimeMessage message = new MimeMessage(session1);
 			

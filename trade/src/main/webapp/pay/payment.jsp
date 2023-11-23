@@ -25,23 +25,23 @@
 </script>
 </head>
 <body>
-	<script type="text/javascript">
-		function goPopup() {
+   <script type="text/javascript">
+      function goPopup() {
 
-			var pop = window.open("../member/jusoPopup.jsp", "pop",
-					"width=570,height=420, scrollbars=yes, resizable=yes");
+         var pop = window.open("../member/jusoPopup.jsp", "pop",
+               "width=570,height=420, scrollbars=yes, resizable=yes");
 
-		}
-		function jusoCallBack(address) {
-			document.pay.address.value = address;
-		}
+      }
+      function jusoCallBack(address) {
+         document.pay.address.value = address;
+      }
 
-		function cancel() {
-			history.back();
-			return false;
-		}
-		
-		function check() {
+      function cancel() {
+         history.back();
+         return false;
+      }
+      
+      function check() {
 
 			var price = parseInt("<c:out value='${selldto.price}'/>");
 			var pay = parseInt("<c:out value='${user_dto.pay}'/>");
@@ -49,7 +49,7 @@
 			var seller_id = "<c:out value='${selldto.user_id}'/>";
 			var chargeMoney = (price - pay).toLocaleString();
 
-			if (pay < price) {
+         if (pay < price) {
 
 				alert(' 잔액이 부족합니다.');
 				alert(' 부족한 금액은 ' + chargeMoney + '원입니다. ');

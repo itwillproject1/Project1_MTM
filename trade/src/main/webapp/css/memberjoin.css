@@ -105,7 +105,7 @@ fieldset {
   border: 2px solid #222;
   border-radius: 10px;
   width: 35%;
-  margin: 20px auto; /* Center the fieldset horizontally */
+  margin: 80px auto; /* Center the fieldset horizontally */
   padding: 20px;
 }
 
