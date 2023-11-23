@@ -24,7 +24,7 @@ public class DeleteProductAction implements Action {
 		// 등록된 이미지 삭제
 		ProductDTO pdto = dao.getProduct(bno);
 		String file_name = pdto.getFile_name();
-		String realPath = request.getRealPath("upload");
+		String realPath = request.getRealPath("/upload");
 		
 		if(!file_name.equals("default_product_image.png")) {
 			
@@ -33,8 +33,8 @@ public class DeleteProductAction implements Action {
 			
 			for(String dFileName : dFile_name) {
 				// dFileName 파일 삭제 수행
-//				file = new File(realPath + "\\" + dFileName);
-				file = new File("upload/"+dFileName);
+				file = new File(realPath + "\\" + dFileName);
+//				file = new File("upload/"+dFileName);
 				file.delete();
 			}
 		}
