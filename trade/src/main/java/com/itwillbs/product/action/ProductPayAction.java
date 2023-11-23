@@ -30,6 +30,7 @@ public class ProductPayAction implements Action {
 		String deal_way = request.getParameter("deal_way");
 		int pay = Integer.parseInt(request.getParameter("price"));
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		String address = request.getParameter("address");
 		
 		
 		
@@ -59,7 +60,7 @@ public class ProductPayAction implements Action {
 		historydto.setBno(bno);
 		historydto.setTrader_id(seller_id);
 		historydto.setPrice(pay);
-		historydto.setAddress(request.getParameter("address"));
+		historydto.setAddress(address);
 		
 		TradeHistoryDAO historydao = new TradeHistoryDAO();
 		historydao.tradehistory(historydto);
@@ -74,6 +75,14 @@ public class ProductPayAction implements Action {
 		// 판매자에게 이메일 보내기
 		MemberDTO sellerDto = memdao.getMember(seller_id); // 판매자 모든 정보 가져옴
 		request.setAttribute("seller_email", sellerDto.getEmail());
+		
+		// 구매자 정보(이름, 전화번호, 주소, 판매물건)
+		MemberDTO buyerDto = memdao.getMember(buyer_id);
+		request.setAttribute("buyer_name", buyerDto.getUser_name()); // 이름
+		request.setAttribute("buyer_phone", buyerDto.getPhone()); // 번호
+		request.setAttribute("address", address); // 주소
+		request.setAttribute("sell_bno", bno); // 물건 번호
+		
 		SendMail smail = new SendMail();
 		smail.execute(request, response);		
 		
