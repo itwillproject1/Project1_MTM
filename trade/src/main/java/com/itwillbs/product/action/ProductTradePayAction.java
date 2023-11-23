@@ -30,6 +30,7 @@ public class ProductTradePayAction implements Action {
 		int buy_pay = Integer.parseInt(request.getParameter("price"));
 		int buy_bno = Integer.parseInt(request.getParameter("buy_bno"));
 		int sell_bno = Integer.parseInt(request.getParameter("sell_bno"));
+		String address = request.getParameter("address");
 
 		// System.out.println(buyer_id);
 		// System.out.println(seller_id);
@@ -70,7 +71,7 @@ public class ProductTradePayAction implements Action {
 		historydto.setBno(buy_bno);
 		historydto.setTrader_id(seller_id);
 		historydto.setPrice(buy_pay);
-		historydto.setAddress(request.getParameter("address"));
+		historydto.setAddress(address);
 
 		TradeHistoryDAO historydao = new TradeHistoryDAO();
 		historydao.tradehistory(historydto);
@@ -96,6 +97,13 @@ public class ProductTradePayAction implements Action {
 		// 판매자에게 이메일 보내기
 		MemberDTO sellerDto = memdao.getMember(seller_id); // 판매자 모든 정보 가져옴
 		request.setAttribute("seller_email", sellerDto.getEmail());
+		// 구매자 정보(이름, 전화번호, 주소, 판매물건)
+		MemberDTO buyerDto = memdao.getMember(buyer_id);
+		request.setAttribute("buyer_name", buyerDto.getUser_name()); // 이름
+		request.setAttribute("buyer_phone", buyerDto.getPhone()); // 번호
+		request.setAttribute("address", address); // 주소
+		request.setAttribute("sell_bno", sell_bno); // 물건 번호
+		
 		SendMail smail = new SendMail();
 		smail.execute(request, response);
 
