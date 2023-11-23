@@ -50,7 +50,7 @@ public class TradeHistoryDAO {
 	public void tradehistory(TradeHistoryDTO dto) {
 		try {
 			con = getCon();
-			sql = "insert into TradeHistory (user_id, deal_way, bno, trader_id, price, address ,tradeDate) values(?,?,?,?,?,now())";
+			sql = "insert into TradeHistory (user_id, deal_way, bno, trader_id, price, address ,tradeDate) values(?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, dto.getUser_id());
