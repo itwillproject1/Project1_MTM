@@ -205,6 +205,7 @@
 						<c:if test="${dto.deal_status == 0 }">
 							<input type="button" class="no-button" value="거래 완료">
 						</c:if>
+				</c:if>
 
 						<!-- 찜 기능 시작 -->
 						<button class="submit-button" id="like">
@@ -509,8 +510,10 @@
 <!-- 구매하기 전 가격확인 -->
 <script>
 function confirmPurchase(bno) {
+	var price = Number("${dto.price}");
+    var fPrice = price.toLocaleString();
 	
-    var result = confirm('해당 상품을 ${dto.price}원에 구매하시겠습니까?');
+    var result = confirm('해당 상품을 ' + fPrice + '원에 구매하시겠습니까?');
     if (result) {
         location.href = `../pay/payment.com?bno=${dto.bno}`;
     } else {
@@ -750,8 +753,10 @@ function confirmPurchase(bno) {
             alert("판매할 물품을 선택해주세요");
         } else {
             var productIds = [];
+            var price = Number("${dto.price}");
+            var fPrice = price.toLocaleString();
 
-            var result = confirm('해당 상품을 ${dto.price}원에 판매 제안하시겠습니까?');
+            var result = confirm('해당 상품을 ' + fPrice + '원에 판매 제안하시겠습니까?');
 
             if (result === true) {
                 document.getElementById("SuggestSellForm").submit();
