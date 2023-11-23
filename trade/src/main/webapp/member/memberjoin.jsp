@@ -23,6 +23,17 @@ $(function(){
          }
      });
     
+    $(function(){
+    	
+    $("#address").click(function(){
+    	 var url = './jusoPopup.jsp';
+    	window.open(url,'pop','width=570,height=420, scrollbars=yes, resizable=yes');
+    });
+    
+    });
+    
+    
+    
     
 });
 </script>
