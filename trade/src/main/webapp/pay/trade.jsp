@@ -7,6 +7,19 @@
 <title>MTM | 결제페이지</title>
 <link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <link href="../css/pay.css" rel="stylesheet" />
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#sbtn').click(function(){
+			$('body').css({
+				background : '#e7e7e7',
+				opacity : '0.3',
+				'pointer-events': 'none'
+			});
+			
+			$('fieldset').append("<img alt='결제중' src='../pay/img/pay_loading.gif'>");
+		});
+	});
+</script>
 </head>
 		
 		<script type="text/javascript">
@@ -50,7 +63,7 @@
 
 <body>
 		<fieldset class="container">
-		<form action="../product/ProductPayAction.com" method="post" name="pay" onsubmit="return check();">
+		<form action="../product/ProductTradePayAction.com" method="post" name="pay" onsubmit="return check();">
 		<div class="form-group">
 				<label>주문자명: ${membuyerdto.user_name}</label>
 				<hr>
@@ -77,7 +90,7 @@
 				<label>주문금액: <STRIKE>${prosellerdto.price}</STRIKE> ${probuyerdto.price}</label>
 				
 				<div class="btn">
-					<input type="submit" class="submit-button" value="결제하기">
+					<input type="submit" id="sbtn" class="submit-button" value="결제하기">
 					<input type="button" class="submit-button" value="취소하기" onclick="cancel();">
 				</div>
 		</div>
