@@ -240,9 +240,10 @@ header:hover {
 }
 
 #loginname {
-	float:left;
-	Display: flex;
+    Display: flex;
     FONT-WEIGHT: 700;
+    transform: translate(0%,-150%);
+    margin-bottom: -18px;
 }
 
 #write {
@@ -261,6 +262,16 @@ header:hover {
 }
 
 .mypage {
+	display: flex;
+	width: 30%;
+}
+
+#admin {
+	width: 25px;
+	margin-bottom: 9px
+}
+
+.admin {
 	display: flex;
 	width: 30%;
 }
@@ -292,13 +303,13 @@ header:hover {
 }
 
 #user-menu {
-   margin-left: auto;
-   width: 20%;
-   transform: translate(-30%, 50%);
+    width: 30%;
+    transform: translate(5%, 110%);
+    text-align: left;
 }
 
 .user-menu span {
-   display: inline-block;
+   margin-botton: -20px;
 }
 
 .category-a a {
