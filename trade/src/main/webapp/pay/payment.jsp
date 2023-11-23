@@ -9,6 +9,20 @@
 <link href="../css/pay.css" rel="stylesheet" />
 <title>MTM | 결제페이지</title>
 <link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#sbtn').click(function(){
+			$('body').css({
+				background : '#e7e7e7',
+				opacity : '0.3',
+				'pointer-events': 'none'
+			});
+			
+			$('fieldset').append("<img alt='결제중' src='../pay/img/pay_loading.gif'>");
+		});
+	});
+</script>
 </head>
 <body>
    <script type="text/javascript">
@@ -71,7 +85,7 @@
 				</label>
 
 	            <div class="btn">
-	               <input type="submit" class="submit-button" value="결제하기">
+	               <input type="submit" id="sbtn" class="submit-button" value="결제하기">
 	               <input type="button" class="submit-button" value="취소하기" onclick="cancel();">
 	            </div>
 	      </div>
