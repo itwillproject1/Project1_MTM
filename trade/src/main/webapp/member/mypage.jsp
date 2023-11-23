@@ -185,7 +185,7 @@
 	</div>
 
 	<!--  내가 올린 상품  시작-->
-	<div class="title1" id="title1">내가 업로드한 상품</div>
+	<div class="title1" id="title1">올린 상품 <img src="../main/img/올린상품.png" width="35" alt="올린상품"></div>
 	<div class="container1">
 		<c:if test="${!empty mpbdto }">
 		<c:forEach var="product" items="${mpbdto}" varStatus="loop">
@@ -236,7 +236,7 @@
 
 
 	<!--  내가 찜한 상품 시작-->
-	<div class="title1" id="title2">내가 찜한 상품</div>
+	<div class="title1" id="title2">찜한 상품 <img src="../main/img/찜2.png" width="35" alt="찜그림"></div>
 	<div class="container1">
 	<c:if test="${!empty productlikelist }">
 		<c:forEach var="product" items="${productlikelist}"  varStatus="loop">
@@ -278,7 +278,7 @@
 	<!--  내가 찜한 상품 끝 -->
 
 	<!--  내가 구매한 상품 목록 -->
-	<div class="title1" id="title3">내가 구매한 상품</div>
+	<div class="title1" id="title3">구매한 상품 <img src="../main/img/돈.png" width="32" alt="돈그림"></div>
 	<div class="container1">
 	<c:if test="${!empty buyList }">
 		<c:forEach var="i" begin="0" end="${tradeOkList.size()-1 }">
