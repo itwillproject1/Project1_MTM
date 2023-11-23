@@ -199,7 +199,7 @@ public class ProductDAO {
 				sql += " and title like '%" + search + "%'";
 
 			pstmt = con.prepareStatement(sql);
-			System.out.println(pstmt.toString());
+//			System.out.println(pstmt.toString());
 			rs = pstmt.executeQuery();
 			if (rs.next())
 				result = rs.getInt(1);
@@ -248,7 +248,7 @@ public class ProductDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);
-			System.out.println(pstmt.toString());
+//			System.out.println(pstmt.toString());
 			rs = pstmt.executeQuery();
 			// 5. 데이터 처리
 			// 글정보 전부 가져오기
@@ -278,7 +278,7 @@ public class ProductDAO {
 			} // while
 
 			// System.out.println(" DAO : 글 목록 조회성공! ");
-			System.out.println(" DAO : " + ProductList.size());
+//			System.out.println(" DAO : " + ProductList.size());
 
 		} catch (Exception e) {
 			e.printStackTrace();
