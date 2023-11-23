@@ -28,8 +28,7 @@ public class DeleteProductAction implements Action {
 //		String realPath = request.getSession().getServletContext().getRealPath("/upload");
 		String realPath = request.getRealPath("upload");
 		System.out.println("realPath: "+realPath);
-//		System.out.println(request.getSession().getServletContext().getRealPath("/"));
-//		System.out.println(request.getSession().getServletContext().getRealPath("/upload"));
+		System.out.println(request.getSession().getServletContext().getRealPath("/upload"));
 		
 		if(!file_name.equals("default_product_image.png")) {
 			
@@ -38,8 +37,8 @@ public class DeleteProductAction implements Action {
 			
 			for(String dFileName : dFile_name) {
 				// dFileName 파일 삭제 수행
-				file = new File(realPath + "\\" + dFileName);
-//				file = new File("/trade/upload/"+dFileName);
+//				file = new File(realPath + "\\" + dFileName);
+				file = new File("/usr/local/tomcat/webapps/trade/upload/"+dFileName);
 				file.delete();
 			}
 		}
