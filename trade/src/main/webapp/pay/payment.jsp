@@ -41,7 +41,7 @@
 				alert(' 부족한 금액은 ' + chargeMoney + '원입니다. ');
 				var url = "../member/MemberPayInfo.member?&id=" + buyer_id;
 				window.open(url, "checkid",
-						"width=570,height=500, scrollbars=yes, resizable=yes");
+						"width=570,height=645, scrollbars=yes, resizable=yes");
 				return false;
 			} else {
 				$(document).ready(function() {
