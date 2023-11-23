@@ -10,7 +10,7 @@ body {
 
 .container {
 	max-width: 80%;
-	margin: 200px auto 70px; /* 여기서 상단 여백 조정 */
+	margin: 15rem auto 70px; /* 여기서 상단 여백 조정 */
 	padding: 20px;
 	background-color: #fff; /* 흰색 배경색 */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
