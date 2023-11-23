@@ -43,7 +43,7 @@ public class ProductListAction implements Action {
 		int count = 0;
 
 		count = dao.getProductCount(category, brand, deal_way, search);
-		System.out.println("count : " + count);
+//		System.out.println("count : " + count);
 		
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 글의 개수 설정
@@ -113,7 +113,7 @@ public class ProductListAction implements Action {
 		}
 		
 		request.setAttribute("brandList", brandList);
-		System.out.println(" M : size :" + brandList.size());
+//		System.out.println(" M : size :" + brandList.size());
 		
 		ArrayList<String> dealWayList = new ArrayList<>();
 
@@ -167,7 +167,7 @@ public class ProductListAction implements Action {
 
 
 		request.setAttribute("dealWayList", dealWayList);
-		System.out.println(" M : size :" + dealWayList.size());
+//		System.out.println(" M : size :" + dealWayList.size());
 
 		// DAO - 글정보 모두(list)를 가져오는 메서드 호출
 		ArrayList ProductList = new ArrayList();
@@ -177,13 +177,13 @@ public class ProductListAction implements Action {
 		        // 공통된 메서드 호출 부분
 		        ProductList = dao.getProductList(startRow, pageSize, category, brand, deal_way, search);
 		        
-		        System.out.println("");
+//		        System.out.println("");
 
 		        // 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		        request.setAttribute("ProductList", ProductList);
 		    }
 
-		    System.out.println(" M : size :" + ProductList.size());
+//		    System.out.println(" M : size :" + ProductList.size());
 
 		} catch (Exception e) {
 		    e.printStackTrace();
