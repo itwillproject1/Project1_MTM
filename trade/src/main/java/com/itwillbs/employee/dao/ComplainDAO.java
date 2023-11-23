@@ -35,16 +35,18 @@ public class ComplainDAO extends DAO {
 
 	public ArrayList userInfoComplain(UserDTO udto) {
 		// userInfoComplain() : 유저 정보에 표시 될 피신고 목록
+		HashSet<String> set = new HashSet<String>(); // 중복 확인
 		ArrayList list = null;
 		ComplainDTO dto = null;
 		try {
 			con = getCon();
-			sql = "select * from Complain where user_id = ? order by bno desc";
+			sql = "select * from Complain where user_id = ? order by uploadDate";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, udto.getUser_id());
 			rs = pstmt.executeQuery();
 			list = new ArrayList();
 			while (rs.next()) {
+				if(set.contains(rs.getString("complainer_id"))) continue;
 				dto = new ComplainDTO();
 				dto.setIdx(rs.getInt("idx"));
 				dto.setBno(rs.getInt("bno"));
@@ -53,6 +55,7 @@ public class ComplainDAO extends DAO {
 				dto.setUploadDate(rs.getTimestamp("uploadDate"));
 				dto.setComplete(rs.getBoolean("complete"));
 				list.add(dto);
+				set.add(dto.getComplainer_id());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
