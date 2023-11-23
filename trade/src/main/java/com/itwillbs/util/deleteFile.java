@@ -8,20 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.product.db.ProductDAO;
 import com.itwillbs.product.db.ProductDTO;
 
-public class deleteFile{
-	
-	public void dFile(HttpServletRequest request, HttpServletResponse response, int bno) throws Exception {
-		
-		// 글 삭제 메서드
-		ProductDAO pdao = new ProductDAO();
+public class deleteFile {
+
+	public static void dFile(HttpServletRequest request, int bno) throws Exception {
 
 		// 등록된 이미지 삭제
+		ProductDAO pdao = new ProductDAO();
 		ProductDTO pdto = pdao.getProduct(bno);
 		String file_name = pdto.getFile_name();
 		String realPath = request.getRealPath("upload");
 
-		if(!file_name.equals("default_product_image.png"))
-		{
+		if (!file_name.equals("default_product_image.png")) {
 
 			String[] dFile_name = file_name.split(",");
 			File file = null;
@@ -37,5 +34,5 @@ public class deleteFile{
 		pdao.deleteProduct(bno);
 
 	}
-	
+
 }

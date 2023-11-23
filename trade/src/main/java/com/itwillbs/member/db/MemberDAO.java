@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import com.itwillbs.product.db.ProductDAO;
@@ -241,7 +242,7 @@ public class MemberDAO {
 		return result;
 	}
 
-	public int deleteMember(MemberDTO dto) {
+	public int deleteMember(MemberDTO dto, HttpServletRequest request) {
 		int result = -1; // -1 0 1
 
 		try {
@@ -298,30 +299,23 @@ public class MemberDAO {
 
 						pstmt.executeUpdate();
 					}
-
-					// 등록 상품 중 거래 전 상품만 삭제
-					sql = "delete from Product where user_id = ? and deal_status = 1";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, dto.getUser_id());
-
-					pstmt.executeUpdate();
 					
 					// 등록 상품 중 거래 전 상품만 삭제
 					// deleteProduct 메서드 가져와서 수행
-//					sql = "select bno from Product where user_id = ? and deal_status=1";
-//					pstmt = con.prepareStatement(sql);
-//					pstmt.setString(1, dto.getUser_id());
-//					rs = pstmt.executeQuery();
-//					while(rs.next()) {
-//						// 파일 삭제
-//						deleteFile df = new deleteFile();
-//						df.dFile(null, null, rs.getInt("bno"));
-//					
-//						ProductDAO pdao = new ProductDAO();
-//						pdao.deleteProduct(rs.getInt("bno"));
-//					}
+					sql = "select bno from Product where user_id = ? and deal_status=1";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, dto.getUser_id());
 					
+					rs = pstmt.executeQuery();
 					
+					while(rs.next()) {
+						// 파일 삭제
+						deleteFile.dFile(request, rs.getInt("bno"));
+						
+						// 글 삭제
+						ProductDAO pdao = new ProductDAO();
+						pdao.deleteProduct(rs.getInt("bno"));
+					}
 
 					// 제안상품 삭제
 					sql = "delete from SuggestSell where buyer_user_id = ? or seller_user_id = ?";
