@@ -27,7 +27,8 @@ public class deleteFile {
 				// dFileName 파일 삭제 수행
 				// System.out.println("삭제 실행");
 //				file = new File(realPath + "\\" + dFileName);
-				file = new File("../upload"+"\\"+dFileName);
+//				file = new File("../upload"+"\\"+dFileName);
+				file = new File("/usr/local/tomcat/webapps/trade/upload/"+dFileName);
 				file.delete();
 			}
 		}

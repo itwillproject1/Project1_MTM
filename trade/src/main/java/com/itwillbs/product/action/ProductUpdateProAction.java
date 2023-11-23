@@ -84,7 +84,8 @@ public class ProductUpdateProAction implements Action {
 	
 			    if (!found) {
 			        // bFileName 파일 삭제 수행
-			    	file = new File(realPath+"\\"+bFileName);
+//			    	file = new File(realPath+"\\"+bFileName);
+			    	file = new File("/usr/local/tomcat/webapps/trade/upload/"+bFileName);
 			    	file.delete();
 			    }
 			}
