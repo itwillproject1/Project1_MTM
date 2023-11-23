@@ -362,14 +362,13 @@ $(function(){
          
          
          <label>추천인 입력(선택)</label>
-         <input type="text" name="recommend" class="in"><br>
+         <input id="recom" type="text" name="recommend" class="in"><br>
 
          
          <!-- http://localhost:8088/trade/member/memberjoin.member -->
    <div id="checkDiv">      
    <input id="allCheck" type="checkbox">
     <label for="allCheck"><span>이용약관 전체동의</span></label>
-    
     <hr>
     <input class="must" id="agree1" type="checkbox" name="agree1" value="1">
     <label id="label" for="agree1"><span>이용약관 동의 (필수)</span></label>

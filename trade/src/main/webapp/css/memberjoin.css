@@ -115,6 +115,10 @@ legend {
   margin-bottom: 10px;
 }
 
+#recom {
+margin: 7px 2px 30px !important;
+}
+
 fieldset label {
 	display: block;
 	font-weight: bold;
@@ -122,6 +126,7 @@ fieldset label {
 }
 
 .form-group input, .form-group textarea {
+   margin: 7px 2px 15px;
    padding: 8px;
    border: 1px solid #ccc; /* 연한 회색 테두리 색상 */
    border-radius: 4px;

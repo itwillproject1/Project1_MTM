@@ -18,7 +18,7 @@ ProductDAO productDAO = new ProductDAO();
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
-<link href="../css/productList.css?aaaa" rel="stylesheet" />
+<link href="../css/productList.css" rel="stylesheet" />
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">

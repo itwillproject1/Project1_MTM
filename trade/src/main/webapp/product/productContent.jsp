@@ -233,7 +233,7 @@
 			<div id="productInfo">
 				<!-- 모달 내용 -->
 				<h2>
-					<img src="<%=request.getContextPath() %>/uploadprofile/${mdto.profile }" onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" alt="프로필" id="pf"> ${dto.user_id}
+					<img src="<%=request.getContextPath() %>/uploadprofile/${mdto.profile }" onerror="this.onerror=null; this.src='../member/img/member.png';" alt="프로필" id="pf"> ${dto.user_id}
 				</h2>
 
 				<h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
@@ -357,6 +357,7 @@
                <h2>${login_id }님의 판매상품목록</h2>
                <form action="./SuggestSell.com?bno=${dto.bno }" method="post" id="SuggestSellForm">
                   <c:forEach var="sellProduct" items="${sellProduct}">
+                  <c:set var="fileNameArr5" value="${fn:split(sellProduct.file_name, ',')}" />
                      <div>
                         <c:if test="${sellProduct.isOffered }">
                            <input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }" disabled="disabled">
@@ -364,7 +365,7 @@
                         <c:if test="${!sellProduct.isOffered }">
                            <input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }">
                         </c:if>
-                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${sellProduct.file_name }" 
+                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr5[0] }" 
                         onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
                         alt="미리보기">
                      </div>
@@ -793,7 +794,7 @@ function confirmPurchase(bno) {
         }
 
         function submitSuggest() {
-            var checkboxes = document.querySelectorAll('.yourCheckboxClass:checked');
+            var checkboxes = document.querySelectorAll('.productCheckbox:checked');
 
             if (checkboxes.length === 0) {
                 alert("구매할 상품을 선택해주세요");
@@ -837,7 +838,7 @@ function confirmPurchase(bno) {
         }
 
         function cancleSuggest() {
-            var checkboxes = document.querySelectorAll('.yourCheckboxClass:checked');
+            var checkboxes = document.querySelectorAll('.productCheckbox:checked');
 
             if (checkboxes.length === 0) {
                 alert("취소할 제안을 선택해주세요");
