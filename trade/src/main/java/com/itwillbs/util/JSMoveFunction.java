@@ -78,7 +78,19 @@ public class JSMoveFunction {
 		
 	}
 	
-	
+	public static void close2(HttpServletResponse response) {
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("window.close()");
+			out.println("</script>");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 

@@ -52,8 +52,8 @@
  			
  		opener.document.getElementById("user_id").value = document.getElementById("user_id").value;
  		
+ 		location.href = "./MemberUseIdAction.member?user_id=" + id;
  		
- 		window.close();
     	} 		
 	</script>
 
