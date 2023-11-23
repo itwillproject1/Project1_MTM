@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="copyright">
-      <p>&copy; 1조 전자기기 중고거래</p>
+      <p>&copy; <span id="copy">Modern Tech Market.</span> all rights reserved.</p>
     </div>
   </div>
   </div>
