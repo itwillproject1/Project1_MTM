@@ -793,7 +793,7 @@ function confirmPurchase(bno) {
         }
 
         function submitSuggest() {
-            var checkboxes = document.querySelectorAll('.yourCheckboxClass:checked');
+            var checkboxes = document.querySelectorAll('.productCheckbox:checked');
 
             if (checkboxes.length === 0) {
                 alert("구매할 상품을 선택해주세요");
@@ -837,7 +837,7 @@ function confirmPurchase(bno) {
         }
 
         function cancleSuggest() {
-            var checkboxes = document.querySelectorAll('.yourCheckboxClass:checked');
+            var checkboxes = document.querySelectorAll('.productCheckbox:checked');
 
             if (checkboxes.length === 0) {
                 alert("취소할 제안을 선택해주세요");
