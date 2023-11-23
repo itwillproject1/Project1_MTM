@@ -30,7 +30,7 @@ public class MemberPayAction implements Action {
 		MemberDAO dao = new MemberDAO();
 		dao.Pay(dto);
 
-		JSMoveFunction.alertLocation(response, "포인트 충전 완료", "../main/Main.com");
+		JSMoveFunction.close(response, "충전 완료되었습니다.");
 		return null;
 	}
 }
