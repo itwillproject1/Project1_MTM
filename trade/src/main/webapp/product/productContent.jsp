@@ -357,7 +357,6 @@
                <h2>${login_id }님의 판매상품목록</h2>
                <form action="./SuggestSell.com?bno=${dto.bno }" method="post" id="SuggestSellForm">
                   <c:forEach var="sellProduct" items="${sellProduct}">
-                  <c:set var="fileNameArr5" value="${fn:split(sellProduct.file_name, ',')}" />
                      <div>
                         <c:if test="${sellProduct.isOffered }">
                            <input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }" disabled="disabled">
@@ -365,7 +364,7 @@
                         <c:if test="${!sellProduct.isOffered }">
                            <input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }">
                         </c:if>
-                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr5[0] }" 
+                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${sellProduct.file_name }" 
                         onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
                         alt="미리보기">
                      </div>
@@ -480,7 +479,7 @@
                   </div>
                </c:forEach>
                <div class="button-container">
-               	<button type="button" class="submit-button" onclick="cancleSuggest();">판매 제안 취소 하기</button>
+               	<button type="button" class="submit-button" onclick="cancleSuggest();">판매제안 취소</button>
                </div>
             </form>
          </c:if>
@@ -793,17 +792,21 @@ function confirmPurchase(bno) {
           }
         }
 
-         function submitSuggest() {
-            var result = confirm('해당 상품을 구매하시겠습니까?');
+        function submitSuggest() {
+            var checkboxes = document.querySelectorAll('.yourCheckboxClass:checked');
 
-            if (result === true) {
-               document.getElementById("SubmitSuggestForm").submit();
+            if (checkboxes.length === 0) {
+                alert("구매할 상품을 선택해주세요");
             } else {
-               alert('거래를 취소하셨습니다');
-               location.reload();
-               return false;
+                var result = confirm('선택한 상품을 구매하시겠습니까?');
+
+                if (result === true) {
+                    document.getElementById("SubmitSuggestForm").submit();
+                } else {
+                    alert('구매를 취소하셨습니다');
+                }
             }
-         }
+        }
       </script>
       <!-- 거래 제안 현황 모달창 종료 -->
       
@@ -833,18 +836,21 @@ function confirmPurchase(bno) {
           }
         }
 
-         function cancleSuggest() {
-            var result = confirm('해당 제안을 취소하시겠습니까?');
+        function cancleSuggest() {
+            var checkboxes = document.querySelectorAll('.yourCheckboxClass:checked');
 
-            if (result === true) {
-               // 제안 취소하기
-               document.getElementById("cancleSuggestForm").submit();
+            if (checkboxes.length === 0) {
+                alert("취소할 제안을 선택해주세요");
             } else {
-               alert('제안을 유지합니다');
-               location.reload();
-               return false;
+                var result = confirm('선택한 제안을 취소하시겠습니까?');
+
+                if (result === true) {
+                    document.getElementById("cancleSuggestForm").submit();
+                } else {
+                    alert('제안을 유지합니다');
+                }
             }
-         }
+        }
       </script>
       <!-- 판매 제안 현황 모달창 종료 -->
       
