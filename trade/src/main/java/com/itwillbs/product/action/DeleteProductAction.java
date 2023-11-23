@@ -27,7 +27,7 @@ public class DeleteProductAction implements Action {
 //		String realPath = request.getRealPath("/upload");
 //		String realPath = request.getSession().getServletContext().getRealPath("/upload");
 		String realPath = request.getRealPath("/upload");
-		System.out.println(realPath);
+		System.out.println("realPath: "+realPath);
 		System.out.println(request.getSession().getServletContext().getRealPath("/"));
 		System.out.println(request.getSession().getServletContext().getRealPath("/upload"));
 		
