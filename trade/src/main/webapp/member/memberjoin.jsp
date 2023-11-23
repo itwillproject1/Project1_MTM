@@ -23,6 +23,17 @@ $(function(){
          }
      });
     
+    $(function(){
+    	
+    $("#address").click(function(){
+    	 var url = './jusoPopup.jsp';
+    	window.open(url,'pop','width=570,height=420, scrollbars=yes, resizable=yes');
+    });
+    
+    });
+    
+    
+    
     
 });
 </script>
@@ -333,8 +344,8 @@ $(function(){
             <option value="017">017</option>
             <option value="031">031</option>
          </select> -
-         <input type="number" name="phone2" oninput= "handleOnInput(this, 4)"> -
-         <input type="number" name="phone3" oninput= "handleOnInput(this, 4)" >
+         <input type="number" name="phone2" min="0" oninput= "handleOnInput(this, 4)"> -
+         <input type="number" name="phone3" min="0" oninput= "handleOnInput(this, 4)" >
           </div>  
                    
          <div id="callBackDiv">          
