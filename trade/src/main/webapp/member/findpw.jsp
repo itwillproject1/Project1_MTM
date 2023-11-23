@@ -68,29 +68,24 @@
 </script>
 
 
-${sessionScope.random }
 <fieldset>
 <!--  ${sessionScope.random } -->
 <legend>비밀번호 찾기</legend>
 <form action="../member/AdjustSmtp.member" name="em">
 
-<span id="cell">이름</span>
-<input class="in" type="text" name="user_name" id="c"><br>
-<span id="cell">아이디</span>
-<input class="in" type="text" name="user_id" id="d"><br>
-
-
-
 <span id="cell">이메일</span>
 <input class="in" type="text" name="email" id="a" value="${sessionScope.rcemail }">		
 <input class="in" id="pullN" type="submit" value="인증번호 받기" onclick="return emailcheck();"><br>
 </form>
-
-
 <form action="./findpwAction.member" name="join">
 <span id="cell">인증번호</span>
 <input class="in" type="text" name="number" id="b">
 <input class="in" id="pullN"  type="button" value="인증번호 확인" onclick="return check();"><br>
+
+<span id="cell">이름</span>
+<input class="in" type="text" name="user_name" id="c"><br>
+<span id="cell">아이디</span>
+<input class="in" type="text" name="user_id" id="d"><br>
 
 <hr> 
 </form>
