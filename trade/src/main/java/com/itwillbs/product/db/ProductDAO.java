@@ -370,7 +370,7 @@ public class ProductDAO {
 			// 1.2. 디비연결
 			con = getCon();
 			// 3. sql 구문 작성(select) & pstmt 객체
-			sql = "SELECT * FROM Product ORDER BY date_time DESC limit 8"; // date_time 내림차순으로 8개까지 정렬
+			sql = "SELECT * FROM Product where deal_status = 1 ORDER BY date_time DESC limit 8"; // date_time 내림차순으로 8개까지 정렬
 			pstmt = con.prepareStatement(sql);
 			// 4. sql 실행
 			rs = pstmt.executeQuery();

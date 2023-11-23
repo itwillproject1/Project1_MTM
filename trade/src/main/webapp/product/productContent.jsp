@@ -78,7 +78,8 @@
             <!-- 이미지를 클릭하면 JavaScript로 크게 보이게 설정 -->
             <div class="image-preview">
                <img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}" 
-               		onerror="this.onerror=null; this.src='../product/img/default_product_image.png';">
+               		onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+               		id="imagePreview">
             </div>
 
             <div class="image-preview-choice">
