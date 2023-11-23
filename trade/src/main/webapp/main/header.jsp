@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
-<link href="../css/header.css" rel="stylesheet" />
+<link href="../css/header.css?Sss" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
    
@@ -18,14 +18,15 @@
 <body>
 <header>
    <nav id="navbar">
+   <img alt="헤더사진" src="../main/img/headerimage.png" id="headerimage">
       <div class="rgt">
          <div class="logo">
-            <a href="../main/Main.com"><img alt="로고" src="../main/img/logo(MTM).png" id="logo"> </a>
+            <a href="../main/Main.com"><img alt="로고" src="../main/img/logosero.png" id="logo"> </a>
          </div>
          <div id="search">
             <div class="rgt1">
                <form action="../product/ProductList.com" method="get" class="search">
-                  <input type="text" name="search" placeholder="검색어 입력">
+                  <input type="text" name="search" placeholder="어떤 상품을 찾으시나요?">
                   <button type="submit" value="search">검색</button>
                </form>
             </div>
@@ -33,31 +34,35 @@
          
          <div id="user-menu">
             <span class="user-menu">
-               <span>
+            
+<!--                <span> -->
+<span>
                <c:if test="${empty user_id }">
-                     <a href="../main/login.member" id="loginLink">로그인</a>
+                     <a href="../main/login.member" id="loginLink"><img alt="로그인" src="../main/img/login.png" id="login"></a>
                </c:if> 
+               
                <c:if test="${!empty user_id }">
-                  ${user_id }님   |   
-                  <a href="../main/MemberLogout.member" id="logoutLink">로그아웃</a>
-               </c:if>
-               </span>
+                  <span id="loginname">${user_id }님</span><br>
+                 <span><a href="../main/MemberLogout.member" id="logoutLink"><img alt="로그아웃" src="../main/img/logout.png" id="logout"></a>
+                
+                 </span></c:if>
+              
+<!--                </span> -->
                <!-- 아이디x 글등록 => 로그인창 -->
+               
                <span>
                <c:if test="${empty user_id }">
-                  <a href="../main/login.member" id="loginLink">글등록</a>
+                  <a href="../main/login.member" id="loginLink"><img alt="글등록" src="../main/img/edit.png" id="write"></a>
                </c:if>
                </span>
                <span>
                <c:if test="${!empty user_id }">
-                  <a href="../product/ProductUpload.com">글등록</a>
+                  <a href="../product/ProductUpload.com"><img alt="글등록" src="../main/img/edit.png" id="write"></a>
                </c:if>
                </span>
                <span>
-               <a href="../member/MemberInfo.member">마이페이지</a>
+               <a href="../member/MemberInfo.member"><img alt="마이페이지" src="../main/img/user.png" id="mypage"></a>
                </span>
-               <span>
-               <a href="../member/Member112.member">고객센터</a>
                </span>
                <span>
                <c:if test="${user_id == 'admin' }">
@@ -82,6 +87,7 @@
             <a href="../product/ProductList.com?category=5">카메라</a>
             <a href="../product/ProductList.com?category=6">음향기기</a>
             <a href="../product/ProductList.com?category=7">기타</a>
+            <a href="../member/Member112.member">고객센터</a>
          </span>
       </div>
 
