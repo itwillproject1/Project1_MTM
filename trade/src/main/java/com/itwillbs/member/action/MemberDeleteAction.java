@@ -34,7 +34,7 @@ public class MemberDeleteAction implements Action {
 		// MemberDAO 객체 생성 - 회원정보 삭제 메서드
 		MemberDAO dao = new MemberDAO();
 
-		int result = dao.deleteMember(dto);
+		int result = dao.deleteMember(dto, request);
 
 		// 삭제 결과에 따른 페이지 이동
 		if (result == 1) {
