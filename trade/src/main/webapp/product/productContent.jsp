@@ -185,37 +185,42 @@
             		<input type="button" class="no-button" value="거래 완료">
             	</c:if> 
 					</div>
-            	  
             </c:if>
 
-               <c:if test="${dto.deal_way.equals('팝니다') }">
-                  <div class="button-container">
-                  <c:if test="${dto.deal_status == 1 }">
-                     <c:if test="${login_id eq dto.user_id}">
-                        <input class="submit-button" type="button" value="판매 제안 현황" onclick="openSuggestListModal();">
-                     </c:if>
-                     <c:if test="${login_id ne dto.user_id}">
-                        <input class="submit-button" type="button" value="구매하기" onclick="location.href='../pay/payment.com?bno=${dto.bno}';">
-                     </c:if>
-                  </c:if>
-                  <c:if test="${dto.deal_status == 0 }">
-					  <input type="button" class="no-button" value="거래 완료">
-				  </c:if>
+				<c:if test="${dto.deal_way.equals('팝니다') }">
+					<div class="button-container">
+						<c:if test="${dto.deal_status == 1 }">
+							<c:if test="${login_id eq dto.user_id}">
+								<input class="submit-button" type="button" value="판매 제안 현황"
+									onclick="openSuggestListModal();">
+							</c:if>
+							<c:if test="${empty login_id}">
+								<input class="submit-button" type="button" value="구매하기"
+									onclick="requireLogin();">
+							</c:if>
+							<c:if test="${not empty login_id and login_id ne dto.user_id}">
+								<input class="submit-button" type="button" value="구매하기"
+									onclick="location.href='../pay/payment.com?bno=${dto.bno}';">
+							</c:if>
+						</c:if>
+						<c:if test="${dto.deal_status == 0 }">
+							<input type="button" class="no-button" value="거래 완료">
+						</c:if>
 
 
-                     <!-- 찜 기능 시작 -->
-                     <button class="submit-button" id="like">
-                        <span id="do_like"> <c:if test="${likeResult eq 0 }">
-                              <img alt="찜하기" src="./img/heart0.png" width="12px">
-                           </c:if> <c:if test="${likeResult eq 1 }">
-                              <img alt="찜하기" src="./img/heart1.png" width="12px">
-                           </c:if>
-                        </span> <span id="like_count"> ${dto.like_count} </span>
-                     </button>
-                     <!--  찜 기능 끝 -->
-                  </div>
-               </c:if>
-         </div>
+						<!-- 찜 기능 시작 -->
+						<button class="submit-button" id="like">
+							<span id="do_like"> <c:if test="${likeResult eq 0 }">
+									<img alt="찜하기" src="./img/heart0.png" width="12px">
+								</c:if> <c:if test="${likeResult eq 1 }">
+									<img alt="찜하기" src="./img/heart1.png" width="12px">
+								</c:if>
+							</span> <span id="like_count"> ${dto.like_count} </span>
+						</button>
+						<!--  찜 기능 끝 -->
+					</div>
+				</c:if>
+			</div>
       </div>
       <div class="form-group product-content">
          <label for="productDescription">상품 설명 </label> ${dto.content }
