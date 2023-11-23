@@ -3,9 +3,65 @@
 fieldset {
 	border: 2px solid #222;
 	border-radius: 10px;
-	width: 25rem;
-	margin: 15rem auto 11rem;
-	padding: 20px;
+	width: 30rem;
+    margin: 15rem auto 16.5rem;	
+    padding: 20px;
+}
+
+input{
+   padding: 8px;
+   border: 1px solid #ccc; /* 연한 회색 테두리 색상 */
+   border-radius: 4px;
+   box-sizing: border-box;
+   background-color: #f9f9f9; /* 매우 연한 회색 배경색 */
+   color: #333; /* 어두운 회색 텍스트 색상 */
+}
+
+form hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+form .in[type="button"],
+form .in[type="submit"] {
+	width:7rem;
+  margin: 10px 5px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#pullN {
+	margin-left: 30px;
+}
+#pullN:hover {
+	background-color: #222 !important;
+}
+
+#cell {
+	margin-left: 15px;
+}
+
+#a {
+	margin: 5px 0px 10px 35px;
+}
+#b{
+	margin: 5px 0px 10px 20px;
+}
+#c{
+	margin: 10px 0px 10px 50px;
+}
+#d{
+	margin: 10px 0px 10px 35px ;
+}
+
+
+#pre {
+	float:left;
+}
+#find {
+	float:right;
 }
 
 /* form 스타일 */
@@ -35,7 +91,7 @@ input[type="submit"], input[type="button"] {
 	cursor: pointer; /* 커서 타입 */
 }
 
-input[type="submit"]:hover {
+.in:hover {
 	background-color: #222;
 }
 
@@ -46,17 +102,6 @@ hr {
 	margin-bottom: 20px; /* 아래쪽 간격 조절 */
 }
 
-#a {
-	margin: 5px 0px 10px 10px;
-}
-
-#c {
-	margin: 5px 0px 10px 11px;
-}
-
-#d {
-	margin: 5px 0px 10px 10px;
-}
 
 #e {
 	margin: 5px 0px 10px 175px;
