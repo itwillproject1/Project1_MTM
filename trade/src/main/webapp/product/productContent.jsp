@@ -233,7 +233,7 @@
 			<div id="productInfo">
 				<!-- 모달 내용 -->
 				<h2>
-					<img src="<%=request.getContextPath() %>/uploadprofile/${mdto.profile }" onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" alt="프로필" id="pf"> ${dto.user_id}
+					<img src="<%=request.getContextPath() %>/uploadprofile/${mdto.profile }" onerror="this.onerror=null; this.src='../member/img/member.png';" alt="프로필" id="pf"> ${dto.user_id}
 				</h2>
 
 				<h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
