@@ -61,6 +61,7 @@
 		</script>
 
 <body>
+<%@ include file="../main/header.jsp"%>
 		<fieldset class="container">
 		<form action="../product/ProductTradePayAction.com" method="post" name="pay" onsubmit="return check();">
 		<div class="form-group">
@@ -95,5 +96,6 @@
 		</div>
 		</form>
 	</fieldset>
+	<%@ include file="../main/footer.jsp"%>
 </body>
 </html>

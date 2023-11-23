@@ -189,6 +189,14 @@
 
 <body>
 	<%@ include file="../main/header.jsp"%>
+	
+	<c:if test="${pdto.user_id ne sessionScope.user_id}">
+					<script>
+						alert('해당 글 작성자가 아닙니다.');
+						location.href='../main/Main.com';
+					</script>
+				</c:if>
+				
 	<div class="container">
 		<!-- 미리보기 영역 시작 -->
 			<c:set var="fileNameArr" value="${fn:split(pdto.file_name, ',')}" />
