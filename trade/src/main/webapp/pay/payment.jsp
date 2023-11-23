@@ -33,11 +33,12 @@
 			var pay = parseInt("<c:out value='${user_dto.pay}'/>");
 			var buyer_id = "<c:out value='${user_dto.user_id}'/>";
 			var seller_id = "<c:out value='${selldto.user_id}'/>";
+			var chargeMoney = (price - pay).toLocaleString();
 
 			if (pay < price) {
 
 				alert(' 잔액이 부족합니다.');
-				alert(' 부족한 금액은 ' + (price - pay) + '원입니다.');
+				alert(' 부족한 금액은 ' + chargeMoney + '원입니다. ');
 				var url = "../member/MemberPayInfo.member?&id=" + buyer_id;
 				window.open(url, "checkid",
 						"width=570,height=500, scrollbars=yes, resizable=yes");
@@ -46,42 +47,37 @@
 
 		}
 	</script>
-	
+
 	<%@ include file="../main/header.jsp"%>
-	
+
 	<fieldset class="container">
 		<form action="../product/ProductPayAction.com" method="post" name="pay" onsubmit="return check();">
-		<div class="form-group">
+			<div class="form-group">
 				<label>주문자명: ${user_dto.user_name}</label>
 				<hr>
 				<label>전화번호: ${user_dto.phone}</label>
 				<hr>
 				<label>배송지:</label>
 				<div class="btn">
-					<input type="text" name="address" id="address" value="${user_dto.address}">
-					<input type="button" class="submit-button" value="변경하기" onclick="goPopup();">
+					<input type="text" name="address" id="address" value="${user_dto.address}"> <input type="button" class="submit-button" value="변경하기" onclick="goPopup();">
 				</div>
-				<hr>			
-				<label>주문상품:
-				<input type="hidden" name="seller_id" value="${selldto.user_id}">
-				<input type="hidden" name="price" value="${selldto.price}">
-				<input type="hidden" name="bno" value="${selldto.bno}">
-				<input type="hidden" name="deal_way" value="${selldto.deal_way}">
-				${selldto.category}
+				<hr>
+				<label>주문상품: <input type="hidden" name="seller_id" value="${selldto.user_id}"> <input type="hidden" name="price" value="${selldto.price}"> <input type="hidden" name="bno" value="${selldto.bno}"> <input type="hidden" name="deal_way" value="${selldto.deal_way}"> ${selldto.category}
 				</label>
 				<hr>
 				<label>상품명: ${selldto.title}</label>
-				<hr>				
-				<label>주문금액: <fmt:formatNumber value="${selldto.price}"/>원</label>
-				
-				<div class="btn">
-					<input type="submit" class="submit-button" value="결제하기">
-					<input type="button" class="submit-button" value="취소하기" onclick="cancel();">
-				</div>
-		</div>
-		</form>
-	</fieldset>
-	
+				<hr>
+				<label>주문금액: <fmt:formatNumber value="${selldto.price}" />원
+				</label>
+
+	            <div class="btn">
+	               <input type="submit" class="submit-button" value="결제하기">
+	               <input type="button" class="submit-button" value="취소하기" onclick="cancel();">
+	            </div>
+	      </div>
+	      </form>
+	   </fieldset>
+
 	<%@ include file="../main/footer.jsp"%>
 </body>
 </html>
