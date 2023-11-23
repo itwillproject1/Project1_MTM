@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
-<link href="../css/header.css?Sss" rel="stylesheet" />
+<link href="../css/header.css?S" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
    
@@ -41,7 +41,7 @@
                </c:if> 
                
                <c:if test="${!empty user_id }">
-                  <span id="loginname">${user_id }님</span>
+                  <div id="loginname">ㅣ${user_id }님ㅣ</div>
                   <a href="../main/MemberLogout.member" id="logoutLink"><img alt="로그아웃" src="../main/img/logout.png" id="logout"></a>
                </c:if>
                
@@ -62,7 +62,7 @@
                </span>
                <span>
                <c:if test="${user_id == 'admin' }">
-                  <a href="../Main.emp">관리자페이지</a>
+                  <a href="../Main.emp"><img alt="관리자페이지" src="../main/img/admin2.png" id="admin"></a>
                </c:if>
                </span>
             </span>
