@@ -165,20 +165,7 @@ header:hover {
    color: #A9A9A9;
    text-decoration: none;
 } */
-.rgt {
-   display: flex !important;
-   justify-content: space-between !important;
-   align-items: center !important;
-}
 
-#loginname {
-   order: -1 !important; /* -1로 설정하여 #loginname을 첫 번째로 위치시킵니다. */
-}
-
-#login, #logout, #write, #mypage {
-   display: flex !important;
-   align-items: center !important;
-}
 
 body {
    font-family: 'Noto Sans KR', sans-serif;
@@ -240,9 +227,10 @@ header:hover {
 }
 
 #loginname {
-	float:left;
-	Display: flex;
+    Display: flex;
     FONT-WEIGHT: 700;
+    transform: translate(0%,-150%);
+    margin-bottom: -18px;
 }
 
 #write {
@@ -261,6 +249,16 @@ header:hover {
 }
 
 .mypage {
+	display: flex;
+	width: 30%;
+}
+
+#admin {
+	width: 25px;
+	margin-bottom: 9px
+}
+
+.admin {
 	display: flex;
 	width: 30%;
 }
@@ -292,18 +290,16 @@ header:hover {
 }
 
 #user-menu {
-   margin-left: auto;
-   width: 20%;
-   transform: translate(-30%, 50%);
-}
-
-.user-menu span {
-   display: inline-block;
+    width: 30%;
+    transform: translate(5%, 110%);
+    text-align: left;
 }
 
 .category-a a {
    text-decoration: none;
    color: #333;
+   font-size: 16px;
+   FONT-WEIGHT: 700;
    margin-left: 20px;
 }
 

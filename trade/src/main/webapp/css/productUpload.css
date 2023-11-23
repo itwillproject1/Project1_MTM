@@ -10,7 +10,7 @@ body {
 
 .container {
    width: 70%;
-   margin: 200px auto 70px;
+   margin: 250px auto 70px;
    padding: 20px;
    background-color: #fff; /* 흰색 배경색 */
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

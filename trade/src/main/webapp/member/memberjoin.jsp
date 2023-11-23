@@ -51,8 +51,26 @@ $(function(){
                document.join.user_id.focus();
                return false;
             }            
-            var password = document.join.password.value;
-            if(password == ""){
+      
+            var pw = $("#password").val();
+            var num = pw.search(/[0-9]/g);
+            var eng = pw.search(/[a-z]/ig);
+            var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+            
+            if(pw.length < 6 || pw.length > 15){
+            	  alert("6자리 ~ 15자리 이내로 입력해주세요.");
+            	  document.join.password.focus();
+            	  return false;
+            	 }else if(pw.search(/\s/) != -1){
+            	  alert("비밀번호는 공백 없이 입력해주세요.");
+            	  document.join.password.focus();
+            	  return false;
+            	 }else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+            	  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+            	  document.join.password.focus();
+            	  return false;
+            	 }
+            /* if(password == ""){
                alert('비밀번호를 입력하세요!');
                document.join.password.focus();
                return false;
@@ -61,10 +79,10 @@ $(function(){
                alert("비밀번호는 6자 이상 15자 이하로 작성해주세요");
                document.join.password.focus();
                return false;
-            }            
+            }  */           
             
             var passwordcheck = document.join.passwordcheck.value;
-            if(password != passwordcheck ){
+            if(pw != passwordcheck ){
                alert('비밀번호가 일치하지 않습니다!')
                document.join.passwordcheck.focus();
                return false;
@@ -241,7 +259,7 @@ $(function(){
                 
                 
          <label>비밀번호</label>
-         <input type="password" name="password" placeholder="6~15자 이내로 입력해주세요" class="in"><br>
+         <input type="password" id="password" name="password" placeholder="6~15자 이내로 입력해주세요" class="in"><br>
          
          <label>비밀번호 확인</label>
          <input type="password" name="passwordcheck" placeholder="비밀번호를 한번 더 입력해주세요" class="in"><br>
