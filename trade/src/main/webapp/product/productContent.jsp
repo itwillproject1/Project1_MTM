@@ -357,6 +357,7 @@
                <h2>${login_id }님의 판매상품목록</h2>
                <form action="./SuggestSell.com?bno=${dto.bno }" method="post" id="SuggestSellForm">
                   <c:forEach var="sellProduct" items="${sellProduct}">
+                  <c:set var="fileNameArr5" value="${fn:split(sellProduct.file_name, ',')}" />
                      <div>
                         <c:if test="${sellProduct.isOffered }">
                            <input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }" disabled="disabled">
@@ -364,7 +365,7 @@
                         <c:if test="${!sellProduct.isOffered }">
                            <input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }">
                         </c:if>
-                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${sellProduct.file_name }" 
+                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr5[0] }" 
                         onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
                         alt="미리보기">
                      </div>

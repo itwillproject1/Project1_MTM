@@ -33,9 +33,11 @@ public class MemberCheckIdAction implements Action {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", dto.getUser_id());
 			
-			JSMoveFunction.alertHistory(response, "사용중인 아이디 입니다.");	
+			JSMoveFunction.alertHistory(response, "사용중인 아이디 입니다.");
+			
 		}else {
-			JSMoveFunction.alertHistory(response, "사용가능한 아이디 입니다.");	
+			JSMoveFunction.alertHistory(response, "사용가능한 아이디 입니다.");
+			
 		}
 		return null;
 }

@@ -238,6 +238,16 @@ public class ComplainDAO extends DAO {
 					pstmt.setInt(4, sus_days);
 					pstmt.setString(5, mdto.getEmp_id());
 					pstmt.executeUpdate();
+					
+					sql = "delete from Likes where bno in(select bno from Complain where user_id = ? and complete = 1)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, udto.getUser_id());
+					pstmt.executeUpdate();
+					
+					sql = "delete from Product where bno in(select bno from Complain where user_id = ? and complete = 1)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, udto.getUser_id());
+					pstmt.executeUpdate();
 				} else
 					result = 0;
 			}
