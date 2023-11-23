@@ -167,8 +167,8 @@
             </div>
 
             <!-- 구매 판매 찜 등 버튼 -->
-            <c:if test="${dto.deal_way.equals('삽니다')}">
 	               <div class="button-container">
+            <c:if test="${dto.deal_way.equals('삽니다')}">
             	<c:if test="${dto.deal_status == 1 }">
 	                  <c:choose>
 	                     <c:when test="${empty login_id}">
@@ -185,11 +185,9 @@
             	<c:if test="${dto.deal_status == 0 }">
             		<input type="button" class="no-button" value="거래 완료">
             	</c:if> 
-					</div>
             </c:if>
 
 				<c:if test="${dto.deal_way.equals('팝니다') }">
-					<div class="button-container">
 						<c:if test="${dto.deal_status == 1 }">
 							<c:if test="${login_id eq dto.user_id}">
 								<input class="submit-button" type="button" value="판매 제안 현황"
@@ -219,7 +217,6 @@
 						</button>
 						<!--  찜 기능 끝 -->
 					</div>
-				</c:if>
 			</div>
       </div>
       <div class="form-group product-content">
