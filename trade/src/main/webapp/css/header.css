@@ -207,6 +207,7 @@ header:hover {
 }
 
 #login {
+	
 	width: 40px;
 	margin-right:5px;
 }
@@ -217,6 +218,7 @@ header:hover {
 }
 
 #logout {
+	margin-right:20px;
 	width: 27px;
 	margin-bottom: 7px
 }
@@ -234,6 +236,7 @@ header:hover {
 }
 
 #write {
+	margin-right: 15px;
 	width: 25px;
 	margin-bottom: 9px
 }
