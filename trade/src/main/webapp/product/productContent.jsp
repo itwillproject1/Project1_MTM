@@ -201,13 +201,12 @@
 							</c:if>
 							<c:if test="${not empty login_id and login_id ne dto.user_id}">
 								<input class="submit-button" type="button" value="구매하기"
-									onclick="location.href='../pay/payment.com?bno=${dto.bno}';">
+    									onclick="confirmPurchase('${dto.bno}')">
 							</c:if>
 						</c:if>
 						<c:if test="${dto.deal_status == 0 }">
 							<input type="button" class="no-button" value="거래 완료">
 						</c:if>
-
 
 						<!-- 찜 기능 시작 -->
 						<button class="submit-button" id="like">
@@ -509,6 +508,20 @@
             });
          </script>
    <!-- 이미지 미리보기 종료 -->
+
+<!-- 구매하기 전 가격확인 -->
+<script>
+function confirmPurchase(bno) {
+	
+    var result = confirm('해당 상품을 ${dto.price}원에 구매하시겠습니까?');
+    if (result) {
+        location.href = `../pay/payment.com?bno=${dto.bno}`;
+    } else {
+    }
+}
+</script>
+
+
 
 <!-- 신고창 시작 -->
    <script>
