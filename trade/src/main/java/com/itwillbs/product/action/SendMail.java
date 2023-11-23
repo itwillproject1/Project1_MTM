@@ -81,9 +81,9 @@ public class SendMail implements Action {
 	        		        + "<h3 style=\"font-size: 0.9em; font-weight: 400; margin: 0;\">상품정보가 업데이트 되었습니다.</h3>\r\n"
 	        		        + "<h4\r\n"
 	        		        + "style=\"margin: 0; font-size: 0.7em; font-weight: 400; color: #808080;\">  이름: "+ request.getAttribute("buyer_name")
-	        		        + "번호: " + request.getAttribute("buyer_phone")
-	        		        + "주소: " + request.getAttribute("address")
-	        		        + "판매 물건: <a href='http://c7d2307t1.itwillbs.com/trade/product/ProductContent.com?bno="+ request.getAttribute("sell_bno") +"'>글번호: "+ request.getAttribute("sell_bno") +"</a>" 
+	        		        + "<br>번호: " + request.getAttribute("buyer_phone")
+	        		        + "<br>주소: " + request.getAttribute("address")
+	        		        + "<br>판매 물건: <a href='http://c7d2307t1.itwillbs.com/trade/product/ProductContent.com?bno="+ request.getAttribute("sell_bno") +"'>글번호: "+ request.getAttribute("sell_bno") +"</a>" 
 	        		        + "</h4>\r\n"
 	        		        + "</div>\r\n"
 	        		        + "</li>\r\n"
