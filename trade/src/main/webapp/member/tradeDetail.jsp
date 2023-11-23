@@ -48,7 +48,7 @@
 
 
 			<div class="center-btn">
-				<button class="submit-button" onclick="location.href='';">목록으로</button>
+				<button class="submit-button" onclick="location.href='../member/MemberInfo.member';">목록으로</button>
 			</div>
 		</div>
 	</div>
