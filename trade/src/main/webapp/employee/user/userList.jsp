@@ -245,8 +245,8 @@ link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
 											</button>
 											<div class="dropdown-menu dropdown-menu-right" style="">
 												<a class="dropdown-item"
-													href="./UserInfo.emp?bno=${i.user_id}&pageNum=${pageNum}">상세보기</a>
-												<a class="dropdown-item" href="#">신고 및 정지</a>
+													href="./UserInfo.emp?user_id=${i.user_id}&pageNum=${pageNum}">상세보기</a>
+												<a class="dropdown-item" href="./UserSuspendActiveForm.emp?user_id=${i.user_id}">신고 및 정지</a>
 											</div>
 										</div>
 									</td>
