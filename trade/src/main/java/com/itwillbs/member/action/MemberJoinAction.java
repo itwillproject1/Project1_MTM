@@ -9,6 +9,7 @@ import com.itwillbs.member.db.MemberDAO;
 import com.itwillbs.member.db.MemberDTO;
 import com.itwillbs.util.Action;
 import com.itwillbs.util.ActionForward;
+import com.itwillbs.util.JSMoveFunction;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -56,10 +57,20 @@ public class MemberJoinAction implements Action {
 		dto.setRecommend(multi.getParameter("recommend"));
 		dto.setAgree(agree);
 
-		// System.out.println(" M : "+dto);
-		MemberDAO dao = new MemberDAO();
-		dao.insertMember(dto);
 
+		MemberDAO dao = new MemberDAO();
+		int result = dao.checkemail(dto);
+		
+		if (result == 1) {
+			JSMoveFunction.alertLocation(response, "중복된 이메일을 사용하였습니다.", "../member/memberjoin.member");
+			return null;
+		}
+		// System.out.println(" M : "+dto);
+	
+		
+		
+		dao.insertMember(dto);
+		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
