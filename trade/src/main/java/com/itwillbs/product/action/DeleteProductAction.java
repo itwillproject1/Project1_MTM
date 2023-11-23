@@ -38,8 +38,8 @@ public class DeleteProductAction implements Action {
 			
 			for(String dFileName : dFile_name) {
 				// dFileName 파일 삭제 수행
-				file = new File(realPath + "\\" + dFileName);
-//				file = new File("/upload/"+dFileName);
+//				file = new File(realPath + "\\" + dFileName);
+				file = new File("/trade/upload"+"\\"+dFileName);
 				file.delete();
 			}
 		}
