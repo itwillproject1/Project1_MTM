@@ -189,8 +189,8 @@ link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
 					<table class="table border table-hover bg-white">
 						<thead>
 							<tr role="row">
-								<th>이미지</th>
 								<th>아이디</th>
+								<th>이미지</th>
 								<th>이름</th>
 								<th>주소</th>
 								<th>전화번호</th>
@@ -216,6 +216,7 @@ link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
 											</c:if>
 											<c:if test="${i.profile != ''}">
 												<img src="./upload/${i.profile}" alt="..."
+												onerror="this.onerror=null; this.src='./employee/template/assets/images/user.png';"
 													class="avatar-img rounded-circle">
 											</c:if>
 										</div>
@@ -244,8 +245,8 @@ link += searchKeyword == null ? "" : "&searchKeyword=" + searchKeyword;
 											</button>
 											<div class="dropdown-menu dropdown-menu-right" style="">
 												<a class="dropdown-item"
-													href="./UserInfo.emp?bno=${i.user_id}&pageNum=${pageNum}">상세보기</a>
-												<a class="dropdown-item" href="#">신고 및 정지</a>
+													href="./UserInfo.emp?user_id=${i.user_id}&pageNum=${pageNum}">상세보기</a>
+												<a class="dropdown-item" href="./UserSuspendActiveForm.emp?user_id=${i.user_id}">신고 및 정지</a>
 											</div>
 										</div>
 									</td>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.itwillbs.employee.dto.MailDTO;
 
 public class MailDAO extends DAO {
+	// sendMailCount() : 전송완료된 메일 개수
 	public int sendMailCount() {
 		int result = 0;
 		try {
@@ -20,8 +21,9 @@ public class MailDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	}// sendMailCount()
 	
+	// sendMailCount() : 전송완료된 메일 개수, 검색 포함
 	public int sendMailCount(String search, String searchKeyword) {
 		int result = 0;
 		try {
@@ -38,8 +40,9 @@ public class MailDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	}// sendMailCount()
 
+	// mailList() : 메일 목록, 페이징 처리
 	public ArrayList mailList(int startRow, int pageSize) {
 		ArrayList list = null;
 		MailDTO dto = null;
@@ -65,15 +68,18 @@ public class MailDAO extends DAO {
 			CloseDB();
 		}
 		return list;
-	}
+	} // mailList()
 	
+	// mailList() : 메일 목록, 페이징 처리, 검색 기능
 	public ArrayList mailList(String search, String searchKeyword, int startRow, int pageSize) {
 		ArrayList list = null;
 		MailDTO dto = null;
 		try {
 			con = getCon();
 			sql = "selece * from Mail";
+			// 검색
 			sql += "where " + search + " like '%" + searchKeyword + "%'";
+			// 페이징 처리
 			sql += " limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -95,8 +101,9 @@ public class MailDAO extends DAO {
 			CloseDB();
 		}
 		return list;
-	}
+	}// mailList()
 
+	// mailContent() : 메일 상세 정보
 	public MailDTO mailContent(int idx) {
 		MailDTO dto = null;
 		try {
@@ -120,8 +127,9 @@ public class MailDAO extends DAO {
 			CloseDB();
 		}
 		return dto;
-	}
+	}// mailContent()
 
+	// mailInsert() : 전송된 메일 추가
 	public void mailInsert(MailDTO dto) {
 		try {
 			con = getCon();
@@ -137,5 +145,5 @@ public class MailDAO extends DAO {
 		} finally {
 			CloseDB();
 		}
-	}
+	}// mailInsert()
 }

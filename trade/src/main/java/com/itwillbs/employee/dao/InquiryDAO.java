@@ -8,9 +8,11 @@ import com.itwillbs.employee.dto.UserDTO;
 
 public class InquiryDAO extends DAO {
 
+	// updateInquiry() : 문의 답변
 	public void updateInquiry(InquiryDTO dto) {
 		try {
 			con = getCon();
+			// 답변 정보 입력
 			sql = "update Inquiry set complete = 1, emp_id = ?, answerContent = ?, answerDate = now() where bno = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getEmp_id());
@@ -24,6 +26,7 @@ public class InquiryDAO extends DAO {
 		}
 	}
 
+	// deleteInquiry() : 문의 삭제
 	public int deleteInquiry(InquiryDTO dto, MemberDTO mdto) {
 		int result = -1;
 		try {
@@ -50,6 +53,7 @@ public class InquiryDAO extends DAO {
 		return result;
 	}
 
+	// inquiryList() : 문의 목록 표시, 검색 & 페이징 기능 포함
 	public ArrayList inquiryList(String pageCategory, String search, String searchKeyword, String category,
 			int startRow, int pageSize) {
 		ArrayList list = null;
@@ -57,23 +61,28 @@ public class InquiryDAO extends DAO {
 		try {
 			con = getCon();
 			sql = "select * from Inquiry where ";
+			// 전체/완료/미처리
 			if (pageCategory.equals("all"))
 				sql += "user_id = user_id ";
 			else if (pageCategory.equals("0"))
 				sql += " complete = 0";
 			else if (pageCategory.equals("1"))
 				sql += " complete = 1";
-
+			
+			// 검색 / 카테고리
+			// null Check
 			if (search == null || searchKeyword == null)
 				;
 			else if (search != null && searchKeyword != null) {
 				sql += " and " + search + " like '%" + searchKeyword + "%'";
 			}
+			// null Check
 			if (category == null)
 				;
 			else if (category != null) {
 				sql += " and category = " + category;
 			}
+			// 페이징 처리
 			sql += " order by bno desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -101,8 +110,9 @@ public class InquiryDAO extends DAO {
 			CloseDB();
 		}
 		return list;
-	}
+	} // inquiryList()
 
+	// inquiryContent() : 문의 상세 정보
 	public InquiryDTO inquiryContent(int index) {
 		InquiryDTO dto = null;
 		try {
@@ -132,8 +142,10 @@ public class InquiryDAO extends DAO {
 			CloseDB();
 		}
 		return dto;
-	}
+	} // inquiryContent()
 
+	
+	// inquiryCount() : 문의 개수
 	public int inquiryCount() {
 		int count = 0;
 		try {
@@ -149,8 +161,9 @@ public class InquiryDAO extends DAO {
 			CloseDB();
 		}
 		return count;
-	}
+	} // inquiryCount()
 
+	// inquiryCount() : 문의 개수(카테고리)
 	public int inquiryCount(boolean complete) {
 		int count = 0;
 		try {
@@ -170,8 +183,9 @@ public class InquiryDAO extends DAO {
 			CloseDB();
 		}
 		return count;
-	}
+	}// inquiryCount()
 
+	// userInfoInquiry() : 유저 상세 정보에 호출될 문의 목록
 	public ArrayList userInfoInquiry(UserDTO udto) {
 		ArrayList list = null;
 		InquiryDTO dto = null;
@@ -202,5 +216,5 @@ public class InquiryDAO extends DAO {
 			CloseDB();
 		}
 		return list;
-	}
+	} // userInfoInquiry()
 }

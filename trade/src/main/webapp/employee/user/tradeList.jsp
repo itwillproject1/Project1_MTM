@@ -277,7 +277,6 @@ menulink += checkComplete == null ? "" : "&checkComplete=" + checkComplete;
 											<div class="dropdown-menu dropdown-menu-right" style="">
 												<a class="dropdown-item"
 													href="./TradeContent.emp?bno=${i.bno}&pageNum=${pageNum}">상세보기</a>
-												<a class="dropdown-item" href="#">삭제</a>
 											</div>
 										</div>
 									</td>

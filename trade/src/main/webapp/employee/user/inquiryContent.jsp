@@ -70,6 +70,7 @@
 											<c:if test="${udto.profile != ''}">
 												<img
 													src="<%=request.getRealPath("upload") %>/${udto.profile}"
+													onerror="this.onerror=null; this.src='./employee/template/assets/images/user.png';"
 													alt="..." class="avatar-img rounded-circle">
 											</c:if>
 										</div>
