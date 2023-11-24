@@ -13,6 +13,7 @@ public class BoardDAO extends DAO {
 		int result = -1;
 		try {
 			con = getCon();
+			// 관리자(직원) 아이디 및 비밀번호 체크
 			sql = "select emp_pw from Employees where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mdto.getEmp_id());
@@ -45,10 +46,12 @@ public class BoardDAO extends DAO {
 		return result;
 	}
 
+	// updateBoard() : 게시판 수정
 	public int updateBoard(BoardDTO bdto, MemberDTO mdto) {
 		int result = -1;
 		try {
 			con = getCon();
+			// 관리자(직원) 아이디 및 비밀번호 체크
 			sql = "select emp_pw from Employees where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mdto.getEmp_id());
@@ -72,12 +75,14 @@ public class BoardDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	} // updateBoard();
 
+	// deleteBoard() : 게시판 삭제
 	public int deleteBoard(BoardDTO bdto, MemberDTO mdto) {
 		int result = -1;
 		try {
 			con = getCon();
+			// 관리자(직원) 아이디 및 비밀번호 체크
 			sql = "select emp_pw from Employees where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mdto.getEmp_id());
@@ -98,23 +103,27 @@ public class BoardDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	} // deleteBoard();
 
+	// boardList() : 게시판 목록
 	public ArrayList boardList(String pageCategory, int startRow, int pageSize) {
 		ArrayList bList = null;
 		BoardDTO dto = null;
 		try {
 			con = getCon();
 			sql = "select * from Board";
+			// 카테고리 (1 : 공지사항, 2 : 이벤트)
 			if (pageCategory.equals("notice"))
 				sql += " where category = 1";
 			else if (pageCategory.equals("event"))
 				sql += " where category = 2";
+			// 페이징 처리
 			sql += " order by bno desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
+			
 			bList = new ArrayList();
 			while (rs.next()) {
 				dto = new BoardDTO();
@@ -134,8 +143,9 @@ public class BoardDAO extends DAO {
 			CloseDB();
 		}
 		return bList;
-	}
-
+	} // boardList();
+	
+	// boardContent() : 게시판 상세정보
 	public BoardDTO boardContent(int index) {
 		BoardDTO dto = null;
 		try {
@@ -161,8 +171,9 @@ public class BoardDAO extends DAO {
 			CloseDB();
 		}
 		return dto;
-	}
+	}// boardContent();
 
+	// boardCount() : 게시판 개수
 	public int boardCount(String pageCategory) {
 		int count = 0;
 		try {
@@ -184,8 +195,9 @@ public class BoardDAO extends DAO {
 			CloseDB();
 		}
 		return count;
-	}
+	}// boardCount()
 
+	// boardList() : 게시판 목록(override), 검색
 	public ArrayList boardList(String pageCategory, String search, String searchKeyword, int startRow, int pageSize) {
 		ArrayList bList = null;
 		BoardDTO dto = null;
@@ -196,11 +208,15 @@ public class BoardDAO extends DAO {
 				sql += " where category = 1";
 			else if (pageCategory.equals("event"))
 				sql += " where category = 2";
+			// 둘 다 비어있지 않은 경우만 해당
 			sql += "and " + search + " like '%" + searchKeyword + "%'";
+			// 페이징 처리
 			sql += " order by bno desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
+			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);
+			
 			rs = pstmt.executeQuery();
 			bList = new ArrayList();
 			while (rs.next()) {
@@ -221,5 +237,5 @@ public class BoardDAO extends DAO {
 			CloseDB();
 		}
 		return bList;
-	}
+	}// boardList() override;
 }
