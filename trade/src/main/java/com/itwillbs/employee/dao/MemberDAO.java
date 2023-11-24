@@ -62,12 +62,14 @@ public class MemberDAO extends DAO {
 		int result = -1;
 		try {
 			con = getCon();
+			// 비밀번호 체크
 			sql = "select emp_pw from Employees where emp_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getEmp_id());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				if (rs.getString(1).equals(dto.getEmp_pw())) {
+					// 비밀번호 변경하지 않을 시
 					if (new_pw == null || confirm_pw == null || new_pw.equals("") || confirm_pw.equals("")) {
 						sql = "update Employees set name = ?, address = ?, email = ?, tel = ? where emp_id = ?";
 						pstmt = con.prepareStatement(sql);
@@ -78,7 +80,7 @@ public class MemberDAO extends DAO {
 						pstmt.setString(5, dto.getEmp_id());
 						pstmt.executeUpdate();
 						result = 1;
-					} else {
+					} else { // 비밀번호 변경할 때
 						if (new_pw.equals(confirm_pw)) {
 							sql = "update Employees set name = ?, address = ?, email = ?, tel = ?, "
 									+ "emp_pw = ? where emp_id = ?";
@@ -125,6 +127,7 @@ public class MemberDAO extends DAO {
 		return result;
 	} // employeeCount();
 
+	// employeeList() : 직원 목록, 페이징 처리
 	public ArrayList employeeList(int startRow, int pageNum) {
 		ArrayList list = null;
 		MemberDTO dto = null;
@@ -154,8 +157,9 @@ public class MemberDAO extends DAO {
 			CloseDB();
 		}
 		return list;
-	}
+	} // employeeList()
 
+	// employeeRegister() : 직원 추가
 	public void employeeRegister(MemberDTO dto) {
 		try {
 			con = getCon();
@@ -173,8 +177,9 @@ public class MemberDAO extends DAO {
 		} finally {
 			CloseDB();
 		}
-	}
+	}// employeeRegister()
 
+	// resetPw() : 비밀번호 초기화
 	public int resetPw(MemberDTO dto) {
 		int result = -1;
 		try {
@@ -207,10 +212,10 @@ public class MemberDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	}// resetPw()
 
+	// employeeInactive() : 직원 비활성화
 	public int employeeInactive(MemberDTO emp, MemberDTO ad) {
-		// employeeInactive() : 직원 비활성화
 		int result = -1;
 		try {
 			con = getCon();
@@ -234,10 +239,10 @@ public class MemberDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	} // employeeInactive()
 
+	// employeeActive() : 직원 활성화
 	public int employeeActive(MemberDTO emp, MemberDTO ad) {
-		// employeeActive() : 직원 활성화
 		int result = -1;
 		try {
 			con = getCon();
@@ -261,5 +266,5 @@ public class MemberDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	}// employeeActive()
 }
