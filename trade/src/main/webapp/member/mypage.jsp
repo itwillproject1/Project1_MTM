@@ -36,10 +36,10 @@
 			var img_src = document.getElementById('down2').src;
 			console.log("img_src: " + img_src);
 			
-			if(img_src == 'http://localhost:8088/trade/member/img/down_arrow.png') {
+			if(img_src == 'http://c7d2307t1.itwillbs.com/trade/member/img/down_arrow.png') {
 				$('.none2').css('display', 'inline-block');
 				$('#down2').attr('src','../member/img/up_arrow.png');
-			} else if(img_src == 'http://localhost:8088/trade/member/img/up_arrow.png') {
+			} else if(img_src == 'http://c7d2307t1.itwillbs.com/trade/member/img/up_arrow.png') {
 				$('.none2').css('display', 'none');
 				$('#down2').attr('src','../member/img/down_arrow.png');
 				
@@ -53,10 +53,10 @@
 			var img_src = document.getElementById('down3').src;
 			console.log("img_src: " + img_src);
 			
-			if(img_src == 'http://localhost:8088/trade/member/img/down_arrow.png') {
+			if(img_src == 'http://c7d2307t1.itwillbs.com/trade/member/img/down_arrow.png') {
 				$('.none3').css('display', 'inline-block');
 				$('#down3').attr('src','../member/img/up_arrow.png');
-			} else if(img_src == 'http://localhost:8088/trade/member/img/up_arrow.png') {
+			} else if(img_src == 'http://c7d2307t1.itwillbs.com/trade/member/img/up_arrow.png') {
 				$('.none3').css('display', 'none');
 				$('#down3').attr('src','../member/img/down_arrow.png');
 				
@@ -115,7 +115,7 @@
 				<div class="image-preview">
 					<c:if test="${dto.profile != null}" >
 					<img src="<%=request.getContextPath() %>/uploadprofile/${dto.profile }" 
-					onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
+					onerror="this.onerror=null; this.src='../member/img/member.png';"
 					id="imagePreview" alt="미리보기">
 					</c:if>
 					<c:if test="${dto.profile == null}" >

@@ -86,6 +86,7 @@ public class ProductPayAction implements Action {
 		SendMail smail = new SendMail();
 		smail.execute(request, response);		
 		
+		
 		//페이지 이동
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();

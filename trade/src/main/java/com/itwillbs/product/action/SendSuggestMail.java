@@ -32,7 +32,7 @@ import com.itwillbs.util.JSMoveFunction;
  *
  */
 
-public class SendMail implements Action {
+public class SendSuggestMail implements Action {
 	// Parameters : 에러날짜, 에러시간, 에러타입, (+Shell에서 파일명) ex) 20210420, 14:01:00, DDC,
 	// (+FileName)
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -43,7 +43,7 @@ public class SendMail implements Action {
 		final String port = "587";
 		final String bodyEncoding = "UTF-8"; // 콘텐츠 인코딩
 
-		String seller_email = (String) request.getAttribute("seller_email");
+		String seller_email = (String) request.getAttribute("buyer_email");
 
 		// SMTP 서버 정보 설정
 		Properties prop = new Properties();
@@ -80,10 +80,8 @@ public class SendMail implements Action {
 	        		        + " top;\">\r\n"
 	        		        + "<h3 style=\"font-size: 0.9em; font-weight: 400; margin: 0;\">상품정보가 업데이트 되었습니다.</h3>\r\n"
 	        		        + "<h4\r\n"
-	        		        + "style=\"margin: 0; font-size: 0.7em; font-weight: 400; color: #808080;\">  구매자 정보<br> 이름: "+ request.getAttribute("buyer_name")
-	        		        + "<br>번호: " + request.getAttribute("buyer_phone")
-	        		        + "<br>주소: " + request.getAttribute("address")
-	        		        + "<br>판매 물건: <a href='http://c7d2307t1.itwillbs.com/trade/product/ProductContent.com?bno="+ request.getAttribute("sell_bno") +"'>글번호: "+ request.getAttribute("sell_bno") +"</a>" 
+	        		        + "style=\"margin: 0; font-size: 0.7em; font-weight: 400; color: #808080;\">"
+	        		        + "<br>업데이트 상품: <a href='http://c7d2307t1.itwillbs.com/trade/product/ProductContent.com?bno="+ request.getAttribute("buy_bno") +"'>글번호: "+ request.getAttribute("buy_bno") +"</a>" 
 	        		        + "</h4>\r\n"
 	        		        + "</div>\r\n"
 	        		        + "</li>\r\n"

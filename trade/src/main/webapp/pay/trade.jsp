@@ -11,19 +11,6 @@
 <link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <link href="../css/pay.css" rel="stylesheet" />
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#sbtn').click(function(){
-			$('body').css({
-				background : '#e7e7e7',
-				opacity : '0.3',
-				'pointer-events': 'none'
-			});
-			
-			$('fieldset').append("<img alt='결제중' src='../pay/img/pay_loading.gif'>");
-		});
-	});
-</script>
 </head>
 		
 		<script type="text/javascript">
@@ -53,19 +40,28 @@
 			//alert("구매금액"+price);
 			
 			if(pay < price){
-
 				alert(' 잔액이 부족합니다.');
 				alert(' 부족한 금액은 ' + (price-pay) +'원입니다.');
 				var url = "../member/MemberPayInfo.member?&id=" + buyer_id;
 				window.open(url,"checkid","width=570,height=500, scrollbars=yes, resizable=yes");
 				return false;
-			}
-				
+			} else {
+				$(document).ready(function() {
+					$('body').css({
+						background : '#e7e7e7',
+						opacity : '0.3',
+						'pointer-events': 'none'
+					});
+					
+					$('fieldset').append("<img alt='결제중' src='../pay/img/pay_loading.gif'>");
+				});
+			} 
 		}
 		
 		</script>
 
 <body>
+<%@ include file="../main/header.jsp"%>
 		<fieldset class="container">
 		<form action="../product/ProductTradePayAction.com" method="post" name="pay" onsubmit="return check();">
 		<div class="form-group">
@@ -100,5 +96,6 @@
 		</div>
 		</form>
 	</fieldset>
+	<%@ include file="../main/footer.jsp"%>
 </body>
 </html>

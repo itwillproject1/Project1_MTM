@@ -131,6 +131,7 @@ body {
 }
 
 .form-group input, .form-group textarea, .form-group select {
+	font-family: 'Noto Sans KR', sans-serif;
 	width: 100%;
 	padding: 8px;
 	border: 1px solid #ccc; /* 연한 회색 테두리 색상 */

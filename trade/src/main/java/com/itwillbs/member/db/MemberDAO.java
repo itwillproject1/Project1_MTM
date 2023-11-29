@@ -49,7 +49,9 @@ public class MemberDAO {
 
 	// 회원가입
 	public void insertMember(MemberDTO dto) {
-
+		
+		int result = -1;
+		
 		try {
 			con = getCon();
 			sql = "insert into Member (user_id,password,email,user_name,jumin,gender,phone,address,user_nickname,profile,recommend,agree,date) "
@@ -75,13 +77,6 @@ public class MemberDAO {
 
 			pstmt.executeUpdate();
 
-			if (dto.getRecommend() != null) {
-				sql = "update Member set pay = pay + 1000 where user_id = ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, dto.getRecommend());
-
-				pstmt.executeUpdate();
-			}
 
 		} catch (Exception e) {
 
@@ -676,5 +671,27 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	public int checkemail(MemberDTO dto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "select email from Member where email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getEmail());
+			rs = pstmt.executeQuery();
 
+			if (rs.next()) {
+				result = 1;
+			} else {
+				result = 0;
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
 }

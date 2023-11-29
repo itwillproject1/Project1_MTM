@@ -14,10 +14,12 @@ $(document).ready(function() {
         const category = getCategoryFromUrl();
         let title = '상품 목록';
 
-        if (dealWay === '삽니다') {
-            title = '삽니다';
-        } else if (dealWay === '팝니다') {
-            title = '팝니다';
+		if (category === null) {
+			if (dealWay === '삽니다') {
+				title = '삽니다';
+			} else if (dealWay === '팝니다') {
+				title = '팝니다';
+			}
         } else {
             switch (category) {
                 case '0':
@@ -48,7 +50,6 @@ $(document).ready(function() {
                     title = '상품 목록';
             }
         }
-
         $('.title').text(title);
     }
 

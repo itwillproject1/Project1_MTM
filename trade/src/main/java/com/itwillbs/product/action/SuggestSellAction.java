@@ -3,6 +3,8 @@ package com.itwillbs.product.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.member.db.MemberDAO;
+import com.itwillbs.member.db.MemberDTO;
 import com.itwillbs.product.db.ProductDAO;
 import com.itwillbs.product.db.ProductDTO;
 import com.itwillbs.product.db.SuggestSellDAO;
@@ -42,6 +44,17 @@ public class SuggestSellAction implements Action {
 		
 		SuggestSellDAO ssdao = new SuggestSellDAO();
 		int bno = ssdao.suggestSell(ssdto);
+		
+		
+		// 구매자에게 이메일 전송
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO buyerDto = mdao.getMember(buy_pdto.getUser_id()); // 구매자 정보 저장
+		
+		request.setAttribute("buyer_email", buyerDto.getEmail()); // 구매자 이메일
+		request.setAttribute("buy_bno", ssdto.getBuy_bno()); // 업데이트 된 글번호
+		
+		SendSuggestMail ssm = new SendSuggestMail();
+		ssm.execute(request, response);
 		
 		// 원래 페이지로 이동
 		JSMoveFunction.alertLocation(response, "판매 제안이 완료되었습니다", "./ProductContent.com?bno="+bno);

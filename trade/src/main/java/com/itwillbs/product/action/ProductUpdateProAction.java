@@ -48,6 +48,10 @@ public class ProductUpdateProAction implements Action {
 		String before_file_name = multi.getParameter("before_file_name");
 		String file_name = String.join(",", fileList);
 
+		String content = multi.getParameter("content");
+		// 개행 문자(\r\n)를 <br> 태그로 변환
+		content = content.replaceAll("\r\n", "<br>");
+		
 		// 전달정보 저장(DTO)
 		ProductDTO dto = new ProductDTO();
 		
@@ -58,7 +62,7 @@ public class ProductUpdateProAction implements Action {
 		dto.setBrand(multi.getParameter("brand"));
 		dto.setPrice(Integer.parseInt(multi.getParameter("price")));
 		dto.setProduct_status(multi.getParameter("product_status"));
-		dto.setContent(multi.getParameter("content"));
+		dto.setContent(content);
 		dto.setFile_name(file_name);
 
 
@@ -84,12 +88,13 @@ public class ProductUpdateProAction implements Action {
 	
 			    if (!found) {
 			        // bFileName 파일 삭제 수행
-			    	file = new File(realPath+"\\"+bFileName);
+//			    	file = new File(realPath+"\\"+bFileName);
+			    	file = new File("/usr/local/tomcat/webapps/trade/upload/"+bFileName);
 			    	file.delete();
 			    }
 			}
 		}
-
+		
 		// 페이지 이동 준비
 		forward.setPath("./ProductContent.com?bno=" + bno);
 		forward.setRedirect(true);

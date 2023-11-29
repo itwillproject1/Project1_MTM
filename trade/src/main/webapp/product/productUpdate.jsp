@@ -14,14 +14,6 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
 <link href="../css/productUpdate.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script type="text/javascript">
-/* $(document).ready(function() {
-	$('#load-img').click(function() {
-		$('#deletebtn${i}').html('추가하기');
-	});
-} */
-</script>
 <title>MTM | 상품 수정</title>
 </head>
 <link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
@@ -147,7 +139,7 @@
 		}
 	}
 
-<!-- 거래방식 항목에 따라 상품상태 항목이 바뀌는 코드 -->
+	<!-- 거래방식 항목에 따라 상품상태 항목이 바뀌는 코드 -->
 
 	var status = '<%=((ProductDTO) request.getAttribute("pdto")).getProduct_status()%>';
 	var stt = ["미개봉", "상", "중", "하"]
@@ -189,6 +181,14 @@
 
 <body>
 	<%@ include file="../main/header.jsp"%>
+	
+	<c:if test="${pdto.user_id ne sessionScope.user_id}">
+		<script>
+			alert('해당 글 작성자가 아닙니다.');
+			location.href='../main/Main.com';
+		</script>
+	</c:if>
+				
 	<div class="container">
 		<!-- 미리보기 영역 시작 -->
 			<c:set var="fileNameArr" value="${fn:split(pdto.file_name, ',')}" />
@@ -249,7 +249,7 @@
 							<c:forEach var="i" begin="1" end="5" step="1">
 							<div id="load-img">
 								<input type="hidden" name="before_file_name" value="${pdto.file_name }">
-								<%-- 글자 클릭 시 showImagePreview() 함수 호출 --%>
+								<!-- 글자 클릭 시 showImagePreview() 함수 호출 -->
 								<input type="text" id="fni${i}" name="file_name${i }" value="${fileNameArr[i-1]}"
 									onclick="showImagePreview(${i})" class="fntext" readonly>
 								
@@ -290,7 +290,7 @@
 	</div>
 
 	<script>
-		<!-- 이미지 미리보기 관련 스크립트 -->
+		<!-- 이미지 미리보기 -->
 		function previewImage(i) {
 			const fileNameE = document.getElementById('fni' + i);
 	        const fileName = fileNameE.value;
@@ -405,7 +405,5 @@
 		}
 	</script>
 		
-	</script>
-
 </body>
 </html>

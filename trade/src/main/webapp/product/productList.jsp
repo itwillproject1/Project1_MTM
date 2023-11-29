@@ -18,7 +18,7 @@ ProductDAO productDAO = new ProductDAO();
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/header.css" rel="stylesheet" />
-<link href="../css/productList.css?aaaa" rel="stylesheet" />
+<link href="../css/productList.css" rel="stylesheet" />
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script type="text/javascript">
@@ -243,7 +243,8 @@ ProductDAO productDAO = new ProductDAO();
 				data-bno="${dto.bno}"
 				onclick="toProductContent('./ProductContent.com?bno=${dto.bno}')">
 				<div class="product.image">
-					<img src="<%=request.getContextPath() %>/upload/${dto.file_name}"
+					<c:set var="fileNameArr" value="${fn:split(dto.file_name, ',')}" />
+					<img src="<%=request.getContextPath() %>/upload/${fileNameArr[0]}"
 						onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
 						alt="${dto.title}">
 				</div>

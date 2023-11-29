@@ -167,8 +167,8 @@
             </div>
 
             <!-- 구매 판매 찜 등 버튼 -->
-            <c:if test="${dto.deal_way.equals('삽니다')}">
 	               <div class="button-container">
+            <c:if test="${dto.deal_way.equals('삽니다')}">
             	<c:if test="${dto.deal_status == 1 }">
 	                  <c:choose>
 	                     <c:when test="${empty login_id}">
@@ -185,11 +185,9 @@
             	<c:if test="${dto.deal_status == 0 }">
             		<input type="button" class="no-button" value="거래 완료">
             	</c:if> 
-					</div>
             </c:if>
 
 				<c:if test="${dto.deal_way.equals('팝니다') }">
-					<div class="button-container">
 						<c:if test="${dto.deal_status == 1 }">
 							<c:if test="${login_id eq dto.user_id}">
 								<input class="submit-button" type="button" value="판매 제안 현황"
@@ -201,13 +199,13 @@
 							</c:if>
 							<c:if test="${not empty login_id and login_id ne dto.user_id}">
 								<input class="submit-button" type="button" value="구매하기"
-									onclick="location.href='../pay/payment.com?bno=${dto.bno}';">
+    									onclick="confirmPurchase('${dto.bno}')">
 							</c:if>
 						</c:if>
 						<c:if test="${dto.deal_status == 0 }">
 							<input type="button" class="no-button" value="거래 완료">
 						</c:if>
-
+				</c:if>
 
 						<!-- 찜 기능 시작 -->
 						<button class="submit-button" id="like">
@@ -220,7 +218,6 @@
 						</button>
 						<!--  찜 기능 끝 -->
 					</div>
-				</c:if>
 			</div>
       </div>
       <div class="form-group product-content">
@@ -236,7 +233,7 @@
 			<div id="productInfo">
 				<!-- 모달 내용 -->
 				<h2>
-					<img src="<%=request.getContextPath() %>/uploadprofile/${mdto.profile }" onerror="this.onerror=null; this.src='../product/img/default_product_image.png';" alt="프로필" id="pf"> ${dto.user_id}
+					<img src="<%=request.getContextPath() %>/uploadprofile/${mdto.profile }" onerror="this.onerror=null; this.src='../member/img/member.png';" alt="프로필" id="pf"> ${dto.user_id}
 				</h2>
 
 				<h3 id="h3">${dto.user_id}님의 판매 상품 목록</h3>
@@ -360,6 +357,7 @@
                <h2>${login_id }님의 판매상품목록</h2>
                <form action="./SuggestSell.com?bno=${dto.bno }" method="post" id="SuggestSellForm">
                   <c:forEach var="sellProduct" items="${sellProduct}">
+                  <c:set var="fileNameArr5" value="${fn:split(sellProduct.file_name, ',')}" />
                      <div>
                         <c:if test="${sellProduct.isOffered }">
                            <input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }" disabled="disabled">
@@ -367,7 +365,7 @@
                         <c:if test="${!sellProduct.isOffered }">
                            <input type="radio" id="sellCheckbox" class="productCheckbox" name="sellProductBno" value="${sellProduct.bno }">
                         </c:if>
-                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${sellProduct.file_name }" 
+                        <img id="sellImage" src="<%=request.getContextPath()%>/upload/${fileNameArr5[0] }" 
                         onerror="this.onerror=null; this.src='../product/img/default_product_image.png';"
                         alt="미리보기">
                      </div>
@@ -482,7 +480,7 @@
                   </div>
                </c:forEach>
                <div class="button-container">
-               	<button type="button" class="submit-button" onclick="cancleSuggest();">판매 제안 취소 하기</button>
+               	<button type="button" class="submit-button" onclick="cancleSuggest();">판매제안 취소</button>
                </div>
             </form>
          </c:if>
@@ -509,6 +507,22 @@
             });
          </script>
    <!-- 이미지 미리보기 종료 -->
+
+<!-- 구매하기 전 가격확인 -->
+<script>
+function confirmPurchase(bno) {
+	var price = Number("${dto.price}");
+    var fPrice = price.toLocaleString();
+	
+    var result = confirm('해당 상품을 ' + fPrice + '원에 구매하시겠습니까?');
+    if (result) {
+        location.href = `../pay/payment.com?bno=${dto.bno}`;
+    } else {
+    }
+}
+</script>
+
+
 
 <!-- 신고창 시작 -->
    <script>
@@ -740,8 +754,10 @@
             alert("판매할 물품을 선택해주세요");
         } else {
             var productIds = [];
+            var price = Number("${dto.price}");
+            var fPrice = price.toLocaleString();
 
-            var result = confirm('해당 상품을 ${dto.price}원에 판매 제안하시겠습니까?');
+            var result = confirm('해당 상품을 ' + fPrice + '원에 판매 제안하시겠습니까?');
 
             if (result === true) {
                 document.getElementById("SuggestSellForm").submit();
@@ -777,17 +793,21 @@
           }
         }
 
-         function submitSuggest() {
-            var result = confirm('해당 상품을 구매하시겠습니까?');
+        function submitSuggest() {
+            var checkboxes = document.querySelectorAll('.productCheckbox:checked');
 
-            if (result === true) {
-               document.getElementById("SubmitSuggestForm").submit();
+            if (checkboxes.length === 0) {
+                alert("구매할 상품을 선택해주세요");
             } else {
-               alert('거래를 취소하셨습니다');
-               location.reload();
-               return false;
+                var result = confirm('선택한 상품을 구매하시겠습니까?');
+
+                if (result === true) {
+                    document.getElementById("SubmitSuggestForm").submit();
+                } else {
+                    alert('구매를 취소하셨습니다');
+                }
             }
-         }
+        }
       </script>
       <!-- 거래 제안 현황 모달창 종료 -->
       
@@ -817,18 +837,21 @@
           }
         }
 
-         function cancleSuggest() {
-            var result = confirm('해당 제안을 취소하시겠습니까?');
+        function cancleSuggest() {
+            var checkboxes = document.querySelectorAll('.productCheckbox:checked');
 
-            if (result === true) {
-               // 제안 취소하기
-               document.getElementById("cancleSuggestForm").submit();
+            if (checkboxes.length === 0) {
+                alert("취소할 제안을 선택해주세요");
             } else {
-               alert('제안을 유지합니다');
-               location.reload();
-               return false;
+                var result = confirm('선택한 제안을 취소하시겠습니까?');
+
+                if (result === true) {
+                    document.getElementById("cancleSuggestForm").submit();
+                } else {
+                    alert('제안을 유지합니다');
+                }
             }
-         }
+        }
       </script>
       <!-- 판매 제안 현황 모달창 종료 -->
       

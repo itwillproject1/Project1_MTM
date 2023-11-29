@@ -120,6 +120,7 @@ $(document).ready(function() {
  			
  			if(login_id == "null") {
  				alert('해당 기능은 로그인이 필요합니다.');
+ 				window.location.href = "../main/login.member";
  			} else {
  				location.href="../member/Qna.member";
  			}
@@ -130,7 +131,8 @@ $(document).ready(function() {
  			
  			if(login_id == "null") {
  				alert('해당 기능은 로그인이 필요합니다.');
- 			} else {
+ 				window.location.href = "../main/login.member";
+ 				} else {
  				location.href="../member/QnaList.member";
  			}
  		}

@@ -97,9 +97,9 @@ public class AdjustSmtp implements Action {
         + "<div class=\"desc\"\r\n"
         + "style=\"width: 50%; display: inline-block; margin: 1em 0; vertical-align:"
         + " top;\">\r\n"
-        + "<h3 style=\"font-size: 0.9em; font-weight: 400; margin: 0;\">인증번호입니당"+ ran +"</h3>\r\n"
+        + "<h3 style=\"font-size: 0.9em; font-weight: 400; margin: 0;\">인증번호: "+ ran +"</h3>\r\n"
         + "<h4\r\n"
-        + "style=\"margin: 0; font-size: 0.7em; font-weight: 400; color: #808080;\">  rc이메일 들어갓니? "+"</h4>\r\n"
+        + "style=\"margin: 0; font-size: 0.7em; font-weight: 400; color: #808080;\">  "+"</h4>\r\n"
         + "</div>\r\n"
         + "</li>\r\n"
         + "</ul>\r\n"
@@ -130,7 +130,7 @@ public class AdjustSmtp implements Action {
 
             //제목
             //message.setSubject("※BATCH ERROR - TYPE : "+arr.get(2)+" // File : "+arr.get(3)); //메일 제목을 입력
-            message.setSubject("이메일 인증 해!");
+            message.setSubject("MTM 이메일 인증번호를 확인하세요.");
             // 메일 콘텐츠 - 내용
             mTextPart.setText(html, bodyEncoding, "html");
             mParts.addBodyPart(mTextPart);

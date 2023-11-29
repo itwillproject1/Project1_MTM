@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.itwillbs.employee.dto.UserDTO;
 
 public class UserDAO extends DAO {
+	// userPaySum() : 메인 페이지의 총 충전금액 return
 	public int userPaySum() {
 		int result = 0;
 		try {
@@ -20,14 +21,16 @@ public class UserDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	}// userPaySum()
 
+	// userList() : 회원 목록, 카테고리 및 검색 조회 포함, 페이징 처리
 	public ArrayList userList(String pageCategory, String search, String searchKeyword, int startRow, int pageSize) {
 		ArrayList list = null;
 		UserDTO dto = null;
 		try {
 			con = getCon();
 			sql = "select * from Member where address = address";
+			// 수신 동의, 비동의, 정지된 유저
 			if (pageCategory.equals("agree")) {
 				sql += " and agree = '동의' ";
 			} else if (pageCategory.equals("notAgree")) {
@@ -36,10 +39,12 @@ public class UserDAO extends DAO {
 				sql += " and suspended = 1 ";
 			}
 
+			// 검색
 			if (search == null || searchKeyword == null)
 				;
 			else
 				sql += "and " + search + " like '%" + searchKeyword + "%'";
+			// 페이징 처리
 			sql += " limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -66,8 +71,9 @@ public class UserDAO extends DAO {
 			CloseDB();
 		}
 		return list;
-	}
+	} // userList()
 
+	// userCount() : 회원 총 명수
 	public int userCount() {
 		int result = 0;
 		try {
@@ -81,8 +87,9 @@ public class UserDAO extends DAO {
 			e.printStackTrace();
 		}
 		return result;
-	}
+	} // userCount()
 
+	// userCount() : 유저 총 명수, 카테고리 및 검색
 	public int userCount(String pageCategory, String search, String searchKeyword) {
 		int result = 0;
 		try {
@@ -110,10 +117,10 @@ public class UserDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	} // userCount()
 
-	public UserDTO userInfo(String user_id) {
-		// userContent(String user_id) : 유저 정보 조회
+	// userInfo(String user_id) : 유저 정보 조회
+	public UserDTO userInfo(String user_id) {	
 		UserDTO dto = null;
 		try {
 			con = getCon();
@@ -145,8 +152,9 @@ public class UserDAO extends DAO {
 			CloseDB();
 		}
 		return dto;
-	} // userContent();
+	} // userInfo();
 	
+	// mailAgreeList() : 마케팅 수신 동의한 유저 list
 	public ArrayList<UserDTO> mailAgreeList(){
 		ArrayList<UserDTO> list = null;
 		UserDTO dto = null;
@@ -168,5 +176,5 @@ public class UserDAO extends DAO {
 			CloseDB();
 		}
 		return list;
-	}
+	} // mailAgreeList()
 }

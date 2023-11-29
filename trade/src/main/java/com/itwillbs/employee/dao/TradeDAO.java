@@ -7,6 +7,7 @@ import com.itwillbs.employee.dto.TradeDTO;
 import com.itwillbs.employee.dto.UserDTO;
 
 public class TradeDAO extends DAO {
+	// tradeCount() : 활성화 된 상품 개수
 	public int tradeCount() {
 		int result = 0;
 		try {
@@ -22,8 +23,9 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
-
+	}// tradeCount()
+	
+	// tradeCount() : 상품 개수, 카테고리로 검색
 	public int tradeCount(String pageCategory, String checkComplete) {
 		int result = 0;
 		try {
@@ -57,8 +59,9 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
-
+	} // tradeCount()
+	
+	// tradeCount() : 상품 개수 return, 카테고리, 검색
 	public int tradeCount(String pageCategory, String category, String search, String searchKeyword,
 			String checkComplete) {
 		int result = 0;
@@ -103,8 +106,9 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	}// tradeCount()
 
+	// tradeList() : 메인 페이지에서 사용하는 최신 거래
 	public ArrayList tradeList(int limit) {
 		ArrayList li = null;
 		TradeDTO dto = null;
@@ -140,21 +144,25 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return li;
-	}
+	} // tradeList()
 
+	// tradeList() : 카테고리별 테이블 조회, 페이징 처리
 	public ArrayList tradeList(String pageCategory, int startRow, int pageSize) {
 		ArrayList li = null;
 		TradeDTO dto = null;
 		try {
 			con = getCon();
 			sql = "select * from Product";
+			// 카테고리
 			if (pageCategory.equals("buy"))
 				sql += " where deal_way = '삽니다'";
 			else if (pageCategory.equals("sell"))
 				sql += " where deal_way = '팝니다'";
 			else if (pageCategory.equals("complete"))
 				sql += " where deal_status = 0";
+			// 페이징 처리
 			sql += " order by bno desc limit ?,?";
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, pageSize);
@@ -185,8 +193,9 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return li;
-	}
+	} // tradeList()
 
+	// tradeList() : 카테고리, 검색 별 테이블 조회, 페이징 처리
 	public ArrayList tradeList(String pageCategory, String category, String search, String searchKeyword,
 			String checkComplete, int startRow, int pageSize) {
 		ArrayList li = null;
@@ -259,8 +268,9 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return li;
-	}
+	} // tradeList()
 
+	// userInfoTrade() : 유저 정보 내의 거래 리스트
 	public ArrayList userInfoTrade(UserDTO user) {
 		ArrayList li = null;
 		TradeDTO dto = null;
@@ -298,8 +308,9 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return li;
-	}
+	} // userInfoTrade()
 
+	// tradeContent() : 거래 상세 정보
 	public TradeDTO tradeContent(int bno) {
 		TradeDTO dto = null;
 		try {
@@ -332,7 +343,7 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return dto;
-	}
+	}// tradeContent()
 
 	public int suggestCount(int bno, String deal_way) {
 		// suggestCount() : 거래 제안 개수 return
@@ -411,8 +422,9 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return sellList;
-	}
+	}// suggestList()
 
+	// userInfoLike() : 회원의 찜목록 return
 	public ArrayList userInfoLike(UserDTO udto) {
 		ArrayList list = null;
 		ArrayList<Integer> bnoList = null;
@@ -461,8 +473,9 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return list;
-	}
+	}// userInfoLike()
 
+	// tradeHistoryCount() : 거래 내역 개수
 	public int tradeHistoryCount() {
 		int result = 0;
 		try {
@@ -478,13 +491,15 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	} // tradeHistoryCount()
 
+	// tradeHistory() : 거래 내역, 페이징 처리
 	public ArrayList tradeHistory(int startRow, int pageSize) {
 		ArrayList th = null;
 		TradeDTO dto = null;
 		try {
 			con = getCon();
+			// Product 테이블과 join 처리
 			sql = "select th.order_id, th.user_id, th.trader_id, p.category, "
 					+ "th.price, p.title, th.deal_way, tradeDate from TradeHistory th "
 					+ "left outer join Product p on th.bno = p.bno " + "order by order_id limit ?, ?";
@@ -511,8 +526,9 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return th;
-	}
+	} // tradeHistory()
 
+	// tradeHistorySearch() : 거래 내역, 검색 및 페이징 처리
 	public ArrayList tradeHistorySearch(String category, String search, String searchKeyword, int startRow,
 			int pageSize) {
 		ArrayList th = null;
@@ -555,5 +571,5 @@ public class TradeDAO extends DAO {
 			CloseDB();
 		}
 		return th;
-	}
+	} // tradeHistorySearch()
 }

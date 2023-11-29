@@ -63,7 +63,7 @@ public class ComplainDAO extends DAO {
 			CloseDB();
 		}
 		return list;
-	}
+	} // userInfoComplain()
 
 	public ArrayList<SuspendDTO> complainedUserList(int startRow, int pageSize) {
 		// complainedUserList() : 피신고자 목록(정지x)
@@ -144,8 +144,9 @@ public class ComplainDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	} // complainedUserCount()
 
+	// isSuspended() : 회원 정지 확인
 	public boolean isSuspended(UserDTO dto) {
 		boolean isSuspended = false;
 		try {
@@ -162,7 +163,7 @@ public class ComplainDAO extends DAO {
 			CloseDB();
 		}
 		return isSuspended;
-	}
+	} // isSuspended()
 
 	public int userSuspendActive(UserDTO udto, MemberDTO mdto, ArrayList<Integer> complainIndex, int sus_days,
 			String suspendReason) {
@@ -238,6 +239,18 @@ public class ComplainDAO extends DAO {
 					pstmt.setInt(4, sus_days);
 					pstmt.setString(5, mdto.getEmp_id());
 					pstmt.executeUpdate();
+					
+					// 정지 처리된 게시물에 찜한 기록 삭제
+					sql = "delete from Likes where bno in(select bno from Complain where user_id = ? and complete = 1)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, udto.getUser_id());
+					pstmt.executeUpdate();
+					
+					// 신고된 게시물 삭제
+					sql = "delete from Product where bno in(select bno from Complain where user_id = ? and complete = 1)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, udto.getUser_id());
+					pstmt.executeUpdate();
 				} else
 					result = 0;
 			}
@@ -247,7 +260,7 @@ public class ComplainDAO extends DAO {
 			CloseDB();
 		}
 		return result;
-	}
+	} // userSuspendActive()
 
 	public int userSuspendCancel(UserDTO udto, MemberDTO mdto) {
 		// 유저 정지 취소
@@ -274,5 +287,5 @@ public class ComplainDAO extends DAO {
 			e.printStackTrace();
 		}
 		return result;
-	}
+	} // userSuspendCancel()
 }

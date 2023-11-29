@@ -107,9 +107,16 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		}
+		}else if (command.equals("/member/MemberUseIdAction.member")) {
 
-		else if (command.equals("/member/MemberInfo.member")) {
+			action = new MemberUseIdAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}else if (command.equals("/member/MemberInfo.member")) {
 			// System.out.println(" C : /MemberInfo.me 호출 ");
 			// System.out.println(" C : 패턴 3 - DB사용O, 페이지 출력 ");
 
