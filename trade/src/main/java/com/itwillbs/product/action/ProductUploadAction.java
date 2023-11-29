@@ -48,22 +48,20 @@ public class ProductUploadAction implements Action {
 		String realPath = request.getRealPath("upload");
 		int maxSize = 5 * 1024 * 1024; // 파일 크기 byte * kb * mb(5MB)
 		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "UTF-8",
-				new DefaultFileRenamePolicy());
+												new DefaultFileRenamePolicy());
 
 		Enumeration<String> files = multi.getFileNames();
 		List<String> fileList = new ArrayList<>();
 
 		while (files.hasMoreElements()) {
-		    String fieldName = files.nextElement();
-		    String fName = multi.getFilesystemName(fieldName);
+		    String fileName = files.nextElement();
+		    String fName = multi.getFilesystemName(fileName);
 		    if (fName != null) {
 		        fileList.add(fName);
-		    //    System.out.println("fName: " + fName);
 		    }
 		}
 
 		String file_name = String.join(",", fileList);
-	//	System.out.println("file_name: " + file_name);
 
 		// 전달정보 저장(DTO)
 		ProductDTO dto = new ProductDTO();
