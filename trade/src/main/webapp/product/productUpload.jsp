@@ -166,7 +166,7 @@
 
             <div class="form-group">
                <label for="productPrice">가격(원):</label> <input type="number"
-                  id="price" name="price" step="500" placeholder="배송비 포함 금액을 입력하세요">
+                  id="price" name="price" step="500" placeholder="배송비 포함 금액을 500원 단위로 입력하세요">
             </div>
 
             <div class="form-group">
