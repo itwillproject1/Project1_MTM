@@ -37,7 +37,7 @@ public class EmployeeMailSendAction implements Action{
 		mail.setSubject(multi.getParameter("subject"));
 		mail.setContent(multi.getParameter("content"));
 		mail.setImage(multi.getFilesystemName("image"));
-		
+
 		// 이메일 배열 등록
 		InternetAddress[] address = new InternetAddress[list.size()];	
 		for(int i = 0; i<list.size(); i++) address[i] = new InternetAddress(list.get(i).getAddress());

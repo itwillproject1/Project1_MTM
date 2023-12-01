@@ -3,6 +3,7 @@ package com.itwillbs.employee.action.mail;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -74,25 +75,31 @@ public class EmployeeMailSend {
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
 		}
-
 		MimeMessage message = getMessage();
 		try {
+			// 제목 설정
 			message.setSubject(mdto.getSubject());
+			
+			// MimeBodyPart 저장할 구간
 			MimeMultipart multipart = new MimeMultipart("related");
-
-			BodyPart messageBodyPart = new MimeBodyPart();
-			messageBodyPart.setContent(mdto.getContent(), "text/html;charset=utf-8");
-
-			multipart.addBodyPart(messageBodyPart);
+			
+			// 텍스트 설정
+			MimeBodyPart textPart = new MimeBodyPart();
+			textPart.setText(mdto.getContent(), "UTF-8", "html");
+			multipart.addBodyPart(textPart);
+			
+			// 메세지 세팅
 			message.setContent(multipart);
-
+			
+			// 연결
 			transport.connect();
-			//message.setRecipients(Message.RecipientType.TO, address);
-			//transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+			
 			for(int i = 0; i<address.length; i++) {
+				// 메세지 발송
 				message.setRecipient(Message.RecipientType.TO, address[i]);
 				Transport.send(message);
 			}
+			// 연결 해제
 			transport.close();
 		} catch (MessagingException e) {
 			e.printStackTrace();
@@ -113,38 +120,45 @@ public class EmployeeMailSend {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		session = setSession(prop);
 		session.setDebug(true);
-
 		try {
 			transport = session.getTransport();
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
 		}
-
+		
 		MimeMessage message = getMessage();
 		try {
+			// 제목 설정
 			message.setSubject(mdto.getSubject());
 			
+			// MimeBodyPart을 여러개 저장
 			MimeMultipart multipart = new MimeMultipart("related");
-
-			BodyPart messageBodyPart = new MimeBodyPart();
-			messageBodyPart.setContent(mdto.getContent(), "text/html;charset=utf-8");
-
-			multipart.addBodyPart(messageBodyPart);
-			FileDataSource image = new FileDataSource(realPath + "\\" + mdto.getImage());	// 파일 데이터 경로(/upload/fileName)"
-
-			messageBodyPart.setDataHandler(new DataHandler(image));	// 파일 데이터 불러오기 및 저장
+			
+			// 텍스트
+			MimeBodyPart textPart = new MimeBodyPart();
+			textPart.setText(mdto.getContent(), "UTF-8", "html");
+			multipart.addBodyPart(textPart);
+			
+			// 파일
+			MimeBodyPart imagePart = new MimeBodyPart();
+			DataSource image = new FileDataSource(realPath + "\\" + mdto.getImage());	// 파일 데이터 경로(/upload/fileName)"
+			imagePart.setDataHandler(new DataHandler(image));	// 파일 데이터 불러오기 및 저장
+			multipart.addBodyPart(imagePart);
+			
+			// 메세지 세팅
 			message.setContent(multipart);
-
+			
+			// 연결
 			transport.connect();
-			//message.setRecipients(Message.RecipientType.TO, address);
-			//transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
 			for(int i = 0; i<address.length; i++) {
+				// 메일 전송
 				message.setRecipient(Message.RecipientType.TO, address[i]);
 				Transport.send(message);
 			}
+			// 연결 해제
 			transport.close();
 		} catch (MessagingException e) {
 			e.printStackTrace();

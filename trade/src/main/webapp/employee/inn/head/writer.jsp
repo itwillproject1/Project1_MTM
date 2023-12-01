@@ -7,7 +7,6 @@
 <meta name="author" content="">
 <link href="./employee/template/assets/images/titleIcon.ico" rel="shortcut icon" type="image/x-icon">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<title>게시판 작성</title>
 <!-- Simple bar CSS -->
 <link rel="stylesheet" href="./employee/template/css/simplebar.css">
 <!-- Fonts CSS -->

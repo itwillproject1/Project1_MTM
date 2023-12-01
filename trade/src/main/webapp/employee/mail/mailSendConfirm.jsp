@@ -28,10 +28,9 @@
 					<h4 class="my-3">메일 전송 확인</h4>
 				</div>
 				<div class="alert alert-success" role="alert">
-					<strong>${result} </strong>의 메일 전송이 완료되었습니다. <br> 메인 페이지로
-					이동합니다.
+					<strong>${result}</strong>의 메일 전송이 완료되었습니다. <br> 메인 페이지로이동합니다.
 				</div>
-				<a href="./MailList.emp" class="btn btn-lg btn-primary btn-block">확인</a>
+				<a href="./EmployeeMailList.emp" class="btn btn-lg btn-primary btn-block">확인</a>
 				<p class="mt-5 mb-3 text-muted">© 2023</p>
 			</form>
 		</div>

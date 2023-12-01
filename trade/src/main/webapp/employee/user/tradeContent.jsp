@@ -49,6 +49,7 @@
 											<div class="col">
 												<c:if test="${dto.file_name != ''}">
 													<img src="./upload/${dto.file_name}" alt="..."
+														onerror="this.onerror=null; this.src='./employee/template/assets/images/productImage.png';"
 														class="product-image">
 												</c:if>
 											</div>

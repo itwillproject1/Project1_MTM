@@ -16,7 +16,8 @@
 				<div class="row align-items-center mb-4">
 					<div class="col">
 						<h2 class="h2 page-title">
-							<small class="text-muted text-uppercase">#${dto.bno}</small><br>이벤트
+							<small class="text-muted text-uppercase">#${dto.bno}</small><br>
+							<c:if test="${dto.category == 1}">공지사항</c:if><c:if test="${dto.category == 2}">이벤트</c:if>
 						</h2>
 					</div>
 					<div class="col-auto">
@@ -40,7 +41,7 @@
 								<p>${dto.content}</p>
 							</div>
 						</div>
-						<c:if test="${dto.image != null && dto.image != ''}">
+						<c:if test="${dto.image != null && dto.image != '' && dto.image != 'Null'}">
 							<div class="row align-items-center" style="text-align: center;">
 								<div class="col" style="margin: auto;">
 									<img src="./upload/${dto.image}" alt="..."
