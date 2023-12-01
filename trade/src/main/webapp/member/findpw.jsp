@@ -48,10 +48,6 @@
 			document.join.number.focus();
 			return false;
 		}
-		else if(number == "${sessionScope.random }"){
-			alert(' 인증 되었습니다 ');
-			return true;
-		}
 	}
 	
 	 function emailcheck() {
@@ -88,8 +84,9 @@
 <input class="in" type="text" name="user_id" id="d"><br>
 
 <hr> 
-</form>
-<input  class="in" id="find" type="submit" value="비밀번호 찾기" onclick="return check2();" >		
+
+<input  class="in" id="find" type="submit" value="비밀번호 찾기" onclick="return check2();" >
+</form>	
 <input class="in" id="pre" type="button" value="돌아가기" id="e" onclick="location.href='../main/login.member'">
 
 <% session.removeAttribute("random");%>

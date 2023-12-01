@@ -44,11 +44,11 @@ public class findpwAction implements Action {
 			return null;
 		} else if (result == 0) {
 			// 비밀번호 오류 실패
-			JSMoveFunction.alertBack(response, "아이디가 맞지않습니다");
+			JSMoveFunction.alertBack(response, "이름이 맞지않습니다");
 			return null;
 		} else if (result == -1) {
 			// 비밀번호 오류 실패
-			JSMoveFunction.alertBack(response, "이름이 맞지않습니다.");
+			JSMoveFunction.alertBack(response, "아이디 맞지않습니다.");
 			return null;
 		}
 
