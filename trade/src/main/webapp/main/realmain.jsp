@@ -15,7 +15,7 @@
    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link href="../css/main_styles.css" rel="stylesheet" />
 <link href="../css/mainSlider.css" rel="stylesheet" />
-<title>Modern Tech Market</title>
+<title>Modern Tech Market실험</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper">
 <link rel="icon" href="../main/img/16px.ico" type="image/x-icon">
 </head>
