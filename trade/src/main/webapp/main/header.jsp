@@ -13,7 +13,7 @@
 <script type="text/javascript">
    
 </script>
-<title>헤더11</title>
+<title>헤더</title>
 </head>
 <body>
 <header>
