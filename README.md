@@ -17,14 +17,14 @@
 
 ### ⚙️ 개발 환경
 **✔️Language**  
-Java 11  
+Java 11.0.15 
 JSP  
 HTML5  
 CSS3  
 JavaScript  
 jQuery  
 Ajax  
-JDK 11.0.15
+JDK 11
 
 **✔️Database**  
 Mysql 8.0.33   
