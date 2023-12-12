@@ -1,5 +1,5 @@
 ## JSP-Project-Modern Tech Market
-전자기기 중고거래 사이트
+**전자기기 중고거래 사이트**
 
 ### 🖥️ 프로젝트 소개
 중고나라를 참고하여 만든 전자기기 중고거래 사이트입니다.
@@ -26,21 +26,26 @@ jQuery
 Ajax  
 JDK 11
 
+
 **✔️Database**  
 Mysql 8.0.33   
 Mysql Workbench  
 DBeaver  
 
+
 **✔️server**  
 Apache Tomcat 9.0
+
 
 **✔️Tool**  
 Eclipse 2022-06  
 Visual Studio Code  
 
+
 **✔️Collaboration**  
 Discord  
 Google Drive  
+
 
 **✔️Version Control**  
 Git  
