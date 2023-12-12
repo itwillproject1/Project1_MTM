@@ -27,24 +27,24 @@ Ajax
 JDK 1.8.0
 
 **✔️Database**  
-Mysql 8.0.33  
-Mysql Workbench
-DBeaver
+Mysql 8.0.33   
+Mysql Workbench  
+DBeaver  
 
 **✔️server**  
 Apache Tomcat 9.0
 
 **✔️Tool**  
-Eclipse 2022-06
-Visual Studio Code
+Eclipse 2022-06  
+Visual Studio Code  
 
 **✔️Collaboration**  
-Discord
-Google Drive
+Discord  
+Google Drive  
 
 **✔️Version Control**  
-Git
-Sourcetree
+Git  
+Sourcetree  
 
 ### 📌 주요 기능
 로그인  
