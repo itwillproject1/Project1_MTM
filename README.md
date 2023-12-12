@@ -24,7 +24,7 @@ CSS3
 JavaScript  
 jQuery  
 Ajax  
-JDK 1.8.0
+JDK 11.0.15
 
 **✔️Database**  
 Mysql 8.0.33   
