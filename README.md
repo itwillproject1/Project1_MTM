@@ -1,6 +1,8 @@
 ## JSP-Project-Modern Tech Market
 **전자기기 중고거래 사이트**
 
+- [🔗웹 사이트 바로가기 URL]((http://c7d2307t1.itwillbs.com/trade/main/Main.com)<br>
+
 ### 🖥️ 프로젝트 소개
 중고나라를 참고하여 만든 전자기기 중고거래 사이트입니다.
 원하는 제품을 먼저 제안할 수 있도록 제작했습니다.
