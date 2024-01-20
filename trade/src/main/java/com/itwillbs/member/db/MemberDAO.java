@@ -547,7 +547,7 @@ public class MemberDAO {
 			if (rs.next()) {
 
 				if (pwdto.getUser_name().equals(rs.getString("user_name"))) {
-					pwdto.setPassword(rs.getString("passwoard"));
+					pwdto.setPassword(rs.getString("password"));
 					result = 1; // 일치
 				} else {
 					result = 0; // 이름이 맞지않음
